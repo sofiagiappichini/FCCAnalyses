@@ -1,19 +1,7 @@
-import ROOT
-
 #Mandatory: List of processes
 processList = {
-
-        #centrally-produced backgrounds
-        'p8_ee_Zee_ecm91':{'fraction':0.001},
-        'p8_ee_Zmumu_ecm91':{'fraction':0.001},
-        'p8_ee_Ztautau_ecm91':{'fraction':0.001},
-        'p8_ee_Zbb_ecm91':{'fraction':0.001},
-        'p8_ee_Zcc_ecm91':{'fraction':0.001},
-        'p8_ee_Zud_ecm91':{'fraction':0.001},
-        'p8_ee_Zss_ecm91':{'fraction':0.001},
-
         #privately-produced signals
-        #'HNL_4e-8_5gev':{},
+        'HNL_4e-8_5gev_2':{},
         #'eenu_30GeV_1p41e-6Ve':{},
         #'eenu_50GeV_1p41e-6Ve':{},
         #'eenu_70GeV_1p41e-6Ve':{},
@@ -27,15 +15,14 @@ processList = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_MadgraphPythiaDelphes"
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesStandalone/Edm4Hep/pre_winter2023_tests_v2"
-#inputDir    = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-#inputDir = "/afs/cern.ch/user/s/sgiappic"
+inputDir = "/afs/cern.ch/user/s/sgiappic/"
 
 
 #Optional: output directory, default is local dir
@@ -43,7 +30,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 #outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/pre_winter2023_tests_v2/output_stage1/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/test_bkg3/stage1/"
+outputDir = "/eos/user/s/sgiappic/test_bkg4/stage1/"
 
 #outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_stage1/"
 #outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
@@ -206,7 +193,7 @@ class RDFanalysis():
 
 
                 ################### Reconstructed particles #####################
-                .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
+                #.Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack)")
 
                 #JETS
                 ### count how many jets are in the event in total to check, it doesn't work with this method on reclustered jets, only on the edm4hep collections Jet ###
@@ -237,17 +224,17 @@ class RDFanalysis():
                 #.Define("dmerge_23", "JetClusteringUtils::get_exclusive_dmerge( FCCAnalysesJets, 2)" )
 
 		#PHOTONS
-		.Alias("Photon0", "Photon#0.index") 
-		.Define("RecoPhotons",  "ReconstructedParticle::get(Photon0, ReconstructedParticles)")
+		#.Alias("Photon0", "Photon#0.index") 
+		.Define("RecoPhotons",  "ReconstructedParticle::get(EFlowPhoton, ReconstructedParticles)")
 		.Define("n_RecoPhotons",  "ReconstructedParticle::get_n(RecoPhotons)") #count how many photons are in the event in total
 
 		#ELECTRONS AND MUONS
-		.Alias("Electron0", "Electron#0.index")
-		.Define("RecoElectrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles)")
+		#.Alias("Electron0", "Electron#0.index")
+		.Define("RecoElectrons",  "ReconstructedParticle::get(Electron, ReconstructedParticles)")
 		.Define("n_RecoElectrons",  "ReconstructedParticle::get_n(RecoElectrons)") #count how many electrons are in the event in total
 
-		.Alias("Muon0", "Muon#0.index")
-		.Define("RecoMuons",  "ReconstructedParticle::get(Muon0, ReconstructedParticles)")
+		#.Alias("Muon0", "Muon#0.index")
+		.Define("RecoMuons",  "ReconstructedParticle::get(Muon, ReconstructedParticles)")
 		.Define("n_RecoMuons",  "ReconstructedParticle::get_n(RecoMuons)") #count how many muons are in the event in total
 
                 #SIMPLE VARIABLES: Access the basic kinematic variables of the (selected) jets, works analogously for electrons, muons
@@ -261,12 +248,12 @@ class RDFanalysis():
                 #.Define("RecoJet_theta",   "ReconstructedParticle::get_theta(Jet)")
 		#.Define("RecoJet_phi",     "ReconstructedParticle::get_phi(Jet)") #polar angle in the transverse plane phi
                 #.Define("RecoJet_charge",  "ReconstructedParticle::get_charge(Jet)")
-                #.Define("RecoJetTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(Jet,EFlowTrack_1))") #significance
-                #.Define("RecoJetTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(Jet,EFlowTrack_1)") #variance (not sigma)
-                #.Define("RecoJetTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(Jet,EFlowTrack_1)")
+                #.Define("RecoJetTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(Jet,EFlowTrack))")
+                #.Define("RecoJetTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(Jet,EFlowTrack))")
+                #.Define("RecoJetTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(Jet,EFlowTrack))") #significance
+                #.Define("RecoJetTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(Jet,EFlowTrack))")
+                #.Define("RecoJetTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(Jet,EFlowTrack)") #variance (not sigma)
+                #.Define("RecoJetTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(Jet,EFlowTrack)")
 
                 .Define("RecoElectron_e",      "ReconstructedParticle::get_e(RecoElectrons)")
                 .Define("RecoElectron_p",      "ReconstructedParticle::get_p(RecoElectrons)")
@@ -278,12 +265,12 @@ class RDFanalysis():
                 .Define("RecoElectron_theta",   "ReconstructedParticle::get_theta(RecoElectrons)")
 		.Define("RecoElectron_phi",     "ReconstructedParticle::get_phi(RecoElectrons)") #polar angle in the transverse plane phi
                 .Define("RecoElectron_charge",  "ReconstructedParticle::get_charge(RecoElectrons)")
-                .Define("RecoElectronTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoElectrons,EFlowTrack_1))")
-                .Define("RecoElectronTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoElectrons,EFlowTrack_1))")
-                .Define("RecoElectronTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoElectrons,EFlowTrack_1))") #significance
-                .Define("RecoElectronTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoElectrons,EFlowTrack_1))")
-                .Define("RecoElectronTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoElectrons,EFlowTrack_1)") #variance (not sigma)
-                .Define("RecoElectronTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoElectrons,EFlowTrack_1)")
+                .Define("RecoElectronTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoElectrons,EFlowTrack))")
+                .Define("RecoElectronTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoElectrons,EFlowTrack))")
+                .Define("RecoElectronTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoElectrons,EFlowTrack))") #significance
+                .Define("RecoElectronTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoElectrons,EFlowTrack))")
+                .Define("RecoElectronTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoElectrons,EFlowTrack)") #variance (not sigma)
+                .Define("RecoElectronTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoElectrons,EFlowTrack)")
 
                 .Define("RecoPhoton_e",      "ReconstructedParticle::get_e(RecoPhotons)")
                 .Define("RecoPhoton_p",      "ReconstructedParticle::get_p(RecoPhotons)")
@@ -306,12 +293,12 @@ class RDFanalysis():
                 .Define("RecoMuon_theta",   "ReconstructedParticle::get_theta(RecoMuons)")
 		.Define("RecoMuon_phi",     "ReconstructedParticle::get_phi(RecoMuons)") #polar angle in the transverse plane phi
                 .Define("RecoMuon_charge",  "ReconstructedParticle::get_charge(RecoMuons)")
-                .Define("RecoMuonTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoMuons,EFlowTrack_1))")
-                .Define("RecoMuonTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoMuons,EFlowTrack_1))")
-                .Define("RecoMuonTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoMuons,EFlowTrack_1))") #significance
-                .Define("RecoMuonTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoMuons,EFlowTrack_1))")
-                .Define("RecoMuonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoMuons,EFlowTrack_1)") #variance (not sigma)
-                .Define("RecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons,EFlowTrack_1)")
+                .Define("RecoMuonTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoMuons,EFlowTrack))")
+                .Define("RecoMuonTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoMuons,EFlowTrack))")
+                .Define("RecoMuonTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoMuons,EFlowTrack))") #significance
+                .Define("RecoMuonTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoMuons,EFlowTrack))")
+                .Define("RecoMuonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoMuons,EFlowTrack)") #variance (not sigma)
+                .Define("RecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons,EFlowTrack)")
                 
                 ### cosine between two leptons ###
                 .Define("Reco_ee_p", "if (n_RecoElectrons>1) return (RecoElectron_px.at(0)*RecoElectron_px.at(1) + RecoElectron_py.at(0)*RecoElectron_py.at(1) + RecoElectron_pz.at(0)*RecoElectron_pz.at(1)); else return float(-2.);")
@@ -336,8 +323,8 @@ class RDFanalysis():
                                         else return float(-1.);")
 
                 # Now we reconstruct the reco decay vertex using the reco'ed tracks from electrons and muons
-                .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack_1)") ### EFlowTrack_1 contains all tracks ###
-                .Define("RecoMuonTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoMuons, EFlowTrack_1)")
+                .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack)") ### EFlowTrack contains all tracks ###
+                .Define("RecoMuonTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoMuons, EFlowTrack)")
 
                 # First the full object, of type Vertexing::FCCAnalysesVertex
                 .Define("RecoDecayVertexObjectElectron",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoElectronTracks)" ) ### 1 = primary vertex, 2 = secondary vertex ###
