@@ -4,33 +4,33 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
 
 ## FCCAnalyses setup 
 
-1. Follow instructions given in [https://github.com/HEP-FCC/FCCAnalyses](https://github.com/HEP-FCC/FCCAnalyses) forking the FCC-LLP version [FCC-LLP/FCCAnalyses](https://github.com/FCC-LLP/FCCAnalyses) to set up the working environment in lxplus.
+1. Following instructions given in [https://github.com/HEP-FCC/FCCAnalyses](https://github.com/HEP-FCC/FCCAnalyses), fork the FCC-LLP version [FCC-LLP/FCCAnalyses](https://github.com/FCC-LLP/FCCAnalyses) to set up the working environment in lxplus.
 
-**Note:** FCC-LLP/FCCAnalyses hasn`t been kept up to date with main repository so it`s best to fork the [official version](https://github.com/HEP-FCC/FCCAnalyses) and add LLP specific files (found in FCCAnalyses/examples/FCCee/bsm/LLPs), plus some additional lines in analyzers/dataframe/FCCAnalyses/VertexingUtils.h, analyzers/dataframe/FCCAnalyses/myUtils.h, analyzers/dataframe/src/VertexFinderLCFIPlus.cc, analyzers/dataframe/src/myUtils.cc and config/FCCAnalysisRun.py (this last one is not present in main repository so ignoring it for now).
+    **Note:** FCC-LLP/FCCAnalyses hasn't been kept up to date with main repository so it's best to fork the [official version](https://github.com/HEP-FCC/FCCAnalyses).
 
-```
-bash
-git clone git@github.com:HEP-FCC/FCCAnalyses.git
-cd FCCAnlyses
-source ./setup.sh
-mkdir build install
-cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=../install
-make install
-```
+    ```
+    bash
+    git clone git@github.com:HEP-FCC/FCCAnalyses.git
+    cd FCCAnlyses
+    source ./setup.sh
+    mkdir build install
+    cd build
+    cmake .. -DCMAKE_INSTALL_PREFIX=../install
+    make install
+    ```
 
 2. When beginning a new session do:
 
-```
-cd FCCAnlyses
-source ./setup.sh
-```
+    ```
+    cd FCCAnlyses
+    source ./setup.sh
+    ```
 
 3. Move to the HNL directory to find the analysis files:
 
-```
-cd FCCAnalyses/examples/FCCee/bsm/LLPs/DisplacedHNL
-```
+    ```
+    cd FCCAnalyses/examples/FCCee/bsm/LLPs/DisplacedHNL
+    ```
 
 ## Generating your own samples
 
@@ -40,34 +40,34 @@ Winter 23 samples have been created with Pythia8 and Delphes 3.5.1pre05 as state
 
 ### LHE files
 
-First of all, install Madgraph on lxplus by downloading the latest version (3.5.3) and send the file to lxplus:
+1. First of all, install Madgraph on lxplus by downloading the latest version and send the file to lxplus:
 
-```
-scp MG5_aMC_version.tar.gz user@lxplus.cern.ch:/path/
-```
+    ```
+    scp MG5_aMC_version.tar.gz user@lxplus.cern.ch:/path/
+    ```
 
-Or simply do from lxplus:
+    Or simply do from lxplus:
 
-```
-wget https://launchpad.net/mg5amcnlo/3.0/3.5.x/+download/MG5_aMC_v3.5.3.tar.gz
-```
+    ```
+    wget https://launchpad.net/mg5amcnlo/3.0/3.5.x/+download/MG5_aMC_v3.5.3.tar.gz
+    ```
 
-Then in lxplus unzip the file (tar -xf) and proceed with the installation:
+    Then in lxplus unzip the file (tar -xf) and proceed with the installation:
 
-```
-cd MG5_aMC_version
-./bin/mg5_aMC
-```
+    ```
+    cd MG5_aMC_version
+    ./bin/mg5_aMC
+    ```
 
-For HNL signal samples, the HeavyN model needs to be added in the models directory if it`s not already in the model list (MG5_aMC>display modellist): dowload the file `​SM_HeavyN_CKM_AllMasses_LO.tgz` from [https://feynrules.irmp.ucl.ac.be/wiki/HeavyN](https://feynrules.irmp.ucl.ac.be/wiki/HeavyN) and unzip it (tar -xf).
+    For HNL signal samples, the HeavyN model needs to be added in the models directory if it's not already in the model list (MG5_aMC>display modellist): dowload the file `​SM_HeavyN_CKM_AllMasses_LO.tgz` from [https://feynrules.irmp.ucl.ac.be/wiki/HeavyN](https://feynrules.irmp.ucl.ac.be/wiki/HeavyN) and unzip it (tar -xf).
 
-Then you can start generating LHE files by passing the appropriate card to Madgraph:
+2. Then you can start generating LHE files by passing the appropriate card to Madgraph:
 
-```
-./bin/mg5_aMC mg5_proc_card.dat
-```
+    ```
+    ./bin/mg5_aMC mg5_proc_card.dat
+    ```
 
-The LHE file is in the corresponding directory.
+    The LHE file is in the corresponding directory.
 
 ### Pythia+Delphes
 
@@ -77,7 +77,13 @@ To create a root file of the event after the detector reconstruction in the EDM4
 source /cvmfs/fcc.cern.ch/sw/latest/setup.sh
 ```
 
-The usage of the software is:
+or the equivalent (newer for FCCSW sourcing):
+
+```
+source /cvmfs/sw.hsf.org/key4hep/setup.sh
+```
+
+The command to produce root files in Delphes with Pythia hadronization and EDM4Hep format is this:
 
 ```
 DelphesPythia8_EDM4HEP DelphesPythia8config_file output_config_file pythia_card output_file
@@ -89,7 +95,9 @@ In the Pythia card `pythia_card` the path to the unzipped LHE file must be given
 
 The `output_file` is the EDM4Hep root file cointaning the sample that needs to be analysed.
 
-Instructions to validate in the EDM4Hep format root files created in standalone MG+Pythia+Delphes can be found [here](https://github.com/zuoxunwu/FCCeePhysicsPerformance/tree/BuBc_dev/case-studies/BSM/LLP/DisplacedHNL)
+**Note:** all the cards for Madgraph (one example with multiple run where the masses change), Pythia and Delphes (edm4hep) can be easily found at 
+
+Instructions to validate in the EDM4Hep format root files created in standalone MG+Pythia+Delphes can be found [here](https://github.com/zuoxunwu/FCCeePhysicsPerformance/tree/BuBc_dev/case-studies/BSM/LLP/DisplacedHNL) (not necessary, it does not produce an edm4hep file, just some histograms).
 
 
 ## Running the analysis
@@ -100,25 +108,25 @@ My comments to the general code begin and end with three #.
 
 1. Run the first stage to create trees for the events from the HNL directory:
 
-```
-cd FCCAnalyses/examples/FCCee/bsm/LLPs/DisplacedHNL
-fccanalysis run analysis_stage1.py
-```
+    ```
+    cd FCCAnalyses/examples/FCCee/bsm/LLPs/DisplacedHNL
+    fccanalysis run analysis_stage1.py
+    ```
 
-This is the stage where you can add or modify the variables that you want to save in the trees, remember to update the other stages as well to get the plots.
+    This is the stage where you can add or modify the variables that you want to save in the trees, remember to update the other stages as well to get the plots.
 
 2. Then run the chosen selections on top of that:
 
-```
-fccanalysis final analysis_final.py
-```
+    ```
+    fccanalysis final analysis_final.py
+    ```
 
-The selections are based on the objects stored in the trees in the first stage. The step will also create a latex table with the number of events after each selection and the efficiency.
+    The selections are based on the objects stored in the trees in the first stage. The step will also create a latex table with the number of events after each selection and the efficiency.
 
 3. To create the plots do:
 
-```
-fccanalysis plots analysis_plots.py
-```
+    ```
+    fccanalysis plots analysis_plots.py
+    ```
 
-Open the file to make changes to how the plots look.
+    Open the file to make changes to how the plots look.

@@ -3,13 +3,13 @@
 #inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/pre_winter2023_tests_v2/output_stage1/"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #inputDir = "output_stage1/"
-inputDir = "/eos/user/s/sgiappic/test_bkg3/stage1/"
+inputDir = "/eos/user/s/sgiappic/test_sig/stage1/"
 
 #Output directory where the files produced at the final-selection level are
 #outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_finalSel/"
 #outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/pre_winter2023_tests_v2/output_finalSel/"
 #outputDir  = "output_finalSel/"
-outputDir = "/eos/user/s/sgiappic/test_bkg3/final/"
+outputDir = "/eos/user/s/sgiappic/test_sig/final/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 150e6 #pb^-1
@@ -24,15 +24,16 @@ processList = {
     #run over the full statistics from stage1
 
     #backgrounds
-    'p8_ee_Zee_ecm91':{},
-    'p8_ee_Zmumu_ecm91':{},
-    'p8_ee_Ztautau_ecm91':{},
-    'p8_ee_Zbb_ecm91':{},
-    'p8_ee_Zcc_ecm91':{},
-    'p8_ee_Zud_ecm91':{},
-    'p8_ee_Zss_ecm91':{},
+    #'p8_ee_Zee_ecm91':{},
+    #'p8_ee_Zmumu_ecm91':{},
+    #'p8_ee_Ztautau_ecm91':{},
+    #'p8_ee_Zbb_ecm91':{},
+    #'p8_ee_Zcc_ecm91':{},
+    #'p8_ee_Zud_ecm91':{},
+    #'p8_ee_Zss_ecm91':{},
 
     #signals
+    'HNL_4e-8_10gev':{},
     #'eenu_30GeV_1p41e-6Ve':{},
     #'eenu_50GeV_1p41e-6Ve':{},
     #'eenu_70GeV_1p41e-6Ve':{},
@@ -42,15 +43,16 @@ processList = {
 ###Dictionary for prettier names of processes (optional)
 processLabels = {
     #backgrounds
-    'p8_ee_Zee_ecm91':"Z $\rightarrow$ ee",
-    'p8_ee_Zmumu_ecm91':"Z $\rightarrow \mu \mu$",
-    'p8_ee_Ztautau_ecm91':"Z $\rightarrow \tau \tau$",
-    'p8_ee_Zbb_ecm91':"Z $\rightarrow$ bb",
-    'p8_ee_Zcc_ecm91':"Z $\rightarrow$ cc",
-    'p8_ee_Zud_ecm91':"Z $\rightarrow$ ud",
-    'p8_ee_Zss_ecm91':"Z $\rightarrow$ ss",
+    #'p8_ee_Zee_ecm91':"Z $\rightarrow$ ee",
+    #'p8_ee_Zmumu_ecm91':"Z $\rightarrow \mu \mu$",
+    #'p8_ee_Ztautau_ecm91':"Z $\rightarrow \tau \tau$",
+    #'p8_ee_Zbb_ecm91':"Z $\rightarrow$ bb",
+    #'p8_ee_Zcc_ecm91':"Z $\rightarrow$ cc",
+    #'p8_ee_Zud_ecm91':"Z $\rightarrow$ ud",
+    #'p8_ee_Zss_ecm91':"Z $\rightarrow$ ss",
 
     #signals
+    'HNL_4e-8_10gev':"HNL, U^2=4e-8, M_N=10 GeV",
     #'eenu_30GeV_1p41e-6Ve': "$m_N =$ 30 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
     #'eenu_50GeV_1p41e-6Ve': "$m_N =$ 50 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
     #'eenu_70GeV_1p41e-6Ve': "$m_N =$ 70 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
@@ -61,23 +63,24 @@ processLabels = {
 procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add MySample_p8_ee_ZH_ecm240 as it is not an offical process
-#procDictAdd={
+procDictAdd={
+    'HNL_4e-8_10gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 7.388119e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
     #"MySample_p8_ee_ZH_ecm240":{"numberOfEvents": 10000000, "sumOfWeights": 10000000, "crossSection": 0.201868, "kfactor": 1.0, "matchingEfficiency": 1.0}
     #"eenu_30GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.638e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
     #"eenu_50GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.535e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
     #"eenu_70GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.968e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
     #"eenu_90GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.749e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
-#}
+}
 
 #Number of CPUs to use
 nCPUS = 4
 
 #produces ROOT TTrees, default is False
-doTree = True
+#doTree = True
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
-    "selNone": "n_RecoTracks > -1",
+    "selNone": "n_FSGenElectron>-1", #"n_RecoTracks > -1",
     # "sel1FSGenEle": "n_FSGenElectron>0",
     # "sel1FSGenEle_eeInvMassGt80": "n_FSGenElectron>0 && FSGen_ee_invMass >80",
     # "sel1FSGenNu": "n_FSGenNeutrino>0",
@@ -205,7 +208,7 @@ histoList = {
     #"FSGenPhoton_charge":              {"name":"FSGenPhoton_charge",             "title":"Final state gen photons charge",             "bin":3, "xmin":-1.5,"xmax":1.5},
 
     #reco variables
-    "n_RecoTracks":                    {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",           "bin":5,"xmin":-0.5 ,"xmax":4.5},
+    #"n_RecoTracks":                    {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",           "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoJets":       {"name":"n_RecoJets",      "title":"Total number of reco jets",         "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoPhotons":    {"name":"n_RecoPhotons",   "title":"Total number of reco photons",      "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoElectrons":  {"name":"n_RecoElectrons", "title":"Total number of reco electrons",    "bin":5,"xmin":-0.5 ,"xmax":4.5},
@@ -220,7 +223,6 @@ histoList = {
     #"RecoJet_theta":    {"name":"RecoJet_theta",    "title":"Reco jet #theta",       "bin":64, "xmin":0,"xmax":3.2},
     #"RecoJet_phi":      {"name":"RecoJet_phi",      "title":"Reco jet #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
     #"RecoJet_charge":   {"name":"RecoJet_charge",   "title":"Reco jet charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
-
     #"RecoJetTrack_absD0":             {"name":"RecoJetTrack_absD0",     "title":"Reco jet tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
     #"RecoJetTrack_absD0_prompt":      {"name":"RecoJetTrack_absD0",     "title":"Reco jet tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
     #"RecoJetTrack_absZ0":             {"name":"RecoJetTrack_absZ0",     "title":"Reco jet tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
@@ -241,55 +243,27 @@ histoList = {
     "RecoElectron_phi":      {"name":"RecoElectron_phi",      "title":"Reco electron #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
     "RecoElectron_charge":   {"name":"RecoElectron_charge",   "title":"Reco electron charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
 
-    "RecoElectronTrack_absD0":             {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
-    "RecoElectronTrack_absD0_med":         {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":10},
-    "RecoElectronTrack_absD0_prompt":      {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
-    "RecoElectronTrack_absZ0":             {"name":"RecoElectronTrack_absZ0",     "title":"Reco electron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
-    "RecoElectronTrack_absZ0_prompt":      {"name":"RecoElectronTrack_absZ0",     "title":"Reco electron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
-    "RecoElectronTrack_absD0sig":          {"name":"RecoElectronTrack_absD0sig",  "title":"Reco electron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
-    "RecoElectronTrack_absD0sig_med":      {"name":"RecoElectronTrack_absD0sig",  "title":"Reco electron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":1000},
-    "RecoElectronTrack_absD0sig_prompt":   {"name":"RecoElectronTrack_absD0sig",  "title":"Reco electron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
-    "RecoElectronTrack_absZ0sig":          {"name":"RecoElectronTrack_absZ0sig",  "title":"Reco electron tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
-    "RecoElectronTrack_absZ0sig_prompt":   {"name":"RecoElectronTrack_absZ0sig",  "title":"Reco electron tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
-    "RecoElectronTrack_D0cov":      {"name":"RecoElectronTrack_D0cov",     "title":"Reco electron tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
-    "RecoElectronTrack_Z0cov":      {"name":"RecoElectronTrack_Z0cov",     "title":"Reco electron tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+    #"RecoElectronTrack_absD0":             {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    #"RecoElectronTrack_absD0_med":         {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":10},
+    #"RecoElectronTrack_absD0_prompt":      {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
+    #"RecoElectronTrack_absZ0":             {"name":"RecoElectronTrack_absZ0",     "title":"Reco electron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    #"RecoElectronTrack_absZ0_prompt":      {"name":"RecoElectronTrack_absZ0",     "title":"Reco electron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
+    #"RecoElectronTrack_absD0sig":          {"name":"RecoElectronTrack_absD0sig",  "title":"Reco electron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
+    #"RecoElectronTrack_absD0sig_med":      {"name":"RecoElectronTrack_absD0sig",  "title":"Reco electron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":1000},
+    #"RecoElectronTrack_absD0sig_prompt":   {"name":"RecoElectronTrack_absD0sig",  "title":"Reco electron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    #"RecoElectronTrack_absZ0sig":          {"name":"RecoElectronTrack_absZ0sig",  "title":"Reco electron tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
+    #"RecoElectronTrack_absZ0sig_prompt":   {"name":"RecoElectronTrack_absZ0sig",  "title":"Reco electron tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    #"RecoElectronTrack_D0cov":      {"name":"RecoElectronTrack_D0cov",     "title":"Reco electron tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+    #"RecoElectronTrack_Z0cov":      {"name":"RecoElectronTrack_Z0cov",     "title":"Reco electron tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
 
-    "Reco_DecayVertexElectron_x":           {"name":"RecoDecayVertexElectron.position.x",  "title":"Reco decay Electron vertex x [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexElectron_y":           {"name":"RecoDecayVertexElectron.position.y",  "title":"Reco decay Electron vertex y [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexElectron_z":           {"name":"RecoDecayVertexElectron.position.z",  "title":"Reco decay Electron vertex z [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexElectron_x_prompt":    {"name":"RecoDecayVertexElectron.position.x",  "title":"Reco decay Electron vertex x [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
-    "Reco_DecayVertexElectron_y_prompt":    {"name":"RecoDecayVertexElectron.position.y",  "title":"Reco decay Electron vertex y [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
-    "Reco_DecayVertexElectron_z_prompt":    {"name":"RecoDecayVertexElectron.position.z",  "title":"Reco decay Electron vertex z [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
-    "Reco_DecayVertexElectron_chi2":        {"name":"RecoDecayVertexElectron.chi2",        "title":"Reco decay Electron vertex #chi^{2}",          "bin":100,"xmin":0 ,"xmax":3},
-    "Reco_DecayVertexElectron_probability": {"name":"RecoDecayVertexElectron.probability", "title":"Reco decay Electron vertex probability",       "bin":100,"xmin":0 ,"xmax":10},
-
-    "Reco_DecayVertexMuon_x":           {"name":"RecoDecayVertexMuon.position.x",  "title":"Reco decay Muon vertex x [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexMuon_y":           {"name":"RecoDecayVertexMuon.position.y",  "title":"Reco decay Muon vertex y [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexMuon_z":           {"name":"RecoDecayVertexMuon.position.z",  "title":"Reco decay Muon vertex z [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexMuon_x_prompt":    {"name":"RecoDecayVertexMuon.position.x",  "title":"Reco decay Muon vertex x [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
-    "Reco_DecayVertexMuon_y_prompt":    {"name":"RecoDecayVertexMuon.position.y",  "title":"Reco decay Muon vertex y [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
-    "Reco_DecayVertexMuon_z_prompt":    {"name":"RecoDecayVertexMuon.position.z",  "title":"Reco decay Muon vertex z [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
-    "Reco_DecayVertexMuon_chi2":        {"name":"RecoDecayVertexMuon.chi2",        "title":"Reco decay Muon vertex #chi^{2}",          "bin":100,"xmin":0 ,"xmax":3},
-    "Reco_DecayVertexMuon_probability": {"name":"RecoDecayVertexMuon.probability", "title":"Reco decay Muon vertex probability",       "bin":100,"xmin":0 ,"xmax":10},
-
-    "Reco_Lxy":                     {"name":"Reco_Lxy",                    "title":"Reco L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":1000},
-    "Reco_Lxyz":                    {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
-    "Reco_Lxyz_prompt":             {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":0.1},
-
-    #"Reco_ee_invMass":   {"name":"Reco_ee_invMass",   "title":"Reco M(e,e) [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    #"Reco_mumu_invMass":   {"name":"Reco_mumu_invMass",   "title":"Reco M(#mu,#mu) [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    #"Reco_emu_invMass":   {"name":"Reco_emu_invMass",   "title":"Reco M(e,#mu) [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    "Reco_invMass":   {"name":"Reco_invMass",   "title":"Reco M(l,l) [GeV]",           "bin":100,"xmin":0, "xmax":100},
-
-    #"Reco_ee_cos":   {"name":"Reco_ee_cos",   "title":"Reco cos#theta(e,e)",           "bin":100,"xmin":-1, "xmax":1},
-    #"Reco_mumu_cos":   {"name":"Reco_mumu_cos",   "title":"Reco cos#theta(#mu,#mu)",           "bin":100,"xmin":-1, "xmax":1},
-    #"Reco_emu_cos":   {"name":"Reco_emu_cos",   "title":"Reco cos#theta(e,#mu)",           "bin":100,"xmin":-1, "xmax":1},
-    "Reco_cos":   {"name":"Reco_cos",   "title":"Reco cos#theta(l,l)",           "bin":100,"xmin":-1, "xmax":1},
-
-    #"Reco_ee_DR":   {"name":"Reco_ee_DR",   "title":"Reco #Delta R(e,e)",           "bin":100,"xmin":0, "xmax":10},
-    #"Reco_mumu_DR":   {"name":"Reco_mumu_DR",   "title":"Reco #Delta R(#mu,#mu)",           "bin":100,"xmin":0, "xmax":10},
-    #"Reco_emu_DR":   {"name":"Reco_emu_DR",   "title":"Reco #Delta R(e,#mu)",           "bin":100,"xmin":0, "xmax":10},
-    "Reco_DR":   {"name":"Reco_DR",   "title":"Reco #Delta R(l,l)",           "bin":100,"xmin":0, "xmax":10},
+    #"Reco_DecayVertexElectron_x":           {"name":"RecoDecayVertexElectron.position.x",  "title":"Reco decay Electron vertex x [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    #"Reco_DecayVertexElectron_y":           {"name":"RecoDecayVertexElectron.position.y",  "title":"Reco decay Electron vertex y [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    #"Reco_DecayVertexElectron_z":           {"name":"RecoDecayVertexElectron.position.z",  "title":"Reco decay Electron vertex z [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    #"Reco_DecayVertexElectron_x_prompt":    {"name":"RecoDecayVertexElectron.position.x",  "title":"Reco decay Electron vertex x [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
+    #"Reco_DecayVertexElectron_y_prompt":    {"name":"RecoDecayVertexElectron.position.y",  "title":"Reco decay Electron vertex y [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
+    #"Reco_DecayVertexElectron_z_prompt":    {"name":"RecoDecayVertexElectron.position.z",  "title":"Reco decay Electron vertex z [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
+    #"Reco_DecayVertexElectron_chi2":        {"name":"RecoDecayVertexElectron.chi2",        "title":"Reco decay Electron vertex #chi^{2}",          "bin":100,"xmin":0 ,"xmax":3},
+    #"Reco_DecayVertexElectron_probability": {"name":"RecoDecayVertexElectron.probability", "title":"Reco decay Electron vertex probability",       "bin":100,"xmin":0 ,"xmax":10},
 
     #"RecoPhoton_e":        {"name":"RecoPhoton_e",        "title":"Reco photon energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     #"RecoPhoton_p":        {"name":"RecoPhoton_p",        "title":"Reco photon p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
@@ -309,25 +283,55 @@ histoList = {
     "RecoMuon_phi":      {"name":"RecoMuon_phi",      "title":"Reco muon #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
     "RecoMuon_charge":   {"name":"RecoMuon_charge",   "title":"Reco muon charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
 
-    "RecoMuonTrack_absD0":             {"name":"RecoMuonTrack_absD0",     "title":"Reco muon tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
-    "RecoMuonTrack_absD0_prompt":      {"name":"RecoMuonTrack_absD0",     "title":"Reco muon tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
-    "RecoMuonTrack_absZ0":             {"name":"RecoMuonTrack_absZ0",     "title":"Reco muon tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
-    "RecoMuonTrack_absZ0_prompt":      {"name":"RecoMuonTrack_absZ0",     "title":"Reco muon tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
-    "RecoMuonTrack_absD0sig":          {"name":"RecoMuonTrack_absD0sig",  "title":"Reco muon tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
-    "RecoMuonTrack_absD0sig_prompt":   {"name":"RecoMuonTrack_absD0sig",  "title":"Reco muon tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
-    "RecoMuonTrack_absZ0sig":          {"name":"RecoMuonTrack_absZ0sig",  "title":"Reco muon tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
-    "RecoMuonTrack_absZ0sig_prompt":   {"name":"RecoMuonTrack_absZ0sig",  "title":"Reco muon tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
-    "RecoMuonTrack_D0cov":      {"name":"RecoMuonTrack_D0cov",     "title":"Reco muon tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
-    "RecoMuonTrack_Z0cov":      {"name":"RecoMuonTrack_Z0cov",     "title":"Reco muon tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+    #"RecoMuonTrack_absD0":             {"name":"RecoMuonTrack_absD0",     "title":"Reco muon tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    #"RecoMuonnTrack_absD0_med":        {"name":"RecoMuonTrack_absD0",     "title":"Reco muon tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":10},
+    #"RecoMuonTrack_absD0_prompt":      {"name":"RecoMuonTrack_absD0",     "title":"Reco muon tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
+    #"RecoMuonTrack_absZ0":             {"name":"RecoMuonTrack_absZ0",     "title":"Reco muon tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    #"RecoMuonTrack_absZ0_prompt":      {"name":"RecoMuonTrack_absZ0",     "title":"Reco muon tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
+    #"RecoMuonTrack_absD0sig":          {"name":"RecoMuonTrack_absD0sig",  "title":"Reco muon tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
+    #"RecoMuonTrack_absD0sig_prompt":   {"name":"RecoMuonTrack_absD0sig",  "title":"Reco muon tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    #"RecoMuonTrack_absD0sig_med":      {"name":"RecoMuonTrack_absD0sig",  "title":"Reco muon tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":1000},
+    #"RecoMuonTrack_absZ0sig":          {"name":"RecoMuonTrack_absZ0sig",  "title":"Reco muon tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
+    #"RecoMuonTrack_absZ0sig_prompt":   {"name":"RecoMuonTrack_absZ0sig",  "title":"Reco muon tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    #"RecoMuonTrack_D0cov":      {"name":"RecoMuonTrack_D0cov",     "title":"Reco muon tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+    #"RecoMuonTrack_Z0cov":      {"name":"RecoMuonTrack_Z0cov",     "title":"Reco muon tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+    
+    #"Reco_DecayVertexMuon_x":           {"name":"RecoDecayVertexMuon.position.x",  "title":"Reco decay Muon vertex x [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    #"Reco_DecayVertexMuon_y":           {"name":"RecoDecayVertexMuon.position.y",  "title":"Reco decay Muon vertex y [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    #"Reco_DecayVertexMuon_z":           {"name":"RecoDecayVertexMuon.position.z",  "title":"Reco decay Muon vertex z [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    #"Reco_DecayVertexMuon_x_prompt":    {"name":"RecoDecayVertexMuon.position.x",  "title":"Reco decay Muon vertex x [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
+    #"Reco_DecayVertexMuon_y_prompt":    {"name":"RecoDecayVertexMuon.position.y",  "title":"Reco decay Muon vertex y [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
+    #"Reco_DecayVertexMuon_z_prompt":    {"name":"RecoDecayVertexMuon.position.z",  "title":"Reco decay Muon vertex z [mm]",            "bin":100,"xmin":-0.01 ,"xmax":0.01},
+    #"Reco_DecayVertexMuon_chi2":        {"name":"RecoDecayVertexMuon.chi2",        "title":"Reco decay Muon vertex #chi^{2}",          "bin":100,"xmin":0 ,"xmax":3},
+    #"Reco_DecayVertexMuon_probability": {"name":"RecoDecayVertexMuon.probability", "title":"Reco decay Muon vertex probability",       "bin":100,"xmin":0 ,"xmax":10},
 
-    "RecoMissingEnergy_e":       {"name":"RecoMissingEnergy_e",       "title":"Reco Total Missing Energy [GeV]",    "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_p":       {"name":"RecoMissingEnergy_p",       "title":"Reco Total Missing p [GeV]",         "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_pt":      {"name":"RecoMissingEnergy_pt",      "title":"Reco Missing p_{T} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_px":      {"name":"RecoMissingEnergy_px",      "title":"Reco Missing p_{x} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_py":      {"name":"RecoMissingEnergy_py",      "title":"Reco Missing p_{y} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_pz":      {"name":"RecoMissingEnergy_pz",      "title":"Reco Missing p_{z} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_eta":     {"name":"RecoMissingEnergy_eta",     "title":"Reco Missing Energy #eta",           "bin":60,"xmin":-3 ,"xmax":3},
-    "RecoMissingEnergy_theta":   {"name":"RecoMissingEnergy_theta",   "title":"Reco Missing Energy #theta",         "bin":64,"xmin":0 , "xmax":3.2},
-    "RecoMissingEnergy_phi":     {"name":"RecoMissingEnergy_phi",     "title":"Reco Missing Energy #phi",           "bin":64,"xmin":-3.2 ,"xmax":3.2},
+    #"Reco_Lxy":                     {"name":"Reco_Lxy",                    "title":"Reco L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":1000},
+    #"Reco_Lxyz":                    {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
+    #"Reco_Lxyz_prompt":             {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":0.1},
+
+    #"Reco_ee_invMass":   {"name":"Reco_ee_invMass",   "title":"Reco M(e,e) [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    #"Reco_mumu_invMass":   {"name":"Reco_mumu_invMass",   "title":"Reco M(#mu,#mu) [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    #"Reco_emu_invMass":   {"name":"Reco_emu_invMass",   "title":"Reco M(e,#mu) [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "Reco_invMass":   {"name":"Reco_invMass",   "title":"Reco M(l,l) [GeV]",           "bin":100,"xmin":0, "xmax":100},
+
+    #"Reco_ee_cos":   {"name":"Reco_ee_cos",   "title":"Reco cos#theta(e,e)",           "bin":100,"xmin":-1, "xmax":1},
+    #"Reco_mumu_cos":   {"name":"Reco_mumu_cos",   "title":"Reco cos#theta(#mu,#mu)",           "bin":100,"xmin":-1, "xmax":1},
+    #"Reco_emu_cos":   {"name":"Reco_emu_cos",   "title":"Reco cos#theta(e,#mu)",           "bin":100,"xmin":-1, "xmax":1},
+    "Reco_cos":   {"name":"Reco_cos",   "title":"Reco cos#theta(l,l)",           "bin":100,"xmin":-1, "xmax":1},
+
+    #"Reco_ee_DR":   {"name":"Reco_ee_DR",   "title":"Reco #Delta R(e,e)",           "bin":100,"xmin":0, "xmax":10},
+    #"Reco_mumu_DR":   {"name":"Reco_mumu_DR",   "title":"Reco #Delta R(#mu,#mu)",           "bin":100,"xmin":0, "xmax":10},
+    #"Reco_emu_DR":   {"name":"Reco_emu_DR",   "title":"Reco #Delta R(e,#mu)",           "bin":100,"xmin":0, "xmax":10},
+    "Reco_DR":   {"name":"Reco_DR",   "title":"Reco #Delta R(l,l)",           "bin":100,"xmin":0, "xmax":10},
+
+    #"RecoMissingEnergy_e":       {"name":"RecoMissingEnergy_e",       "title":"Reco Total Missing Energy [GeV]",    "bin":100,"xmin":0 ,"xmax":50},
+    #"RecoMissingEnergy_p":       {"name":"RecoMissingEnergy_p",       "title":"Reco Total Missing p [GeV]",         "bin":100,"xmin":0 ,"xmax":50},
+    #"RecoMissingEnergy_pt":      {"name":"RecoMissingEnergy_pt",      "title":"Reco Missing p_{T} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
+    #"RecoMissingEnergy_px":      {"name":"RecoMissingEnergy_px",      "title":"Reco Missing p_{x} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
+    #"RecoMissingEnergy_py":      {"name":"RecoMissingEnergy_py",      "title":"Reco Missing p_{y} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
+    #"RecoMissingEnergy_pz":      {"name":"RecoMissingEnergy_pz",      "title":"Reco Missing p_{z} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
+    #"RecoMissingEnergy_eta":     {"name":"RecoMissingEnergy_eta",     "title":"Reco Missing Energy #eta",           "bin":60,"xmin":-3 ,"xmax":3},
+    #"RecoMissingEnergy_theta":   {"name":"RecoMissingEnergy_theta",   "title":"Reco Missing Energy #theta",         "bin":64,"xmin":0 , "xmax":3.2},
+    #"RecoMissingEnergy_phi":     {"name":"RecoMissingEnergy_phi",     "title":"Reco Missing Energy #phi",           "bin":64,"xmin":-3.2 ,"xmax":3.2},
 
 }

@@ -9,7 +9,7 @@ intLumi        = 150.0e+06 #in pb-1
 #scaleBack      = 0.
 ana_tex        = 'e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu'
 #ana_tex        = ''
-delphesVersion = '3.5.1pre05'
+delphesVersion = '3.4.2'
 #delphesVersion = ''
 energy         = 91
 collider       = 'FCC-ee'
@@ -19,9 +19,9 @@ inputDir       = '/eos/user/s/sgiappic/test_bkg3/final/'
 formats        = ['pdf']
 #yaxis          = ['lin','log']
 yaxis          = ['log']
-#stacksig       = ['nostack']
-stacksig       = ['stack']
-outdir         = '/eos/user/s/sgiappic/test_bkg3/plots/'
+stacksig       = ['nostack']
+stackbkg       = ['stack']
+outdir         = '/eos/user/s/sgiappic/test_sig/plots/'
 #outdir         = 'plots_Ztautau_spring2021_vs_prewinter2023/'
 splitLeg       = True ### to split legend for backgrounds and signals ###
 
@@ -88,7 +88,7 @@ variables = [
     #"FSGen_eenu_invMass",
 
     #reco variables
-    "n_RecoTracks",
+    #"n_RecoTracks",
     "n_RecoJets",
     "n_RecoPhotons",
     "n_RecoElectrons",
@@ -124,17 +124,17 @@ variables = [
     "RecoElectron_phi",
     "RecoElectron_charge",
 
-    "RecoElectronTrack_absD0",
-    "RecoElectronTrack_absD0_prompt",
-    "RecoElectronTrack_absZ0",
-    "RecoElectronTrack_absZ0_prompt",
-    "RecoElectronTrack_absD0sig",
-    "RecoElectronTrack_absD0sig_med",
-    "RecoElectronTrack_absD0sig_prompt",
-    "RecoElectronTrack_absZ0sig",
-    "RecoElectronTrack_absZ0sig_prompt",
-    "RecoElectronTrack_D0cov",
-    "RecoElectronTrack_Z0cov",
+    #"RecoElectronTrack_absD0",
+    #"RecoElectronTrack_absD0_prompt",
+    #"RecoElectronTrack_absZ0",
+    #"RecoElectronTrack_absZ0_prompt",
+    #"RecoElectronTrack_absD0sig",
+    #"RecoElectronTrack_absD0sig_med",
+    #"RecoElectronTrack_absD0sig_prompt",
+    #"RecoElectronTrack_absZ0sig",
+    #"RecoElectronTrack_absZ0sig_prompt",
+    #"RecoElectronTrack_D0cov",
+    #"RecoElectronTrack_Z0cov",
 
     #"RecoPhoton_e",
     #"RecoPhoton_p",
@@ -154,48 +154,48 @@ variables = [
     "RecoMuon_phi",
     "RecoMuon_charge",
 
-    "RecoMuonTrack_absD0",
-    "RecoMuonTrack_absD0_prompt",
-    "RecoMuonTrack_absZ0",
-    "RecoMuonTrack_absZ0_prompt",
-    "RecoMuonTrack_absD0sig",
-    "RecoMuonTrack_absD0sig_prompt",
-    "RecoMuonTrack_absZ0sig",
-    "RecoMuonTrack_absZ0sig_prompt",
-    "RecoMuonTrack_D0cov",
-    "RecoMuonTrack_Z0cov",
+    #"RecoMuonTrack_absD0",
+    #"RecoMuonTrack_absD0_prompt",
+    #"RecoMuonTrack_absZ0",
+    #"RecoMuonTrack_absZ0_prompt",
+    #"RecoMuonTrack_absD0sig",
+    #"RecoMuonTrack_absD0sig_prompt",
+    #"RecoMuonTrack_absZ0sig",
+    #"RecoMuonTrack_absZ0sig_prompt",
+    #"RecoMuonTrack_D0cov",
+    #"RecoMuonTrack_Z0cov",
 
-    "Reco_DecayVertexElectron_x",       
-    "Reco_DecayVertexElectron_y",          
-    "Reco_DecayVertexElectron_z",          
-    "Reco_DecayVertexElectron_x_prompt",   
-    "Reco_DecayVertexElectron_y_prompt",    
-    "Reco_DecayVertexElectron_z_prompt",    
-    "Reco_DecayVertexElectron_chi2",    
-    "Reco_DecayVertexElectron_probability", 
+    #"Reco_DecayVertexElectron_x",       
+    #"Reco_DecayVertexElectron_y",          
+    #"Reco_DecayVertexElectron_z",          
+    #"Reco_DecayVertexElectron_x_prompt",   
+    #"Reco_DecayVertexElectron_y_prompt",    
+    #"Reco_DecayVertexElectron_z_prompt",    
+    #"Reco_DecayVertexElectron_chi2",    
+    #"Reco_DecayVertexElectron_probability", 
 
-    "Reco_DecayVertexMuon_x",        
-    "Reco_DecayVertexMuon_y",           
-    "Reco_DecayVertexMuon_z",          
-    "Reco_DecayVertexMuon_x_prompt",    
-    "Reco_DecayVertexMuon_y_prompt",    
-    "Reco_DecayVertexMuon_z_prompt",    
-    "Reco_DecayVertexMuon_chi2",       
-    "Reco_DecayVertexMuon_probability", 
+    #"Reco_DecayVertexMuon_x",        
+    #"Reco_DecayVertexMuon_y",           
+    #"Reco_DecayVertexMuon_z",          
+    #"Reco_DecayVertexMuon_x_prompt",    
+    #"Reco_DecayVertexMuon_y_prompt",    
+    #"Reco_DecayVertexMuon_z_prompt",    
+    #"Reco_DecayVertexMuon_chi2",       
+    #"Reco_DecayVertexMuon_probability", 
 
-    "Reco_Lxy",
-    "Reco_Lxyz",
-    "Reco_Lxyz_prompt",
+    #"Reco_Lxy",
+    #"Reco_Lxyz",
+    #"Reco_Lxyz_prompt",
 
-    "RecoMissingEnergy_e",
-    "RecoMissingEnergy_p",
-    "RecoMissingEnergy_pt",
-    "RecoMissingEnergy_px",
-    "RecoMissingEnergy_py",
-    "RecoMissingEnergy_pz",
-    "RecoMissingEnergy_eta",
-    "RecoMissingEnergy_theta",
-    "RecoMissingEnergy_phi",
+    #"RecoMissingEnergy_e",
+    #"RecoMissingEnergy_p",
+    #"RecoMissingEnergy_pt",
+    #"RecoMissingEnergy_px",
+    #"RecoMissingEnergy_py",
+    #"RecoMissingEnergy_pz",
+    #"RecoMissingEnergy_eta",
+    #"RecoMissingEnergy_theta",
+    #"RecoMissingEnergy_phi",
 
     #"Reco_ee_invMass",
     #"Reco_mumu_invMass",
@@ -262,6 +262,8 @@ colors = {}
 #colors['eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
 #colors['eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
 
+colors['HNL_4e-8_10gev'] = ROOT.kBlack
+
 colors['Zbb'] = ROOT.kRed-4
 colors['Zcc'] = ROOT.kOrange-3
 colors['Zud'] = ROOT.kYellow-4
@@ -276,7 +278,8 @@ colors['Zss'] = ROOT.kViolet-4
 
 plots = {}
 plots['HNL'] = {'signal':{
-                     'eenu_30GeV_1p41e-6Ve':['eenu_30GeV_1p41e-6Ve'],
+                    'HNL_4e-8_10gev':['HNL_4e-8_10gev'],
+                     #'eenu_30GeV_1p41e-6Ve':['eenu_30GeV_1p41e-6Ve'],
                      #'eenu_50GeV_1p41e-6Ve':['eenu_50GeV_1p41e-6Ve'],
                      #'eenu_70GeV_1p41e-6Ve':['eenu_70GeV_1p41e-6Ve'],
                      #'eenu_90GeV_1p41e-6Ve':['eenu_90GeV_1p41e-6Ve'],
@@ -300,6 +303,8 @@ legend = {}
 #legend['eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
 #legend['eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
 #legend['eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
+
+legend['HNL_4e-8_10gev'] = 'HNL 10 gev'
 
 legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
 legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
