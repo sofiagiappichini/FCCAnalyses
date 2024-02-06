@@ -95,7 +95,7 @@ In the Pythia card `pythia_card` the path to the unzipped LHE file must be given
 
 The `output_file` is the EDM4Hep root file cointaning the sample that needs to be analysed.
 
-**Note:** all the cards for Madgraph (one example with multiple run where the masses change), Pythia and Delphes (edm4hep) can be easily found at (https://github.com/sofiagiappichini/FCCAnalyses/tree/master/examples/FCCee/bsm/LLPs/DisplacedHNL/2HNL_sample_creation)[https://github.com/sofiagiappichini/FCCAnalyses/tree/master/examples/FCCee/bsm/LLPs/DisplacedHNL/2HNL_sample_creation].
+**Note:** all the cards for Madgraph (one example with multiple run where the masses change), Pythia and Delphes (edm4hep) can be easily found at [https://github.com/sofiagiappichini/FCCAnalyses/tree/master/examples/FCCee/bsm/LLPs/DisplacedHNL/2HNL_sample_creation](https://github.com/sofiagiappichini/FCCAnalyses/tree/master/examples/FCCee/bsm/LLPs/DisplacedHNL/2HNL_sample_creation).
 
 Instructions to validate in the EDM4Hep format root files created in standalone MG+Pythia+Delphes can be found [here](https://github.com/zuoxunwu/FCCeePhysicsPerformance/tree/BuBc_dev/case-studies/BSM/LLP/DisplacedHNL) (not necessary, it does not produce an edm4hep file, just some histograms).
 
