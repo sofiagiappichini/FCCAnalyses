@@ -50,10 +50,10 @@ outputDir = "/eos/user/s/sgiappic/test_bkg3/stage1/"
 #eosType = "eosuser"
 
 #Optional: ncpus, default is 4
-nCPUS       = 4
+nCPUS = 4
 
 #Optional running on HTCondor, default is False
-runBatch    = False
+runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"
@@ -79,9 +79,9 @@ class RDFanalysis():
 
                 # Following code is written specifically for the HNL study
                 ####################################################################################################
-                #.Alias("Particle1", "Particle#1.index")
-                #.Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
-                #.Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+                .Alias("Particle1", "Particle#1.index")
+                .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
+                .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
  
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")
@@ -153,16 +153,16 @@ class RDFanalysis():
                 .Define("GenPhoton_PID", "FCCAnalyses::MCParticle::sel_pdgID(22, false)(Particle)")
                 .Define("FSGenPhoton", "FCCAnalyses::MCParticle::sel_genStatus(1)(GenPhoton_PID)") #gen status==1 means final state particle (FS)
                 .Define("n_FSGenPhoton", "FCCAnalyses::MCParticle::get_n(FSGenPhoton)")
-                .Define("FSGenPhoton_e", "FCCAnalyses::MCParticle::get_e(FSGenPhoton)")
-                .Define("FSGenPhoton_p", "FCCAnalyses::MCParticle::get_p(FSGenPhoton)")
-                .Define("FSGenPhoton_pt", "FCCAnalyses::MCParticle::get_pt(FSGenPhoton)")
-                .Define("FSGenPhoton_px", "FCCAnalyses::MCParticle::get_px(FSGenPhoton)")
-                .Define("FSGenPhoton_py", "FCCAnalyses::MCParticle::get_py(FSGenPhoton)")
-                .Define("FSGenPhoton_pz", "FCCAnalyses::MCParticle::get_pz(FSGenPhoton)")
-                .Define("FSGenPhoton_eta", "FCCAnalyses::MCParticle::get_eta(FSGenPhoton)")
-                .Define("FSGenPhoton_theta", "FCCAnalyses::MCParticle::get_theta(FSGenPhoton)")
-                .Define("FSGenPhoton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenPhoton)")
-                .Define("FSGenPhoton_charge", "FCCAnalyses::MCParticle::get_charge(FSGenPhoton)")
+                #.Define("FSGenPhoton_e", "FCCAnalyses::MCParticle::get_e(FSGenPhoton)")
+                #.Define("FSGenPhoton_p", "FCCAnalyses::MCParticle::get_p(FSGenPhoton)")
+                #.Define("FSGenPhoton_pt", "FCCAnalyses::MCParticle::get_pt(FSGenPhoton)")
+                #.Define("FSGenPhoton_px", "FCCAnalyses::MCParticle::get_px(FSGenPhoton)")
+                #.Define("FSGenPhoton_py", "FCCAnalyses::MCParticle::get_py(FSGenPhoton)")
+                #.Define("FSGenPhoton_pz", "FCCAnalyses::MCParticle::get_pz(FSGenPhoton)")
+                #.Define("FSGenPhoton_eta", "FCCAnalyses::MCParticle::get_eta(FSGenPhoton)")
+                #.Define("FSGenPhoton_theta", "FCCAnalyses::MCParticle::get_theta(FSGenPhoton)")
+                #.Define("FSGenPhoton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenPhoton)")
+                #.Define("FSGenPhoton_charge", "FCCAnalyses::MCParticle::get_charge(FSGenPhoton)")
 
                 # ee invariant mass
                 .Define("FSGen_ee_energy", "if (n_FSGenElectron>1) return (FSGenElectron_e.at(0) + FSGenElectron_e.at(1)); else return float(-1.);")
@@ -212,6 +212,24 @@ class RDFanalysis():
                 ### count how many jets are in the event in total to check, it doesn't work with this method on reclustered jets, only on the edm4hep collections Jet ###
 		.Define("n_RecoJets", "ReconstructedParticle::get_n(Jet)") 
 
+                #SIMPLE VARIABLES: Access the basic kinematic variables of the (selected) jets, works analogously for electrons, muons
+		#.Define("RecoJet_e",      "ReconstructedParticle::get_e(Jet)")
+                #.Define("RecoJet_p",      "ReconstructedParticle::get_p(Jet)") #momentum p
+                #.Define("RecoJet_pt",      "ReconstructedParticle::get_pt(Jet)") #transverse momentum pt
+                #.Define("RecoJet_px",      "ReconstructedParticle::get_px(Jet)")
+                #.Define("RecoJet_py",      "ReconstructedParticle::get_py(Jet)")
+                #.Define("RecoJet_pz",      "ReconstructedParticle::get_pz(Jet)")
+		#.Define("RecoJet_eta",     "ReconstructedParticle::get_eta(Jet)") #pseudorapidity eta
+                #.Define("RecoJet_theta",   "ReconstructedParticle::get_theta(Jet)")
+		#.Define("RecoJet_phi",     "ReconstructedParticle::get_phi(Jet)") #polar angle in the transverse plane phi
+                #.Define("RecoJet_charge",  "ReconstructedParticle::get_charge(Jet)")
+                #.Define("RecoJetTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(Jet,EFlowTrack_1))")
+                #.Define("RecoJetTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(Jet,EFlowTrack_1))")
+                #.Define("RecoJetTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(Jet,EFlowTrack_1))") #significance
+                #.Define("RecoJetTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(Jet,EFlowTrack_1))")
+                #.Define("RecoJetTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(Jet,EFlowTrack_1)") #variance (not sigma)
+                #.Define("RecoJetTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(Jet,EFlowTrack_1)")
+
                 ### Jet clustering with different algorithm ###
                 .Define("RP_px", "ReconstructedParticle::get_px(ReconstructedParticles) ")
                 .Define("RP_py", "ReconstructedParticle::get_py(ReconstructedParticles) ")
@@ -228,7 +246,7 @@ class RDFanalysis():
 
                 ### in our case with 0 jets all jet variables are useless, try one just to check ###
                 # access the jets kinematics :
-                .Define("jets_e",  "JetClusteringUtils::get_e(jets_ee_genkt)")
+                #.Define("jets_e",  "JetClusteringUtils::get_e(jets_ee_genkt)")
                         
                 # access the jet constituents:
                 #.Define("jetconstituents_ee_genkt", "JetClusteringUtils::get_constituents(FCCAnalysesJets_ee_genkt) ")
@@ -249,24 +267,6 @@ class RDFanalysis():
 		.Alias("Muon0", "Muon#0.index")
 		.Define("RecoMuons",  "ReconstructedParticle::get(Muon0, ReconstructedParticles)")
 		.Define("n_RecoMuons",  "ReconstructedParticle::get_n(RecoMuons)") #count how many muons are in the event in total
-
-                #SIMPLE VARIABLES: Access the basic kinematic variables of the (selected) jets, works analogously for electrons, muons
-		#.Define("RecoJet_e",      "ReconstructedParticle::get_e(Jet)")
-                #.Define("RecoJet_p",      "ReconstructedParticle::get_p(Jet)") #momentum p
-                #.Define("RecoJet_pt",      "ReconstructedParticle::get_pt(Jet)") #transverse momentum pt
-                #.Define("RecoJet_px",      "ReconstructedParticle::get_px(Jet)")
-                #.Define("RecoJet_py",      "ReconstructedParticle::get_py(Jet)")
-                #.Define("RecoJet_pz",      "ReconstructedParticle::get_pz(Jet)")
-		#.Define("RecoJet_eta",     "ReconstructedParticle::get_eta(Jet)") #pseudorapidity eta
-                #.Define("RecoJet_theta",   "ReconstructedParticle::get_theta(Jet)")
-		#.Define("RecoJet_phi",     "ReconstructedParticle::get_phi(Jet)") #polar angle in the transverse plane phi
-                #.Define("RecoJet_charge",  "ReconstructedParticle::get_charge(Jet)")
-                #.Define("RecoJetTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(Jet,EFlowTrack_1))") #significance
-                #.Define("RecoJetTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(Jet,EFlowTrack_1)") #variance (not sigma)
-                #.Define("RecoJetTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(Jet,EFlowTrack_1)")
 
                 .Define("RecoElectron_e",      "ReconstructedParticle::get_e(RecoElectrons)")
                 .Define("RecoElectron_p",      "ReconstructedParticle::get_p(RecoElectrons)")
@@ -404,8 +404,8 @@ class RDFanalysis():
                         "FSGenElectron_e",
                         "FSGenElectron_p",
                         "FSGenElectron_pt",
-                        "FSGenElectron_px",
-                        "FSGenElectron_py",
+                        #"FSGenElectron_px",
+                        #"FSGenElectron_py",
                         "FSGenElectron_pz",
                         "FSGenElectron_eta",
                         "FSGenElectron_theta",
@@ -419,8 +419,8 @@ class RDFanalysis():
                         "FSGenMuon_e",
                         "FSGenMuon_p",
                         "FSGenMuon_pt",
-                        "FSGenMuon_px",
-                        "FSGenMuon_py",
+                        #"FSGenMuon_px",
+                        #"FSGenMuon_py",
                         "FSGenMuon_pz",
                         "FSGenMuon_eta",
                         "FSGenMuon_theta",
@@ -442,15 +442,15 @@ class RDFanalysis():
                         "FSGenNeutrino_e",
                         "FSGenNeutrino_p",
                         "FSGenNeutrino_pt",
-                        "FSGenNeutrino_px",
-                        "FSGenNeutrino_py",
+                        #"FSGenNeutrino_px",
+                        #"FSGenNeutrino_py",
                         "FSGenNeutrino_pz",
                         "FSGenNeutrino_eta",
                         "FSGenNeutrino_theta",
                         "FSGenNeutrino_phi",
                         "FSGenNeutrino_charge",
 
-                        #"n_FSGenPhoton",
+                        "n_FSGenPhoton",
                         #"FSGenPhoton_e",
                         #"FSGenPhoton_p",
                         #"FSGenPhoton_pt",
@@ -501,8 +501,8 @@ class RDFanalysis():
                         "RecoElectron_e",
                         "RecoElectron_p",
                         "RecoElectron_pt",
-                        "RecoElectron_px",
-                        "RecoElectron_py",
+                        #"RecoElectron_px",
+                        #"RecoElectron_py",
                         "RecoElectron_pz",
                         "RecoElectron_eta",
                         "RecoElectron_theta",
@@ -514,10 +514,8 @@ class RDFanalysis():
                         "RecoElectronTrack_absZ0sig",
                         "RecoElectronTrack_D0cov",
                         "RecoElectronTrack_Z0cov",
-                        "RecoDecayVertexObjectElectron",
-                        "RecoDecayVertexObjectMuon",
+                        #"RecoDecayVertexObjectElectron",
                         "RecoDecayVertexElectron",
-                        "RecoDecayVertexMuon",
 
                         "Reco_Lxy",
                         "Reco_Lxyz",
@@ -525,8 +523,8 @@ class RDFanalysis():
                         "RecoMuon_e",
                         "RecoMuon_p",
                         "RecoMuon_pt",
-                        "RecoMuon_px",
-                        "RecoMuon_py",
+                        #"RecoMuon_px",
+                        #"RecoMuon_py",
                         "RecoMuon_pz",
                         "RecoMuon_eta",
                         "RecoMuon_theta",
@@ -538,6 +536,8 @@ class RDFanalysis():
                         "RecoMuonTrack_absZ0sig",
                         "RecoMuonTrack_D0cov",
                         "RecoMuonTrack_Z0cov", 
+                        #"RecoDecayVertexObjectMuon",
+                        "RecoDecayVertexMuon",
 
                         "RecoMissingEnergy_e",
                         "RecoMissingEnergy_p",
