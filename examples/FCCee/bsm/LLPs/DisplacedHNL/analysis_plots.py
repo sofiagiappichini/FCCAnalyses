@@ -21,7 +21,7 @@ formats        = ['pdf']
 yaxis          = ['log']
 stacksig       = ['nostack']
 stackbkg       = ['stack']
-outdir         = '/eos/user/s/sgiappic/test_sig/plots/'
+outdir         = '/eos/user/s/sgiappic/test_bkg3/plots/'
 #outdir         = 'plots_Ztautau_spring2021_vs_prewinter2023/'
 splitLeg       = True ### to split legend for backgrounds and signals ###
 
@@ -279,10 +279,10 @@ colors['Zss'] = ROOT.kViolet-4
 plots = {}
 plots['HNL'] = {'signal':{
                     'HNL_4e-8_10gev':['HNL_4e-8_10gev'],
-                     #'eenu_30GeV_1p41e-6Ve':['eenu_30GeV_1p41e-6Ve'],
-                     #'eenu_50GeV_1p41e-6Ve':['eenu_50GeV_1p41e-6Ve'],
-                     #'eenu_70GeV_1p41e-6Ve':['eenu_70GeV_1p41e-6Ve'],
-                     #'eenu_90GeV_1p41e-6Ve':['eenu_90GeV_1p41e-6Ve'],
+                    #'eenu_30GeV_1p41e-6Ve':['eenu_30GeV_1p41e-6Ve'],
+                    #'eenu_50GeV_1p41e-6Ve':['eenu_50GeV_1p41e-6Ve'],
+                    #'eenu_70GeV_1p41e-6Ve':['eenu_70GeV_1p41e-6Ve'],
+                    #'eenu_90GeV_1p41e-6Ve':['eenu_90GeV_1p41e-6Ve'],
     },
                 'backgrounds':{
                     'Zbb':['p8_ee_Zbb_ecm91'],

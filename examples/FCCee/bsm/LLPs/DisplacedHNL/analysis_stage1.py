@@ -312,6 +312,35 @@ class RDFanalysis():
                 .Define("RecoMuonTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoMuons,EFlowTrack_1))")
                 .Define("RecoMuonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoMuons,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons,EFlowTrack_1)")
+
+                ### momentum of leading lepton ###
+
+                .Define("Reco_p", "if (n_RecoMuons>1) return RecoMuon_p.at(0) ); \
+                                        else if (n_RecoElectrons>1) return RecoElectron_p.at(0) ); \
+                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_p.at(0); \
+                                        else return float(-1.);")
+
+                .Define("Reco_pt", "if (n_RecoMuons>1) return RecoMuon_pt.at(0) ); \
+                                        else if (n_RecoElectrons>1) return RecoElectron_pt.at(0) ); \
+                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_pt.at(0); \
+                                        else return float(-1.);")
+
+                .Define("Reco_pz", "if (n_RecoMuons>1) return RecoMuon_pz.at(0) ); \
+                                        else if (n_RecoElectrons>1) return RecoElectron_pz.at(0) ); \
+                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_pz.at(0); \
+                                        else return float(-1.);")
+
+                ### D0 of leading lepton ###
+
+                .Define("Reco_absD0", "if (n_RecoMuons>1) return RecoMuonTrack_absD0.at(0) ); \
+                                        else if (n_RecoElectrons>1) return RecoElectronTrack_absD0.at(0) ); \
+                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectronTrack_absD0.at(0); \
+                                        else return float(-1.);")
+
+                .Define("Reco_absZ0", "if (n_RecoMuons>1) return RecoMuonTrack_absZ0.at(0) ); \
+                                        else if (n_RecoElectrons>1) return RecoElectronTrack_absZ0.at(0) ); \
+                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectronTrack_absZ0.at(0); \
+                                        else return float(-1.);")
                 
                 ### cosine between two leptons ###
                 .Define("Reco_ee_p", "if (n_RecoElectrons>1) return (RecoElectron_px.at(0)*RecoElectron_px.at(1) + RecoElectron_py.at(0)*RecoElectron_py.at(1) + RecoElectron_pz.at(0)*RecoElectron_pz.at(1)); else return float(-2.);")
@@ -548,6 +577,12 @@ class RDFanalysis():
                         "RecoMissingEnergy_eta",
                         "RecoMissingEnergy_theta",
                         "RecoMissingEnergy_phi",
+
+                        "Reco_p",
+                        "Reco_pt",
+                        "Reco_pz",
+                        "Reco_absD0",
+                        "Reco_absZ0",
 
                         # enunu branches
                         #"Reco_ee_invMass",
