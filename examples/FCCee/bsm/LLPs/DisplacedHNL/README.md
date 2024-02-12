@@ -71,17 +71,13 @@ Winter 23 samples have been created with Pythia8 and Delphes 3.5.1pre05 as state
 
 ### Pythia+Delphes
 
-To create a root file of the event after the detector reconstruction in the EDM4Hep format you need to source either FCCAnalyses setup or 
+To create a root file of the event after the detector reconstruction in the EDM4Hep format you need to source the key3hep stack version used in the winter 2023 campaign or the output will not be compatible:
 
 ```
-source /cvmfs/fcc.cern.ch/sw/latest/setup.sh
+source /cvmfs/sw.hsf.org/spackages6/key4hep-stack/2022-12-23/x86_64-centos7-gcc11.2.0-opt/ll3gi/setup.sh
 ```
 
-or the equivalent (newer for FCCSW sourcing):
-
-```
-source /cvmfs/sw.hsf.org/key4hep/setup.sh
-```
+More information on the version used can be found [here](https://github.com/HEP-FCC/EventProducer/blob/master/config/param_FCCee.py#L46).
 
 The command to produce root files in Delphes with Pythia hadronization and EDM4Hep format is this:
 

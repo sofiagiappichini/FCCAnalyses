@@ -4,15 +4,16 @@ import ROOT
 processList = {
 
         #centrally-produced backgrounds
-        'p8_ee_Zee_ecm91':{'fraction':0.001},
-        'p8_ee_Zmumu_ecm91':{'fraction':0.001},
-        'p8_ee_Ztautau_ecm91':{'fraction':0.001},
-        'p8_ee_Zbb_ecm91':{'fraction':0.001},
-        'p8_ee_Zcc_ecm91':{'fraction':0.001},
-        'p8_ee_Zud_ecm91':{'fraction':0.001},
-        'p8_ee_Zss_ecm91':{'fraction':0.001},
+        #'p8_ee_Zee_ecm91':{'fraction':0.001},
+        #'p8_ee_Zmumu_ecm91':{'fraction':0.001},
+        #'p8_ee_Ztautau_ecm91':{'fraction':0.001},
+        #'p8_ee_Zbb_ecm91':{'fraction':0.001},
+        #'p8_ee_Zcc_ecm91':{'fraction':0.001},
+        #'p8_ee_Zud_ecm91':{'fraction':0.001},
+        #'p8_ee_Zss_ecm91':{'fraction':0.001},
 
         #privately-produced signals
+        'HNL_old_stack':{},
         #'HNL_4e-8_5gev':{},
         #'eenu_30GeV_1p41e-6Ve':{},
         #'eenu_50GeV_1p41e-6Ve':{},
@@ -27,7 +28,7 @@ processList = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
@@ -35,7 +36,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 #inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_MadgraphPythiaDelphes"
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesStandalone/Edm4Hep/pre_winter2023_tests_v2"
 #inputDir    = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-#inputDir = "/afs/cern.ch/user/s/sgiappic"
+inputDir = "/afs/cern.ch/user/s/sgiappic"
 
 
 #Optional: output directory, default is local dir
@@ -43,7 +44,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 #outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/pre_winter2023_tests_v2/output_stage1/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/test_bkg3/stage1/"
+outputDir = "/eos/user/s/sgiappic/test_sig1/stage1/"
 
 #outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_stage1/"
 #outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
@@ -315,30 +316,30 @@ class RDFanalysis():
 
                 ### momentum of leading lepton ###
 
-                .Define("Reco_p", "if (n_RecoMuons>1) return RecoMuon_p.at(0) ); \
-                                        else if (n_RecoElectrons>1) return RecoElectron_p.at(0) ); \
+                .Define("Reco_p", "if (n_RecoMuons>1) return RecoMuon_p.at(0); \
+                                        else if (n_RecoElectrons>1) return RecoElectron_p.at(0); \
                                         else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_p.at(0); \
                                         else return float(-1.);")
 
-                .Define("Reco_pt", "if (n_RecoMuons>1) return RecoMuon_pt.at(0) ); \
-                                        else if (n_RecoElectrons>1) return RecoElectron_pt.at(0) ); \
+                .Define("Reco_pt", "if (n_RecoMuons>1) return RecoMuon_pt.at(0); \
+                                        else if (n_RecoElectrons>1) return RecoElectron_pt.at(0); \
                                         else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_pt.at(0); \
                                         else return float(-1.);")
 
-                .Define("Reco_pz", "if (n_RecoMuons>1) return RecoMuon_pz.at(0) ); \
-                                        else if (n_RecoElectrons>1) return RecoElectron_pz.at(0) ); \
+                .Define("Reco_pz", "if (n_RecoMuons>1) return RecoMuon_pz.at(0); \
+                                        else if (n_RecoElectrons>1) return RecoElectron_pz.at(0); \
                                         else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_pz.at(0); \
                                         else return float(-1.);")
 
                 ### D0 of leading lepton ###
 
-                .Define("Reco_absD0", "if (n_RecoMuons>1) return RecoMuonTrack_absD0.at(0) ); \
-                                        else if (n_RecoElectrons>1) return RecoElectronTrack_absD0.at(0) ); \
+                .Define("Reco_absD0", "if (n_RecoMuons>1) return RecoMuonTrack_absD0.at(0); \
+                                        else if (n_RecoElectrons>1) return RecoElectronTrack_absD0.at(0); \
                                         else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectronTrack_absD0.at(0); \
                                         else return float(-1.);")
 
-                .Define("Reco_absZ0", "if (n_RecoMuons>1) return RecoMuonTrack_absZ0.at(0) ); \
-                                        else if (n_RecoElectrons>1) return RecoElectronTrack_absZ0.at(0) ); \
+                .Define("Reco_absZ0", "if (n_RecoMuons>1) return RecoMuonTrack_absZ0.at(0); \
+                                        else if (n_RecoElectrons>1) return RecoElectronTrack_absZ0.at(0); \
                                         else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectronTrack_absZ0.at(0); \
                                         else return float(-1.);")
                 

@@ -20,8 +20,8 @@ define nu = vl vl~
 
 generate e+ e- > n nu, (n > nu lep lep) 
 
-output HNL_4e-8
-launch HNL_4e-8
+output HNL_4e-10
+launch HNL_4e-10
 
 set lpp1 0
 set lpp2 0
@@ -36,10 +36,10 @@ set mn3 1000
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
 set ven1 0
 set ven2 0
-set vmun1 1e-4
-set vmun2 1e-4
-set vtan1 1e-4
-set vtan2 1e-4
+set vmun1 1e-5
+set vmun2 1e-5
+set vtan1 1e-5
+set vtan2 1e-5
 
 set WN1 auto
 set WN2 auto
@@ -48,7 +48,7 @@ set nevents 50000
 done
 
 ### run 2
-launch HNL_4e-8
+launch HNL_4e-10
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -62,10 +62,10 @@ set mn3 1000
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
 set ven1 0
 set ven2 0
-set vmun1 1e-4
-set vmun2 1e-4
-set vtan1 1e-4
-set vtan2 1e-4
+set vmun1 1e-5
+set vmun2 1e-5
+set vtan1 1e-5
+set vtan2 1e-5
 
 set WN1 auto
 set WN2 auto
@@ -74,7 +74,7 @@ set nevents 50000
 done
 
 ### run 3
-launch HNL_4e-8
+launch HNL_4e-10
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -88,10 +88,10 @@ set mn3 1000
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
 set ven1 0
 set ven2 0
-set vmun1 1e-4
-set vmun2 1e-4
-set vtan1 1e-4
-set vtan2 1e-4
+set vmun1 1e-5
+set vmun2 1e-5
+set vtan1 1e-5
+set vtan2 1e-5
 
 set WN1 auto
 set WN2 auto
@@ -100,7 +100,7 @@ set nevents 50000
 done
 
 ### run 4
-launch HNL_4e-8
+launch HNL_4e-10
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -114,10 +114,10 @@ set mn3 1000
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
 set ven1 0
 set ven2 0
-set vmun1 1e-4
-set vmun2 1e-4
-set vtan1 1e-4
-set vtan2 1e-4
+set vmun1 1e-5
+set vmun2 1e-5
+set vtan1 1e-5
+set vtan2 1e-5
 
 set WN1 auto
 set WN2 auto
@@ -126,7 +126,7 @@ set nevents 50000
 done
 
 ### run 5
-launch HNL_4e-8
+launch HNL_4e-10
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -140,10 +140,10 @@ set mn3 1000
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
 set ven1 0
 set ven2 0
-set vmun1 1e-4
-set vmun2 1e-4
-set vtan1 1e-4
-set vtan2 1e-4
+set vmun1 1e-5
+set vmun2 1e-5
+set vtan1 1e-5
+set vtan2 1e-5
 
 set WN1 auto
 set WN2 auto
@@ -152,7 +152,7 @@ set nevents 50000
 done
 
 ### run 6
-launch HNL_4e-8
+launch HNL_4e-10
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -166,10 +166,10 @@ set mn3 1000
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
 set ven1 0
 set ven2 0
-set vmun1 1e-4
-set vmun2 1e-4
-set vtan1 1e-4
-set vtan2 1e-4
+set vmun1 1e-5
+set vmun2 1e-5
+set vtan1 1e-5
+set vtan2 1e-5
 
 set WN1 auto
 set WN2 auto
@@ -178,7 +178,7 @@ set nevents 50000
 done
 
 ### run 7
-launch HNL_4e-8
+launch HNL_4e-10
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -192,10 +192,10 @@ set mn3 1000
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
 set ven1 0
 set ven2 0
-set vmun1 1e-4
-set vmun2 1e-4
-set vtan1 1e-4
-set vtan2 1e-4
+set vmun1 1e-5
+set vmun2 1e-5
+set vtan1 1e-5
+set vtan2 1e-5
 
 set WN1 auto
 set WN2 auto
@@ -204,7 +204,7 @@ set nevents 50000
 done
 
 ### run 8
-launch HNL_4e-8
+launch HNL_4e-10
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -218,10 +218,10 @@ set mn3 1000
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
 set ven1 0
 set ven2 0
-set vmun1 1e-4
-set vmun2 1e-4
-set vtan1 1e-4
-set vtan2 1e-4
+set vmun1 1e-5
+set vmun2 1e-5
+set vtan1 1e-5
+set vtan2 1e-5
 
 set WN1 auto
 set WN2 auto
