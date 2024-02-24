@@ -4,50 +4,45 @@ import ROOT
 processList = {
 
         #centrally-produced backgrounds
-        #'p8_ee_Zee_ecm91':{'fraction':0.001},
-        #'p8_ee_Zmumu_ecm91':{'fraction':0.001},
-        #'p8_ee_Ztautau_ecm91':{'fraction':0.001},
-        #'p8_ee_Zbb_ecm91':{'fraction':0.001},
-        #'p8_ee_Zcc_ecm91':{'fraction':0.001},
-        #'p8_ee_Zud_ecm91':{'fraction':0.001},
-        #'p8_ee_Zss_ecm91':{'fraction':0.001},
+        'p8_ee_Zee_ecm91':{'fraction':0.01},
+        'p8_ee_Zmumu_ecm91':{'fraction':0.01},
+        'p8_ee_Ztautau_ecm91':{'fraction':0.01},
+        'p8_ee_Zbb_ecm91':{'fraction':0.01},
+        'p8_ee_Zcc_ecm91':{'fraction':0.01},
+        'p8_ee_Zud_ecm91':{'fraction':0.01},
+        'p8_ee_Zss_ecm91':{'fraction':0.01},
 
         #privately-produced signals
-        'HNL_old_stack':{},
-        #'HNL_4e-8_5gev':{},
-        #'eenu_30GeV_1p41e-6Ve':{},
-        #'eenu_50GeV_1p41e-6Ve':{},
-        #'eenu_70GeV_1p41e-6Ve':{},
-        #'eenu_90GeV_1p41e-6Ve':{},
-
-        #test
-        #'p8_ee_Zee_ecm91':{'fraction':0.000001},
-        #'p8_ee_Zuds_ecm91':{'chunks':10,'fraction':0.000001},
+        #'HNL_2e-11_10gev':{},
+        #'HNL_4e-10_10gev':{},
+        #'HNL_1.33e-9_20gev':{},
+        #'HNL_2.86e-12_30gev':{},
+        #'HNL_2.15e-10_40gev':{},
+        #'HNL_4e-12_50gev':{},
+        #'HNL_5e-8_50gev':{},
+        #'HNL_2e-7_60gev':{},
+        #'HNL_4e-8_60gev':{},
+        #'HNL_5e-12_70gev':{},
+        #'HNL_2.86e-8_80gev':{},
+        #'HNL_2e-7_80gev':{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/winter2023/IDEA/"
+prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
-#inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_MadgraphPythiaDelphes"
-#inputDir = "/eos/experiment/fcc/ee/generation/DelphesStandalone/Edm4Hep/pre_winter2023_tests_v2"
-#inputDir    = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-inputDir = "/afs/cern.ch/user/s/sgiappic"
+#inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
+#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
-#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_stage1/"
-#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/pre_winter2023_tests_v2/output_stage1/"
-#outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/test_sig1/stage1/"
+outputDir = "/eos/user/s/sgiappic/sig+bkg_1/stage1/"
 
-#outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_stage1/"
-#outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
 #eosType = "eosuser"
 
 #Optional: ncpus, default is 4
@@ -315,34 +310,30 @@ class RDFanalysis():
                 .Define("RecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons,EFlowTrack_1)")
 
                 ### momentum of leading lepton ###
+                .Define("Reco_e", "if (n_RecoMuons>1) return RecoMuon_e.at(0); else if (n_RecoElectrons>0) return RecoElectron_e.at(0); else return float(-1.);")
 
-                .Define("Reco_p", "if (n_RecoMuons>1) return RecoMuon_p.at(0); \
-                                        else if (n_RecoElectrons>1) return RecoElectron_p.at(0); \
-                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_p.at(0); \
-                                        else return float(-1.);")
+                .Define("Reco_p", "if (n_RecoMuons>1) return RecoMuon_p.at(0); else if (n_RecoElectrons>0) return RecoElectron_p.at(0); else return float(-1.);")
 
-                .Define("Reco_pt", "if (n_RecoMuons>1) return RecoMuon_pt.at(0); \
-                                        else if (n_RecoElectrons>1) return RecoElectron_pt.at(0); \
-                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_pt.at(0); \
-                                        else return float(-1.);")
+                .Define("Reco_pt", "if (n_RecoMuons>1) return RecoMuon_pt.at(0); else if (n_RecoElectrons>0) return RecoElectron_pt.at(0); else return float(-1.);")
 
-                .Define("Reco_pz", "if (n_RecoMuons>1) return RecoMuon_pz.at(0); \
-                                        else if (n_RecoElectrons>1) return RecoElectron_pz.at(0); \
-                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectron_pz.at(0); \
-                                        else return float(-1.);")
+                .Define("Reco_pz", "if (n_RecoMuons>1) return RecoMuon_pz.at(0); else if (n_RecoElectrons>0) return RecoElectron_pz.at(0); else return float(-1.);")
 
-                ### D0 of leading lepton ###
+                .Define("Reco_eta", "if (n_RecoMuons>1) return RecoMuon_eta.at(0); else if (n_RecoElectrons>0) return RecoElectron_eta.at(0); else return float(-10.);")
 
-                .Define("Reco_absD0", "if (n_RecoMuons>1) return RecoMuonTrack_absD0.at(0); \
-                                        else if (n_RecoElectrons>1) return RecoElectronTrack_absD0.at(0); \
-                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectronTrack_absD0.at(0); \
-                                        else return float(-1.);")
-
-                .Define("Reco_absZ0", "if (n_RecoMuons>1) return RecoMuonTrack_absZ0.at(0); \
-                                        else if (n_RecoElectrons>1) return RecoElectronTrack_absZ0.at(0); \
-                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return RecoElectronTrack_absZ0.at(0); \
-                                        else return float(-1.);")
+                .Define("Reco_theta", "if (n_RecoMuons>1) return RecoMuon_theta.at(0); else if (n_RecoElectrons>0) return RecoElectron_theta.at(0); else return float(-10.);")
                 
+                .Define("Reco_phi", "if (n_RecoMuons>1) return RecoMuon_phi.at(0); else if (n_RecoElectrons>0) return RecoElectron_phi.at(0); else return float(-10.);")
+
+                ### D0 and Z0 ###
+                .Define("Reco_absD0", "if (n_RecoMuons>1) return RecoMuonTrack_absD0.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_absD0.at(0); else return float(-1.);")
+                .Define("Reco_absZ0", "if (n_RecoMuons>1) return RecoMuonTrack_absZ0.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_absZ0.at(0); else return float(-1.);")
+
+                .Define("Reco_absD0sig", "if (n_RecoMuons>1) return RecoMuonTrack_absD0sig.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_absD0sig.at(0); else return float(-1.);") #significance
+                .Define("Reco_absZ0sig", "if (n_RecoMuons>1) return RecoMuonTrack_absZ0sig.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_absZ0sig.at(0); else return float(-1.);")
+
+                .Define("Reco_D0cov", "if (n_RecoMuons>1) return RecoMuonTrack_D0cov.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_D0cov.at(0); else return float(-1.);") #variance (not sigma)
+                .Define("Reco_Z0cov", "if (n_RecoMuons>1) return RecoMuonTrack_Z0cov.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_Z0cov.at(0); else return float(-1.);")
+
                 ### cosine between two leptons ###
                 .Define("Reco_ee_p", "if (n_RecoElectrons>1) return (RecoElectron_px.at(0)*RecoElectron_px.at(1) + RecoElectron_py.at(0)*RecoElectron_py.at(1) + RecoElectron_pz.at(0)*RecoElectron_pz.at(1)); else return float(-2.);")
                 .Define("Reco_mumu_p", "if (n_RecoMuons>1) return (RecoMuon_px.at(0)*RecoMuon_px.at(1) + RecoMuon_py.at(0)*RecoMuon_py.at(1) + RecoMuon_pz.at(0)*RecoMuon_pz.at(1)); else return float(-2.);")
@@ -366,26 +357,17 @@ class RDFanalysis():
                                         else return float(-1.);")
 
                 # Now we reconstruct the reco decay vertex using the reco'ed tracks from electrons and muons
-                .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack_1)") ### EFlowTrack_1 contains all tracks ###
+                .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack_1)") ### EFlowTrack_1 contains all tracks, selecting a subset associated with certain particles ###
                 .Define("RecoMuonTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoMuons, EFlowTrack_1)")
 
-                # First the full object, of type Vertexing::FCCAnalysesVertex
-                .Define("RecoDecayVertexObjectElectron",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoElectronTracks)" ) ### 1 = primary vertex, 2 = secondary vertex ###
-                .Define("RecoDecayVertexObjectMuon",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoMuonTracks)" ) ### necessary when there are no electrons present, otherwise one electron track is sufficient ###
+                .Define("RecoLeptonTracks",   "ReconstructedTrack::Merge( RecoElectronTracks, RecoMuonTracks)") ### merges two tracks collections ###
 
-                # from which we extract the edm4hep::VertexData object, which contains the vertex position in mm
-                .Define("RecoDecayVertexElectron",  "VertexingUtils::get_VertexData( RecoDecayVertexObjectElectron )")
-                .Define("RecoDecayVertexMuon",  "VertexingUtils::get_VertexData( RecoDecayVertexObjectMuon )")
+                .Define("RecoDecayVertexObjectLepton",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoLeptonTracks)" ) 
+                .Define("RecoDecayVertexLepton",  "VertexingUtils::get_VertexData( RecoDecayVertexObjectLepton )")
 
                 ### same definition that gen distance but with reco objects ###
-                .Define("Reco_Lxy", "if (n_RecoMuons>1) return sqrt(RecoDecayVertexMuon.position.x*RecoDecayVertexMuon.position.x + RecoDecayVertexMuon.position.y*RecoDecayVertexMuon.position.y); \
-                                        else if (n_RecoElectrons>1) return sqrt(RecoDecayVertexElectron.position.x*RecoDecayVertexElectron.position.x + RecoDecayVertexElectron.position.y*RecoDecayVertexElectron.position.y); \
-                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return sqrt(RecoDecayVertexElectron.position.x*RecoDecayVertexElectron.position.x + RecoDecayVertexElectron.position.y*RecoDecayVertexElectron.position.y); \
-                                        else return float(-1.);")
-                .Define("Reco_Lxyz","if (n_RecoMuons>1) return sqrt(RecoDecayVertexMuon.position.x*RecoDecayVertexMuon.position.x + RecoDecayVertexMuon.position.y*RecoDecayVertexMuon.position.y + RecoDecayVertexMuon.position.z*RecoDecayVertexMuon.position.z); \
-                                        else if (n_RecoElectrons>1) return sqrt(RecoDecayVertexElectron.position.x*RecoDecayVertexElectron.position.x + RecoDecayVertexElectron.position.y*RecoDecayVertexElectron.position.y + RecoDecayVertexElectron.position.z*RecoDecayVertexElectron.position.z); \
-                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return sqrt(RecoDecayVertexMuon.position.x*RecoDecayVertexMuon.position.x + RecoDecayVertexMuon.position.y*RecoDecayVertexMuon.position.y + RecoDecayVertexMuon.position.z*RecoDecayVertexMuon.position.z); \
-                                        else return float(-1.);")
+                .Define("Reco_Lxyz","return sqrt(RecoDecayVertexLepton.position.x*RecoDecayVertexLepton.position.x + RecoDecayVertexLepton.position.y*RecoDecayVertexLepton.position.y + RecoDecayVertexLepton.position.z*RecoDecayVertexLepton.position.z);")
+                .Define("Reco_Lxy","return sqrt(RecoDecayVertexLepton.position.x*RecoDecayVertexLepton.position.x + RecoDecayVertexLepton.position.y*RecoDecayVertexLepton.position.y);")
 
                 #EVENTWIDE VARIABLES: Access quantities that exist only once per event, such as the missing energy (despite the name, the MissingET collection contains the total missing energy)
 		.Define("RecoMissingEnergy_e", "ReconstructedParticle::get_e(MissingET)")
@@ -531,8 +513,8 @@ class RDFanalysis():
                         "RecoElectron_e",
                         "RecoElectron_p",
                         "RecoElectron_pt",
-                        #"RecoElectron_px",
-                        #"RecoElectron_py",
+                        "RecoElectron_px",
+                        "RecoElectron_py",
                         "RecoElectron_pz",
                         "RecoElectron_eta",
                         "RecoElectron_theta",
@@ -544,17 +526,16 @@ class RDFanalysis():
                         "RecoElectronTrack_absZ0sig",
                         "RecoElectronTrack_D0cov",
                         "RecoElectronTrack_Z0cov",
-                        #"RecoDecayVertexObjectElectron",
-                        "RecoDecayVertexElectron",
-
+                        
+                        "RecoDecayVertexLepton",
                         "Reco_Lxy",
                         "Reco_Lxyz",
 
                         "RecoMuon_e",
                         "RecoMuon_p",
                         "RecoMuon_pt",
-                        #"RecoMuon_px",
-                        #"RecoMuon_py",
+                        "RecoMuon_px",
+                        "RecoMuon_py",
                         "RecoMuon_pz",
                         "RecoMuon_eta",
                         "RecoMuon_theta",
@@ -566,8 +547,6 @@ class RDFanalysis():
                         "RecoMuonTrack_absZ0sig",
                         "RecoMuonTrack_D0cov",
                         "RecoMuonTrack_Z0cov", 
-                        #"RecoDecayVertexObjectMuon",
-                        "RecoDecayVertexMuon",
 
                         "RecoMissingEnergy_e",
                         "RecoMissingEnergy_p",
@@ -579,11 +558,20 @@ class RDFanalysis():
                         "RecoMissingEnergy_theta",
                         "RecoMissingEnergy_phi",
 
+                        "Reco_e",
                         "Reco_p",
                         "Reco_pt",
                         "Reco_pz",
+                        "Reco_eta",
+                        "Reco_theta",
+                        "Reco_phi",
+
                         "Reco_absD0",
                         "Reco_absZ0",
+                        "Reco_absD0sig",
+                        "Reco_absZ0sig",
+                        "Reco_D0cov",
+                        "Reco_Z0cov",
 
                         # enunu branches
                         #"Reco_ee_invMass",
