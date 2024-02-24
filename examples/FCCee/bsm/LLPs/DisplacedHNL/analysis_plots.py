@@ -7,22 +7,20 @@ intLumi        = 150.0e+06 #in pb-1
 ###If scaleSig or scaleBack is not defined, plots will be normalized to 1
 #scaleSig       = 0.
 #scaleBack      = 0.
-ana_tex        = 'e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu'
-#ana_tex        = ''
+ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
 delphesVersion = '3.4.2'
-#delphesVersion = ''
 energy         = 91
 collider       = 'FCC-ee'
-inputDir       = '/eos/user/s/sgiappic/test_bkg3/final/'
-#inputDir       = 'output_finalSel_Ztautau/'
+inputDir       = '/eos/user/s/sgiappic/sig+bkg_1/final/'
+outdir         = '/eos/user/s/sgiappic/sig+bkg_1/plots/'
 #formats        = ['png','pdf']
 formats        = ['pdf']
 #yaxis          = ['lin','log']
 yaxis          = ['log']
 stacksig       = ['nostack']
 stackbkg       = ['stack']
-outdir         = '/eos/user/s/sgiappic/test_sig1/plots/'
-#outdir         = 'plots_Ztautau_spring2021_vs_prewinter2023/'
+#legendCoord    = [0.68,0.76,0.96,0.88]
+#plotStatUnc    = True ### to include statistical uncertainty ###
 splitLeg       = True ### to split legend for backgrounds and signals ###
 
 variables = [
@@ -122,7 +120,7 @@ variables = [
     "RecoElectron_eta",
     "RecoElectron_theta",
     "RecoElectron_phi",
-    "RecoElectron_charge",
+    #"RecoElectron_charge",
 
     "RecoElectronTrack_absD0",
     "RecoElectronTrack_absD0_prompt",
@@ -152,7 +150,7 @@ variables = [
     "RecoMuon_eta",
     "RecoMuon_theta",
     "RecoMuon_phi",
-    "RecoMuon_charge",
+    #"RecoMuon_charge",
 
     "RecoMuonTrack_absD0",
     "RecoMuonTrack_absD0_prompt",
@@ -165,23 +163,14 @@ variables = [
     "RecoMuonTrack_D0cov",
     "RecoMuonTrack_Z0cov",
 
-    "Reco_DecayVertexElectron_x",       
-    "Reco_DecayVertexElectron_y",          
-    "Reco_DecayVertexElectron_z",          
-    "Reco_DecayVertexElectron_x_prompt",   
-    "Reco_DecayVertexElectron_y_prompt",    
-    "Reco_DecayVertexElectron_z_prompt",    
-    "Reco_DecayVertexElectron_chi2",    
-    "Reco_DecayVertexElectron_probability", 
-
-    "Reco_DecayVertexMuon_x",        
-    "Reco_DecayVertexMuon_y",           
-    "Reco_DecayVertexMuon_z",          
-    "Reco_DecayVertexMuon_x_prompt",    
-    "Reco_DecayVertexMuon_y_prompt",    
-    "Reco_DecayVertexMuon_z_prompt",    
-    "Reco_DecayVertexMuon_chi2",       
-    "Reco_DecayVertexMuon_probability", 
+    "Reco_DecayVertexLepton_x",       
+    "Reco_DecayVertexLepton_y",          
+    "Reco_DecayVertexLepton_z",          
+    "Reco_DecayVertexLepton_x_prompt",   
+    "Reco_DecayVertexLepton_y_prompt",    
+    "Reco_DecayVertexLepton_z_prompt",    
+    "Reco_DecayVertexLepton_chi2",    
+    "Reco_DecayVertexLepton_probability", 
 
     "Reco_Lxy",
     "Reco_Lxyz",
@@ -197,15 +186,28 @@ variables = [
     "RecoMissingEnergy_theta",
     "RecoMissingEnergy_phi",
 
+    "Reco_e",
     "Reco_p",
     "Reco_pt",
     "Reco_pz",
+    "Reco_eta",
+    "Reco_theta",
+    "Reco_phi",
+
     "Reco_absD0_prompt",
     "Reco_absZ0_prompt",
     "Reco_absD0_med",
     "Reco_absZ0_med",
     "Reco_absD0",
     "Reco_absZ0",
+    "Reco_absD0sig",
+    "Reco_absD0sig_med",
+    "Reco_absD0sig_prompt",
+    "Reco_absZ0sig",
+    "Reco_absZ0sig_med",
+    "Reco_absZ0sig_prompt",
+    "Reco_D0cov",
+    "Reco_Z0cov",
 
     #"Reco_ee_invMass",
     #"Reco_mumu_invMass",
@@ -239,12 +241,17 @@ selections['HNL']  = [
     # "sel2RecoEle_vetoes_absD0Gt0p5",
     #"sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5",
 
-    "sel2RecoSF",
-    "sel2RecoDF",
+    #"sel2RecoSF",
+    #"sel2RecoDF",
+    #"sel2Reco_vetoes",
     "sel2RecoSF_vetoes",
     "sel2RecoDF_vetoes",
     "sel2RecoSF_vetoes_M",
     "sel2RecoDF_vetoes_M",
+    "sel2RecoSF_vetoes_Mp",
+    "sel2RecoDF_vetoes_Mp",
+    "sel2RecoSF_vetoes_Mp_ME",
+    "sel2RecoDF_vetoes_Mp_ME",
 ]
 
 extralabel = {}
@@ -261,67 +268,93 @@ extralabel['selNone'] = "Before selection"
 
 extralabel['sel2RecoSF']="Two same flavor leptons"
 extralabel['sel2RecoDF']="Two different flavor leptons"
-extralabel['sel2RecoSF_vetoes']="Two same flavor leptons, no photons"
-extralabel['sel2RecoDF_vetoes']="Two different flavor leptons, no photons"
+extralabel['sel2Reco_vetoes']="Two leptons, no photons and jets"
+extralabel['sel2RecoSF_vetoes']="Two same flavor leptons, no photons and jets"
+extralabel['sel2RecoDF_vetoes']="Two different flavor leptons, no photons and jets"
 extralabel['sel2RecoSF_vetoes_M']="Two same flavor leptons, no photons, 15<M(l,l)<70 GeV"
 extralabel['sel2RecoDF_vetoes_M']="Two different flavor leptons, no photons, 15<M(l,l)<70 GeV"
+extralabel['sel2RecoSF_vetoes_Mp']="Two same flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV"
+extralabel['sel2RecoDF_vetoes_Mp']="Two different flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV"
+extralabel['sel2RecoSF_vetoes_Mp_ME']="Two same flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV, ME>5 Gev"
+extralabel['sel2RecoDF_vetoes_Mp_ME']="Two different flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV, ME>5 Gev"
 
 colors = {}
-#colors['eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange+1
-#colors['eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
-#colors['eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
-#colors['eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
 
-colors['HNL_old_stack'] = ROOT.kBlack
+colors['HNL_2e-11_10gev'] = ROOT.kOrange-4
+colors['HNL_4e-10_10gev'] = ROOT.kCyan-7
+colors['HNL_1.33e-9_20gev'] = ROOT.kAzure+5
+colors['HNL_2.86e-12_30gev'] = ROOT.kBlue-4
+colors['HNL_2.15e-10_40gev'] = ROOT.kOrange+1
+colors['HNL_5e-8_50gev'] = ROOT.kRed-4
+colors['HNL_4e-12_50gev'] = ROOT.kBlue+1
+colors['HNL_2e-7_60gev'] = ROOT.kRed+1
+colors['HNL_4e-8_60gev'] = ROOT.kBlue+2
+colors['HNL_5e-12_70gev'] = ROOT.kPink-6
+colors['HNL_2.86e-8_80gev'] = ROOT.kBlue+3
+colors['HNL_2e-7_80gev'] = ROOT.kPink-7
 
-colors['Zbb'] = ROOT.kRed-4
-colors['Zcc'] = ROOT.kOrange-3
-colors['Zud'] = ROOT.kYellow-4
-colors['Ztautau'] = ROOT.kGreen-3
-colors['Zee'] = ROOT.kCyan-3
-colors['Zmumu'] = ROOT.kBlue-7
-colors['Zss'] = ROOT.kViolet-4
+colors['Zbb'] = 48
+colors['Zcc'] = 44
+colors['Zud'] = 41
+colors['Ztautau'] = 34
+colors['Zee'] = 29
+colors['Zmumu'] = 32
+colors['Zss'] = 20
 
-#colors['Ztautau_spring2021'] = ROOT.kBlack
-#colors['Ztautau_pre_winter2023_tests_v2'] = ROOT.kRed
-
+#colors['Zbb'] = ROOT.kRed-4
+#colors['Zcc'] = ROOT.kOrange-3
+#colors['Zud'] = ROOT.kYellow-4
+#colors['Ztautau'] = ROOT.kGreen-3
+#colors['Zee'] = ROOT.kCyan-3
+#colors['Zmumu'] = ROOT.kBlue-7
+#colors['Zss'] = ROOT.kViolet-4
 
 plots = {}
 plots['HNL'] = {'signal':{
-                    'HNL_old_stack':['HNL_old_stack'],
-                    #'eenu_30GeV_1p41e-6Ve':['eenu_30GeV_1p41e-6Ve'],
-                    #'eenu_50GeV_1p41e-6Ve':['eenu_50GeV_1p41e-6Ve'],
-                    #'eenu_70GeV_1p41e-6Ve':['eenu_70GeV_1p41e-6Ve'],
-                    #'eenu_90GeV_1p41e-6Ve':['eenu_90GeV_1p41e-6Ve'],
-    },
+                    'HNL_4e-10_10gev':['HNL_4e-10_10gev'],
+                    'HNL_2e-11_10gev':['HNL_2e-11_10gev'],
+                    'HNL_1.33e-9_20gev':['HNL_1.33e-9_20gev'],
+                    'HNL_2.86e-12_30gev':['HNL_2.86e-12_30gev'],
+                    'HNL_2.15e-10_40gev':['HNL_2.15e-10_40gev'],
+                    'HNL_5e-8_50gev':['HNL_5e-8_50gev'],
+                    'HNL_4e-12_50gev':['HNL_4e-12_50gev'],
+                    'HNL_2e-7_60gev':['HNL_2e-7_60gev'],
+                    'HNL_4e-8_60gev':['HNL_4e-8_60gev'],
+                    'HNL_5e-12_70gev':['HNL_5e-12_70gev'],
+                    'HNL_2.86e-8_80gev':['HNL_2.86e-8_80gev'],
+                    'HNL_2e-7_80gev':['HNL_2e-7_80gev'],
+                },
                 'backgrounds':{
-                    'Zbb':['p8_ee_Zbb_ecm91'],
-                    'Zcc': ['p8_ee_Zcc_ecm91'],
                     'Zud': ['p8_ee_Zud_ecm91'],
-                    'Ztautau': ['p8_ee_Ztautau_ecm91'],
+                    'Zss':['p8_ee_Zss_ecm91'],
+                    'Zcc': ['p8_ee_Zcc_ecm91'],
+                    'Zbb':['p8_ee_Zbb_ecm91'],
+                    
                     'Zee':['p8_ee_Zee_ecm91'],
                     'Zmumu': ['p8_ee_Zmumu_ecm91'],
-                    'Zss':['p8_ee_Zss_ecm91'],
-                    #'Ztautau_spring2021': ['p8_ee_Ztautau_ecm91_spring2021'],
-                    #'Ztautau_pre_winter2023_tests_v2': ['p8_ee_Ztautau_ecm91_pre_winter2023_tests_v2'],
+                    'Ztautau': ['p8_ee_Ztautau_ecm91'],
+                },
                 }
-                }
-
 
 legend = {}
-#legend['eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
-#legend['eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
-#legend['eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
-#legend['eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
 
-legend['HNL_old_stack'] = 'HNL 10 gev'
+legend['HNL_2e-11_10gev'] = 'U^{2}=2e-11, M_{N}=10 GeV'
+legend['HNL_4e-10_10gev'] = 'U^{2}=4e-10, M_{N}=10 GeV'
+legend['HNL_1.33e-9_20gev'] = 'U^{2}=1.33e-9, M_{N}=20 GeV'
+legend['HNL_2.86e-12_30gev'] = 'U^{2}=2.86e-12, M_{N}=30 GeV'
+legend['HNL_2.15e-10_40gev'] = 'U^{2}=2.15e-10, M_{N}=40 GeV'
+legend['HNL_5e-8_50gev'] = 'U^{2}=5e-8, M_{N}=50 GeV'
+legend['HNL_4e-12_50gev'] = 'U^{2}=4e-12, M_{N}=50 GeV'
+legend['HNL_2e-7_60gev'] = 'U^{2}=2e-7, M_{N}=60 GeV'
+legend['HNL_4e-8_60gev'] = 'U^{2}=4e-8, M_{N}=60 GeV'
+legend['HNL_5e-12_70gev'] = 'U^{2}=5e-12, M_{N}=70 GeV'
+legend['HNL_2.86e-8_80gev'] = 'U^{2}=2.86e-8, M_{N}=80 GeV'
+legend['HNL_2e-7_80gev'] = 'U^{2}=2e-7, M_{N}=80 GeV'
 
-legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
-legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
-legend['Zud'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ud'
-legend['Ztautau'] = 'e^{+}e^{-} #rightarrow Z #rightarrow #tau#tau'
-legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
-legend['Zmumu'] = 'e^{+}e^{-} #rightarrow Z #rightarrow #mu#mu'
-legend['Zss'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ss'
-#legend['Ztautau_spring2021'] = 'Z #rightarrow #tau#tau Spring2021'
-#legend['Ztautau_pre_winter2023_tests_v2'] = 'Z #rightarrow #tau#tau pre winter2023 tests v2'
+legend['Zud'] = 'Z #rightarrow ud'
+legend['Zss'] = 'Z #rightarrow ss'
+legend['Zbb'] = 'Z #rightarrow bb'
+legend['Zcc'] = 'Z #rightarrow cc'
+legend['Zee'] = 'Z #rightarrow ee'
+legend['Zmumu'] = 'Z #rightarrow #mu#mu'
+legend['Ztautau'] = 'Z #rightarrow #tau#tau'

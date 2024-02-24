@@ -102,6 +102,12 @@ Instructions to validate in the EDM4Hep format root files created in standalone 
 
 My comments to the general code begin and end with three #.
 
+For reference this is the stack:
+
+```
+source /cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/key4hep-stack/2023-11-30-gyuooo/setup.sh
+```
+
 1. Run the first stage to create trees for the events from the HNL directory:
 
     ```
