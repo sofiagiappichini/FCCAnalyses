@@ -4,55 +4,57 @@ import ROOT
 processList = {
 
         #centrally-produced backgrounds
-        'p8_ee_Zee_ecm91':{'fraction':0.01},
-        'p8_ee_Zmumu_ecm91':{'fraction':0.01},
-        'p8_ee_Ztautau_ecm91':{'fraction':0.01},
-        'p8_ee_Zbb_ecm91':{'fraction':0.01},
-        'p8_ee_Zcc_ecm91':{'fraction':0.01},
-        'p8_ee_Zud_ecm91':{'fraction':0.01},
-        'p8_ee_Zss_ecm91':{'fraction':0.01},
+        #'p8_ee_Zee_ecm91':{'chunks':100},
+        #'p8_ee_Zmumu_ecm91':{'chunks':100},
+        #'p8_ee_Ztautau_ecm91':{'chunks':100},
+        #'p8_ee_Zbb_ecm91':{'chunks':100},
+        #'p8_ee_Zcc_ecm91':{'chunks':100},
+        #'p8_ee_Zud_ecm91':{'chunks':100},
+        #'p8_ee_Zss_ecm91':{'chunks':100},
 
         #privately-produced signals
-        #'HNL_2e-11_10gev':{},
-        #'HNL_4e-10_10gev':{},
-        #'HNL_1.33e-9_20gev':{},
-        #'HNL_2.86e-12_30gev':{},
-        #'HNL_2.15e-10_40gev':{},
-        #'HNL_4e-12_50gev':{},
-        #'HNL_5e-8_50gev':{},
-        #'HNL_2e-7_60gev':{},
-        #'HNL_4e-8_60gev':{},
-        #'HNL_5e-12_70gev':{},
-        #'HNL_2.86e-8_80gev':{},
-        #'HNL_2e-7_80gev':{},
+        'HNL_4e-10_10gev':{},
+        'HNL_1.33e-9_20gev':{},
+        'HNL_2.86e-12_30gev':{},
+        'HNL_2.86e-7_30gev':{},
+        'HNL_5e-12_40gev':{},
+        'HNL_4e-12_50gev':{},
+        'HNL_6.67e-8_60gev':{},
+        'HNL_4e-8_60gev':{},
+        'HNL_2.86e-9_70gev':{},
+        'HNL_2.86e-8_80gev':{},
+
+        #'emununu':{},
+        #'tatanunu':{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/sig+bkg_1/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
-#eosType = "eosuser"
+### necessary to run on HTCondor ###
+eosType = "eosuser"
 
 #Optional: ncpus, default is 4
-nCPUS = 4
+nCPUS = 10
 
 #Optional running on HTCondor, default is False
 runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+batchQueue = "tomorrow"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -316,6 +318,10 @@ class RDFanalysis():
 
                 .Define("Reco_pt", "if (n_RecoMuons>1) return RecoMuon_pt.at(0); else if (n_RecoElectrons>0) return RecoElectron_pt.at(0); else return float(-1.);")
 
+                .Define("Reco_px", "if (n_RecoMuons>1) return RecoMuon_px.at(0); else if (n_RecoElectrons>0) return RecoElectron_px.at(0); else return float(-1.);")
+
+                .Define("Reco_py", "if (n_RecoMuons>1) return RecoMuon_py.at(0); else if (n_RecoElectrons>0) return RecoElectron_py.at(0); else return float(-1.);")
+
                 .Define("Reco_pz", "if (n_RecoMuons>1) return RecoMuon_pz.at(0); else if (n_RecoElectrons>0) return RecoElectron_pz.at(0); else return float(-1.);")
 
                 .Define("Reco_eta", "if (n_RecoMuons>1) return RecoMuon_eta.at(0); else if (n_RecoElectrons>0) return RecoElectron_eta.at(0); else return float(-10.);")
@@ -413,54 +419,54 @@ class RDFanalysis():
                 branchList = [
                         ######## Monte-Carlo particles #######
                         "n_FSGenElectron",
-                        "FSGenElectron_e",
-                        "FSGenElectron_p",
-                        "FSGenElectron_pt",
+                        #"FSGenElectron_e",
+                        #"FSGenElectron_p",
+                        #"FSGenElectron_pt",
                         #"FSGenElectron_px",
                         #"FSGenElectron_py",
-                        "FSGenElectron_pz",
-                        "FSGenElectron_eta",
-                        "FSGenElectron_theta",
-                        "FSGenElectron_phi",
-                        "FSGenElectron_charge",
-                        "FSGenElectron_vertex_x",
-                        "FSGenElectron_vertex_y",
-                        "FSGenElectron_vertex_z",
+                        #"FSGenElectron_pz",
+                        #"FSGenElectron_eta",
+                        #"FSGenElectron_theta",
+                        #"FSGenElectron_phi",
+                        #"FSGenElectron_charge",
+                        #"FSGenElectron_vertex_x",
+                        #"FSGenElectron_vertex_y",
+                        #"FSGenElectron_vertex_z",
 
                         "n_FSGenMuon",
-                        "FSGenMuon_e",
-                        "FSGenMuon_p",
-                        "FSGenMuon_pt",
+                        #"FSGenMuon_e",
+                        #"FSGenMuon_p",
+                        #"FSGenMuon_pt",
                         #"FSGenMuon_px",
                         #"FSGenMuon_py",
-                        "FSGenMuon_pz",
-                        "FSGenMuon_eta",
-                        "FSGenMuon_theta",
-                        "FSGenMuon_phi",
-                        "FSGenMuon_charge",
-                        "FSGenMuon_vertex_x",
-                        "FSGenMuon_vertex_y",
-                        "FSGenMuon_vertex_z",
+                        #"FSGenMuon_pz",
+                        #"FSGenMuon_eta",
+                        #"FSGenMuon_theta",
+                        #"FSGenMuon_phi",
+                        #"FSGenMuon_charge",
+                        #"FSGenMuon_vertex_x",
+                        #"FSGenMuon_vertex_y",
+                        #"FSGenMuon_vertex_z",
 
-                        "FSGen_Lxy",
-                        "FSGen_Lxyz",
+                        #"FSGen_Lxy",
+                        #"FSGen_Lxyz",
                         #"FSGen_ee_invMass",
                         #"FSGen_eenu_invMass",
                         #"FSGen_mumu_invMass",
                         #"FSGen_emu_invMass",
-                        "FSGen_invMass",
+                        #"FSGen_invMass",
 
                         "n_FSGenNeutrino",
-                        "FSGenNeutrino_e",
-                        "FSGenNeutrino_p",
-                        "FSGenNeutrino_pt",
+                        #"FSGenNeutrino_e",
+                        #"FSGenNeutrino_p",
+                        #"FSGenNeutrino_pt",
                         #"FSGenNeutrino_px",
                         #"FSGenNeutrino_py",
-                        "FSGenNeutrino_pz",
-                        "FSGenNeutrino_eta",
-                        "FSGenNeutrino_theta",
-                        "FSGenNeutrino_phi",
-                        "FSGenNeutrino_charge",
+                        #"FSGenNeutrino_pz",
+                        #"FSGenNeutrino_eta",
+                        #"FSGenNeutrino_theta",
+                        #"FSGenNeutrino_phi",
+                        #"FSGenNeutrino_charge",
 
                         "n_FSGenPhoton",
                         #"FSGenPhoton_e",
@@ -526,10 +532,6 @@ class RDFanalysis():
                         "RecoElectronTrack_absZ0sig",
                         "RecoElectronTrack_D0cov",
                         "RecoElectronTrack_Z0cov",
-                        
-                        "RecoDecayVertexLepton",
-                        "Reco_Lxy",
-                        "Reco_Lxyz",
 
                         "RecoMuon_e",
                         "RecoMuon_p",
@@ -561,11 +563,12 @@ class RDFanalysis():
                         "Reco_e",
                         "Reco_p",
                         "Reco_pt",
+                        "Reco_px",
+                        "Reco_py",
                         "Reco_pz",
                         "Reco_eta",
                         "Reco_theta",
                         "Reco_phi",
-
                         "Reco_absD0",
                         "Reco_absZ0",
                         "Reco_absD0sig",
@@ -573,20 +576,11 @@ class RDFanalysis():
                         "Reco_D0cov",
                         "Reco_Z0cov",
 
-                        # enunu branches
-                        #"Reco_ee_invMass",
-                        #"Reco_mumu_invMass",
-                        #"Reco_emu_invMass",
+                        "RecoDecayVertexLepton",
+                        "Reco_Lxy",
+                        "Reco_Lxyz",
                         "Reco_invMass",
-
-                        #"Reco_ee_cos",
-                        #"Reco_mumu_cos",
-                        #"Reco_emu_cos",
                         "Reco_cos",
-
-                        #"Reco_ee_DR",
-                        #"Reco_mumu_DR",
-                        #"Reco_emu_DR",
                         "Reco_DR",
 
 		]
