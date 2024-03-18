@@ -193,18 +193,18 @@ def runPlots(var, sel, param, hsignal, hbackgrounds, extralab, splitLeg,
 
     # Below are settings for separate signal and background legends
     if splitLeg:
-        legsize = 0.04*(len(hsignal))
-        legsize2 = 0.04*(len(hbackgrounds))
-        legCoord = [0.15, 0.60 - legsize, 0.50, 0.62]
-        leg2 = ROOT.TLegend(0.60, 0.60 - legsize2, 0.88, 0.62)
+        legsize = 0.035*(len(hsignal))
+        legsize2 = 0.035*(len(hbackgrounds))
+        legCoord = [0.16, 0.75 - legsize, 0.45, 0.73]
+        leg2 = ROOT.TLegend(0.70, 0.75 - legsize2, 0.88, 0.73)
         leg2.SetFillColor(0)
         leg2.SetFillStyle(0)
         leg2.SetLineColor(0)
-        leg2.SetShadowColor(10)
-        leg2.SetTextSize(0.035)
+        leg2.SetShadowColor(0)
+        leg2.SetTextSize(0.025)
         leg2.SetTextFont(42)
     else:
-        legsize = 0.04*(len(hbackgrounds)+len(hsignal))
+        legsize = 0.035*(len(hbackgrounds)+len(hsignal))
         legCoord = [0.68, 0.86-legsize, 0.96, 0.88]
         try:
             legCoord = param.legendCoord
@@ -217,8 +217,8 @@ def runPlots(var, sel, param, hsignal, hbackgrounds, extralab, splitLeg,
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
     leg.SetLineColor(0)
-    leg.SetShadowColor(10)
-    leg.SetTextSize(0.035)
+    leg.SetShadowColor(0)
+    leg.SetTextSize(0.025)
     leg.SetTextFont(42)
 
     for b in hbackgrounds:
@@ -498,7 +498,7 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory,
         h_dummy.GetXaxis().SetLabelSize(1.1*h_dummy.GetXaxis().GetLabelSize())
         h_dummy.GetXaxis().SetLabelOffset(
             1.5*h_dummy.GetXaxis().GetLabelOffset())
-    h_dummy.GetYaxis().SetTitle(ylabel)
+    h_dummy.GetYaxis().SetTitle("Events")
 
     for h in iterh:
         sumhistos.Add(h)
@@ -596,8 +596,8 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory,
     if ymin <= 0 and logY:
         LOGGER.error('Log scale can\'t start at: %i', ymin)
         sys.exit(3)
-    h_dummy.SetMaximum(ymax)
-    h_dummy.SetMinimum(ymin)
+    h_dummy.SetMaximum(1e23)
+    h_dummy.SetMinimum(1e-6)
 
     legend.Draw()
     if legend2 is not None:
@@ -614,34 +614,34 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory,
     text = '#it{'+customLabel+'}'
     latex.SetTextAlign(12)
     latex.SetNDC(ROOT.kTRUE)
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.85, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.90, text)
 
     rightText = re.split(",", rightText)
     text = '#bf{#it{' + rightText[0] + '}}'
 
     latex.SetTextAlign(12)
     latex.SetNDC(ROOT.kTRUE)
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.81, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.86, text)
 
     rightText[1] = rightText[1].replace("   ", "")
     text = '#bf{#it{' + rightText[1] + '}}'
-    latex.SetTextSize(0.035)
-    latex.DrawLatex(0.18, 0.76, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.82, text)
 
     text = '#bf{#it{' + ana_tex + '}}'
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.71, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.78, text)
 
     text = '#bf{#it{' + extralab + '}}'
-    latex.SetTextSize(0.025)
-    latex.DrawLatex(0.18, 0.66, text)
+    latex.SetTextSize(0.02)
+    latex.DrawLatex(0.18, 0.75, text)
 
     text = '#bf{#it{' + 'Signal scale=' + str(scaleSig)+'}}'
-    latex.SetTextSize(0.025)
+    latex.SetTextSize(0.02)
     if scaleSig != 1:
-        latex.DrawLatex(0.18, 0.63, text)
+        latex.DrawLatex(0.18, 0.70, text)
 
     canvas.RedrawAxis()
     canvas.GetFrame().SetBorderSize(12)
@@ -656,66 +656,66 @@ def drawStack(name, ylabel, legend, leftText, rightText, formats, directory,
         dummyh.GetYaxis().SetLabelOffset(999)
         dummyh.GetYaxis().SetLabelSize(0)
         dummyh.Draw("AH")
-        legend.Draw()
+        #legend.Draw()
 
         latex.SetNDC()
         latex.SetTextAlign(31)
-        latex.SetTextSize(0.04)
+        latex.SetTextSize(0.03)
 
-        text = '#it{' + leftText + '}'
-        latex.DrawLatex(0.90, 0.92, text)
+        #text = '#it{' + leftText + '}'
+        #latex.DrawLatex(0.90, 0.92, text)
 
-        text = '#bf{#it{' + rightText[0] + '}}'
-        latex.SetTextAlign(12)
-        latex.SetNDC(ROOT.kTRUE)
-        latex.SetTextSize(0.04)
-        latex.DrawLatex(0.18, 0.83, text)
+        #text = '#bf{#it{' + rightText[0] + '}}'
+        #latex.SetTextAlign(12)
+        #latex.SetNDC(ROOT.kTRUE)
+        #latex.SetTextSize(0.04)
+        #latex.DrawLatex(0.18, 0.83, text)
 
-        text = '#bf{#it{' + rightText[1] + '}}'
-        latex.SetTextSize(0.035)
-        latex.DrawLatex(0.18, 0.78, text)
+        #text = '#bf{#it{' + rightText[1] + '}}'
+        #latex.SetTextSize(0.035)
+        #latex.DrawLatex(0.18, 0.78, text)
 
-        text = '#bf{#it{' + ana_tex + '}}'
-        latex.SetTextSize(0.04)
-        latex.DrawLatex(0.18, 0.73, text)
+        #text = '#bf{#it{' + ana_tex + '}}'
+        #latex.SetTextSize(0.04)
+        #latex.DrawLatex(0.18, 0.73, text)
 
-        text = '#bf{#it{' + extralab + '}}'
-        latex.SetTextSize(0.025)
-        latex.DrawLatex(0.18, 0.68, text)
+        #text = '#bf{#it{' + extralab + '}}'
+        #latex.SetTextSize(0.025)
+        #latex.DrawLatex(0.18, 0.68, text)
 
-        text = '#bf{#it{' + 'Signal scale=' + str(scaleSig) + '}}'
-        latex.SetTextSize(0.04)
-        latex.DrawLatex(0.18, 0.55, text)
+        #text = '#bf{#it{' + 'Signal scale=' + str(scaleSig) + '}}'
+        #latex.SetTextSize(0.04)
+        #latex.DrawLatex(0.18, 0.55, text)
 
         dy = 0
         text = '#bf{#it{' + 'Process' + '}}'
-        latex.SetTextSize(0.035)
-        latex.DrawLatex(0.18, 0.45, text)
+        latex.SetTextSize(0.025)
+        latex.DrawLatex(0.18, 0.92, text)
 
         text = '#bf{#it{' + 'Yields' + '}}'
-        latex.SetTextSize(0.035)
-        latex.DrawLatex(0.5, 0.45, text)
+        latex.SetTextSize(0.025)
+        latex.DrawLatex(0.5, 0.92, text)
 
         text = '#bf{#it{' + 'Raw MC' + '}}'
-        latex.SetTextSize(0.035)
-        latex.DrawLatex(0.75, 0.45, text)
+        latex.SetTextSize(0.025)
+        latex.DrawLatex(0.75, 0.92, text)
 
         for y in yields:
             text = '#bf{#it{' + yields[y][0] + '}}'
-            latex.SetTextSize(0.035)
-            latex.DrawLatex(0.18, 0.4-dy*0.05, text)
+            latex.SetTextSize(0.025)
+            latex.DrawLatex(0.18, 0.92-dy*0.04, text)
 
             stry = str(yields[y][1])
             stry = stry.split('.', maxsplit=1)[0]
             text = '#bf{#it{' + stry + '}}'
-            latex.SetTextSize(0.035)
-            latex.DrawLatex(0.5, 0.4-dy*0.05, text)
+            latex.SetTextSize(0.025)
+            latex.DrawLatex(0.5, 0.92-dy*0.04, text)
 
             stry = str(yields[y][2])
             stry = stry.split('.', maxsplit=1)[0]
             text = '#bf{#it{' + stry + '}}'
-            latex.SetTextSize(0.035)
-            latex.DrawLatex(0.75, 0.4-dy*0.05, text)
+            latex.SetTextSize(0.025)
+            latex.DrawLatex(0.75, 0.92-dy*0.04, text)
 
             dy += 1
         # canvas.Modified()

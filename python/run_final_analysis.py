@@ -300,9 +300,9 @@ def run(rdf_module, args):
         info_msg = 'Cutflow:'
         info_msg += f'\n\t{"All events":{cfn_width}} : {all_events:,}'
 
-        if save_tabular:
+        #if save_tabular:
             # scientific notation - recomended for backgrounds
-            cuts_list.append(f'{all_events:.2e} $\\pm$ {uncertainty:.2e}')
+            #cuts_list.append(f'{all_events:.2e} $\\pm$ {uncertainty:.2e}')
             # float notation - recomended for signals with few events
             # cuts_list.append(f'{all_events:.3f} $\\pm$ {uncertainty:.3f}')
             # ####eff_list.append(1.)  # start with 100% efficiency
@@ -337,15 +337,15 @@ def run(rdf_module, args):
                     # float notation - recomended for signals with few events
                     # cuts_list.append(
                     #     f'{neventsThisCut:.3f} $\\pm$ {uncertainty:.3f}')
-                    eff_list.append(f'{1.*nevents_this_cut/all_events:.3f}')
+                    eff_list.append(f'{1.*nevents_this_cut/all_events:.2e}')
                 # if number of events is zero, the previous uncertainty is
                 # saved instead:
-                elif '$\\pm$' in cuts_list[-1]:
-                    cut = (cuts_list[-1]).split()
-                    cuts_list.append(f'$\\leq$ {cut[2]}')
-                    eff_list.append('0.')
+                #elif '$\\pm$' in cuts_list[-1]:
+                    #cut = (cuts_list[-1]).split()
+                    #cuts_list.append(f'$\\leq$ {cut[2]}')
+                    #eff_list.append('0.')
                 else:
-                    cuts_list.append(cuts_list[-1])
+                    cuts_list.append('0.')
                     eff_list.append('0.')
 
         LOGGER.info(info_msg)
@@ -412,10 +412,12 @@ def run(rdf_module, args):
                           '    \\begin{tabular}{|l||')
             outfile.write('c|' * (len(cuts_list)-1))
             outfile.write('} \\hline\n')
-            for i in range(len(eff_list)):
+            for i, row in enumerate(efficiency_list):
+            #for i in range(len(eff_list)):
                 outfile.write('        ')
-                v = [row[i] for row in efficiency_list]
-                outfile.write(' & '.join(str(v)))
+                #v = [row[i] for row in efficiency_list]
+                outfile.write(' & '.join(row))
+                #outfile.write(' & '.join(str(v)))
                 outfile.write(' \\\\\n')
                 if i == 0:
                     outfile.write('        \\hline\n')
