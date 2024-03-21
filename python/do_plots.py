@@ -76,7 +76,7 @@ def mapHistos(var, label, sel, param, rebin):
                 LOGGER.debug('No scale signal, using 1.')
                 param.scaleSig = scaleSig
             LOGGER.info('ScaleSig: %g', scaleSig)
-            hh.Scale(param.intLumi*scaleSig)
+            hh.Scale(scaleSig)
             hh.Rebin(rebin)
 
             if len(hsignal[s]) == 0:
@@ -98,7 +98,7 @@ def mapHistos(var, label, sel, param, rebin):
                 h = tf.Get(var)
                 hh = copy.deepcopy(h)
                 hh.SetDirectory(0)
-            hh.Scale(param.intLumi)
+            #hh.Scale(param.intLumi)
             hh.Rebin(rebin)
             if len(hbackgrounds[b]) == 0:
                 hbackgrounds[b].append(hh)
@@ -143,7 +143,7 @@ def mapHistosFromHistmaker(hName, param, plotCfg):
                 hh = copy.deepcopy(h)
                 hh.SetDirectory(0)
             LOGGER.info('ScaleSig: %g', scaleSig)
-            hh.Scale(param.intLumi*scaleSig)
+            hh.Scale(scaleSig)
             hh.Rebin(rebin)
             if len(hsignal[s]) == 0:
                 hsignal[s].append(hh)
@@ -164,7 +164,7 @@ def mapHistosFromHistmaker(hName, param, plotCfg):
                 h = tf.Get(hName)
                 hh = copy.deepcopy(h)
                 hh.SetDirectory(0)
-            hh.Scale(param.intLumi)
+            #hh.Scale(param.intLumi)
             hh.Rebin(rebin)
             if len(hbackgrounds[b]) == 0:
                 hbackgrounds[b].append(hh)

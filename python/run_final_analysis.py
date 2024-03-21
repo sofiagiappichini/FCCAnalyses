@@ -361,7 +361,7 @@ def run(rdf_module, args):
                         h.Scale(
                             1. * process_dict[process_name]["crossSection"] *
                             process_dict[process_name]["kfactor"] *
-                            process_dict[process_name]["matchingEfficiency"] /
+                            process_dict[process_name]["matchingEfficiency"] * int_lumi /
                             process_events[process_name])
                     except KeyError:
                         LOGGER.warning(
