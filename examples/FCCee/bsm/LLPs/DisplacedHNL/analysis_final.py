@@ -7,7 +7,7 @@ inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 outputDir = "/eos/user/s/sgiappic/2HNL_ana/final/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
-intLumi = 150e6 #pb^-1
+intLumi = 90e6 #pb^-1
 
 #Scale event yields by intLumi and cross section (optional)
 doScale = True
@@ -26,21 +26,23 @@ processList = {
     #'p8_ee_Zcc_ecm91':{},
     #'p8_ee_Zud_ecm91':{},
     #'p8_ee_Zss_ecm91':{},
-
-    #signals
-    'HNL_4e-10_10gev':{},
-    'HNL_1.33e-9_20gev':{},
-    'HNL_2.86e-12_30gev':{},
-    'HNL_2.86e-7_30gev':{},
-    'HNL_5e-12_40gev':{},
-    'HNL_4e-12_50gev':{},
-    'HNL_6.67e-8_60gev':{},
-    'HNL_4e-8_60gev':{},
-    'HNL_2.86e-9_70gev':{},
-    'HNL_2.86e-8_80gev':{},
-    
+        
+    ### privately produced backgrounds ###
     'emununu':{},
     'tatanunu':{},
+
+    #signals
+    #'HNL_4e-10_10gev':{},
+    #'HNL_1.33e-9_20gev':{},
+    #'HNL_2.86e-12_30gev':{},
+    #'HNL_2.86e-7_30gev':{},
+    #'HNL_5e-12_40gev':{},
+    #'HNL_4e-12_50gev':{},
+    #'HNL_6.67e-8_60gev':{},
+    #'HNL_4e-8_60gev':{},
+    #'HNL_2.86e-9_70gev':{},
+    #'HNL_2.86e-8_80gev':{},
+    
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -93,7 +95,7 @@ procDictAdd={
 }
 
 #Number of CPUs to use
-nCPUS = 10
+nCPUS = 8
 
 #produces ROOT TTrees, default is False
 #doTree = True
@@ -106,7 +108,7 @@ cutList = {
     ### to be used for signal plots with no distintion between flavors ###
     #"sel2Reco_vetoes": "(  (n_RecoElectrons==2 && n_RecoMuons==0 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
                         #|| (n_RecoMuons==2 && n_RecoElectrons==0 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1))) \
-                        #|| (n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)))   ) \
+                        #|| (n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1))) ) \
                         #&& n_RecoPhotons==0",
 
 
@@ -114,29 +116,29 @@ cutList = {
 
     "sel2RecoSF_vetoes": "((n_RecoElectrons==2 && n_RecoMuons==0 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
                         || (n_RecoMuons==2 && n_RecoElectrons==0 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) && n_RecoPhotons==0", 
-    #"sel2RecoSF_vetoes_15-80M": "((n_RecoElectrons==2 && n_RecoMuons==0 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1)) ) \
-                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            #&& n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
-    #"sel2RecoSF_vetoes_15-80M_40p": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<40 && RecoElectron_p.at(1)<40 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
-                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<40 && RecoMuon_p.at(1)<40 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            #&& n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
-    #"sel2RecoSF_vetoes_15-80M_40p_5ME": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<40 && RecoElectron_p.at(1)<40 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
-                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<40 && RecoMuon_p.at(1)<40 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            #&& n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>5", 
-    #"sel2RecoSF_vetoes_10-80M_39p_5ME_cos": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<39 && RecoElectron_p.at(1)<39 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
-                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<39 && RecoMuon_p.at(1)<39 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            #&& n_RecoPhotons==0 && Reco_invMass>10 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>5 && Reco_cos>(-0.8)",
-    #"sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
-                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            #&& n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10 && RecoMissingEnergy_theta.at(0)>0.2 && RecoMissingEnergy_theta.at(0)<3 && Reco_cos>(-0.8)",
+    "sel2RecoSF_vetoes_15-80M": "((n_RecoElectrons==2 && n_RecoMuons==0 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1)) ) \
+                            || (n_RecoMuons==2 && n_RecoElectrons==0 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
+    "sel2RecoSF_vetoes_15-80M_42p": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
+                            || (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
+    "sel2RecoSF_vetoes_15-80M_42p_10ME": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
+                            || (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10", 
+    "sel2RecoSF_vetoes_15-80M_42p_10ME_cos": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
+                            || (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10 && Reco_cos>(-0.8)",
+    "sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
+                            || (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10 && RecoMissingEnergy_theta.at(0)>0.2 && RecoMissingEnergy_theta.at(0)<3 && Reco_cos>(-0.8)",
     
     "sel2RecoDF_vetoes": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0",
-    #"sel2RecoDF_vetoes_15-80M": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
-    #"sel2RecoDF_vetoes_15-80M_40p": "n_RecoElectrons==1 && n_RecoMuons==1 && RecoElectron_p.at(0)<40 && RecoMuon_p.at(0)<40 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && Reco_p<40", 
-    #"sel2RecoDF_vetoes_15-80M_40p_5ME": "n_RecoElectrons==1 && n_RecoMuons==1 && RecoElectron_p.at(0)<40 && RecoMuon_p.at(0)<40 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && Reco_p<40 && RecoMissingEnergy_e.at(0)>5", 
-    #"sel2RecoDF_vetoes_10-80M_39p_5ME_cos": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>10 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 && RecoMissingEnergy_e.at(0)>5 && Reco_cos>(-0.8)", 
-    #"sel2RecoDF_vetoes_15-80M_39p_10ME43_cos": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 && RecoMissingEnergy_e.at(0)>10 \
-                                                 #&& Reco_cos>(-0.8) && RecoMissingEnergy_e.at(0)<43 ", 
+    "sel2RecoDF_vetoes_15-80M": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
+    "sel2RecoDF_vetoes_15-80M_39p": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 ", 
+    "sel2RecoDF_vetoes_15-80M_39p_10ME43": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 \
+                            && RecoMissingEnergy_e.at(0)>10 && RecoMissingEnergy_e.at(0)<43 ", 
+    "sel2RecoDF_vetoes_15-80M_39p_10ME43_cos": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 \
+                            && RecoMissingEnergy_e.at(0)>10 && RecoMissingEnergy_e.at(0)<43 && Reco_cos>(-0.8)", 
 
 }
 
@@ -147,18 +149,17 @@ cutLabels = {
     #"sel2Reco_vetoes":"Two leptons, no photons and jets",
 
     "sel2RecoSF_vetoes":"Two same flavor leptons, no photons and jets",
-    #"sel2RecoSF_vetoes_15-80M":"Two same flavor leptons, no photons, 15<M(l,l)<80 GeV",
-    #"sel2RecoSF_vetoes_15-80M_40p":"Two same flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV",
-    #"sel2RecoSF_vetoes_15-80M_40p_5ME":"Two same flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV, ME>5 Gev",
-    #"sel2RecoSF_vetoes_10-80M_39p_5ME_cos":"Two same flavor leptons, no photons, 10<M(l,l)<80 GeV, p<39 GeV, ME>5 Gev, cos#theta>-0.8",
-    #"sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt":"Two same flavor leptons, no photons, 15<M(l,l)<80 GeV, p<42 GeV, ME>10 Gev, cos#theta>-0.8, 0.2<ME#theta<3",
+    "sel2RecoSF_vetoes_15-80M":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV",
+    "sel2RecoSF_vetoes_15-80M_42p":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV",
+    "sel2RecoSF_vetoes_15-80M_42p_10ME":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV, E_{miss}>10 Gev",
+    "sel2RecoSF_vetoes_15-80M_42p_10ME_cos":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV, E_{miss}>10 Gev, cos#theta>-0.8",
+    "sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV, E_{miss}>10 Gev, cos#theta>-0.8, 0.2<#theta_{miss}<3",
     
     "sel2RecoDF_vetoes":"Two different flavor leptons, no photons and jets",
-    #"sel2RecoDF_vetoes_15-80M":"Two different flavor leptons, no photons, 15<M(l,l)<80 GeV",
-    #"sel2RecoDF_vetoes_15-80M_40p":"Two different flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV",
-    #"sel2RecoDF_vetoes_15-80M_40p_5ME":"Two different flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV, ME>5 Gev"
-    #"sel2RecoDF_vetoes_10-80M_39p_5ME_cos":"Two different flavor leptons, no photons, 10<M(l,l)<80 GeV, p<39 GeV, ME>5 Gev, cos#theta>-0.8",
-    #"sel2RecoDF_vetoes_15-80M_39p_10ME43_cos":"Two different flavor leptons, no photons, 15<M(l,l)<80 GeV, p<39 GeV, 10<ME<43 Gev, cos#theta>-0.8",
+    "sel2RecoDF_vetoes_15-80M":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV",
+    "sel2RecoDF_vetoes_15-80M_39p":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<39 GeV",
+    "sel2RecoDF_vetoes_15-80M_39p_10ME43":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<39 GeV, 10<E_{miss}<43 Gev",
+    "sel2RecoDF_vetoes_15-80M_39p_10ME43_cos":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<39 GeV, 10<E_{miss}<43 Gev, cos#theta>-0.8",
 }
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
@@ -222,7 +223,7 @@ histoList = {
     #"FSGen_eenu_invMass": {"name":"FSGen_eenu_invMass", "title":"Gen m_{ee#nu} [GeV]",           "bin":100,"xmin":0, "xmax":100},
     #"FSGen_mumu_invMass":   {"name":"FSGen_mumu_invMass",   "title":"Gen M(#mu,#mu) [GeV]",           "bin":100,"xmin":0, "xmax":100},
     #"FSGen_emu_invMass":   {"name":"FSGen_emu_invMass",   "title":"Gen M(e,#mu) [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    #"FSGen_invMass":   {"name":"FSGen_invMass",   "title":"Gen M(l,l) [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    #"FSGen_invMass":   {"name":"FSGen_invMass",   "title":"Gen M(l,l') [GeV]",           "bin":100,"xmin":0, "xmax":100},
 
     "n_FSGenPhoton":                   {"name":"n_FSGenPhoton",                  "title":"Number of final state gen photons",          "bin":10,"xmin":-0.5 ,"xmax":9.5},
     #"FSGenPhoton_e":                   {"name":"FSGenPhoton_e",                  "title":"Final state gen photons energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
@@ -318,22 +319,22 @@ histoList = {
     "RecoMuonTrack_D0cov":      {"name":"RecoMuonTrack_D0cov",     "title":"Reco muon tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
     "RecoMuonTrack_Z0cov":      {"name":"RecoMuonTrack_Z0cov",     "title":"Reco muon tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
     
-    "Reco_DecayVertexLepton_x":           {"name":"RecoDecayVertexLepton.position.x",  "title":"Reco decay Lepton vertex x [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexLepton_y":           {"name":"RecoDecayVertexLepton.position.y",  "title":"Reco decay Lepton vertex y [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexLepton_z":           {"name":"RecoDecayVertexLepton.position.z",  "title":"Reco decay Lepton vertex z [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexLepton_x_prompt":    {"name":"RecoDecayVertexLepton.position.x",  "title":"Reco decay Lepton vertex x [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
-    "Reco_DecayVertexLepton_y_prompt":    {"name":"RecoDecayVertexLepton.position.y",  "title":"Reco decay Lepton vertex y [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
-    "Reco_DecayVertexLepton_z_prompt":    {"name":"RecoDecayVertexLepton.position.z",  "title":"Reco decay Lepton vertex z [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
-    "Reco_DecayVertexLepton_chi2":        {"name":"RecoDecayVertexLepton.chi2",        "title":"Reco decay Lepton vertex #chi^{2}",          "bin":100,"xmin":0 ,"xmax":3},
-    "Reco_DecayVertexLepton_probability": {"name":"RecoDecayVertexLepton.probability", "title":"Reco decay Lepton vertex probability",       "bin":100,"xmin":0 ,"xmax":10},
+    "Reco_DecayVertexLepton_x":           {"name":"RecoDecayVertexLepton.position.x",  "title":"Reco decay lepton vertex x [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    "Reco_DecayVertexLepton_y":           {"name":"RecoDecayVertexLepton.position.y",  "title":"Reco decay lepton vertex y [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    "Reco_DecayVertexLepton_z":           {"name":"RecoDecayVertexLepton.position.z",  "title":"Reco decay lepton vertex z [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    "Reco_DecayVertexLepton_x_prompt":    {"name":"RecoDecayVertexLepton.position.x",  "title":"Reco decay lepton vertex x [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
+    "Reco_DecayVertexLepton_y_prompt":    {"name":"RecoDecayVertexLepton.position.y",  "title":"Reco decay lepton vertex y [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
+    "Reco_DecayVertexLepton_z_prompt":    {"name":"RecoDecayVertexLepton.position.z",  "title":"Reco decay lepton vertex z [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
+    "Reco_DecayVertexLepton_chi2":        {"name":"RecoDecayVertexLepton.chi2",        "title":"Reco decay lepton vertex #chi^{2}",          "bin":100,"xmin":0 ,"xmax":3},
+    "Reco_DecayVertexLepton_probability": {"name":"RecoDecayVertexLepton.probability", "title":"Reco decay lepton vertex probability",       "bin":100,"xmin":0 ,"xmax":10},
 
     "Reco_Lxy":                     {"name":"Reco_Lxy",                    "title":"Reco L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":1000},
     "Reco_Lxyz":                    {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
     "Reco_Lxyz_prompt":             {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
     
-    "Reco_invMass":   {"name":"Reco_invMass",   "title":"Reco M(l,l) [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    "Reco_cos":   {"name":"Reco_cos",   "title":"Reco cos#theta(l,l)",           "bin":100,"xmin":-1, "xmax":1},
-    "Reco_DR":   {"name":"Reco_DR",   "title":"Reco #Delta R(l,l)",           "bin":100,"xmin":0, "xmax":10},
+    "Reco_invMass":   {"name":"Reco_invMass",   "title":"Reco M(l,l') [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "Reco_cos":   {"name":"Reco_cos",   "title":"Reco cos#theta(l,l')",           "bin":100,"xmin":-1, "xmax":1},
+    "Reco_DR":   {"name":"Reco_DR",   "title":"Reco #Delta R(l,l')",           "bin":100,"xmin":0, "xmax":10},
 
     "Reco_e":                   {"name":"Reco_e",        "title":"Reco lepton energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     "Reco_p":                   {"name":"Reco_p",        "title":"Reco lepton p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
