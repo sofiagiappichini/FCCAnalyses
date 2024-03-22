@@ -4,9 +4,9 @@ import ROOT
 processList = {
 
         #centrally-produced backgrounds
-        'p8_ee_Zee_ecm91':{'fraction':0.01},
-        'p8_ee_Zmumu_ecm91':{'fraction':0.01},
-        'p8_ee_Ztautau_ecm91':{'fraction':0.01},
+        #'p8_ee_Zee_ecm91':{'chunks':100},
+        #'p8_ee_Zmumu_ecm91':{'chunks':100},
+        #'p8_ee_Ztautau_ecm91':{'chunks':100},
         #'p8_ee_Zbb_ecm91':{'chunks':100},
         #'p8_ee_Zcc_ecm91':{'chunks':100},
         #'p8_ee_Zud_ecm91':{'chunks':100},
@@ -31,13 +31,13 @@ processList = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
