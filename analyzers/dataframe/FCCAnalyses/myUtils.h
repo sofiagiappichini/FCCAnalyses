@@ -383,6 +383,12 @@ namespace myUtils{
   /// return the momenta of the input ReconstructedParticles
   float get_p(edm4hep::ReconstructedParticleData in);
 
+  float deltaEta(float eta1, float eta2);
+
+  float deltaPhi(float phi1, float phi2);
+
+  float deltaR(float phi1, float phi2, float eta1, float eta2);
+
   ROOT::VecOps::RVec<edm4hep::TrackState> get_truetrack(ROOT::VecOps::RVec<int> in,
 							ROOT::VecOps::RVec<VertexingUtils::FCCAnalysesVertexMC> vertex,
 							ROOT::VecOps::RVec<edm4hep::MCParticleData> mc);
