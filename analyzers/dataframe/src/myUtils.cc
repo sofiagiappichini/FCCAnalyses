@@ -2180,6 +2180,22 @@ float get_p(edm4hep::ReconstructedParticleData in) {
   return tlv.P();
 }
 
+  // --- functions Helper
+  float deltaEta(float eta1, float eta2) {
+    return std::abs(eta1 - eta2);
+  }
+
+  float deltaPhi(float phi1, float phi2){
+    float PHI = std::abs(phi1-phi2);
+    if (PHI<=3.14159265)
+      return PHI;
+    else
+      return 2*3.14159265-PHI;
+  }
+
+  float deltaR(float phi1, float phi2, float eta1, float eta2) {
+    return sqrt(deltaEta(eta1,eta2)*deltaEta(eta1,eta2) + deltaPhi(phi1,phi2)*deltaPhi(phi1,phi2));
+  }
 
 ROOT::VecOps::RVec<float> getFCCAnalysesComposite_anglethrust(ROOT::VecOps::RVec<FCCAnalysesComposite2> in,
 								       ROOT::VecOps::RVec<float> thrust){
