@@ -2,6 +2,14 @@
 
 The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLPFCCTutorial/blob/main/README.md](https://github.com/jalimena/LLPFCCTutorial/blob/main/README.md)
 
+- [Instruction for HNL analysis](#instruction-for-hnl-analysis)
+  - [FCCAnalyses setup](#fccanalyses-setup)
+  - [Generating your own samples](#generating-your-own-samples)
+    - [LHE files](#lhe-files)
+    - [Pythia+Delphes](#pythiadelphes)
+  - [Running the analysis](#running-the-analysis)
+    - [How to add new functions to call in the stage1](#how-to-add-new-functions-to-call-in-the-stage1)
+
 ## FCCAnalyses setup 
 
 1. Following instructions given in [https://github.com/HEP-FCC/FCCAnalyses](https://github.com/HEP-FCC/FCCAnalyses), fork the FCC-LLP version [FCC-LLP/FCCAnalyses](https://github.com/FCC-LLP/FCCAnalyses) to set up the working environment in lxplus.
@@ -133,3 +141,32 @@ source ./setup.sh
     ```
 
     Open the file to make changes to how the plots look.
+
+
+### How to add new functions to call in the stage1
+
+To add new functions that take any argument and that will be useful to either select or build new variables in analysis_stage1.py these are the steps (assuming the function is written in cpp):
+
+1. Open the file where new functions get written and add the new function, specifying the type, arguments, actions and return:
+
+    ```
+    FCCAnalyses/analyzers/dataframe/src/myUtils.cc
+    ```
+
+2. Only add the type of function, name and arguments to:
+
+    ```
+    FCCAnalyses/analyzers/dataframe/FCCAnalyses/myUtils.h
+    ```
+
+3. Go back to the main directory, source the setup and do a clean build (use this step also when modifying any code in  `FCCAnalyses/pyton` to update it):
+
+    ```
+    fccanalysis build --clean-build
+    ```
+
+4. Now you can use your function by calling it as:
+
+    ```
+    .Define("variable", "myUtils::myFunction(arguments)")
+    ```

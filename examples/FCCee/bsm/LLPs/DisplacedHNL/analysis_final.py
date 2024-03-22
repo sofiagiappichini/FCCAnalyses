@@ -1,10 +1,10 @@
 #Input directory where the files produced at the stage1 level are
 #inputDir = "output_stage1/"
-inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
+inputDir = "/eos/user/s/sgiappic/2HNL_ana/test/"
 
 #Output directory where the files produced at the final-selection level are
 #outputDir  = "output_finalSel/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/final/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/test/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 90e6 #pb^-1
@@ -19,17 +19,17 @@ processList = {
     #run over the full statistics from stage1
 
     #backgrounds
-    #'p8_ee_Zee_ecm91':{},
-    #'p8_ee_Zmumu_ecm91':{},
-    #'p8_ee_Ztautau_ecm91':{},
+    'p8_ee_Zee_ecm91':{},
+    'p8_ee_Zmumu_ecm91':{},
+    'p8_ee_Ztautau_ecm91':{},
     #'p8_ee_Zbb_ecm91':{},
     #'p8_ee_Zcc_ecm91':{},
     #'p8_ee_Zud_ecm91':{},
     #'p8_ee_Zss_ecm91':{},
         
     ### privately produced backgrounds ###
-    'emununu':{},
-    'tatanunu':{},
+    #'emununu':{},
+    #'tatanunu':{},
 
     #signals
     #'HNL_4e-10_10gev':{},
@@ -116,27 +116,27 @@ cutList = {
 
     "sel2RecoSF_vetoes": "((n_RecoElectrons==2 && n_RecoMuons==0 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
                         || (n_RecoMuons==2 && n_RecoElectrons==0 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) && n_RecoPhotons==0", 
-    "sel2RecoSF_vetoes_15-80M": "((n_RecoElectrons==2 && n_RecoMuons==0 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1)) ) \
-                            || (n_RecoMuons==2 && n_RecoElectrons==0 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
-    "sel2RecoSF_vetoes_15-80M_42p": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
-                            || (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
-    "sel2RecoSF_vetoes_15-80M_42p_10ME": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
-                            || (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10", 
-    "sel2RecoSF_vetoes_15-80M_42p_10ME_cos": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
-                            || (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
-                            && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10 && Reco_cos>(-0.8)",
+    #"sel2RecoSF_vetoes_15-80M": "((n_RecoElectrons==2 && n_RecoMuons==0 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1)) ) \
+                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            #&& n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
+    #"sel2RecoSF_vetoes_15-80M_42p": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 && ((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
+                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            #&& n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
+    #"sel2RecoSF_vetoes_15-80M_42p_10ME": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
+                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            #&& n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10", 
+    #"sel2RecoSF_vetoes_15-80M_42p_10ME_cos": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
+                            #|| (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
+                            #&& n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10 && Reco_cos>(-0.8)",
     "sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt": "((n_RecoElectrons==2 && n_RecoMuons==0 && RecoElectron_p.at(0)<42 && RecoElectron_p.at(1)<42 &&((RecoElectron_charge.at(0)==1 && RecoElectron_charge.at(1)==-1) || (RecoElectron_charge.at(0)==-1 && RecoElectron_charge.at(1)==1))) \
                             || (n_RecoMuons==2 && n_RecoElectrons==0 && RecoMuon_p.at(0)<42 && RecoMuon_p.at(1)<42 && ((RecoMuon_charge.at(0)==1 && RecoMuon_charge.at(1)==-1) || (RecoMuon_charge.at(0)==-1 && RecoMuon_charge.at(1)==1)))) \
                             && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoMissingEnergy_e.at(0)>10 && RecoMissingEnergy_theta.at(0)>0.2 && RecoMissingEnergy_theta.at(0)<3 && Reco_cos>(-0.8)",
     
     "sel2RecoDF_vetoes": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0",
-    "sel2RecoDF_vetoes_15-80M": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
-    "sel2RecoDF_vetoes_15-80M_39p": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 ", 
-    "sel2RecoDF_vetoes_15-80M_39p_10ME43": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 \
-                            && RecoMissingEnergy_e.at(0)>10 && RecoMissingEnergy_e.at(0)<43 ", 
+    #"sel2RecoDF_vetoes_15-80M": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80", 
+    #"sel2RecoDF_vetoes_15-80M_39p": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 ", 
+    #"sel2RecoDF_vetoes_15-80M_39p_10ME43": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 \
+                            #&& RecoMissingEnergy_e.at(0)>10 && RecoMissingEnergy_e.at(0)<43 ", 
     "sel2RecoDF_vetoes_15-80M_39p_10ME43_cos": "n_RecoElectrons==1 && n_RecoMuons==1 && ((RecoElectron_charge.at(0)==1 && RecoMuon_charge.at(0)==-1) || (RecoElectron_charge.at(0)==-1 && RecoMuon_charge.at(0)==1)) && n_RecoPhotons==0 && Reco_invMass>15 && Reco_invMass<80 && RecoElectron_p.at(0)<39 && RecoMuon_p.at(0)<39 \
                             && RecoMissingEnergy_e.at(0)>10 && RecoMissingEnergy_e.at(0)<43 && Reco_cos>(-0.8)", 
 

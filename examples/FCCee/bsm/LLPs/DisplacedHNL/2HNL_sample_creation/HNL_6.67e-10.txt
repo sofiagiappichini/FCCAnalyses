@@ -29,32 +29,6 @@ set ebeam1 45.594
 set ebeam2 45.594
 set no_parton_cut
 
-set mn1 10
-set mn2 10.00001
-set mn3 1000
-
-# in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-set ven1 1.15e-5
-set ven2 1.15e-5
-set vmun1 1e-5
-set vmun2 1e-5
-set vtan1 1e-5
-set vtan2 1e-5
-
-set WN1 auto
-set WN2 auto
-set time_of_flight 0
-set nevents 50000
-done
-
-### run 2
-launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.67e-10
-set lpp1 0
-set lpp2 0
-set ebeam1 45.594
-set ebeam2 45.594
-set no_parton_cut
-
 set mn1 20
 set mn2 20.00001
 set mn3 1000
