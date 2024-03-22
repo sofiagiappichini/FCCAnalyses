@@ -261,23 +261,23 @@ extralabel['sel2RecoDF_vetoes_15-80M_39p_10ME43_cos']="Two different flavor lept
 
 colors = {}
 
-#colors['HNL_4e-10_10gev'] = ROOT.kCyan-7
-#colors['HNL_1.33e-9_20gev'] = ROOT.kAzure+5
-#colors['HNL_2.86e-12_30gev'] = ROOT.kBlue-7
-#colors['HNL_2.86e-7_30gev'] = ROOT.kOrange-2
-#colors['HNL_5e-12_40gev'] = ROOT.kOrange+8
-#colors['HNL_4e-12_50gev'] = ROOT.kBlue-4
-#colors['HNL_6.67e-8_60gev'] = ROOT.kRed-4
-#colors['HNL_4e-8_60gev'] = ROOT.kBlue-4
-#colors['HNL_2.86e-9_70gev'] = ROOT.kRed+2
-#colors['HNL_2.86e-8_80gev'] = ROOT.kBlue+2
+colors['HNL_4e-10_10gev'] = ROOT.kCyan-7
+colors['HNL_1.33e-9_20gev'] = ROOT.kAzure+5
+colors['HNL_2.86e-12_30gev'] = ROOT.kBlue-7
+colors['HNL_2.86e-7_30gev'] = ROOT.kOrange-2
+colors['HNL_5e-12_40gev'] = ROOT.kOrange+8
+colors['HNL_4e-12_50gev'] = ROOT.kBlue-4
+colors['HNL_6.67e-8_60gev'] = ROOT.kRed-4
+colors['HNL_4e-8_60gev'] = ROOT.kBlue-4
+colors['HNL_2.86e-9_70gev'] = ROOT.kRed+2
+colors['HNL_2.86e-8_80gev'] = ROOT.kBlue+2
 
 #colors['HNL_4e-8_60gev'] = ROOT.kWhite
 
-colors['HNL_2.86e-12_30gev'] = ROOT.kAzure+6
-colors['HNL_2.86e-7_30gev'] = ROOT.kOrange+1
-colors['HNL_4e-12_50gev'] = ROOT.kBlue-4
-colors['HNL_2.86e-9_70gev'] = ROOT.kRed-4
+#colors['HNL_2.86e-12_30gev'] = ROOT.kAzure+6
+#colors['HNL_2.86e-7_30gev'] = ROOT.kOrange+1
+#colors['HNL_4e-12_50gev'] = ROOT.kBlue-4
+#colors['HNL_2.86e-9_70gev'] = ROOT.kRed-4
 
 colors['Zbb'] = 48
 colors['Zcc'] = 44
@@ -299,16 +299,16 @@ colors['tatanunu'] = 38
 
 plots = {}
 plots['HNL'] = {'signal':{
-                    #'HNL_4e-10_10gev':['HNL_4e-10_10gev'],
-                    #'HNL_1.33e-9_20gev':['HNL_1.33e-9_20gev'],
+                    'HNL_4e-10_10gev':['HNL_4e-10_10gev'],
+                    'HNL_1.33e-9_20gev':['HNL_1.33e-9_20gev'],
                     'HNL_2.86e-12_30gev':['HNL_2.86e-12_30gev'],
                     'HNL_2.86e-7_30gev':['HNL_2.86e-7_30gev'],
-                    #'HNL_5e-12_40gev':['HNL_5e-12_40gev'],
+                    'HNL_5e-12_40gev':['HNL_5e-12_40gev'],
                     'HNL_4e-12_50gev':['HNL_4e-12_50gev'],
-                    #'HNL_6.67e-8_60gev':['HNL_6.67e-8_60gev'],
-                    #'HNL_4e-8_60gev':['HNL_4e-8_60gev'],
+                    'HNL_6.67e-8_60gev':['HNL_6.67e-8_60gev'],
+                    'HNL_4e-8_60gev':['HNL_4e-8_60gev'],
                     'HNL_2.86e-9_70gev':['HNL_2.86e-9_70gev'],
-                    #'HNL_2.86e-8_80gev':['HNL_2.86e-8_80gev'],
+                    'HNL_2.86e-8_80gev':['HNL_2.86e-8_80gev'],
                 },
                 'backgrounds':{
                     #'HNL_4e-8_60gev':['HNL_4e-8_60gev'],

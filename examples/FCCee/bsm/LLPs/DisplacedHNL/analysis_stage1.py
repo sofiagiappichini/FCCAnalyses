@@ -4,9 +4,9 @@ import ROOT
 processList = {
 
         #centrally-produced backgrounds
-        #'p8_ee_Zee_ecm91':{'chunks':100},
-        #'p8_ee_Zmumu_ecm91':{'chunks':100},
-        #'p8_ee_Ztautau_ecm91':{'chunks':100},
+        'p8_ee_Zee_ecm91':{'fraction':0.01},
+        'p8_ee_Zmumu_ecm91':{'fraction':0.01},
+        'p8_ee_Ztautau_ecm91':{'fraction':0.01},
         #'p8_ee_Zbb_ecm91':{'chunks':100},
         #'p8_ee_Zcc_ecm91':{'chunks':100},
         #'p8_ee_Zud_ecm91':{'chunks':100},
@@ -22,7 +22,7 @@ processList = {
         #'HNL_6.67e-8_60gev':{},
         #'HNL_4e-8_60gev':{},
         #'HNL_2.86e-9_70gev':{},
-        'HNL_2.86e-8_80gev':{},
+        #'HNL_2.86e-8_80gev':{},
 
         #'emununu':{},
         #'tatanunu':{},
@@ -31,18 +31,18 @@ processList = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/winter2023/IDEA/"
+prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/test/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -51,7 +51,7 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = True
+runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "espresso"
@@ -357,9 +357,13 @@ class RDFanalysis():
                 #.Define("Reco_ee_DR", "if (n_RecoElectrons>1) return sqrt((RecoElectron_phi.at(0) - RecoElectron_phi.at(1))*(RecoElectron_phi.at(0) - RecoElectron_phi.at(1)) + (RecoElectron_eta.at(0) - RecoElectron_eta.at(1))*(RecoElectron_eta.at(0) - RecoElectron_eta.at(1))); else return float(-1.);")
                 #.Define("Reco_mumu_DR", "if (n_RecoMuons>1) return sqrt((RecoMuon_phi.at(0) - RecoMuon_phi.at(1))*(RecoMuon_phi.at(0) - RecoMuon_phi.at(1)) + (RecoMuon_eta.at(0) - RecoMuon_eta.at(1))*(RecoMuon_eta.at(0) - RecoMuon_eta.at(1))); else return float(-1.);")
                 #.Define("Reco_emu_DR", "if (n_RecoMuons>0 && n_RecoElectrons>0) return sqrt((RecoElectron_phi.at(0) - RecoMuon_phi.at(0))*(RecoElectron_phi.at(0) - RecoMuon_phi.at(0)) + (RecoElectron_eta.at(0) - RecoMuon_eta.at(0))*(RecoElectron_eta.at(0) - RecoMuon_eta.at(0))); else return float(-1.);")
-                .Define("Reco_DR","if (n_RecoMuons>1) return sqrt((RecoMuon_phi.at(0) - RecoMuon_phi.at(1))*(RecoMuon_phi.at(0) - RecoMuon_phi.at(1)) + (RecoMuon_eta.at(0) - RecoMuon_eta.at(1))*(RecoMuon_eta.at(0) - RecoMuon_eta.at(1))); \
-                                        else if (n_RecoElectrons>1) return sqrt((RecoElectron_phi.at(0) - RecoElectron_phi.at(1))*(RecoElectron_phi.at(0) - RecoElectron_phi.at(1)) + (RecoElectron_eta.at(0) - RecoElectron_eta.at(1))*(RecoElectron_eta.at(0) - RecoElectron_eta.at(1))); \
-                                        else if (n_RecoMuons>0 && n_RecoElectrons>0) return sqrt((RecoElectron_phi.at(0) - RecoMuon_phi.at(0))*(RecoElectron_phi.at(0) - RecoMuon_phi.at(0)) + (RecoElectron_eta.at(0) - RecoMuon_eta.at(0))*(RecoElectron_eta.at(0) - RecoMuon_eta.at(0))); \
+                #.Define("Reco_DR","if (n_RecoMuons>1) return sqrt((RecoMuon_phi.at(0) - RecoMuon_phi.at(1))*(RecoMuon_phi.at(0) - RecoMuon_phi.at(1)) + (RecoMuon_eta.at(0) - RecoMuon_eta.at(1))*(RecoMuon_eta.at(0) - RecoMuon_eta.at(1))); \
+                                        #else if (n_RecoElectrons>1) return sqrt((RecoElectron_phi.at(0) - RecoElectron_phi.at(1))*(RecoElectron_phi.at(0) - RecoElectron_phi.at(1)) + (RecoElectron_eta.at(0) - RecoElectron_eta.at(1))*(RecoElectron_eta.at(0) - RecoElectron_eta.at(1))); \
+                                        #else if (n_RecoMuons>0 && n_RecoElectrons>0) return sqrt((RecoElectron_phi.at(0) - RecoMuon_phi.at(0))*(RecoElectron_phi.at(0) - RecoMuon_phi.at(0)) + (RecoElectron_eta.at(0) - RecoMuon_eta.at(0))*(RecoElectron_eta.at(0) - RecoMuon_eta.at(0))); \
+                                        #else return float(-1.);")
+                .Define("Reco_DR","if (n_RecoMuons>1) return myUtils::deltaR(RecoMuon_phi.at(0), RecoMuon_phi.at(1), RecoMuon_eta.at(0), RecoMuon_eta.at(1)); \
+                                        else if (n_RecoElectrons>1) return myUtils::deltaR(RecoElectron_phi.at(0), RecoElectron_phi.at(1), RecoElectron_eta.at(0), RecoElectron_eta.at(1)); \
+                                        else if (n_RecoMuons>0 && n_RecoElectrons>0) return myUtils::deltaR(RecoMuon_phi.at(0), RecoElectron_phi.at(0), RecoMuon_eta.at(0), RecoElectron_eta.at(0)); \
                                         else return float(-1.);")
 
                 # Now we reconstruct the reco decay vertex using the reco'ed tracks from electrons and muons
