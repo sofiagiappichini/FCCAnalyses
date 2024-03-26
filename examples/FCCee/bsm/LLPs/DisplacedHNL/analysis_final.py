@@ -1,10 +1,10 @@
 #Input directory where the files produced at the stage1 level are
 #inputDir = "output_stage1/"
-inputDir = "/eos/user/s/sgiappic/2HNL_ana/test/"
+inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
 #Output directory where the files produced at the final-selection level are
 #outputDir  = "output_finalSel/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/test/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/final/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 90e6 #pb^-1
@@ -13,7 +13,7 @@ intLumi = 90e6 #pb^-1
 doScale = True
 
 #Save event yields in a table (optional)
-saveTabular = True
+saveTabular = False
 
 processList = {
     #run over the full statistics from stage1
@@ -22,17 +22,17 @@ processList = {
     'p8_ee_Zee_ecm91':{},
     'p8_ee_Zmumu_ecm91':{},
     'p8_ee_Ztautau_ecm91':{},
-    #'p8_ee_Zbb_ecm91':{},
-    #'p8_ee_Zcc_ecm91':{},
-    #'p8_ee_Zud_ecm91':{},
-    #'p8_ee_Zss_ecm91':{},
+    'p8_ee_Zbb_ecm91':{},
+    'p8_ee_Zcc_ecm91':{},
+    'p8_ee_Zud_ecm91':{},
+    'p8_ee_Zss_ecm91':{},
         
     ### privately produced backgrounds ###
-    #'emununu':{},
-    #'tatanunu':{},
+    'emununu':{},
+    'tatanunu':{},
 
     #signals
-    #'HNL_4e-10_10gev':{},
+    #'HNL_4e-8_10gev':{},
     #'HNL_1.33e-9_20gev':{},
     #'HNL_2.86e-12_30gev':{},
     #'HNL_2.86e-7_30gev':{},
@@ -42,7 +42,55 @@ processList = {
     #'HNL_4e-8_60gev':{},
     #'HNL_2.86e-9_70gev':{},
     #'HNL_2.86e-8_80gev':{},
-    
+
+    #'HNL_4e-10_20gev':{},
+    #'HNL_4e-10_30gev':{},
+    #'HNL_4e-10_40gev':{},
+    #'HNL_4e-10_50gev':{},
+    #'HNL_4e-10_60gev':{},
+    #'HNL_4e-10_70gev':{},
+    #'HNL_4e-10_80gev':{},
+
+    #'HNL_1.33e-7_20gev':{},
+    #'HNL_1.33e-7_30gev':{},
+    #'HNL_1.33e-7_40gev':{},
+    #'HNL_1.33e-7_50gev':{},
+    #'HNL_1.33e-7_60gev':{},
+    #'HNL_1.33e-7_70gev':{},
+    #'HNL_1.33e-7_80gev':{},
+
+    #'HNL_2.86e-12_20gev':{},
+    #'HNL_2.86e-12_30gev':{},
+    #'HNL_2.86e-12_40gev':{},
+    #'HNL_2.86e-12_50gev':{},
+    #'HNL_2.86e-12_60gev':{},
+    #'HNL_2.86e-12_70gev':{},
+    #'HNL_2.86e-12_80gev':{},
+
+    #'HNL_5e-12_20gev':{},
+    #'HNL_5e-12_30gev':{},
+    #'HNL_5e-12_40gev':{},
+    #'HNL_5e-12_50gev':{},
+    #'HNL_5e-12_60gev':{},
+    #'HNL_5e-12_70gev':{},
+    #'HNL_5e-12_80gev':{},
+
+    #'HNL_6.67e-10_20gev':{},
+    #'HNL_6.67e-10_30gev':{},
+    #'HNL_6.67e-10_40gev':{},
+    #'HNL_6.67e-10_50gev':{},
+    #'HNL_6.67e-10_60gev':{},
+    #'HNL_6.67e-10_70gev':{},
+    #'HNL_6.67e-10_80gev':{},
+
+    #'HNL_2.86e-7_20gev':{},
+    #'HNL_2.86e-7_30gev':{},
+    #'HNL_2.86e-7_40gev':{},
+    #'HNL_2.86e-7_50gev':{},
+    #'HNL_2.86e-7_60gev':{},
+    #'HNL_2.86e-7_70gev':{},
+    #'HNL_2.86e-7_80gev':{},
+
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -60,7 +108,7 @@ processLabels = {
     'tatanunu':"$\tau \tau \nu \nu$",
 
     #signals
-    'HNL_4e-10_10gev':"$U^{2}=4e-10, M_{N}=10 GeV$",
+    'HNL_4e-8_10gev':"$U^{2}=4e-8, M_{N}=10 GeV$",
     'HNL_1.33e-9_20gev':"$U^{2}=1.33e-9, M_{N}=20 GeV$",
     'HNL_2.86e-12_30gev':"$U^{2}=2.86e-12, M_{N}=30 GeV$",
     'HNL_2.86e-7_30gev':"$U^{2}=2.86e-7, M_{N}=30 GeV$",
@@ -78,7 +126,7 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 #Add provate samples as it is not an offical process
 procDictAdd={
     
-    'HNL_4e-10_10gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 7.388e-7, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_4e-8_10gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 7.388e-7, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'HNL_1.33e-9_20gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.342e-6, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'HNL_2.86e-12_30gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.490e-9, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'HNL_2.86e-7_30gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.502e-4, "kfactor": 1.0, "matchingEfficiency": 1.0},
@@ -92,13 +140,62 @@ procDictAdd={
     'tatanunu':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.855e-4, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'emununu':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 7.619e-4, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
+    
+    'HNL_4e-10_20gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 7.000724999999999e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_4e-10_30gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.287075999999998e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_4e-10_40gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 5.378329e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_4e-10_50gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.252068e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_4e-10_60gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.990813e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_4e-10_70gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.7100332083008976e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_4e-10_80gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.2352593649e-08, "kfactor": 1.0, "matchingEfficiency":1.0},
+
+    'HNL_1.33e-7_20gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.000234401213, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_1.33e-7_30gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00021036747599999998, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_1.33e-7_40gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00017939637900000002, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_1.33e-7_50gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.000141897971, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_1.33e-7_60gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00010003114599999999, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_1.33e-7_70gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 5.7150938853135514e-05, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_1.33e-7_80gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.2710092322419997e-05, "kfactor": 1.0, "matchingEfficiency":1.0},
+
+    'HNL_2.86e-12_20gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 5.00190734e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-12_30gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.489800359999999e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-12_40gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 3.835910050000001e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-12_50gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 3.03469279e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-12_60gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.13112403e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-12_70gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.222465083392036e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-12_80gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.868731152004e-10, "kfactor": 1.0, "matchingEfficiency":1.0},
+
+    'HNL_5e-12_20gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 8.7699219e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_5e-12_30gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 7.8813284e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_5e-12_40gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.732171200000001e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_5e-12_50gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 5.32185986e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_5e-12_60gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 3.7530712800000005e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_5e-12_70gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.1454398529731456e-09, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_5e-12_80gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 8.549538810180001e-10, "kfactor": 1.0, "matchingEfficiency":1.0},
+
+    'HNL_6.67e-10_20gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.1627825000000002e-06, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_6.67e-10_30gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.0435742000000003e-06, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_6.67e-10_40gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 8.911107e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_6.67e-10_50gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 7.045306e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_6.67e-10_60gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.9556041e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_6.67e-10_70gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.8476787930121774e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_6.67e-10_80gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.5594530748200004e-07, "kfactor": 1.0, "matchingEfficiency":1.0},
+
+    'HNL_2.86e-7_20gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00050087251, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-7_30gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00045116999, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-7_40gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00038436751799999987, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-7_50gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.000304519009, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-7_60gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00021460306999999997, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-7_70gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.0001232450573009338, "kfactor": 1.0, "matchingEfficiency":1.0},
+    'HNL_2.86e-7_80gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00019077842271080005, "kfactor": 1.0, "matchingEfficiency":1.0},
+
 }
 
 #Number of CPUs to use
 nCPUS = 8
 
 #produces ROOT TTrees, default is False
-#doTree = True
+doTree = True
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
@@ -148,17 +245,17 @@ cutLabels = {
     #"selNone": "Before selection",
     #"sel2Reco_vetoes":"Two leptons, no photons and jets",
 
-    "sel2RecoSF_vetoes":"Two same flavor leptons, no photons and jets",
-    "sel2RecoSF_vetoes_15-80M":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV",
-    "sel2RecoSF_vetoes_15-80M_42p":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV",
-    "sel2RecoSF_vetoes_15-80M_42p_10ME":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV, E_{miss}>10 Gev",
-    "sel2RecoSF_vetoes_15-80M_42p_10ME_cos":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV, E_{miss}>10 Gev, cos#theta>-0.8",
+    #"sel2RecoSF_vetoes":"Two same flavor leptons, no photons and jets",
+    #"sel2RecoSF_vetoes_15-80M":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV",
+    #"sel2RecoSF_vetoes_15-80M_42p":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV",
+    #"sel2RecoSF_vetoes_15-80M_42p_10ME":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV, E_{miss}>10 Gev",
+    #"sel2RecoSF_vetoes_15-80M_42p_10ME_cos":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV, E_{miss}>10 Gev, cos#theta>-0.8",
     "sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt":"Two same flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<42 GeV, E_{miss}>10 Gev, cos#theta>-0.8, 0.2<#theta_{miss}<3",
     
-    "sel2RecoDF_vetoes":"Two different flavor leptons, no photons and jets",
-    "sel2RecoDF_vetoes_15-80M":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV",
-    "sel2RecoDF_vetoes_15-80M_39p":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<39 GeV",
-    "sel2RecoDF_vetoes_15-80M_39p_10ME43":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<39 GeV, 10<E_{miss}<43 Gev",
+    #"sel2RecoDF_vetoes":"Two different flavor leptons, no photons and jets",
+    #"sel2RecoDF_vetoes_15-80M":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV",
+    #"sel2RecoDF_vetoes_15-80M_39p":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<39 GeV",
+    #"sel2RecoDF_vetoes_15-80M_39p_10ME43":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<39 GeV, 10<E_{miss}<43 Gev",
     "sel2RecoDF_vetoes_15-80M_39p_10ME43_cos":"Two different flavor leptons, no photons and jets, 15<M(l,l)<80 GeV, p<39 GeV, 10<E_{miss}<43 Gev, cos#theta>-0.8",
 }
 
@@ -333,7 +430,11 @@ histoList = {
     "Reco_Lxyz_prompt":             {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
     
     "Reco_invMass":   {"name":"Reco_invMass",   "title":"Reco M(l,l') [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    "Reco_cos":   {"name":"Reco_cos",   "title":"Reco cos#theta(l,l')",           "bin":100,"xmin":-1, "xmax":1},
+
+    ### range and binning of cos and DR changed to do combine analysis ###
+    #"Reco_cos":   {"name":"Reco_cos",   "title":"Reco cos#theta(l,l')",           "bin":20,"xmin":-0.8, "xmax":0.8},
+    #"Reco_DR":   {"name":"Reco_DR",   "title":"Reco #Delta R(l,l')",           "bin":20,"xmin":0.5, "xmax":7},
+    "Reco_cos":   {"name":"Reco_cos",   "title":"Reco cos#theta(l,l')",           "bin":100,"xmin":-1., "xmax":1.},
     "Reco_DR":   {"name":"Reco_DR",   "title":"Reco #Delta R(l,l')",           "bin":100,"xmin":0, "xmax":10},
 
     "Reco_e":                   {"name":"Reco_e",        "title":"Reco lepton energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
