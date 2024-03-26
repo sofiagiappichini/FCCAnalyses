@@ -261,7 +261,7 @@ extralabel['sel2RecoDF_vetoes_15-80M_39p_10ME43_cos']="Two different flavor lept
 
 colors = {}
 
-colors['HNL_4e-10_10gev'] = ROOT.kCyan-7
+colors['HNL_4e-8_10gev'] = ROOT.kCyan-7
 colors['HNL_1.33e-9_20gev'] = ROOT.kAzure+5
 colors['HNL_2.86e-12_30gev'] = ROOT.kBlue-7
 colors['HNL_2.86e-7_30gev'] = ROOT.kOrange-2
@@ -299,7 +299,7 @@ colors['tatanunu'] = 38
 
 plots = {}
 plots['HNL'] = {'signal':{
-                    'HNL_4e-10_10gev':['HNL_4e-10_10gev'],
+                    'HNL_4e-8_10gev':['HNL_4e-8_10gev'],
                     'HNL_1.33e-9_20gev':['HNL_1.33e-9_20gev'],
                     'HNL_2.86e-12_30gev':['HNL_2.86e-12_30gev'],
                     'HNL_2.86e-7_30gev':['HNL_2.86e-7_30gev'],
@@ -326,7 +326,7 @@ plots['HNL'] = {'signal':{
 
 legend = {}
 
-legend['HNL_4e-10_10gev'] = 'U^{2}=4e-10, M_{N}=10 GeV'
+legend['HNL_4e-8_10gev'] = 'U^{2}=4e-8, M_{N}=10 GeV'
 legend['HNL_1.33e-9_20gev'] = 'U^{2}=1.33e-9, M_{N}=20 GeV'
 legend['HNL_2.86e-12_30gev'] = 'U^{2}=2.86e-12, M_{N}=30 GeV'
 legend['HNL_2.86e-7_30gev'] = 'U^{2}=2.86e-7, M_{N}=30 GeV'

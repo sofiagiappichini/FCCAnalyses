@@ -7,13 +7,13 @@ processList = {
         #'p8_ee_Zee_ecm91':{'chunks':100},
         #'p8_ee_Zmumu_ecm91':{'chunks':100},
         #'p8_ee_Ztautau_ecm91':{'chunks':100},
-        #'p8_ee_Zbb_ecm91':{'chunks':100},
-        #'p8_ee_Zcc_ecm91':{'chunks':100},
-        #'p8_ee_Zud_ecm91':{'chunks':100},
-        #'p8_ee_Zss_ecm91':{'chunks':100},
+        'p8_ee_Zbb_ecm91':{'chunks':100},
+        'p8_ee_Zcc_ecm91':{'chunks':100},
+        'p8_ee_Zud_ecm91':{'chunks':100},
+        'p8_ee_Zss_ecm91':{'chunks':100},
 
         #privately-produced signals
-        #'HNL_4e-10_10gev':{},
+        #'HNL_4e-8_10gev':{},
         #'HNL_1.33e-9_20gev':{},
         #'HNL_2.86e-12_30gev':{},
         #'HNL_2.86e-7_30gev':{},
@@ -26,23 +26,71 @@ processList = {
 
         #'emununu':{},
         #'tatanunu':{},
+
+        #'HNL_4e-10_20gev':{},
+        #'HNL_4e-10_30gev':{},
+        #'HNL_4e-10_40gev':{},
+        #'HNL_4e-10_50gev':{},
+        #'HNL_4e-10_60gev':{},
+        #'HNL_4e-10_70gev':{},
+        #'HNL_4e-10_80gev':{},
+
+        #'HNL_1.33e-7_20gev':{},
+        #'HNL_1.33e-7_30gev':{},
+        #'HNL_1.33e-7_40gev':{},
+        #'HNL_1.33e-7_50gev':{},
+        #'HNL_1.33e-7_60gev':{},
+        #'HNL_1.33e-7_70gev':{},
+        #'HNL_1.33e-7_80gev':{},
+
+        #'HNL_2.86e-12_20gev':{},
+        #'HNL_2.86e-12_30gev':{},
+        #'HNL_2.86e-12_40gev':{},
+        #'HNL_2.86e-12_50gev':{},
+        #'HNL_2.86e-12_60gev':{},
+        #'HNL_2.86e-12_70gev':{},
+        #'HNL_2.86e-12_80gev':{},
+
+        #'HNL_5e-12_20gev':{},
+        #'HNL_5e-12_30gev':{},
+        #'HNL_5e-12_40gev':{},
+        #'HNL_5e-12_50gev':{},
+        #'HNL_5e-12_60gev':{},
+        #'HNL_5e-12_70gev':{},
+        #'HNL_5e-12_80gev':{},
+
+        #'HNL_6.67e-10_20gev':{},
+        #'HNL_6.67e-10_30gev':{},
+        #'HNL_6.67e-10_40gev':{},
+        #'HNL_6.67e-10_50gev':{},
+        #'HNL_6.67e-10_60gev':{},
+        #'HNL_6.67e-10_70gev':{},
+        #'HNL_6.67e-10_80gev':{},
+
+        #'HNL_2.86e-7_20gev':{},
+        #'HNL_2.86e-7_30gev':{},
+        #'HNL_2.86e-7_40gev':{},
+        #'HNL_2.86e-7_50gev':{},
+        #'HNL_2.86e-7_60gev':{},
+        #'HNL_2.86e-7_70gev':{},
+        #'HNL_2.86e-7_80gev':{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/winter2023/IDEA/"
+prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/test/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -51,10 +99,10 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = False
+runBatch = True
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "espresso"
+batchQueue = "tomorrow"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
