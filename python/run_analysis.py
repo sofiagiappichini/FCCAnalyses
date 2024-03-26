@@ -113,6 +113,7 @@ def create_subjob_script(local_dir: str,
     user_batch_config = get_element(rdf_module, "userBatchConfig")
 
     scr = '#!/bin/bash\n\n'
+    scr += 'source /cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/key4hep-stack/2023-11-30-gyuooo/setup.sh' 
     scr += 'source ' + local_dir + '/setup.sh\n\n'
 
     # add userBatchConfig if any
