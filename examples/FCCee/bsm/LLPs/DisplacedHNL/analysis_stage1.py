@@ -4,13 +4,13 @@ import ROOT
 processList = {
 
         #centrally-produced backgrounds
-        #'p8_ee_Zee_ecm91':{'chunks':100},
-        #'p8_ee_Zmumu_ecm91':{'chunks':100},
-        #'p8_ee_Ztautau_ecm91':{'chunks':100},
-        'p8_ee_Zbb_ecm91':{'chunks':100},
-        'p8_ee_Zcc_ecm91':{'chunks':100},
-        'p8_ee_Zud_ecm91':{'chunks':100},
-        'p8_ee_Zss_ecm91':{'chunks':100},
+        #'p8_ee_Zee_ecm91':{'fraction':0.0001},
+        #'p8_ee_Zmumu_ecm91':{'fraction':0.0001},
+        #'p8_ee_Ztautau_ecm91':{'fraction':0.0001},
+        #'p8_ee_Zbb_ecm91':{'fraction':0.0001},
+        #'p8_ee_Zcc_ecm91':{'fraction':0.0001},
+        #'p8_ee_Zud_ecm91':{'fraction':0.0001},
+        #'p8_ee_Zss_ecm91':{'fraction':0.0001},
 
         #privately-produced signals
         #'HNL_4e-8_10gev':{},
@@ -27,70 +27,70 @@ processList = {
         #'emununu':{},
         #'tatanunu':{},
 
-        #'HNL_4e-10_20gev':{},
-        #'HNL_4e-10_30gev':{},
-        #'HNL_4e-10_40gev':{},
-        #'HNL_4e-10_50gev':{},
-        #'HNL_4e-10_60gev':{},
-        #'HNL_4e-10_70gev':{},
-        #'HNL_4e-10_80gev':{},
+        'HNL_4e-10_20gev':{},
+        'HNL_4e-10_30gev':{},
+        'HNL_4e-10_40gev':{},
+        'HNL_4e-10_50gev':{},
+        'HNL_4e-10_60gev':{},
+        'HNL_4e-10_70gev':{},
+        'HNL_4e-10_80gev':{},
 
-        #'HNL_1.33e-7_20gev':{},
-        #'HNL_1.33e-7_30gev':{},
-        #'HNL_1.33e-7_40gev':{},
-        #'HNL_1.33e-7_50gev':{},
-        #'HNL_1.33e-7_60gev':{},
-        #'HNL_1.33e-7_70gev':{},
-        #'HNL_1.33e-7_80gev':{},
+        'HNL_1.33e-7_20gev':{},
+        'HNL_1.33e-7_30gev':{},
+        'HNL_1.33e-7_40gev':{},
+        'HNL_1.33e-7_50gev':{},
+        'HNL_1.33e-7_60gev':{},
+        'HNL_1.33e-7_70gev':{},
+        'HNL_1.33e-7_80gev':{},
 
-        #'HNL_2.86e-12_20gev':{},
-        #'HNL_2.86e-12_30gev':{},
-        #'HNL_2.86e-12_40gev':{},
-        #'HNL_2.86e-12_50gev':{},
-        #'HNL_2.86e-12_60gev':{},
-        #'HNL_2.86e-12_70gev':{},
-        #'HNL_2.86e-12_80gev':{},
+        'HNL_2.86e-12_20gev':{},
+        'HNL_2.86e-12_30gev':{},
+        'HNL_2.86e-12_40gev':{},
+        'HNL_2.86e-12_50gev':{},
+        'HNL_2.86e-12_60gev':{},
+        'HNL_2.86e-12_70gev':{},
+        'HNL_2.86e-12_80gev':{},
 
-        #'HNL_5e-12_20gev':{},
-        #'HNL_5e-12_30gev':{},
-        #'HNL_5e-12_40gev':{},
-        #'HNL_5e-12_50gev':{},
-        #'HNL_5e-12_60gev':{},
-        #'HNL_5e-12_70gev':{},
-        #'HNL_5e-12_80gev':{},
+        'HNL_5e-12_20gev':{},
+        'HNL_5e-12_30gev':{},
+        'HNL_5e-12_40gev':{},
+        'HNL_5e-12_50gev':{},
+        'HNL_5e-12_60gev':{},
+        'HNL_5e-12_70gev':{},
+        'HNL_5e-12_80gev':{},
 
-        #'HNL_6.67e-10_20gev':{},
-        #'HNL_6.67e-10_30gev':{},
-        #'HNL_6.67e-10_40gev':{},
-        #'HNL_6.67e-10_50gev':{},
-        #'HNL_6.67e-10_60gev':{},
-        #'HNL_6.67e-10_70gev':{},
-        #'HNL_6.67e-10_80gev':{},
+        'HNL_6.67e-10_20gev':{},
+        'HNL_6.67e-10_30gev':{},
+        'HNL_6.67e-10_40gev':{},
+        'HNL_6.67e-10_50gev':{},
+        'HNL_6.67e-10_60gev':{},
+        'HNL_6.67e-10_70gev':{},
+        'HNL_6.67e-10_80gev':{},
 
-        #'HNL_2.86e-7_20gev':{},
-        #'HNL_2.86e-7_30gev':{},
-        #'HNL_2.86e-7_40gev':{},
-        #'HNL_2.86e-7_50gev':{},
-        #'HNL_2.86e-7_60gev':{},
-        #'HNL_2.86e-7_70gev':{},
-        #'HNL_2.86e-7_80gev':{},
+        'HNL_2.86e-7_20gev':{},
+        'HNL_2.86e-7_30gev':{},
+        'HNL_2.86e-7_40gev':{},
+        'HNL_2.86e-7_50gev':{},
+        'HNL_2.86e-7_60gev':{},
+        'HNL_2.86e-7_70gev':{},
+        'HNL_2.86e-7_80gev':{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_test_tracks/stage1/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -102,7 +102,7 @@ nCPUS = 10
 runBatch = True
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "tomorrow"
+batchQueue = "longlunch"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -414,13 +414,25 @@ class RDFanalysis():
                                         else if (n_RecoMuons>0 && n_RecoElectrons>0) return myUtils::deltaR(RecoMuon_phi.at(0), RecoElectron_phi.at(0), RecoMuon_eta.at(0), RecoElectron_eta.at(0)); \
                                         else return float(-1.);")
 
+                # First, reconstruct a vertex from all tracks
+                #.Define("VertexObject_allTracks",  "VertexFitterSimple::VertexFitter_Tk ( 1, EFlowTrack_1, true, 4.5, 20e-3, 300)")
+                # Select the tracks that are reconstructed  as primaries
+
                 # Now we reconstruct the reco decay vertex using the reco'ed tracks from electrons and muons
                 .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack_1)") ### EFlowTrack_1 contains all tracks, selecting a subset associated with certain particles ###
                 .Define("RecoMuonTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoMuons, EFlowTrack_1)")
 
                 .Define("RecoLeptonTracks",   "ReconstructedTrack::Merge( RecoElectronTracks, RecoMuonTracks)") ### merges two tracks collections ###
 
-                .Define("RecoDecayVertexObjectLepton",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoLeptonTracks)" ) 
+                .Define("PrimaryTracks",  "VertexFitterSimple::get_PrimaryTracks( RecoLeptonTracks, true, 4.5, 20e-3, 300, 0., 0., 0.)")
+
+                .Define("n_PrimaryTracks",  "ReconstructedParticle2Track::getTK_n( PrimaryTracks )")
+
+                # the secondary tracks
+                .Define("SecondaryTracks",   "VertexFitterSimple::get_NonPrimaryTracks( RecoLeptonTracks,  PrimaryTracks )")
+                .Define("n_SecondaryTracks",  "ReconstructedParticle2Track::getTK_n( SecondaryTracks )" )
+
+                .Define("RecoDecayVertexObjectLepton",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoLeptonTracks, true, 4.5, 20e-3, 300, 0., 0., 0.)" )
                 .Define("RecoDecayVertexLepton",  "VertexingUtils::get_VertexData( RecoDecayVertexObjectLepton )")
 
                 ### same definition that gen distance but with reco objects ###
@@ -634,6 +646,9 @@ class RDFanalysis():
                         "Reco_invMass",
                         "Reco_cos",
                         "Reco_DR",
+
+                        "n_PrimaryTracks",
+                        "n_SecondaryTracks",
 
 		]
 
