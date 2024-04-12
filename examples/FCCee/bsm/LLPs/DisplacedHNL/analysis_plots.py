@@ -11,8 +11,8 @@ ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
 delphesVersion = '3.4.2'
 energy         = 91
 collider       = 'FCC-ee'
-inputDir       = '/eos/user/s/sgiappic/2HNL_ana/final/'
-outdir         = '/eos/user/s/sgiappic/2HNL_ana/plots/'
+inputDir       = '/eos/user/s/sgiappic//2HNL_test_tracks/final/'
+outdir         = '/eos/user/s/sgiappic//2HNL_test_tracks/plots/'
 formats        = ['png', 'pdf']
 #formats        = ['pdf']
 #yaxis          = ['lin','log']
@@ -91,6 +91,8 @@ variables = [
     "n_RecoPhotons",
     "n_RecoElectrons",
     "n_RecoMuons",
+    "n_PrimaryTracks",
+    "n_SecondaryTracks",
 
     #"jets_e",
     #"RecoJet_e",
@@ -231,14 +233,14 @@ selections['HNL']  = [
     #"sel2RecoSF_vetoes_15-80M_40p",
     #"sel2RecoSF_vetoes_15-80M_40p_5ME",
     #"sel2RecoSF_vetoes_10-80M_39p_5ME_cos",
-    "sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt",
+    #"sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt",
 
     "sel2RecoDF_vetoes",
     #"sel2RecoDF_vetoes_15-80M",
     #"sel2RecoDF_vetoes_15-80M_40p",
     #"sel2RecoDF_vetoes_15-80M_40p_5ME",
     #"sel2RecoDF_vetoes_10-80M_39p_5ME_cos",
-    "sel2RecoDF_vetoes_15-80M_39p_10ME43_cos",
+    #"sel2RecoDF_vetoes_15-80M_39p_10ME43_cos",
 ]
 
 extralabel = {}
@@ -272,12 +274,14 @@ colors['HNL_4e-8_60gev'] = ROOT.kBlue-4
 colors['HNL_2.86e-9_70gev'] = ROOT.kRed+2
 colors['HNL_2.86e-8_80gev'] = ROOT.kBlue+2
 
-#colors['HNL_4e-8_60gev'] = ROOT.kWhite
+colors['HNL'] = ROOT.kWhite
 
 #colors['HNL_2.86e-12_30gev'] = ROOT.kAzure+6
 #colors['HNL_2.86e-7_30gev'] = ROOT.kOrange+1
 #colors['HNL_4e-12_50gev'] = ROOT.kBlue-4
 #colors['HNL_2.86e-9_70gev'] = ROOT.kRed-4
+#colors['HNL_6.67e-8_60gev'] = ROOT.kRed-4
+
 
 colors['Zbb'] = 48
 colors['Zcc'] = 44
@@ -311,7 +315,7 @@ plots['HNL'] = {'signal':{
                     'HNL_2.86e-8_80gev':['HNL_2.86e-8_80gev'],
                 },
                 'backgrounds':{
-                    #'HNL_4e-8_60gev':['HNL_4e-8_60gev'],
+                    #'HNL':['HNL_2.86e-12_30gev'], ### impossible to plot without both signals and backgrounds, choose one signal and make it white ### 
                     'Zud': ['p8_ee_Zud_ecm91'],
                     'Zss':['p8_ee_Zss_ecm91'],
                     'Zcc': ['p8_ee_Zcc_ecm91'],
@@ -334,9 +338,10 @@ legend['HNL_5e-12_40gev'] = 'U^{2}=5e-12, M_{N}=40 GeV'
 legend['HNL_4e-12_50gev'] = 'U^{2}=4e-12, M_{N}=50 GeV'
 legend['HNL_6.67e-8_60gev'] = 'U^{2}=6.67e-8, M_{N}=60 GeV'
 legend['HNL_4e-8_60gev'] = 'U^{2}=4e-8, M_{N}=60 GeV'
-#legend['HNL_4e-8_60gev'] = ''
 legend['HNL_2.86e-9_70gev'] = 'U^{2}=2.86e-9, M_{N}=70 GeV'
 legend['HNL_2.86e-8_80gev'] = 'U^{2}=2.86e-8, M_{N}=80 GeV'
+
+legend['HNL'] = ''
 
 legend['Zud'] = 'Z #rightarrow ud'
 legend['Zss'] = 'Z #rightarrow ss'
