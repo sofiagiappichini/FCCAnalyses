@@ -4,13 +4,16 @@ import ROOT
 processList = {
 
         #centrally-produced backgrounds
-        #'p8_ee_Zee_ecm91':{'fraction':0.0001},
-        #'p8_ee_Zmumu_ecm91':{'fraction':0.0001},
-        #'p8_ee_Ztautau_ecm91':{'fraction':0.0001},
-        #'p8_ee_Zbb_ecm91':{'fraction':0.0001},
-        #'p8_ee_Zcc_ecm91':{'fraction':0.0001},
-        #'p8_ee_Zud_ecm91':{'fraction':0.0001},
-        #'p8_ee_Zss_ecm91':{'fraction':0.0001},
+        #'p8_ee_Zee_ecm91':{'chunks':100},
+        #'p8_ee_Zmumu_ecm91':{'chunks':100},
+        #'p8_ee_Ztautau_ecm91':{'chunks':100},
+        #'p8_ee_Zbb_ecm91':{'chunks':100},
+        #'p8_ee_Zcc_ecm91':{'chunks':100},
+        #'p8_ee_Zud_ecm91':{'chunks':100},
+        #'p8_ee_Zss_ecm91':{'chunks':100},
+
+        #'emununu':{},
+        #'tatanunu':{},
 
         #privately-produced signals
         #'HNL_4e-8_10gev':{},
@@ -24,56 +27,59 @@ processList = {
         #'HNL_2.86e-9_70gev':{},
         #'HNL_2.86e-8_80gev':{},
 
-        #'emununu':{},
-        #'tatanunu':{},
+        'HNL_4e-10_10gev':{},
+        #'HNL_4e-10_20gev':{},
+        #'HNL_4e-10_30gev':{},
+        #'HNL_4e-10_40gev':{},
+        #'HNL_4e-10_50gev':{},
+        #'HNL_4e-10_60gev':{},
+        #'HNL_4e-10_70gev':{},
+        #'HNL_4e-10_80gev':{},
 
-        'HNL_4e-10_20gev':{},
-        'HNL_4e-10_30gev':{},
-        'HNL_4e-10_40gev':{},
-        'HNL_4e-10_50gev':{},
-        'HNL_4e-10_60gev':{},
-        'HNL_4e-10_70gev':{},
-        'HNL_4e-10_80gev':{},
+        'HNL_1.33e-7_10gev':{},
+        #'HNL_1.33e-7_20gev':{},
+        #'HNL_1.33e-7_30gev':{},
+        #'HNL_1.33e-7_40gev':{},
+        #'HNL_1.33e-7_50gev':{},
+        #'HNL_1.33e-7_60gev':{},
+        #'HNL_1.33e-7_70gev':{},
+        #'HNL_1.33e-7_80gev':{},
 
-        'HNL_1.33e-7_20gev':{},
-        'HNL_1.33e-7_30gev':{},
-        'HNL_1.33e-7_40gev':{},
-        'HNL_1.33e-7_50gev':{},
-        'HNL_1.33e-7_60gev':{},
-        'HNL_1.33e-7_70gev':{},
-        'HNL_1.33e-7_80gev':{},
+        'HNL_2.86e-12_10gev':{},
+        #'HNL_2.86e-12_20gev':{},
+        #'HNL_2.86e-12_30gev':{},
+        #'HNL_2.86e-12_40gev':{},
+        #'HNL_2.86e-12_50gev':{},
+        #'HNL_2.86e-12_60gev':{},
+        #'HNL_2.86e-12_70gev':{},
+        #'HNL_2.86e-12_80gev':{},
 
-        'HNL_2.86e-12_20gev':{},
-        'HNL_2.86e-12_30gev':{},
-        'HNL_2.86e-12_40gev':{},
-        'HNL_2.86e-12_50gev':{},
-        'HNL_2.86e-12_60gev':{},
-        'HNL_2.86e-12_70gev':{},
-        'HNL_2.86e-12_80gev':{},
+        'HNL_5e-12_10gev':{},
+        #'HNL_5e-12_20gev':{},
+        #'HNL_5e-12_30gev':{},
+        #'HNL_5e-12_40gev':{},
+        #'HNL_5e-12_50gev':{},
+        #'HNL_5e-12_60gev':{},
+        #'HNL_5e-12_70gev':{},
+        #'HNL_5e-12_80gev':{},
 
-        'HNL_5e-12_20gev':{},
-        'HNL_5e-12_30gev':{},
-        'HNL_5e-12_40gev':{},
-        'HNL_5e-12_50gev':{},
-        'HNL_5e-12_60gev':{},
-        'HNL_5e-12_70gev':{},
-        'HNL_5e-12_80gev':{},
+        'HNL_6.67e-10_10gev':{},
+        #'HNL_6.67e-10_20gev':{},
+        #'HNL_6.67e-10_30gev':{},
+        #'HNL_6.67e-10_40gev':{},
+        #'HNL_6.67e-10_50gev':{},
+        #'HNL_6.67e-10_60gev':{},
+        #'HNL_6.67e-10_70gev':{},
+        #'HNL_6.67e-10_80gev':{},
 
-        'HNL_6.67e-10_20gev':{},
-        'HNL_6.67e-10_30gev':{},
-        'HNL_6.67e-10_40gev':{},
-        'HNL_6.67e-10_50gev':{},
-        'HNL_6.67e-10_60gev':{},
-        'HNL_6.67e-10_70gev':{},
-        'HNL_6.67e-10_80gev':{},
-
-        'HNL_2.86e-7_20gev':{},
-        'HNL_2.86e-7_30gev':{},
-        'HNL_2.86e-7_40gev':{},
-        'HNL_2.86e-7_50gev':{},
-        'HNL_2.86e-7_60gev':{},
-        'HNL_2.86e-7_70gev':{},
-        'HNL_2.86e-7_80gev':{},
+        'HNL_2.86e-7_10gev':{},
+        #'HNL_2.86e-7_20gev':{},
+        #'HNL_2.86e-7_30gev':{},
+        #'HNL_2.86e-7_40gev':{},
+        #'HNL_2.86e-7_50gev':{},
+        #'HNL_2.86e-7_60gev':{},
+        #'HNL_2.86e-7_70gev':{},
+        #'HNL_2.86e-7_80gev':{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
@@ -90,7 +96,7 @@ inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_test_tracks/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_bsc/stage1/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -99,7 +105,7 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = True
+runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"
@@ -209,6 +215,16 @@ class RDFanalysis():
                 #.Define("FSGenPhoton_theta", "FCCAnalyses::MCParticle::get_theta(FSGenPhoton)")
                 #.Define("FSGenPhoton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenPhoton)")
                 #.Define("FSGenPhoton_charge", "FCCAnalyses::MCParticle::get_charge(FSGenPhoton)")
+
+                #.Define("GenN_PID", "FCCAnalyses::MCParticle::sel_pdgID(9900012, true)(Particle)") #true to include charge conjugate
+                #.Define("FSGenN", "FCCAnalyses::MCParticle::sel_genStatus(2)(GenN_PID)") #gen status==2 means decaying particle
+                #.Define("n_FSGenN", "FCCAnalyses::MCParticle::get_n(FSGenN)")
+                #.Define("FSGenN_e", "if (n_FSGenN>0) return FCCAnalyses::MCParticle::get_e(FSGenN); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
+                #.Define("FSGenN_p", "if (n_FSGenN>0) return FCCAnalyses::MCParticle::get_p(FSGenN); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
+                #.Define("FSGenN_mass", "if (n_FSGenN>0) return FCCAnalyses::MCParticle::get_mass(FSGenN); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
+                #.Define("FSGenN_time", "if (n_FSGenN>0) return FCCAnalyses::MCParticle::get_time(FSGenN); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
+                #.Define("FSGenN_tau", "if (n_FSGenN>0) return (FSGenN_e * FSGenN_time / FSGenN_mass); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
+                #.Define("FSGenN_Lxyz", "if (n_FSGenN>0) return (FSGenN_p * FSGenN_time / (FSGenN_mass * 6.58e-25)); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
 
                 # ee invariant mass
                 .Define("FSGen_ee_energy", "if (n_FSGenElectron>1) return (FSGenElectron_e.at(0) + FSGenElectron_e.at(1)); else return float(-1.);")
@@ -483,34 +499,34 @@ class RDFanalysis():
                 branchList = [
                         ######## Monte-Carlo particles #######
                         "n_FSGenElectron",
-                        "FSGenElectron_e",
-                        "FSGenElectron_p",
-                        "FSGenElectron_pt",
-                        "FSGenElectron_px",
-                        "FSGenElectron_py",
-                        "FSGenElectron_pz",
-                        "FSGenElectron_eta",
-                        "FSGenElectron_theta",
-                        "FSGenElectron_phi",
-                        "FSGenElectron_charge",
-                        "FSGenElectron_vertex_x",
-                        "FSGenElectron_vertex_y",
-                        "FSGenElectron_vertex_z",
+                        #"FSGenElectron_e",
+                        #"FSGenElectron_p",
+                        #"FSGenElectron_pt",
+                        #"FSGenElectron_px",
+                        #"FSGenElectron_py",
+                        #"FSGenElectron_pz",
+                        #"FSGenElectron_eta",
+                        #"FSGenElectron_theta",
+                        #"FSGenElectron_phi",
+                        #"FSGenElectron_charge",
+                        #"FSGenElectron_vertex_x",
+                        #"FSGenElectron_vertex_y",
+                        #"FSGenElectron_vertex_z",
 
                         "n_FSGenMuon",
-                        "FSGenMuon_e",
-                        "FSGenMuon_p",
-                        "FSGenMuon_pt",
-                        "FSGenMuon_px",
-                        "FSGenMuon_py",
-                        "FSGenMuon_pz",
-                        "FSGenMuon_eta",
-                        "FSGenMuon_theta",
-                        "FSGenMuon_phi",
-                        "FSGenMuon_charge",
-                        "FSGenMuon_vertex_x",
-                        "FSGenMuon_vertex_y",
-                        "FSGenMuon_vertex_z",
+                        #"FSGenMuon_e",
+                        #"FSGenMuon_p",
+                        #"FSGenMuon_pt",
+                        #"FSGenMuon_px",
+                        #"FSGenMuon_py",
+                        #"FSGenMuon_pz",
+                        #"FSGenMuon_eta",
+                        #"FSGenMuon_theta",
+                        #"FSGenMuon_phi",
+                        #"FSGenMuon_charge",
+                        #"FSGenMuon_vertex_x",
+                        #"FSGenMuon_vertex_y",
+                        #"FSGenMuon_vertex_z",
 
                         "FSGen_Lxy",
                         "FSGen_Lxyz",
@@ -520,17 +536,22 @@ class RDFanalysis():
                         #"FSGen_emu_invMass",
                         "FSGen_invMass",
 
-                        "n_FSGenNeutrino",
-                        "FSGenNeutrino_e",
-                        "FSGenNeutrino_p",
-                        "FSGenNeutrino_pt",
-                        "FSGenNeutrino_px",
-                        "FSGenNeutrino_py",
-                        "FSGenNeutrino_pz",
-                        "FSGenNeutrino_eta",
-                        "FSGenNeutrino_theta",
-                        "FSGenNeutrino_phi",
-                        "FSGenNeutrino_charge",
+                        #"n_FSGenNeutrino",
+                        #"FSGenNeutrino_e",
+                        #"FSGenNeutrino_p",
+                        #"FSGenNeutrino_pt",
+                        #"FSGenNeutrino_px",
+                        #"FSGenNeutrino_py",
+                        #"FSGenNeutrino_pz",
+                        #"FSGenNeutrino_eta",
+                        #"FSGenNeutrino_theta",
+                        #"FSGenNeutrino_phi",
+                        #"FSGenNeutrino_charge",
+
+                        #"n_FSGenN",
+                        #"FSGenN_mass",
+                        #"FSGenN_time",
+                        #"FSGenN_tau",
 
                         "n_FSGenPhoton",
                         #"FSGenPhoton_e",
@@ -550,6 +571,8 @@ class RDFanalysis():
                         "n_RecoPhotons",
                         "n_RecoElectrons",
                         "n_RecoMuons",
+                        "n_PrimaryTracks",
+                        "n_SecondaryTracks",
 
                         #"jets_e",
                         #"RecoJet_e",
@@ -646,9 +669,6 @@ class RDFanalysis():
                         "Reco_invMass",
                         "Reco_cos",
                         "Reco_DR",
-
-                        "n_PrimaryTracks",
-                        "n_SecondaryTracks",
 
 		]
 
