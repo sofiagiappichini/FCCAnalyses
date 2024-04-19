@@ -10,6 +10,13 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
   - [Running the analysis](#running-the-analysis)
     - [How to add new functions to call in the stage1](#how-to-add-new-functions-to-call-in-the-stage1)
     - [Changes made to the general code](#changes-made-to-the-general-code)
+  - [Additional codes](#additional-codes)
+    - [Access LHE files](#access-lhe-files)
+    - [LHE conversion to ROOT](#lhe-conversion-to-root)
+    - [Access histograms](#access-histograms)
+    - [Rebinning](#rebinning)
+    - [Plots](#plots)
+    - [Combine](#combine)
 
 ## FCCAnalyses setup 
 
