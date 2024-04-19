@@ -1,7 +1,7 @@
 import ROOT
 
 # global parameters
-intLumi        = 90.0e+06 #in pb-1
+intLumi        = 180.0e+06 #in pb-1
 
 ###If scaleSig=0 or scaleBack=0, we don't apply any additional scaling, on top of the normalization to cross section and integrated luminosity, as defined in finalSel.py
 ###If scaleSig or scaleBack is not defined, plots will be normalized to 1
@@ -11,8 +11,8 @@ ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
 delphesVersion = '3.4.2'
 energy         = 91
 collider       = 'FCC-ee'
-inputDir       = '/eos/user/s/sgiappic//2HNL_test_tracks/final/'
-outdir         = '/eos/user/s/sgiappic//2HNL_test_tracks/plots/'
+inputDir       = '/eos/user/s/sgiappic/2HNL_ana/final/'
+outdir         = '/eos/user/s/sgiappic/2HNL_ana/plots/'
 formats        = ['png', 'pdf']
 #formats        = ['pdf']
 #yaxis          = ['lin','log']
@@ -91,8 +91,8 @@ variables = [
     "n_RecoPhotons",
     "n_RecoElectrons",
     "n_RecoMuons",
-    "n_PrimaryTracks",
-    "n_SecondaryTracks",
+    #"n_PrimaryTracks",
+    #"n_SecondaryTracks",
 
     #"jets_e",
     #"RecoJet_e",
@@ -228,19 +228,22 @@ selections['HNL']  = [
     #"selNone",
     #"sel2Reco_vetoes",
 
-    "sel2RecoSF_vetoes",
+    #"sel2RecoSF_vetoes",
     #"sel2RecoSF_vetoes_15-80M",
     #"sel2RecoSF_vetoes_15-80M_40p",
     #"sel2RecoSF_vetoes_15-80M_40p_5ME",
     #"sel2RecoSF_vetoes_10-80M_39p_5ME_cos",
     #"sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt",
+    "sel2RecoSF_vetoes_tracks_M80_5MEpt_p40_0.8cos",
 
-    "sel2RecoDF_vetoes",
+    #"sel2RecoDF_vetoes",
     #"sel2RecoDF_vetoes_15-80M",
     #"sel2RecoDF_vetoes_15-80M_40p",
     #"sel2RecoDF_vetoes_15-80M_40p_5ME",
     #"sel2RecoDF_vetoes_10-80M_39p_5ME_cos",
     #"sel2RecoDF_vetoes_15-80M_39p_10ME43_cos",
+    #"sel2RecoDF_vetoes_tracks_M80":"sel2RecoDF_vetoes_tracks_M80",
+    "sel2RecoDF_vetoes_tracks_M80_5MEpt_0.8cos",
 ]
 
 extralabel = {}
@@ -253,6 +256,7 @@ extralabel['sel2RecoSF_vetoes_15-80M_40p']="Two same flavor leptons, no photons,
 extralabel['sel2RecoSF_vetoes_15-80M_40p_5ME']="Two same flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV, ME>5 Gev"
 extralabel['sel2RecoSF_vetoes_10-80M_39p_5ME_cos']="Two same flavor leptons, no photons, 10<M(l,l)<80 GeV, p<39 GeV, ME>5 Gev, cos#theta>-0.8"
 extralabel['sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt']="Two same flavor leptons, no photons and jets, 15<M(l,l')<80 GeV, p<42 GeV, E_{miss}>10 Gev, cos#theta>-0.8, 0.2<#theta_{miss}<3"
+extralabel['sel2RecoSF_vetoes_tracks_M80_5MEpt_0.8cos']= "Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l')<80 GeV, p_{miss}>5 GeV, cos#theta>-0.8"
 
 extralabel['sel2RecoDF_vetoes']="Two different flavor leptons, no photons and jets"
 extralabel['sel2RecoDF_vetoes_15-80M']="Two different flavor leptons, no photons, 15<M(l,l)<70 GeV"
@@ -260,6 +264,7 @@ extralabel['sel2RecoDF_vetoes_15-80M_40p']="Two different flavor leptons, no pho
 extralabel['sel2RecoDF_vetoes_15-80M_40p_5ME']="Two different flavor leptons, no photons, 15<M(l,l)<80 GeV, p<40 GeV, ME>5 Gev"
 extralabel['sel2RecoDF_vetoes_10-80M_39p_5ME_cos']="Two different flavor leptons, no photons, 10<M(l,l)<80 GeV, p<39 GeV, ME>5 GeV, cos#theta>-0.8"
 extralabel['sel2RecoDF_vetoes_15-80M_39p_10ME43_cos']="Two different flavor leptons, no photons and jets, 15<M(l,l')<80 GeV, p<39 GeV, 10<E_{miss}<43 GeV, cos#theta>-0.8"
+extralabel['sel2RecoDF_vetoes_tracks_M80_5MEpt_0.8cos']="Two different flavor leptons, no photons and jets, two reconstructed tracks, M(l,l')<80 GeV, p_{miss}>5 GeV, cos#theta>-0.8"
 
 colors = {}
 

@@ -176,10 +176,40 @@ To add new functions that take any argument and that will be useful to either se
 
 I've made a few changes to the analyzers. 
 
-First of all in `FCCAnalyses/python/do_plots.py` I changed the dimensions of the legends and how the yields are saved.
+First of all in [`FCCAnalyses/python/do_plots.py`](https://github.com/sofiagiappichini/FCCAnalyses/blob/master/python/do_plots.py) I changed the dimensions of the legends and how the yields are saved.
 
-In `FCCAnalyses/python/run_final_analysis.py` I changed how the efficiencies are written in the table in scientific notation and with the same format as the number of events, the scaling applied now includes the luminosity (`luminosity * cross section * k factor * matching efficiency * efficiency`). 
+In [`FCCAnalyses/python/run_final_analysis.py`](https://github.com/sofiagiappichini/FCCAnalyses/blob/master/python/run_final_analysis.py) I changed how the efficiencies are written in the table in scientific notation and with the same format as the number of events, the scaling applied now includes the luminosity (`luminosity * cross section * k factor * matching efficiency * efficiency`). 
 
-Because of that, the plotting script is modified to not scale to the luminosity anymore but simply takes the argument to print it onto the plots. In this way, the histograms are correctly scaled in the `final` step and can be used as input into CMS Combine with the correct number of expected events.
+Because of that, the plotting code is modified to not scale to the luminosity anymore but simply takes the argument to print it onto the plots. In this way, the histograms are correctly scaled in the `final` step and can be used as input into CMS Combine with the correct number of expected events.
 
 Note: the uncertainty on the number of events that is saved in the tables is the square root of the efficiency multiplied by the rest of the factors.
+
+## Additional codes
+
+Some additional python codes have been made to automate certain tasks. They can be found [here](https://github.com/sofiagiappichini/FCCAnalyses/blob/master/examples/FCCee/bsm/LLPs/DisplacedHNL/codes).
+
+### Access LHE files
+
+`get_decay_length_lhe.py` accesses .lhe files to retrieve information about each event and computes the decay length. This one is also evaluated from the computed width of the particle.
+
+`get_weight_lhe.py` and `get_weight_banner.py` extract the cross section values from the .lhe files. The first one writes them in the format used in `analysis_final.py`(remember to change the square brackets to curly afterwards). The second needs to be called inside the directory where the runs are stored and it's just for preliminary checking all the values at a glance.
+
+### LHE conversion to ROOT
+
+`replace_input_delphes.py` automatically converts all the .lhe files given in the list to .root files with the process described in the previous section. It needs to be run in the directory where the cards are stored.
+
+### Access histograms
+
+`get_decay_length.py` looks through histograms (.root files) to get the maximum value of a variable. It can loop over multiple variables and files. It also returns the total number of entries.
+
+### Rebinning
+
+`rebinning.py` rebins one variable (histogram stored in .root file) given a generic array of lower edges (they need to be a subgroup of the original edges). It loops over multiple cuts and files, the output is one .root file with all the histograms rebinned with names `$PROCESS_$CHANNEL`.
+
+### Plots
+
+`replot.py` is heavily inspired by `do_plots.py`. It allows to plot log scale x axis and it's made to be more adaptable. The current version stacks backgrounds and not signals. Plots for only one group can be done.
+
+### Combine
+
+`replace_input_combine.py` automates getting the significance of the events. It loops over signal files so the datacard can be updated properly and the significance is written on a file. It assumes that all signal events have the same uncertainty. The backgrounds are manually listed in the datacard. It needs to be run from the Combine directory after installation of CMSSW.
