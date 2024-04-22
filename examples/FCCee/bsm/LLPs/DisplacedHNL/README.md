@@ -15,6 +15,7 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
     - [LHE conversion to ROOT](#lhe-conversion-to-root)
     - [Access histograms](#access-histograms)
     - [Rebinning](#rebinning)
+    - [Cut optimizer](#cut-optimizer)
     - [Plots](#plots)
     - [Combine](#combine)
 
@@ -22,7 +23,7 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
 
 1. Following instructions given in [https://github.com/HEP-FCC/FCCAnalyses](https://github.com/HEP-FCC/FCCAnalyses), fork the FCC-LLP version [FCC-LLP/FCCAnalyses](https://github.com/FCC-LLP/FCCAnalyses) to set up the working environment in lxplus.
 
-    **Note:** FCC-LLP/FCCAnalyses hasn't been kept up to date with main repository so it's best to fork the [official version](https://github.com/HEP-FCC/FCCAnalyses).
+    **Note:** FCC-LLP/FCCAnalyses hasn't been kept up to date with the main repository so it's best to fork the [official version](https://github.com/HEP-FCC/FCCAnalyses).
 
     ```
     bash
@@ -75,7 +76,7 @@ Winter 23 samples have been created with Pythia8 and Delphes 3.5.1pre05 as state
     ./bin/mg5_aMC
     ```
 
-    For HNL signal samples, the HeavyN model needs to be added in the models directory if it's not already in the model list (MG5_aMC>display modellist): dowload the file `​SM_HeavyN_CKM_AllMasses_LO.tgz` from [https://feynrules.irmp.ucl.ac.be/wiki/HeavyN](https://feynrules.irmp.ucl.ac.be/wiki/HeavyN) and unzip it (tar -xf).
+    For HNL signal samples, the HeavyN model needs to be added in the `models` directory if it's not already in the model list (MG5_aMC>display modellist): download the file `​SM_HeavyN_CKM_AllMasses_LO.tgz` from [https://feynrules.irmp.ucl.ac.be/wiki/HeavyN](https://feynrules.irmp.ucl.ac.be/wiki/HeavyN) and unzip it (tar -xf).
 
 2. Then you can start generating LHE files by passing the appropriate card to Madgraph:
 
@@ -183,7 +184,7 @@ To add new functions that take any argument and that will be useful to either se
 
 I've made a few changes to the analyzers. 
 
-First of all in [`FCCAnalyses/python/do_plots.py`](https://github.com/sofiagiappichini/FCCAnalyses/blob/master/python/do_plots.py) I changed the dimensions of the legends and how the yields are saved.
+First of all, in [`FCCAnalyses/python/do_plots.py`](https://github.com/sofiagiappichini/FCCAnalyses/blob/master/python/do_plots.py) I changed the dimensions of the legends and how the yields are saved.
 
 In [`FCCAnalyses/python/run_final_analysis.py`](https://github.com/sofiagiappichini/FCCAnalyses/blob/master/python/run_final_analysis.py) I changed how the efficiencies are written in the table in scientific notation and with the same format as the number of events, the scaling applied now includes the luminosity (`luminosity * cross section * k factor * matching efficiency * efficiency`). 
 
@@ -197,9 +198,9 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 ### Access LHE files
 
-`get_decay_length_lhe.py` accesses .lhe files to retrieve information about each event and computes the decay length. This one is also evaluated from the computed width of the particle.
+`get_decay_length_lhe.py` accesses .lhe files to retrieve information about each event and compute the decay length. This one is also evaluated from the computed width of the particle.
 
-`get_weight_lhe.py` and `get_weight_banner.py` extract the cross section values from the .lhe files. The first one writes them in the format used in `analysis_final.py`(remember to change the square brackets to curly afterwards). The second needs to be called inside the directory where the runs are stored and it's just for preliminary checking all the values at a glance.
+`get_weight_lhe.py` and `get_weight_banner.py` extract the cross section values from the .lhe files. The first one writes them in the format used in `analysis_final.py`(remember to change the square brackets to curly afterward). The second needs to be called inside the directory where the runs are stored and it's just for preliminary checking all the values at a glance.
 
 ### LHE conversion to ROOT
 
@@ -212,6 +213,10 @@ Some additional python codes have been made to automate certain tasks. They can 
 ### Rebinning
 
 `rebinning.py` rebins one variable (histogram stored in .root file) given a generic array of lower edges (they need to be a subgroup of the original edges). It loops over multiple cuts and files, the output is one .root file with all the histograms rebinned with names `$PROCESS_$CHANNEL`.
+
+### Cut optimizer
+
+`cut_optimizer.py` looks at one variable at a time to see what cut would result in higher significance from $\frac{S}{\sqrt{S+B}}$. It loops over all the backgrounds to get the cumulative number and also multiple signals to check different options. Cuts can be either up to or from a value. It's not possible to check multiple cuts at once as there is no information in the histograms on how the events are related across different variables, successive cuts need to be implemented on the full selection coming from the final stage analysis.
 
 ### Plots
 

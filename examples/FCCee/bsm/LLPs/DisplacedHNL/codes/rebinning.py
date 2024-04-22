@@ -12,8 +12,8 @@ import array
 
 DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
 CUTS = [
-    #'sel2RecoDF_vetoes_tracks_M80_5MEpt_0.8cos',
-    'sel2RecoSF_vetoes_tracks_M80_5MEpt_p40_0.8cos',
+    'sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_0.04Lxy',
+    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos_0.04Lxy",
  ] # cut to rebin
 VARIABLE = "Reco_DR" # variable to rebin
 FILES_B = [
@@ -85,8 +85,7 @@ FILES = [
 ]
 
 #asym_bins = [-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.35, 0.5, 0.8] #array of low bin edges wanted
-#asym_bins = [0, 0.4, 0.6, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.6] #DF
-asym_bins = [0, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.6] #SF
+asym_bins = [0, 0.5, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8, 4.6] 
 nbins = len(asym_bins)-1
 ### note: The bin edges specified in xbins should correspond to bin edges in the original histogram. ###
 
