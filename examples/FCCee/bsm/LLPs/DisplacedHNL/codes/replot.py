@@ -26,14 +26,10 @@ def make_dir_if_not_exists(directory):
 
 DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
 CUTS = [
-    #'sel2RecoSF_vetoes_15-80M_42p_10ME_cos_MEt',
-    #'sel2RecoSF_vetoes',
-    #'sel2RecoDF_vetoes_15-80M_39p_10ME43_cos',
-    #'sel2RecoDF_vetoes'
-    #'sel2RecoSF_vetoes_15-80M_10ME_cos',
-    #'sel2RecoDF_vetoes_15-80M_10ME_cos',
-    'sel2RecoSF_vetoes_tracks',
-    'sel2RecoDF_vetoes_tracks',
+    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
+    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
+    #'sel2RecoSF_vetoes_tracks',
+    #'sel2RecoDF_vetoes_tracks',
  ] # cut to rebin
 VARIABLES = [
     "n_RecoTracks",
@@ -94,6 +90,7 @@ VARIABLES = [
     "Reco_DecayVertexLepton_probability", 
 
     "Reco_Lxy",
+    "Reco_Lxy_prompt",
     "Reco_Lxyz",
     "Reco_Lxyz_prompt",
 
@@ -148,10 +145,10 @@ backgrounds = [
     'p8_ee_Zee_ecm91',
     'p8_ee_Zmumu_ecm91',
     'p8_ee_Ztautau_ecm91',
-    'p8_ee_Zbb_ecm91',
-    'p8_ee_Zcc_ecm91',
-    'p8_ee_Zud_ecm91',
-    'p8_ee_Zss_ecm91',
+    #'p8_ee_Zbb_ecm91',
+    #'p8_ee_Zcc_ecm91',
+    #'p8_ee_Zud_ecm91',
+    #'p8_ee_Zss_ecm91',
     'emununu',
     'tatanunu',
 ]
