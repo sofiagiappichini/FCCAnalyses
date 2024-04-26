@@ -16,18 +16,18 @@ processList = {
         #'tatanunu':{},
 
         #privately-produced signals
-        #'HNL_4e-8_10gev':{},
-        #'HNL_1.33e-9_20gev':{},
-        #'HNL_2.86e-12_30gev':{},
-        #'HNL_2.86e-7_30gev':{},
-        #'HNL_5e-12_40gev':{},
-        #'HNL_4e-12_50gev':{},
-        #'HNL_6.67e-8_60gev':{},
-        #'HNL_4e-8_60gev':{},
-        #'HNL_2.86e-9_70gev':{},
-        #'HNL_2.86e-8_80gev':{},
+        'HNL_4e-8_10gev':{},
+        'HNL_1.33e-9_20gev':{},
+        'HNL_2.86e-12_30gev':{},
+        'HNL_2.86e-7_30gev':{},
+        'HNL_5e-12_40gev':{},
+        'HNL_4e-12_50gev':{},
+        'HNL_6.67e-8_60gev':{},
+        'HNL_4e-8_60gev':{},
+        'HNL_2.86e-9_70gev':{},
+        'HNL_2.86e-8_80gev':{},
 
-        'HNL_4e-10_10gev':{},
+        #'HNL_4e-10_10gev':{},
         #'HNL_4e-10_20gev':{},
         #'HNL_4e-10_30gev':{},
         #'HNL_4e-10_40gev':{},
@@ -36,7 +36,7 @@ processList = {
         #'HNL_4e-10_70gev':{},
         #'HNL_4e-10_80gev':{},
 
-        'HNL_1.33e-7_10gev':{},
+        #'HNL_1.33e-7_10gev':{},
         #'HNL_1.33e-7_20gev':{},
         #'HNL_1.33e-7_30gev':{},
         #'HNL_1.33e-7_40gev':{},
@@ -45,7 +45,7 @@ processList = {
         #'HNL_1.33e-7_70gev':{},
         #'HNL_1.33e-7_80gev':{},
 
-        'HNL_2.86e-12_10gev':{},
+        #'HNL_2.86e-12_10gev':{},
         #'HNL_2.86e-12_20gev':{},
         #'HNL_2.86e-12_30gev':{},
         #'HNL_2.86e-12_40gev':{},
@@ -54,7 +54,7 @@ processList = {
         #'HNL_2.86e-12_70gev':{},
         #'HNL_2.86e-12_80gev':{},
 
-        'HNL_5e-12_10gev':{},
+        #'HNL_5e-12_10gev':{},
         #'HNL_5e-12_20gev':{},
         #'HNL_5e-12_30gev':{},
         #'HNL_5e-12_40gev':{},
@@ -63,7 +63,7 @@ processList = {
         #'HNL_5e-12_70gev':{},
         #'HNL_5e-12_80gev':{},
 
-        'HNL_6.67e-10_10gev':{},
+        #'HNL_6.67e-10_10gev':{},
         #'HNL_6.67e-10_20gev':{},
         #'HNL_6.67e-10_30gev':{},
         #'HNL_6.67e-10_40gev':{},
@@ -72,7 +72,7 @@ processList = {
         #'HNL_6.67e-10_70gev':{},
         #'HNL_6.67e-10_80gev':{},
 
-        'HNL_2.86e-7_10gev':{},
+        #'HNL_2.86e-7_10gev':{},
         #'HNL_2.86e-7_20gev':{},
         #'HNL_2.86e-7_30gev':{},
         #'HNL_2.86e-7_40gev':{},
@@ -96,7 +96,7 @@ inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_bsc/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_gen/stage1/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -175,17 +175,32 @@ class RDFanalysis():
                 .Define("FSGenMuon_vertex_y", "if (n_FSGenMuon>0) return FCCAnalyses::MCParticle::get_vertex_y( FSGenMuon ); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
                 .Define("FSGenMuon_vertex_z", "if (n_FSGenMuon>0) return FCCAnalyses::MCParticle::get_vertex_z( FSGenMuon ); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
 
+                ### merging electrons and muons ###
+                .Define("FSGenLepton", "FCCAnalyses::MCParticle::mergeParticles(FSGenElectron, FSGenMuon)") 
+                .Define("n_FSGenLepton", "FCCAnalyses::MCParticle::get_n(FSGenLepton)")
+                #put in dummy values below if there aren't any FSGenMuons, to avoid seg fault
+                .Define("FSGenLepton_e", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_e(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_p", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_p(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_pt", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_pt(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_px", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_px(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_py", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_py(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_pz", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_pz(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_eta", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_eta(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_theta", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_theta(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_phi", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_phi(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_charge", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_charge(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+
+                .Define("FSGenLepton_vertex_x", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_vertex_x(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_vertex_y", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_vertex_y(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_vertex_z", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_vertex_z(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+
                 # Finding the Lxy of the HNL
                 ### both leptons have the same vertex decaying from Z or W so when there are no electrons use one of the muons, when there are at least one electron use that ###
                 # Definition: Lxy = math.sqrt( (branchGenPtcl.At(daut1).X)**2 + (branchGenPtcl.At(daut1).Y)**2 )
-                #.Define("FSGen_Lxy", "return sqrt(FSGenElectron_vertex_x*FSGenElectron_vertex_x + FSGenElectron_vertex_y*FSGenElectron_vertex_y)")
-                .Define("FSGen_Lxy", "if (n_FSGenElectron==0) return sqrt(FSGenMuon_vertex_x*FSGenMuon_vertex_x + FSGenMuon_vertex_y*FSGenMuon_vertex_y); \
-                                        else return sqrt(FSGenElectron_vertex_x*FSGenElectron_vertex_x + FSGenElectron_vertex_y*FSGenElectron_vertex_y); ")
+                .Define("FSGen_Lxy", "return sqrt(FSGenLepton_vertex_x*FSGenLepton_vertex_x + FSGenLepton_vertex_y*FSGenLepton_vertex_y)")
                 # Finding the Lxyz of the HNL
-                #.Define("FSGen_Lxyz", "return sqrt(FSGenElectron_vertex_x*FSGenElectron_vertex_x + FSGenElectron_vertex_y*FSGenElectron_vertex_y + FSGenElectron_vertex_z*FSGenElectron_vertex_z)")
-                .Define("FSGen_Lxyz", "if (n_FSGenElectron==0) return sqrt(FSGenMuon_vertex_x*FSGenMuon_vertex_x + FSGenMuon_vertex_y*FSGenMuon_vertex_y + FSGenMuon_vertex_z*FSGenMuon_vertex_z); \
-                                        else return sqrt(FSGenElectron_vertex_x*FSGenElectron_vertex_x + FSGenElectron_vertex_y*FSGenElectron_vertex_y + FSGenElectron_vertex_z*FSGenElectron_vertex_z); ")
-
+                .Define("FSGen_Lxyz", "return sqrt(FSGenLepton_vertex_x*FSGenLepton_vertex_x + FSGenLepton_vertex_y*FSGenLepton_vertex_y + FSGenLepton_vertex_z*FSGenLepton_vertex_z)")
+                
                 #all final state gen neutrinos and anti-neutrinos
                 .Define("GenNeutrino_PID", "FCCAnalyses::MCParticle::sel_pdgID(12, true)(Particle)")
                 .Define("FSGenNeutrino", "FCCAnalyses::MCParticle::sel_genStatus(1)(GenNeutrino_PID)") #gen status==1 means final state particle (FS)
@@ -205,67 +220,45 @@ class RDFanalysis():
                 .Define("GenPhoton_PID", "FCCAnalyses::MCParticle::sel_pdgID(22, false)(Particle)")
                 .Define("FSGenPhoton", "FCCAnalyses::MCParticle::sel_genStatus(1)(GenPhoton_PID)") #gen status==1 means final state particle (FS)
                 .Define("n_FSGenPhoton", "FCCAnalyses::MCParticle::get_n(FSGenPhoton)")
-                #.Define("FSGenPhoton_e", "FCCAnalyses::MCParticle::get_e(FSGenPhoton)")
-                #.Define("FSGenPhoton_p", "FCCAnalyses::MCParticle::get_p(FSGenPhoton)")
-                #.Define("FSGenPhoton_pt", "FCCAnalyses::MCParticle::get_pt(FSGenPhoton)")
-                #.Define("FSGenPhoton_px", "FCCAnalyses::MCParticle::get_px(FSGenPhoton)")
-                #.Define("FSGenPhoton_py", "FCCAnalyses::MCParticle::get_py(FSGenPhoton)")
-                #.Define("FSGenPhoton_pz", "FCCAnalyses::MCParticle::get_pz(FSGenPhoton)")
-                #.Define("FSGenPhoton_eta", "FCCAnalyses::MCParticle::get_eta(FSGenPhoton)")
-                #.Define("FSGenPhoton_theta", "FCCAnalyses::MCParticle::get_theta(FSGenPhoton)")
-                #.Define("FSGenPhoton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenPhoton)")
-                #.Define("FSGenPhoton_charge", "FCCAnalyses::MCParticle::get_charge(FSGenPhoton)")
+                .Define("FSGenPhoton_e", "FCCAnalyses::MCParticle::get_e(FSGenPhoton)")
+                .Define("FSGenPhoton_p", "FCCAnalyses::MCParticle::get_p(FSGenPhoton)")
+                .Define("FSGenPhoton_pt", "FCCAnalyses::MCParticle::get_pt(FSGenPhoton)")
+                .Define("FSGenPhoton_px", "FCCAnalyses::MCParticle::get_px(FSGenPhoton)")
+                .Define("FSGenPhoton_py", "FCCAnalyses::MCParticle::get_py(FSGenPhoton)")
+                .Define("FSGenPhoton_pz", "FCCAnalyses::MCParticle::get_pz(FSGenPhoton)")
+                .Define("FSGenPhoton_eta", "FCCAnalyses::MCParticle::get_eta(FSGenPhoton)")
+                .Define("FSGenPhoton_theta", "FCCAnalyses::MCParticle::get_theta(FSGenPhoton)")
+                .Define("FSGenPhoton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenPhoton)")
+                .Define("FSGenPhoton_charge", "FCCAnalyses::MCParticle::get_charge(FSGenPhoton)")
 
-                #.Define("GenN_PID", "FCCAnalyses::MCParticle::sel_pdgID(9900012, true)(Particle)") #true to include charge conjugate
-                #.Define("FSGenN", "FCCAnalyses::MCParticle::sel_genStatus(2)(GenN_PID)") #gen status==2 means decaying particle
-                #.Define("n_FSGenN", "FCCAnalyses::MCParticle::get_n(FSGenN)")
-                #.Define("FSGenN_e", "if (n_FSGenN>0) return FCCAnalyses::MCParticle::get_e(FSGenN); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
-                #.Define("FSGenN_p", "if (n_FSGenN>0) return FCCAnalyses::MCParticle::get_p(FSGenN); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
-                #.Define("FSGenN_mass", "if (n_FSGenN>0) return FCCAnalyses::MCParticle::get_mass(FSGenN); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
-                #.Define("FSGenN_time", "if (n_FSGenN>0) return FCCAnalyses::MCParticle::get_time(FSGenN); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
-                #.Define("FSGenN_tau", "if (n_FSGenN>0) return (FSGenN_e * FSGenN_time / FSGenN_mass); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
-                #.Define("FSGenN_Lxyz", "if (n_FSGenN>0) return (FSGenN_p * FSGenN_time / (FSGenN_mass * 6.58e-25)); else return FCCAnalyses::MCParticle::get_genStatus(GenN_PID);")
+                ### Gen HNLs, merged the two ###
+                .Define("GenN1_PID", "FCCAnalyses::MCParticle::sel_pdgID(9900012, true)(Particle)") #true to include charge conjugate
+                .Define("GenN2_PID", "FCCAnalyses::MCParticle::sel_pdgID(9900014, true)(Particle)") #true to include charge conjugate
+                .Define("GenN", "FCCAnalyses::MCParticle::mergeParticles(GenN1_PID, GenN2_PID)") 
+                .Define("GenN_status", "FCCAnalyses::MCParticle::get_genStatus(GenN)") 
+                .Define("n_GenN", "FCCAnalyses::MCParticle::get_n(GenN)")
+                .Define("GenN_e", "FCCAnalyses::MCParticle::get_e(GenN)")
+                .Define("GenN_p", "FCCAnalyses::MCParticle::get_p(GenN)")
+                .Define("GenN_mass", "FCCAnalyses::MCParticle::get_mass(GenN)")
+                .Define("GenN_time", "FCCAnalyses::MCParticle::get_time(GenN)")
+                
+                .Define("GenN_tau", "return (GenN_e.at(0) * GenN_time.at(0) / GenN_mass.at(0));") #in s
+                .Define("GenN_Lxyz_tau", "return (GenN_p.at(0) * GenN_tau * 3e8 *1e3 / GenN_mass.at(0));") #in mm
+                .Define("GenN_Lxyz_time", "return (GenN_p.at(0) * GenN_time.at(0) * 3e8 *1e3 / GenN_mass.at(0));") #in mm
+
+                # Calculating the lifetime of the HNL
+                # Definition: t = Lxy * branchGenPtcl.At(i).Mass / (branchGenPtcl.At(i).PT * 1000 * 3E8)
+                .Define("GenN_txyz", "return ( FSGen_Lxyz * GenN_mass.at(0) / (GenN_p.at(0) * 3e8 * 1e3))" )
 
                 # ee invariant mass
-                .Define("FSGen_ee_energy", "if (n_FSGenElectron>1) return (FSGenElectron_e.at(0) + FSGenElectron_e.at(1)); else return float(-1.);")
-                .Define("FSGen_ee_px", "if (n_FSGenElectron>1) return (FSGenElectron_px.at(0) + FSGenElectron_px.at(1)); else return float(-1.);")
-                .Define("FSGen_ee_py", "if (n_FSGenElectron>1) return (FSGenElectron_py.at(0) + FSGenElectron_py.at(1)); else return float(-1.);")
-                .Define("FSGen_ee_pz", "if (n_FSGenElectron>1) return (FSGenElectron_pz.at(0) + FSGenElectron_pz.at(1)); else return float(-1.);")
-                #.Define("FSGen_ee_invMass", "if (n_FSGenElectron>1) return sqrt(FSGen_ee_energy*FSGen_ee_energy - FSGen_ee_px*FSGen_ee_px - FSGen_ee_py*FSGen_ee_py - FSGen_ee_pz*FSGen_ee_pz ); else return float(-1.);")
+                .Define("FSGen_TwoLeptons_energy", "if (n_FSGenLepton>1) return (FSGenLepton_e.at(0) + FSGenLepton_e.at(1)); else return float(-1.);")
+                .Define("FSGen_TwoLeptons_px", "if (n_FSGenLepton>1) return (FSGenLepton_px.at(0) + FSGenLepton_px.at(1)); else return float(-1.);")
+                .Define("FSGen_TwoLeptons_py", "if (n_FSGenLepton>1) return (FSGenLepton_py.at(0) + FSGenLepton_py.at(1)); else return float(-1.);")
+                .Define("FSGen_TwoLeptons_pz", "if (n_FSGenLepton>1) return (FSGenLepton_pz.at(0) + FSGenLepton_pz.at(1)); else return float(-1.);")
+                .Define("FSGen_invMass", "if (n_FSGenLepton>1) return sqrt(FSGen_TwoLeptons_energy*FSGen_TwoLeptons_energy - FSGen_TwoLeptons_px*FSGen_TwoLeptons_px - FSGen_TwoLeptons_py*FSGen_TwoLeptons_py - FSGen_TwoLeptons_pz*FSGen_TwoLeptons_pz ); else return float(-1.);")
 
-                ### mumu invariant mass ###
-                .Define("FSGen_mumu_energy", "if (n_FSGenMuon>1) return (FSGenMuon_e.at(0) + FSGenMuon_e.at(1)); else return float(-1.);")
-                .Define("FSGen_mumu_px", "if (n_FSGenMuon>1) return (FSGenMuon_px.at(0) + FSGenMuon_px.at(1)); else return float(-1.);")
-                .Define("FSGen_mumu_py", "if (n_FSGenMuon>1) return (FSGenMuon_py.at(0) + FSGenMuon_py.at(1)); else return float(-1.);")
-                .Define("FSGen_mumu_pz", "if (n_FSGenMuon>1) return (FSGenMuon_pz.at(0) + FSGenMuon_pz.at(1)); else return float(-1.);")
-                #.Define("FSGen_mumu_invMass", "if (n_FSGenMuon>1) return sqrt(FSGen_mumu_energy*FSGen_mumu_energy - FSGen_mumu_px*FSGen_mumu_px - FSGen_mumu_py*FSGen_mumu_py - FSGen_mumu_pz*FSGen_mumu_pz ); else return float(-1.);")
-
-                ### emu invariant mass -> for final states with (at least) one electron and one muon ###
-                .Define("FSGen_emu_energy", "if (n_FSGenElectron>0 && n_FSGenMuon>0) return (FSGenElectron_e.at(0) + FSGenMuon_e.at(0)); else return float(-1.);")
-                .Define("FSGen_emu_px", "if (n_FSGenElectron>0 && n_FSGenMuon>0) return (FSGenElectron_px.at(0) + FSGenMuon_px.at(0)); else return float(-1.);")
-                .Define("FSGen_emu_py", "if (n_FSGenElectron>0 && n_FSGenMuon>0) return (FSGenElectron_py.at(0) + FSGenMuon_py.at(0)); else return float(-1.);")
-                .Define("FSGen_emu_pz", "if (n_FSGenElectron>0 && n_FSGenMuon>0) return (FSGenElectron_pz.at(0) + FSGenMuon_pz.at(0)); else return float(-1.);")
-                #.Define("FSGen_emu_invMass", "if (n_FSGenElectron>0 && n_FSGenMuon>0) return sqrt(FSGen_emu_energy*FSGen_emu_energy - FSGen_emu_px*FSGen_emu_px - FSGen_emu_py*FSGen_emu_py - FSGen_emu_pz*FSGen_emu_pz ); else return float(-1.);")
-
-                ### there may be events with two electrons and two muons, then both instances are true and it probably saves the second but then it's not an event we want so it doesn't matter in the end ###
-                
-                .Define("FSGen_invMass", "if (n_FSGenMuon>1) return sqrt(FSGen_mumu_energy*FSGen_mumu_energy - FSGen_mumu_px*FSGen_mumu_px - FSGen_mumu_py*FSGen_mumu_py - FSGen_mumu_pz*FSGen_mumu_pz ); \
-                                        else if (n_FSGenElectron>1) return sqrt(FSGen_ee_energy*FSGen_ee_energy - FSGen_ee_px*FSGen_ee_px - FSGen_ee_py*FSGen_ee_py - FSGen_ee_pz*FSGen_ee_pz ); \
-                                        else if (n_FSGenElectron>0 && n_FSGenMuon>0) return sqrt(FSGen_emu_energy*FSGen_emu_energy - FSGen_emu_px*FSGen_emu_px - FSGen_emu_py*FSGen_emu_py - FSGen_emu_pz*FSGen_emu_pz ); \
-                                        else return float(-1.);")
-
-                ### not useful for backgrounds without neutrinos in the final state as it's not a selection step anyway ###
-                # eenu invariant mass
-                .Define("FSGen_eenu_energy", "if (n_FSGenElectron>1 && n_FSGenNeutrino>0) return (FSGenElectron_e.at(0) + FSGenElectron_e.at(1) + FSGenNeutrino_e.at(0)); else return float(-1.);")
-                .Define("FSGen_eenu_px", "if (n_FSGenElectron>1 && n_FSGenNeutrino>0) return (FSGenElectron_px.at(0) + FSGenElectron_px.at(1) + FSGenNeutrino_px.at(0)); else return float(-1.);")
-                .Define("FSGen_eenu_py", "if (n_FSGenElectron>1 && n_FSGenNeutrino>0) return (FSGenElectron_py.at(0) + FSGenElectron_py.at(1) + FSGenNeutrino_py.at(0)); else return float(-1.);")
-                .Define("FSGen_eenu_pz", "if (n_FSGenElectron>1 && n_FSGenNeutrino>0) return (FSGenElectron_pz.at(0) + FSGenElectron_pz.at(1) + FSGenNeutrino_pz.at(0)); else return float(-1.);")
-                .Define("FSGen_eenu_invMass", "if (n_FSGenElectron>1 && n_FSGenNeutrino>0) return sqrt(FSGen_eenu_energy*FSGen_eenu_energy - FSGen_eenu_px*FSGen_eenu_px - FSGen_eenu_py*FSGen_eenu_py - FSGen_eenu_pz*FSGen_eenu_pz ); else return float(-1.);")
-                
                 # MC event primary vertex
                 .Define("MC_PrimaryVertex",  "FCCAnalyses::MCParticle::get_EventPrimaryVertex(21)( Particle )" )
-
-
 
                 ################### Reconstructed particles #####################
                 .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
@@ -275,22 +268,22 @@ class RDFanalysis():
 		.Define("n_RecoJets", "ReconstructedParticle::get_n(Jet)") 
 
                 #SIMPLE VARIABLES: Access the basic kinematic variables of the (selected) jets, works analogously for electrons, muons
-		#.Define("RecoJet_e",      "ReconstructedParticle::get_e(Jet)")
-                #.Define("RecoJet_p",      "ReconstructedParticle::get_p(Jet)") #momentum p
-                #.Define("RecoJet_pt",      "ReconstructedParticle::get_pt(Jet)") #transverse momentum pt
-                #.Define("RecoJet_px",      "ReconstructedParticle::get_px(Jet)")
-                #.Define("RecoJet_py",      "ReconstructedParticle::get_py(Jet)")
-                #.Define("RecoJet_pz",      "ReconstructedParticle::get_pz(Jet)")
-		#.Define("RecoJet_eta",     "ReconstructedParticle::get_eta(Jet)") #pseudorapidity eta
-                #.Define("RecoJet_theta",   "ReconstructedParticle::get_theta(Jet)")
-		#.Define("RecoJet_phi",     "ReconstructedParticle::get_phi(Jet)") #polar angle in the transverse plane phi
-                #.Define("RecoJet_charge",  "ReconstructedParticle::get_charge(Jet)")
-                #.Define("RecoJetTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(Jet,EFlowTrack_1))") #significance
-                #.Define("RecoJetTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(Jet,EFlowTrack_1))")
-                #.Define("RecoJetTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(Jet,EFlowTrack_1)") #variance (not sigma)
-                #.Define("RecoJetTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(Jet,EFlowTrack_1)")
+		.Define("RecoJet_e",      "ReconstructedParticle::get_e(Jet)")
+                .Define("RecoJet_p",      "ReconstructedParticle::get_p(Jet)") #momentum p
+                .Define("RecoJet_pt",      "ReconstructedParticle::get_pt(Jet)") #transverse momentum pt
+                .Define("RecoJet_px",      "ReconstructedParticle::get_px(Jet)")
+                .Define("RecoJet_py",      "ReconstructedParticle::get_py(Jet)")
+                .Define("RecoJet_pz",      "ReconstructedParticle::get_pz(Jet)")
+		.Define("RecoJet_eta",     "ReconstructedParticle::get_eta(Jet)") #pseudorapidity eta
+                .Define("RecoJet_theta",   "ReconstructedParticle::get_theta(Jet)")
+		.Define("RecoJet_phi",     "ReconstructedParticle::get_phi(Jet)") #polar angle in the transverse plane phi
+                .Define("RecoJet_charge",  "ReconstructedParticle::get_charge(Jet)")
+                .Define("RecoJetTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(Jet,EFlowTrack_1))")
+                .Define("RecoJetTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(Jet,EFlowTrack_1))")
+                .Define("RecoJetTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(Jet,EFlowTrack_1))") #significance
+                .Define("RecoJetTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(Jet,EFlowTrack_1))")
+                .Define("RecoJetTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(Jet,EFlowTrack_1)") #variance (not sigma)
+                .Define("RecoJetTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(Jet,EFlowTrack_1)")
 
                 ### Jet clustering with different algorithm ###
                 .Define("RP_px", "ReconstructedParticle::get_px(ReconstructedParticles) ")
@@ -306,30 +299,29 @@ class RDFanalysis():
                 .Define( "FCCAnalysesJets_ee_genkt",  "JetClustering::clustering_ee_kt(2, 0, 1, 0)(pseudo_jets)" )
                 .Define("jets_ee_genkt",  "JetClusteringUtils::get_pseudoJets( FCCAnalysesJets_ee_genkt )")
 
-                ### in our case with 0 jets all jet variables are useless, try one just to check ###
                 # access the jets kinematics :
-                #.Define("jets_e",  "JetClusteringUtils::get_e(jets_ee_genkt)")
-                        
-                # access the jet constituents:
-                #.Define("jetconstituents_ee_genkt", "JetClusteringUtils::get_constituents(FCCAnalysesJets_ee_genkt) ")
-                                
-                # access the "dmerge" distances:
-                #.Define("dmerge_23", "JetClusteringUtils::get_exclusive_dmerge( FCCAnalysesJets, 2)" )
+                .Define("jets_e",  "JetClusteringUtils::get_e(jets_ee_genkt)")
 
 		#PHOTONS
 		.Alias("Photon0", "Photon#0.index") 
 		.Define("RecoPhotons",  "ReconstructedParticle::get(Photon0, ReconstructedParticles)")
 		.Define("n_RecoPhotons",  "ReconstructedParticle::get_n(RecoPhotons)") #count how many photons are in the event in total
+                .Define("RecoPhoton_e",      "ReconstructedParticle::get_e(RecoPhotons)")
+                .Define("RecoPhoton_p",      "ReconstructedParticle::get_p(RecoPhotons)")
+                .Define("RecoPhoton_pt",      "ReconstructedParticle::get_pt(RecoPhotons)")
+                .Define("RecoPhoton_px",      "ReconstructedParticle::get_px(RecoPhotons)")
+                .Define("RecoPhoton_py",      "ReconstructedParticle::get_py(RecoPhotons)")
+                .Define("RecoPhoton_pz",      "ReconstructedParticle::get_pz(RecoPhotons)")
+		.Define("RecoPhoton_eta",     "ReconstructedParticle::get_eta(RecoPhotons)") #pseudorapidity eta
+                .Define("RecoPhoton_theta",   "ReconstructedParticle::get_theta(RecoPhotons)")
+		.Define("RecoPhoton_phi",     "ReconstructedParticle::get_phi(RecoPhotons)") #polar angle in the transverse plane phi
+                .Define("RecoPhoton_charge",  "ReconstructedParticle::get_charge(RecoPhotons)")
 
-		#ELECTRONS AND MUONS
+		#ELECTRONS 
 		.Alias("Electron0", "Electron#0.index")
 		.Define("RecoElectrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles)")
 		.Define("n_RecoElectrons",  "ReconstructedParticle::get_n(RecoElectrons)") #count how many electrons are in the event in total
-
-		.Alias("Muon0", "Muon#0.index")
-		.Define("RecoMuons",  "ReconstructedParticle::get(Muon0, ReconstructedParticles)")
-		.Define("n_RecoMuons",  "ReconstructedParticle::get_n(RecoMuons)") #count how many muons are in the event in total
-
+                
                 .Define("RecoElectron_e",      "ReconstructedParticle::get_e(RecoElectrons)")
                 .Define("RecoElectron_p",      "ReconstructedParticle::get_p(RecoElectrons)")
                 .Define("RecoElectron_pt",      "ReconstructedParticle::get_pt(RecoElectrons)")
@@ -347,16 +339,10 @@ class RDFanalysis():
                 .Define("RecoElectronTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoElectrons,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoElectronTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoElectrons,EFlowTrack_1)")
 
-                .Define("RecoPhoton_e",      "ReconstructedParticle::get_e(RecoPhotons)")
-                .Define("RecoPhoton_p",      "ReconstructedParticle::get_p(RecoPhotons)")
-                .Define("RecoPhoton_pt",      "ReconstructedParticle::get_pt(RecoPhotons)")
-                .Define("RecoPhoton_px",      "ReconstructedParticle::get_px(RecoPhotons)")
-                .Define("RecoPhoton_py",      "ReconstructedParticle::get_py(RecoPhotons)")
-                .Define("RecoPhoton_pz",      "ReconstructedParticle::get_pz(RecoPhotons)")
-		.Define("RecoPhoton_eta",     "ReconstructedParticle::get_eta(RecoPhotons)") #pseudorapidity eta
-                .Define("RecoPhoton_theta",   "ReconstructedParticle::get_theta(RecoPhotons)")
-		.Define("RecoPhoton_phi",     "ReconstructedParticle::get_phi(RecoPhotons)") #polar angle in the transverse plane phi
-                .Define("RecoPhoton_charge",  "ReconstructedParticle::get_charge(RecoPhotons)")
+                # MUONS
+		.Alias("Muon0", "Muon#0.index")
+		.Define("RecoMuons",  "ReconstructedParticle::get(Muon0, ReconstructedParticles)")
+		.Define("n_RecoMuons",  "ReconstructedParticle::get_n(RecoMuons)") #count how many muons are in the event in total
 
                 .Define("RecoMuon_e",      "ReconstructedParticle::get_e(RecoMuons)")
                 .Define("RecoMuon_p",      "ReconstructedParticle::get_p(RecoMuons)")
@@ -375,85 +361,57 @@ class RDFanalysis():
                 .Define("RecoMuonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoMuons,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons,EFlowTrack_1)")
 
-                ### momentum of leading lepton ###
-                .Define("Reco_e", "if (n_RecoMuons>1) return RecoMuon_e.at(0); else if (n_RecoElectrons>0) return RecoElectron_e.at(0); else return float(-1.);")
-
-                .Define("Reco_p", "if (n_RecoMuons>1) return RecoMuon_p.at(0); else if (n_RecoElectrons>0) return RecoElectron_p.at(0); else return float(-1.);")
-
-                .Define("Reco_pt", "if (n_RecoMuons>1) return RecoMuon_pt.at(0); else if (n_RecoElectrons>0) return RecoElectron_pt.at(0); else return float(-1.);")
-
-                .Define("Reco_px", "if (n_RecoMuons>1) return RecoMuon_px.at(0); else if (n_RecoElectrons>0) return RecoElectron_px.at(0); else return float(-1.);")
-
-                .Define("Reco_py", "if (n_RecoMuons>1) return RecoMuon_py.at(0); else if (n_RecoElectrons>0) return RecoElectron_py.at(0); else return float(-1.);")
-
-                .Define("Reco_pz", "if (n_RecoMuons>1) return RecoMuon_pz.at(0); else if (n_RecoElectrons>0) return RecoElectron_pz.at(0); else return float(-1.);")
-
-                .Define("Reco_eta", "if (n_RecoMuons>1) return RecoMuon_eta.at(0); else if (n_RecoElectrons>0) return RecoElectron_eta.at(0); else return float(-10.);")
-
-                .Define("Reco_theta", "if (n_RecoMuons>1) return RecoMuon_theta.at(0); else if (n_RecoElectrons>0) return RecoElectron_theta.at(0); else return float(-10.);")
-                
-                .Define("Reco_phi", "if (n_RecoMuons>1) return RecoMuon_phi.at(0); else if (n_RecoElectrons>0) return RecoElectron_phi.at(0); else return float(-10.);")
-
-                ### D0 and Z0 ###
-                .Define("Reco_absD0", "if (n_RecoMuons>1) return RecoMuonTrack_absD0.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_absD0.at(0); else return float(-1.);")
-                .Define("Reco_absZ0", "if (n_RecoMuons>1) return RecoMuonTrack_absZ0.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_absZ0.at(0); else return float(-1.);")
-
-                .Define("Reco_absD0sig", "if (n_RecoMuons>1) return RecoMuonTrack_absD0sig.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_absD0sig.at(0); else return float(-1.);") #significance
-                .Define("Reco_absZ0sig", "if (n_RecoMuons>1) return RecoMuonTrack_absZ0sig.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_absZ0sig.at(0); else return float(-1.);")
-
-                .Define("Reco_D0cov", "if (n_RecoMuons>1) return RecoMuonTrack_D0cov.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_D0cov.at(0); else return float(-1.);") #variance (not sigma)
-                .Define("Reco_Z0cov", "if (n_RecoMuons>1) return RecoMuonTrack_Z0cov.at(0); else if (n_RecoElectrons>0) return RecoElectronTrack_Z0cov.at(0); else return float(-1.);")
+                ### building variables for the two leptons final state ###
+                .Define("RecoLeptons", "ReconstructedParticle::merge(RecoElectrons, RecoMuons)")
+                .Define("n_RecoLeptons",  "ReconstructedParticle::get_n(RecoLeptons)") 
+                .Define("Reco_e",      "ReconstructedParticle::get_e(RecoLeptons)")
+                .Define("Reco_p",      "ReconstructedParticle::get_p(RecoLeptons)")
+                .Define("Reco_pt",      "ReconstructedParticle::get_pt(RecoLeptons)")
+                .Define("Reco_px",      "ReconstructedParticle::get_px(RecoLeptons)")
+                .Define("Reco_py",      "ReconstructedParticle::get_py(RecoLeptons)")
+                .Define("Reco_pz",      "ReconstructedParticle::get_pz(RecoLeptons)")
+		.Define("Reco_eta",     "ReconstructedParticle::get_eta(RecoLeptons)") #pseudorapidity eta
+                .Define("Reco_theta",   "ReconstructedParticle::get_theta(RecoLeptons)")
+		.Define("Reco_phi",     "ReconstructedParticle::get_phi(RecoLeptons)") #polar angle in the transverse plane phi
+                .Define("Reco_charge",  "ReconstructedParticle::get_charge(RecoLeptons)")
+                .Define("RecoTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoLeptons,EFlowTrack_1))")
+                .Define("RecoTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoLeptons,EFlowTrack_1))")
+                .Define("RecoTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoLeptons,EFlowTrack_1))") #significance
+                .Define("RecoTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoLeptons,EFlowTrack_1))")
+                .Define("RecoTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoLeptons,EFlowTrack_1)") #variance (not sigma)
+                .Define("RecoTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoLeptons,EFlowTrack_1)")
 
                 ### cosine between two leptons ###
-                .Define("Reco_ee_p", "if (n_RecoElectrons>1) return (RecoElectron_px.at(0)*RecoElectron_px.at(1) + RecoElectron_py.at(0)*RecoElectron_py.at(1) + RecoElectron_pz.at(0)*RecoElectron_pz.at(1)); else return float(-2.);")
-                .Define("Reco_mumu_p", "if (n_RecoMuons>1) return (RecoMuon_px.at(0)*RecoMuon_px.at(1) + RecoMuon_py.at(0)*RecoMuon_py.at(1) + RecoMuon_pz.at(0)*RecoMuon_pz.at(1)); else return float(-2.);")
-                .Define("Reco_emu_p", "if (n_RecoMuons>0 && n_RecoElectrons>0) return (RecoElectron_px.at(0)*RecoMuon_px.at(0) + RecoElectron_py.at(0)*RecoMuon_py.at(0) + RecoElectron_pz.at(0)*RecoMuon_pz.at(0)); else return float(-2.);")
-           
-                #.Define("Reco_ee_cos", "if (n_RecoElectrons>1) return (Reco_ee_p/(RecoElectron_p.at(0)*RecoElectron_p.at(1))); else return float(-2.);")
-                #.Define("Reco_mumu_cos", "if (n_RecoMuons>1) return (Reco_mumu_p/(RecoMuon_p.at(0)*RecoMuon_p.at(1))); else return float(-2.);")
-                #.Define("Reco_emu_cos", "if (n_RecoMuons>0 && n_RecoElectrons>0) return (Reco_emu_p/(RecoMuon_p.at(0)*RecoElectron_p.at(0))); else return float(-2.);")
-                .Define("Reco_cos", "if (n_RecoMuons>1) return (Reco_mumu_p/(RecoMuon_p.at(0)*RecoMuon_p.at(1))); \
-                                        else if (n_RecoElectrons>1) return (Reco_ee_p/(RecoElectron_p.at(0)*RecoElectron_p.at(1))); \
-                                        else if (n_RecoMuons>0 && n_RecoElectrons>0) return (Reco_emu_p/(RecoMuon_p.at(0)*RecoElectron_p.at(0))); \
-                                        else return float(-2.);")
+                .Define("Reco_TwoLeptons_p", "if (n_RecoLeptons>1) return (Reco_px.at(0)*Reco_px.at(1) + Reco_py.at(0)*Reco_py.at(1) + Reco_pz.at(0)*Reco_pz.at(1)); else return float(-2.);")
+                .Define("Reco_cos", "if (n_RecoLeptons>1) return (Reco_TwoLeptons_p/(Reco_p.at(0)*Reco_p.at(1))); else return float(-2.);")
 
                 ### angular distance between two leptons ###
-                #.Define("Reco_ee_DR", "if (n_RecoElectrons>1) return sqrt((RecoElectron_phi.at(0) - RecoElectron_phi.at(1))*(RecoElectron_phi.at(0) - RecoElectron_phi.at(1)) + (RecoElectron_eta.at(0) - RecoElectron_eta.at(1))*(RecoElectron_eta.at(0) - RecoElectron_eta.at(1))); else return float(-1.);")
-                #.Define("Reco_mumu_DR", "if (n_RecoMuons>1) return sqrt((RecoMuon_phi.at(0) - RecoMuon_phi.at(1))*(RecoMuon_phi.at(0) - RecoMuon_phi.at(1)) + (RecoMuon_eta.at(0) - RecoMuon_eta.at(1))*(RecoMuon_eta.at(0) - RecoMuon_eta.at(1))); else return float(-1.);")
-                #.Define("Reco_emu_DR", "if (n_RecoMuons>0 && n_RecoElectrons>0) return sqrt((RecoElectron_phi.at(0) - RecoMuon_phi.at(0))*(RecoElectron_phi.at(0) - RecoMuon_phi.at(0)) + (RecoElectron_eta.at(0) - RecoMuon_eta.at(0))*(RecoElectron_eta.at(0) - RecoMuon_eta.at(0))); else return float(-1.);")
-                #.Define("Reco_DR","if (n_RecoMuons>1) return sqrt((RecoMuon_phi.at(0) - RecoMuon_phi.at(1))*(RecoMuon_phi.at(0) - RecoMuon_phi.at(1)) + (RecoMuon_eta.at(0) - RecoMuon_eta.at(1))*(RecoMuon_eta.at(0) - RecoMuon_eta.at(1))); \
-                                        #else if (n_RecoElectrons>1) return sqrt((RecoElectron_phi.at(0) - RecoElectron_phi.at(1))*(RecoElectron_phi.at(0) - RecoElectron_phi.at(1)) + (RecoElectron_eta.at(0) - RecoElectron_eta.at(1))*(RecoElectron_eta.at(0) - RecoElectron_eta.at(1))); \
-                                        #else if (n_RecoMuons>0 && n_RecoElectrons>0) return sqrt((RecoElectron_phi.at(0) - RecoMuon_phi.at(0))*(RecoElectron_phi.at(0) - RecoMuon_phi.at(0)) + (RecoElectron_eta.at(0) - RecoMuon_eta.at(0))*(RecoElectron_eta.at(0) - RecoMuon_eta.at(0))); \
-                                        #else return float(-1.);")
-                .Define("Reco_DR","if (n_RecoMuons>1) return myUtils::deltaR(RecoMuon_phi.at(0), RecoMuon_phi.at(1), RecoMuon_eta.at(0), RecoMuon_eta.at(1)); \
-                                        else if (n_RecoElectrons>1) return myUtils::deltaR(RecoElectron_phi.at(0), RecoElectron_phi.at(1), RecoElectron_eta.at(0), RecoElectron_eta.at(1)); \
-                                        else if (n_RecoMuons>0 && n_RecoElectrons>0) return myUtils::deltaR(RecoMuon_phi.at(0), RecoElectron_phi.at(0), RecoMuon_eta.at(0), RecoElectron_eta.at(0)); \
-                                        else return float(-1.);")
-
-                # First, reconstruct a vertex from all tracks
-                #.Define("VertexObject_allTracks",  "VertexFitterSimple::VertexFitter_Tk ( 1, EFlowTrack_1, true, 4.5, 20e-3, 300)")
-                # Select the tracks that are reconstructed  as primaries
+                .Define("Reco_DR","if (n_RecoLeptons>1) return myUtils::deltaR(Reco_phi.at(0), Reco_phi.at(1), Reco_eta.at(0), Reco_eta.at(1)); else return float(-1.);")
 
                 # Now we reconstruct the reco decay vertex using the reco'ed tracks from electrons and muons
                 .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack_1)") ### EFlowTrack_1 contains all tracks, selecting a subset associated with certain particles ###
                 .Define("RecoMuonTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoMuons, EFlowTrack_1)")
-
                 .Define("RecoLeptonTracks",   "ReconstructedTrack::Merge( RecoElectronTracks, RecoMuonTracks)") ### merges two tracks collections ###
-
                 .Define("PrimaryTracks",  "VertexFitterSimple::get_PrimaryTracks( RecoLeptonTracks, true, 4.5, 20e-3, 300, 0., 0., 0.)")
-
+                .Define("PrimaryVertexObject", "VertexFitterSimple::VertexFitter_Tk(1, PrimaryTracks, true, 4.5, 20e-3, 300)")
                 .Define("n_PrimaryTracks",  "ReconstructedParticle2Track::getTK_n( PrimaryTracks )")
-
-                # the secondary tracks
                 .Define("SecondaryTracks",   "VertexFitterSimple::get_NonPrimaryTracks( RecoLeptonTracks,  PrimaryTracks )")
                 .Define("n_SecondaryTracks",  "ReconstructedParticle2Track::getTK_n( SecondaryTracks )" )
-
-                .Define("RecoDecayVertexObjectLepton",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoLeptonTracks, true, 4.5, 20e-3, 300, 0., 0., 0.)" )
+                .Define("RecoDecayVertexObjectLepton",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoLeptonTracks)" )
                 .Define("RecoDecayVertexLepton",  "VertexingUtils::get_VertexData( RecoDecayVertexObjectLepton )")
 
-                ### same definition that gen distance but with reco objects ###
                 .Define("Reco_Lxyz","return sqrt(RecoDecayVertexLepton.position.x*RecoDecayVertexLepton.position.x + RecoDecayVertexLepton.position.y*RecoDecayVertexLepton.position.y + RecoDecayVertexLepton.position.z*RecoDecayVertexLepton.position.z);")
                 .Define("Reco_Lxy","return sqrt(RecoDecayVertexLepton.position.x*RecoDecayVertexLepton.position.x + RecoDecayVertexLepton.position.y*RecoDecayVertexLepton.position.y);")
+
+                ### LCFIPlus algorithm for vertexing ###
+
+                #find the DVs
+                .Define("RecoDVs", "VertexFinderLCFIPlus::get_SV_event(RecoLeptonTracks, EFlowTrack_1, PrimaryVertexObject, true, 9., 40., 5.)")
+                #find number of DVs
+                .Define("n_RecoDVs", "VertexingUtils::get_n_SV(RecoDVs)")
+
+                .Define("DV_Lxyz", "VertexingUtils::get_d3d_SV(RecoDVs, PrimaryVertexObject)")
+                #.Define("DV_Lxyz_sig", "myUtils::get_d3d_SV_Sig(RecoDVs, PrimaryVertexObject)")
 
                 #EVENTWIDE VARIABLES: Access quantities that exist only once per event, such as the missing energy (despite the name, the MissingET collection contains the total missing energy)
 		.Define("RecoMissingEnergy_e", "ReconstructedParticle::get_e(MissingET)")
@@ -466,31 +424,12 @@ class RDFanalysis():
 		.Define("RecoMissingEnergy_theta", "ReconstructedParticle::get_theta(MissingET)")
 		.Define("RecoMissingEnergy_phi", "ReconstructedParticle::get_phi(MissingET)") #angle of RecoMissingEnergy
 
-                # ee invariant mass
-                .Define("Reco_ee_energy", "if (n_RecoElectrons>1) return (RecoElectron_e.at(0) + RecoElectron_e.at(1)); else return float(-1.);")
-                .Define("Reco_ee_px", "if (n_RecoElectrons>1) return (RecoElectron_px.at(0) + RecoElectron_px.at(1)); else return float(-1.);")
-                .Define("Reco_ee_py", "if (n_RecoElectrons>1) return (RecoElectron_py.at(0) + RecoElectron_py.at(1)); else return float(-1.);")
-                .Define("Reco_ee_pz", "if (n_RecoElectrons>1) return (RecoElectron_pz.at(0) + RecoElectron_pz.at(1)); else return float(-1.);")
-                #.Define("Reco_ee_invMass", "if (n_RecoElectrons>1) return sqrt(Reco_ee_energy*Reco_ee_energy - Reco_ee_px*Reco_ee_px - Reco_ee_py*Reco_ee_py - Reco_ee_pz*Reco_ee_pz ); else return float(-1.);")
-
-                ### mumu invariant mass ###
-                .Define("Reco_mumu_energy", "if (n_RecoMuons>1) return (RecoMuon_e.at(0) + RecoMuon_e.at(1)); else return float(-1.);")
-                .Define("Reco_mumu_px", "if (n_RecoMuons>1) return (RecoMuon_px.at(0) + RecoMuon_px.at(1)); else return float(-1.);")
-                .Define("Reco_mumu_py", "if (n_RecoMuons>1) return (RecoMuon_py.at(0) + RecoMuon_py.at(1)); else return float(-1.);")
-                .Define("Reco_mumu_pz", "if (n_RecoMuons>1) return (RecoMuon_pz.at(0) + RecoMuon_pz.at(1)); else return float(-1.);")
-                #.Define("Reco_mumu_invMass", "if (n_RecoMuons>1) return sqrt(Reco_mumu_energy*Reco_mumu_energy - Reco_mumu_px*Reco_mumu_px - Reco_mumu_py*Reco_mumu_py - Reco_mumu_pz*Reco_mumu_pz ); else return float(-1.);")
-
-                ### emu invariant mass ###
-                .Define("Reco_emu_energy", "if (n_RecoElectrons>0 && n_RecoMuons>0) return (RecoElectron_e.at(0) + RecoMuon_e.at(0)); else return float(-1.);")
-                .Define("Reco_emu_px", "if (n_RecoElectrons>0 && n_RecoMuons>0) return (RecoElectron_px.at(0) + RecoMuon_px.at(0)); else return float(-1.);")
-                .Define("Reco_emu_py", "if (n_RecoElectrons>0 && n_RecoMuons>0) return (RecoElectron_py.at(0) + RecoMuon_py.at(0)); else return float(-1.);")
-                .Define("Reco_emu_pz", "if (n_RecoElectrons>0 && n_RecoMuons>0) return (RecoElectron_pz.at(0) + RecoMuon_pz.at(0)); else return float(-1.);")
-                #.Define("Reco_emu_invMass", "if (n_RecoElectrons>0 && n_RecoMuons>0) return sqrt(Reco_emu_energy*Reco_emu_energy - Reco_emu_px*Reco_emu_px - Reco_emu_py*Reco_emu_py - Reco_emu_pz*Reco_emu_pz ); else return float(-1.);")
-
-                .Define("Reco_invMass", "if (n_RecoMuons>1) return sqrt(Reco_mumu_energy*Reco_mumu_energy - Reco_mumu_px*Reco_mumu_px - Reco_mumu_py*Reco_mumu_py - Reco_mumu_pz*Reco_mumu_pz ); \
-                                        else if (n_RecoElectrons>1) return sqrt(Reco_ee_energy*Reco_ee_energy - Reco_ee_px*Reco_ee_px - Reco_ee_py*Reco_ee_py - Reco_ee_pz*Reco_ee_pz ); \
-                                        else if (n_RecoElectrons>0 && n_RecoMuons>0) return sqrt(Reco_emu_energy*Reco_emu_energy - Reco_emu_px*Reco_emu_px - Reco_emu_py*Reco_emu_py - Reco_emu_pz*Reco_emu_pz ); \
-                                        else return float(-1.);")
+                ### dilepton invariant mass ###
+                .Define("Reco_TwoLeptons_energy", "if (n_RecoLeptons>1) return (Reco_e.at(0) + Reco_e.at(1)); else return float(-1.);")
+                .Define("Reco_TwoLeptons_px", "if (n_RecoLeptons>1) return (Reco_px.at(0) + Reco_px.at(1)); else return float(-1.);")
+                .Define("Reco_TwoLeptons_py", "if (n_RecoLeptons>1) return (Reco_py.at(0) + Reco_py.at(1)); else return float(-1.);")
+                .Define("Reco_TwoLeptons_pz", "if (n_RecoLeptons>1) return (Reco_pz.at(0) + Reco_pz.at(1)); else return float(-1.);")
+                .Define("Reco_invMass", "if (n_RecoLeptons>1) return sqrt(Reco_TwoLeptons_energy*Reco_TwoLeptons_energy - Reco_TwoLeptons_px*Reco_TwoLeptons_px - Reco_TwoLeptons_py*Reco_TwoLeptons_py - Reco_TwoLeptons_pz*Reco_TwoLeptons_pz ); else return float(-1.);")
 
                )
                 return df2
@@ -499,61 +438,37 @@ class RDFanalysis():
                 branchList = [
                         ######## Monte-Carlo particles #######
                         "n_FSGenElectron",
-                        #"FSGenElectron_e",
-                        #"FSGenElectron_p",
-                        #"FSGenElectron_pt",
-                        #"FSGenElectron_px",
-                        #"FSGenElectron_py",
-                        #"FSGenElectron_pz",
-                        #"FSGenElectron_eta",
-                        #"FSGenElectron_theta",
-                        #"FSGenElectron_phi",
-                        #"FSGenElectron_charge",
-                        #"FSGenElectron_vertex_x",
-                        #"FSGenElectron_vertex_y",
-                        #"FSGenElectron_vertex_z",
-
                         "n_FSGenMuon",
-                        #"FSGenMuon_e",
-                        #"FSGenMuon_p",
-                        #"FSGenMuon_pt",
-                        #"FSGenMuon_px",
-                        #"FSGenMuon_py",
-                        #"FSGenMuon_pz",
-                        #"FSGenMuon_eta",
-                        #"FSGenMuon_theta",
-                        #"FSGenMuon_phi",
-                        #"FSGenMuon_charge",
-                        #"FSGenMuon_vertex_x",
-                        #"FSGenMuon_vertex_y",
-                        #"FSGenMuon_vertex_z",
+                        "n_FSGenLepton",
+                        "n_FSGenPhoton",
+                        "n_GenN",
+                        #"n_FSGenNeutrino",
+
+                        #"FSGenLepton_e",
+                        #"FSGenLepton_p",
+                        #"FSGenLepton_pt",
+                        #"FSGenLepton_px",
+                        #"FSGenLepton_py",
+                        #"FSGenLepton_pz",
+                        #"FSGenLepton_eta",
+                        #"FSGenLepton_theta",
+                        #"FSGenLepton_phi",
+                        #"FSGenLepton_charge",
+                        #"FSGenLepton_vertex_x",
+                        #"FSGenLepton_vertex_y",
+                        #"FSGenLepton_vertex_z",
 
                         "FSGen_Lxy",
                         "FSGen_Lxyz",
-                        #"FSGen_ee_invMass",
-                        #"FSGen_eenu_invMass",
-                        #"FSGen_mumu_invMass",
-                        #"FSGen_emu_invMass",
                         "FSGen_invMass",
 
-                        #"n_FSGenNeutrino",
-                        #"FSGenNeutrino_e",
-                        #"FSGenNeutrino_p",
-                        #"FSGenNeutrino_pt",
-                        #"FSGenNeutrino_px",
-                        #"FSGenNeutrino_py",
-                        #"FSGenNeutrino_pz",
-                        #"FSGenNeutrino_eta",
-                        #"FSGenNeutrino_theta",
-                        #"FSGenNeutrino_phi",
-                        #"FSGenNeutrino_charge",
+                        "GenN_mass",
+                        "GenN_time",
+                        "GenN_tau",
+                        "GenN_Lxyz_tau",
+                        "GenN_Lxyz_time",
+                        "GenN_txyz",
 
-                        #"n_FSGenN",
-                        #"FSGenN_mass",
-                        #"FSGenN_time",
-                        #"FSGenN_tau",
-
-                        "n_FSGenPhoton",
                         #"FSGenPhoton_e",
                         #"FSGenPhoton_p",
                         #"FSGenPhoton_pt",
@@ -567,12 +482,13 @@ class RDFanalysis():
 
                         ######## Reconstructed particles #######
                         "n_RecoTracks",
+                        "n_PrimaryTracks",
+                        "n_SecondaryTracks",
                         "n_RecoJets",
                         "n_RecoPhotons",
                         "n_RecoElectrons",
                         "n_RecoMuons",
-                        "n_PrimaryTracks",
-                        "n_SecondaryTracks",
+                        "n_RecoLeptons",
 
                         #"jets_e",
                         #"RecoJet_e",
@@ -603,39 +519,22 @@ class RDFanalysis():
                         #"RecoPhoton_phi",
                         #"RecoPhoton_charge",
 
-                        "RecoElectron_e",
-                        "RecoElectron_p",
-                        "RecoElectron_pt",
-                        "RecoElectron_px",
-                        "RecoElectron_py",
-                        "RecoElectron_pz",
-                        "RecoElectron_eta",
-                        "RecoElectron_theta",
-                        "RecoElectron_phi",
-                        "RecoElectron_charge",
-                        "RecoElectronTrack_absD0",
-                        "RecoElectronTrack_absZ0",
-                        "RecoElectronTrack_absD0sig",
-                        "RecoElectronTrack_absZ0sig",
-                        "RecoElectronTrack_D0cov",
-                        "RecoElectronTrack_Z0cov",
-
-                        "RecoMuon_e",
-                        "RecoMuon_p",
-                        "RecoMuon_pt",
-                        "RecoMuon_px",
-                        "RecoMuon_py",
-                        "RecoMuon_pz",
-                        "RecoMuon_eta",
-                        "RecoMuon_theta",
-                        "RecoMuon_phi",
-                        "RecoMuon_charge",
-                        "RecoMuonTrack_absD0",
-                        "RecoMuonTrack_absZ0",
-                        "RecoMuonTrack_absD0sig",
-                        "RecoMuonTrack_absZ0sig",
-                        "RecoMuonTrack_D0cov",
-                        "RecoMuonTrack_Z0cov", 
+                        #"RecoElectron_e",
+                        #"RecoElectron_p",
+                        #"RecoElectron_pt",
+                        #"RecoElectron_px",
+                        #"RecoElectron_py",
+                        #"RecoElectron_pz",
+                        #"RecoElectron_eta",
+                        #"RecoElectron_theta",
+                        #"RecoElectron_phi",
+                        #"RecoElectron_charge",
+                        #"RecoElectronTrack_absD0",
+                        #"RecoElectronTrack_absZ0",
+                        #"RecoElectronTrack_absD0sig",
+                        #"RecoElectronTrack_absZ0sig",
+                        #"RecoElectronTrack_D0cov",
+                        #"RecoElectronTrack_Z0cov",
 
                         "RecoMissingEnergy_e",
                         "RecoMissingEnergy_p",
@@ -656,12 +555,13 @@ class RDFanalysis():
                         "Reco_eta",
                         "Reco_theta",
                         "Reco_phi",
-                        "Reco_absD0",
-                        "Reco_absZ0",
-                        "Reco_absD0sig",
-                        "Reco_absZ0sig",
-                        "Reco_D0cov",
-                        "Reco_Z0cov",
+                        "Reco_charge",
+                        "RecoTrack_absD0",
+                        "RecoTrack_absZ0",
+                        "RecoTrack_absD0sig",
+                        "RecoTrack_absZ0sig",
+                        "RecoTrack_D0cov",
+                        "RecoTrack_Z0cov",
 
                         "RecoDecayVertexLepton",
                         "Reco_Lxy",
@@ -669,6 +569,10 @@ class RDFanalysis():
                         "Reco_invMass",
                         "Reco_cos",
                         "Reco_DR",
+
+                        "n_RecoDVs",
+                        "DV_Lxyz", 
+                        #"DV_Lxyz_sig",
 
 		]
 
