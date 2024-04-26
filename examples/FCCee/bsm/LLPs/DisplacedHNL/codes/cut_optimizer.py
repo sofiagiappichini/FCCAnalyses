@@ -18,14 +18,14 @@ replacement_words = [
 
 replacement_bkgs = [
     "p8_ee_Zee_ecm91",
-    #"p8_ee_Zmumu_ecm91",
-    #"p8_ee_Ztautau_ecm91",
-    #"p8_ee_Zbb_ecm91",
-    #"p8_ee_Zcc_ecm91",
-    #"p8_ee_Zud_ecm91",
-    #"p8_ee_Zss_ecm91",
+    "p8_ee_Zmumu_ecm91",
+    "p8_ee_Ztautau_ecm91",
+    "p8_ee_Zbb_ecm91",
+    "p8_ee_Zcc_ecm91",
+    "p8_ee_Zud_ecm91",
+    "p8_ee_Zss_ecm91",
     "emununu",
-    #"tatanunu"
+    "tatanunu"
 ]
 
 # Define the tree name
@@ -33,14 +33,15 @@ tree_name = "events"
 
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
-leaf_name = "Reco_Lxy_prompt"
+leaf_name = "Reco_absD0_prompt"
 
 dir = "/eos/user/s/sgiappic/2HNL_ana/final/"
 
 cuts = [
-    
-    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
-    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
+    "sel2RecoSF_vetoes",
+    "sel2RecoDF_vetoes",
+    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
+    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
 ]
 
 for cut in cuts:
@@ -113,10 +114,10 @@ for cut in cuts:
                 s.append(entries_signal[i] / np.sqrt(entries_signal[i] + entries_bkg[i]))
                 
                 with open(output_file, "a") as file:
-                    file.write("significance = {} for cut at cos={} Gev \n".format(s[i], i*(-0.02)))
+                    file.write("significance = {} for cut at cos={} Gev \n".format(s[i], i*(0.01)))
             
         s_max = np.max(s)
-        index = s.index(s_max)*(-0.02)
+        index = s.index(s_max)*(0.01)
 
         with open(output_file, "a") as file:
-            file.write("\n Max significance of {} = {} for cut at L_xy={} Gev \n\n".format(replacement_word, s_max, index))
+            file.write("\n Max significance of {} = {} for cut at d0={} Gev \n\n".format(replacement_word, s_max, index))

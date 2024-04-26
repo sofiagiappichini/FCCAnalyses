@@ -57,10 +57,10 @@ replacement_bkgs = [
     "p8_ee_Zee_ecm91",
     "p8_ee_Zmumu_ecm91",
     "p8_ee_Ztautau_ecm91",
-    "p8_ee_Zbb_ecm91",
-    "p8_ee_Zcc_ecm91",
+    #"p8_ee_Zbb_ecm91",
+    #"p8_ee_Zcc_ecm91",
     #"p8_ee_Zud_ecm91",
-    "p8_ee_Zss_ecm91",
+    #"p8_ee_Zss_ecm91",
     "emununu",
     "tatanunu"
 ]
@@ -93,7 +93,7 @@ with open(output_file, "a") as file:
     file.write("# file, Reco L, Gen L, n. total (scaled to 180 ab-1) (with bsc)\n")
 
 # Loop through each replacement word
-for replacement_word in replacement_words:
+for replacement_word in replacement_bkgs:
  
     # Define the ROOT file path
     #root_file_path = "/eos/user/s/sgiappic/2HNL_bsc/final/{}_sel2RecoDF_vetoes_15-80M_39p_10ME43_cos.root".format(replacement_word)

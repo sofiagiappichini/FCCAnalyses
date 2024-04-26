@@ -24,61 +24,92 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
-DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_gen/final/' 
+
 CUTS = [
-    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
-    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
+    #"sel2RecoSF_vetoes",
+    "sel2Gen_vetoes",
+    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
+    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_0.04Lxy",
     #'sel2RecoSF_vetoes_tracks',
     #'sel2RecoDF_vetoes_tracks',
- ] # cut to rebin
+ ] 
+
+LABELS = {
+    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos":"SF selection, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 Gev, cos#theta>-0.8",
+    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_0.04Lxy":"DF with 2 tracks, M(l,l)<80 GeV, p_{T,miss}>7 Gev, cos#theta>-0.8, L_{xyz}>0.04 mm",
+    "sel2Reco_vetoes":"Two leptons, no photons, no jets",
+    "sel2RecoSF_vetoes":"Two same flavor leptons, no photons, no jets",
+    "sel2Gen_vetoes":"Two leptons, no photons, no jets"
+ }
+
+DIR_PLOTS = '/eos/user/s/sgiappic/2HNL_gen/plots/' 
+
+ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
+energy         = 91
+collider       = 'FCC-ee'
+intLumi        = 180 #ab-1
+
 VARIABLES = [
+    "Reco_DR",
+]
+
+VARIABLES_ALL = [
+    
+    #gen variables
+    "n_FSGenElectron",
+    "n_FSGenMuon",
+    "n_FSGenLepton",
+    "n_GenN",
+    "n_FSGenPhoton",
+
+    "FSGen_Lxy",
+    "FSGen_Lxyz",
+    "FSGen_Lxyz_prompt",
+    "FSGen_invMass",
+
+    "GenN_mass",
+    "GenN_time",
+    "GenN_tau",
+    "GenN_txyz",
+    "GenN_Lxyz_tau",
+    "GenN_Lxyz_time",
+
+    #reco variables
     "n_RecoTracks",
+    "n_PrimaryTracks",
+    "n_SecondaryTracks",
+    "n_RecoDVs",
+    "n_RecoJets",
     "n_RecoPhotons",
     "n_RecoElectrons",
     "n_RecoMuons",
+    "n_RecoLeptons",
 
-    "RecoElectron_e",
-    "RecoElectron_p",
-    "RecoElectron_pt",
-    "RecoElectron_px",
-    "RecoElectron_py",
-    "RecoElectron_pz",
-    "RecoElectron_eta",
-    "RecoElectron_theta",
-    "RecoElectron_phi",
+    "Reco_e",
+    "Reco_p",
+    "Reco_pt",
+    "Reco_px",
+    "Reco_py",
+    "Reco_pz",
+    "Reco_eta",
+    "Reco_theta",
+    "Reco_phi",
 
-    "RecoElectronTrack_absD0",
-    "RecoElectronTrack_absD0_prompt",
-    "RecoElectronTrack_absZ0",
-    "RecoElectronTrack_absZ0_prompt",
-    "RecoElectronTrack_absD0sig",
-    "RecoElectronTrack_absD0sig_med",
-    "RecoElectronTrack_absD0sig_prompt",
-    "RecoElectronTrack_absZ0sig",
-    "RecoElectronTrack_absZ0sig_prompt",
-    "RecoElectronTrack_D0cov",
-    "RecoElectronTrack_Z0cov",
-
-    "RecoMuon_e",
-    "RecoMuon_p",
-    "RecoMuon_pt",
-    "RecoMuon_px",
-    "RecoMuon_py",
-    "RecoMuon_pz",
-    "RecoMuon_eta",
-    "RecoMuon_theta",
-    "RecoMuon_phi",
-
-    "RecoMuonTrack_absD0",
-    "RecoMuonTrack_absD0_prompt",
-    "RecoMuonTrack_absZ0",
-    "RecoMuonTrack_absZ0_prompt",
-    "RecoMuonTrack_absD0sig",
-    "RecoMuonTrack_absD0sig_prompt",
-    "RecoMuonTrack_absZ0sig",
-    "RecoMuonTrack_absZ0sig_prompt",
-    "RecoMuonTrack_D0cov",
-    "RecoMuonTrack_Z0cov",
+    "RecoTrack_absD0_prompt",
+    "RecoTrack_absZ0_prompt",
+    "RecoTrack_absD0_med",
+    "RecoTrack_absZ0_med",
+    "RecoTrack_absD0",
+    "RecoTrack_absZ0",
+    "RecoTrack_absD0sig",
+    "RecoTrack_absD0sig_med",
+    "RecoTrack_absD0sig_prompt",
+    "RecoTrack_absZ0sig",
+    "RecoTrack_absZ0sig_med",
+    "RecoTrack_absZ0sig_prompt",
+    "RecoTrack_D0cov",
+    "RecoTrack_Z0cov",
 
     "Reco_DecayVertexLepton_x",       
     "Reco_DecayVertexLepton_y",          
@@ -93,6 +124,12 @@ VARIABLES = [
     "Reco_Lxy_prompt",
     "Reco_Lxyz",
     "Reco_Lxyz_prompt",
+    "Reco_Lxyz_LCFI",
+    "Reco_Lxyz_prompt_LCFI",
+    
+    "Reco_invMass",
+    "Reco_cos",
+    "Reco_DR",
 
     "RecoMissingEnergy_e",
     "RecoMissingEnergy_p",
@@ -104,53 +141,18 @@ VARIABLES = [
     "RecoMissingEnergy_theta",
     "RecoMissingEnergy_phi",
 
-    "Reco_e",
-    "Reco_p",
-    "Reco_pt",
-    "Reco_px",
-    "Reco_py",
-    "Reco_pz",
-    "Reco_eta",
-    "Reco_theta",
-    "Reco_phi",
-
-    "Reco_absD0_prompt",
-    "Reco_absZ0_prompt",
-    "Reco_absD0_med",
-    "Reco_absZ0_med",
-    "Reco_absD0",
-    "Reco_absZ0",
-    "Reco_absD0sig",
-    "Reco_absD0sig_med",
-    "Reco_absD0sig_prompt",
-    "Reco_absZ0sig",
-    "Reco_absZ0sig_med",
-    "Reco_absZ0sig_prompt",
-    "Reco_D0cov",
-    "Reco_Z0cov",
-
-    "Reco_invMass",
-    "Reco_cos",
-    "Reco_DR",
-    
- ] # variable to replot
-DIR_PLOTS = '/eos/user/s/sgiappic/www/' 
-
-ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
-energy         = 91
-collider       = 'FCC-ee'
-intLumi        = 180
+ ] 
 
 backgrounds = [
-    'p8_ee_Zee_ecm91',
-    'p8_ee_Zmumu_ecm91',
-    'p8_ee_Ztautau_ecm91',
+    #'p8_ee_Zee_ecm91',
+    #'p8_ee_Zmumu_ecm91',
+    #'p8_ee_Ztautau_ecm91',
     #'p8_ee_Zbb_ecm91',
     #'p8_ee_Zcc_ecm91',
     #'p8_ee_Zud_ecm91',
     #'p8_ee_Zss_ecm91',
-    'emununu',
-    'tatanunu',
+    #'emununu',
+    #'tatanunu',
 ]
 
 blegend = {
@@ -178,11 +180,12 @@ bcolors = {
 }
 
 signals = [
+    'HNL_4e-8_10gev',
     'HNL_2.86e-12_30gev',
     'HNL_2.86e-7_30gev',
     #'HNL_5e-12_50gev',
     #'HNL_4e-10_80gev',
-    'HNL_4e-12_50gev',
+    'HNL_6.67e-8_60gev',
     'HNL_2.86e-8_80gev',
 ]
 
@@ -193,20 +196,23 @@ slegend = {
     'HNL_2.86e-8_80gev': 'U^{2}=2.86e-8, M_{N}=80 GeV',
     'HNL_5e-12_50gev': 'U^{2}=5e-12, M_{N}=50 GeV',
     'HNL_4e-10_80gev': 'U^{2}=4e-10, M_{N}=80 GeV',
+    'HNL_4e-8_10gev': 'U^{2}=4e-8, M_{N}=10 GeV',
+    'HNL_6.67e-8_60gev': 'U^{2}=6.67e-8, M_{N}=60 GeV',
 }
 
 scolors = {
-    'HNL_2.86e-12_30gev': ROOT.kAzure+6,
+    'HNL_2.86e-12_30gev': ROOT.kBlue-4,
     'HNL_2.86e-7_30gev': ROOT.kOrange+1,
-    'HNL_5e-12_50gev': ROOT.kRed-4,
-    'HNL_4e-10_80gev': ROOT.kBlue-4,
-    'HNL_4e-12_50gev': ROOT.kBlue-4,
-    'HNL_2.86e-8_80gev': ROOT.kRed-4,
+    'HNL_6.67e-8_60gev': ROOT.kRed-4,
+    'HNL_2.86e-8_80gev': ROOT.kBlue-1,
+    'HNL_4e-8_10gev': ROOT.kAzure+6,
 }
 
 for cut in CUTS:
 
-    for variable in VARIABLES:
+    extralab = LABELS[cut]
+
+    for variable in VARIABLES_ALL:
 
         canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -216,7 +222,7 @@ for cut in CUTS:
         #legend coordinates and style
         legsize = 0.04*nsig
         legsize2 = 0.04*nbkg
-        leg = ROOT.TLegend(0.16, 0.80 - legsize, 0.45, 0.78)
+        leg = ROOT.TLegend(0.16, 0.80 - legsize, 0.45, 0.74)
         leg.SetFillColor(0)
         leg.SetFillStyle(0)
         leg.SetLineColor(0)
@@ -224,7 +230,7 @@ for cut in CUTS:
         leg.SetTextSize(0.025)
         leg.SetTextFont(42)
 
-        leg2 = ROOT.TLegend(0.70, 0.80 - legsize2, 0.88, 0.78)
+        leg2 = ROOT.TLegend(0.70, 0.80 - legsize2, 0.88, 0.74)
         leg2.SetFillColor(0)
         leg2.SetFillStyle(0)
         leg2.SetLineColor(0)
@@ -257,41 +263,63 @@ for cut in CUTS:
             colors.append(bcolors[b])
             leg2.AddEntry(histos[-1], blegend[b], "f")
 
-        #drawing stack for backgrounds
-        hStackBkg = ROOT.THStack("hStackBkg", "")
-        hStackBkg.SetMinimum(1e-6)
-        hStackBkg.SetMaximum(1e23)
-        BgMCHistYieldsDic = {}
-        for i in range(nsig, nsig+nbkg):
-            h = histos[i]
-            h.SetLineWidth(1)
-            h.SetLineColor(ROOT.kBlack)
-            h.SetFillColor(colors[i])
-            if h.Integral() > 0:
-                BgMCHistYieldsDic[h.Integral()] = h
-            else:
-                BgMCHistYieldsDic[-1*nbkg] = h
+        if nbkg!=0:
 
-        # sort stack by yields (smallest to largest)
-        BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
-        for h in BgMCHistYieldsDic:
-            hStackBkg.Add(h)
+            #drawing stack for backgrounds
+            hStackBkg = ROOT.THStack("hStackBkg", "")
+            hStackBkg.SetMinimum(1e-6)
+            hStackBkg.SetMaximum(1e20)
+            BgMCHistYieldsDic = {}
+            for i in range(nsig, nsig+nbkg):
+                h = histos[i]
+                h.SetLineWidth(1)
+                h.SetLineColor(ROOT.kBlack)
+                h.SetFillColor(colors[i])
+                if h.Integral() > 0:
+                    BgMCHistYieldsDic[h.Integral()] = h
+                else:
+                    BgMCHistYieldsDic[-1*nbkg] = h
 
-        #draw the histograms
-        hStackBkg.Draw("HIST")
+            # sort stack by yields (smallest to largest)
+            BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
+            for h in BgMCHistYieldsDic:
+                hStackBkg.Add(h)
 
-        # add the signal histograms
-        for i in range(nsig):
-            h = histos[i]
-            h.SetLineWidth(3)
-            h.SetLineColor(colors[i])
-            h.Draw("HIST SAME")
+            #draw the histograms
+            hStackBkg.Draw("HIST")
 
-        hStackBkg.GetYaxis().SetTitle("Events")
-        hStackBkg.GetXaxis().SetTitle("{}".format(variable))
-        #hStackBkg.GetYaxis().SetTitleOffset(1.5)
-        hStackBkg.GetXaxis().SetTitleOffset(1.2)
-        #hStackBkg.GetXaxis().SetLimits(1, 1000)
+            # add the signal histograms
+            for i in range(nsig):
+                h = histos[i]
+                h.SetLineWidth(3)
+                h.SetLineColor(colors[i])
+                h.Draw("HIST SAME")
+
+            hStackBkg.GetYaxis().SetTitle("Events")
+            hStackBkg.GetXaxis().SetTitle("{}".format(variable))
+            #hStackBkg.GetYaxis().SetTitleOffset(1.5)
+            hStackBkg.GetXaxis().SetTitleOffset(1.2)
+            #hStackBkg.GetXaxis().SetLimits(1, 1000)
+
+        else: 
+             # add the signal histograms
+            for i in range(nsig):
+                h = histos[i]
+                h.SetLineWidth(3)
+                h.SetLineColor(colors[i])
+                if i == 0:
+                    h.Draw("HIST")
+                    h.GetYaxis().SetTitle("Events")
+                    h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
+                    #h.GetXaxis().SetTitle("{}".format(variable))
+                    h.GetYaxis().SetRangeUser(1e-6,1e15)
+                    #h.GetYaxis().SetTitleOffset(1.5)
+                    h.GetXaxis().SetTitleOffset(1.2)
+                    #h.GetXaxis().SetLimits(1, 1000)
+                else: 
+                    h.Draw("HIST SAME")
+
+        
 
         #labels around the plot
         if 'ee' in collider:
@@ -308,6 +336,10 @@ for cut in CUTS:
         text = '#bf{#it{' + ana_tex + '}}'
         latex.SetTextSize(0.03)
         latex.DrawLatex(0.18, 0.80, text)
+
+        text = '#bf{#it{' + extralab + '}}'
+        latex.SetTextSize(0.02)
+        latex.DrawLatex(0.18, 0.76, text)
 
         leg.Draw()
         leg2.Draw()
