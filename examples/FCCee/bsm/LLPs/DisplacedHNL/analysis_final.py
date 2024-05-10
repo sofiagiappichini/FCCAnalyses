@@ -1,9 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-#inputDir = "output_stage1/"
 inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
 #Output directory where the files produced at the final-selection level are
-#outputDir  = "output_finalSel/"
 outputDir = "/eos/user/s/sgiappic/2HNL_ana/final/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
@@ -13,7 +11,7 @@ intLumi = 180e6 #pb^-1
 doScale = True
 
 #Save event yields in a table (optional)
-saveTabular = True
+saveTabular = False
 
 #Number of CPUs to use
 nCPUS = 6
@@ -209,28 +207,27 @@ procDictAdd={
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
-    ### n_RecoJets==0 useless right now with zero jet in clusters ###
     ### basic selection is vetoes on leptons, charge, photons, jets ###
 
     ### to be used for signal plots with no distintion between flavors ###
     #"sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
     #"sel2Gen_vetoes": "n_FSGenLepton==2 && n_FSGenPhoton==0",
 
-    #"sel2RecoSF_vetoes": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
-    #"sel2RecoSF_vetoes_tracks": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2",
-    #"sel2RecoSF_vetoes_tracks_M80": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2 && Reco_invMass<80",
-    #"sel2RecoSF_vetoes_tracks_M80_p40": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2 && Reco_invMass<80 \
+    "sel2RecoSF_vetoes": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_jets==0",
+    #"sel2RecoSF_vetoes_tracks": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2",
+    #"sel2RecoSF_vetoes_tracks_M80": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2 && Reco_invMass<80",
+    #"sel2RecoSF_vetoes_tracks_M80_p40": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2 && Reco_invMass<80 \
     #                                    && Reco_p.at(0)<40 && Reco_p.at(1)<40",
-    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2 && Reco_invMass<80 \
+    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2 && Reco_invMass<80 \
     #                                    && Reco_p.at(0)<40 && Reco_p.at(1)<40 && RecoMissingEnergy_pt.at(0)>11.5",
-    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2 && Reco_invMass<80 \
-                                        && Reco_p.at(0)<40 && Reco_p.at(1)<40 && RecoMissingEnergy_pt.at(0)>11.5 && Reco_cos>-0.8",
+    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2 && Reco_invMass<80 \
+    #                                    && Reco_p.at(0)<40 && Reco_p.at(1)<40 && RecoMissingEnergy_pt.at(0)>11.5 && Reco_cos>-0.8",
     
-    #"sel2RecoDF_vetoes": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0",
-    #"sel2RecoDF_vetoes_tracks": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2",
-    #"sel2RecoDF_vetoes_tracks_M80": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2 && Reco_invMass<80",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>7",
-    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_RecoTracks == 2 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>7 && Reco_cos<-0.8",
+    "sel2RecoDF_vetoes": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_jets==0",
+    #"sel2RecoDF_vetoes_tracks": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2",
+    #"sel2RecoDF_vetoes_tracks_M80": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2 && Reco_invMass<80",
+    #"sel2RecoDF_vetoes_tracks_M80_7MEpt": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>7",
+    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(0)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(0)==1)) && n_RecoPhotons==0 && n_jets==0 && n_RecoTracks == 2 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>7 && Reco_cos<-0.8",
     
 }
 
@@ -238,20 +235,20 @@ cutList = {
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
 cutLabels = {
     #"selNone": "Before selection",
-    "sel2Reco_vetoes":"Two leptons, no photons and jets",
+    #"sel2Reco_vetoes":"Two leptons, no photons and jets",
 
     #"sel2RecoSF_vetoes":"Two same flavor leptons, no photons and jets",
     #"sel2RecoSF_vetoes_tracks":"Two same flavor leptons, no photons and jets, two reconstructed tracks",
-    #"sel2RecoSF_vetoes_tracks_M80":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV",
-    #"sel2RecoSF_vetoes_tracks_M80_p40":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p<40 GeV",
-    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 GeV",
-    #"sel2RecoSF_vetoes_tracks_M80_11.5MEpt_p40_0.8cos":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
+    "sel2RecoSF_vetoes_tracks_M80":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV",
+    "sel2RecoSF_vetoes_tracks_M80_p40":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p<40 GeV",
+    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 GeV",
+    "sel2RecoSF_vetoes_tracks_M80_11.5MEpt_p40_0.8cos":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
 
     #"sel2RecoDF_vetoes":"Two different flavor leptons, no photons and jets",
     #"sel2RecoDF_vetoes_tracks":"Two different flavor leptons, no photons and jets, two reconstructed tracks",
-    #"sel2RecoDF_vetoes_tracks_M80":Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt":Two different flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p_{T,miss}>7 GeV",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
+    "sel2RecoDF_vetoes_tracks_M80":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV",
+    "sel2RecoDF_vetoes_tracks_M80_7MEpt":"Two different flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p_{T,miss}>7 GeV",
+    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos":"Two same flavor leptons, no photons and jets, two reconstructed tracks, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
 }
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
@@ -262,28 +259,30 @@ histoList = {
     "n_FSGenMuon":                      {"name":"n_FSGenMuon",                      "title":"Number of final state gen muons",              "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_FSGenLepton":                    {"name":"n_FSGenLepton",                    "title":"Number of final state gen leptons",            "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_FSGenPhoton":                    {"name":"n_FSGenPhoton",                    "title":"Number of final state gen photons",            "bin":5,"xmin":-0.5 ,"xmax":4.5},
-    "n_GenN":                           {"name":"n_GenN",                           "title":"Number of final state gen HNLs",               "bin":5,"xmin":-0.5 ,"xmax":4.5},
+    #"n_GenN":                           {"name":"n_GenN",                           "title":"Number of final state gen HNLs",               "bin":5,"xmin":-0.5 ,"xmax":4.5},
     #"n_FSGenNeutrino":                   {"name":"n_FSGenNeutrino",                  "title":"Number of final state gen neutrinos",        "bin":5,"xmin":-0.5 ,"xmax":4.5},
 
-    #"FSGenElectron_e":                   {"name":"FSGenElectron_e",                  "title":"Final state gen electrons energy [GeV]",     "bin":100,"xmin":0 ,"xmax":50},
-    #"FSGenElectron_p":                   {"name":"FSGenElectron_p",                  "title":"Final state gen electrons p [GeV]",          "bin":100,"xmin":0 ,"xmax":50},
-    #"FSGenElectron_pt":                  {"name":"FSGenElectron_pt",                 "title":"Final state gen electrons p_{T} [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
-    #"FSGenElectron_pz":                  {"name":"FSGenElectron_pz",                 "title":"Final state gen electrons p_{z} [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
-    #"FSGenElectron_eta":                 {"name":"FSGenElectron_eta",                "title":"Final state gen electrons #eta",             "bin":60, "xmin":-3,"xmax":3},
-    #"FSGenElectron_theta":               {"name":"FSGenElectron_theta",              "title":"Final state gen electrons #theta",           "bin":64, "xmin":0,"xmax":3.2},
-    #"FSGenElectron_phi":                 {"name":"FSGenElectron_phi",                "title":"Final state gen electrons #phi",             "bin":64, "xmin":-3.2,"xmax":3.2},
-    #"FSGenElectron_charge":              {"name":"FSGenElectron_charge",             "title":"Final state gen electrons charge",           "bin":3, "xmin":-1.5,"xmax":1.5},
+    #"FSGenLepton_e":                   {"name":"FSGenLepton_e",                  "title":"Final state gen electrons energy [GeV]",     "bin":100,"xmin":0 ,"xmax":50},
+    #"FSGenLepton_p":                   {"name":"FSGenLepton_p",                  "title":"Final state gen electrons p [GeV]",          "bin":100,"xmin":0 ,"xmax":50},
+    #"FSGenLepton_pt":                  {"name":"FSGenLepton_pt",                 "title":"Final state gen electrons p_{T} [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
+    #"FSGenLepton_pz":                  {"name":"FSGenLepton_pz",                 "title":"Final state gen electrons p_{z} [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
+    #"FSGenLepton_eta":                 {"name":"FSGenLepton_eta",                "title":"Final state gen electrons #eta",             "bin":60, "xmin":-3,"xmax":3},
+    #"FSGenLepton_theta":               {"name":"FSGenLepton_theta",              "title":"Final state gen electrons #theta",           "bin":64, "xmin":0,"xmax":3.2},
+    #"FSGenLepton_phi":                 {"name":"FSGenLepton_phi",                "title":"Final state gen electrons #phi",             "bin":64, "xmin":-3.2,"xmax":3.2},
+    #"FSGenLepton_charge":              {"name":"FSGenLepton_charge",             "title":"Final state gen electrons charge",           "bin":3, "xmin":-1.5,"xmax":1.5},
 
-    #"FSGenElectron_vertex_x": {"name":"FSGenElectron_vertex_x", "title":"Final state gen e^{#font[122]{\55}} production vertex x [mm]",      "bin":100,"xmin":-1000 ,"xmax":1000},
-    #"FSGenElectron_vertex_y": {"name":"FSGenElectron_vertex_y", "title":"Final state gen e^{#font[122]{\55}} production vertex y [mm]",      "bin":100,"xmin":-1000 ,"xmax":1000},
-    #"FSGenElectron_vertex_z": {"name":"FSGenElectron_vertex_z", "title":"Final state gen e^{#font[122]{\55}} production vertex z [mm]",      "bin":100,"xmin":-1000 ,"xmax":1000},
-    #"FSGenElectron_vertex_x_prompt": {"name":"FSGenElectron_vertex_x", "title":"Final state gen e^{#font[122]{\55}} production vertex x [mm]",      "bin":100,"xmin":-0.01 ,"xmax":0.01},
-    #"FSGenElectron_vertex_y_prompt": {"name":"FSGenElectron_vertex_y", "title":"Final state gen e^{#font[122]{\55}} production vertex y [mm]",      "bin":100,"xmin":-0.01 ,"xmax":0.01},
-    #"FSGenElectron_vertex_z_prompt": {"name":"FSGenElectron_vertex_z", "title":"Final state gen e^{#font[122]{\55}} production vertex z [mm]",      "bin":100,"xmin":-0.01 ,"xmax":0.01},
-
-    "FSGen_Lxy":            {"name":"FSGen_Lxy",      "title":"Gen L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":1000},
-    "FSGen_Lxyz":           {"name":"FSGen_Lxyz",     "title":"Gen L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
-    "FSGen_Lxyz_prompt":    {"name":"FSGen_Lxyz",     "title":"Gen L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":100},
+    #"FSGenLepton_vertex_x": {"name":"FSGenLepton_vertex_x", "title":"Final state gen e^{#font[122]{\55}} production vertex x [mm]",      "bin":100,"xmin":-2000 ,"xmax":2000},
+    #"FSGenLepton_vertex_y": {"name":"FSGenLepton_vertex_y", "title":"Final state gen e^{#font[122]{\55}} production vertex y [mm]",      "bin":100,"xmin":-2000 ,"xmax":2000},
+    #"FSGenLepton_vertex_z": {"name":"FSGenLepton_vertex_z", "title":"Final state gen e^{#font[122]{\55}} production vertex z [mm]",      "bin":100,"xmin":-2000 ,"xmax":2000},
+    #"FSGenLepton_vertex_x_prompt": {"name":"FSGenLepton_vertex_x", "title":"Final state gen e^{#font[122]{\55}} production vertex x [mm]",      "bin":100,"xmin":-1 ,"xmax":1},
+    #"FSGenLepton_vertex_y_prompt": {"name":"FSGenLepton_vertex_y", "title":"Final state gen e^{#font[122]{\55}} production vertex y [mm]",      "bin":100,"xmin":-1 ,"xmax":1},
+    #"FSGenLepton_vertex_z_prompt": {"name":"FSGenLepton_vertex_z", "title":"Final state gen e^{#font[122]{\55}} production vertex z [mm]",      "bin":100,"xmin":-1 ,"xmax":1},
+    #"FSGenLepton_time":             {"name":"FSGenLepton_time",              "title":"Gen lepton time [s]",         "bin":100,"xmin":0 ,"xmax":1e-8},
+    
+    "FSGen_Lxy":            {"name":"FSGen_Lxy",      "title":"Gen L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":2000},
+    "FSGen_Lxyz":           {"name":"FSGen_Lxyz",     "title":"Gen L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":2000},
+    "FSGen_Lxyz_prompt":    {"name":"FSGen_Lxyz",     "title":"Gen L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
+    "FSGen_Lxy_prompt":    {"name":"FSGen_Lxy",     "title":"Gen L_{xy} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
     "FSGen_invMass":        {"name":"FSGen_invMass",  "title":"Gen M(l,l') [GeV]",   "bin":100,"xmin":0, "xmax":100},
 
     #"FSGenNeutrino_e":                   {"name":"FSGenNeutrino_e",                  "title":"Final state gen neutrinos energy [GeV]",     "bin":100,"xmin":0 ,"xmax":50},
@@ -295,12 +294,12 @@ histoList = {
     #"FSGenNeutrino_phi":                 {"name":"FSGenNeutrino_phi",                "title":"Final state gen neutrinos #phi",             "bin":64, "xmin":-3.2,"xmax":3.2},
     #"FSGenNeutrino_charge":              {"name":"FSGenNeutrino_charge",             "title":"Final state gen neutrinos charge",           "bin":3, "xmin":-1.5,"xmax":1.5},
 
-    "GenN_mass":                   {"name":"GenN_mass",                     "title":"Gen N mass [GeV]",               "bin":100,"xmin":0 ,"xmax":90},
-    "GenN_time":                   {"name":"GenN_time",                     "title":"Gen N time [s]",               "bin":100,"xmin":0 ,"xmax":1e-8},
-    "GenN_tau":                    {"name":"GenN_tau",                      "title":"Gen N #tau [s]",               "bin":100,"xmin":0 ,"xmax":1e-8},
-    "GenN_txyz":                   {"name":"GenN_txyz",                     "title":"Gen N #tau [s]",               "bin":100,"xmin":0 ,"xmax":1e-8},
-    "GenN_Lxyz_tau":               {"name":"GenN_Lxyz_tau",                 "title":"Gen N L_{xyz} [mm]",           "bin":100,"xmin":0 ,"xmax":1000},
-    "GenN_Lxyz_time":              {"name":"GenN_Lxyz_time",                "title":"Gen N L_{xyz} [mm]",           "bin":100,"xmin":0 ,"xmax":1000},
+    #"GenN_mass":                   {"name":"GenN_mass",                     "title":"Gen N mass [GeV]",               "bin":100,"xmin":0 ,"xmax":90},
+    #"GenN_e":                      {"name":"GenN_e",                        "title":"Gen N energy [GeV]",             "bin":100,"xmin":0 ,"xmax":50},
+    #"GenN_p":                      {"name":"GenN_p",                        "title":"Gen N momentum [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
+    #"GenN_tau":                    {"name":"GenN_tau",                      "title":"Gen HNL #tau [s]",               "bin":100,"xmin":0 ,"xmax":1e-8},
+    #"GenN_Lxyz":                   {"name":"GenN_Lxyz",                     "title":"Gen N L_{xyz} [mm]",             "bin":100,"xmin":0 ,"xmax":2000},
+    #"GenN_Lxyz_prompt":            {"name":"GenN_Lxyz",                     "title":"Gen N L_{xyz} [mm]",             "bin":100,"xmin":0 ,"xmax":10},
    
     #"FSGenPhoton_e":                   {"name":"FSGenPhoton_e",                  "title":"Final state gen photons energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
     #"FSGenPhoton_p":                   {"name":"FSGenPhoton_p",                  "title":"Final state gen photons p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},
@@ -315,13 +314,13 @@ histoList = {
     "n_RecoTracks":                    {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",             "bin":10,"xmin":-0.5 ,"xmax":9.5},
     "n_PrimaryTracks":                 {"name":"n_PrimaryTracks",                "title":"Total number of primary tracks",          "bin":10,"xmin":-0.5 ,"xmax":9.5},
     "n_SecondaryTracks":               {"name":"n_SecondaryTracks",              "title":"Total number of secondary tracks",        "bin":10,"xmin":-0.5 ,"xmax":9.5},
-    "n_RecoDVs":                       {"name":"n_RecoDVs",                      "title":"Total number of DVs",                     "bin":5,"xmin":-0.5 ,"xmax":4.5},
-    "n_RecoJets":                      {"name":"n_RecoJets",                     "title":"Total number of reco jets",               "bin":5,"xmin":-0.5 ,"xmax":4.5},
+    #"n_RecoDVs":                       {"name":"n_RecoDVs",                      "title":"Total number of DVs",                     "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoPhotons":                   {"name":"n_RecoPhotons",                  "title":"Total number of reco photons",            "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoElectrons":                 {"name":"n_RecoElectrons",                "title":"Total number of reco electrons",          "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoMuons":                     {"name":"n_RecoMuons",                    "title":"Total number of reco muons",              "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoLeptons":                   {"name":"n_RecoLeptons",                  "title":"Total number of reco leptons",            "bin":5,"xmin":-0.5 ,"xmax":4.5},
-
+    "n_jets":                           {"name":"n_jets",                         "title":"Total number of reco jets",               "bin":5,"xmin":-0.5 ,"xmax":4.5},
+    
     #"jets_e":        {"name":"jets_e",        "title":"Reco jet energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     #"RecoJet_e":        {"name":"RecoJet_e",        "title":"Reco jet energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     #"RecoJet_p":        {"name":"RecoJet_p",        "title":"Reco jet p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
@@ -384,8 +383,7 @@ histoList = {
     "Reco_eta":                 {"name":"Reco_eta",       "title":"Reco lepton #eta",               "bin":60, "xmin":-3,"xmax":3},
     "Reco_theta":               {"name":"Reco_theta",     "title":"Reco lepton #theta",             "bin":64, "xmin":0,"xmax":3.2},
     "Reco_phi":                 {"name":"Reco_phi",       "title":"Reco lepton #phi",               "bin":64, "xmin":-3.2,"xmax":3.2},
-    "Reco_charge":              {"name":"Reco_charge",    "title":"Reco electron charge",           "bin":3, "xmin":-1.5,"xmax":1.5},
-
+    #"Reco_charge":              {"name":"Reco_charge",    "title":"Reco electron charge",           "bin":3, "xmin":-1.5,"xmax":1.5},
 
     "RecoTrack_absD0_prompt":        {"name":"RecoTrack_absD0",        "title":"Reco lepton |d_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":1},
     "RecoTrack_absZ0_prompt":        {"name":"RecoTrack_absZ0",        "title":"Reco lepton |z_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":1},
@@ -402,26 +400,26 @@ histoList = {
     "RecoTrack_D0cov":               {"name":"RecoTrack_D0cov",     "title":"Reco lepton tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
     "RecoTrack_Z0cov":               {"name":"RecoTrack_Z0cov",     "title":"Reco lepton tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
     
-    "Reco_DecayVertexLepton_x":           {"name":"RecoDecayVertexLepton.position.x",  "title":"Reco decay lepton vertex x [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexLepton_y":           {"name":"RecoDecayVertexLepton.position.y",  "title":"Reco decay lepton vertex y [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
-    "Reco_DecayVertexLepton_z":           {"name":"RecoDecayVertexLepton.position.z",  "title":"Reco decay lepton vertex z [mm]",            "bin":100,"xmin":-1000 ,"xmax":1000},
+    "Reco_DecayVertexLepton_x":           {"name":"RecoDecayVertexLepton.position.x",  "title":"Reco decay lepton vertex x [mm]",            "bin":100,"xmin":-2000 ,"xmax":2000},
+    "Reco_DecayVertexLepton_y":           {"name":"RecoDecayVertexLepton.position.y",  "title":"Reco decay lepton vertex y [mm]",            "bin":100,"xmin":-2000 ,"xmax":2000},
+    "Reco_DecayVertexLepton_z":           {"name":"RecoDecayVertexLepton.position.z",  "title":"Reco decay lepton vertex z [mm]",            "bin":100,"xmin":-2000 ,"xmax":2000},
     "Reco_DecayVertexLepton_x_prompt":    {"name":"RecoDecayVertexLepton.position.x",  "title":"Reco decay lepton vertex x [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
     "Reco_DecayVertexLepton_y_prompt":    {"name":"RecoDecayVertexLepton.position.y",  "title":"Reco decay lepton vertex y [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
     "Reco_DecayVertexLepton_z_prompt":    {"name":"RecoDecayVertexLepton.position.z",  "title":"Reco decay lepton vertex z [mm]",            "bin":100,"xmin":-1 ,"xmax":1},
-    "Reco_DecayVertexLepton_chi2":        {"name":"RecoDecayVertexLepton.chi2",        "title":"Reco decay lepton vertex #chi^{2}",          "bin":100,"xmin":0 ,"xmax":3},
-    "Reco_DecayVertexLepton_probability": {"name":"RecoDecayVertexLepton.probability", "title":"Reco decay lepton vertex probability",       "bin":100,"xmin":0 ,"xmax":10},
+    "Reco_DecayVertexLepton_chi2":        {"name":"RecoDecayVertexLepton.chi2",        "title":"Reco decay lepton vertex #chi^{2}",          "bin":100,"xmin":0 ,"xmax":20},
+    "Reco_DecayVertexLepton_probability": {"name":"RecoDecayVertexLepton.probability", "title":"Reco decay lepton vertex probability",       "bin":100,"xmin":0 ,"xmax":1},
 
-    "Reco_Lxy":                     {"name":"Reco_Lxy",                    "title":"Reco L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":1000},
+    "Reco_Lxy":                     {"name":"Reco_Lxy",                    "title":"Reco L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":2000},
     "Reco_Lxy_prompt":              {"name":"Reco_Lxy",                    "title":"Reco L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":10},
-    "Reco_Lxyz":                    {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
+    "Reco_Lxyz":                    {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":2000},
     "Reco_Lxyz_prompt":             {"name":"Reco_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
 
-    "Reco_Lxyz_LCFI":                    {"name":"DV_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
-    "Reco_Lxyz_prompt_LCFI":             {"name":"DV_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
+    #"Reco_Lxyz_LCFI":                    {"name":"DV_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":1000},
+    #"Reco_Lxyz_prompt_LCFI":             {"name":"DV_Lxyz",                   "title":"Reco L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
     
     "Reco_invMass":     {"name":"Reco_invMass",     "title":"Reco M(l,l') [GeV]",            "bin":100,"xmin":0, "xmax":100},
     "Reco_cos":         {"name":"Reco_cos",         "title":"Reco cos#theta(l,l')",          "bin":100,"xmin":-1., "xmax":1.},
-    "Reco_DR":          {"name":"Reco_DR",          "title":"Reco #Delta R(l,l')",           "bin":100,"xmin":0, "xmax":10},
+    "Reco_DR":          {"name":"Reco_DR",          "title":"Reco #Delta R(l,l')",           "bin":100,"xmin":0, "xmax":7},
 
     "RecoMissingEnergy_e":       {"name":"RecoMissingEnergy_e",       "title":"Reco Total Missing Energy [GeV]",    "bin":100,"xmin":0 ,"xmax":50},
     "RecoMissingEnergy_p":       {"name":"RecoMissingEnergy_p",       "title":"Reco Total Missing p [GeV]",         "bin":100,"xmin":0 ,"xmax":50},
