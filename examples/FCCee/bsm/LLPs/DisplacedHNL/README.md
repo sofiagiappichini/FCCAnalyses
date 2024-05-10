@@ -222,6 +222,10 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 `replot.py` is heavily inspired by `do_plots.py`. It allows to plot log scale x axis and it's made to be more adaptable. The current version stacks backgrounds and not signals. Plots for only one group can be done.
 
+`replot_root.py` is the same thing but done in ROOT. It takes TTrees as input. **Currently not working.**
+
 ### Combine
 
 `replace_input_combine.py` automates getting the significance of the events. It loops over signal files so the datacard can be updated properly and the significance is written on a file. It assumes that all signal events have the same uncertainty. The backgrounds are manually listed in the datacard. It needs to be run from the Combine directory after installation of CMSSW.
+
+`significance_plots.py` plots the values of the significance obtained from Combine with and without log scale for the coupling. First of all the input files are divided so that two different sets of data can be extracted and plotted separetely. Then there is the distinction between the scales and methods used for the creation of the grid.

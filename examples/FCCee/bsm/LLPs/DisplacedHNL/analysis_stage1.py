@@ -7,8 +7,8 @@ processList = {
         #'p8_ee_Zee_ecm91':{'chunks':100},
         #'p8_ee_Zmumu_ecm91':{'chunks':100},
         #'p8_ee_Ztautau_ecm91':{'chunks':100},
-        #'p8_ee_Zbb_ecm91':{'chunks':100},
-        #'p8_ee_Zcc_ecm91':{'chunks':100},
+        'p8_ee_Zbb_ecm91':{'chunks':100},
+        'p8_ee_Zcc_ecm91':{'chunks':100},
         #'p8_ee_Zud_ecm91':{'chunks':100},
         #'p8_ee_Zss_ecm91':{'chunks':100},
 
@@ -16,16 +16,16 @@ processList = {
         #'tatanunu':{},
 
         #privately-produced signals
-        'HNL_4e-8_10gev':{},
-        'HNL_1.33e-9_20gev':{},
-        'HNL_2.86e-12_30gev':{},
-        'HNL_2.86e-7_30gev':{},
-        'HNL_5e-12_40gev':{},
-        'HNL_4e-12_50gev':{},
-        'HNL_6.67e-8_60gev':{},
-        'HNL_4e-8_60gev':{},
-        'HNL_2.86e-9_70gev':{},
-        'HNL_2.86e-8_80gev':{},
+        #'HNL_4e-8_10gev':{},
+        #'HNL_1.33e-9_20gev':{},
+        #'HNL_2.86e-12_30gev':{},
+        #'HNL_2.86e-7_30gev':{},
+        #'HNL_5e-12_40gev':{},
+        #'HNL_4e-12_50gev':{},
+        #'HNL_6.67e-8_60gev':{},
+        #'HNL_4e-8_60gev':{},
+        #'HNL_2.86e-9_70gev':{},
+        #'HNL_2.86e-8_80gev':{},
 
         #'HNL_4e-10_10gev':{},
         #'HNL_4e-10_20gev':{},
@@ -85,18 +85,18 @@ processList = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/winter2023/IDEA/"
+prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_gen/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -105,10 +105,10 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = False
+runBatch = True
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+batchQueue = "tomorrow"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -179,20 +179,21 @@ class RDFanalysis():
                 .Define("FSGenLepton", "FCCAnalyses::MCParticle::mergeParticles(FSGenElectron, FSGenMuon)") 
                 .Define("n_FSGenLepton", "FCCAnalyses::MCParticle::get_n(FSGenLepton)")
                 #put in dummy values below if there aren't any FSGenMuons, to avoid seg fault
-                .Define("FSGenLepton_e", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_e(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_p", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_p(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_pt", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_pt(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_px", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_px(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_py", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_py(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_pz", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_pz(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_eta", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_eta(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_theta", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_theta(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_phi", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_phi(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_charge", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_charge(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_e", "FCCAnalyses::MCParticle::get_e(FSGenLepton)")
+                .Define("FSGenLepton_p", "FCCAnalyses::MCParticle::get_p(FSGenLepton)")
+                .Define("FSGenLepton_pt", "FCCAnalyses::MCParticle::get_pt(FSGenLepton)")
+                .Define("FSGenLepton_px", "FCCAnalyses::MCParticle::get_px(FSGenLepton)")
+                .Define("FSGenLepton_py", "FCCAnalyses::MCParticle::get_py(FSGenLepton)")
+                .Define("FSGenLepton_pz", "FCCAnalyses::MCParticle::get_pz(FSGenLepton)")
+                .Define("FSGenLepton_eta", "FCCAnalyses::MCParticle::get_eta(FSGenLepton)")
+                .Define("FSGenLepton_theta", "FCCAnalyses::MCParticle::get_theta(FSGenLepton)")
+                .Define("FSGenLepton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenLepton)")
+                .Define("FSGenLepton_charge", "FCCAnalyses::MCParticle::get_charge(FSGenLepton)")
+                .Define("FSGenLepton_time", "FCCAnalyses::MCParticle::get_time(FSGenLepton)") #creation time in s
 
-                .Define("FSGenLepton_vertex_x", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_vertex_x(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_vertex_y", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_vertex_y(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
-                .Define("FSGenLepton_vertex_z", "if (n_FSGenLepton>0) return FCCAnalyses::MCParticle::get_vertex_z(FSGenLepton); else return FCCAnalyses::MCParticle::get_genStatus(GenMuon_PID);")
+                .Define("FSGenLepton_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x(FSGenLepton)")
+                .Define("FSGenLepton_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y(FSGenLepton)")
+                .Define("FSGenLepton_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z(FSGenLepton)")
 
                 # Finding the Lxy of the HNL
                 ### both leptons have the same vertex decaying from Z or W so when there are no electrons use one of the muons, when there are at least one electron use that ###
@@ -240,16 +241,22 @@ class RDFanalysis():
                 .Define("GenN_e", "FCCAnalyses::MCParticle::get_e(GenN)")
                 .Define("GenN_p", "FCCAnalyses::MCParticle::get_p(GenN)")
                 .Define("GenN_mass", "FCCAnalyses::MCParticle::get_mass(GenN)")
-                .Define("GenN_time", "FCCAnalyses::MCParticle::get_time(GenN)")
+
+                ### definetly overkill for this study, gets the associated daugthers and then their vertex ###
+                .Define("GenN1_indices", "MCParticle::get_indices( 9900012, {}, false, true, true, true) ( Particle, Particle1)" )
+                .Define("GenN2_indices", "MCParticle::get_indices( 9900014, {}, false, true, true, true) ( Particle, Particle1)" )
+                .Define("GenN1_dec", "FCCAnalyses::MCParticle::get_list_of_stable_particles_from_decay(GenN1_indices[0], Particle, Particle1)")
+                .Define("GenN2_dec", "FCCAnalyses::MCParticle::get_list_of_stable_particles_from_decay(GenN2_indices[0], Particle, Particle1)")
+                .Define("GenN_d1", "if (GenN1_dec.size()>0) return MCParticle::sel_byIndex(GenN1_dec.at(0), Particle); else return MCParticle::sel_byIndex(GenN2_dec.at(0), Particle);")
+
+                .Define("GenN_vertex_x",    "return MCParticle::get_vertex_x({GenN_d1})")
+                .Define("GenN_vertex_y",    "return MCParticle::get_vertex_y({GenN_d1})")
+                .Define("GenN_vertex_z",    "return MCParticle::get_vertex_z({GenN_d1})")
+                .Define("GenN_Lxyz", "return sqrt(GenN_vertex_x*GenN_vertex_x + GenN_vertex_y*GenN_vertex_y + GenN_vertex_z*GenN_vertex_z)") #in mm
                 
-                .Define("GenN_tau", "return (GenN_e.at(0) * GenN_time.at(0) / GenN_mass.at(0));") #in s
-                .Define("GenN_Lxyz_tau", "return (GenN_p.at(0) * GenN_tau * 3e8 *1e3 / GenN_mass.at(0));") #in mm
-                .Define("GenN_Lxyz_time", "return (GenN_p.at(0) * GenN_time.at(0) * 3e8 *1e3 / GenN_mass.at(0));") #in mm
-
-                # Calculating the lifetime of the HNL
-                # Definition: t = Lxy * branchGenPtcl.At(i).Mass / (branchGenPtcl.At(i).PT * 1000 * 3E8)
-                .Define("GenN_txyz", "return ( FSGen_Lxyz * GenN_mass.at(0) / (GenN_p.at(0) * 3e8 * 1e3))" )
-
+                ### use the time of creation fo the leptons to get the lifetime of the HNL ###
+                .Define("GenN_tau", "return (FSGenLepton_time * GenN_e.at(0) / GenN_mass.at(0)) ") #tau of HNLs in s
+        
                 # ee invariant mass
                 .Define("FSGen_TwoLeptons_energy", "if (n_FSGenLepton>1) return (FSGenLepton_e.at(0) + FSGenLepton_e.at(1)); else return float(-1.);")
                 .Define("FSGen_TwoLeptons_px", "if (n_FSGenLepton>1) return (FSGenLepton_px.at(0) + FSGenLepton_px.at(1)); else return float(-1.);")
@@ -285,23 +292,6 @@ class RDFanalysis():
                 .Define("RecoJetTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(Jet,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoJetTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(Jet,EFlowTrack_1)")
 
-                ### Jet clustering with different algorithm ###
-                .Define("RP_px", "ReconstructedParticle::get_px(ReconstructedParticles) ")
-                .Define("RP_py", "ReconstructedParticle::get_py(ReconstructedParticles) ")
-                .Define("RP_pz", "ReconstructedParticle::get_pz(ReconstructedParticles) ")
-                .Define("RP_e", "ReconstructedParticle::get_e(ReconstructedParticles) ")
-
-                # build pseudo jets with the RP, using the interface that takes px,py,pz,E
-                .Define("pseudo_jets",  "JetClusteringUtils::set_pseudoJets(RP_px, RP_py, RP_pz, RP_e)" )
-
-                # run jet clustering with all reconstructed particles. 
-                ### Durham algo, exclusive clustering (first number 2) N_jets=0 (second number), E-scheme=0 (third and forth numbers) ###
-                .Define( "FCCAnalysesJets_ee_genkt",  "JetClustering::clustering_ee_kt(2, 0, 1, 0)(pseudo_jets)" )
-                .Define("jets_ee_genkt",  "JetClusteringUtils::get_pseudoJets( FCCAnalysesJets_ee_genkt )")
-
-                # access the jets kinematics :
-                .Define("jets_e",  "JetClusteringUtils::get_e(jets_ee_genkt)")
-
 		#PHOTONS
 		.Alias("Photon0", "Photon#0.index") 
 		.Define("RecoPhotons",  "ReconstructedParticle::get(Photon0, ReconstructedParticles)")
@@ -321,7 +311,6 @@ class RDFanalysis():
 		.Alias("Electron0", "Electron#0.index")
 		.Define("RecoElectrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles)")
 		.Define("n_RecoElectrons",  "ReconstructedParticle::get_n(RecoElectrons)") #count how many electrons are in the event in total
-                
                 .Define("RecoElectron_e",      "ReconstructedParticle::get_e(RecoElectrons)")
                 .Define("RecoElectron_p",      "ReconstructedParticle::get_p(RecoElectrons)")
                 .Define("RecoElectron_pt",      "ReconstructedParticle::get_pt(RecoElectrons)")
@@ -343,7 +332,6 @@ class RDFanalysis():
 		.Alias("Muon0", "Muon#0.index")
 		.Define("RecoMuons",  "ReconstructedParticle::get(Muon0, ReconstructedParticles)")
 		.Define("n_RecoMuons",  "ReconstructedParticle::get_n(RecoMuons)") #count how many muons are in the event in total
-
                 .Define("RecoMuon_e",      "ReconstructedParticle::get_e(RecoMuons)")
                 .Define("RecoMuon_p",      "ReconstructedParticle::get_p(RecoMuons)")
                 .Define("RecoMuon_pt",      "ReconstructedParticle::get_pt(RecoMuons)")
@@ -388,30 +376,46 @@ class RDFanalysis():
                 ### angular distance between two leptons ###
                 .Define("Reco_DR","if (n_RecoLeptons>1) return myUtils::deltaR(Reco_phi.at(0), Reco_phi.at(1), Reco_eta.at(0), Reco_eta.at(1)); else return float(-1.);")
 
-                # Now we reconstruct the reco decay vertex using the reco'ed tracks from electrons and muons
+                ### Jet clustering with different algorithm, only on non leptons ###
+                .Define("JetsParticles", "ReconstructedParticle::remove(ReconstructedParticles, RecoLeptons)")
+                .Define("RP_px", "ReconstructedParticle::get_px(JetsParticles) ")
+                .Define("RP_py", "ReconstructedParticle::get_py(JetsParticles) ")
+                .Define("RP_pz", "ReconstructedParticle::get_pz(JetsParticles) ")
+                .Define("RP_e", "ReconstructedParticle::get_e(JetsParticles) ")
+                # build pseudo jets with the RP, using the interface that takes px,py,pz,E
+                .Define("pseudo_jets",  "JetClusteringUtils::set_pseudoJets(RP_px, RP_py, RP_pz, RP_e)" )
+                ### Durham algo, exclusive clustering (first number 2) N_jets=0 (second number), E-scheme=0 (third and forth numbers) ###
+                .Define( "FCCAnalysesJets_ee_kt",  "JetClustering::clustering_ee_kt(2, 0, 1, 0)(pseudo_jets)" )
+                .Define("jets_ee_kt",  "JetClusteringUtils::get_pseudoJets( FCCAnalysesJets_ee_kt )")
+                ### get the number of jets in a workaround way, anyway is exactly zero for exclusive clustering ###
+                .Define("jets_e",  "JetClusteringUtils::get_e(jets_ee_kt)")
+                .Define("n_jets", "jets_e.size()")
+
+                ### not useful in this case as the primary track code runs by looking at the chi2 of vertex, taking out the tracks making it larger until there is only one track ###
+                ### so there will always be one primary track even if they should both be secondary but the code doesn't handle that and we have both secondary in principle ###
+                .Define("PrimaryTracks",  "VertexFitterSimple::get_PrimaryTracks( EFlowTrack_1, true, 4.5, 20e-3, 300, 0., 0., 0.)") 
+                .Define("PrimaryVertexObject", "VertexFitterSimple::VertexFitter_Tk(1, PrimaryTracks, true, 4.5, 20e-3, 300)")
+                .Define("n_PrimaryTracks",  "ReconstructedParticle2Track::getTK_n( PrimaryTracks )")
+                .Define("SecondaryTracks",   "VertexFitterSimple::get_NonPrimaryTracks( EFlowTrack_1, PrimaryTracks )")
+                .Define("n_SecondaryTracks",  "ReconstructedParticle2Track::getTK_n( SecondaryTracks )" )
+
+                ### reconstruct the reco decay vertex using the reco'ed tracks from electrons and muons ###
                 .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack_1)") ### EFlowTrack_1 contains all tracks, selecting a subset associated with certain particles ###
                 .Define("RecoMuonTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoMuons, EFlowTrack_1)")
                 .Define("RecoLeptonTracks",   "ReconstructedTrack::Merge( RecoElectronTracks, RecoMuonTracks)") ### merges two tracks collections ###
-                .Define("PrimaryTracks",  "VertexFitterSimple::get_PrimaryTracks( RecoLeptonTracks, true, 4.5, 20e-3, 300, 0., 0., 0.)")
-                .Define("PrimaryVertexObject", "VertexFitterSimple::VertexFitter_Tk(1, PrimaryTracks, true, 4.5, 20e-3, 300)")
-                .Define("n_PrimaryTracks",  "ReconstructedParticle2Track::getTK_n( PrimaryTracks )")
-                .Define("SecondaryTracks",   "VertexFitterSimple::get_NonPrimaryTracks( RecoLeptonTracks,  PrimaryTracks )")
-                .Define("n_SecondaryTracks",  "ReconstructedParticle2Track::getTK_n( SecondaryTracks )" )
-                .Define("RecoDecayVertexObjectLepton",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoLeptonTracks)" )
+                
+                .Define("RecoDecayVertexObjectLepton",   "VertexFitterSimple::VertexFitter_Tk( 0, RecoLeptonTracks)" ) ### reconstructing a vertex withour any request n=0 ###
                 .Define("RecoDecayVertexLepton",  "VertexingUtils::get_VertexData( RecoDecayVertexObjectLepton )")
 
                 .Define("Reco_Lxyz","return sqrt(RecoDecayVertexLepton.position.x*RecoDecayVertexLepton.position.x + RecoDecayVertexLepton.position.y*RecoDecayVertexLepton.position.y + RecoDecayVertexLepton.position.z*RecoDecayVertexLepton.position.z);")
                 .Define("Reco_Lxy","return sqrt(RecoDecayVertexLepton.position.x*RecoDecayVertexLepton.position.x + RecoDecayVertexLepton.position.y*RecoDecayVertexLepton.position.y);")
 
                 ### LCFIPlus algorithm for vertexing ###
-
                 #find the DVs
                 .Define("RecoDVs", "VertexFinderLCFIPlus::get_SV_event(RecoLeptonTracks, EFlowTrack_1, PrimaryVertexObject, true, 9., 40., 5.)")
                 #find number of DVs
                 .Define("n_RecoDVs", "VertexingUtils::get_n_SV(RecoDVs)")
-
                 .Define("DV_Lxyz", "VertexingUtils::get_d3d_SV(RecoDVs, PrimaryVertexObject)")
-                #.Define("DV_Lxyz_sig", "myUtils::get_d3d_SV_Sig(RecoDVs, PrimaryVertexObject)")
 
                 #EVENTWIDE VARIABLES: Access quantities that exist only once per event, such as the missing energy (despite the name, the MissingET collection contains the total missing energy)
 		.Define("RecoMissingEnergy_e", "ReconstructedParticle::get_e(MissingET)")
@@ -441,7 +445,7 @@ class RDFanalysis():
                         "n_FSGenMuon",
                         "n_FSGenLepton",
                         "n_FSGenPhoton",
-                        "n_GenN",
+                        #"n_GenN",
                         #"n_FSGenNeutrino",
 
                         #"FSGenLepton_e",
@@ -454,20 +458,19 @@ class RDFanalysis():
                         #"FSGenLepton_theta",
                         #"FSGenLepton_phi",
                         #"FSGenLepton_charge",
+                        #"FSGenLepton_time",
                         #"FSGenLepton_vertex_x",
                         #"FSGenLepton_vertex_y",
                         #"FSGenLepton_vertex_z",
 
-                        "FSGen_Lxy",
-                        "FSGen_Lxyz",
-                        "FSGen_invMass",
-
-                        "GenN_mass",
-                        "GenN_time",
-                        "GenN_tau",
-                        "GenN_Lxyz_tau",
-                        "GenN_Lxyz_time",
-                        "GenN_txyz",
+                        #"FSGen_Lxy",
+                        #"FSGen_Lxyz",
+                        #"FSGen_invMass",
+                        #"GenN_Lxyz"
+                        #"GenN_tau",
+                        #"GenN_mass",
+                        #"GenN_e",
+                        #"GenN_p",
 
                         #"FSGenPhoton_e",
                         #"FSGenPhoton_p",
@@ -484,7 +487,7 @@ class RDFanalysis():
                         "n_RecoTracks",
                         "n_PrimaryTracks",
                         "n_SecondaryTracks",
-                        "n_RecoJets",
+                        "n_jets",
                         "n_RecoPhotons",
                         "n_RecoElectrons",
                         "n_RecoMuons",
@@ -570,8 +573,8 @@ class RDFanalysis():
                         "Reco_cos",
                         "Reco_DR",
 
-                        "n_RecoDVs",
-                        "DV_Lxyz", 
+                        #"n_RecoDVs",
+                        #"DV_Lxyz", 
                         #"DV_Lxyz_sig",
 
 		]
