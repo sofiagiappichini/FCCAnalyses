@@ -20,8 +20,8 @@ define nu = vl vl~
 
 generate e+ e- > n nu, (n > nu lep lep) 
 
-output HNL_1.33e-9
-launch HNL_1.33e-9
+output /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
 
 set lpp1 0
 set lpp2 0
@@ -48,7 +48,7 @@ set nevents 50000
 done
 
 ### run 2
-launch HNL_1.33e-9
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -74,7 +74,7 @@ set nevents 50000
 done
 
 ### run 3
-launch HNL_1.33e-9
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -100,7 +100,7 @@ set nevents 50000
 done
 
 ### run 4
-launch HNL_1.33e-9
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -126,7 +126,7 @@ set nevents 50000
 done
 
 ### run 5
-launch HNL_1.33e-9
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -152,7 +152,7 @@ set nevents 50000
 done
 
 ### run 6
-launch HNL_1.33e-9
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -178,7 +178,7 @@ set nevents 50000
 done
 
 ### run 7
-launch HNL_1.33e-9
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -204,7 +204,7 @@ set nevents 50000
 done
 
 ### run 8
-launch HNL_1.33e-9
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_1.33e-9
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
