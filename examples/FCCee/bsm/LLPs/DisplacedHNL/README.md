@@ -18,6 +18,7 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
     - [Cut optimizer](#cut-optimizer)
     - [Plots](#plots)
     - [Combine](#combine)
+    - [Other](#other)
 
 ## FCCAnalyses setup 
 
@@ -202,6 +203,8 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 `get_weight_lhe.py` and `get_weight_banner.py` extract the cross section values from the .lhe files. The first one writes them in the format used in `analysis_final.py`(remember to change the square brackets to curly afterward). The second needs to be called inside the directory where the runs are stored and it's just for preliminary checking all the values at a glance.
 
+`mass_scan.py` accesses the basic .lhe info (cross section and error) and plots them. The values are put into global arrays that are then split according to the input files and runs of each sample.
+
 ### LHE conversion to ROOT
 
 `replace_input_delphes.py` automatically converts all the .lhe files given in the list to .root files with the process described in the previous section. It needs to be run in the directory where the cards are stored.
@@ -212,7 +215,7 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 ### Rebinning
 
-`rebinning.py` rebins one variable (histogram stored in .root file) given a generic array of lower edges (they need to be a subgroup of the original edges). It loops over multiple cuts and files, the output is one .root file with all the histograms rebinned with names `$PROCESS_$CHANNEL`.
+`rebinning.py` rebins one variable (histogram stored in .root file) given a generic array of lower edges (they need to be a subgroup of the original edges). It loops over multiple cuts and files, the output is one .root file with all the histograms rebinned with names `$PROCESS_$CHANNEL`. It can also then plot the rebinned variable, grouping some backgrounds together and adding the same and different flavor events.
 
 ### Cut optimizer
 
@@ -228,4 +231,10 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 `replace_input_combine.py` automates getting the significance of the events. It loops over signal files so the datacard can be updated properly and the significance is written on a file. It assumes that all signal events have the same uncertainty. The backgrounds are manually listed in the datacard. It needs to be run from the Combine directory after installation of CMSSW.
 
-`significance_plots.py` plots the values of the significance obtained from Combine with and without log scale for the coupling. First of all the input files are divided so that two different sets of data can be extracted and plotted separetely. Then there is the distinction between the scales and methods used for the creation of the grid.
+`significance_plots.py` plots the values of the significance obtained from Combine with and without log scale for the coupling. First of all the input files are divided so that two different sets of data can be extracted and plotted separetely. Then there is the distinction between the scales and methods used for the creation of the grid. `nevents_plots.py` does the same thing.
+
+### Other
+
+`tertiary_plot.py` makes a tertiary plot from some data file and points for the HNLs couplings.
+
+`future_constraint.py` makes an exclusion and significance plot for the HNL scenario, with data from other experiments and personal analyses. The x and y values of each set of data need to already be in logaritmic scale.
