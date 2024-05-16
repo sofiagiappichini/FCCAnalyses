@@ -89,7 +89,7 @@ for i, data_file in enumerate(data_files):
 
                 # Add scatter plot for points taken as reference
                 #axs[row, col].scatter(mass, log_coupling, marker='x', c='black')
-                axs[row, col].set_xscale('log')
+                #axs[row, col].set_xscale('log')
 
         axs[row, col].tick_params(direction='out', top=False, right=False)
     
