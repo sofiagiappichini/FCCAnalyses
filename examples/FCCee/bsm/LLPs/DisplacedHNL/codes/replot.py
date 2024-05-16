@@ -24,64 +24,73 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
-DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_final/' 
 
 CUTS = [
-    #"sel2RecoSF_vetoes",
-    "sel2RecoDF_vetoes_15-80M_39p_10ME43_cos"
-    #"sel2Gen_vetoes",
+    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos_chi",
+    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_chi",
     #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_0.04Lxy",
-    #'sel2RecoSF_vetoes_tracks',
-    #'sel2RecoDF_vetoes_tracks',
+    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
+    "sel2Reco_vetoes",
+    "sel2Gen_vetoes",
+    #"sel2RecoSF_vetoes",
+    #"sel2RecoDF_vetoes",
  ] 
 
 LABELS = {
-    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos":"SF selection, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 Gev, cos#theta>-0.8",
-    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_0.04Lxy":"DF with 2 tracks, M(l,l)<80 GeV, p_{T,miss}>7 Gev, cos#theta>-0.8, L_{xyz}>0.04 mm",
+    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos_chi":"Same flavor, M(l,l)<80 GeV, p_{T,miss}>11.5 Gev, p<40 GeV, cos#theta>-0.8, #chi^2<15",
+    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_chi":"Different flavor, M(l,l)<80 GeV, p_{T,miss}>7 Gev, cos#theta>-0.8, #chi^2<15",
+    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos":"Same flavor, M(l,l)<80 GeV, p_{T,miss}>11.5 Gev, p<40 GeV, cos#theta>-0.8",
+    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos":"Different flavor, M(l,l)<80 GeV, p_{T,miss}>7 Gev, cos#theta>-0.8",
     "sel2Reco_vetoes":"Two leptons, no photons, no jets",
     "sel2RecoSF_vetoes":"Two same flavor leptons, no photons, no jets",
-    "sel2Gen_vetoes":"Two leptons, no photons, no jets",
-    "sel2RecoDF_vetoes_15-80M_39p_10ME43_cos":"test",
+    "sel2RecoDF_vetoes":"Two different flavor leptons, no photons, no jets",
+    "sel2Gen_vetoes":"Two gen leptons, no photons",
  }
 
-DIR_PLOTS = '/eos/user/s/sgiappic/2HNL_ana/plots/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/plots/' 
 
 ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
 energy         = 91
 collider       = 'FCC-ee'
 intLumi        = 180 #ab-1
 
-VARIABLES = [
-    "FSGen_Lxy",
-    "FSGen_Lxyz",
-    "FSGen_Lxyz_prompt",
-    "FSGen_Lxy_prompt",
-    "GenN_tau",
-    "FSGenLepton_time",
-]
-
 VARIABLES_ALL = [
     
     #gen variables
     "n_FSGenElectron",
     "n_FSGenMuon",
-    #"n_FSGenLepton",
-    #"n_GenN",
+    "n_FSGenLepton",
+    "n_GenN",
     "n_FSGenPhoton",
 
-    #"FSGen_Lxy",
-    #"FSGen_Lxyz",
-    #"FSGen_Lxyz_prompt",
-    #"FSGen_Lxy_prompt",
-    #"FSGen_invMass",
+    "FSGenLepton_e",
+    "FSGenLepton_p",
+    "FSGenLepton_pt",
+    "FSGenLepton_pz",
+    "FSGenLepton_eta",
+    "FSGenLepton_theta",
+    "FSGenLepton_phi",
 
-    #"GenN_mass",
-    #"GenN_time",
-    #"GenN_tau",
-    #"GenN_txyz",
-    #"GenN_Lxyz_tau",
-    #"GenN_Lxyz_time",
+    "FSGenLepton_vertex_x",
+    "FSGenLepton_vertex_z",
+    "FSGenLepton_vertex_x_prompt",
+    "FSGenLepton_vertex_y_prompt",
+    "FSGenLepton_vertex_z_prompt",
+    "FSGenLepton_time",   
+
+    "FSGen_Lxy",
+    "FSGen_Lxyz",
+    "FSGen_Lxyz_prompt",
+    "FSGen_Lxy_prompt",
+    "FSGen_invMass",
+
+    "GenN_mass",
+    "GenN_p",
+    "GenN_e",
+    "GenN_tau",
+    "GenN_Lxyz",
+    "GenN_Lxyz_prompt",
 
     #reco variables
     "n_RecoTracks",
@@ -91,7 +100,7 @@ VARIABLES_ALL = [
     "n_RecoPhotons",
     "n_RecoElectrons",
     "n_RecoMuons",
-    #"n_RecoLeptons",
+    "n_RecoLeptons",
 
     "Reco_e",
     "Reco_p",
@@ -194,42 +203,24 @@ bcolors_old = {
 }
 
 signals = [
-    'HNL_4e-8_10gev',
-    'HNL_1.33e-9_20gev',
     'HNL_2.86e-12_30gev',
-    'HNL_2.86e-7_30gev',
-    'HNL_5e-12_40gev',
-    'HNL_4e-12_50gev',
-    'HNL_6.67e-8_60gev',
-    'HNL_4e-8_60gev',
-    'HNL_2.86e-9_70gev',
-    'HNL_2.86e-8_80gev',
+    'HNL_6.67e-10_30gev',
+    'HNL_5e-12_60gev',
+    'HNL_1.33e-7_80gev',
 ]
 
 slegend = {
-    'HNL_4e-8_10gev':"U^{2}=4e-8, M_{N}=10 GeV",
-    'HNL_1.33e-9_20gev':"U^{2}=1.33e-9, M_{N}=20 GeV",
     'HNL_2.86e-12_30gev':"U^{2}=2.86e-12, M_{N}=30 GeV",
-    'HNL_2.86e-7_30gev':"U^{2}=2.86e-7, M_{N}=30 GeV",
-    'HNL_5e-12_40gev':"U^{2}=5e-12, M_{N}=40 GeV",
-    'HNL_4e-12_50gev':"U^{2}=4e-12, M_{N}=50 GeV",
-    'HNL_6.67e-8_60gev':"U^{2}=6.67e-8, M_{N}=60 GeV",
-    'HNL_4e-8_60gev':"U^{2}=4e-8, M_{N}=60 GeV",
-    'HNL_2.86e-9_70gev':"U^{2}=2.86e-9, M_{N}=70 GeV",
-    'HNL_2.86e-8_80gev':"U^{2}=2.86e-8, M_{N}=80 GeV",
+    'HNL_6.67e-10_30gev':"U^{2}=6.67e-10, M_{N}=30 GeV",
+    'HNL_5e-12_60gev':"U^{2}=5e-12, M_{N}=60 GeV",
+    'HNL_1.33e-7_80gev':"U^{2}=1.33e-7, M_{N}=80 GeV",
 }
 
 scolors = {
-    'HNL_4e-8_10gev':ROOT.kCyan-7,
-    'HNL_1.33e-9_20gev':ROOT.kAzure+5,
-    'HNL_2.86e-12_30gev': ROOT.kBlue-7,
-    'HNL_2.86e-7_30gev': ROOT.kOrange-2,
-    'HNL_5e-12_40gev': ROOT.kOrange+8,
-    'HNL_4e-12_50gev': ROOT.kBlue-4,
-    'HNL_6.67e-8_60gev': ROOT.kRed-4,
-    'HNL_4e-8_60gev': ROOT.kBlue-4,
-    'HNL_2.86e-9_70gev': ROOT.kRed+2,
-    'HNL_2.86e-8_80gev': ROOT.kBlue+2,
+    'HNL_2.86e-12_30gev': ROOT.kBlue-3,
+    'HNL_6.67e-10_30gev': ROOT.kRed-9,
+    'HNL_5e-12_60gev': ROOT.kRed-3,
+    'HNL_1.33e-7_80gev': ROOT.kBlue-3,
 }
 
 for cut in CUTS:
@@ -241,10 +232,11 @@ for cut in CUTS:
         canvas = ROOT.TCanvas("", "", 800, 800)
 
         nsig = len(signals)
-        nbkg = 6
+        nbkg = 0 # change according to type of plots, 6 for grouped backgrounds
 
         #legend coordinates and style
-        legsize = 0.04*nsig
+        
+        legsize = 0.06*nsig
         legsize2 = 0.04*nbkg
         leg = ROOT.TLegend(0.16, 0.80 - legsize, 0.45, 0.74)
         leg.SetFillColor(0)
@@ -287,80 +279,79 @@ for cut in CUTS:
             #colors.append(bcolors[b])
             #leg2.AddEntry(histos[-1], blegend[b], "f")
         
-        #add some backgrounds to the same histogram
-        fin = f"{DIRECTORY}emununu_{cut}_histo.root"
-        with ROOT.TFile(fin) as tf:
-            h = tf.Get(variable)
-            hh = copy.deepcopy(h)
-            hh.SetDirectory(0)
-        fin1 = f"{DIRECTORY}tatanunu_{cut}_histo.root"
-        with ROOT.TFile(fin1) as tf1:
-            h1 = tf1.Get(variable)
-            hh1 = copy.deepcopy(h1)
-            hh1.SetDirectory(0)
-        hh.Add(hh1)
-        histos.append(hh)
-        colors.append(bcolors["emununu"])
-        leg2.AddEntry(histos[-1], blegend["emununu"], "f")
-        
-        fin = f"{DIRECTORY}p8_ee_Zee_ecm91_{cut}_histo.root"
-        with ROOT.TFile(fin) as tf:
-            h = tf.Get(variable)
-            hh = copy.deepcopy(h)
-            hh.SetDirectory(0)
-        fin1 = f"{DIRECTORY}p8_ee_Zmumu_ecm91_{cut}_histo.root"
-        with ROOT.TFile(fin1) as tf1:
-            h1 = tf1.Get(variable)
-            hh1 = copy.deepcopy(h1)
-            hh1.SetDirectory(0)
-        hh.Add(hh1)
-        histos.append(hh)
-        colors.append(bcolors["p8_ee_Zee_ecm91"])
-        leg2.AddEntry(histos[-1], blegend["p8_ee_Zee_ecm91"], "f")
+        if nbkg != 0:
+            #add some backgrounds to the same histogram
+            fin = f"{DIRECTORY}emununu_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            fin1 = f"{DIRECTORY}tatanunu_{cut}_histo.root"
+            with ROOT.TFile(fin1) as tf1:
+                h1 = tf1.Get(variable)
+                hh1 = copy.deepcopy(h1)
+                hh1.SetDirectory(0)
+            hh.Add(hh1)
+            histos.append(hh)
+            colors.append(bcolors["emununu"])
+            leg2.AddEntry(histos[-1], blegend["emununu"], "f")
+            
+            '''fin = f"{DIRECTORY}p8_ee_Zee_ecm91_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            fin1 = f"{DIRECTORY}p8_ee_Zmumu_ecm91_{cut}_histo.root"
+            with ROOT.TFile(fin1) as tf1:
+                h1 = tf1.Get(variable)
+                hh1 = copy.deepcopy(h1)
+                hh1.SetDirectory(0)
+            hh.Add(hh1)
+            histos.append(hh)
+            colors.append(bcolors["p8_ee_Zee_ecm91"])
+            leg2.AddEntry(histos[-1], blegend["p8_ee_Zee_ecm91"], "f")'''
 
-        fin = f"{DIRECTORY}p8_ee_Ztautau_ecm91_{cut}_histo.root"
-        with ROOT.TFile(fin) as tf:
-            h = tf.Get(variable)
-            hh = copy.deepcopy(h)
-            hh.SetDirectory(0)
-        histos.append(hh)
-        colors.append(bcolors["p8_ee_Ztautau_ecm91"])
-        leg2.AddEntry(histos[-1], blegend["p8_ee_Ztautau_ecm91"], "f")
+            fin = f"{DIRECTORY}p8_ee_Ztautau_ecm91_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            histos.append(hh)
+            colors.append(bcolors["p8_ee_Ztautau_ecm91"])
+            leg2.AddEntry(histos[-1], blegend["p8_ee_Ztautau_ecm91"], "f")
 
-        fin = f"{DIRECTORY}p8_ee_Zud_ecm91_{cut}_histo.root"
-        with ROOT.TFile(fin) as tf:
-            h = tf.Get(variable)
-            hh = copy.deepcopy(h)
-            hh.SetDirectory(0)
-        fin1 = f"{DIRECTORY}p8_ee_Zss_ecm91_{cut}_histo.root"
-        with ROOT.TFile(fin1) as tf1:
-            h1 = tf1.Get(variable)
-            hh1 = copy.deepcopy(h1)
-            hh1.SetDirectory(0)
-        hh.Add(hh1)
-        histos.append(hh)
-        colors.append(bcolors["p8_ee_Zud_ecm91"])
-        leg2.AddEntry(histos[-1], blegend["p8_ee_Zud_ecm91"], "f")
+            '''fin = f"{DIRECTORY}p8_ee_Zud_ecm91_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            fin1 = f"{DIRECTORY}p8_ee_Zss_ecm91_{cut}_histo.root"
+            with ROOT.TFile(fin1) as tf1:
+                h1 = tf1.Get(variable)
+                hh1 = copy.deepcopy(h1)
+                hh1.SetDirectory(0)
+            hh.Add(hh1)
+            histos.append(hh)
+            colors.append(bcolors["p8_ee_Zud_ecm91"])
+            leg2.AddEntry(histos[-1], blegend["p8_ee_Zud_ecm91"], "f")
 
-        fin = f"{DIRECTORY}p8_ee_Zcc_ecm91_{cut}_histo.root"
-        with ROOT.TFile(fin) as tf:
-            h = tf.Get(variable)
-            hh = copy.deepcopy(h)
-            hh.SetDirectory(0)
-        histos.append(hh)
-        colors.append(bcolors["p8_ee_Zcc_ecm91"])
-        leg2.AddEntry(histos[-1], blegend["p8_ee_Zcc_ecm91"], "f")
+            fin = f"{DIRECTORY}p8_ee_Zcc_ecm91_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            histos.append(hh)
+            colors.append(bcolors["p8_ee_Zcc_ecm91"])
+            leg2.AddEntry(histos[-1], blegend["p8_ee_Zcc_ecm91"], "f")
 
-        fin = f"{DIRECTORY}p8_ee_Zbb_ecm91_{cut}_histo.root"
-        with ROOT.TFile(fin) as tf:
-            h = tf.Get(variable)
-            hh = copy.deepcopy(h)
-            hh.SetDirectory(0)
-        histos.append(hh)
-        colors.append(bcolors["p8_ee_Zbb_ecm91"])
-        leg2.AddEntry(histos[-1], blegend["p8_ee_Zbb_ecm91"], "f")
-
-        if nbkg!=0:
+            fin = f"{DIRECTORY}p8_ee_Zbb_ecm91_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            histos.append(hh)
+            colors.append(bcolors["p8_ee_Zbb_ecm91"])
+            leg2.AddEntry(histos[-1], blegend["p8_ee_Zbb_ecm91"], "f")'''
 
             #drawing stack for backgrounds
             hStackBkg = ROOT.THStack("hStackBkg", "")
@@ -415,8 +406,6 @@ for cut in CUTS:
                     #h.GetXaxis().SetLimits(1, 1000)
                 else: 
                     h.Draw("HIST SAME")
-
-        
 
         #labels around the plot
         if 'ee' in collider:

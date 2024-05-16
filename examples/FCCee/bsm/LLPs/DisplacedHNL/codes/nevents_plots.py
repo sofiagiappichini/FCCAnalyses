@@ -6,13 +6,14 @@ from matplotlib import colors
 from matplotlib import ticker
 from scipy.interpolate import griddata
 from matplotlib.colors import LogNorm
+import csv
 
 nrows_in = 2
 ncol_in = 2
 end_row = 48 # Last row to include in the first set, doesn't count commented lines
 
 data_files = [
-    "/eos/user/s/sgiappic/combine/output_final.csv",
+    "/eos/user/s/sgiappic/combine/nevents_final_chi.csv",
     ]
 
 fig, axs = plt.subplots(nrows=nrows_in, ncols=ncol_in, figsize=(14, 12))
@@ -31,7 +32,12 @@ for i, data_file in enumerate(data_files):
         coupling = data_part[:, 0]
         log_coupling = np.log10(data_part[:, 0])
         mass = data_part[:, 1]
-        significance = data_part[:, 2]
+        significance_SF = data_part[:, 2]
+        significance_DF = data_part[:, 3]
+
+        significance = []
+        for i in range(len(significance_DF)):
+            significance.append(significance_DF[i]+significance_SF[i])
 
         for k in range(len([coupling, log_coupling])):
             # Plot in the appropriate subplot
@@ -52,7 +58,7 @@ for i, data_file in enumerate(data_files):
                 cbar = fig.colorbar(im, ax=axs[row, col])
                 axs[row, col].set_xlabel(r'$M_N$ $[GeV]$', fontsize=16)
                 axs[row, col].set_ylabel(r'$U^2$', fontsize=16)  
-                cbar.set_label(r'$Significance$', fontsize=16)
+                cbar.set_label(r'$Events$', fontsize=16)
 
                 # Add contour lines at significance levels 2 and 5
                 contour_levels = [3, 5]
@@ -60,7 +66,7 @@ for i, data_file in enumerate(data_files):
                 axs[row, col].clabel(contour_lines, fmt='%1.1f', colors='white', fontsize=12)
                 
                 # Add scatter plot for points taken as reference
-                #axs[row, col].scatter(mass, coupling, marker='x', c='black')
+                axs[row, col].scatter(mass, coupling, marker='x', c='black')
                 
             else :
 
@@ -74,7 +80,7 @@ for i, data_file in enumerate(data_files):
                 cbar = fig.colorbar(im, ax=axs[row, col])
                 axs[row, col].set_xlabel(r'$M_N$ $[GeV]$', fontsize=16)
                 axs[row, col].set_ylabel(r'$log$ $U^2$', fontsize=16) 
-                cbar.set_label(r'$Significance$', fontsize=16)
+                cbar.set_label(r'$Events$', fontsize=16)
 
                 # Add contour lines at significance levels 2 and 5
                 contour_levels = [3]
@@ -97,4 +103,4 @@ axs[1, 1].set_title(r'$Inverted\; Hierarchy$', fontsize=16, y=1.05)
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/plots/significance_final_log.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/plots/events_final_chi_log.png', format='png', dpi=330)
