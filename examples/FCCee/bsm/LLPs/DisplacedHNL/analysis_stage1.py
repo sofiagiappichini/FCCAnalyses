@@ -7,8 +7,8 @@ processList = {
         #'p8_ee_Zee_ecm91':{'chunks':100},
         #'p8_ee_Zmumu_ecm91':{'chunks':100},
         #'p8_ee_Ztautau_ecm91':{'chunks':100},
-        'p8_ee_Zbb_ecm91':{'chunks':100},
-        'p8_ee_Zcc_ecm91':{'chunks':100},
+        #'p8_ee_Zbb_ecm91':{'chunks':100},
+        #'p8_ee_Zcc_ecm91':{'chunks':100},
         #'p8_ee_Zud_ecm91':{'chunks':100},
         #'p8_ee_Zss_ecm91':{'chunks':100},
 
@@ -27,71 +27,127 @@ processList = {
         #'HNL_2.86e-9_70gev':{},
         #'HNL_2.86e-8_80gev':{},
 
-        #'HNL_4e-10_10gev':{},
-        #'HNL_4e-10_20gev':{},
-        #'HNL_4e-10_30gev':{},
-        #'HNL_4e-10_40gev':{},
-        #'HNL_4e-10_50gev':{},
-        #'HNL_4e-10_60gev':{},
-        #'HNL_4e-10_70gev':{},
-        #'HNL_4e-10_80gev':{},
+        'HNL_1.33e-7_10gev':{},
+        'HNL_1.33e-7_20gev':{},
+        'HNL_1.33e-7_30gev':{},
+        'HNL_1.33e-7_40gev':{},
+        'HNL_1.33e-7_50gev':{},
+        'HNL_1.33e-7_60gev':{},
+        'HNL_1.33e-7_70gev':{},
+        'HNL_1.33e-7_80gev':{},
 
-        #'HNL_1.33e-7_10gev':{},
-        #'HNL_1.33e-7_20gev':{},
-        #'HNL_1.33e-7_30gev':{},
-        #'HNL_1.33e-7_40gev':{},
-        #'HNL_1.33e-7_50gev':{},
-        #'HNL_1.33e-7_60gev':{},
-        #'HNL_1.33e-7_70gev':{},
-        #'HNL_1.33e-7_80gev':{},
+        'HNL_2.86e-8_10gev':{},
+        'HNL_2.86e-8_20gev':{},
+        'HNL_2.86e-8_30gev':{},
+        'HNL_2.86e-8_40gev':{},
+        'HNL_2.86e-8_50gev':{},
+        'HNL_2.86e-8_60gev':{},
+        'HNL_2.86e-8_70gev':{},
+        'HNL_2.86e-8_80gev':{},
 
-        #'HNL_2.86e-12_10gev':{},
-        #'HNL_2.86e-12_20gev':{},
-        #'HNL_2.86e-12_30gev':{},
-        #'HNL_2.86e-12_40gev':{},
-        #'HNL_2.86e-12_50gev':{},
-        #'HNL_2.86e-12_60gev':{},
-        #'HNL_2.86e-12_70gev':{},
-        #'HNL_2.86e-12_80gev':{},
+        'HNL_1.33e-9_10gev':{},
+        'HNL_1.33e-9_20gev':{},
+        'HNL_1.33e-9_30gev':{},
+        'HNL_1.33e-9_40gev':{},
+        'HNL_1.33e-9_50gev':{},
+        'HNL_1.33e-9_60gev':{},
+        'HNL_1.33e-9_70gev':{},
+        'HNL_1.33e-9_80gev':{},
 
-        #'HNL_5e-12_10gev':{},
-        #'HNL_5e-12_20gev':{},
-        #'HNL_5e-12_30gev':{},
-        #'HNL_5e-12_40gev':{},
-        #'HNL_5e-12_50gev':{},
-        #'HNL_5e-12_60gev':{},
-        #'HNL_5e-12_70gev':{},
-        #'HNL_5e-12_80gev':{},
+        'HNL_4e-10_10gev':{},
+        'HNL_4e-10_20gev':{},
+        'HNL_4e-10_30gev':{},
+        'HNL_4e-10_40gev':{},
+        'HNL_4e-10_50gev':{},
+        'HNL_4e-10_60gev':{},
+        'HNL_4e-10_70gev':{},
+        'HNL_4e-10_80gev':{},
 
-        #'HNL_6.67e-10_10gev':{},
-        #'HNL_6.67e-10_20gev':{},
-        #'HNL_6.67e-10_30gev':{},
-        #'HNL_6.67e-10_40gev':{},
-        #'HNL_6.67e-10_50gev':{},
-        #'HNL_6.67e-10_60gev':{},
-        #'HNL_6.67e-10_70gev':{},
-        #'HNL_6.67e-10_80gev':{},
+        'HNL_1.33e-11_10gev':{},
+        'HNL_1.33e-11_20gev':{},
+        'HNL_1.33e-11_30gev':{},
+        'HNL_1.33e-11_40gev':{},
+        'HNL_1.33e-11_50gev':{},
+        'HNL_1.33e-11_60gev':{},
+        'HNL_1.33e-11_70gev':{},
+        'HNL_1.33e-11_80gev':{},
 
-        #'HNL_2.86e-7_10gev':{},
-        #'HNL_2.86e-7_20gev':{},
-        #'HNL_2.86e-7_30gev':{},
-        #'HNL_2.86e-7_40gev':{},
-        #'HNL_2.86e-7_50gev':{},
-        #'HNL_2.86e-7_60gev':{},
-        #'HNL_2.86e-7_70gev':{},
-        #'HNL_2.86e-7_80gev':{},
+        'HNL_2.86e-12_10gev':{},
+        'HNL_2.86e-12_20gev':{},
+        'HNL_2.86e-12_30gev':{},
+        'HNL_2.86e-12_40gev':{},
+        'HNL_2.86e-12_50gev':{},
+        'HNL_2.86e-12_60gev':{},
+        'HNL_2.86e-12_70gev':{},
+        'HNL_2.86e-12_80gev':{},
+
+        #inverted
+
+        'HNL_2.86e-7_10gev':{},
+        'HNL_2.86e-7_20gev':{},
+        'HNL_2.86e-7_30gev':{},
+        'HNL_2.86e-7_40gev':{},
+        'HNL_2.86e-7_50gev':{},
+        'HNL_2.86e-7_60gev':{},
+        'HNL_2.86e-7_70gev':{},
+        'HNL_2.86e-7_80gev':{},
+
+        'HNL_5e-8_10gev':{},
+        'HNL_5e-8_20gev':{},
+        'HNL_5e-8_30gev':{},
+        'HNL_5e-8_40gev':{},
+        'HNL_5e-8_50gev':{},
+        'HNL_5e-8_60gev':{},
+        'HNL_5e-8_70gev':{},
+        'HNL_5e-8_80gev':{},
+
+        'HNL_2.86e-9_10gev':{},
+        'HNL_2.86e-9_20gev':{},
+        'HNL_2.86e-9_30gev':{},
+        'HNL_2.86e-9_40gev':{},
+        'HNL_2.86e-9_50gev':{},
+        'HNL_2.86e-9_60gev':{},
+        'HNL_2.86e-9_70gev':{},
+        'HNL_2.86e-9_80gev':{},
+
+        'HNL_6.67e-10_10gev':{},
+        'HNL_6.67e-10_20gev':{},
+        'HNL_6.67e-10_30gev':{},
+        'HNL_6.67e-10_40gev':{},
+        'HNL_6.67e-10_50gev':{},
+        'HNL_6.67e-10_60gev':{},
+        'HNL_6.67e-10_70gev':{},
+        'HNL_6.67e-10_80gev':{},
+
+        'HNL_2.86e-11_10gev':{},
+        'HNL_2.86e-11_20gev':{},
+        'HNL_2.86e-11_30gev':{},
+        'HNL_2.86e-11_40gev':{},
+        'HNL_2.86e-11_50gev':{},
+        'HNL_2.86e-11_60gev':{},
+        'HNL_2.86e-11_70gev':{},
+        'HNL_2.86e-11_80gev':{},
+
+        'HNL_5e-12_10gev':{},
+        'HNL_5e-12_20gev':{},
+        'HNL_5e-12_30gev':{},
+        'HNL_5e-12_40gev':{},
+        'HNL_5e-12_50gev':{},
+        'HNL_5e-12_60gev':{},
+        'HNL_5e-12_70gev':{},
+        'HNL_5e-12_80gev':{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
@@ -105,10 +161,10 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = True
+runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "tomorrow"
+batchQueue = "workday"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -445,32 +501,32 @@ class RDFanalysis():
                         "n_FSGenMuon",
                         "n_FSGenLepton",
                         "n_FSGenPhoton",
-                        #"n_GenN",
+                        "n_GenN",
                         #"n_FSGenNeutrino",
 
-                        #"FSGenLepton_e",
-                        #"FSGenLepton_p",
-                        #"FSGenLepton_pt",
-                        #"FSGenLepton_px",
-                        #"FSGenLepton_py",
-                        #"FSGenLepton_pz",
-                        #"FSGenLepton_eta",
-                        #"FSGenLepton_theta",
-                        #"FSGenLepton_phi",
-                        #"FSGenLepton_charge",
-                        #"FSGenLepton_time",
-                        #"FSGenLepton_vertex_x",
-                        #"FSGenLepton_vertex_y",
-                        #"FSGenLepton_vertex_z",
+                        "FSGenLepton_e",
+                        "FSGenLepton_p",
+                        "FSGenLepton_pt",
+                        "FSGenLepton_px",
+                        "FSGenLepton_py",
+                        "FSGenLepton_pz",
+                        "FSGenLepton_eta",
+                        "FSGenLepton_theta",
+                        "FSGenLepton_phi",
+                        "FSGenLepton_charge",
+                        "FSGenLepton_time",
+                        "FSGenLepton_vertex_x",
+                        "FSGenLepton_vertex_y",
+                        "FSGenLepton_vertex_z",
 
-                        #"FSGen_Lxy",
-                        #"FSGen_Lxyz",
-                        #"FSGen_invMass",
-                        #"GenN_Lxyz"
-                        #"GenN_tau",
-                        #"GenN_mass",
-                        #"GenN_e",
-                        #"GenN_p",
+                        "FSGen_Lxy",
+                        "FSGen_Lxyz",
+                        "FSGen_invMass",
+                        "GenN_Lxyz",
+                        "GenN_tau",
+                        "GenN_mass",
+                        "GenN_e",
+                        "GenN_p",
 
                         #"FSGenPhoton_e",
                         #"FSGenPhoton_p",
@@ -485,8 +541,8 @@ class RDFanalysis():
 
                         ######## Reconstructed particles #######
                         "n_RecoTracks",
-                        "n_PrimaryTracks",
-                        "n_SecondaryTracks",
+                        #"n_PrimaryTracks",
+                        #"n_SecondaryTracks",
                         "n_jets",
                         "n_RecoPhotons",
                         "n_RecoElectrons",
