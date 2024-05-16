@@ -78,12 +78,12 @@ for i, data_file in enumerate(data_files):
 
                 # Add contour lines at significance levels 2 and 5
                 contour_levels = [3]
-                contour_lines = axs[row, col].contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='yellow', linewidths=1.5)
-                axs[row, col].clabel(contour_lines, fmt='%1.1f', colors='yellow', fontsize=12)
+                contour_lines = axs[row, col].contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='white', linewidths=1.5)
+                axs[row, col].clabel(contour_lines, fmt='%1.1f', colors='white', fontsize=12)
 
                 # Add scatter plot for points taken as reference
                 #axs[row, col].scatter(mass, log_coupling, marker='x', c='black')
-                axs[row, col].set_xscale('log')
+                #axs[row, col].set_xscale('log')
 
         axs[row, col].tick_params(direction='out', top=False, right=False)
     
