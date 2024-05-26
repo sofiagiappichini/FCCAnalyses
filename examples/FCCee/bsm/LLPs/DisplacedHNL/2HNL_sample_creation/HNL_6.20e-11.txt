@@ -1,80 +1,80 @@
 # madgraph card to produce LHE files for 2 HNL processes with mixing in all flavors with final state in electrons and muons
 # the name of the file takes the totl mixing angle squared as identifier
 
-#set group_subprocesses Auto
-#set ignore_six_quark_processes False
-#set complex_mass_scheme False
-#set gauge unitary
-#set loop_optimized_output True
-#set loop_color_flows False
-#set default_unset_couplings 99
-#set max_npoint_for_channel 0
-#set auto_convert_model T
+set group_subprocesses Auto
+set ignore_six_quark_processes False
+set complex_mass_scheme False
+set gauge unitary
+set loop_optimized_output True
+set loop_color_flows False
+set default_unset_couplings 99
+set max_npoint_for_channel 0
+set auto_convert_model T
 
-#import model sm
-#import model SM_HeavyN_CKM_AllMasses_LO
+import model sm
+import model SM_HeavyN_CKM_AllMasses_LO
 
-#define lep = e+ e- mu+ mu- ta+ ta-
-#define n = n1 n2
-#define nu = vl vl~ 
+define lep = e+ e- mu+ mu- ta+ ta-
+define n = n1 n2
+define nu = vl vl~ 
 
-#generate e+ e- > n nu, (n > nu lep lep) 
+generate e+ e- > n nu, (n > nu lep lep) 
 
-#output /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
-#launch /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
+output /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
 
-#set lpp1 0
-#set lpp2 0
-#set ebeam1 45.594
-#set ebeam2 45.594
-#set no_parton_cut
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+set no_parton_cut
 
-#set mn1 10
-#set mn2 10.00001
-#set mn3 1000
+set mn1 10
+set mn2 10.00001
+set mn3 1000
 
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-#set ven1 0
-#set ven2 0
-#set vmun1 1e-6
-#set vmun2 1e-6
-#set vtan1 1e-6
-#set vtan2 1e-6
+set ven1 1.76e-6
+set ven2 1.76e-6
+set vmun1 4.66e-6
+set vmun2 4.66e-6
+set vtan1 2.49e-6
+set vtan2 2.49e-6
 
-#set WN1 auto
-#set WN2 auto
-#set time_of_flight 0
-#set nevents 50000
-#done
+set WN1 auto
+set WN2 auto
+set time_of_flight 0
+set nevents 50000
+done
 
 ### run 2
-#launch /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
-#set lpp1 0
-#set lpp2 0
-#set ebeam1 45.594
-#set ebeam2 45.594
-#set no_parton_cut
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+set no_parton_cut
 
-#set mn1 20
-#set mn2 20.00001
-#set mn3 1000
+set mn1 20
+set mn2 20.00001
+set mn3 1000
 
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-#set ven1 0
-#set ven2 0
-#set vmun1 1e-6
-#set vmun2 1e-6
-#set vtan1 1e-6
-#set vtan2 1e-6
+set ven1 1.76e-6
+set ven2 1.76e-6
+set vmun1 4.66e-6
+set vmun2 4.66e-6
+set vtan1 2.49e-6
+set vtan2 2.49e-6
 
-#set WN1 auto
-#set WN2 auto
-#set time_of_flight 0
-#set nevents 50000
-#done
+set WN1 auto
+set WN2 auto
+set time_of_flight 0
+set nevents 50000
+done
 
 ### run 3
-launch /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -86,12 +86,12 @@ set mn2 30.00001
 set mn3 1000
 
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-set ven1 0
-set ven2 0
-set vmun1 1e-6
-set vmun2 1e-6
-set vtan1 1e-6
-set vtan2 1e-6
+set ven1 1.76e-6
+set ven2 1.76e-6
+set vmun1 4.66e-6
+set vmun2 4.66e-6
+set vtan1 2.49e-6
+set vtan2 2.49e-6
 
 set WN1 auto
 set WN2 auto
@@ -100,7 +100,7 @@ set nevents 50000
 done
 
 ### run 4
-launch /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -112,12 +112,12 @@ set mn2 40.00001
 set mn3 1000
 
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-set ven1 0
-set ven2 0
-set vmun1 1e-6
-set vmun2 1e-6
-set vtan1 1e-6
-set vtan2 1e-6
+set ven1 1.76e-6
+set ven2 1.76e-6
+set vmun1 4.66e-6
+set vmun2 4.66e-6
+set vtan1 2.49e-6
+set vtan2 2.49e-6
 
 set WN1 auto
 set WN2 auto
@@ -126,7 +126,7 @@ set nevents 50000
 done
 
 ### run 5
-launch /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -138,12 +138,12 @@ set mn2 50.00001
 set mn3 1000
 
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-set ven1 0
-set ven2 0
-set vmun1 1e-6
-set vmun2 1e-6
-set vtan1 1e-6
-set vtan2 1e-6
+set ven1 1.76e-6
+set ven2 1.76e-6
+set vmun1 4.66e-6
+set vmun2 4.66e-6
+set vtan1 2.49e-6
+set vtan2 2.49e-6
 
 set WN1 auto
 set WN2 auto
@@ -152,7 +152,7 @@ set nevents 50000
 done
 
 ### run 6
-launch /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -164,12 +164,12 @@ set mn2 60.00001
 set mn3 1000
 
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-set ven1 0
-set ven2 0
-set vmun1 1e-6
-set vmun2 1e-6
-set vtan1 1e-6
-set vtan2 1e-6
+set ven1 1.76e-6
+set ven2 1.76e-6
+set vmun1 4.66e-6
+set vmun2 4.66e-6
+set vtan1 2.49e-6
+set vtan2 2.49e-6
 
 set WN1 auto
 set WN2 auto
@@ -178,7 +178,7 @@ set nevents 50000
 done
 
 ### run 7
-launch /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -190,12 +190,12 @@ set mn2 70.00001
 set mn3 1000
 
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-set ven1 0
-set ven2 0
-set vmun1 1e-6
-set vmun2 1e-6
-set vtan1 1e-6
-set vtan2 1e-6
+set ven1 1.76e-6
+set ven2 1.76e-6
+set vmun1 4.66e-6
+set vmun2 4.66e-6
+set vtan1 2.49e-6
+set vtan2 2.49e-6
 
 set WN1 auto
 set WN2 auto
@@ -204,7 +204,7 @@ set nevents 50000
 done
 
 ### run 8
-launch /eos/user/s/sgiappic/2HNL_prod/HNL_4e-12
+launch /eos/user/s/sgiappic/2HNL_prod/HNL_6.20e-11
 set lpp1 0
 set lpp2 0
 set ebeam1 45.594
@@ -216,12 +216,12 @@ set mn2 80.00001
 set mn3 1000
 
 # in the symmetry considered, the mixing angles are equal in each flavor for n1 and n2, refer to google doc for the values
-set ven1 0
-set ven2 0
-set vmun1 1e-6
-set vmun2 1e-6
-set vtan1 1e-6
-set vtan2 1e-6
+set ven1 1.76e-6
+set ven2 1.76e-6
+set vmun1 4.66e-6
+set vmun2 4.66e-6
+set vtan1 2.49e-6
+set vtan2 2.49e-6
 
 set WN1 auto
 set WN2 auto

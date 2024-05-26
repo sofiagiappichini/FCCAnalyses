@@ -1,0 +1,17 @@
+import model sm
+
+define l+ = e+ mu+ 
+define l- = e- mu-
+
+generate e+ e- > ta+ ta- vl vl~ 
+
+output tatanunu
+launch tatanunu
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 1000000
+done
