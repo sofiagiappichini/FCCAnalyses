@@ -31,10 +31,10 @@ CUTS = [
     #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_chi",
     #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
     #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
-    "sel2Reco_vetoes",
-    "sel2Gen_vetoes",
-    #"sel2RecoSF_vetoes",
-    #"sel2RecoDF_vetoes",
+    #"sel2Reco_vetoes",
+    #"sel2Gen_vetoes",
+    "sel2RecoSF_vetoes",
+    "sel2RecoDF_vetoes",
  ] 
 
 LABELS = {
@@ -61,36 +61,36 @@ VARIABLES_ALL = [
     "n_FSGenElectron",
     "n_FSGenMuon",
     "n_FSGenLepton",
-    "n_GenN",
+    #"n_GenN",
     "n_FSGenPhoton",
 
-    "FSGenLepton_e",
-    "FSGenLepton_p",
-    "FSGenLepton_pt",
-    "FSGenLepton_pz",
-    "FSGenLepton_eta",
-    "FSGenLepton_theta",
-    "FSGenLepton_phi",
+    #"FSGenLepton_e",
+    #"FSGenLepton_p",
+    #"FSGenLepton_pt",
+    #"FSGenLepton_pz",
+    #"FSGenLepton_eta",
+    #"FSGenLepton_theta",
+    #"FSGenLepton_phi",
 
-    "FSGenLepton_vertex_x",
-    "FSGenLepton_vertex_z",
-    "FSGenLepton_vertex_x_prompt",
-    "FSGenLepton_vertex_y_prompt",
-    "FSGenLepton_vertex_z_prompt",
-    "FSGenLepton_time",   
+    #"FSGenLepton_vertex_x",
+    #"FSGenLepton_vertex_z",
+    #"FSGenLepton_vertex_x_prompt",
+    #"FSGenLepton_vertex_y_prompt",
+    #"FSGenLepton_vertex_z_prompt",
+    #"FSGenLepton_time",   
 
-    "FSGen_Lxy",
-    "FSGen_Lxyz",
-    "FSGen_Lxyz_prompt",
-    "FSGen_Lxy_prompt",
-    "FSGen_invMass",
+    #"FSGen_Lxy",
+    #"FSGen_Lxyz",
+    #"FSGen_Lxyz_prompt",
+    #"FSGen_Lxy_prompt",
+    #"FSGen_invMass",
 
-    "GenN_mass",
-    "GenN_p",
-    "GenN_e",
-    "GenN_tau",
-    "GenN_Lxyz",
-    "GenN_Lxyz_prompt",
+    #"GenN_mass",
+    #"GenN_p",
+    #"GenN_e",
+    #"GenN_tau",
+    #"GenN_Lxyz",
+    #"GenN_Lxyz_prompt",
 
     #reco variables
     "n_RecoTracks",
@@ -204,9 +204,9 @@ bcolors_old = {
 
 signals = [
     'HNL_2.86e-12_30gev',
-    'HNL_6.67e-10_30gev',
+    #'HNL_6.67e-10_30gev',
     'HNL_5e-12_60gev',
-    'HNL_1.33e-7_80gev',
+    #'HNL_1.33e-7_80gev',
 ]
 
 slegend = {
@@ -232,11 +232,14 @@ for cut in CUTS:
         canvas = ROOT.TCanvas("", "", 800, 800)
 
         nsig = len(signals)
-        nbkg = 0 # change according to type of plots, 6 for grouped backgrounds
+        nbkg = 6 # change according to type of plots, 6 for grouped backgrounds
 
         #legend coordinates and style
         
-        legsize = 0.06*nsig
+        if nsig > 2:
+            legsize = 0.06*nsig
+        else:
+            legsize = 0.06*nsig
         legsize2 = 0.04*nbkg
         leg = ROOT.TLegend(0.16, 0.80 - legsize, 0.45, 0.74)
         leg.SetFillColor(0)
@@ -246,7 +249,7 @@ for cut in CUTS:
         leg.SetTextSize(0.025)
         leg.SetTextFont(42)
 
-        leg2 = ROOT.TLegend(0.70, 0.80 - legsize2, 0.88, 0.74)
+        leg2 = ROOT.TLegend(0.65, 0.80 - legsize2, 0.75, 0.74)
         leg2.SetFillColor(0)
         leg2.SetFillStyle(0)
         leg2.SetLineColor(0)
@@ -296,7 +299,7 @@ for cut in CUTS:
             colors.append(bcolors["emununu"])
             leg2.AddEntry(histos[-1], blegend["emununu"], "f")
             
-            '''fin = f"{DIRECTORY}p8_ee_Zee_ecm91_{cut}_histo.root"
+            fin = f"{DIRECTORY}p8_ee_Zee_ecm91_{cut}_histo.root"
             with ROOT.TFile(fin) as tf:
                 h = tf.Get(variable)
                 hh = copy.deepcopy(h)
@@ -309,7 +312,7 @@ for cut in CUTS:
             hh.Add(hh1)
             histos.append(hh)
             colors.append(bcolors["p8_ee_Zee_ecm91"])
-            leg2.AddEntry(histos[-1], blegend["p8_ee_Zee_ecm91"], "f")'''
+            leg2.AddEntry(histos[-1], blegend["p8_ee_Zee_ecm91"], "f")
 
             fin = f"{DIRECTORY}p8_ee_Ztautau_ecm91_{cut}_histo.root"
             with ROOT.TFile(fin) as tf:
@@ -320,7 +323,7 @@ for cut in CUTS:
             colors.append(bcolors["p8_ee_Ztautau_ecm91"])
             leg2.AddEntry(histos[-1], blegend["p8_ee_Ztautau_ecm91"], "f")
 
-            '''fin = f"{DIRECTORY}p8_ee_Zud_ecm91_{cut}_histo.root"
+            fin = f"{DIRECTORY}p8_ee_Zud_ecm91_{cut}_histo.root"
             with ROOT.TFile(fin) as tf:
                 h = tf.Get(variable)
                 hh = copy.deepcopy(h)
@@ -351,7 +354,7 @@ for cut in CUTS:
                 hh.SetDirectory(0)
             histos.append(hh)
             colors.append(bcolors["p8_ee_Zbb_ecm91"])
-            leg2.AddEntry(histos[-1], blegend["p8_ee_Zbb_ecm91"], "f")'''
+            leg2.AddEntry(histos[-1], blegend["p8_ee_Zbb_ecm91"], "f")
 
             #drawing stack for backgrounds
             hStackBkg = ROOT.THStack("hStackBkg", "")
@@ -400,7 +403,7 @@ for cut in CUTS:
                     h.GetYaxis().SetTitle("Events")
                     h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
                     #h.GetXaxis().SetTitle("{}".format(variable))
-                    h.GetYaxis().SetRangeUser(1e-6,1e15)
+                    h.GetYaxis().SetRangeUser(1e-6,1e20)
                     #h.GetYaxis().SetTitleOffset(1.5)
                     h.GetXaxis().SetTitleOffset(1.2)
                     #h.GetXaxis().SetLimits(1, 1000)

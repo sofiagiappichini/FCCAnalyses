@@ -45,19 +45,17 @@ CUTS = [
 
 VARIABLE = "Reco_DR" # variable to rebin
 
-FILES_B = [
-    'p8_ee_Zee_ecm91',
-    'p8_ee_Zmumu_ecm91',
-    'p8_ee_Ztautau_ecm91',
-    'p8_ee_Zbb_ecm91',
-    'p8_ee_Zcc_ecm91',
-    'p8_ee_Zud_ecm91',
-    'p8_ee_Zss_ecm91',
-    'emununu',
-    'tatanunu'
-]
-
 FILES = [
+    "p8_ee_Zee_ecm91",
+    "p8_ee_Zmumu_ecm91",
+    "p8_ee_Ztautau_ecm91",
+    "p8_ee_Zbb_ecm91",
+    "p8_ee_Zcc_ecm91",
+    "p8_ee_Zud_ecm91",
+    "p8_ee_Zss_ecm91",
+    "emununu",
+    "tatanunu",
+    
     "HNL_1.33e-7_10gev",
     "HNL_1.33e-7_20gev",
     "HNL_1.33e-7_30gev",
@@ -66,15 +64,6 @@ FILES = [
     "HNL_1.33e-7_60gev",
     "HNL_1.33e-7_70gev",
     "HNL_1.33e-7_80gev",
-
-    "HNL_2.86e-8_10gev",
-    "HNL_2.86e-8_20gev",
-    "HNL_2.86e-8_30gev",
-    "HNL_2.86e-8_40gev",
-    "HNL_2.86e-8_50gev",
-    "HNL_2.86e-8_60gev",
-    "HNL_2.86e-8_70gev",
-    "HNL_2.86e-8_80gev",
 
     "HNL_1.33e-9_10gev",
     "HNL_1.33e-9_20gev",
@@ -85,6 +74,24 @@ FILES = [
     "HNL_1.33e-9_70gev",
     "HNL_1.33e-9_80gev",
 
+    "HNL_1.33e-11_10gev",
+    "HNL_1.33e-11_20gev",
+    "HNL_1.33e-11_30gev",
+    "HNL_1.33e-11_40gev",
+    "HNL_1.33e-11_50gev",
+    "HNL_1.33e-11_60gev",
+    "HNL_1.33e-11_70gev",
+    "HNL_1.33e-11_80gev",
+
+    "HNL_4e-8_10gev",
+    "HNL_4e-8_20gev",
+    "HNL_4e-8_30gev",
+    "HNL_4e-8_40gev",
+    "HNL_4e-8_50gev",
+    "HNL_4e-8_60gev",
+    "HNL_4e-8_70gev",
+    "HNL_4e-8_80gev",
+
     "HNL_4e-10_10gev",
     "HNL_4e-10_20gev",
     "HNL_4e-10_30gev",
@@ -94,14 +101,32 @@ FILES = [
     "HNL_4e-10_70gev",
     "HNL_4e-10_80gev",
 
-    "HNL_1.33e-11_10gev",
-    "HNL_1.33e-11_20gev",
-    "HNL_1.33e-11_30gev",
-    "HNL_1.33e-11_40gev",
-    "HNL_1.33e-11_50gev",
-    "HNL_1.33e-11_60gev",
-    "HNL_1.33e-11_70gev",
-    "HNL_1.33e-11_80gev",
+    "HNL_4e-12_10gev",
+    "HNL_4e-12_20gev",
+    "HNL_4e-12_30gev",
+    "HNL_4e-12_40gev",
+    "HNL_4e-12_50gev",
+    "HNL_4e-12_60gev",
+    "HNL_4e-12_70gev",
+    "HNL_4e-12_80gev",
+
+    "HNL_2.86e-8_10gev",
+    "HNL_2.86e-8_20gev",
+    "HNL_2.86e-8_30gev",
+    "HNL_2.86e-8_40gev",
+    "HNL_2.86e-8_50gev",
+    "HNL_2.86e-8_60gev",
+    "HNL_2.86e-8_70gev",
+    "HNL_2.86e-8_80gev",
+
+    "HNL_2.86e-10_10gev",
+    "HNL_2.86e-10_20gev",
+    "HNL_2.86e-10_30gev",
+    "HNL_2.86e-10_40gev",
+    "HNL_2.86e-10_50gev",
+    "HNL_2.86e-10_60gev",
+    "HNL_2.86e-10_70gev",
+    "HNL_2.86e-10_80gev",
 
     "HNL_2.86e-12_10gev",
     "HNL_2.86e-12_20gev",
@@ -123,15 +148,6 @@ FILES = [
     "HNL_2.86e-7_70gev",
     "HNL_2.86e-7_80gev",
 
-    "HNL_5e-8_10gev",
-    "HNL_5e-8_20gev",
-    "HNL_5e-8_30gev",
-    "HNL_5e-8_40gev",
-    "HNL_5e-8_50gev",
-    "HNL_5e-8_60gev",
-    "HNL_5e-8_70gev",
-    "HNL_5e-8_80gev",
-
     "HNL_2.86e-9_10gev",
     "HNL_2.86e-9_20gev",
     "HNL_2.86e-9_30gev",
@@ -140,15 +156,6 @@ FILES = [
     "HNL_2.86e-9_60gev",
     "HNL_2.86e-9_70gev",
     "HNL_2.86e-9_80gev",
-
-    "HNL_6.67e-10_10gev",
-    "HNL_6.67e-10_20gev",
-    "HNL_6.67e-10_30gev",
-    "HNL_6.67e-10_40gev",
-    "HNL_6.67e-10_50gev",
-    "HNL_6.67e-10_60gev",
-    "HNL_6.67e-10_70gev",
-    "HNL_6.67e-10_80gev",
 
     "HNL_2.86e-11_10gev",
     "HNL_2.86e-11_20gev",
@@ -159,6 +166,24 @@ FILES = [
     "HNL_2.86e-11_70gev",
     "HNL_2.86e-11_80gev",
 
+    "HNL_5e-8_10gev",
+    "HNL_5e-8_20gev",
+    "HNL_5e-8_30gev",
+    "HNL_5e-8_40gev",
+    "HNL_5e-8_50gev",
+    "HNL_5e-8_60gev",
+    "HNL_5e-8_70gev",
+    "HNL_5e-8_80gev",
+
+    "HNL_5e-10_10gev",
+    "HNL_5e-10_20gev",
+    "HNL_5e-10_30gev",
+    "HNL_5e-10_40gev",
+    "HNL_5e-10_50gev",
+    "HNL_5e-10_60gev",
+    "HNL_5e-10_70gev",
+    "HNL_5e-10_80gev",
+
     "HNL_5e-12_10gev",
     "HNL_5e-12_20gev",
     "HNL_5e-12_30gev",
@@ -167,6 +192,33 @@ FILES = [
     "HNL_5e-12_60gev",
     "HNL_5e-12_70gev",
     "HNL_5e-12_80gev",
+
+    "HNL_6.67e-8_10gev",
+    "HNL_6.67e-8_20gev",
+    "HNL_6.67e-8_30gev",
+    "HNL_6.67e-8_40gev",
+    "HNL_6.67e-8_50gev",
+    "HNL_6.67e-8_60gev",
+    "HNL_6.67e-8_70gev",
+    "HNL_6.67e-8_80gev",
+
+    "HNL_6.67e-10_10gev",
+    "HNL_6.67e-10_20gev",
+    "HNL_6.67e-10_30gev",
+    "HNL_6.67e-10_40gev",
+    "HNL_6.67e-10_50gev",
+    "HNL_6.67e-10_60gev",
+    "HNL_6.67e-10_70gev",
+    "HNL_6.67e-10_80gev",
+
+    "HNL_6.67e-12_10gev",
+    "HNL_6.67e-12_20gev",
+    "HNL_6.67e-12_30gev",
+    "HNL_6.67e-12_40gev",
+    "HNL_6.67e-12_50gev",
+    "HNL_6.67e-12_60gev",
+    "HNL_6.67e-12_70gev",
+    "HNL_6.67e-12_80gev",
     
 ]
 
@@ -226,7 +278,7 @@ asym_bins = [0, 0.4, 0.7, 0.9, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1
 nbins = len(asym_bins)-1
 ### note: The bin edges specified in xbins should correspond to bin edges in the original histogram. ###
 
-'''for CUT in CUTS:
+for CUT in CUTS:
     NEWFILE='/eos/user/s/sgiappic/combine/' + VARIABLE + '_final_rebinned_' + CUT + '.root' # name of the rebinned file
     nf= ROOT.TFile.Open(NEWFILE, "UPDATE") 
 
@@ -261,40 +313,10 @@ nbins = len(asym_bins)-1
 
     nf.Close()
 
-    for file in FILES_B:
-
-        FILE = DIRECTORY + file + '_' + CUT + '_histo.root'
-        f= ROOT.TFile.Open(FILE, "READ")
-        hist=f.Get(VARIABLE)
-
-        print("Rebinning variable {}, {} from {} bins to {} bins\n".format(VARIABLE, FILE, hist.GetNbinsX(), nbins))
-
-        hist_name = file+"_"+VARIABLE
-        new_hist = ROOT.TH1F(hist_name, "Rebinned #Delta R", nbins, array.array('d', asym_bins))
-
-        #for each bin in the original distribution, sum until one interval is reached
-        i = 0
-        bin_content = 0
-        for b in range(hist.GetNbinsX()):
-            bin_content += hist.GetBinContent(b)
-            if (hist.GetBinLowEdge(b) >= asym_bins[i]): #check if the interval edge has already been reached and if we are over it
-                 #print(i, asym_bins[i])
-                new_hist.SetBinContent(i, bin_content)
-                i += 1
-                bin_content = 0
-                if (i > nbins):
-                    break
-
-        nf.cd()
-        new_hist.Write()
-        f.Close()
-
-    nf.Close()'''
-
+'''#plot the rebinned variable
 NEWFILE_SF='/eos/user/s/sgiappic/combine/Reco_DR_final_rebinned_sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos.root' # name of the rebinned file
 NEWFILE_DF='/eos/user/s/sgiappic/combine/Reco_DR_final_rebinned_sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos.root' # name of the rebinned file
     
-#plot the rebinned variable
 #extralab = LABELS[CUT]
 
 canvas = ROOT.TCanvas("", "", 800, 800)
@@ -535,4 +557,4 @@ canvas.Update()
 #canvas.SaveAs(dir + VARIABLE + "_rebinned.png")
 #canvas.SaveAs(dir+ VARIABLE + "_rebinned.pdf")
 canvas.SaveAs("/eos/user/s/sgiappic/www/plots/Reco_DR_rebinned.png")
-canvas.SaveAs("/eos/user/s/sgiappic/www/plots/Reco_DR_rebinned.pdf")
+canvas.SaveAs("/eos/user/s/sgiappic/www/plots/Reco_DR_rebinned.pdf")'''
