@@ -818,7 +818,7 @@ module FastJetFinder GenJetFinderDurhamN2 {
 
   set JetAlgorithm 11
   set ExclusiveClustering true
-  set NJets 0
+  set NJets 2
   # set DCut 10.0
 }
 
@@ -840,7 +840,7 @@ module FastJetFinder FastJetFinderDurhamN2 {
 
   set JetAlgorithm 11
   set ExclusiveClustering true
-  set NJets 0
+  set NJets 2
   # set DCut 10.0
 
 }
