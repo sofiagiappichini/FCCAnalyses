@@ -223,9 +223,7 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 ### Plots
 
-`replot.py` is heavily inspired by `do_plots.py`. It allows to plot log scale x axis and it's made to be more adaptable. The current version stacks backgrounds and not signals. Plots for only one group can be done.
-
-`replot_root.py` is the same thing but done in ROOT. It takes TTrees as input. **Currently not working.**
+`replot.py` is inspired by `do_plots.py`. It allows to plot log scale x axis and it's made to be more adaptable. The current version stacks backgrounds and not signals. Plots for only one group can be done.
 
 ### Combine
 
