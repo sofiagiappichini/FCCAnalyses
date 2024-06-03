@@ -21,19 +21,21 @@ tree_name = "events"
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
 #leaf_name = "n_RecoTracks"
+#leaf_name = "n_antikt_jets"
 #leaf_name = "Reco_invMass"
 #leaf_name = "RecoMissingEnergy_pt"
 #leaf_name = "Reco_cos"
 #leaf_name = "Reco_DecayVertexLepton_chi2"
 #leaf_name = "Reco_Lxy"
-leaf_name = "Reco_DecayVertexLepton_z"
+#leaf_name = "Reco_DecayVertexLepton_z"
 
 
-dir = "/eos/user/s/sgiappic/2HNL_ana/final_final/"
+
+dir = "/eos/user/s/sgiappic/2HNL_ana/final/"
 
 cuts = [
-    "sel2RecoSF_vetoes",
-    "sel2RecoDF_vetoes",
+    "sel2Reco_vetoes",
+    #"sel2RecoDF_vetoes",
     #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
     #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
 ]

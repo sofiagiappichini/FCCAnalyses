@@ -5,15 +5,15 @@ import numpy as np
 
 replacement_words = [
     #'HNL_4e-8_10gev',
-    'HNL_1.33e-9_20gev',
+    #'HNL_1.33e-9_20gev',
     'HNL_2.86e-12_30gev',
     'HNL_2.86e-7_30gev',
-    'HNL_5e-12_40gev',
-    'HNL_4e-12_50gev',
-    'HNL_6.67e-8_60gev',
-    'HNL_4e-8_60gev',
-    'HNL_2.86e-9_70gev',
-    'HNL_2.86e-8_80gev',
+    #'HNL_5e-12_40gev',
+    #'HNL_4e-12_50gev',
+    'HNL_6.67e-10_30gev',
+    'HNL_5e-12_60gev',
+    #'HNL_2.86e-9_70gev',
+    'HNL_1.33e-7_80gev',
 ]
 
 replacement_bkgs = [
@@ -24,8 +24,8 @@ replacement_bkgs = [
     "p8_ee_Zcc_ecm91",
     "p8_ee_Zud_ecm91",
     "p8_ee_Zss_ecm91",
-    "emununu",
-    "tatanunu"
+    #"emununu",
+    #"tatanunu"
 ]
 
 # Define the tree name
@@ -33,13 +33,13 @@ tree_name = "events"
 
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
-leaf_name = "Reco_absD0_prompt"
+leaf_name = "RecoMissingEnergy_p"
 
-dir = "/eos/user/s/sgiappic/2HNL_ana/final/"
+dir = "/eos/user/s/sgiappic/2HNL_ana/jets/final/"
 
 cuts = [
-    "sel2RecoSF_vetoes",
-    "sel2RecoDF_vetoes",
+    "sel2Reco_vetoes_notracks_nojets",
+    #"sel2RecoDF_vetoes",
     #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
     #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
 ]
@@ -72,7 +72,7 @@ for cut in cuts:
         entries = []
 
         # get associated value of variable from the bin and store the high edge (low edge of successive bin)
-        for i in range(len(bin_edges)-60): #exclude one of the edges as bins have both 0. and max but the content is n-1
+        for i in range(len(bin_edges)-50): #exclude one of the edges as bins have both 0. and max but the content is n-1
             #entries.append(sum(y_values[:i]))
             entries.append(sum(y_values[i:]))
 
@@ -102,7 +102,7 @@ for cut in cuts:
         entries_signal = []
 
         # get associated value of variable from the bin and store the high edge (low edge of successive bin)
-        for i in range(len(bin_edges_signal)-60): #exclude one of the edges as bins have both 0. and max but the content is n-1
+        for i in range(len(bin_edges_signal)-50): #exclude one of the edges as bins have both 0. and max but the content is n-1
             #entries_signal.append(sum(y_values_signal[:i]))
             entries_signal.append(sum(y_values_signal[i:]))
 
@@ -114,10 +114,12 @@ for cut in cuts:
                 s.append(entries_signal[i] / np.sqrt(entries_signal[i] + entries_bkg[i]))
                 
                 with open(output_file, "a") as file:
-                    file.write("significance = {} for cut at cos={} Gev \n".format(s[i], i*(0.01)))
+                    file.write("significance = {} for cut at MEpt={} Gev \n".format(s[i], i*(0.5)))
             
         s_max = np.max(s)
-        index = s.index(s_max)*(0.01)
+        index = s.index(s_max)*(0.5)
 
         with open(output_file, "a") as file:
-            file.write("\n Max significance of {} = {} for cut at d0={} Gev \n\n".format(replacement_word, s_max, index))
+            file.write("\n Max significance of {} = {} for cut at MEpt={} Gev \n\n".format(replacement_word, s_max, index))
+
+        print("File written at {}".format(output_file))

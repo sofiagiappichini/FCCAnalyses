@@ -10,9 +10,8 @@ from matplotlib.lines import Line2D
 
 nrows_in = 1
 ncol_in = 2
-end_row = 72 # Last row to include in the first set, doesn't count commented lines
-point1 = 8
-color = ['#990202', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
+end_row = 168 # Last row to include in the first set, doesn't count commented lines
+color = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
 label = ['1.', '2.', '3.', '4.', '5.', '6.'] 
 
 def split_into_three(arr):
@@ -20,7 +19,7 @@ def split_into_three(arr):
     return arr[:third], arr[third:2*third], arr[2*third:]
 
 data_files = [
-    "/eos/user/s/sgiappic/combine/output_final_2.csv",
+    "/eos/user/s/sgiappic/combine/output_final_3june.csv",
     ]
 
 fig, axs = plt.subplots(nrows=nrows_in, ncols=ncol_in, figsize=(15, 7))
@@ -78,7 +77,7 @@ for i, data_file in enumerate(data_files):
 
             # Now for the log scale, benefits from having less points
             mass_grid, coupling_grid = np.meshgrid(np.linspace(min(mass), max(mass), 8),
-                                                    np.linspace(min(log_coupling), max(log_coupling), 20))
+                                                    np.linspace(min(log_coupling), max(log_coupling), 7))
             significance_grid = griddata((mass, log_coupling), significance, (mass_grid, coupling_grid), method='linear')
 
             # Create the gradient plot using pcolormesh with logarithmic normalization
@@ -94,7 +93,7 @@ for i, data_file in enumerate(data_files):
             #axs[col].clabel(contour_lines, fmt=label[k+3*j], colors='black', fontsize=14)
 
             # Add scatter plot for points taken as reference
-            axs[col].scatter(mass, log_coupling, marker='x', c=color[k+3*j])
+            #axs[col].scatter(mass, log_coupling, marker='x', c=color[k+3*j])
             #axs[row, col].set_xscale('log')
             axs[col].set_ylim([-12, -6])
 
@@ -116,4 +115,4 @@ axs[1].set_title(r'$Significance - Inverted\; Hierarchy$', fontsize=16, y=1.05)
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/plots/significance_final_points.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final.png', format='png', dpi=330)

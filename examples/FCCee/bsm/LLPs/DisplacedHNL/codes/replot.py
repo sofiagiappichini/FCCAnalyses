@@ -24,36 +24,76 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
-DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_final/' 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
 
 CUTS = [
-    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos_chi",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_chi",
-    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
+    #"sel2RecoSF_vetoes_tracks_M80_5MEpt_0.8cos_chi",
+    #"sel2RecoDF_vetoes_tracks_M80_5MEpt_0.8cos_chi",
+    #"sel2RecoSF_vetoes_tracks_M80_5MEpt_0.8cos",
+    #"sel2RecoDF_vetoes_tracks_M80_5MEpt_0.8cos",
     #"sel2Reco_vetoes",
     #"sel2Gen_vetoes",
-    "sel2RecoSF_vetoes",
-    "sel2RecoDF_vetoes",
+    #"sel2RecoSF_vetoes",
+    #"sel2RecoDF_vetoes",
+    #"selNone",
+    #"sel2Reco_vetoes",
+    #"sel2Reco_vetoes_notracks",
+    #"sel2Reco_vetoes_tracks",
+    #"sel2Reco_vetoes_notracks_nojets",
+    #"sel2Reco_vetoes_notracks_nojetsexcl",
+    #"sel2Reco_vetoes_jets_excl2",
+    "sel2Reco_vetoes",
+    "sel2Reco_vetoes_notracks_nojets",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
+    
+ 
  ] 
 
 LABELS = {
-    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos_chi":"Same flavor, M(l,l)<80 GeV, p_{T,miss}>11.5 Gev, p<40 GeV, cos#theta>-0.8, #chi^2<15",
-    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_chi":"Different flavor, M(l,l)<80 GeV, p_{T,miss}>7 Gev, cos#theta>-0.8, #chi^2<15",
-    "sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos":"Same flavor, M(l,l)<80 GeV, p_{T,miss}>11.5 Gev, p<40 GeV, cos#theta>-0.8",
-    "sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos":"Different flavor, M(l,l)<80 GeV, p_{T,miss}>7 Gev, cos#theta>-0.8",
-    "sel2Reco_vetoes":"Two leptons, no photons, no jets",
-    "sel2RecoSF_vetoes":"Two same flavor leptons, no photons, no jets",
-    "sel2RecoDF_vetoes":"Two different flavor leptons, no photons, no jets",
+    "sel2RecoSF_vetoes":"Two same flavor leptons, no photons",
+    "sel2RecoSF_vetoes_notracks":"Two same flavor leptons, no photons, no other track",
+    "sel2RecoSF_vetoes_notracks_nojets":"Two same flavor leptons, no photons, no other track, no jets",
+    "sel2RecoSF_vetoes_notracks_nojets_M80":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV",
+    "sel2RecoSF_vetoes_notracks_nojets_M80_p40":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p<40 GeV",
+    "sel2RecoSF_vetoes_notracks_nojets_M80_p40_11.5MEpt":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 GeV",
+    "sel2RecoSF_vetoes_notracks_nojets_M80_11.5MEpt_p40_0.8cos":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
+    "sel2RecoSF_vetoes_notracks_nojets_M80_11.5MEpt_p40_0.8cos_chi_0.55d0":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
+
+    "sel2RecoDF_vetoes":"Two different flavor leptons, no photons",
+    "sel2RecoDF_vetoes_notracks":"Two different flavor leptons, no photons, no other trac",
+    "sel2RecoDF_vetoes_notracks_nojets":"Two different flavor leptons, no photons, no other track, no jets",
+    "sel2RecoDF_vetoes_notracks_nojets_M80":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV",
+    "sel2RecoDF_vetoes_motracks_nojets_M80_7MEpt":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>7 GeV",
+    "sel2RecoDF_vetoes_notracks_nojets_M80_7MEpt_0.8cos":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
+    "sel2RecoDF_vetoes_notracks_nojets_M80_7MEpt_0.8cos_chi_0.5d0":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
+
+    "sel2Reco_vetoes":"Two leptons, no photons",
     "sel2Gen_vetoes":"Two gen leptons, no photons",
+
+    "selNone": "No selection",
+    "sel2Reco_vetoes_notracks": "Two leptons, no photons, no other tracks",
+    "sel2Reco_vetoes_notracks_nojets": "Two leptons, no photons, no other tracks, no antikt jets",
+    "sel2Reco_vetoes_notracks_nojetsexcl": "Two leptons, no photons, no other tracks, no exclusive jets",
+
+    "sel2Reco_vetoes":"Two leptons, no photons",
+    "sel2Reco_vetoes_notracks":"Two leptons, no photons, no other trac",
+    "sel2Reco_vetoes_notracks_nojets":"Two leptons, no photons, no other track, no jets",
+    "sel2Reco_vetoes_notracks_nojets_M80":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV",
+    "sel2Reco_vetoes_motracks_nojets_M80_10MEpt":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8, #chi^2<10, |d_{0}|>0.57 mm",
+    
  }
 
-DIR_PLOTS = '/eos/user/s/sgiappic/www/plots/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/' 
 
 ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
 energy         = 91
 collider       = 'FCC-ee'
-intLumi        = 180 #ab-1
+intLumi        = 204 #ab-1
+
+LOGY = False
+LOGX = False
 
 VARIABLES_ALL = [
     
@@ -97,6 +137,9 @@ VARIABLES_ALL = [
     #"n_PrimaryTracks",
     #"n_SecondaryTracks",
     #"n_jets",
+    #"n_jets_excl",
+    "n_antikt_jets",
+    #"n_antikt_jets10",
     "n_RecoPhotons",
     "n_RecoElectrons",
     "n_RecoMuons",
@@ -155,9 +198,62 @@ VARIABLES_ALL = [
     "RecoMissingEnergy_theta",
     "RecoMissingEnergy_phi",
 
+]
+
+VARIBALES_JETS = [
+    "n_noLeptonTracks",
+    "noLep_e",
+    "noLep_p",   
+    "noLep_pt",   
+    "noLep_px",   
+    "noLep_py",   
+    "noLep_pz",    
+    "noLep_eta",   
+    "noLep_theta",
+    "noLep_phi",  
+    "noLep_charge",  
+    "RecoTracknoLep_absD0", 
+    "RecoTracknoLep_absZ0", 
+    "RecoTracknoLep_absD0sig", 
+    "RecoTracknoLep_absZ0sig", 
+    "RecoTracknoLep_D0cov", 
+    "RecoTracknoLep_Z0cov",
+
+    "GenParticles_PID",
+    "n_GenTaus",
+    "n_GenPions",
+    "n_GenKLs",
+    "n_GenKpluss",
+
+    "GenPion_e",
+    "GenTau_e",
+    "GenKL_e",
+    "GenKplus_e",
+
+    "GenPion_pt",
+    "GenTau_pt",
+    "GenKL_pt",
+    "GenKplus_pt",
+
+    "RecoMC_PID",
+    "n_RecoTaus",
+    "n_RecoPions",
+    "n_RecoKLs",
+    "n_RecoKpluss",
+
+    "RecoPion_e",
+    "RecoTau_e",
+    "RecoKL_e",
+    "RecoKplus_e",
+
+    "RecoPion_pt",
+    "RecoTau_pt",
+    "RecoKL_pt",
+    "RecoKplus_pt",
+
  ] 
 
-backgrounds = [
+backgrounds_old = [
     'p8_ee_Zee_ecm91',
     'p8_ee_Zmumu_ecm91',
     'p8_ee_Ztautau_ecm91',
@@ -171,11 +267,20 @@ backgrounds = [
 
 blegend = {
     'p8_ee_Zee_ecm91': 'Z #rightarrow ll',
-    'p8_ee_Zmumu_ecm91': 'Z #rightarrow #mu#mu',
     'p8_ee_Ztautau_ecm91': 'Z #rightarrow #tau#tau',
     'p8_ee_Zbb_ecm91': 'Z #rightarrow bb',
     'p8_ee_Zcc_ecm91': 'Z #rightarrow cc',
     'p8_ee_Zud_ecm91': 'Z #rightarrow uds',
+    'emununu': 'll#nu#nu',
+}
+
+blegend_old = {
+    'p8_ee_Zee_ecm91': 'Z #rightarrow ee',
+    'p8_ee_Zmumu_ecm91': 'Z #rightarrow #mu#mu',
+    'p8_ee_Ztautau_ecm91': 'Z #rightarrow #tau#tau',
+    'p8_ee_Zbb_ecm91': 'Z #rightarrow bb',
+    'p8_ee_Zcc_ecm91': 'Z #rightarrow cc',
+    'p8_ee_Zud_ecm91': 'Z #rightarrow ud',
     'p8_ee_Zss_ecm91': 'Z #rightarrow ss',
     'emununu': 'll#nu#nu',
     'tatanunu': '#tau#tau#nu#nu',
@@ -203,21 +308,24 @@ bcolors_old = {
 }
 
 signals = [
+    #'HNL_2.86e-7_30gev',
     'HNL_2.86e-12_30gev',
-    #'HNL_6.67e-10_30gev',
+    'HNL_6.67e-10_30gev',
     'HNL_5e-12_60gev',
-    #'HNL_1.33e-7_80gev',
+    'HNL_1.33e-7_80gev',
 ]
 
 slegend = {
     'HNL_2.86e-12_30gev':"U^{2}=2.86e-12, M_{N}=30 GeV",
+    'HNL_2.86e-7_30gev':"U^{2}=2.86e-7, M_{N}=30 GeV",
     'HNL_6.67e-10_30gev':"U^{2}=6.67e-10, M_{N}=30 GeV",
     'HNL_5e-12_60gev':"U^{2}=5e-12, M_{N}=60 GeV",
     'HNL_1.33e-7_80gev':"U^{2}=1.33e-7, M_{N}=80 GeV",
 }
 
 scolors = {
-    'HNL_2.86e-12_30gev': ROOT.kBlue-3,
+    'HNL_2.86e-12_30gev': ROOT.kBlue-9,
+    #'HNL_2.86e-7_30gev': ROOT.kBlack,
     'HNL_6.67e-10_30gev': ROOT.kRed-9,
     'HNL_5e-12_60gev': ROOT.kRed-3,
     'HNL_1.33e-7_80gev': ROOT.kBlue-3,
@@ -232,14 +340,11 @@ for cut in CUTS:
         canvas = ROOT.TCanvas("", "", 800, 800)
 
         nsig = len(signals)
-        nbkg = 6 # change according to type of plots, 6 for grouped backgrounds
+        nbkg = 6 # change according to type of plots, 6 for grouped backgrounds, #len(backgrounds)
 
         #legend coordinates and style
         
-        if nsig > 2:
-            legsize = 0.06*nsig
-        else:
-            legsize = 0.06*nsig
+        legsize = 0.05*nsig
         legsize2 = 0.04*nbkg
         leg = ROOT.TLegend(0.16, 0.80 - legsize, 0.45, 0.74)
         leg.SetFillColor(0)
@@ -249,7 +354,7 @@ for cut in CUTS:
         leg.SetTextSize(0.025)
         leg.SetTextFont(42)
 
-        leg2 = ROOT.TLegend(0.65, 0.80 - legsize2, 0.75, 0.74)
+        leg2 = ROOT.TLegend(0.65, 0.80 - legsize2, 0.85, 0.74)
         leg2.SetFillColor(0)
         leg2.SetFillStyle(0)
         leg2.SetLineColor(0)
@@ -272,15 +377,15 @@ for cut in CUTS:
             colors.append(scolors[s])
             leg.AddEntry(histos[-1], slegend[s], "l")
 
-        #for b in backgrounds:
-            #fin = f"{DIRECTORY}{b}_{cut}_histo.root"
-            #with ROOT.TFile(fin) as tf:
-                #h = tf.Get(variable)
-                #hh = copy.deepcopy(h)
-                #hh.SetDirectory(0)
-            #histos.append(hh)
-            #colors.append(bcolors[b])
-            #leg2.AddEntry(histos[-1], blegend[b], "f")
+        '''for b in backgrounds_old:
+            fin = f"{DIRECTORY}{b}_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            histos.append(hh)
+            colors.append(bcolors_old[b])
+            leg2.AddEntry(histos[-1], blegend_old[b], "f")'''
         
         if nbkg != 0:
             #add some backgrounds to the same histogram
@@ -358,11 +463,12 @@ for cut in CUTS:
 
             #drawing stack for backgrounds
             hStackBkg = ROOT.THStack("hStackBkg", "")
-            hStackBkg.SetMinimum(1e-6)
-            hStackBkg.SetMaximum(1e20)
+            #hStackBkg.SetMinimum(1e-6)
+            #hStackBkg.SetMaximum(1e23)
             BgMCHistYieldsDic = {}
             for i in range(nsig, nsig+nbkg):
                 h = histos[i]
+                h.Scale(1.13) # scale lumi from 180 to 204
                 h.SetLineWidth(1)
                 h.SetLineColor(ROOT.kBlack)
                 h.SetFillColor(colors[i])
@@ -382,6 +488,7 @@ for cut in CUTS:
             # add the signal histograms
             for i in range(nsig):
                 h = histos[i]
+                h.Scale(1.13) # scale lumi from 180 to 204
                 h.SetLineWidth(3)
                 h.SetLineColor(colors[i])
                 h.Draw("HIST SAME")
@@ -400,10 +507,11 @@ for cut in CUTS:
                 h.SetLineColor(colors[i])
                 if i == 0:
                     h.Draw("HIST")
+                    h.Scale(1.13) # scale lumi from 180 to 204# scale lumi from 180 to 204
                     h.GetYaxis().SetTitle("Events")
                     h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
                     #h.GetXaxis().SetTitle("{}".format(variable))
-                    h.GetYaxis().SetRangeUser(1e-6,1e20)
+                    h.GetYaxis().SetRangeUser(1e-6,1e8)
                     #h.GetYaxis().SetTitleOffset(1.5)
                     h.GetXaxis().SetTitleOffset(1.2)
                     #h.GetXaxis().SetLimits(1, 1000)
@@ -439,19 +547,36 @@ for cut in CUTS:
         latex.DrawLatex(0.92, 0.92, text)
 
         # Set Logarithmic scales for both x and y axes
-        #canvas.SetLogx()
-        canvas.SetLogy()
-        canvas.SetTicks(1, 1)
-        canvas.SetLeftMargin(0.14)
-        canvas.SetRightMargin(0.08)
-        canvas.GetFrame().SetBorderSize(12)
+        if LOGY == True:
+            canvas.SetLogy()
+            if LOGX == True:
+                canvas.SetLogx()
+            canvas.SetTicks(1, 1)
+            canvas.SetLeftMargin(0.14)
+            canvas.SetRightMargin(0.08)
+            canvas.GetFrame().SetBorderSize(12)
 
-        canvas.RedrawAxis()
-        canvas.Modified()
-        canvas.Update()
+            canvas.RedrawAxis()
+            canvas.Modified()
+            canvas.Update()
 
-        dir = DIR_PLOTS + "/" + cut + "/"
-        make_dir_if_not_exists(dir)
+            dir = DIR_PLOTS + "/" + cut + "/"
+            make_dir_if_not_exists(dir)
 
-        canvas.SaveAs(dir + variable + ".png")
-        canvas.SaveAs(dir+ variable + ".pdf")
+            canvas.SaveAs(dir + variable + "_log.png")
+            canvas.SaveAs(dir+ variable + "_log.pdf")
+        else:
+            canvas.SetTicks(1, 1)
+            canvas.SetLeftMargin(0.14)
+            canvas.SetRightMargin(0.08)
+            canvas.GetFrame().SetBorderSize(12)
+
+            canvas.RedrawAxis()
+            canvas.Modified()
+            canvas.Update()
+
+            dir = DIR_PLOTS + "/" + cut + "/"
+            make_dir_if_not_exists(dir)
+
+            canvas.SaveAs(dir + variable + ".png")
+            canvas.SaveAs(dir+ variable + ".pdf")
