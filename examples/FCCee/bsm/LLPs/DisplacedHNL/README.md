@@ -199,6 +199,8 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 ### Access LHE files
 
+`cpy_lhe.py` copies the .lhe files form the Madgraph directories into a different directory changing the name of each to to reflect the coupling and mass values.
+
 `get_decay_length_lhe.py` accesses .lhe files to retrieve information about each event and compute the decay length. This one is also evaluated from the computed width of the particle.
 
 `get_weight_lhe.py` and `get_weight_banner.py` extract the cross section values from the .lhe files. The first one writes them in the format used in `analysis_final.py`(remember to change the square brackets to curly afterward). The second needs to be called inside the directory where the runs are stored and it's just for preliminary checking all the values at a glance.
@@ -211,7 +213,9 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 ### Access histograms
 
-`get_decay_length.py` looks through histograms (.root files) to get the maximum value of a variable. It can loop over multiple variables and files. It also returns the total number of entries.
+`get_decay_length.py` looks through histograms (.root files) to get the mean value of a variable. It can loop over multiple variables and files. It also returns the total number of entries.
+
+`get_PID.py` looks through histograms (.root files) to get the values of a variable. It can loop over multiple variables and files. It also returns the total number of entries.
 
 ### Rebinning
 
@@ -235,4 +239,4 @@ Some additional python codes have been made to automate certain tasks. They can 
 
 `tertiary_plot.py` makes a tertiary plot from some data file and points for the HNLs couplings.
 
-`future_constraint.py` makes an exclusion and significance plot for the HNL scenario, with data from other experiments and personal analyses. The x and y values of each set of data need to already be in logaritmic scale.
+`future_constraint.py` makes an exclusion and significance plot for the HNL scenario, with data from other experiments and private analyses. The x and y values of each set of data are in logaritmic scale but converted back to agree with the private plots.

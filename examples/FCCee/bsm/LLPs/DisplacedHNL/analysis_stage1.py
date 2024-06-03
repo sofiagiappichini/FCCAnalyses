@@ -2,6 +2,11 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
+        "HNL_6.20e-10_20gev":{},
+    "HNL_2.86e-10_20gev":{},
+    "HNL_8.69e-11_30gev":{},
+}
+processList_i = {
 
         #centrally-produced backgrounds
         #'p8_ee_Zee_ecm91':{'chunks':100},
@@ -16,289 +21,393 @@ processList = {
         #'tatanunu':{},
 
         #privately-produced signals
-        #'HNL_4e-8_10gev':{},
-        #'HNL_1.33e-9_20gev':{},
-        #'HNL_2.86e-12_30gev':{},
-        #'HNL_2.86e-7_30gev':{},
-        #'HNL_5e-12_40gev':{},
-        #'HNL_4e-12_50gev':{},
-        #'HNL_6.67e-8_60gev':{},
-        #'HNL_4e-8_60gev':{},
-        #'HNL_2.86e-9_70gev':{},
-        #'HNL_2.86e-8_80gev':{},
+        "HNL_1.33e-7_10gev":{},
+        "HNL_1.33e-7_20gev":{},
+        "HNL_1.33e-7_30gev":{},
+        "HNL_1.33e-7_40gev":{},
+        "HNL_1.33e-7_50gev":{},
+        "HNL_1.33e-7_60gev":{},
+        "HNL_1.33e-7_70gev":{},
+        "HNL_1.33e-7_80gev":{},
 
-        #'HNL_1.33e-7_10gev':{},
-        #'HNL_1.33e-7_20gev':{},
-        #'HNL_1.33e-7_30gev':{},
-        #'HNL_1.33e-7_40gev':{},
-        #'HNL_1.33e-7_50gev':{},
-        #'HNL_1.33e-7_60gev':{},
-        #'HNL_1.33e-7_70gev':{},
-        #'HNL_1.33e-7_80gev':{},
+        "HNL_2.78e-8_10gev":{},
+        "HNL_2.78e-8_20gev":{},
+        "HNL_2.78e-8_30gev":{},
+        "HNL_2.78e-8_40gev":{},
+        "HNL_2.78e-8_50gev":{},
+        "HNL_2.78e-8_60gev":{},
+        "HNL_2.78e-8_70gev":{},
+        "HNL_2.78e-8_80gev":{},
 
-        #'HNL_4e-8_10gev':{},
-        #'HNL_4e-8_20gev':{},
-        #'HNL_4e-8_30gev':{},
-        #'HNL_4e-8_40gev':{},
-        #'HNL_4e-8_50gev':{},
-        #'HNL_4e-8_60gev':{},
-        #'HNL_4e-8_70gev':{},
-        #'HNL_4e-8_80gev':{},
+        "HNL_6.05e-9_10gev":{},
+        "HNL_6.05e-9_20gev":{},
+        "HNL_6.05e-9_30gev":{},
+        "HNL_6.05e-9_40gev":{},
+        "HNL_6.05e-9_50gev":{},
+        "HNL_6.05e-9_60gev":{},
+        "HNL_6.05e-9_70gev":{},
+        "HNL_6.05e-9_80gev":{},
 
-        #'HNL_2.86e-8_10gev':{},
-        #'HNL_2.86e-8_20gev':{},
-        #'HNL_2.86e-8_30gev':{},
-        #'HNL_2.86e-8_40gev':{},
-        #'HNL_2.86e-8_50gev':{},
-        #'HNL_2.86e-8_60gev':{},
-        #'HNL_2.86e-8_70gev':{},
-        #'HNL_2.86e-8_80gev':{},
+        "HNL_1.33e-9_10gev":{},
+        "HNL_1.33e-9_20gev":{},
+        "HNL_1.33e-9_30gev":{},
+        "HNL_1.33e-9_40gev":{},
+        "HNL_1.33e-9_50gev":{},
+        "HNL_1.33e-9_60gev":{},
+        "HNL_1.33e-9_70gev":{},
+        "HNL_1.33e-9_80gev":{},
 
-        #'HNL_1.33e-9_10gev':{},
-        #'HNL_1.33e-9_20gev':{},
-        #'HNL_1.33e-9_30gev':{},
-        #'HNL_1.33e-9_40gev':{},
-        #'HNL_1.33e-9_50gev':{},
-        #'HNL_1.33e-9_60gev':{},
-        #'HNL_1.33e-9_70gev':{},
-        #'HNL_1.33e-9_80gev':{},
+        "HNL_2.90e-10_10gev":{},
+        "HNL_2.90e-10_20gev":{},
+        "HNL_2.90e-10_30gev":{},
+        "HNL_2.90e-10_40gev":{},
+        "HNL_2.90e-10_50gev":{},
+        "HNL_2.90e-10_60gev":{},
+        "HNL_2.90e-10_70gev":{},
+        "HNL_2.90e-10_80gev":{},
 
-        #'HNL_4e-10_10gev':{},
-        #'HNL_4e-10_20gev':{},
-        #'HNL_4e-10_30gev':{},
-        #'HNL_4e-10_40gev':{},
-        #'HNL_4e-10_50gev':{},
-        #'HNL_4e-10_60gev':{},
-        #'HNL_4e-10_70gev':{},
-        #'HNL_4e-10_80gev':{},
+        "HNL_6.34e-11_10gev":{},
+        "HNL_6.34e-11_20gev":{},
+        "HNL_6.34e-11_30gev":{},
+        "HNL_6.34e-11_40gev":{},
+        "HNL_6.34e-11_50gev":{},
+        "HNL_6.34e-11_60gev":{},
+        "HNL_6.34e-11_70gev":{},
+        "HNL_6.34e-11_80gev":{},
 
-        #'HNL_2.86e-10_10gev':{},
-        #'HNL_2.86e-10_20gev':{},
-        #'HNL_2.86e-10_30gev':{},
-        #'HNL_2.86e-10_40gev':{},
-        #'HNL_2.86e-10_50gev':{},
-        #'HNL_2.86e-10_60gev':{},
-        #'HNL_2.86e-10_70gev':{},
-        #'HNL_2.86e-10_80gev':{},
+        "HNL_1.33e-11_10gev":{},
+        "HNL_1.33e-11_20gev":{},
+        "HNL_1.33e-11_30gev":{},
+        "HNL_1.33e-11_40gev":{},
+        "HNL_1.33e-11_50gev":{},
+        "HNL_1.33e-11_60gev":{},
+        "HNL_1.33e-11_70gev":{},
+        "HNL_1.33e-11_80gev":{},
 
-        #'HNL_1.33e-11_10gev':{},
-        #'HNL_1.33e-11_20gev':{},
-        #'HNL_1.33e-11_30gev':{},
-        #'HNL_1.33e-11_40gev':{},
-        #'HNL_1.33e-11_50gev':{},
-        #'HNL_1.33e-11_60gev':{},
-        #'HNL_1.33e-11_70gev':{},
-        #'HNL_1.33e-11_80gev':{},
+        #######
 
-        #'HNL_4e-12_10gev':{},
-        #'HNL_4e-12_20gev':{},
-        #'HNL_4e-12_30gev':{},
-        #'HNL_4e-12_40gev':{},
-        #'HNL_4e-12_50gev':{},
-        #'HNL_4e-12_60gev':{},
-        #'HNL_4e-12_70gev':{},
-        #'HNL_4e-12_80gev':{},
+        "HNL_4e-8_10gev":{},
+        "HNL_4e-8_20gev":{},
+        "HNL_4e-8_30gev":{},
+        "HNL_4e-8_40gev":{},
+        "HNL_4e-8_50gev":{},
+        "HNL_4e-8_60gev":{},
+        "HNL_4e-8_70gev":{},
+        "HNL_4e-8_80gev":{},
 
-        #'HNL_2.86e-12_10gev':{},
-        #'HNL_2.86e-12_20gev':{},
-        #'HNL_2.86e-12_30gev':{},
-        #'HNL_2.86e-12_40gev':{},
-        #'HNL_2.86e-12_50gev':{},
-        #'HNL_2.86e-12_60gev':{},
-        #'HNL_2.86e-12_70gev':{},
-        #'HNL_2.86e-12_80gev':{},
+        "HNL_8.35e-9_10gev":{},
+        "HNL_8.35e-9_20gev":{},
+        "HNL_8.35e-9_30gev":{},
+        "HNL_8.35e-9_40gev":{},
+        "HNL_8.35e-9_50gev":{},
+        "HNL_8.35e-9_60gev":{},
+        "HNL_8.35e-9_70gev":{},
+        "HNL_8.35e-9_80gev":{},
+
+        "HNL_1.81e-9_10gev":{},
+        "HNL_1.81e-9_20gev":{},
+        "HNL_1.81e-9_30gev":{},
+        "HNL_1.81e-9_40gev":{},
+        "HNL_1.81e-9_50gev":{},
+        "HNL_1.81e-9_60gev":{},
+        "HNL_1.81e-9_70gev":{},
+        "HNL_1.81e-9_80gev":{},
+
+        "HNL_4e-10_10gev":{},
+        "HNL_4e-10_20gev":{},
+        "HNL_4e-10_30gev":{},
+        "HNL_4e-10_40gev":{},
+        "HNL_4e-10_50gev":{},
+        "HNL_4e-10_60gev":{},
+        "HNL_4e-10_70gev":{},
+        "HNL_4e-10_80gev":{},
+
+        "HNL_8.69e-11_10gev":{},
+        "HNL_8.69e-11_20gev":{},
+        "HNL_8.69e-11_30gev":{},
+        "HNL_8.69e-11_40gev":{},
+        "HNL_8.69e-11_50gev":{},
+        "HNL_8.69e-11_60gev":{},
+        "HNL_8.69e-11_70gev":{},
+        "HNL_8.69e-11_80gev":{},
+
+        "HNL_1.90e-11_10gev":{},
+        "HNL_1.90e-11_20gev":{},
+        "HNL_1.90e-11_30gev":{},
+        "HNL_1.90e-11_40gev":{},
+        "HNL_1.90e-11_50gev":{},
+        "HNL_1.90e-11_60gev":{},
+        "HNL_1.90e-11_70gev":{},
+        "HNL_1.90e-11_80gev":{},
+
+        "HNL_4e-12_10gev":{},
+        "HNL_4e-12_20gev":{},
+        "HNL_4e-12_30gev":{},
+        "HNL_4e-12_40gev":{},
+        "HNL_4e-12_50gev":{},
+        "HNL_4e-12_60gev":{},
+        "HNL_4e-12_70gev":{},
+        "HNL_4e-12_80gev":{},
+
+        #########
+
+        "HNL_2.86e-8_10gev":{},
+        "HNL_2.86e-8_20gev":{},
+        "HNL_2.86e-8_30gev":{},
+        "HNL_2.86e-8_40gev":{},
+        "HNL_2.86e-8_50gev":{},
+        "HNL_2.86e-8_60gev":{},
+        "HNL_2.86e-8_70gev":{},
+        "HNL_2.86e-8_80gev":{},
+
+        "HNL_5.97e-9_10gev":{},
+        "HNL_5.97e-9_20gev":{},
+        "HNL_5.97e-9_30gev":{},
+        "HNL_5.97e-9_40gev":{},
+        "HNL_5.97e-9_50gev":{},
+        "HNL_5.97e-9_60gev":{},
+        "HNL_5.97e-9_70gev":{},
+        "HNL_5.97e-9_80gev":{},
+
+        "HNL_1.30e-9_10gev":{},
+        "HNL_1.30e-9_20gev":{},
+        "HNL_1.30e-9_30gev":{},
+        "HNL_1.30e-9_40gev":{},
+        "HNL_1.30e-9_50gev":{},
+        "HNL_1.30e-9_60gev":{},
+        "HNL_1.30e-9_70gev":{},
+        "HNL_1.30e-9_80gev":{},
+
+        "HNL_2.86e-10_10gev":{},
+        "HNL_2.86e-10_20gev":{},
+        "HNL_2.86e-10_30gev":{},
+        "HNL_2.86e-10_40gev":{},
+        "HNL_2.86e-10_50gev":{},
+        "HNL_2.86e-10_60gev":{},
+        "HNL_2.86e-10_70gev":{},
+        "HNL_2.86e-10_80gev":{},
+
+        "HNL_6.20e-11_10gev":{},
+        "HNL_6.20e-11_20gev":{},
+        "HNL_6.20e-11_30gev":{},
+        "HNL_6.20e-11_40gev":{},
+        "HNL_6.20e-11_50gev":{},
+        "HNL_6.20e-11_60gev":{},
+        "HNL_6.20e-11_70gev":{},
+        "HNL_6.20e-11_80gev":{},
+
+        "HNL_1.36e-11_10gev":{},
+        "HNL_1.36e-11_20gev":{},
+        "HNL_1.36e-11_30gev":{},
+        "HNL_1.36e-11_40gev":{},
+        "HNL_1.36e-11_50gev":{},
+        "HNL_1.36e-11_60gev":{},
+        "HNL_1.36e-11_70gev":{},
+        "HNL_1.36e-11_80gev":{},
+
+        "HNL_2.86e-12_10gev":{},
+        "HNL_2.86e-12_20gev":{},
+        "HNL_2.86e-12_30gev":{},
+        "HNL_2.86e-12_40gev":{},
+        "HNL_2.86e-12_50gev":{},
+        "HNL_2.86e-12_60gev":{},
+        "HNL_2.86e-12_70gev":{},
+        "HNL_2.86e-12_80gev":{},
 
         #inverted
 
-        #'HNL_2.86e-7_10gev':{},
-        #'HNL_2.86e-7_20gev':{},
-        #'HNL_2.86e-7_30gev':{},
-        #'HNL_2.86e-7_40gev':{},
-        #'HNL_2.86e-7_50gev':{},
-        #'HNL_2.86e-7_60gev':{},
-        #'HNL_2.86e-7_70gev':{},
-        #'HNL_2.86e-7_80gev':{},
+        "HNL_5e-8_10gev":{},
+        "HNL_5e-8_20gev":{},
+        "HNL_5e-8_30gev":{},
+        "HNL_5e-8_40gev":{},
+        "HNL_5e-8_50gev":{},
+        "HNL_5e-8_60gev":{},
+        "HNL_5e-8_70gev":{},
+        "HNL_5e-8_80gev":{},
 
-        #'HNL_5e-8_10gev':{},
-        #'HNL_5e-8_20gev':{},
-        #'HNL_5e-8_30gev':{},
-        #'HNL_5e-8_40gev':{},
-        #'HNL_5e-8_50gev':{},
-        #'HNL_5e-8_60gev':{},
-        #'HNL_5e-8_70gev':{},
-        #'HNL_5e-8_80gev':{},
+        "HNL_1.04e-8_10gev":{},
+        "HNL_1.04e-8_20gev":{},
+        "HNL_1.04e-8_30gev":{},
+        "HNL_1.04e-8_40gev":{},
+        "HNL_1.04e-8_50gev":{},
+        "HNL_1.04e-8_60gev":{},
+        "HNL_1.04e-8_70gev":{},
+        "HNL_1.04e-8_80gev":{},
 
-        #'HNL_6.67e-8_10gev':{},
-        #'HNL_6.67e-8_20gev':{},
-        #'HNL_6.67e-8_30gev':{},
-        #'HNL_6.67e-8_40gev':{},
-        #'HNL_6.67e-8_50gev':{},
-        #'HNL_6.67e-8_60gev':{},
-        #'HNL_6.67e-8_70gev':{},
-        #'HNL_6.67e-8_80gev':{},
+        "HNL_2.27e-9_10gev":{},
+        "HNL_2.27e-9_20gev":{},
+        "HNL_2.27e-9_30gev":{},
+        "HNL_2.27e-9_40gev":{},
+        "HNL_2.27e-9_50gev":{},
+        "HNL_2.27e-9_60gev":{},
+        "HNL_2.27e-9_70gev":{},
+        "HNL_2.27e-9_80gev":{},
 
-        #'HNL_2.86e-9_10gev':{},
-        #'HNL_2.86e-9_20gev':{},
-        #'HNL_2.86e-9_30gev':{},
-        #'HNL_2.86e-9_40gev':{},
-        #'HNL_2.86e-9_50gev':{},
-        #'HNL_2.86e-9_60gev':{},
-        #'HNL_2.86e-9_70gev':{},
-        #'HNL_2.86e-9_80gev':{},
+        "HNL_5e-10_10gev":{},
+        "HNL_5e-10_20gev":{},
+        "HNL_5e-10_30gev":{},
+        "HNL_5e-10_40gev":{},
+        "HNL_5e-10_50gev":{},
+        "HNL_5e-10_60gev":{},
+        "HNL_5e-10_70gev":{},
+        "HNL_5e-10_80gev":{},
 
-        #'HNL_5e-10_10gev':{},
-        #'HNL_5e-10_20gev':{},
-        #'HNL_5e-10_30gev':{},
-        #'HNL_5e-10_40gev':{},
-        #'HNL_5e-10_50gev':{},
-        #'HNL_5e-10_60gev':{},
-        #'HNL_5e-10_70gev':{},
-        #'HNL_5e-10_80gev':{},
+        "HNL_1.09e-10_10gev":{},
+        "HNL_1.09e-10_20gev":{},
+        "HNL_1.09e-10_30gev":{},
+        "HNL_1.09e-10_40gev":{},
+        "HNL_1.09e-10_50gev":{},
+        "HNL_1.09e-10_60gev":{},
+        "HNL_1.09e-10_70gev":{},
+        "HNL_1.09e-10_80gev":{},
 
-        #'HNL_6.67e-10_10gev':{},
-        #'HNL_6.67e-10_20gev':{},
-        #'HNL_6.67e-10_30gev':{},
-        #'HNL_6.67e-10_40gev':{},
-        #'HNL_6.67e-10_50gev':{},
-        #'HNL_6.67e-10_60gev':{},
-        #'HNL_6.67e-10_70gev':{},
-        #'HNL_6.67e-10_80gev':{},
+        "HNL_2.38e-11_10gev":{},
+        "HNL_2.38e-11_20gev":{},
+        "HNL_2.38e-11_30gev":{},
+        "HNL_2.38e-11_40gev":{},
+        "HNL_2.38e-11_50gev":{},
+        "HNL_2.38e-11_60gev":{},
+        "HNL_2.38e-11_70gev":{},
+        "HNL_2.38e-11_80gev":{},
 
-        #'HNL_2.86e-11_10gev':{},
-        #'HNL_2.86e-11_20gev':{},
-        #'HNL_2.86e-11_30gev':{},
-        #'HNL_2.86e-11_40gev':{},
-        #'HNL_2.86e-11_50gev':{},
-        #'HNL_2.86e-11_60gev':{},
-        #'HNL_2.86e-11_70gev':{},
-        #'HNL_2.86e-11_80gev':{},
+        "HNL_5e-12_10gev":{},
+        "HNL_5e-12_20gev":{},
+        "HNL_5e-12_30gev":{},
+        "HNL_5e-12_40gev":{},
+        "HNL_5e-12_50gev":{},
+        "HNL_5e-12_60gev":{},
+        "HNL_5e-12_70gev":{},
+        "HNL_5e-12_80gev":{},
 
-        #'HNL_6.67e-12_10gev':{},
-        #'HNL_6.67e-12_20gev':{},
-        #'HNL_6.67e-12_30gev':{},
-        #'HNL_6.67e-12_40gev':{},
-        #'HNL_6.67e-12_50gev':{},
-        #'HNL_6.67e-12_60gev':{},
-        #'HNL_6.67e-12_70gev':{},
-        #'HNL_6.67e-12_80gev':{},
+        #######
 
-        #'HNL_5e-12_10gev':{},
-        #'HNL_5e-12_20gev':{},
-        #'HNL_5e-12_30gev':{},
-        #'HNL_5e-12_40gev':{},
-        #'HNL_5e-12_50gev':{},
-        #'HNL_5e-12_60gev':{},
-        #'HNL_5e-12_70gev':{},
-        #'HNL_5e-12_80gev':{},
+        "HNL_6.67e-8_10gev":{},
+        "HNL_6.67e-8_20gev":{},
+        "HNL_6.67e-8_30gev":{},
+        "HNL_6.67e-8_40gev":{},
+        "HNL_6.67e-8_50gev":{},
+        "HNL_6.67e-8_60gev":{},
+        "HNL_6.67e-8_70gev":{},
+        "HNL_6.67e-8_80gev":{},
 
-        #'HNL_8.69e-11_10gev':{},
-        #'HNL_8.69e-11_20gev':{},
-        #'HNL_8.69e-11_30gev':{},
-        #'HNL_8.69e-11_40gev':{},
-        #'HNL_8.69e-11_50gev':{},
-        #'HNL_8.69e-11_60gev':{},
-        #'HNL_8.69e-11_70gev':{},
-        #'HNL_8.69e-11_80gev':{},
+        "HNL_1.39e-8_10gev":{},
+        "HNL_1.39e-8_20gev":{},
+        "HNL_1.39e-8_30gev":{},
+        "HNL_1.39e-8_40gev":{},
+        "HNL_1.39e-8_50gev":{},
+        "HNL_1.39e-8_60gev":{},
+        "HNL_1.39e-8_70gev":{},
+        "HNL_1.39e-8_80gev":{},
 
-        #'HNL_5.29e-12_10gev':{},
-        #'HNL_5.29e-12_20gev':{},
-        #'HNL_5.29e-12_30gev':{},
-        #'HNL_5.29e-12_40gev':{},
-        'HNL_5.29e-12_50gev':{},
-        #'HNL_5.29e-12_60gev':{},
-        #'HNL_5.29e-12_70gev':{},
-        #'HNL_5.29e-12_80gev':{},
+        "HNL_3.02e-9_10gev":{},
+        "HNL_3.02e-9_20gev":{},
+        "HNL_3.02e-9_30gev":{},
+        "HNL_3.02e-9_40gev":{},
+        "HNL_3.02e-9_50gev":{},
+        "HNL_3.02e-9_60gev":{},
+        "HNL_3.02e-9_70gev":{},
+        "HNL_3.02e-9_80gev":{},
 
-        #'HNL_2.90e-10_10gev':{},
-        #'HNL_2.90e-10_20gev':{},
-        #'HNL_2.90e-10_30gev':{},
-        #'HNL_2.90e-10_40gev':{},
-        #'HNL_2.90e-10_50gev':{},
-        #'HNL_2.90e-10_60gev':{},
-        #'HNL_2.90e-10_70gev':{},
-        #'HNL_2.90e-10_80gev':{},
+        "HNL_6.67e-10_10gev":{},
+        "HNL_6.67e-10_20gev":{},
+        "HNL_6.67e-10_30gev":{},
+        "HNL_6.67e-10_40gev":{},
+        "HNL_6.67e-10_50gev":{},
+        "HNL_6.67e-10_60gev":{},
+        "HNL_6.67e-10_70gev":{},
+        "HNL_6.67e-10_80gev":{},
 
-        #'HNL_1.76e-11_10gev':{},
-        'HNL_1.76e-11_20gev':{},
-        #'HNL_1.76e-11_30gev':{},
-        #'HNL_1.76e-11_40gev':{},
-        #'HNL_1.76e-11_50gev':{},
-        #'HNL_1.76e-11_60gev':{},
-        #'HNL_1.76e-11_70gev':{},
-        #'HNL_1.76e-11_80gev':{},
+        "HNL_1.45e-10_10gev":{},
+        "HNL_1.45e-10_20gev":{},
+        "HNL_1.45e-10_30gev":{},
+        "HNL_1.45e-10_40gev":{},
+        "HNL_1.45e-10_50gev":{},
+        "HNL_1.45e-10_60gev":{},
+        "HNL_1.45e-10_70gev":{},
+        "HNL_1.45e-10_80gev":{},
 
-        #'HNL_6.20e-11_10gev':{},
-        #'HNL_6.20e-11_20gev':{},
-        #'HNL_6.20e-11_30gev':{},
-        #'HNL_6.20e-11_40gev':{},
-        #'HNL_6.20e-11_50gev':{},
-        #'HNL_6.20e-11_60gev':{},
-        #'HNL_6.20e-11_70gev':{},
-        #'HNL_6.20e-11_80gev':{},
+        "HNL_3.17e-11_10gev":{},
+        "HNL_3.17e-11_20gev":{},
+        "HNL_3.17e-11_30gev":{},
+        "HNL_3.17e-11_40gev":{},
+        "HNL_3.17e-11_50gev":{},
+        "HNL_3.17e-11_60gev":{},
+        "HNL_3.17e-11_70gev":{},
+        "HNL_3.17e-11_80gev":{},
 
-        #'HNL_3.78e-12_10gev':{},
-        #'HNL_3.78e-12_20gev':{},
-        #'HNL_3.78e-12_30gev':{},
-        #'HNL_3.78e-12_40gev':{},
-        #'HNL_3.78e-12_50gev':{},
-        #'HNL_3.78e-12_60gev':{},
-        #'HNL_3.78e-12_70gev':{},
-        #'HNL_3.78e-12_80gev':{},
+        "HNL_6.67e-12_10gev":{},
+        "HNL_6.67e-12_20gev":{},
+        "HNL_6.67e-12_30gev":{},
+        "HNL_6.67e-12_40gev":{},
+        "HNL_6.67e-12_50gev":{},
+        "HNL_6.67e-12_60gev":{},
+        "HNL_6.67e-12_70gev":{},
+        "HNL_6.67e-12_80gev":{},
 
-        #'HNL_1.09e-10_10gev':{},
-        #'HNL_1.09e-10_20gev':{},
-        #'HNL_1.09e-10_30gev':{},
-        #'HNL_1.09e-10_40gev':{},
-        #'HNL_1.09e-10_50gev':{},
-        #'HNL_1.09e-10_60gev':{},
-        #'HNL_1.09e-10_70gev':{},
-        #'HNL_1.09e-10_80gev':{},
+        ########
 
-        #'HNL_6.61e-12_10gev':{},
-        #'HNL_6.61e-12_20gev':{},
-        'HNL_6.61e-12_30gev':{},
-        #'HNL_6.61e-12_40gev':{},
-        'HNL_6.61e-12_50gev':{},
-        #'HNL_6.61e-12_60gev':{},
-        #'HNL_6.61e-12_70gev':{},
-        #'HNL_6.61e-12_80gev':{},
+        "HNL_2.86e-7_10gev":{},
+        "HNL_2.86e-7_20gev":{},
+        "HNL_2.86e-7_30gev":{},
+        "HNL_2.86e-7_40gev":{},
+        "HNL_2.86e-7_50gev":{},
+        "HNL_2.86e-7_60gev":{},
+        "HNL_2.86e-7_70gev":{},
+        "HNL_2.86e-7_80gev":{},
 
-        #'HNL_1.45e-10_10gev':{},
-        #'HNL_1.45e-10_20gev':{},
-        #'HNL_1.45e-10_30gev':{},
-        #'HNL_1.45e-10_40gev':{},
-        #'HNL_1.45e-10_50gev':{},
-        #'HNL_1.45e-10_60gev':{},
-        #'HNL_1.45e-10_70gev':{},
-        #'HNL_1.45e-10_80gev':{},
+        "HNL_5.97e-8_10gev":{},
+        "HNL_5.97e-8_20gev":{},
+        "HNL_5.97e-8_30gev":{},
+        "HNL_5.97e-8_40gev":{},
+        "HNL_5.97e-8_50gev":{},
+        "HNL_5.97e-8_60gev":{},
+        "HNL_5.97e-8_70gev":{},
+        "HNL_5.97e-8_80gev":{},
 
-        #'HNL_8.82e-12_10gev':{},
-        #'HNL_8.82e-12_20gev':{},
-        #'HNL_8.82e-12_30gev':{},
-        #'HNL_8.82e-12_40gev':{},
-        #'HNL_8.82e-12_50gev':{},
-        #'HNL_8.82e-12_60gev':{},
-        #'HNL_8.82e-12_70gev':{},
-        #'HNL_8.82e-12_80gev':{},
+        "HNL_1.30e-8_10gev":{},
+        "HNL_1.30e-8_20gev":{},
+        "HNL_1.30e-8_30gev":{},
+        "HNL_1.30e-8_40gev":{},
+        "HNL_1.30e-8_50gev":{},
+        "HNL_1.30e-8_60gev":{},
+        "HNL_1.30e-8_70gev":{},
+        "HNL_1.30e-8_80gev":{},
 
-        #'HNL_6.20e-10_10gev':{},
-        #'HNL_6.20e-10_20gev':{},
-        #'HNL_6.20e-10_30gev':{},
-        #'HNL_6.20e-10_40gev':{},
-        #'HNL_6.20e-10_50gev':{},
-        #'HNL_6.20e-10_60gev':{},
-        #'HNL_6.20e-10_70gev':{},
-        #'HNL_6.20e-10_80gev':{},
+        "HNL_2.86e-9_10gev":{},
+        "HNL_2.86e-9_20gev":{},
+        "HNL_2.86e-9_30gev":{},
+        "HNL_2.86e-9_40gev":{},
+        "HNL_2.86e-9_50gev":{},
+        "HNL_2.86e-9_60gev":{},
+        "HNL_2.86e-9_70gev":{},
+        "HNL_2.86e-9_80gev":{},
 
-        #'HNL_3.78e-11_10gev':{},
-        #'HNL_3.78e-11_20gev':{},
-        #'HNL_3.78e-11_30gev':{},
-        #'HNL_3.78e-11_40gev':{},
-        #'HNL_3.78e-11_50gev':{},
-        #'HNL_3.78e-11_60gev':{},
-        #'HNL_3.78e-11_70gev':{},
-        #'HNL_3.78e-11_80gev':{},
+        "HNL_6.20e-10_10gev":{},
+        "HNL_6.20e-10_20gev":{},
+        "HNL_6.20e-10_30gev":{},
+        "HNL_6.20e-10_40gev":{},
+        "HNL_6.20e-10_50gev":{},
+        "HNL_6.20e-10_60gev":{},
+        "HNL_6.20e-10_70gev":{},
+        "HNL_6.20e-10_80gev":{},
 
+        "HNL_1.36e-10_10gev":{},
+        "HNL_1.36e-10_20gev":{},
+        "HNL_1.36e-10_30gev":{},
+        "HNL_1.36e-10_40gev":{},
+        "HNL_1.36e-10_50gev":{},
+        "HNL_1.36e-10_60gev":{},
+        "HNL_1.36e-10_70gev":{},
+        "HNL_1.36e-10_80gev":{},
+
+        "HNL_2.86e-11_10gev":{},
+        "HNL_2.86e-11_20gev":{},
+        "HNL_2.86e-11_30gev":{},
+        "HNL_2.86e-11_40gev":{},
+        "HNL_2.86e-11_50gev":{},
+        "HNL_2.86e-11_60gev":{},
+        "HNL_2.86e-11_70gev":{},
+        "HNL_2.86e-11_80gev":{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
@@ -327,7 +436,7 @@ nCPUS = 10
 runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "espresso"
+batchQueue = "microcentury"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -350,9 +459,33 @@ class RDFanalysis():
 
                 # Following code is written specifically for the HNL study
                 ####################################################################################################
+                .Alias("Particle0", "Particle#0.index")
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+
+                .Define("GenTau",   "FCCAnalyses::MCParticle::sel_pdgID(15, true)(Particle)")
+                .Define("GenPion",   "FCCAnalyses::MCParticle::sel_pdgID(211, true)(Particle)")
+                .Define("GenKL",   "FCCAnalyses::MCParticle::sel_pdgID(130, true)(Particle)")
+                .Define("GenKplus",   "FCCAnalyses::MCParticle::sel_pdgID(321, true)(Particle)")
+
+                .Define("n_GenTaus",      "FCCAnalyses::MCParticle::get_n(GenTau)")
+                .Define("n_GenPions",      "FCCAnalyses::MCParticle::get_n(GenPion)")
+                .Define("n_GenKLs",      "FCCAnalyses::MCParticle::get_n(GenKL)")
+                .Define("n_GenKpluss",      "FCCAnalyses::MCParticle::get_n(GenKplus)")
+
+                #.Filter("n_GenTaus==0")
+                #.Filter("n_GenPions>0 || n_GenKLs>0 || n_GenKpluss>0")
+
+                .Define("GenPion_e", "if (n_GenPions>0) return FCCAnalyses::MCParticle::get_e(GenPion); else return FCCAnalyses::MCParticle::get_genStatus(GenPion);")
+                .Define("GenKL_e", "if (n_GenKLs>0) return FCCAnalyses::MCParticle::get_e(GenKL); else return FCCAnalyses::MCParticle::get_genStatus(GenKL);")
+                .Define("GenTau_e", "if (n_GenTaus>0) return FCCAnalyses::MCParticle::get_e(GenTau); else return FCCAnalyses::MCParticle::get_genStatus(GenTau);")
+                .Define("GenKplus_e", "if (n_GenKpluss>0) return FCCAnalyses::MCParticle::get_e(GenKplus); else return FCCAnalyses::MCParticle::get_genStatus(GenKplus);")
+                
+                .Define("GenPion_pt", "if (n_GenPions>0) return FCCAnalyses::MCParticle::get_pt(GenPion); else return FCCAnalyses::MCParticle::get_genStatus(GenPion);")
+                .Define("GenKL_pt", "if (n_GenKLs>0) return FCCAnalyses::MCParticle::get_pt(GenKL); else return FCCAnalyses::MCParticle::get_genStatus(GenKL);")
+                .Define("GenTau_pt", "if (n_GenTaus>0) return FCCAnalyses::MCParticle::get_pt(GenTau); else return FCCAnalyses::MCParticle::get_genStatus(GenTau);")
+                .Define("GenKplus_pt", "if (n_GenKpluss>0) return FCCAnalyses::MCParticle::get_pt(GenKplus); else return FCCAnalyses::MCParticle::get_genStatus(GenKplus);")
  
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")
@@ -486,13 +619,39 @@ class RDFanalysis():
                 # MC event primary vertex
                 .Define("MC_PrimaryVertex",  "FCCAnalyses::MCParticle::get_EventPrimaryVertex(21)( Particle )" )
 
+                .Define("FSGenParticles", "FCCAnalyses::MCParticle::sel_genStatus(1)(Particle)")
+                .Define("GenParticles_PID", "FCCAnalyses::MCParticle::get_pdg(Particle)")
+
                 ################### Reconstructed particles #####################
                 .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
+
+
+                ### not the right way to get the particles, use one of the PID functions using particleIDs.begin and end, not type ###
+                .Define("Reco_PID",   "ReconstructedParticles.type")
+
+                .Define("RecoPion",   "ReconstructedParticles[ReconstructedParticles.type == 211]")
+                .Define("RecoTau",   "ReconstructedParticles[ReconstructedParticles.type == 15]")
+                .Define("RecoKL",   "ReconstructedParticles[ReconstructedParticles.type == 130]")
+                .Define("RecoKplus",   "ReconstructedParticles[ReconstructedParticles.type == 321]")
+
+                .Define("n_RecoTaus",      "ReconstructedParticle::get_n(RecoTau)")
+                .Define("n_RecoPions",      "ReconstructedParticle::get_n(RecoPion)")
+                .Define("n_RecoKLs",      "ReconstructedParticle::get_n(RecoKL)")
+                .Define("n_RecoKpluss",      "ReconstructedParticle::get_n(RecoKplus)")
+
+                .Define("RecoPion_e", "ReconstructedParticle::get_e(RecoPion)")
+                .Define("RecoKL_e", "ReconstructedParticle::get_e(RecoKL)")
+                .Define("RecoTau_e", "ReconstructedParticle::get_e(RecoTau)")
+                .Define("RecoKplus_e", "ReconstructedParticle::get_e(RecoKplus)")
+
+                .Define("RecoPion_pt", "ReconstructedParticle::get_pt(RecoPion)")
+                .Define("RecoKL_pt", "ReconstructedParticle::get_pt(RecoKL)")
+                .Define("RecoTau_pt", "ReconstructedParticle::get_pt(RecoTau)")
+                .Define("RecoKplus_pt", "ReconstructedParticle::get_pt(RecoKplus)")
 
                 #JETS
                 ### count how many jets are in the event in total to check, it doesn't work with this method on reclustered jets, only on the edm4hep collections Jet ###
 		.Define("n_RecoJets", "ReconstructedParticle::get_n(Jet)") 
-
                 #SIMPLE VARIABLES: Access the basic kinematic variables of the (selected) jets, works analogously for electrons, muons
 		.Define("RecoJet_e",      "ReconstructedParticle::get_e(Jet)")
                 .Define("RecoJet_p",      "ReconstructedParticle::get_p(Jet)") #momentum p
@@ -617,6 +776,16 @@ class RDFanalysis():
                 ### get the number of jets in a workaround way, anyway is exactly zero for exclusive clustering ###
                 .Define("jets_e_excl",  "JetClusteringUtils::get_e(jets_ee_kt_excl)")
                 .Define("n_jets_excl", "jets_e_excl.size()")
+
+                .Define("FCCAnalysesJets_antikt", "JetClustering::clustering_antikt(0.4, 0, 5., 0, 0)(pseudo_jets)")
+                .Define("antikt_jets", "JetClusteringUtils::get_pseudoJets(FCCAnalysesJets_antikt)")
+                .Define("jets_antikt_px", "JetClusteringUtils::get_px(antikt_jets)")
+                .Define("n_antikt_jets", "jets_antikt_px.size()")
+
+                .Define("FCCAnalysesJets_antikt10", "JetClustering::clustering_antikt(0.4, 0, 10., 0, 0)(pseudo_jets)")
+                .Define("antikt_jets10", "JetClusteringUtils::get_pseudoJets(FCCAnalysesJets_antikt10)")
+                .Define("jets_antikt_px10", "JetClusteringUtils::get_px(antikt_jets10)")
+                .Define("n_antikt_jets10", "jets_antikt_px10.size()")
                 
                 ### not useful in this case as the primary track code runs by looking at the chi2 of vertex, taking out the tracks making it larger until there is only one track ###
                 ### so there will always be one primary track even if they should both be secondary but the code doesn't handle that and we have both secondary in principle ###
@@ -637,12 +806,32 @@ class RDFanalysis():
                 .Define("Reco_Lxyz","return sqrt(RecoDecayVertexLepton.position.x*RecoDecayVertexLepton.position.x + RecoDecayVertexLepton.position.y*RecoDecayVertexLepton.position.y + RecoDecayVertexLepton.position.z*RecoDecayVertexLepton.position.z);")
                 .Define("Reco_Lxy","return sqrt(RecoDecayVertexLepton.position.x*RecoDecayVertexLepton.position.x + RecoDecayVertexLepton.position.y*RecoDecayVertexLepton.position.y);")
 
+                ### https://github.com/HEP-FCC/FCCAnalyses/blob/d39a711a703244ee2902f5d2191ad1e2367363ac/examples/FCCee/vertex/validation_tkParam.py#L115 ###
+                .Define("RecoTracks_noLeptons",   "ReconstructedTrack::Remove( RecoLeptonTracks, EFlowTrack_1)")
+                .Define("n_noLeptonTracks",  "ReconstructedParticle2Track::getTK_n( RecoTracks_noLeptons )" )
+                .Define("noLep_e",      "ReconstructedParticle::get_e(JetsParticles)")
+                .Define("noLep_p",      "ReconstructedParticle::get_p(JetsParticles)")
+                .Define("noLep_pt",      "ReconstructedParticle::get_pt(JetsParticles)")
+                .Define("noLep_px",      "ReconstructedParticle::get_px(JetsParticles)")
+                .Define("noLep_py",      "ReconstructedParticle::get_py(JetsParticles)")
+                .Define("noLep_pz",      "ReconstructedParticle::get_pz(JetsParticles)")
+		.Define("noLep_eta",     "ReconstructedParticle::get_eta(JetsParticles)") #pseudorapidity eta
+                .Define("noLep_theta",   "ReconstructedParticle::get_theta(JetsParticles)")
+		.Define("noLep_phi",     "ReconstructedParticle::get_phi(JetsParticles)") #polar angle in the transverse plane phi
+                .Define("noLep_charge",  "ReconstructedParticle::get_charge(JetsParticles)")
+                .Define("RecoTracknoLep_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(JetsParticles,EFlowTrack_1))")
+                .Define("RecoTracknoLep_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(JetsParticles,EFlowTrack_1))")
+                .Define("RecoTracknoLep_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(JetsParticles,EFlowTrack_1))") #significance
+                .Define("RecoTracknoLep_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(JetsParticles,EFlowTrack_1))")
+                .Define("RecoTracknoLep_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(JetsParticles,EFlowTrack_1)") #variance (not sigma)
+                .Define("RecoTracknoLep_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(JetsParticles,EFlowTrack_1)")
+               
                 ### LCFIPlus algorithm for vertexing ###
                 #find the DVs
-                .Define("RecoDVs", "VertexFinderLCFIPlus::get_SV_event(RecoLeptonTracks, EFlowTrack_1, PrimaryVertexObject, true, 9., 40., 5.)")
+                #.Define("RecoDVs", "VertexFinderLCFIPlus::get_SV_event(RecoLeptonTracks, EFlowTrack_1, PrimaryVertexObject, true, 9., 40., 5.)")
                 #find number of DVs
-                .Define("n_RecoDVs", "VertexingUtils::get_n_SV(RecoDVs)")
-                .Define("DV_Lxyz", "VertexingUtils::get_d3d_SV(RecoDVs, PrimaryVertexObject)")
+                #.Define("n_RecoDVs", "VertexingUtils::get_n_SV(RecoDVs)")
+                #.Define("DV_Lxyz", "VertexingUtils::get_d3d_SV(RecoDVs, PrimaryVertexObject)")
 
                 #EVENTWIDE VARIABLES: Access quantities that exist only once per event, such as the missing energy (despite the name, the MissingET collection contains the total missing energy)
 		.Define("RecoMissingEnergy_e", "ReconstructedParticle::get_e(MissingET)")
@@ -662,6 +851,8 @@ class RDFanalysis():
                 .Define("Reco_TwoLeptons_pz", "if (n_RecoLeptons>1) return (Reco_pz.at(0) + Reco_pz.at(1)); else return float(-1.);")
                 .Define("Reco_invMass", "if (n_RecoLeptons>1) return sqrt(Reco_TwoLeptons_energy*Reco_TwoLeptons_energy - Reco_TwoLeptons_px*Reco_TwoLeptons_px - Reco_TwoLeptons_py*Reco_TwoLeptons_py - Reco_TwoLeptons_pz*Reco_TwoLeptons_pz ); else return float(-1.);")
 
+                .Define('RecoMC_PID', "ReconstructedParticle2MC::getRP2MC_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle)")
+                
                )
                 return df2
 
@@ -672,32 +863,48 @@ class RDFanalysis():
                         "n_FSGenMuon",
                         "n_FSGenLepton",
                         "n_FSGenPhoton",
-                        "n_GenN",
+                        #"n_GenN",
                         #"n_FSGenNeutrino",
+                        #"GenParticles_PID",
 
-                        "FSGenLepton_e",
-                        "FSGenLepton_p",
-                        "FSGenLepton_pt",
-                        "FSGenLepton_px",
-                        "FSGenLepton_py",
-                        "FSGenLepton_pz",
-                        "FSGenLepton_eta",
-                        "FSGenLepton_theta",
-                        "FSGenLepton_phi",
-                        "FSGenLepton_charge",
-                        "FSGenLepton_time",
-                        "FSGenLepton_vertex_x",
-                        "FSGenLepton_vertex_y",
-                        "FSGenLepton_vertex_z",
+                        #"n_GenTaus",
+                        #"n_GenPions",
+                        #"n_GenKLs",
+                        #"n_GenKpluss",
 
-                        "FSGen_Lxy",
-                        "FSGen_Lxyz",
-                        "FSGen_invMass",
-                        "GenN_Lxyz",
-                        "GenN_tau",
-                        "GenN_mass",
-                        "GenN_e",
-                        "GenN_p",
+                        #"GenPion_e",
+                        #"GenTau_e",
+                        #"GenKL_e",
+                        #"GenKplus_e",
+
+                        #"GenPion_pt",
+                        #"GenTau_pt",
+                        #"GenKL_pt",
+                        #"GenKplus_pt",
+
+                        #"FSGenLepton_e",
+                        #"FSGenLepton_p",
+                        #"FSGenLepton_pt",
+                        #"FSGenLepton_px",
+                        #"FSGenLepton_py",
+                        #"FSGenLepton_pz",
+                        #"FSGenLepton_eta",
+                        #"FSGenLepton_theta",
+                        #"FSGenLepton_phi",
+                        #"FSGenLepton_charge",
+                        #"FSGenLepton_time",
+                        #"FSGenLepton_vertex_x",
+                        #"FSGenLepton_vertex_y",
+                        #"FSGenLepton_vertex_z",
+
+                        #"FSGen_Lxy",
+                        #"FSGen_Lxyz",
+                        #"FSGen_invMass",
+                        #"GenN_Lxyz",
+                        #"GenN_tau",
+                        #"GenN_mass",
+                        #"GenN_e",
+                        #"GenN_p",
 
                         #"FSGenPhoton_e",
                         #"FSGenPhoton_p",
@@ -716,13 +923,29 @@ class RDFanalysis():
                         #"n_SecondaryTracks",
                         "n_jets",
                         "n_jets_excl",
-                        "n_RecoJets",
+                        "n_antikt_jets",
+                        "n_antikt_jets10",
+                        #"n_RecoJets",
                         "n_RecoPhotons",
                         "n_RecoElectrons",
                         "n_RecoMuons",
                         "n_RecoLeptons",
 
-                        #"jets_e",
+                        #"n_RecoTaus",
+                        #"n_RecoPions",
+                        #"n_RecoKLs",
+                        #"n_RecoKpluss",
+
+                        #"RecoPion_e",
+                        #"RecoTau_e",
+                        #"RecoKL_e",
+                        #"RecoKplus_e",
+
+                        #"RecoPion_pt",
+                        #"RecoTau_pt",
+                        #"RecoKL_pt",
+                        #"RecoKplus_pt",
+
                         #"RecoJet_e",
                         #"RecoJet_p",
                         #"RecoJet_pt",
@@ -805,6 +1028,26 @@ class RDFanalysis():
                         #"n_RecoDVs",
                         #"DV_Lxyz", 
                         #"DV_Lxyz_sig",
+
+                        #"RecoMC_PID",
+                        
+                        "n_noLeptonTracks",
+                        #"noLep_e",
+                        #"noLep_p",   
+                        #"noLep_pt",   
+                        #"noLep_px",   
+                        #"noLep_py",   
+                        #"noLep_pz",    
+		        #"noLep_eta",   
+                        #"noLep_theta",
+	                #"noLep_phi",  
+                        #"noLep_charge", 
+                        #"RecoTracknoLep_absD0", 
+                        #"RecoTracknoLep_absZ0", 
+                        #"RecoTracknoLep_absD0sig", 
+                        #"RecoTracknoLep_absZ0sig", 
+                        #"RecoTracknoLep_D0cov", 
+                        #"RecoTracknoLep_Z0cov",
 
 		]
 
