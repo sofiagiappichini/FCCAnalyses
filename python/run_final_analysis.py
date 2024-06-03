@@ -333,7 +333,7 @@ def run(rdf_module, args):
                 if nevents_this_cut != 0:
                     # scientific notation - recomended for backgrounds
                     cuts_list.append(
-                        f'{nevents_this_cut:.2e} $\\pm$ {uncertainty:.2e}')
+                        f'{nevents_this_cut:.2e}' ) # $\\pm$ {uncertainty:.2e}')
                     # float notation - recomended for signals with few events
                     # cuts_list.append(
                     #     f'{neventsThisCut:.3f} $\\pm$ {uncertainty:.3f}')
@@ -358,11 +358,12 @@ def run(rdf_module, args):
             with ROOT.TFile(fhisto, 'RECREATE'):
                 for h in histos_list[i]:
                     try:
-                        h.Scale(
-                            1. * process_dict[process_name]["crossSection"] *
-                            process_dict[process_name]["kfactor"] *
-                            process_dict[process_name]["matchingEfficiency"] * int_lumi /
-                            process_events[process_name])
+                        if do_scale:
+                            h.Scale(
+                                1. * process_dict[process_name]["crossSection"] *
+                                process_dict[process_name]["kfactor"] *
+                                process_dict[process_name]["matchingEfficiency"] * int_lumi /
+                                process_events[process_name])
                     except KeyError:
                         LOGGER.warning(
                             'No value defined for process %s in dictionary!',
