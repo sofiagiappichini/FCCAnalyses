@@ -58,8 +58,8 @@ def create_condor_config(log_dir: str,
     cfg += f'Log              = {log_dir}/condor_job.{process_name}.'
     cfg += '$(ClusterId).$(ProcId).log\n'
 
-    cfg += f'Output           = {log_dir}/condor_job.{process_name}.'
-    cfg += '$(ClusterId).$(ProcId).out\n'
+    #cfg += f'Output           = {log_dir}/condor_job.{process_name}.'
+    #cfg += '$(ClusterId).$(ProcId).out\n'
 
     cfg += f'Error            = {log_dir}/condor_job.{process_name}.'
     cfg += '$(ClusterId).$(ProcId).error\n'
