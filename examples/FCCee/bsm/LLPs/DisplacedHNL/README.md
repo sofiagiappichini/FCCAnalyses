@@ -7,7 +7,6 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
   - [Generating your own samples](#generating-your-own-samples)
     - [LHE files](#lhe-files)
     - [Pythia+Delphes](#pythiadelphes)
-    - [Delphes - NOT WORKING](#delphes---not-working)
   - [Running the analysis](#running-the-analysis)
     - [How to add new functions to call in the stage1](#how-to-add-new-functions-to-call-in-the-stage1)
     - [Changes made to the general code](#changes-made-to-the-general-code)
