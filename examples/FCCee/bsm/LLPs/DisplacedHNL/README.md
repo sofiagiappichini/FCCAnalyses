@@ -29,7 +29,7 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
     ```
     bash
     git clone git@github.com:HEP-FCC/FCCAnalyses.git
-    cd FCCAnlyses
+    cd FCCAnalyses
     source ./setup.sh
     mkdir build install
     cd build
@@ -40,7 +40,7 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
 2. When beginning a new session do:
 
     ```
-    cd FCCAnlyses
+    cd FCCAnalyses
     source ./setup.sh
     ```
 
