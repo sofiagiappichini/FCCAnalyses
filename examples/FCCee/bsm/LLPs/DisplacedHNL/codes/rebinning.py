@@ -480,9 +480,9 @@ bcolors = {
 
 signals = [
     'HNL_2.86e-12_30gev',
-    #'HNL_6.67e-10_30gev',
+    'HNL_6.67e-10_30gev',
     'HNL_5e-12_60gev',
-    #'HNL_1.33e-7_80gev',
+    'HNL_1.33e-7_80gev',
 ]
 
 slegend = {
@@ -684,7 +684,7 @@ if nbkg != 0:
     #drawing stack for backgrounds
     hStackBkg = ROOT.THStack("hStackBkg", "")
     hStackBkg.SetMinimum(1e-6)
-    hStackBkg.SetMaximum(1e20)
+    hStackBkg.SetMaximum(1e17)
     BgMCHistYieldsDic = {}
     for i in range(nsig, nsig+nbkg):
         h = histos[i]
@@ -755,7 +755,7 @@ latex.SetTextSize(0.03)
 latex.DrawLatex(0.18, 0.80, text)
 
 #text = '#bf{#it{' + extralab + '}}'
-text = '#bf{#it{Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8}}'
+text = '#bf{#it{Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8}}'
 latex.SetTextSize(0.02)
 latex.DrawLatex(0.18, 0.76, text)
 

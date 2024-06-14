@@ -2,9 +2,11 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-        "HNL_6.20e-10_20gev":{},
-    "HNL_2.86e-10_20gev":{},
-    "HNL_8.69e-11_30gev":{},
+        #'p8_ee_Zee_ecm91':{'fraction':0.01},
+        #'p8_ee_Zmumu_ecm91':{'fraction':0.01},
+        "HNL_1.33e-7_40gev":{},
+        #"HNL_2.86e-12_30gev":{},
+        #"HNL_5e-12_60gev":{},
 }
 processList_i = {
 
@@ -424,7 +426,7 @@ inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/problematic/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -465,11 +467,12 @@ class RDFanalysis():
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
 
                 .Define("GenTau",   "FCCAnalyses::MCParticle::sel_pdgID(15, true)(Particle)")
+                .Define("GenTau_status",      "FCCAnalyses::MCParticle::sel_genStatus(1)(GenTau)")
                 .Define("GenPion",   "FCCAnalyses::MCParticle::sel_pdgID(211, true)(Particle)")
                 .Define("GenKL",   "FCCAnalyses::MCParticle::sel_pdgID(130, true)(Particle)")
                 .Define("GenKplus",   "FCCAnalyses::MCParticle::sel_pdgID(321, true)(Particle)")
 
-                .Define("n_GenTaus",      "FCCAnalyses::MCParticle::get_n(GenTau)")
+                .Define("n_GenTaus",      "FCCAnalyses::MCParticle::get_n(GenTau_status)")
                 .Define("n_GenPions",      "FCCAnalyses::MCParticle::get_n(GenPion)")
                 .Define("n_GenKLs",      "FCCAnalyses::MCParticle::get_n(GenKL)")
                 .Define("n_GenKpluss",      "FCCAnalyses::MCParticle::get_n(GenKplus)")
@@ -620,7 +623,10 @@ class RDFanalysis():
                 .Define("MC_PrimaryVertex",  "FCCAnalyses::MCParticle::get_EventPrimaryVertex(21)( Particle )" )
 
                 .Define("FSGenParticles", "FCCAnalyses::MCParticle::sel_genStatus(1)(Particle)")
+                .Define("DecGenParticles", "FCCAnalyses::MCParticle::sel_genStatus(2)(Particle)")
                 .Define("GenParticles_PID", "FCCAnalyses::MCParticle::get_pdg(Particle)")
+                .Define("FSGenParticles_PID", "FCCAnalyses::MCParticle::get_pdg(FSGenParticles)")
+                .Define("DecGenParticles_PID", "FCCAnalyses::MCParticle::get_pdg(DecGenParticles)")
 
                 ################### Reconstructed particles #####################
                 .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
@@ -865,22 +871,24 @@ class RDFanalysis():
                         "n_FSGenPhoton",
                         #"n_GenN",
                         #"n_FSGenNeutrino",
-                        #"GenParticles_PID",
+                        "GenParticles_PID",
+                        "FSGenParticles_PID",
+                        "DecGenParticles_PID",
 
-                        #"n_GenTaus",
-                        #"n_GenPions",
-                        #"n_GenKLs",
-                        #"n_GenKpluss",
+                        "n_GenTaus",
+                        "n_GenPions",
+                        "n_GenKLs",
+                        "n_GenKpluss",
 
-                        #"GenPion_e",
-                        #"GenTau_e",
-                        #"GenKL_e",
-                        #"GenKplus_e",
+                        "GenPion_e",
+                        "GenTau_e",
+                        "GenKL_e",
+                        "GenKplus_e",
 
-                        #"GenPion_pt",
-                        #"GenTau_pt",
-                        #"GenKL_pt",
-                        #"GenKplus_pt",
+                        "GenPion_pt",
+                        "GenTau_pt",
+                        "GenKL_pt",
+                        "GenKplus_pt",
 
                         #"FSGenLepton_e",
                         #"FSGenLepton_p",

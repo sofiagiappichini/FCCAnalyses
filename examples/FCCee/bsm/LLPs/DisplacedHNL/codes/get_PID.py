@@ -125,11 +125,11 @@ replacement_bkgs = [
     #"p8_ee_Zss_ecm91",
     #"emununu",
     #"tatanunu",
-    'HNL_2.86e-7_30gev',
+    #'HNL_2.86e-7_30gev',
     'HNL_2.86e-12_30gev',
     #'HNL_6.67e-10_30gev',
     'HNL_5e-12_60gev',
-    'HNL_1.33e-7_80gev',
+    'HNL_1.33e-7_40gev',
 ]
 
 # Define the tree name
@@ -138,12 +138,12 @@ tree_name = "events"
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
 leaf_names = [
-    "FSGenParticles_PDG",
+    "FSGenParticles_PID",
     #"FSGen_Lxyz",
 ]
 
 # Print the results
-output_file = "/eos/user/s/sgiappic/2HNL_ana/problematic/GenPID.txt"
+output_file = "/eos/user/s/sgiappic/2HNL_ana/problematic/GenPID_2.txt"
 
 # Write the content of the selected row to the output CSV file
 with open(output_file, "a") as file:
@@ -154,7 +154,7 @@ for replacement_word in replacement_bkgs:
  
     # Define the ROOT file path
     #root_file_path = "/eos/user/s/sgiappic/2HNL_bsc/final/{}_sel2RecoDF_vetoes_15-80M_39p_10ME43_cos.root".format(replacement_word)
-    histo_file_path = "/eos/user/s/sgiappic/2HNL_ana/problematic/{}_sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos_histo.root".format(replacement_word)
+    histo_file_path = "/eos/user/s/sgiappic/2HNL_ana/problematic/{}_sel2Reco_vetoes_histo.root".format(replacement_word)
 
     # Open the ROOT file
     #root_file = uproot.open(root_file_path)

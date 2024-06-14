@@ -25,6 +25,7 @@ def make_dir_if_not_exists(directory):
         print(f"Directory already exists.")
 
 DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/' 
 
 CUTS = [
     #"sel2RecoSF_vetoes_tracks_M80_5MEpt_0.8cos_chi",
@@ -44,6 +45,8 @@ CUTS = [
     #"sel2Reco_vetoes_jets_excl2",
     "sel2Reco_vetoes",
     "sel2Reco_vetoes_notracks_nojets",
+    "sel2Reco_vetoes_notracks_nojets_M80",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
     
  
@@ -60,12 +63,12 @@ LABELS = {
     "sel2RecoSF_vetoes_notracks_nojets_M80_11.5MEpt_p40_0.8cos_chi_0.55d0":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p<40 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
 
     "sel2RecoDF_vetoes":"Two different flavor leptons, no photons",
-    "sel2RecoDF_vetoes_notracks":"Two different flavor leptons, no photons, no other trac",
-    "sel2RecoDF_vetoes_notracks_nojets":"Two different flavor leptons, no photons, no other track, no jets",
-    "sel2RecoDF_vetoes_notracks_nojets_M80":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV",
-    "sel2RecoDF_vetoes_motracks_nojets_M80_7MEpt":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>7 GeV",
-    "sel2RecoDF_vetoes_notracks_nojets_M80_7MEpt_0.8cos":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
-    "sel2RecoDF_vetoes_notracks_nojets_M80_7MEpt_0.8cos_chi_0.5d0":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
+    "sel2RecoDF_vetoes_notracks":"Two different flavor leptons, no photons, no other tracks",
+    "sel2RecoDF_vetoes_notracks_nojets":"Two different flavor leptons, no photons, no other tracks, no jets",
+    "sel2RecoDF_vetoes_notracks_nojets_M80":"Two different flavor leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV",
+    "sel2RecoDF_vetoes_motracks_nojets_M80_7MEpt":"Two different flavor leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>7 GeV",
+    "sel2RecoDF_vetoes_notracks_nojets_M80_7MEpt_0.8cos":"Two different flavor leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
+    "sel2RecoDF_vetoes_notracks_nojets_M80_7MEpt_0.8cos_chi_0.5d0":"Two different flavor leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
 
     "sel2Reco_vetoes":"Two leptons, no photons",
     "sel2Gen_vetoes":"Two gen leptons, no photons",
@@ -76,23 +79,21 @@ LABELS = {
     "sel2Reco_vetoes_notracks_nojetsexcl": "Two leptons, no photons, no other tracks, no exclusive jets",
 
     "sel2Reco_vetoes":"Two leptons, no photons",
-    "sel2Reco_vetoes_notracks":"Two leptons, no photons, no other trac",
-    "sel2Reco_vetoes_notracks_nojets":"Two leptons, no photons, no other track, no jets",
-    "sel2Reco_vetoes_notracks_nojets_M80":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV",
-    "sel2Reco_vetoes_motracks_nojets_M80_10MEpt":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8, #chi^2<10, |d_{0}|>0.57 mm",
+    "sel2Reco_vetoes_notracks":"Two leptons, no photons, no other tracks",
+    "sel2Reco_vetoes_notracks_nojets":"Two leptons, no photons, no other tracks, no jets",
+    "sel2Reco_vetoes_notracks_nojets_M80":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8, #chi^2<10, |d_{0}|>0.57 mm",
     
  }
-
-DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/' 
 
 ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
 energy         = 91
 collider       = 'FCC-ee'
 intLumi        = 204 #ab-1
 
-LOGY = False
+LOGY = True
 LOGX = False
 
 VARIABLES_ALL = [
@@ -253,6 +254,25 @@ VARIBALES_JETS = [
 
  ] 
 
+VARIABLES_PID = [
+    "GenParticles_PID",
+    "FSGenParticles_PID",
+    "n_GenTaus",
+    "n_GenPions",
+    "n_GenKLs",
+    "n_GenKpluss",
+
+    "GenPion_e",
+    "GenTau_e",
+    "GenKL_e",
+    "GenKplus_e",
+
+    "GenPion_pt",
+    "GenTau_pt",
+    "GenKL_pt",
+    "GenKplus_pt",
+]
+
 backgrounds_old = [
     'p8_ee_Zee_ecm91',
     'p8_ee_Zmumu_ecm91',
@@ -325,7 +345,6 @@ slegend = {
 
 scolors = {
     'HNL_2.86e-12_30gev': ROOT.kBlue-9,
-    #'HNL_2.86e-7_30gev': ROOT.kBlack,
     'HNL_6.67e-10_30gev': ROOT.kRed-9,
     'HNL_5e-12_60gev': ROOT.kRed-3,
     'HNL_1.33e-7_80gev': ROOT.kBlue-3,
@@ -463,8 +482,9 @@ for cut in CUTS:
 
             #drawing stack for backgrounds
             hStackBkg = ROOT.THStack("hStackBkg", "")
-            #hStackBkg.SetMinimum(1e-6)
-            #hStackBkg.SetMaximum(1e23)
+            if LOGY==True :
+                hStackBkg.SetMinimum(1e-5)
+                hStackBkg.SetMaximum(1e25)
             BgMCHistYieldsDic = {}
             for i in range(nsig, nsig+nbkg):
                 h = histos[i]

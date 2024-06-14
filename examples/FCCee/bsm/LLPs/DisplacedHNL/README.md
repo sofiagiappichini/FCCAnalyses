@@ -7,6 +7,7 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
   - [Generating your own samples](#generating-your-own-samples)
     - [LHE files](#lhe-files)
     - [Pythia+Delphes](#pythiadelphes)
+    - [Delphes - NOT WORKING](#delphes---not-working)
   - [Running the analysis](#running-the-analysis)
     - [How to add new functions to call in the stage1](#how-to-add-new-functions-to-call-in-the-stage1)
     - [Changes made to the general code](#changes-made-to-the-general-code)
@@ -100,7 +101,7 @@ More information on the version used can be found [here](https://github.com/HEP-
 The command to produce root files in Delphes with Pythia hadronization and EDM4Hep format is this:
 
 ```
-DelphesPythia8_EDM4HEP DelphesPythia8config_file output_config_file pythia_card output_file
+DelphesPythia8_EDM4HEP config_file output_config_file pythia_card output_file
 ```
 
 The `DelphesPythia8config_file` is the detector card, it can be found [here](https://github.com/HEP-FCC/FCC-config/blob/winter2023/FCCee/Delphes/card_IDEA.tcl) for the IDEA detector for winter 2023 production. The `output_config_file` is found [here](https://github.com/HEP-FCC/FCC-config/blob/winter2023/FCCee/Delphes/edm4hep_IDEA.tcl). Both can be obtained by cloning the winter 2023 branch of [HEP-FCC/FCC-config](https://github.com/HEP-FCC/FCC-config/tree/winter2023).
@@ -113,6 +114,11 @@ The `output_file` is the EDM4Hep root file containing the sample that needs to b
 
 Instructions to validate in the EDM4Hep format root files created in standalone MG+Pythia+Delphes can be found [here](https://github.com/zuoxunwu/FCCeePhysicsPerformance/tree/BuBc_dev/case-studies/BSM/LLP/DisplacedHNL) (not necessary, it does not produce an edm4hep file, just some histograms).
 
+To get the list of centrally produced backgrounds there is [this website](https://fcc-physics-events.web.cern.ch/FCCee/winter2023/Delphesevents_IDEA.php) and the JSON file:
+
+```
+/afs/cern.ch/work/f/fccsw/public/FCCDicts/FCCee_procDict_winter2023_IDEA.json
+```
 
 ## Running the analysis
 

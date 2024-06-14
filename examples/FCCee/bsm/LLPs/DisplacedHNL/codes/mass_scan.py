@@ -31,7 +31,7 @@ SAMPLES_SCAN = [
 ]
 
 #needs to comment out the first plot to work properly on the second
-'''arrxs = []
+arrxs = []
 arrerr = []
 
 for rep in SAMPLES:
@@ -73,7 +73,7 @@ pl1 = plt.scatter(datam, np.array(xs3)/6.67e-12, label=r'$U^2=6.67\cdot 10^{-12}
 pl1 = plt.errorbar(x=datam, y=np.array(xs3)/6.67e-12, yerr=np.array(er3)/6.67e-12, color="#3366CC")
 
 pl1 = plt.title(r'$M_N=40$ GeV')
-pl1 = plt.xlabel(r'$\Delta M_N$ [GeV]')
+pl1 = plt.xlabel(r'$\Delta M$ [GeV]')
 pl1 = plt.ylabel(r'$\sigma\; (pb)/U^2$')
 #pl1 = plt.yscale('log')
 pl1 = plt.xscale('log')
@@ -82,9 +82,9 @@ pl1 = plt.xticks(datam)
 pl1 = plt.legend()
 pl1 = plt.grid()
 
-pl1 = plt.savefig('/eos/user/s/sgiappic/www/plots/mass_scan_angles.png', format='png', dpi=300)'''
+pl1 = plt.savefig('/eos/user/s/sgiappic/www/paper/mass_scan_angles.png', format='png', dpi=300)
 
-arrxs = []
+'''arrxs = []
 arrerr = []
 
 for rep in SAMPLES_SCAN:
@@ -125,8 +125,8 @@ pl2 = plt.errorbar(x=datam, y=np.array(xs2)/6.67e-10, yerr=np.array(er2)/6.67e-1
 pl2 = plt.scatter(datam, np.array(xs3)/6.67e-10, label=r'$M_N=70\; GeV$', color="#3366CC")
 pl2 = plt.errorbar(x=datam, y=np.array(xs3)/6.67e-10, yerr=np.array(er3)/6.67e-10, color="#3366CC")
 
-pl2 = plt.title(r'$U^2=6.67\cdot 10^{-10}$ GeV')
-pl2 = plt.xlabel(r'$\Delta M_N$ [GeV]')
+pl2 = plt.title(r'$U^2=6.67\cdot 10^{-10}$')
+pl2 = plt.xlabel(r'$\Delta M$ [GeV]')
 pl2 = plt.ylabel(r'$\sigma\; (pb)/U^2$')
 #pl2 = plt.yscale('log')
 pl2 = plt.xscale('log')
@@ -134,4 +134,4 @@ pl2 = plt.xscale('log')
 pl2 = plt.legend()
 pl2 = plt.grid()
 
-pl2 = plt.savefig('/eos/user/s/sgiappic/www/plots/mass_scan_masses.png', format='png', dpi=300)
+pl2 = plt.savefig('/eos/user/s/sgiappic/www/paper/mass_scan_masses.png', format='png', dpi=300)'''

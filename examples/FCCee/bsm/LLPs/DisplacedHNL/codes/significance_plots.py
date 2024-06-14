@@ -6,13 +6,14 @@ from matplotlib import colors
 from matplotlib import ticker
 from scipy.interpolate import griddata
 from matplotlib.colors import LogNorm
+import pandas as pd
 from matplotlib.lines import Line2D
 
 nrows_in = 1
 ncol_in = 2
 end_row = 168 # Last row to include in the first set, doesn't count commented lines
 color = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
-label = ['1.', '2.', '3.', '4.', '5.', '6.'] 
+label = [r'$N_{1,2}\to\ell\ell\nu$ scenario 1.', r'$N_{1,2}\to\ell\ell\nu$ scenario 2.', r'$N_{1,2}\to\ell\ell\nu$ scenario 3.', r'$N_{1,2}\to\ell\ell\nu$ scenario 4.', r'$N_{1,2}\to\ell\ell\nu$ scenario 5.', r'$N_{1,2}\to\ell\ell\nu$ scenario 6.'] 
 
 def split_into_three(arr):
     third = len(arr) // 3
@@ -22,7 +23,8 @@ data_files = [
     "/eos/user/s/sgiappic/combine/output_final_3june.csv",
     ]
 
-fig, axs = plt.subplots(nrows=nrows_in, ncols=ncol_in, figsize=(15, 7))
+
+fig, axs = plt.subplots(nrows=nrows_in, ncols=ncol_in, figsize=(16, 8))
 
 for i, data_file in enumerate(data_files): 
     # Read input data from the text file
@@ -83,8 +85,8 @@ for i, data_file in enumerate(data_files):
             # Create the gradient plot using pcolormesh with logarithmic normalization
             #im = axs[row, col].pcolormesh(mass_grid, coupling_grid, significance_grid, cmap='coolwarm', norm=LogNorm(vmin=1e-4, vmax=10))
             #cbar = fig.colorbar(im, ax=axs[row, col])
-            axs[col].set_xlabel(r'$M_N$ $[GeV]$', fontsize=16)
-            axs[col].set_ylabel(r'$log$ $U^2$', fontsize=16) 
+            axs[col].set_xlabel(r'$M_N$ $[GeV]$', fontsize=18)
+            axs[col].set_ylabel(r'$log$ $U^2$', fontsize=18) 
             #cbar.set_label(r'$Significance$', fontsize=16)
 
             # Add contour areas 
@@ -93,21 +95,32 @@ for i, data_file in enumerate(data_files):
             #axs[col].clabel(contour_lines, fmt=label[k+3*j], colors='black', fontsize=14)
 
             # Add scatter plot for points taken as reference
-            #axs[col].scatter(mass, log_coupling, marker='x', c=color[k+3*j])
+            axs[col].scatter(mass, log_coupling, marker='x', c=color[k+3*j])
             #axs[row, col].set_xscale('log')
             axs[col].set_ylim([-12, -6])
 
         axs[col].tick_params(direction='out', top=False, right=False)
 
+df_FCC_ee = pd.read_csv("/eos/user/s/sgiappic/2HNL_samples/data/FCC_ee_2_data.csv",header=None, sep=",", names = ["X", "Y"])
+x_FCC_ee, y_FCC_ee = [], []
+for i in range(len(df_FCC_ee.index)):
+    x_FCC_ee.append(10**(df_FCC_ee.iloc[i]['X'])) #needs to be converted to linear scale as the events are so they're compatible
+    y_FCC_ee.append(df_FCC_ee.iloc[i]['Y'])
+
+#axs[0].plot(x_FCC_ee,y_FCC_ee,linewidth=1.5,linestyle='-',color='darkgreen') # FCC-ee
+#axs[1].plot(x_FCC_ee,y_FCC_ee,linewidth=1.5,linestyle='-',color='darkgreen') # FCC-ee
+
 legend_elements = [Line2D([0], [0], color=color[i], lw=2, label=label[i]) for i in range(0,3)]
-axs[0].legend(handles=legend_elements, loc='lower right', fontsize=14)
+axs[0].legend(handles=legend_elements, loc='lower right', fontsize=18)
+#axs[0].legend(handles=[Line2D([0], [0], color='darkgreen', lw=2, label='FCC-ee HNL theory prediction \n arxiv:2203.05502')] + legend_elements, loc='lower right', fontsize=12)
 
 legend_elements = [Line2D([0], [0], color=color[i], lw=2, label=label[i]) for i in range(3,6)]
-axs[1].legend(handles=legend_elements, loc='lower right', fontsize=14)
+axs[1].legend(handles=legend_elements, loc='lower right', fontsize=18)
+#axs[1].legend(handles=[Line2D([0], [0], color='darkgreen', lw=2, label='FCC-ee HNL theory prediction \n arxiv:2203.05502')] + legend_elements, loc='lower right', fontsize=12)
     
 # Set the title using the data file name
-axs[0].set_title(r'$Significance - Normal\; Hierarchy$', fontsize=16, y=1.05)
-axs[1].set_title(r'$Significance - Inverted\; Hierarchy$', fontsize=16, y=1.05)
+axs[0].set_title(r'$Shape\; analysis - Normal\; Hierarchy$', fontsize=20, y=1.05)
+axs[1].set_title(r'$Shape\; analysis - Inverted\; Hierarchy$', fontsize=20, y=1.05)
 #axs[1, 0].set_title(r'$Normal\;\; Hierarchy$', fontsize=16, y=1.05)
 #axs[1, 1].set_title(r'$Inverted\; Hierarchy$', fontsize=16, y=1.05)
 
@@ -115,4 +128,4 @@ axs[1].set_title(r'$Significance - Inverted\; Hierarchy$', fontsize=16, y=1.05)
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final_points.png', format='png', dpi=330)

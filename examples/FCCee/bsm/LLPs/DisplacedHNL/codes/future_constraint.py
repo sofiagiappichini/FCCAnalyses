@@ -165,13 +165,13 @@ axes.plot(x_current_LNC,y_current_LNC,linewidth=0.5,linestyle='-.',color='black'
 axes.plot(x_current_LNV,y_current_LNV,linewidth=0.5,linestyle='-.',color='black') 
 
 ### Future Constraints ###
-axes.plot(x_MATHUSLA_disp,y_MATHUSLA_disp,linewidth=1,linestyle='-',color='gold') # MATHUSLA
-axes.plot(x_FASER_disp,y_FASER_disp,linewidth=1,linestyle='--',color='c') # FASER
-axes.plot(x_SHiP,y_SHiP,linewidth=1,linestyle='-',color='purple') # SHiP
-axes.plot(x_AL3X_disp,y_AL3X_disp,linewidth=1,linestyle='--',color='indianred') # AL3X
+axes.plot(x_MATHUSLA_disp,y_MATHUSLA_disp,linewidth=1,linestyle='-',color='#e3d96b') # MATHUSLA
+axes.plot(x_FASER_disp,y_FASER_disp,linewidth=1,linestyle='--',color='#bf97b4') # FASER
+axes.plot(x_SHiP,y_SHiP,linewidth=1,linestyle='-',color='#9d7da8') # SHiP
+axes.plot(x_AL3X_disp,y_AL3X_disp,linewidth=1,linestyle='--',color='#9e6262') # AL3X
 # axes.plot(x_DUNE_1,y_DUNE_1,linewidth=1.5,linestyle='-',color='black') # DUNE ND
-axes.plot(x_DUNE_2,y_DUNE_2,linewidth=1,linestyle='-',color='navy') # DUNE ND
-axes.plot(x_FCC_ee,y_FCC_ee,linewidth=1,linestyle='-',color='darkgreen') # FCC-ee
+axes.plot(x_DUNE_2,y_DUNE_2,linewidth=1,linestyle='-',color='#4f5dc9') # DUNE ND
+axes.plot(x_FCC_ee,y_FCC_ee,linewidth=1.5,linestyle='-',color='#6d8f76') # FCC-ee
 #exclusion areas
 axes.plot(x_CMB,y_CMB,linewidth=1,linestyle='-.',color='dimgrey') # Evans data
 axes.plot(x_CMB_Linear,y_CMB_Linear,linewidth=1,linestyle='-.',color='dimgrey') # Linear CMB
@@ -210,7 +210,7 @@ mass_grid, coupling_grid = np.meshgrid(np.linspace(min(mass), max(mass), 8),
 significance_grid = griddata((mass, log_coupling), significance, (mass_grid, coupling_grid), method='linear')
 
 contour_levels = [3.2]
-contour_lines = axes.contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='#8BA1C3', linewidths=2)
+contour_lines = axes.contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='#8ab0ed', linewidths=2)
 
 ## prompt
 data = np.genfromtxt("/eos/user/s/sgiappic/combine/output_final_3june.csv", delimiter=',')
@@ -226,20 +226,24 @@ mass_grid, coupling_grid = np.meshgrid(np.linspace(min(mass), max(mass), 8),
 significance_grid = griddata((mass, log_coupling), significance, (mass_grid, coupling_grid), method='linear')
 
 contour_levels = [5]
-contour_lines = axes.contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='#8BA1C3', linestyles='--', linewidths=2)
+contour_lines = axes.contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='#8ab0ed', linestyles='--', linewidths=2)
 
 ### Labels ###
 
-plt.text(15-9, -10.5, r'$\mathrm{FCC-ee \; Theory} $',fontsize=12,rotation=0,color='darkgreen')
-plt.text(18-9, -8.2, r'$\mathrm{Realistic\; HNLs\;} $',fontsize=12,rotation=0,color='#8BA1C3')
-plt.text(20.6-9, -9.5, r'$\mathrm{Realistic\; displaced \; HNLs\;} $',fontsize=12,rotation=0,color='#8BA1C3')
-plt.text(10.2-9, -10.2, r'$\mathrm{SHiP} $',fontsize=10,rotation=0,color='purple')
-plt.text(9.5-9, -9.9, r'$\mathrm{DUNE} $',fontsize=10,rotation=0,color='navy')
-plt.text(11.5-9, -9, r'$\mathrm{MATHUSLA} $',fontsize=10,rotation=0,color='gold')
-plt.text(14-9, -5.2, r'$\mathrm{FASER2} $',fontsize=10,rotation=0,color='c')
-plt.text(15.6-9, -6.8, r'$\mathrm{AL3X} $',fontsize=10,rotation=0,color='indianred')
-plt.text(10.7-9, -11, r'$\mathrm{Seesaw}$',fontsize=10,rotation=0,color='#D04747')
-plt.text(9.4-9, -11.7, r'$\mathrm{BBN}$',fontsize=10,rotation=0,color='grey')
+plt.text(14.3-9, -10.5, 'FCC-ee muon HNL',fontsize=11,rotation=0,color='#6d8f76')
+plt.text(14.3-9, -10.9, 'theoretical prediction',fontsize=11,rotation=0,color='#6d8f76')
+#plt.text(18-9, -8., r'$\mathrm{Realistic\; HNLs}$',fontsize=12,rotation=0,color='#8BA1C3')
+plt.text(19-9, -8.2, r'FCC-ee $N_{1,2}\to \ell\ell\nu}$',fontsize=13,rotation=0,color='#8ab0ed')
+#plt.text(20.6-9, -9.5, r'$\mathrm{Realistic\; displaced \; HNLs}$',fontsize=12,rotation=0,color='#8BA1C3')
+plt.text(24-9, -9.5, r'FCC-ee $N_{1,2}\to \ell\ell\nu}$',fontsize=13,rotation=0,color='#8ab0ed')
+plt.text(24-9, -9.9, 'displaced events',fontsize=14,rotation=0,color='#8ab0ed')
+plt.text(10.2-9, -10.2, 'SHiP',fontsize=10,rotation=0,color='#9d7da8')
+plt.text(9.5-9, -9.9, 'DUNE',fontsize=10,rotation=0,color='#4f5dc9')
+plt.text(11.5-9, -9, 'MATHUSLA',fontsize=10,rotation=0,color='#e3d96b')
+plt.text(14-9, -5.2, 'FASER2',fontsize=10,rotation=0,color='#bf97b4')
+plt.text(15.6-9, -6.8, 'AL3X',fontsize=10,rotation=0,color='#9e6262')
+plt.text(10.7-9, -11, 'Seesaw',fontsize=10,rotation=0,color='#D04747')
+plt.text(9.4-9, -11.7, 'BBN',fontsize=10,rotation=0,color='grey')
 
 #axes.set_xticks([-1,0,1,2,3])
 #axes.xaxis.set_ticklabels([r'$10^{-1}$',r'$1$',r'$10^{1}$',r'$10^{2}$',r'$10^{3}$'],fontsize =26)
@@ -247,7 +251,7 @@ plt.text(9.4-9, -11.7, r'$\mathrm{BBN}$',fontsize=10,rotation=0,color='grey')
 #axes.yaxis.set_ticklabels([r'',r'$10^{-12}$',r'',r'$10^{-10}$',r'',r'$10^{-8}$',r'',r'$10^{-6}$',r'',r'$10^{-4}$',r''],fontsize =26)
 #axes.tick_params(axis='x', which='major', pad=7.5)
 
-axes.set_ylabel(r'$log\, U^2$',fontsize=14,rotation=90)
+axes.set_ylabel(r'$\log\, U^2$',fontsize=14,rotation=90)
 axes.set_xlabel(r'$M_N \; [\mathrm{GeV}]$',fontsize=14,rotation=0)
 
 axes.set_xscale('log')
@@ -257,4 +261,4 @@ axes.set_ylim(-12.1,-3.9)
 
 #plt.legend(loc='lower right',fontsize=18,frameon=False)
 
-plt.savefig("/eos/user/s/sgiappic/www/paper/future_constraints.png")
+plt.savefig("/eos/user/s/sgiappic/www/paper/future_constraints_up.png")
