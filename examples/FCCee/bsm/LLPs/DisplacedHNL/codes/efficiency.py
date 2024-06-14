@@ -14,6 +14,7 @@ replacement_bkgs = [
     "emununu",
     "tatanunu"
 ]
+replacement = ['HNL_1.33e-7_80gev']
 
 # Define the tree name
 tree_name = "events"
@@ -27,7 +28,7 @@ tree_name = "events"
 #leaf_name = "Reco_cos"
 #leaf_name = "Reco_DecayVertexLepton_chi2"
 #leaf_name = "Reco_Lxy"
-#leaf_name = "Reco_DecayVertexLepton_z"
+leaf_name = "Reco_DecayVertexLepton_z"
 
 
 
@@ -49,7 +50,7 @@ for cut in cuts:
     entries_bkg = []
 
     # Loop through each replacement word
-    for replacement_word in replacement_bkgs:
+    for replacement_word in replacement:
     
         # Define the ROOT file path
         histo_file_path = dir + "{}_".format(replacement_word) + cut + "_histo.root"
@@ -86,3 +87,5 @@ for cut in cuts:
 
         with open(output_file, "a") as file:
             file.write("Relative efficiency of {} after cut on {}: {} \n".format(replacement_word, leaf_name, efficiency))
+
+        print(output_file)
