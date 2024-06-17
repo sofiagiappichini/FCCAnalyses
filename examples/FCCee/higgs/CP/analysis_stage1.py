@@ -25,7 +25,7 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = False
+runBatch = True
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"
@@ -186,6 +186,9 @@ class RDFanalysis():
                 .Define("FSGenPhoton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenPhoton)")
                 .Define("FSGenPhoton_charge", "FCCAnalyses::MCParticle::get_charge(FSGenPhoton)")
                 .Define("FSGenPhoton_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(FSGenPhoton,Particle,Particle0)")
+
+                .Define("GenZ",   "FCCAnalyses::MCParticle::sel_pdgID(23, true)(Particle)")
+                .Define("n_GenZ",   "FCCAnalyses::MCParticle::get_n(GenZ)")
                 
                 ##################
                 # Reco particles #
@@ -337,13 +340,12 @@ class RDFanalysis():
                 .Define("n_Jets_antikt5", "Jets_antikt5_e.size()")
                
         )
-        return df2
 
         ### tagging, inherited from lars to build the tau tagging alogirthm later on
-
+        # cleaning out low momentum leptons
         df3 = (df2
-               .Define("muons_15",     "FCCAnalyses::ReconstructedParticle::sel_p(15)(muons)")
-               .Define("electrons_15", "FCCAnalyses::ReconstructedParticle::sel_p(15)(electrons)")
+               .Define("muons_15",     "FCCAnalyses::ReconstructedParticle::sel_p(15)(RecoMuons)")
+               .Define("electrons_15", "FCCAnalyses::ReconstructedParticle::sel_p(15)(RecoElectrons)")
                .Define("ReconstructedParticlesNoMuons", "FCCAnalyses::ReconstructedParticle::remove(ReconstructedParticles,muons_15)")
                .Define("ReconstructedParticlesNoLeps",  "FCCAnalyses::ReconstructedParticle::remove(ReconstructedParticlesNoMuons,electrons_15)")
         )
@@ -371,11 +373,17 @@ class RDFanalysis():
         collections_noleps["PFParticles"] = "ReconstructedParticlesNoLeps"
 
         ## def __init__(self, coll, njets, tag="")
-        jetClusteringHelper_kt2 = ExclusiveJetClusteringHelper(collections_noleps["PFParticles"], 2, "kt2") #Durham kt exclusive n=2
-        jetClusteringHelper_R5  = InclusiveJetClusteringHelper(collections_noleps["PFParticles"], 0.5, 1, "R5") #antikt inclusive with R=0.5 and pt>1 gev
+        jetClusteringHelper_kt2 = ExclusiveJetClusteringHelper(
+            collections_noleps["PFParticles"], 2, "kt2",
+        )
+        jetClusteringHelper_R5  = InclusiveJetClusteringHelper(
+            collections_noleps["PFParticles"], 0.5, 1, "R5",
+        )
         df3 = jetClusteringHelper_kt2.define(df3)
         df3 = jetClusteringHelper_R5. define(df3)
+
         ## define jet flavour tagging parameters
+
         jetFlavourHelper_kt2 = JetFlavourHelper(
             collections_noleps,
             jetClusteringHelper_kt2.jets,
@@ -390,11 +398,14 @@ class RDFanalysis():
         )
         ## define observables for tagger
         df3 = jetFlavourHelper_kt2.define(df3)
-        df3 = jetFlavourHelper_R5.define(df3)
+        df3 = jetFlavourHelper_R5. define(df3)
+
         ## tagger inference
         df3 = jetFlavourHelper_kt2.inference(weaver_preproc, weaver_model, df3)
-        df3 = jetFlavourHelper_R5.inference(weaver_preproc, weaver_model, df3)
+        df3 = jetFlavourHelper_R5. inference(weaver_preproc, weaver_model, df3)
 
+        # is this needed?
+        # no, this is just variables for output
         df3 = df3.Define(
             "jets_kt2_p4",
             "JetConstituentsUtils::compute_tlv_jets({})".format(
@@ -412,7 +423,7 @@ class RDFanalysis():
             .Define("jet_kt2_mass",         "JetClusteringUtils::get_m({})".format(jetClusteringHelper_kt2.jets))
             .Define("jet_kt2_flavor", "JetTaggingUtils::get_flavour({}, Particle)".format(jetClusteringHelper_kt2.jets))
             .Define("n_jets_kt2",           "return jet_kt2_flavor.size()")
-            .Define("pfcand_PID_kt2", "JetConstituentsUtils::get_PIDs(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,_jet_kt2)")
+            #.Define("pfcand_PID_kt2", "JetConstituentsUtils::get_PIDs(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,_jet_kt2)")
             
             .Define("jet_R5_px",           "JetClusteringUtils::get_px({})".format(jetClusteringHelper_R5.jets))
             .Define("jet_R5_py",           "JetClusteringUtils::get_py({})".format(jetClusteringHelper_R5.jets))
@@ -423,9 +434,10 @@ class RDFanalysis():
             .Define("jet_R5_mass",         "JetClusteringUtils::get_m({})".format(jetClusteringHelper_R5.jets))
             .Define("jet_R5_flavor", "JetTaggingUtils::get_flavour({}, Particle)".format(jetClusteringHelper_R5.jets) )
             .Define("n_jets_R5",           "return jet_R5_flavor.size()")
-            .Define("pfcand_PID_R5", "JetConstituentsUtils::get_PIDs(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,_jet_R5)")
-            )
+            #.Define("pfcand_PID_R5", "JetConstituentsUtils::get_PIDs(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,_jet_R5)")
+        )
         return df3
+
         ## tagging
 
     #__________________________________________________________
@@ -510,6 +522,8 @@ class RDFanalysis():
             "FSGenPhoton_charge",
             "FSGenPhoton_parentPDG",
 
+            "n_GenZ",
+
             ######## Reconstructed particles #######
             "RecoMC_PID",
 
@@ -590,8 +604,7 @@ class RDFanalysis():
         branchList += jetFlavourHelper_R5.outputBranches()
         branchList += [obs for obs in jetFlavourHelper_kt2.definition.keys() if "pfcand_" in obs]
         branchList += [obs for obs in jetFlavourHelper_R5. definition.keys() if "pfcand_" in obs]
-        branchList += ["pfcand_PID_kt2", "pfcand_PID_R5"]
-        branchList += ["jet_kt2_px", "jet_kt2_py", "jet_kt2_pz", "jet_kt2_phi", "jet_kt2_eta", "jet_kt2_energy", "jet_kt2_mass", "jet_kt2_flavor", "n_jets_kt2", "pfcand_PID_kt2"]
-        branchList += ["jet_R5_px", "jet_R5_py", "jet_R5_pz", "jet_R5_phi", "jet_R5_eta", "jet_R5_energy", "jet_R5_mass", "jet_R5_flavor", "n_jets_R5", "pfcand_PID_R5"]
+        branchList += ["jet_kt2_px", "jet_kt2_py", "jet_kt2_pz", "jet_kt2_phi", "jet_kt2_eta", "jet_kt2_energy", "jet_kt2_mass", "jet_kt2_flavor", "n_jets_kt2",]
+        branchList += ["jet_R5_px", "jet_R5_py", "jet_R5_pz", "jet_R5_phi", "jet_R5_eta", "jet_R5_energy", "jet_R5_mass", "jet_R5_flavor", "n_jets_R5", ]
 
         return branchList

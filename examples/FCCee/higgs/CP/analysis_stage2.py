@@ -15,7 +15,7 @@ processList = {
 inputDir = "//"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/user/sgiappic/HiggsCP/stage1/"
+outputDir   = "//"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -79,19 +79,19 @@ class RDFanalysis():
                 # angular distance between two leptons 
                 .Define("Reco_DR","if (n_RecoLeptons>1) return myUtils::deltaR(Reco_phi.at(0), Reco_phi.at(1), Reco_eta.at(0), Reco_eta.at(1)); else return float(-1.);")
 
-               )
-                return df2
+            )
+            return df2
 
-#__________________________________________________________
-#Mandatory: output function, please make sure you return the branchlist as a python list
-def output():
-    branchList = [
-            ######## Monte-Carlo particles #######
-            "FSGen_invMass",
+        #__________________________________________________________
+        #Mandatory: output function, please make sure you return the branchlist as a python list
+        def output():
+            branchList = [
+                    ######## Monte-Carlo particles #######
+                    "FSGen_invMass",
 
-            ######## Reconstructed particles #######
-            "Reco_invMass",
-            "Reco_cos",
-            "Reco_DR",
-                ]
-    return branchList
+                    ######## Reconstructed particles #######
+                    "Reco_invMass",
+                    "Reco_cos",
+                    "Reco_DR",
+                        ]
+            return branchList
