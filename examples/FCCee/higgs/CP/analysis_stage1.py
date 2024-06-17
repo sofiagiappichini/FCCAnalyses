@@ -3,13 +3,13 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -28,7 +28,7 @@ nCPUS = 10
 runBatch = True
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+batchQueue = "tomorrow"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"

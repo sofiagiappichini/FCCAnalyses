@@ -1,11 +1,11 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
+inputDir = "//" #your stage2 directory
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/eff/"
+outputDir = "//" #your final directory
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
-intLumi = 204e6 #pb^-1
+intLumi = 10e6 #pb^-1 #to be checked again for 240 gev
 
 #Scale event yields by intLumi and cross section (optional)
 # if scaling, both the number of events in the table and in the histograms will be scaled
@@ -15,31 +15,23 @@ doScale = True
 saveTabular = True
 
 #Number of CPUs to use
-nCPUS = 6
+nCPUS = 8
 
 #produces ROOT TTrees, default is False
 doTree = False
 
 processList = {
-        'p8_ee_Zee_ecm91':{},
-        'p8_ee_Zmumu_ecm91':{},
-        'p8_ee_Ztautau_ecm91':{},
-        'p8_ee_Zbb_ecm91':{},
-        'p8_ee_Zcc_ecm91':{},
-        'p8_ee_Zud_ecm91':{},
-        'p8_ee_Zss_ecm91':{},
-            
-        ### privately produced backgrounds ###
-        'emununu':{},
-        'tatanunu':{},
-
-        'HNL_2.86e-12_30gev':{},
-        'HNL_6.67e-10_30gev':{},
-        'HNL_5e-12_60gev':{},
-        'HNL_1.33e-7_80gev':{},
+    'wzp6_ee_nunuH_Htautau_ecm240': {},
+    'wzp6_ee_nunuH_Hbb_ecm240': {},
+    'wzp6_ee_nunuH_Hcc_ecm240': {},
+    'wzp6_ee_nunuH_Huu_ecm240': {},
+    'wzp6_ee_nunuH_Hdd_ecm240': {},
+    'wzp6_ee_nunuH_Hss_ecm240': {},
+    'wzp6_ee_nunuH_Hmumu_ecm240': {},
 }
 
 ###Dictionary for prettier names of processes (optional)
+#change them if you want but they don't do anything
 processLabels = {
     #backgrounds
     'p8_ee_Zee_ecm91':"Z $\rightarrow$ ee",
@@ -65,21 +57,9 @@ procDictAdd = {
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
-    ### basic selection is vetoes on leptons, charge, photons, jets ###
-
+    ### no selection, just builds the histograms, it will not be shown in the latex table
     "selNone": "n_RecoTracks>-1",
-    #"sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
-    #"sel2Reco_vetoes_tracks": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_RecoTracks==2",
-    #"sel2Reco_vetoes_notracks": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0",
-    #"sel2Reco_vetoes_nojetsexcl": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_jets_excl==0",
-    #"sel2Reco_vetoes_nojets": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0",
-    #"sel2Reco_vetoes_notracks_nojetsexcl": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_jets_excl==0",
-    #"sel2Reco_vetoes_notracks_nojets": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 ",
- 
-    ### to be used for signal plots with no distintion between flavors ###
-    #"sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
-    #"sel2Gen_vetoes": "n_FSGenLepton==2 && n_FSGenPhoton==0",
-
+    ### here you can add your cuts and selections on the variables built in stage 1 and 2
     #"sel2RecoSF_vetoes": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
     #"sel2RecoSF_vetoes_notracks": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0",
     #"sel2RecoSF_vetoes_notracks_nojets": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0",
@@ -90,50 +70,12 @@ cutList = {
     #                                    && RecoMissingEnergy_pt.at(0)>5 && Reco_cos>-0.8",
     #"sel2RecoSF_vetoes_notracks_nojets_M80_5MEpt_0.8cos_chi_0.55d0": "((n_RecoElectrons==2 && n_RecoMuons==0) || (n_RecoMuons==2 && n_RecoElectrons==0)) && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 \
                                         #&& RecoMissingEnergy_pt.at(0)>5 && Reco_cos>-0.8 && RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.55 && RecoTrack_absD0.at(1)>0.55 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
-    
-    
-    #"sel2RecoDF_vetoes": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
-    #"sel2RecoDF_vetoes_notracks": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 ",
-    #"sel2RecoDF_vetoes_notracks_nojets": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0",
-    #"sel2RecoDF_vetoes_notracks_nojets_M80": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80",
-    #"sel2RecoDF_vetoes_notracks_nojets_M80_5MEpt": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>5",
-    #"sel2RecoDF_vetoes_notracks_nojets_M80_5MEpt_0.8cos": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>5 && Reco_cos>-0.8",
-    #"sel2RecoDF_vetoes_notracks_nojets_M80_5MEpt_0.8cos_chi_0.55d0": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>5 && Reco_cos>-0.8 \
-                                                       #&& RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.5 && RecoTrack_absD0.at(1)>0.55 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
 
-    #"sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
-    #"sel2Reco_vetoes_notracks": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 ",
-    #"sel2Reco_vetoes_notracks_nojets": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0",
-    #"sel2Reco_vetoes_notracks_nojets_M80": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 \
-    #                                                   && RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.57 && RecoTrack_absD0.at(1)>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
-    
-    #"M80_10MEpt_0.8cos": "Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8",
-    "chi10_0.57d0": "RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.57 && RecoTrack_absD0.at(1)>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
-  
 }
 
 # Dictionary for prettier names of cuts (optional)
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
 cutLabels = {
-
-    #"sel2RecoSF_vetoes":"Two same flavor leptons, no photons",
-    #"sel2RecoSF_vetoes_notracks":"Two same flavor leptons, no photons, no other track",
-    #"sel2RecoSF_vetoes_notracks_nojets":"Two same flavor leptons, no photons, no other track, no jets",
-    #"sel2RecoSF_vetoes_notracks_nojets_M80":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV",
-    #"sel2RecoSF_vetoes_notracks_nojets_M80_5MEpt":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV",
-    #"sel2RecoSF_vetoes_notracks_nojets_M80_5MEpt_0.8cos":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, cos\theta>-0.8",
-    #"sel2RecoSF_vetoes_notracks_nojets_M80_5MEpt_0.8cos_chi_0.55d0":"Two same flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
-
-    #"sel2RecoDF_vetoes":"Two different flavor leptons, no photons",
-    #"sel2RecoDF_vetoes_notracks":"Two different flavor leptons, no photons, no other trac",
-    #"sel2RecoDF_vetoes_notracks_nojets":"Two different flavor leptons, no photons, no other track, no jets",
-    #"sel2RecoDF_vetoes_notracks_nojets_M80":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV",
-    #"sel2RecoDF_vetoes_motracks_nojets_M80_5MEpt":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV",
-    #"sel2RecoDF_vetoes_notracks_nojets_M80_5MEpt_0.8cos":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, cos\theta>-0.8",
-    #"sel2RecoDF_vetoes_notracks_nojets_M80_5MEpt_0.8cos_chi_0.5d0":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
 
     "sel2Reco_vetoes":"Two leptons, no photons",
     "sel2Reco_vetoes_notracks":"Two leptons, no photons, no other trac",

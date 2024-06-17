@@ -24,19 +24,19 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
+# directory with final stage files
 DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
+#directory where you want your plots to go
 DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/' 
-
+#list of cuts you want to plot
 CUTS = [
     "sel2Reco_vetoes",
     "sel2Reco_vetoes_notracks_nojets",
     "sel2Reco_vetoes_notracks_nojets_M80",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
-    
- 
  ] 
-
+#labels for the cuts in the plots
 LABELS = {
     "sel2RecoSF_vetoes":"Two same flavor leptons, no photons",
     "sel2RecoSF_vetoes_notracks":"Two same flavor leptons, no photons, no other track",
@@ -76,11 +76,11 @@ LABELS = {
 ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
 energy         = 91
 collider       = 'FCC-ee'
-intLumi        = 204 #ab-1
+intLumi        = 10 #ab-1
 
 LOGY = True
 LOGX = False
-
+#now you can list all the histograms that you want to plot
 VARIABLES_ALL = [
     
     #gen variables
@@ -185,7 +185,7 @@ VARIABLES_ALL = [
     "RecoMissingEnergy_phi",
 
 ]
-
+#list of backgorunds, then legend and colors to be assigned to them
 backgrounds_old = [
     'p8_ee_Zee_ecm91',
     'p8_ee_Zmumu_ecm91',
@@ -216,18 +216,7 @@ bcolors = {
     'p8_ee_Zud_ecm91': 20,
 }
 
-bcolors_old = {
-    'p8_ee_Zee_ecm91': 29,
-    'p8_ee_Zmumu_ecm91': 32,
-    'p8_ee_Ztautau_ecm91': 34,
-    'p8_ee_Zbb_ecm91': 48,
-    'p8_ee_Zcc_ecm91': 44,
-    'p8_ee_Zud_ecm91': 41,
-    'p8_ee_Zss_ecm91': 20,
-    'emununu': 40,
-    'tatanunu': 38,
-}
-
+#list of signals, then legend and colors to be assigned to them
 signals = [
     #'HNL_2.86e-7_30gev',
     'HNL_2.86e-12_30gev',
@@ -307,6 +296,7 @@ for cut in CUTS:
             colors.append(bcolors_old[b])
             leg2.AddEntry(histos[-1], blegend_old[b], "f")
         
+        #use this as an example if you want to plot two or more backgrounds in the same histogram
         '''if nbkg != 0:
             #add some backgrounds to the same histogram
             fin = f"{DIRECTORY}emununu_{cut}_histo.root"
@@ -384,12 +374,11 @@ for cut in CUTS:
             #drawing stack for backgrounds
             hStackBkg = ROOT.THStack("hStackBkg", "")
             if LOGY==True :
-                hStackBkg.SetMinimum(1e-5)
-                hStackBkg.SetMaximum(1e25)
+                hStackBkg.SetMinimum(1e-5) #change the range to be plotted
+                hStackBkg.SetMaximum(1e25) #leave some space on top for the legend
             BgMCHistYieldsDic = {}
             for i in range(nsig, nsig+nbkg):
                 h = histos[i]
-                h.Scale(1.13) # scale lumi from 180 to 204
                 h.SetLineWidth(1)
                 h.SetLineColor(ROOT.kBlack)
                 h.SetFillColor(colors[i])
@@ -409,13 +398,12 @@ for cut in CUTS:
             # add the signal histograms
             for i in range(nsig):
                 h = histos[i]
-                h.Scale(1.13) # scale lumi from 180 to 204
                 h.SetLineWidth(3)
                 h.SetLineColor(colors[i])
                 h.Draw("HIST SAME")
 
             hStackBkg.GetYaxis().SetTitle("Events")
-            hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
+            hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
             #hStackBkg.GetYaxis().SetTitleOffset(1.5)
             hStackBkg.GetXaxis().SetTitleOffset(1.2)
             #hStackBkg.GetXaxis().SetLimits(1, 1000)
@@ -432,7 +420,7 @@ for cut in CUTS:
                     h.GetYaxis().SetTitle("Events")
                     h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
                     #h.GetXaxis().SetTitle("{}".format(variable))
-                    h.GetYaxis().SetRangeUser(1e-6,1e8)
+                    h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
                     #h.GetYaxis().SetTitleOffset(1.5)
                     h.GetXaxis().SetTitleOffset(1.2)
                     #h.GetXaxis().SetLimits(1, 1000)
