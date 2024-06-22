@@ -1,5 +1,5 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "//" #your stage2 directory
+inputDir = "/eos/user/s/sgiappic/HiggsCP/stage1/" #your stage2 directory
 
 #Output directory where the files produced at the final-selection level are
 outputDir = "//" #your final directory
