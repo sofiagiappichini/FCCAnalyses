@@ -3,9 +3,12 @@
 The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLPFCCTutorial/blob/main/README.md](https://github.com/jalimena/LLPFCCTutorial/blob/main/README.md)
 
 - [Instruction for Higgs CP analysis](#instruction-for-higgs-cp-analysis)
+  - [Event production](#event-production)
+    - [Central backgrounds](#central-backgrounds)
+    - [Stage 1 ntuples](#stage-1-ntuples)
   - [FCCAnalyses setup](#fccanalyses-setup)
   - [Running the analysis](#running-the-analysis)
-    - [How to add new functions to call in the stage1](#how-to-add-new-functions-to-call-in-the-stage1)
+    - [How to add new functions](#how-to-add-new-functions)
     - [Changes made to the general code](#changes-made-to-the-general-code)
   - [Additional codes](#additional-codes)
     - [Access LHE files](#access-lhe-files)
@@ -16,6 +19,24 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
     - [Plots](#plots)
     - [Combine](#combine)
     - [Other](#other)
+
+## Event production
+
+### Central backgrounds
+
+The SM samples come from the [central winter 23 production](https://fcc-physics-events.web.cern.ch/FCCee/winter2023/Delphesevents_IDEA.php). For ZH at $\sqrt{s}=$240 GeV the samples are produced in [Wizard v. 3.0.3](https://github.com/HEP-FCC/FCC-config/tree/winter2023/FCCee/Generator/Whizard/v3.0.3) and showered with Pythia 6. The file names indicates the other particles besides the H (s channel Z -> ZH or if possible with the same final state WW -> H is also included) and also the decay of the H. The stage 1 ntuples already available are:
+
+- wzp6_ee_nunuH_Htautau_ecm240: 1,200,000 gen events
+- wzp6_ee_nunuH_Hbb_ecm240: 1,200,000 gen events
+- wzp6_ee_nunuH_Hcc_ecm240: 1,100,000 gen events
+- wzp6_ee_nunuH_Huu_ecm240: 4,900,000 gen events
+- wzp6_ee_nunuH_Hdd_ecm240: 4,979,640 gen events
+- wzp6_ee_nunuH_Hss_ecm240: 1,008,052 gen events
+- wzp6_ee_nunuH_Hmumu_ecm240: 400,000 gen events
+
+### Stage 1 ntuples
+
+The ntuples contain information about the thruth level variables for (NOT YET)after FSR taus, final state electrons and muons, number of Z, final state neutrinos (all flavors together), and final state photons. For the reconstructed particles there are final state electrons, muons and photons, missing energy, primary and secondary tracks and two jets classes inherited from the tau tagging study (exclusive Durham kt with 2 jets and inclusive anti kt with R=0.5 and $p_T>$1 GeV, both exclude electrons and muons with $p>$15 GeV from the clustering). 
 
 ## FCCAnalyses setup 
 
@@ -78,7 +99,7 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
     python replot.py
     ```
 
-### How to add new functions to call in the stage1
+### How to add new functions
 
 To add new functions that take any argument and that will be useful to either select or build new variables in analysis_stage1.py these are the steps (assuming the function is written in cpp):
 

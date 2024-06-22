@@ -4,11 +4,11 @@ import ROOT
 #Mandatory: List of processes
 processList = {
     #'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
 }
 
@@ -18,7 +18,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 #Optional: output directory, default is local running directory
 outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1/"
 
-### necessary to run on HTCondor ###
+### necessary to run on HTCondor ###c
 eosType = "eosuser"
 
 #Optional: ncpus, default is 4
