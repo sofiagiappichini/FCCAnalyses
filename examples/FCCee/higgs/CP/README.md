@@ -38,6 +38,8 @@ The SM samples come from the [central winter 23 production](https://fcc-physics-
 
 The ntuples contain information about the thruth level variables for (NOT YET)after FSR taus, final state electrons and muons, number of Z, final state neutrinos (all flavors together), and final state photons. For the reconstructed particles there are final state electrons, muons and photons, missing energy, primary and secondary tracks and two jets classes inherited from the tau tagging study (exclusive Durham kt with 2 jets and inclusive anti kt with R=0.5 and $p_T>$1 GeV, both exclude electrons and muons with $p>$15 GeV from the clustering). 
 
+The files can be found at `/ceph/sgiappic/HiggsCP/stage1`. 
+
 ## FCCAnalyses setup 
 
 1. Fork Sofia's version  of [FCCAnalyses](https://github.com/sofiagiappichini/FCCAnalyses) (official version is moving to EDM4Hep 1.0 which makes things more complicated to run on the Winter 23 samples) to set up the working environment in lxplus (or other space).
