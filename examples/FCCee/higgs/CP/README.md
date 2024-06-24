@@ -24,7 +24,7 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
 
 ### Central backgrounds
 
-The SM samples come from the [central winter 23 production](https://fcc-physics-events.web.cern.ch/FCCee/winter2023/Delphesevents_IDEA.php). For ZH at $\sqrt{s}=$240 GeV the samples are produced in [Wizard v. 3.0.3](https://github.com/HEP-FCC/FCC-config/tree/winter2023/FCCee/Generator/Whizard/v3.0.3) and showered with Pythia 6. The file names indicates the other particles besides the H (s channel Z -> ZH or if possible with the same final state WW -> H is also included) and also the decay of the H. The stage 1 ntuples already available are:
+The SM LO samples come from the [central winter 23 production](https://fcc-physics-events.web.cern.ch/FCCee/winter2023/Delphesevents_IDEA.php). For ZH at $\sqrt{s}=$240 GeV the samples are produced in [Wizard v. 3.0.3](https://github.com/HEP-FCC/FCC-config/tree/winter2023/FCCee/Generator/Whizard/v3.0.3) and showered with Pythia 6. The file names indicates the other particles besides the H (s channel Z -> ZH or if possible with the same final state WW -> H is also included) and also the decay of the H. The stage 1 ntuples already available are:
 
 - wzp6_ee_nunuH_Htautau_ecm240: 1,200,000 gen events
 - wzp6_ee_nunuH_Hbb_ecm240: 1,200,000 gen events
@@ -128,6 +128,8 @@ To add new functions that take any argument and that will be useful to either se
     ```
     .Define("variable", "myUtils::myFunction(arguments)")
     ```
+
+New functions: `myUtils::deltaR`, `MCParticle::sel_parentID`.
 
 ### Changes made to the general code
 
