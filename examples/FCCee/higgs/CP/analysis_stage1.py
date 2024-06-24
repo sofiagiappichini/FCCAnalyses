@@ -3,11 +3,11 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    #'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Htautau_ecm240': {'fraction':0.01},
     #'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
 }
@@ -16,7 +16,7 @@ processList = {
 prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1/"
+outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1/test/"
 
 ### necessary to run on HTCondor ###c
 eosType = "eosuser"
@@ -25,10 +25,10 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = True
+runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "tomorrow"
+batchQueue = "espresso"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -133,7 +133,13 @@ class RDFanalysis():
                 .Define("FSGenMuon_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( FSGenMuon )")
 
                 #gen taus, they're not final state in any case
-                .Define("GenTau",   "FCCAnalyses::MCParticle::sel_pdgID(15, true)(Particle)")
+                .Define("AllGenTauPlus",    "FCCAnalyses::MCParticle::sel_pdgID(-15, false)(Particle)")
+                .Define("n_GenTauPlus",      "FCCAnalyses::MCParticle::get_n(AllGenTauPlus)")
+                .Define("GenTauPlus",       "if (n_AllGenTauPlus>1) return FCCAnalyses::MCParticle::sel_parentID(-15, false)(AllGenTauPlus,Particle,Particle0); else return AllGenTauPlus")
+                .Define("AllGenTauMin",    "FCCAnalyses::MCParticle::sel_pdgID(15, false)(Particle)")
+                .Define("n_GenTauMin",      "FCCAnalyses::MCParticle::get_n(AllGenTauMin)")
+                .Define("GenTauMin",       "if (n_AllGenTauMin>1) return FCCAnalyses::MCParticle::sel_parentID(15, false)(AllGenTauMin,Particle,Particle0); else return AllGenTauMin")
+                .Define("GenTau",           "FCCAnalyses::MCParticle::mergeParticles(GenTauPlus, GenTauMin)")
                 .Define("n_GenTau",      "FCCAnalyses::MCParticle::get_n(GenTau)")
                 .Define("GenTau_e",     "FCCAnalyses::MCParticle::get_e(GenTau)")
                 .Define("GenTau_p",     "FCCAnalyses::MCParticle::get_p(GenTau)")
@@ -144,9 +150,10 @@ class RDFanalysis():
                 .Define("GenTau_eta",    "FCCAnalyses::MCParticle::get_eta(GenTau)")
                 .Define("GenTau_theta",     "FCCAnalyses::MCParticle::get_theta(GenTau)")
                 .Define("GenTau_phi",    "FCCAnalyses::MCParticle::get_phi(GenTau)")
+                .Define("GenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(GenTau,Particle,Particle0)")
                 .Define("GenTau_charge", "FCCAnalyses::MCParticle::get_charge(GenTau)")
                 .Define("GenTau_mass",   "FCCAnalyses::MCParticle::get_mass(GenTau)")
-                .Define("GenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(GenTau,Particle,Particle0)")
+
                 .Define("GenTau_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( GenTau )")
                 .Define("GenTau_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( GenTau )")
                 .Define("GenTau_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( GenTau )")
@@ -268,7 +275,8 @@ class RDFanalysis():
                 # reconstructed tracks
                 .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
                 .Define("RecoVertexObject",   "VertexFitterSimple::VertexFitter_Tk( 0, EFlowTrack_1)" ) ### reconstructing a vertex withour any request n=0 ###
-                #.Define("n_RecoVertex",  "RecoVertexObject.size()")
+                .Define("RecoVertex",  "VertexingUtils::get_VertexData( RecoVertexObject )")
+                #.Define("n_RecoVertex",  "VertexingUtils::get_Nvertex(RecoVertex)")
 
                 .Define("PrimaryTracks",  "VertexFitterSimple::get_PrimaryTracks( EFlowTrack_1, true, 4.5, 20e-3, 300, 0., 0., 0.)") 
                 .Define("n_PrimaryTracks",  "ReconstructedParticle2Track::getTK_n( PrimaryTracks )")
@@ -286,14 +294,10 @@ class RDFanalysis():
 
                 # MC vertex association
                 #.Define("MC_PrimaryVertex",  "FCCAnalyses::MCParticle::get_EventPrimaryVertex(3)( Particle )" )
-                #.Define("MCVertexObject", "myUtils::get_MCVertexObject(Particle, Particle0)")
-                #.Define("VertexObject", "myUtils::get_VertexObject(MCVertexObject,ReconstructedParticles,EFlowTrack_1,MCRecoAssociations0,MCRecoAssociations1)")
-                #.Define("MCVertex",  "VertexingUtils::get_VertexData( MCVertexObject )")
-                # the recoParticles corresponding  to the tracks that are primaries, according to MC-matching :
-                #.Define("MC_PrimaryTracks_RP",  "VertexingUtils::SelPrimaryTracks(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle, MC_PrimaryVertex)" )
-                # and the corresponding tracks :
-                #.Define("MC_PrimaryTracks",  "ReconstructedParticle2Track::getRP2TRK( MC_PrimaryTracks_RP, EFlowTrack_1)" )
-                #.Define("n_MCPrimaryTracks", "ReconstructedParticle::get_n(MC_PrimaryTracks_RP)")
+                .Define("MCVertexObject", "myUtils::get_MCVertexObject(Particle, Particle0)")
+                .Define("VertexObject", "myUtils::get_VertexObject(MCVertexObject, ReconstructedParticles, EFlowTrack_1, MCRecoAssociations0, MCRecoAssociations1)")
+                .Define("RecoPartPID" ,"myUtils::PID(ReconstructedParticles, MCRecoAssociations0, MCRecoAssociations1, Particle)")
+                .Define("RecoPartPIDAtVertex" ,"myUtils::get_RP_atVertex(RecoPartPID, VertexObject)")
 
                 # JETS, reclustered from the reconstructed particles, never use the class in the samples
                 ### https://github.com/HEP-FCC/FCCAnalyses/blob/master/addons/FastJet/JetClustering.h ###
@@ -587,16 +591,21 @@ class RDFanalysis():
 
             "n_RecoTracks",
             #"n_RecoVertex",
+            "RecoVertexObject",
+            "RecoVertex",
             "n_PrimaryTracks",
+            "PrimaryVertexObject",
             "PrimaryVertex", 
             "PrimaryVertex_xyz",
             "PrimaryVertes_xy",
-            #"PrimaryVertex_PID",
             "n_SecondaryTracks",
+            "SecondaryVertexObject",
             "SecondaryVertex",
-            #"SecondaryVertex_PID",
             "SecondaryVertex_xyz",
             "SecondaryVertes_xy",
+            "VertexObject", 
+            "RecoPartPID" ,
+            "RecoPartPIDAtVertex" ,
 
         ]
 
