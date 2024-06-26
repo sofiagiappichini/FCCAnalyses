@@ -284,16 +284,16 @@ def run(rdf_module, args):
         uncertainty = ROOT.Math.sqrt(all_events)
 
         if do_scale:
-            all_events = all_events * 1. * \
+            all_events = process_events[process_name]  * 1. * \
                          process_dict[process_name]["crossSection"] * \
                          process_dict[process_name]["kfactor"] * \
                          process_dict[process_name]["matchingEfficiency"] * \
-                         int_lumi / process_events[process_name]
-            uncertainty = ROOT.Math.sqrt(all_events) * \
+                         int_lumi / process_dict[process_name]["numberOfEvents"]
+            uncertainty = ROOT.Math.sqrt(process_events[process_name]) * \
                 process_dict[process_name]["crossSection"] * \
                 process_dict[process_name]["kfactor"] * \
                 process_dict[process_name]["matchingEfficiency"] * \
-                int_lumi / process_events[process_name]
+                int_lumi / process_dict[process_name]["numberOfEvents"]
             LOGGER.info('Printing scaled number of events!!!')
 
         cfn_width = 16 + length_cuts_names  # Cutflow name width
@@ -317,13 +317,13 @@ def run(rdf_module, args):
                     process_dict[process_name]["crossSection"] * \
                     process_dict[process_name]["kfactor"] * \
                     process_dict[process_name]["matchingEfficiency"] * \
-                    int_lumi / process_events[process_name]
+                    int_lumi / process_dict[process_name]["numberOfEvents"]
                 uncertainty = \
                     ROOT.Math.sqrt(nevents_this_cut_raw) * \
                     process_dict[process_name]["crossSection"] * \
                     process_dict[process_name]["kfactor"] * \
                     process_dict[process_name]["matchingEfficiency"] * \
-                    int_lumi / process_events[process_name]
+                    int_lumi / process_dict[process_name]["numberOfEvents"]
             info_msg += f'\n\t{"After selection " + cut:{cfn_width}} : '
             info_msg += f'{nevents_this_cut:,}'
 
@@ -337,7 +337,7 @@ def run(rdf_module, args):
                     # float notation - recomended for signals with few events
                     # cuts_list.append(
                     #     f'{neventsThisCut:.3f} $\\pm$ {uncertainty:.3f}')
-                    eff_list.append(f'{1.*nevents_this_cut/all_events:.2e}')
+                    eff_list.append(f'{1.*nevents_this_cut/(process_dict[process_name]["numberOfEvents"]) :.2e}')
                 # if number of events is zero, the previous uncertainty is
                 # saved instead:
                 #elif '$\\pm$' in cuts_list[-1]:
@@ -363,7 +363,7 @@ def run(rdf_module, args):
                                 1. * process_dict[process_name]["crossSection"] *
                                 process_dict[process_name]["kfactor"] *
                                 process_dict[process_name]["matchingEfficiency"] * int_lumi /
-                                process_events[process_name])
+                                process_dict[process_name]["numberOfEvents"])
                     except KeyError:
                         LOGGER.warning(
                             'No value defined for process %s in dictionary!',
