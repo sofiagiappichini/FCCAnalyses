@@ -337,7 +337,7 @@ def run(rdf_module, args):
                     # float notation - recomended for signals with few events
                     # cuts_list.append(
                     #     f'{neventsThisCut:.3f} $\\pm$ {uncertainty:.3f}')
-                    eff_list.append(f'{1.*nevents_this_cut/(process_dict[process_name]["numberOfEvents"]) :.2e}')
+                    eff_list.append(f'{1.*nevents_this_cut_raw/(process_dict[process_name]["numberOfEvents"]) :.2e}')
                 # if number of events is zero, the previous uncertainty is
                 # saved instead:
                 #elif '$\\pm$' in cuts_list[-1]:
