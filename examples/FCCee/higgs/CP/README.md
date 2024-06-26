@@ -36,9 +36,11 @@ The SM LO samples come from the [central winter 23 production](https://fcc-physi
 
 ### Stage 1 ntuples
 
-The ntuples contain information about the thruth level variables for (NOT YET)after FSR taus, final state electrons and muons, number of Z, final state neutrinos (all flavors together), and final state photons. For the reconstructed particles there are final state electrons, muons and photons, missing energy, primary and secondary tracks and two jets classes inherited from the tau tagging study (exclusive Durham kt with 2 jets and inclusive anti kt with R=0.5 and $p_T>$1 GeV, both exclude electrons and muons with $p>$15 GeV from the clustering). 
+The ntuples contain information about the thruth level variables for final state electrons and muons, number of Z, final state neutrinos (all flavors together), and final state photons. For the thruth level tau variables there is one class with all taus (AllGenTau) and one for only after FSR or in case of no FSR at all taus (FSRGenTau), there is also noFSRGenTau_parentPDG which refers to the tau produced in the decay of the boson/quark. 
 
-The files can be found at `/ceph/sgiappic/HiggsCP/stage1`. 
+For the reconstructed particles there are final state electrons, muons and photons, missing energy, primary and secondary tracks and two jets classes inherited from the tau tagging study (exclusive Durham kt with 2 jets and inclusive anti kt with R=0.5 and $p_T>$1 GeV, both exclude electrons and muons with $p>$15 GeV from the clustering). 
+
+The files can be found at `/ceph/sgiappic/HiggsCP/stage1_` with corresponding date (`aa_mm_dd`). 
 
 ## FCCAnalyses setup 
 
@@ -129,7 +131,7 @@ To add new functions that take any argument and that will be useful to either se
     .Define("variable", "myUtils::myFunction(arguments)")
     ```
 
-New functions: `myUtils::deltaR`, `MCParticle::sel_parentID`.
+New functions: `myUtils::deltaR`, `MCParticle::sel_parentID`, `MCParticle::sel_daughterID`.
 
 ### Changes made to the general code
 

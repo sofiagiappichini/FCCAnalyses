@@ -3,20 +3,21 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    'wzp6_ee_nunuH_Htautau_ecm240': {'fraction':0.01},
-    #'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
-    #'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
-    #'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
-    #'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1/test/"
+outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1_24_06_25/"
 
 ### necessary to run on HTCondor ###c
 eosType = "eosuser"
@@ -25,10 +26,10 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = False
+runBatch = True
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "espresso"
+batchQueue = "tomorrow"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -132,31 +133,127 @@ class RDFanalysis():
                 .Define("FSGenMuon_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( FSGenMuon )")
                 .Define("FSGenMuon_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( FSGenMuon )")
 
-                #gen taus, they're not final state in any case
+                #distinguish between pre fsr and after iterative fsr taus and keep them in separate classes to be analysed
                 .Define("AllGenTauPlus",    "FCCAnalyses::MCParticle::sel_pdgID(-15, false)(Particle)")
                 .Define("n_GenTauPlus",      "FCCAnalyses::MCParticle::get_n(AllGenTauPlus)")
-                .Define("GenTauPlus",       "if (n_AllGenTauPlus>1) return FCCAnalyses::MCParticle::sel_parentID(-15, false)(AllGenTauPlus,Particle,Particle0); else return AllGenTauPlus")
+                .Define("noFSRGenTauPlus",       "FCCAnalyses::MCParticle::sel_parentID(-15, false, false)(AllGenTauPlus,Particle,Particle0)")
+                #.Define("FSRGenTauPlus_parent",       "FCCAnalyses::MCParticle::sel_parentID(-15, true, false)(AllGenTauPlus,Particle,Particle0)")
+                #.Define("noFSRGenTauPlus_daughter",       "if (noFSRGenTauPlus_parent.size()>0) return FCCAnalyses::MCParticle::sel_daughterID(-15, true, false)(noFSRGenTauPlus_parent,Particle,Particle1); else return ROOT::VecOps::RVec<edm4hep::MCParticleData>{};")
+                .Define("FSRGenTauPlus",       "FCCAnalyses::MCParticle::sel_daughterID(-15, false, false)(AllGenTauPlus,Particle,Particle1)")
+                
                 .Define("AllGenTauMin",    "FCCAnalyses::MCParticle::sel_pdgID(15, false)(Particle)")
                 .Define("n_GenTauMin",      "FCCAnalyses::MCParticle::get_n(AllGenTauMin)")
-                .Define("GenTauMin",       "if (n_AllGenTauMin>1) return FCCAnalyses::MCParticle::sel_parentID(15, false)(AllGenTauMin,Particle,Particle0); else return AllGenTauMin")
-                .Define("GenTau",           "FCCAnalyses::MCParticle::mergeParticles(GenTauPlus, GenTauMin)")
-                .Define("n_GenTau",      "FCCAnalyses::MCParticle::get_n(GenTau)")
-                .Define("GenTau_e",     "FCCAnalyses::MCParticle::get_e(GenTau)")
-                .Define("GenTau_p",     "FCCAnalyses::MCParticle::get_p(GenTau)")
-                .Define("GenTau_pt",     "FCCAnalyses::MCParticle::get_pt(GenTau)")
-                .Define("GenTau_px",     "FCCAnalyses::MCParticle::get_px(GenTau)")
-                .Define("GenTau_py",     "FCCAnalyses::MCParticle::get_py(GenTau)")
-                .Define("GenTau_pz",     "FCCAnalyses::MCParticle::get_pz(GenTau)")
-                .Define("GenTau_eta",    "FCCAnalyses::MCParticle::get_eta(GenTau)")
-                .Define("GenTau_theta",     "FCCAnalyses::MCParticle::get_theta(GenTau)")
-                .Define("GenTau_phi",    "FCCAnalyses::MCParticle::get_phi(GenTau)")
-                .Define("GenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(GenTau,Particle,Particle0)")
-                .Define("GenTau_charge", "FCCAnalyses::MCParticle::get_charge(GenTau)")
-                .Define("GenTau_mass",   "FCCAnalyses::MCParticle::get_mass(GenTau)")
+                .Define("noFSRGenTauMin",       "FCCAnalyses::MCParticle::sel_parentID(15, false, false)(AllGenTauMin,Particle,Particle0)")
+                #.Define("FSRGenTauMin_parent",       "FCCAnalyses::MCParticle::sel_parentID(15, true, false)(AllGenTauMin,Particle,Particle0)")
+                #.Define("noFSRGenTauMin_daughter",       "if (noFSRGenTauMin_parent.size()>0) return FCCAnalyses::MCParticle::sel_daughterID(15, true, false)(noFSRGenTauMin_parent,Particle,Particle1); else return ROOT::VecOps::RVec<edm4hep::MCParticleData>{};")
+                .Define("FSRGenTauMin",       "FCCAnalyses::MCParticle::sel_daughterID(15, false, false)(AllGenTauMin,Particle,Particle1)")
+                
+                .Define("AllGenTau",           "FCCAnalyses::MCParticle::mergeParticles(AllGenTauPlus, AllGenTauMin)")
+                .Define("n_AllGenTau",      "FCCAnalyses::MCParticle::get_n(AllGenTau)")
+                .Define("AllGenTau_e",     "FCCAnalyses::MCParticle::get_e(AllGenTau)")
+                .Define("AllGenTau_p",     "FCCAnalyses::MCParticle::get_p(AllGenTau)")
+                .Define("AllGenTau_pt",     "FCCAnalyses::MCParticle::get_pt(AllGenTau)")
+                .Define("AllGenTau_px",     "FCCAnalyses::MCParticle::get_px(AllGenTau)")
+                .Define("AllGenTau_py",     "FCCAnalyses::MCParticle::get_py(AllGenTau)")
+                .Define("AllGenTau_pz",     "FCCAnalyses::MCParticle::get_pz(AllGenTau)")
+                .Define("AllGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(AllGenTau)")
+                .Define("AllGenTau_theta",     "FCCAnalyses::MCParticle::get_theta(AllGenTau)")
+                .Define("AllGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(AllGenTau)")
+                .Define("AllGenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(AllGenTau,Particle,Particle0)")
+                .Define("AllGenTau_charge", "FCCAnalyses::MCParticle::get_charge(AllGenTau)")
+                .Define("AllGenTau_mass",   "FCCAnalyses::MCParticle::get_mass(AllGenTau)")
+                .Define("AllGenTau_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( AllGenTau )")
+                .Define("AllGenTau_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( AllGenTau )")
+                .Define("AllGenTau_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( AllGenTau )")
+                
+                .Define("noFSRGenTau",           "FCCAnalyses::MCParticle::mergeParticles(noFSRGenTauPlus, noFSRGenTauMin)")
+                .Define("noFSRGenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(noFSRGenTau,Particle,Particle0)")
 
-                .Define("GenTau_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( GenTau )")
-                .Define("GenTau_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( GenTau )")
-                .Define("GenTau_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( GenTau )")
+                .Define("FSRGenTau",           "FCCAnalyses::MCParticle::mergeParticles(FSRGenTauPlus, FSRGenTauMin)")
+                .Define("n_FSRGenTau",      "FCCAnalyses::MCParticle::get_n(FSRGenTau)")
+                .Define("FSRGenTau_e",     "FCCAnalyses::MCParticle::get_e(FSRGenTau)")
+                .Define("FSRGenTau_p",     "FCCAnalyses::MCParticle::get_p(FSRGenTau)")
+                .Define("FSRGenTau_pt",     "FCCAnalyses::MCParticle::get_pt(FSRGenTau)")
+                .Define("FSRGenTau_px",     "FCCAnalyses::MCParticle::get_px(FSRGenTau)")
+                .Define("FSRGenTau_py",     "FCCAnalyses::MCParticle::get_py(FSRGenTau)")
+                .Define("FSRGenTau_pz",     "FCCAnalyses::MCParticle::get_pz(FSRGenTau)")
+                .Define("FSRGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(FSRGenTau)")
+                .Define("FSRGenTau_theta",     "FCCAnalyses::MCParticle::get_theta(FSRGenTau)")
+                .Define("FSRGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(FSRGenTau)")
+                .Define("FSRGenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(FSRGenTau,Particle,Particle0)")
+                .Define("FSRGenTau_charge", "FCCAnalyses::MCParticle::get_charge(FSRGenTau)")
+                .Define("FSRGenTau_mass",   "FCCAnalyses::MCParticle::get_mass(FSRGenTau)")
+                .Define("FSRGenTau_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( FSRGenTau )")
+                .Define("FSRGenTau_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( FSRGenTau )")
+                .Define("FSRGenTau_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( FSRGenTau )")
+
+                .Define("ind_tauneg_MuNuNu",       "FCCAnalyses::MCParticle::get_indices(  15, {13,-14,16},            true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_tauneg_MuNuNu_Phot",  "FCCAnalyses::MCParticle::get_indices(  15, {13,-14,16,22},         true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_tauneg_ENuNu",        "FCCAnalyses::MCParticle::get_indices(  15, {11,-12,16},            true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_tauneg_ENuNu_Phot",   "FCCAnalyses::MCParticle::get_indices(  15, {11,-12,16,22},         true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_tauneg_PiNu",         "FCCAnalyses::MCParticle::get_indices(  15, {-211,16},              true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_tauneg_PiNu_Phot",    "FCCAnalyses::MCParticle::get_indices(  15, {-211,16,22},           true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_tauneg_KNu",          "FCCAnalyses::MCParticle::get_indices(  15, {-321,16},              true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_tauneg_KNu_Phot",     "FCCAnalyses::MCParticle::get_indices(  15, {-321,16,22},           true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_tauneg_PiK0Nu",       "FCCAnalyses::MCParticle::get_indices(  15, {-211,-311,16},         true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_tauneg_PiK0Nu_Phot",  "FCCAnalyses::MCParticle::get_indices(  15, {-211,-311,16,22},      true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_tauneg_KK0Nu",        "FCCAnalyses::MCParticle::get_indices(  15, {-321,311,16},          true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_tauneg_KK0Nu_Phot",   "FCCAnalyses::MCParticle::get_indices(  15, {-321,311,16,22},       true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_tauneg_3PiNu",        "FCCAnalyses::MCParticle::get_indices(  15, {-211,-211,211,16},     true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_tauneg_3PiNu_Phot",   "FCCAnalyses::MCParticle::get_indices(  15, {-211,-211,211,16,22},  true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_tauneg_PiKKNu",       "FCCAnalyses::MCParticle::get_indices(  15, {-211,-321,321,16},     true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_tauneg_PiKKNu_Phot",  "FCCAnalyses::MCParticle::get_indices(  15, {-211,-321,321,16,22},  true, false, false, true)  ( Particle, Particle1)" )
+
+                .Define("ind_taupos_MuNuNu",       "FCCAnalyses::MCParticle::get_indices( -15, {-13,14,-16},           true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_taupos_MuNuNu_Phot",  "FCCAnalyses::MCParticle::get_indices( -15, {-13,14,-16,22},        true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_taupos_ENuNu",        "FCCAnalyses::MCParticle::get_indices( -15, {-11,12,-16},           true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_taupos_ENuNu_Phot",   "FCCAnalyses::MCParticle::get_indices( -15, {-11,12,-16,22},        true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_taupos_PiNu",         "FCCAnalyses::MCParticle::get_indices( -15, {211,-16},              true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_taupos_PiNu_Phot",    "FCCAnalyses::MCParticle::get_indices( -15, {211,-16,22},           true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_taupos_KNu",          "FCCAnalyses::MCParticle::get_indices( -15, {321,-16},              true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_taupos_KNu_Phot",     "FCCAnalyses::MCParticle::get_indices( -15, {321,-16,22},           true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_taupos_PiK0Nu",       "FCCAnalyses::MCParticle::get_indices( -15, {211,311,-16},          true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_taupos_PiK0Nu_Phot",  "FCCAnalyses::MCParticle::get_indices( -15, {211,311,-16,22},       true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_taupos_KK0Nu",        "FCCAnalyses::MCParticle::get_indices( -15, {321,-311,-16},         true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_taupos_KK0Nu_Phot",   "FCCAnalyses::MCParticle::get_indices( -15, {321,-311,-16,22},      true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_taupos_3PiNu",        "FCCAnalyses::MCParticle::get_indices( -15, {211,211,-211,-16},     true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_taupos_3PiNu_Phot",   "FCCAnalyses::MCParticle::get_indices( -15, {211,211,-211,-16,22},  true, false, false, true)  ( Particle, Particle1)" )
+                .Define("ind_taupos_PiKKNu",       "FCCAnalyses::MCParticle::get_indices( -15, {211,321,-321,-16},     true, false, false, false) ( Particle, Particle1)" )
+                .Define("ind_taupos_PiKKNu_Phot",  "FCCAnalyses::MCParticle::get_indices( -15, {211,321,-321,-16,22},  true, false, false, true)  ( Particle, Particle1)" )
+
+                .Define("n_TauNeg_MuNuNu",       "return int(ind_tauneg_MuNuNu.size() )"     )
+                .Define("n_TauNeg_MuNuNu_Phot",  "return int(ind_tauneg_MuNuNu_Phot.size() )")
+                .Define("n_TauNeg_ENuNu",        "return int(ind_tauneg_ENuNu.size() )"      )
+                .Define("n_TauNeg_ENuNu_Phot",   "return int(ind_tauneg_ENuNu_Phot.size() )" )
+                .Define("n_TauNeg_PiNu",         "return int(ind_tauneg_PiNu.size() )"       )
+                .Define("n_TauNeg_PiNu_Phot",    "return int(ind_tauneg_PiNu_Phot.size() )"  )
+                .Define("n_TauNeg_KNu",          "return int(ind_tauneg_KNu.size() )"        )
+                .Define("n_TauNeg_KNu_Phot",     "return int(ind_tauneg_KNu_Phot.size() )"   )
+                .Define("n_TauNeg_PiK0Nu",       "return int(ind_tauneg_PiK0Nu.size() )"     )
+                .Define("n_TauNeg_PiK0Nu_Phot",  "return int(ind_tauneg_PiK0Nu_Phot.size() )")
+                .Define("n_TauNeg_KK0Nu",        "return int(ind_tauneg_KK0Nu.size() )"      )
+                .Define("n_TauNeg_KK0Nu_Phot",   "return int(ind_tauneg_KK0Nu_Phot.size() )" )
+                .Define("n_TauNeg_3PiNu",        "return int(ind_tauneg_3PiNu.size() )"      )
+                .Define("n_TauNeg_3PiNu_Phot",   "return int(ind_tauneg_3PiNu_Phot.size() )" )
+                .Define("n_TauNeg_PiKKNu",       "return int(ind_tauneg_PiKKNu.size() )"     )
+                .Define("n_TauNeg_PiKKNu_Phot",  "return int(ind_tauneg_PiKKNu_Phot.size() )")
+                                                    
+                .Define("n_TauPos_MuNuNu",       "return int(ind_taupos_MuNuNu.size() )"     )
+                .Define("n_TauPos_MuNuNu_Phot",  "return int(ind_taupos_MuNuNu_Phot.size() )")
+                .Define("n_TauPos_ENuNu",        "return int(ind_taupos_ENuNu.size() )"      )
+                .Define("n_TauPos_ENuNu_Phot",   "return int(ind_taupos_ENuNu_Phot.size() )" )
+                .Define("n_TauPos_PiNu",         "return int(ind_taupos_PiNu.size() )"       )
+                .Define("n_TauPos_PiNu_Phot",    "return int(ind_taupos_PiNu_Phot.size() )"  )
+                .Define("n_TauPos_KNu",          "return int(ind_taupos_KNu.size() )"        )
+                .Define("n_TauPos_KNu_Phot",     "return int(ind_taupos_KNu_Phot.size() )"   )
+                .Define("n_TauPos_PiK0Nu",       "return int(ind_taupos_PiK0Nu.size() )"     )
+                .Define("n_TauPos_PiK0Nu_Phot",  "return int(ind_taupos_PiK0Nu_Phot.size() )")
+                .Define("n_TauPos_KK0Nu",        "return int(ind_taupos_KK0Nu.size() )"      )
+                .Define("n_TauPos_KK0Nu_Phot",   "return int(ind_taupos_KK0Nu_Phot.size() )" )
+                .Define("n_TauPos_3PiNu",        "return int(ind_taupos_3PiNu.size() )"      )
+                .Define("n_TauPos_3PiNu_Phot",   "return int(ind_taupos_3PiNu_Phot.size() )" )
+                .Define("n_TauPos_PiKKNu",       "return int(ind_taupos_PiKKNu.size() )"     )
+                .Define("n_TauPos_PiKKNu_Phot",  "return int(ind_taupos_PiKKNu_Phot.size() )")
 
                 #all final state gen neutrinos and anti-neutrinos
                 .Define("GenElectronNeutrino_PID", "FCCAnalyses::MCParticle::sel_pdgID(12, true)(Particle)")
@@ -176,7 +273,7 @@ class RDFanalysis():
                 .Define("FSGenNeutrino_theta", "FCCAnalyses::MCParticle::get_theta(FSGenNeutrino)")
                 .Define("FSGenNeutrino_phi", "FCCAnalyses::MCParticle::get_phi(FSGenNeutrino)")
                 .Define("FSGenNeutrino_charge", "FCCAnalyses::MCParticle::get_charge(FSGenNeutrino)")
-                .Define("FSGenNeutrino_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(FSGenNeutrino,Particle,Particle0)")
+                #.Define("FSGenNeutrino_parentPDG", "FCCAnalyses::MCParticle::get_parentid(FSGenNeutrino,Particle,Particle0)")
                 
                 #all final state gen photons
                 .Define("GenPhoton_PID", "FCCAnalyses::MCParticle::sel_pdgID(22, false)(Particle)")
@@ -192,10 +289,13 @@ class RDFanalysis():
                 .Define("FSGenPhoton_theta", "FCCAnalyses::MCParticle::get_theta(FSGenPhoton)")
                 .Define("FSGenPhoton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenPhoton)")
                 .Define("FSGenPhoton_charge", "FCCAnalyses::MCParticle::get_charge(FSGenPhoton)")
-                .Define("FSGenPhoton_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(FSGenPhoton,Particle,Particle0)")
+                #.Define("FSGenPhoton_parentPDG", "FCCAnalyses::MCParticle::get_parentid(FSGenPhoton,Particle,Particle0)")
 
                 .Define("GenZ",   "FCCAnalyses::MCParticle::sel_pdgID(23, true)(Particle)")
                 .Define("n_GenZ",   "FCCAnalyses::MCParticle::get_n(GenZ)")
+
+                .Define("GenH",   "FCCAnalyses::MCParticle::sel_pdgID(25, true)(Particle)")
+                .Define("n_GenH",   "FCCAnalyses::MCParticle::get_n(GenH)")
                 
                 ##################
                 # Reco particles #
@@ -483,22 +583,75 @@ class RDFanalysis():
             "FSGenMuon_vertex_y",
             "FSGenMuon_vertex_z",
 
-            "n_GenTau",
-            "GenTau_e",
-            "GenTau_p",
-            "GenTau_pt",
-            "GenTau_px",
-            "GenTau_py",
-            "GenTau_pz",
-            "GenTau_eta",
-            "GenTau_theta",
-            "GenTau_phi",
-            "GenTau_charge",
-            "GenTau_mass",
-            "GenTau_parentPDG",
-            "GenTau_vertex_x",
-            "GenTau_vertex_y",
-            "GenTau_vertex_z",
+            "n_AllGenTau",
+            "AllGenTau_e",
+            "AllGenTau_p",
+            "AllGenTau_pt",
+            "AllGenTau_px",
+            "AllGenTau_py",
+            "AllGenTau_pz",
+            "AllGenTau_eta",
+            "AllGenTau_theta",
+            "AllGenTau_phi",
+            "AllGenTau_charge",
+            "AllGenTau_mass",
+            "AllGenTau_parentPDG",
+            "AllGenTau_vertex_x",
+            "AllGenTau_vertex_y",
+            "AllGenTau_vertex_z",
+
+            "noFSRGenTau_parentPDG",
+
+            "n_FSRGenTau",
+            "FSRGenTau_e",
+            "FSRGenTau_p",
+            "FSRGenTau_pt",
+            "FSRGenTau_px",
+            "FSRGenTau_py",
+            "FSRGenTau_pz",
+            "FSRGenTau_eta",
+            "FSRGenTau_theta",
+            "FSRGenTau_phi",
+            "FSRGenTau_charge",
+            "FSRGenTau_mass",
+            "FSRGenTau_parentPDG",
+            "FSRGenTau_vertex_x",
+            "FSRGenTau_vertex_y",
+            "FSRGenTau_vertex_z",
+
+            "n_TauNeg_MuNuNu",       
+            "n_TauNeg_MuNuNu_Phot",  
+            "n_TauNeg_ENuNu",        
+            "n_TauNeg_ENuNu_Phot",   
+            "n_TauNeg_PiNu",         
+            "n_TauNeg_PiNu_Phot",    
+            "n_TauNeg_KNu",          
+            "n_TauNeg_KNu_Phot",     
+            "n_TauNeg_PiK0Nu",       
+            "n_TauNeg_PiK0Nu_Phot",  
+            "n_TauNeg_KK0Nu",        
+            "n_TauNeg_KK0Nu_Phot",   
+            "n_TauNeg_3PiNu",        
+            "n_TauNeg_3PiNu_Phot",   
+            "n_TauNeg_PiKKNu",       
+            "n_TauNeg_PiKKNu_Phot",  
+
+            "n_TauPos_MuNuNu",       
+            "n_TauPos_MuNuNu_Phot",  
+            "n_TauPos_ENuNu",        
+            "n_TauPos_ENuNu_Phot",   
+            "n_TauPos_PiNu",         
+            "n_TauPos_PiNu_Phot",    
+            "n_TauPos_KNu",          
+            "n_TauPos_KNu_Phot",     
+            "n_TauPos_PiK0Nu",       
+            "n_TauPos_PiK0Nu_Phot",  
+            "n_TauPos_KK0Nu",        
+            "n_TauPos_KK0Nu_Phot",   
+            "n_TauPos_3PiNu",        
+            "n_TauPos_3PiNu_Phot",   
+            "n_TauPos_PiKKNu",       
+            "n_TauPos_PiKKNu_Phot", 
 
             "n_FSGenNeutrino",
             "FSGenNeutrino_e",
@@ -511,7 +664,7 @@ class RDFanalysis():
             "FSGenNeutrino_theta",
             "FSGenNeutrino_phi",
             "FSGenNeutrino_charge",
-            "FSGenNeutrino_parentPDG",
+            #"FSGenNeutrino_parentPDG",
 
             "n_FSGenPhoton",
             "FSGenPhoton_e",
@@ -524,9 +677,10 @@ class RDFanalysis():
             "FSGenPhoton_theta",
             "FSGenPhoton_phi",
             "FSGenPhoton_charge",
-            "FSGenPhoton_parentPDG",
+            #"FSGenPhoton_parentPDG",
 
             "n_GenZ",
+            "n_GenH",
 
             ######## Reconstructed particles #######
             "RecoMC_PID",
@@ -605,7 +759,7 @@ class RDFanalysis():
             "SecondaryVertes_xy",
             "VertexObject", 
             "RecoPartPID" ,
-            "RecoPartPIDAtVertex" ,
+            "RecoPartPIDAtVertex",
 
         ]
 
