@@ -43,11 +43,12 @@ CUTS = [
     #"sel2Reco_vetoes_notracks_nojets",
     #"sel2Reco_vetoes_notracks_nojetsexcl",
     #"sel2Reco_vetoes_jets_excl2",
-    "sel2Reco_vetoes",
-    "sel2Reco_vetoes_notracks_nojets",
-    "sel2Reco_vetoes_notracks_nojets_M80",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
+    #"sel2Reco_vetoes",
+    #"sel2Reco_vetoes_notracks_nojets",
+    #"sel2Reco_vetoes_notracks_nojets_M80",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0",
     
  
  ] 
@@ -359,7 +360,7 @@ for cut in CUTS:
         canvas = ROOT.TCanvas("", "", 800, 800)
 
         nsig = len(signals)
-        nbkg = 6 # change according to type of plots, 6 for grouped backgrounds, #len(backgrounds)
+        nbkg = 0 # change according to type of plots, 6 for grouped backgrounds, #len(backgrounds)
 
         #legend coordinates and style
         

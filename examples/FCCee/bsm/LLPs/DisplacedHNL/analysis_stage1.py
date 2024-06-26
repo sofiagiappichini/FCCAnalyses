@@ -1,14 +1,8 @@
 import ROOT
 
 #Mandatory: List of processes
+
 processList = {
-        #'p8_ee_Zee_ecm91':{'fraction':0.01},
-        #'p8_ee_Zmumu_ecm91':{'fraction':0.01},
-        "HNL_1.33e-7_40gev":{},
-        #"HNL_2.86e-12_30gev":{},
-        #"HNL_5e-12_60gev":{},
-}
-processList_i = {
 
         #centrally-produced backgrounds
         #'p8_ee_Zee_ecm91':{'chunks':100},
@@ -426,7 +420,7 @@ inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/problematic/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/notaus/stage1/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -467,17 +461,16 @@ class RDFanalysis():
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
 
                 .Define("GenTau",   "FCCAnalyses::MCParticle::sel_pdgID(15, true)(Particle)")
-                .Define("GenTau_status",      "FCCAnalyses::MCParticle::sel_genStatus(1)(GenTau)")
                 .Define("GenPion",   "FCCAnalyses::MCParticle::sel_pdgID(211, true)(Particle)")
                 .Define("GenKL",   "FCCAnalyses::MCParticle::sel_pdgID(130, true)(Particle)")
                 .Define("GenKplus",   "FCCAnalyses::MCParticle::sel_pdgID(321, true)(Particle)")
 
-                .Define("n_GenTaus",      "FCCAnalyses::MCParticle::get_n(GenTau_status)")
+                .Define("n_GenTaus",      "FCCAnalyses::MCParticle::get_n(GenTau)")
                 .Define("n_GenPions",      "FCCAnalyses::MCParticle::get_n(GenPion)")
                 .Define("n_GenKLs",      "FCCAnalyses::MCParticle::get_n(GenKL)")
                 .Define("n_GenKpluss",      "FCCAnalyses::MCParticle::get_n(GenKplus)")
 
-                #.Filter("n_GenTaus==0")
+                .Filter("n_GenTaus==0")
                 #.Filter("n_GenPions>0 || n_GenKLs>0 || n_GenKpluss>0")
 
                 .Define("GenPion_e", "if (n_GenPions>0) return FCCAnalyses::MCParticle::get_e(GenPion); else return FCCAnalyses::MCParticle::get_genStatus(GenPion);")
@@ -869,8 +862,8 @@ class RDFanalysis():
                         "n_FSGenMuon",
                         "n_FSGenLepton",
                         "n_FSGenPhoton",
-                        #"n_GenN",
-                        #"n_FSGenNeutrino",
+                        "n_GenN",
+                        "n_FSGenNeutrino",
                         "GenParticles_PID",
                         "FSGenParticles_PID",
                         "DecGenParticles_PID",

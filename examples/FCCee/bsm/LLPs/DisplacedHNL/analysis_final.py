@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
+inputDir = "/eos/user/s/sgiappic/2HNL_ana/notaus/stage1/"
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/eff/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/notaus/final/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 204e6 #pb^-1
@@ -20,25 +20,6 @@ nCPUS = 6
 doTree = False
 
 processList = {
-        'p8_ee_Zee_ecm91':{},
-        'p8_ee_Zmumu_ecm91':{},
-        'p8_ee_Ztautau_ecm91':{},
-        'p8_ee_Zbb_ecm91':{},
-        'p8_ee_Zcc_ecm91':{},
-        'p8_ee_Zud_ecm91':{},
-        'p8_ee_Zss_ecm91':{},
-            
-        ### privately produced backgrounds ###
-        'emununu':{},
-        'tatanunu':{},
-
-        'HNL_2.86e-12_30gev':{},
-        'HNL_6.67e-10_30gev':{},
-        'HNL_5e-12_60gev':{},
-        'HNL_1.33e-7_80gev':{},
-}
-
-processList_i = {
     #run over the full statistics from stage1
 
     #backgrounds
@@ -861,12 +842,9 @@ cutList = {
     #"sel2Reco_vetoes_notracks_nojets_M80": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80",
     #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10",
     #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 \
-    #                                                   && RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.57 && RecoTrack_absD0.at(1)>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 \
+                                                       && RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.57 && RecoTrack_absD0.at(1)>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
     
-    #"M80_10MEpt_0.8cos": "Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8",
-    "chi10_0.57d0": "RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.57 && RecoTrack_absD0.at(1)>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
-  
 }
 
 # Dictionary for prettier names of cuts (optional)
