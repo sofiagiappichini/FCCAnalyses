@@ -12,10 +12,10 @@ processList = {
     'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
 }
 
-inputDir = "/ceph/sgiappic/HiggsCP/stage1"
+inputDir = "/eos/user/s/sgiappic/HiggsCP/stage1/test/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "//" #your output directory
+outputDir   = "stage2" #your output directory
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -46,7 +46,7 @@ class RDFanalysis():
             #################
 
             # filter events based on gen or reco variables
-            .Filter("n_GenTau==2")
+            .Filter("n_GenTau==2 && n_GenZ>0")
             
             .Define("GenTau_Lxyz", "return sqrt(GenTau_vertex_x.at(0)*GenTau_vertex_x.at(0) + GenTau_vertex_y.at(0)*GenTau_vertex_y.at(0) + GenTau_vertex_z.at(0)*GenTau_vertex_z.at(0))") #in mm
     
@@ -55,7 +55,7 @@ class RDFanalysis():
             .Define("GenDiTau_px", "if (n_GenTau>1) return (GenTau_px.at(0) + GenTau_px.at(1)); else return float(-1.);")
             .Define("GenDiTau_py", "if (n_GenTau>1) return (GenTau_py.at(0) + GenTau_py.at(1)); else return float(-1.);")
             .Define("GenDiTau_pz", "if (n_GenTau>1) return (GenTau_pz.at(0) + GenTau_pz.at(1)); else return float(-1.);")
-            .Define("GenDiTau_invMass", "if (n_GenTai>1) return sqrt(GenDiTau_energy*GenDiTau_energy - GenDiTau_px*GenDiTau_px - GenDiTau_py*GenDiTau_py - GenDiTau_pz*GenDiTau_pz ); else return float(-1.);")
+            .Define("GenDiTau_invMass", "if (n_GenTau>1) return sqrt(GenDiTau_energy*GenDiTau_energy - GenDiTau_px*GenDiTau_px - GenDiTau_py*GenDiTau_py - GenDiTau_pz*GenDiTau_pz ); else return float(-1.);")
             
             # cosine between two leptons, in lab frame
             .Define("GenDiTau_p", "if (n_GenTau>1) return sqrt(GenDiTau_px*GenDiTau_px + GenDiTau_py*GenDiTau_py + GenDiTau_pz*GenDiTau_pz); else return float(-1.);")
@@ -63,13 +63,20 @@ class RDFanalysis():
             .Define("GenDiTau_cos", "if (n_GenTau>1) return (GenDiTau_scalar/(GenTau_p.at(0)*GenTau_p.at(1))); else return float(-2.);")
 
             # angular distance between two leptons, in lab frame
-            .Define("GenDiTau_eta","if (n_GenTau>1>1) return myUtils::deltaEta(GenTau_eta.at(0), GenTau_eta.at(1)); else return float(-10.);")
-            .Define("GenDiTau_phi","if (n_GenTau>1>1) return myUtils::deltaPhi(GenTau_phi.at(0), GenTau_phi.at(1)); else return float(-10.);")
-            .Define("GenDiTau_DR","if (n_GenTau>1>1) return myUtils::deltaR(GenTau_phi.at(0), GenTau_phi.at(1), GenTau_eta.at(0), GenTau_eta.at(1)); else return float(-1.);")
+            # deltaEta and deltaPhi return the absolute values of the difference, may be intersting to keep the sign and order the taus by rapidity (DOI: 10.1103/PhysRevD.99.095007) or soemthing else (pt...)
+            .Define("GenDiTau_eta","if (n_GenTau>1) return myUtils::deltaEta(GenTau_eta.at(0), GenTau_eta.at(1)); else return float(-10.);")
+            .Define("GenDiTau_phi","if (n_GenTau>1) return myUtils::deltaPhi(GenTau_phi.at(0), GenTau_phi.at(1)); else return float(-10.);")
+            .Define("GenDiTau_DR","if (n_GenTau>1) return myUtils::deltaR(GenTau_phi.at(0), GenTau_phi.at(1), GenTau_eta.at(0), GenTau_eta.at(1)); else return float(-1.);")
+
+            #.Define("HiggsGamma", "return GenDiTau_e/GenDiTau_invMass")
+            #.Define("")
 
             ##################
             # Reco particles #
             ##################
+
+            
+
 
             #############################################
             ##        Build Tau -> 3Pi candidates      ##
@@ -114,7 +121,7 @@ class RDFanalysis():
             .Define("Tau23PiCandidates_pion3z0", "myUtils::getFCCAnalysesComposite_z0(Tau23PiCandidates, VertexObject, 2)")
 
         )
-        return df2
+            return df2
 
     #__________________________________________________________
     #Mandatory: output function, please make sure you return the branchlist as a python list
