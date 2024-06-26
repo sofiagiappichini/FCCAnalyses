@@ -12,7 +12,8 @@ if [ "${0}" != "${BASH_SOURCE}" ]; then
     echo "      ${STACK_PATH}"
     source ${STACK_PATH}
   else
-    source /cvmfs/sw.hsf.org/key4hep/setup.sh
+    source /cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/key4hep-stack/2023-11-30-gyuooo/setup.sh
+    echo "----> Info: Sourcing 2023-11-23 Key4hep stack..."
   fi
 
   if [ -z "${KEY4HEP_STACK}" ]; then
