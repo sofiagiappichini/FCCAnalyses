@@ -193,12 +193,13 @@ plt.fill_between(x_ShiSigl_SN,-3.6,y_ShiSigl_SN,facecolor='darkslateblue', alpha
 #my data
 ## displaced
 data = np.genfromtxt("/eos/user/s/sgiappic/combine/nevents_final_3june.csv", delimiter=',')
+#data = np.genfromtxt("/eos/user/s/sgiappic/combine/nevents_notaus.csv", delimiter=',')
 #only take the points relative the point 6
 data_point = data[280:]
 
 log_coupling = np.log10(data_point[:, 0])
 mass = data_point[:, 1]
-significance = data_point[:, 2]
+significance = data_point[:, 2]*0.62*0.5
 #significance_DF = data_point[:, 3]
 
 #significance = []
@@ -261,4 +262,4 @@ axes.set_ylim(-12.1,-3.9)
 
 #plt.legend(loc='lower right',fontsize=18,frameon=False)
 
-plt.savefig("/eos/user/s/sgiappic/www/paper/future_constraints_up.png")
+plt.savefig("/eos/user/s/sgiappic/www/paper/future_constraints_onehnl.png")

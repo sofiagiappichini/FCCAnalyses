@@ -20,7 +20,8 @@ def split_into_three(arr):
     return arr[:third], arr[third:2*third], arr[2*third:]
 
 data_files = [
-    "/eos/user/s/sgiappic/combine/nevents_final_3june.csv",
+    #"/eos/user/s/sgiappic/combine/nevents_final_3june.csv",
+    "/eos/user/s/sgiappic/combine/nevents_notaus.csv",
     ]
 
 fig, axs = plt.subplots(nrows=nrows_in, ncols=ncol_in, figsize=(16, 8))
@@ -112,8 +113,8 @@ for i in range(len(df_FCC_ee.index)):
     x_FCC_ee.append(10**(df_FCC_ee.iloc[i]['X'])) #needs to be converted to linear scale as the events are so they're compatible
     y_FCC_ee.append(df_FCC_ee.iloc[i]['Y'])
 
-#axs[0].plot(x_FCC_ee,y_FCC_ee,linewidth=1.5,linestyle='-',color='darkgreen') # FCC-ee
-#axs[1].plot(x_FCC_ee,y_FCC_ee,linewidth=1.5,linestyle='-',color='darkgreen') # FCC-ee
+axs[0].plot(x_FCC_ee,y_FCC_ee,linewidth=1.5,linestyle='-',color='darkgreen') # FCC-ee
+axs[1].plot(x_FCC_ee,y_FCC_ee,linewidth=1.5,linestyle='-',color='darkgreen') # FCC-ee
 
 legend_elements = [Line2D([0], [0], color=color[i], lw=2, label=label[i]) for i in range(0,3)]
 axs[0].legend(handles=legend_elements, loc='upper right', fontsize=18)
@@ -133,4 +134,4 @@ axs[1].set_title(r'$Displaced\; events - Inverted\; Hierarchy$', fontsize=20, y=
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final_events_points.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final_events_points_notaus.png', format='png', dpi=330)

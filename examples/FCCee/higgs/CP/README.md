@@ -63,9 +63,10 @@ The files can be found at `/ceph/sgiappic/HiggsCP/stage1_` with corresponding da
 
     ```
     cd FCCAnalyses
-    source /cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/key4hep-stack/2023-11-30-gyuooo/setup.sh
     source ./setup.sh
     ```
+
+    The `setup.sh` script has been modified to always get the correct version of the stack instead of the latest, `source /cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/key4hep-stack/2023-11-30-gyuooo/setup.sh`.
 
 3. Move to the Higgs CP directory to find the analysis files:
 
@@ -80,7 +81,6 @@ The files can be found at `/ceph/sgiappic/HiggsCP/stage1_` with corresponding da
 1. Run the first/second stage to create trees for the events from the Higgs CP directory:
 
     ```
-    cd FCCAnalyses/examples/FCCee/higgs/CP
     fccanalysis run analysis_stage1.py
     fccanalysis run analysis_stage2.py
     ```
@@ -131,19 +131,19 @@ To add new functions that take any argument and that will be useful to either se
     .Define("variable", "myUtils::myFunction(arguments)")
     ```
 
-New functions: `myUtils::deltaR`, `MCParticle::sel_parentID`, `MCParticle::sel_daughterID`.
+Added custom functions: `myUtils::deltaR`, `myUtils::deltaEta`, `myUtils::deltaPhi`, `myUtils::build_p4`, `myUtils::boosted_p4`, `myUtils::get_scalar`, `myUtils::get_gamma`, `myUtils::get_ptvl`, ... , `MCParticle::sel_parentID`, `MCParticle::sel_daughterID`.
+
+More functions have been introduced to work with the tau tagging algorithm at [/afs/cern.ch/user/s/sgiappic/FCCAnalyses/install/python/addons/FastJet/jetClusteringHelper.py](/afs/cern.ch/user/s/sgiappic/FCCAnalyses/install/python/addons/FastJet/jetClusteringHelper.py) and (/afs/cern.ch/user/s/sgiappic/FCCAnalyses/addons/FastJet/python/jetClusteringHelper.py)[/afs/cern.ch/user/s/sgiappic/FCCAnalyses/addons/FastJet/python/jetClusteringHelper.py].
 
 ### Changes made to the general code
 
 I've made a few changes to the analyzers. 
 
-In [`FCCAnalyses/python/run_final_analysis.py`](https://github.com/sofiagiappichini/FCCAnalyses/blob/master/python/run_final_analysis.py) I changed how the efficiencies are written in the table in scientific notation and with the same format as the number of events, the scaling applied now includes the luminosity (`luminosity * cross section * k factor * matching efficiency * efficiency`). 
+In [`FCCAnalyses/python/run_final_analysis.py`](https://github.com/sofiagiappichini/FCCAnalyses/blob/master/python/run_final_analysis.py) I changed how the efficiencies are written in the table in scientific notation and with the same format as the number of events. The scaling applied to the number of events and histograms now includes the luminosity and considers the number of events stated in the `procDictAdd` instead of the number of events in the trees. In this way the events are correctly scaled with the global cross section even when filtering out events in stage1. If the scaling is not applied then the number of events is the one in the trees.
 
 Because of that, the plotting code is modified to not scale to the luminosity anymore but simply takes the argument to print it onto the plots. In this way, the histograms are correctly scaled in the `final` step and can be used as input into CMS Combine with the correct number of expected events.
 
-Note: the uncertainty on the number of events that is saved in the tables is the square root of the efficiency multiplied by the rest of the factors.
-
-More functions have been introduced to work with the tau tagging algorithm at [/afs/cern.ch/user/s/sgiappic/FCCAnalyses/install/python/addons/FastJet/jetClusteringHelper.py](/afs/cern.ch/user/s/sgiappic/FCCAnalyses/install/python/addons/FastJet/jetClusteringHelper.py) and (/afs/cern.ch/user/s/sgiappic/FCCAnalyses/addons/FastJet/python/jetClusteringHelper.py)[/afs/cern.ch/user/s/sgiappic/FCCAnalyses/addons/FastJet/python/jetClusteringHelper.py].
+Note: the uncertainty on the number of events that is saved in the tables is the square root of the number of events (scaled or not).
 
 ## Additional codes
 

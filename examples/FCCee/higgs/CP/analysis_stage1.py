@@ -17,7 +17,7 @@ processList = {
 prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1_24_06_25/"
+outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1_24_06_26/"
 
 ### necessary to run on HTCondor ###c
 eosType = "eosuser"
@@ -103,6 +103,7 @@ class RDFanalysis():
                 .Define("FSGenElectron_px", "FCCAnalyses::MCParticle::get_px(FSGenElectron)")
                 .Define("FSGenElectron_py", "FCCAnalyses::MCParticle::get_py(FSGenElectron)")
                 .Define("FSGenElectron_pz", "FCCAnalyses::MCParticle::get_pz(FSGenElectron)")
+                .Define("FSGenElectron_y", "FCCAnalyses::MCParticle::get_y(FSGenElectron)") #rapidity
                 .Define("FSGenElectron_eta", "FCCAnalyses::MCParticle::get_eta(FSGenElectron)")
                 .Define("FSGenElectron_theta", "FCCAnalyses::MCParticle::get_theta(FSGenElectron)")
                 .Define("FSGenElectron_phi", "FCCAnalyses::MCParticle::get_phi(FSGenElectron)")
@@ -123,6 +124,7 @@ class RDFanalysis():
                 .Define("FSGenMuon_px", "FCCAnalyses::MCParticle::get_px(FSGenMuon)")
                 .Define("FSGenMuon_py", "FCCAnalyses::MCParticle::get_py(FSGenMuon)")
                 .Define("FSGenMuon_pz", "FCCAnalyses::MCParticle::get_pz(FSGenMuon)")
+                .Define("FSGenMuon_y", "FCCAnalyses::MCParticle::get_y(FSGenMuon)")
                 .Define("FSGenMuon_eta", "FCCAnalyses::MCParticle::get_eta(FSGenMuon)")
                 .Define("FSGenMuon_theta", "FCCAnalyses::MCParticle::get_theta(FSGenMuon)")
                 .Define("FSGenMuon_phi", "FCCAnalyses::MCParticle::get_phi(FSGenMuon)")
@@ -156,6 +158,7 @@ class RDFanalysis():
                 .Define("AllGenTau_px",     "FCCAnalyses::MCParticle::get_px(AllGenTau)")
                 .Define("AllGenTau_py",     "FCCAnalyses::MCParticle::get_py(AllGenTau)")
                 .Define("AllGenTau_pz",     "FCCAnalyses::MCParticle::get_pz(AllGenTau)")
+                .Define("AllGenTau_y",    "FCCAnalyses::MCParticle::get_y(AllGenTau)")
                 .Define("AllGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(AllGenTau)")
                 .Define("AllGenTau_theta",     "FCCAnalyses::MCParticle::get_theta(AllGenTau)")
                 .Define("AllGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(AllGenTau)")
@@ -177,6 +180,7 @@ class RDFanalysis():
                 .Define("FSRGenTau_px",     "FCCAnalyses::MCParticle::get_px(FSRGenTau)")
                 .Define("FSRGenTau_py",     "FCCAnalyses::MCParticle::get_py(FSRGenTau)")
                 .Define("FSRGenTau_pz",     "FCCAnalyses::MCParticle::get_pz(FSRGenTau)")
+                .Define("FSRGenTau_y",    "FCCAnalyses::MCParticle::get_y(FSRGenTau)")
                 .Define("FSRGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(FSRGenTau)")
                 .Define("FSRGenTau_theta",     "FCCAnalyses::MCParticle::get_theta(FSRGenTau)")
                 .Define("FSRGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(FSRGenTau)")
@@ -269,6 +273,7 @@ class RDFanalysis():
                 .Define("FSGenNeutrino_px", "FCCAnalyses::MCParticle::get_px(FSGenNeutrino)")
                 .Define("FSGenNeutrino_py", "FCCAnalyses::MCParticle::get_py(FSGenNeutrino)")
                 .Define("FSGenNeutrino_pz", "FCCAnalyses::MCParticle::get_pz(FSGenNeutrino)")
+                .Define("FSGenNeutrino_y", "FCCAnalyses::MCParticle::get_y(FSGenNeutrino)")
                 .Define("FSGenNeutrino_eta", "FCCAnalyses::MCParticle::get_eta(FSGenNeutrino)")
                 .Define("FSGenNeutrino_theta", "FCCAnalyses::MCParticle::get_theta(FSGenNeutrino)")
                 .Define("FSGenNeutrino_phi", "FCCAnalyses::MCParticle::get_phi(FSGenNeutrino)")
@@ -285,6 +290,7 @@ class RDFanalysis():
                 .Define("FSGenPhoton_px", "FCCAnalyses::MCParticle::get_px(FSGenPhoton)")
                 .Define("FSGenPhoton_py", "FCCAnalyses::MCParticle::get_py(FSGenPhoton)")
                 .Define("FSGenPhoton_pz", "FCCAnalyses::MCParticle::get_pz(FSGenPhoton)")
+                .Define("FSGenPhoton_y", "FCCAnalyses::MCParticle::get_y(FSGenPhoton)")
                 .Define("FSGenPhoton_eta", "FCCAnalyses::MCParticle::get_eta(FSGenPhoton)")
                 .Define("FSGenPhoton_theta", "FCCAnalyses::MCParticle::get_theta(FSGenPhoton)")
                 .Define("FSGenPhoton_phi", "FCCAnalyses::MCParticle::get_phi(FSGenPhoton)")
@@ -314,6 +320,7 @@ class RDFanalysis():
                 .Define("RecoElectron_px",      "ReconstructedParticle::get_px(RecoElectrons)")
                 .Define("RecoElectron_py",      "ReconstructedParticle::get_py(RecoElectrons)")
                 .Define("RecoElectron_pz",      "ReconstructedParticle::get_pz(RecoElectrons)")
+                .Define("RecoElectron_y",     "ReconstructedParticle::get_y(RecoElectrons)")
                 .Define("RecoElectron_eta",     "ReconstructedParticle::get_eta(RecoElectrons)") #pseudorapidity eta
                 .Define("RecoElectron_theta",   "ReconstructedParticle::get_theta(RecoElectrons)")
                 .Define("RecoElectron_phi",     "ReconstructedParticle::get_phi(RecoElectrons)") #polar angle in the transverse plane phi
@@ -335,6 +342,7 @@ class RDFanalysis():
                 .Define("RecoMuon_px",      "ReconstructedParticle::get_px(RecoMuons)")
                 .Define("RecoMuon_py",      "ReconstructedParticle::get_py(RecoMuons)")
                 .Define("RecoMuon_pz",      "ReconstructedParticle::get_pz(RecoMuons)")
+                .Define("RecoMuon_y",     "ReconstructedParticle::get_y(RecoMuons)")
                 .Define("RecoMuon_eta",     "ReconstructedParticle::get_eta(RecoMuons)") #pseudorapidity eta
                 .Define("RecoMuon_theta",   "ReconstructedParticle::get_theta(RecoMuons)")
                 .Define("RecoMuon_phi",     "ReconstructedParticle::get_phi(RecoMuons)") #polar angle in the transverse plane phi
@@ -356,6 +364,7 @@ class RDFanalysis():
                 .Define("RecoPhoton_px",      "ReconstructedParticle::get_px(RecoPhotons)")
                 .Define("RecoPhoton_py",      "ReconstructedParticle::get_py(RecoPhotons)")
                 .Define("RecoPhoton_pz",      "ReconstructedParticle::get_pz(RecoPhotons)")
+		        .Define("RecoPhoton_y",     "ReconstructedParticle::get_y(RecoPhotons)") 
 		        .Define("RecoPhoton_eta",     "ReconstructedParticle::get_eta(RecoPhotons)") #pseudorapidity eta
                 .Define("RecoPhoton_theta",   "ReconstructedParticle::get_theta(RecoPhotons)")
 		        .Define("RecoPhoton_phi",     "ReconstructedParticle::get_phi(RecoPhotons)") #polar angle in the transverse plane phi
@@ -556,6 +565,7 @@ class RDFanalysis():
             "FSGenElectron_px",
             "FSGenElectron_py",
             "FSGenElectron_pz",
+            "FSGenElectron_y",
             "FSGenElectron_eta",
             "FSGenElectron_theta",
             "FSGenElectron_phi",
@@ -573,6 +583,7 @@ class RDFanalysis():
             "FSGenMuon_px",
             "FSGenMuon_py",
             "FSGenMuon_pz",
+            "FSGenMuon_y",
             "FSGenMuon_eta",
             "FSGenMuon_theta",
             "FSGenMuon_phi",
@@ -590,6 +601,7 @@ class RDFanalysis():
             "AllGenTau_px",
             "AllGenTau_py",
             "AllGenTau_pz",
+            "AllGenTau_y",
             "AllGenTau_eta",
             "AllGenTau_theta",
             "AllGenTau_phi",
@@ -609,6 +621,7 @@ class RDFanalysis():
             "FSRGenTau_px",
             "FSRGenTau_py",
             "FSRGenTau_pz",
+            "FSRGenTau_y",
             "FSRGenTau_eta",
             "FSRGenTau_theta",
             "FSRGenTau_phi",
@@ -660,6 +673,7 @@ class RDFanalysis():
             "FSGenNeutrino_px",
             "FSGenNeutrino_py",
             "FSGenNeutrino_pz",
+            "FSGenNeutrino_y",
             "FSGenNeutrino_eta",
             "FSGenNeutrino_theta",
             "FSGenNeutrino_phi",
@@ -673,6 +687,7 @@ class RDFanalysis():
             "FSGenPhoton_px",
             "FSGenPhoton_py",
             "FSGenPhoton_pz",
+            "FSGenPhoton_y",
             "FSGenPhoton_eta",
             "FSGenPhoton_theta",
             "FSGenPhoton_phi",
@@ -692,6 +707,7 @@ class RDFanalysis():
             "RecoElectron_px",
             "RecoElectron_py",
             "RecoElectron_pz",
+            "RecoElectron_y",
             "RecoElectron_eta",
             "RecoElectron_theta",
             "RecoElectron_phi",
@@ -710,6 +726,7 @@ class RDFanalysis():
             "RecoMuon_px",
             "RecoMuon_py",
             "RecoMuon_pz",
+            "RecoMuon_y",
             "RecoMuon_eta",
             "RecoMuon_theta",
             "RecoMuon_phi",
@@ -728,6 +745,7 @@ class RDFanalysis():
             "RecoPhoton_px",
             "RecoPhoton_py",
             "RecoPhoton_pz",
+            "RecoPhoton_y",
             "RecoPhoton_eta",
             "RecoPhoton_theta",
             "RecoPhoton_phi",
