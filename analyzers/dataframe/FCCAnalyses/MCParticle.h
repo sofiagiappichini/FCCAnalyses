@@ -51,6 +51,24 @@ namespace MCParticle{
     ROOT::VecOps::RVec<edm4hep::MCParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
   };
 
+  /// select MCParticles with their parent PDG id 
+  struct sel_parentID {
+    sel_parentID(int arg_ID, bool arg_excl, bool arg_chargeconjugate);
+    int m_ID = 13;
+    bool m_excl = true;
+    bool m_chargeconjugate = true;
+    ROOT::VecOps::RVec<edm4hep::MCParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> par, ROOT::VecOps::RVec<edm4hep::MCParticleData> in, ROOT::VecOps::RVec<int> ind);
+  };
+
+  /// select MCParticles with their daughter PDG id 
+  struct sel_daughterID {
+    sel_daughterID(int arg_ID, bool arg_excl, bool arg_chargeconjugate);
+    int m_ID = 13;
+    bool m_excl = true;
+    bool m_chargeconjugate = true;
+    ROOT::VecOps::RVec<edm4hep::MCParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> par, ROOT::VecOps::RVec<edm4hep::MCParticleData> in, ROOT::VecOps::RVec<int> ind);
+  };
+
   /// get MC history tree for a given MCParticle index
   struct get_tree{
     get_tree(int arg_index);

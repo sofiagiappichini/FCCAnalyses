@@ -383,12 +383,6 @@ namespace myUtils{
   /// return the momenta of the input ReconstructedParticles
   float get_p(edm4hep::ReconstructedParticleData in);
 
-  float deltaEta(float eta1, float eta2);
-
-  float deltaPhi(float phi1, float phi2);
-
-  float deltaR(float phi1, float phi2, float eta1, float eta2);
-
   ROOT::VecOps::RVec<edm4hep::TrackState> get_truetrack(ROOT::VecOps::RVec<int> in,
 							ROOT::VecOps::RVec<VertexingUtils::FCCAnalysesVertexMC> vertex,
 							ROOT::VecOps::RVec<edm4hep::MCParticleData> mc);
@@ -412,6 +406,41 @@ namespace myUtils{
 								ROOT::VecOps::RVec<float> thrust);
 
   int has_anglethrust_emin(ROOT::VecOps::RVec<float> angle);
+
+  //my functions
+  float deltaEta(float eta1, float eta2);
+
+  float deltaPhi(float phi1, float phi2);
+
+  float deltaR(float phi1, float phi2, float eta1, float eta2);
+
+  float get_gamma(float p, float e);
+
+  float get_scalar(TLorentzVector v1, TLorentzVector v2);
+
+  TLorentzVector build_p4(float px, float py, float pz, float e);
+
+  float get_ptvl(TLorentzVector vec);
+
+  float get_etvl(TLorentzVector vec);
+
+  float get_pxtvl(TLorentzVector vec);
+
+  float get_pytvl(TLorentzVector vec);
+
+  float get_pztvl(TLorentzVector vec);
+
+  float get_pttvl(TLorentzVector vec);
+
+  float get_etatvl(TLorentzVector vec);
+
+  float get_phitvl(TLorentzVector vec);
+
+  float get_thetatvl(TLorentzVector vec);
+
+  float get_ytvl(TLorentzVector vec);
+
+  TLorentzVector boosted_p4(TLorentzVector boost, TLorentzVector vec, float gamma);
 
 }//end NS myUtils
 
