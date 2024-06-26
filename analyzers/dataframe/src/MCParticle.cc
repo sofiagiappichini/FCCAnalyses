@@ -774,6 +774,64 @@ ROOT::VecOps::RVec<int> get_leptons_origin(const ROOT::VecOps::RVec<edm4hep::MCP
   }
   return result;
 }
+ 
+/// select by parent id, chanrge conjugate of parent id, class of particles and all particle indeces 
+sel_parentID::sel_parentID(int arg_ID, bool arg_excl, bool arg_chargeconjugate) : m_ID(arg_ID), m_excl(arg_excl), m_chargeconjugate( arg_chargeconjugate ) {};
+ROOT::VecOps::RVec<edm4hep::MCParticleData>  sel_parentID::operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> par, ROOT::VecOps::RVec<edm4hep::MCParticleData> in, ROOT::VecOps::RVec<int> ind) {
+  ROOT::VecOps::RVec<edm4hep::MCParticleData> result;
+  result.reserve(par.size());
+  //id of parent to search for, true to select particles with that parent, true to also look for the charge conjugate of the parent
+  // need to pass Particle0 indices for the parents
+
+  for (size_t i = 0; i < par.size(); ++i) {
+    auto & p = par[i];
+    bool check = false;
+    
+    for (unsigned j = p.parents_begin; j != p.parents_end; ++j) {
+      int index = ind.at(j);
+      int pdg_parent = in.at(index).PDG ;
+
+      if ( m_chargeconjugate ) {
+          if ( std::abs(pdg_parent) == std::abs( m_ID) ) check = true;
+        }
+      else {
+        if ( pdg_parent == m_ID ) check = true;
+      }	
+    }
+    if (m_excl == true && check == true) result.emplace_back(p);
+    else if (m_excl == false && check == false) result.emplace_back(p);
+  }
+  return result;
+}
+
+sel_daughterID::sel_daughterID(int arg_ID, bool arg_excl, bool arg_chargeconjugate) : m_ID(arg_ID), m_excl(arg_excl), m_chargeconjugate(arg_chargeconjugate) {};
+ROOT::VecOps::RVec<edm4hep::MCParticleData>  sel_daughterID::operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> par, ROOT::VecOps::RVec<edm4hep::MCParticleData> in, ROOT::VecOps::RVec<int> ind) {
+  ROOT::VecOps::RVec<edm4hep::MCParticleData> result;
+  result.reserve(par.size());
+
+  //id of daughter to search for, true to select particles with that daughter, true to also look for the charge conjugate of the daughter
+  // need to pass Particle1 indices for the daughters
+
+  for (size_t i = 0; i < par.size(); ++i) {
+    auto & p = par[i];
+    bool check = false;
+
+    for (unsigned j = p.daughters_begin; j != p.daughters_end; ++j) {
+      int index = ind.at(j);
+      int pdg_daughter = in.at(index).PDG ;
+
+      if ( m_chargeconjugate ) {
+          if ( std::abs(pdg_daughter) == std::abs( m_ID) ) check = true;
+          }
+      else {
+        if ( pdg_daughter == m_ID ) check = true;
+      }
+    }
+    if (m_excl == true && check == true) result.emplace_back(p);
+    else if (m_excl == false && check == false) result.emplace_back(p);
+  }
+  return result;
+}
 
 }//end NS MCParticle
 

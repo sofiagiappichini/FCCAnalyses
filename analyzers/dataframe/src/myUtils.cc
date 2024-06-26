@@ -2180,23 +2180,6 @@ float get_p(edm4hep::ReconstructedParticleData in) {
   return tlv.P();
 }
 
-  // --- functions Helper
-  float deltaEta(float eta1, float eta2) {
-    return std::abs(eta1 - eta2);
-  }
-
-  float deltaPhi(float phi1, float phi2){
-    float PHI = std::abs(phi1-phi2);
-    if (PHI<=3.14159265)
-      return PHI;
-    else
-      return 2*3.14159265-PHI;
-  }
-
-  float deltaR(float phi1, float phi2, float eta1, float eta2) {
-    return sqrt(deltaEta(eta1,eta2)*deltaEta(eta1,eta2) + deltaPhi(phi1,phi2)*deltaPhi(phi1,phi2));
-  }
-
 ROOT::VecOps::RVec<float> getFCCAnalysesComposite_anglethrust(ROOT::VecOps::RVec<FCCAnalysesComposite2> in,
 								       ROOT::VecOps::RVec<float> thrust){
   ROOT::VecOps::RVec<float> result;
@@ -2214,6 +2197,91 @@ int has_anglethrust_emin(ROOT::VecOps::RVec<float> angle){
     if (cos(p)>0.)return 1;
   return -1;
 }
+
+  // --- functions Helper
+  float deltaEta(float eta1, float eta2) {
+    return std::abs(eta1 - eta2);
+  }
+
+  float deltaPhi(float phi1, float phi2){
+    float PHI = std::abs(phi1-phi2);
+    if (PHI<=3.14159265)
+      return PHI;
+    else
+      return 2*3.14159265-PHI;
+  }
+
+  float deltaR(float phi1, float phi2, float eta1, float eta2) {
+    return sqrt(deltaEta(eta1,eta2)*deltaEta(eta1,eta2) + deltaPhi(phi1,phi2)*deltaPhi(phi1,phi2));
+  }
+
+  float get_gamma(float p, float e) {
+    return 1/(sqrt(1-p*p/(e*e)));
+  }
+
+  float get_scalar(TLorentzVector v1, TLorentzVector v2) {
+    return v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2];
+  }
+
+  TLorentzVector build_p4(float px, float py, float pz, float e) {
+    TLorentzVector p4;
+    p4.SetPxPyPzE( px,py,pz,e);
+    return p4;
+  }
+
+  float get_ptvl(TLorentzVector vec) {
+    return vec.P();
+  }
+
+  float get_etvl(TLorentzVector vec) {
+    return vec.E();
+  }
+
+  float get_pxtvl(TLorentzVector vec) {
+    return vec.Px();
+  }
+
+  float get_pytvl(TLorentzVector vec) {
+    return vec.Py();
+  }
+
+  float get_pztvl(TLorentzVector vec) {
+    return vec.Pz();
+  }
+
+  float get_pttvl(TLorentzVector vec) {
+    return vec.Pt();
+  }
+
+  float get_etatvl(TLorentzVector vec) {
+    return vec.Eta();
+  }
+
+  float get_phitvl(TLorentzVector vec) {
+    return vec.Phi();
+  }
+
+  float get_thetatvl(TLorentzVector vec) {
+    return vec.Theta();
+  }
+
+  float get_ytvl(TLorentzVector vec) {
+    return vec.Rapidity();
+  }
+
+  TLorentzVector boosted_p4(TLorentzVector boost, TLorentzVector vec, float gamma) {
+    float scalar=0.;
+    for(int i=0; i<4; i++) {
+      scalar+=boost[i]*vec[i];
+    }
+    TLorentzVector boosted;
+    boosted.SetPxPyPzE(
+      vec[0] + (gamma -1)*scalar*boost[0]/(boost.P()*boost.P()) - gamma*vec[3]*boost[0],
+      vec[1] + (gamma -1)*scalar*boost[1]/(boost.P()*boost.P()) - gamma*vec[3]*boost[1],
+      vec[2] + (gamma -1)*scalar*boost[2]/(boost.P()*boost.P()) - gamma*vec[3]*boost[2],
+      gamma*(vec[3] - scalar));
+    return boosted;
+  }
 
 }//end NS myUtils
 
