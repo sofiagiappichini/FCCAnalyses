@@ -284,16 +284,16 @@ def run(rdf_module, args):
         uncertainty = ROOT.Math.sqrt(all_events)
 
         if do_scale:
-            all_events = process_events[process_name]  * 1. * \
+            all_events = all_events * 1. * \
                          process_dict[process_name]["crossSection"] * \
                          process_dict[process_name]["kfactor"] * \
                          process_dict[process_name]["matchingEfficiency"] * \
-                         int_lumi / process_dict[process_name]["numberOfEvents"]
-            uncertainty = ROOT.Math.sqrt(process_events[process_name]) * \
+                         int_lumi / process_events[process_name]
+            uncertainty = ROOT.Math.sqrt(all_events) * \
                 process_dict[process_name]["crossSection"] * \
                 process_dict[process_name]["kfactor"] * \
                 process_dict[process_name]["matchingEfficiency"] * \
-                int_lumi / process_dict[process_name]["numberOfEvents"]
+                int_lumi / process_events[process_name]
             LOGGER.info('Printing scaled number of events!!!')
 
         cfn_width = 16 + length_cuts_names  # Cutflow name width
@@ -317,13 +317,13 @@ def run(rdf_module, args):
                     process_dict[process_name]["crossSection"] * \
                     process_dict[process_name]["kfactor"] * \
                     process_dict[process_name]["matchingEfficiency"] * \
-                    int_lumi / process_dict[process_name]["numberOfEvents"]
+                    int_lumi / process_events[process_name]
                 uncertainty = \
-                    ROOT.Math.sqrt(nevents_this_cut_raw) * \
+                    ROOT.Math.sqrt(nevents_this_cut) * \
                     process_dict[process_name]["crossSection"] * \
                     process_dict[process_name]["kfactor"] * \
                     process_dict[process_name]["matchingEfficiency"] * \
-                    int_lumi / process_dict[process_name]["numberOfEvents"]
+                    int_lumi / process_events[process_name]
             info_msg += f'\n\t{"After selection " + cut:{cfn_width}} : '
             info_msg += f'{nevents_this_cut:,}'
 
@@ -333,11 +333,11 @@ def run(rdf_module, args):
                 if nevents_this_cut != 0:
                     # scientific notation - recomended for backgrounds
                     cuts_list.append(
-                        f'{nevents_this_cut:.2e}' ) # $\\pm$ {uncertainty:.2e}')
+                        f'{nevents_this_cut:.2e}')# $\\pm$ {uncertainty:.2e}')
                     # float notation - recomended for signals with few events
                     # cuts_list.append(
                     #     f'{neventsThisCut:.3f} $\\pm$ {uncertainty:.3f}')
-                    eff_list.append(f'{1.*nevents_this_cut_raw/(process_dict[process_name]["numberOfEvents"]) :.2e}')
+                    eff_list.append(f'{1.*nevents_this_cut/all_events:.2e}')
                 # if number of events is zero, the previous uncertainty is
                 # saved instead:
                 #elif '$\\pm$' in cuts_list[-1]:
@@ -358,12 +358,11 @@ def run(rdf_module, args):
             with ROOT.TFile(fhisto, 'RECREATE'):
                 for h in histos_list[i]:
                     try:
-                        if do_scale:
-                            h.Scale(
-                                1. * process_dict[process_name]["crossSection"] *
-                                process_dict[process_name]["kfactor"] *
-                                process_dict[process_name]["matchingEfficiency"] * int_lumi /
-                                process_dict[process_name]["numberOfEvents"])
+                        h.Scale(
+                            1. * process_dict[process_name]["crossSection"] *
+                            process_dict[process_name]["kfactor"] *
+                            process_dict[process_name]["matchingEfficiency"] * int_lumi /
+                            process_events[process_name])
                     except KeyError:
                         LOGGER.warning(
                             'No value defined for process %s in dictionary!',
