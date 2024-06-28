@@ -3,21 +3,39 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
-    #'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
-    #'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
+    ##'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
+    ##'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
+
+    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hmumu_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
+
+    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hmumu_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1_24_06_26/"
+outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1_24_06_27/"
 
 ### necessary to run on HTCondor ###c
 eosType = "eosuser"
@@ -300,8 +318,22 @@ class RDFanalysis():
                 .Define("GenZ",   "FCCAnalyses::MCParticle::sel_pdgID(23, true)(Particle)")
                 .Define("n_GenZ",   "FCCAnalyses::MCParticle::get_n(GenZ)")
 
-                .Define("GenH",   "FCCAnalyses::MCParticle::sel_pdgID(25, true)(Particle)")
-                .Define("n_GenH",   "FCCAnalyses::MCParticle::get_n(GenH)")
+                .Define("GenW",   "FCCAnalyses::MCParticle::sel_pdgID(24, true)(Particle)")
+                .Define("n_GenW",   "FCCAnalyses::MCParticle::get_n(GenW)")
+
+                .Define("GenHiggs",   "FCCAnalyses::MCParticle::sel_pdgID(25, true)(Particle)")
+                .Define("n_GenHiggs",   "FCCAnalyses::MCParticle::get_n(GenHiggs)")
+                .Define("GenHiggs_e", "FCCAnalyses::MCParticle::get_e(GenHiggs)")
+                .Define("GenHiggs_p", "FCCAnalyses::MCParticle::get_p(GenHiggs)")
+                .Define("GenHiggs_pt", "FCCAnalyses::MCParticle::get_pt(GenHiggs)")
+                .Define("GenHiggs_px", "FCCAnalyses::MCParticle::get_px(GenHiggs)")
+                .Define("GenHiggs_py", "FCCAnalyses::MCParticle::get_py(GenHiggs)")
+                .Define("GenHiggs_pz", "FCCAnalyses::MCParticle::get_pz(GenHiggs)")
+                .Define("GenHiggs_y", "FCCAnalyses::MCParticle::get_y(GenHiggs)")
+                .Define("GenHiggs_eta", "FCCAnalyses::MCParticle::get_eta(GenHiggs)")
+                .Define("GenHiggs_theta", "FCCAnalyses::MCParticle::get_theta(GenHiggs)")
+                .Define("GenHiggs_phi", "FCCAnalyses::MCParticle::get_phi(GenHiggs)")
+                .Define("GenHiggs_charge", "FCCAnalyses::MCParticle::get_charge(GenHiggs)")
                 
                 ##################
                 # Reco particles #
@@ -695,7 +727,19 @@ class RDFanalysis():
             #"FSGenPhoton_parentPDG",
 
             "n_GenZ",
-            "n_GenH",
+            "n_GenW",
+            "n_GenHiggs",
+            "GenHiggs_e",
+            "GenHiggs_p", 
+            "GenHiggs_pt", 
+            "GenHiggs_px", 
+            "GenHiggs_py", 
+            "GenHiggs_pz", 
+            "GenHiggs_y", 
+            "GenHiggs_eta", 
+            "GenHiggs_theta", 
+            "GenHiggs_phi", 
+            "GenHiggs_charge", 
 
             ######## Reconstructed particles #######
             "RecoMC_PID",
