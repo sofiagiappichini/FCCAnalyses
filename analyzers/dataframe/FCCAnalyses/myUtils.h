@@ -416,31 +416,31 @@ namespace myUtils{
 
   float get_gamma(float p, float e);
 
-  float get_scalar(TLorentzVector v1, TLorentzVector v2);
+  ROOT::VecOps::RVec<float> get_scalar(ROOT::VecOps::RVec<TLorentzVector> v1, ROOT::VecOps::RVec<TLorentzVector> v2);
 
-  TLorentzVector build_p4(float px, float py, float pz, float e);
+  ROOT::VecOps::RVec<TLorentzVector> build_p4(ROOT::VecOps::RVec<float> px, ROOT::VecOps::RVec<float> py, ROOT::VecOps::RVec<float> pz, ROOT::VecOps::RVec<float> e);
 
-  float get_ptvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_ptvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_etvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_etvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_pxtvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_pxtvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_pytvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_pytvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_pztvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_pztvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_pttvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_pttvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_etatvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_etatvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_phitvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_phitvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_thetatvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_thetatvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  float get_ytvl(TLorentzVector vec);
+  ROOT::VecOps::RVec<float> get_ytvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  TLorentzVector boosted_p4(TLorentzVector boost, TLorentzVector vec, float gamma);
+  ROOT::VecOps::RVec<TLorentzVector> boosted_p4(TLorentzVector boost, ROOT::VecOps::RVec<TLorentzVector> vec, float gamma);
 
 }//end NS myUtils
 
