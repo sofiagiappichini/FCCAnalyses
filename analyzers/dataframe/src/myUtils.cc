@@ -2216,71 +2216,137 @@ int has_anglethrust_emin(ROOT::VecOps::RVec<float> angle){
   }
 
   float get_gamma(float p, float e) {
-    return 1/(sqrt(1-p*p/(e*e)));
+    float beta = p*2.998e8/e;
+    return 1./(sqrt(1. - beta*beta));
   }
 
-  float get_scalar(TLorentzVector v1, TLorentzVector v2) {
-    return v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2];
-  }
-
-  TLorentzVector build_p4(float px, float py, float pz, float e) {
-    TLorentzVector p4;
-    p4.SetPxPyPzE( px,py,pz,e);
-    return p4;
-  }
-
-  float get_ptvl(TLorentzVector vec) {
-    return vec.P();
-  }
-
-  float get_etvl(TLorentzVector vec) {
-    return vec.E();
-  }
-
-  float get_pxtvl(TLorentzVector vec) {
-    return vec.Px();
-  }
-
-  float get_pytvl(TLorentzVector vec) {
-    return vec.Py();
-  }
-
-  float get_pztvl(TLorentzVector vec) {
-    return vec.Pz();
-  }
-
-  float get_pttvl(TLorentzVector vec) {
-    return vec.Pt();
-  }
-
-  float get_etatvl(TLorentzVector vec) {
-    return vec.Eta();
-  }
-
-  float get_phitvl(TLorentzVector vec) {
-    return vec.Phi();
-  }
-
-  float get_thetatvl(TLorentzVector vec) {
-    return vec.Theta();
-  }
-
-  float get_ytvl(TLorentzVector vec) {
-    return vec.Rapidity();
-  }
-
-  TLorentzVector boosted_p4(TLorentzVector boost, TLorentzVector vec, float gamma) {
-    float scalar=0.;
-    for(int i=0; i<4; i++) {
-      scalar+=boost[i]*vec[i];
+//supports vectors of tvl of different sizes, if one of them is size one then it's used recursively otherwise the smaller size of the vectors is used to get the value
+  ROOT::VecOps::RVec<float> get_scalar( ROOT::VecOps::RVec<TLorentzVector> v1,  ROOT::VecOps::RVec<TLorentzVector> v2) {
+    ROOT::VecOps::RVec<float> result;
+    if (v2.size()==1 && v1.size()>1) {
+    TLorentzVector v = v2[0];
+      for (size_t i = 0; i < v1.size(); ++i) {  
+        result.push_back(v1[i].Px()*v[0] + v1[i].Py()*v[1] + v1[i].Pz()*v[2]);
+      }
     }
-    TLorentzVector boosted;
-    boosted.SetPxPyPzE(
-      vec[0] + (gamma -1)*scalar*boost[0]/(boost.P()*boost.P()) - gamma*vec[3]*boost[0],
-      vec[1] + (gamma -1)*scalar*boost[1]/(boost.P()*boost.P()) - gamma*vec[3]*boost[1],
-      vec[2] + (gamma -1)*scalar*boost[2]/(boost.P()*boost.P()) - gamma*vec[3]*boost[2],
-      gamma*(vec[3] - scalar));
-    return boosted;
+    else if (v1.size()==1 && v2.size()>1) {
+      TLorentzVector v = v1[0];
+      for (size_t i = 0; i < v2.size(); ++i) {  
+        result.push_back(v2[i].Px()*v[0] + v2[i].Py()*v[1] + v2[i].Pz()*v[2]);
+      }
+    }
+    else {
+      float size = std::min(v1.size(), v2.size());
+      for (size_t i = 0; i < size; ++i) {  
+        result.push_back(v1[i].Px()*v2[i].Px() + v1[i].Py()*v2[i].Py() + v1[i].Pz()*v2[i].Pz());
+      }
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<TLorentzVector> build_p4(ROOT::VecOps::RVec<float> px, ROOT::VecOps::RVec<float> py, ROOT::VecOps::RVec<float> pz, ROOT::VecOps::RVec<float> e) {
+    ROOT::VecOps::RVec<TLorentzVector> p4;
+    for (size_t i = 0; i < px.size(); ++i) {  
+        TLorentzVector tlv;
+        tlv.SetPxPyPzE(px[i], py[i], pz[i], e[i]);
+        p4.push_back(tlv);
+    }
+    return p4;
+}
+
+  ROOT::VecOps::RVec<float> get_ptvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  
+      result.push_back(vec[i].P());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_etvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].E());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_pxtvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].Px());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_pytvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].Py());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_pztvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].Pz());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_pttvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].Pt());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_etatvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].Eta());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_phitvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].Phi());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_thetatvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].Theta());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<float> get_ytvl(ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<float> result;
+    for (size_t i = 0; i < vec.size(); ++i) {  // Iterate over the indices
+      result.push_back(vec[i].Rapidity());
+    }
+    return result;
+  }
+
+  ROOT::VecOps::RVec<TLorentzVector> boosted_p4(TLorentzVector boost, ROOT::VecOps::RVec<TLorentzVector> vec, float gamma) {
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    for (size_t i = 0; i < vec.size(); ++i) {
+      TLorentzVector boosted;
+      float scalar = vec[i].Px()*boost[0] + vec[i].Py()*boost[1] + vec[i].Pz()*boost[2];
+      boosted.SetPxPyPzE(
+        vec[i].Px() + (gamma -1)*scalar*boost[0]/(boost.P()*boost.P()) - gamma*vec[i].E()*boost[0]/2.998e8,
+        vec[i].Py() + (gamma -1)*scalar*boost[1]/(boost.P()*boost.P()) - gamma*vec[i].E()*boost[1]/2.998e8,
+        vec[i].Pz() + (gamma -1)*scalar*boost[2]/(boost.P()*boost.P()) - gamma*vec[i].E()*boost[2]/2.998e8,
+        gamma*(vec[i].E() - scalar/2.998e8));
+      result.push_back(boosted);
+    }
+    return result;
   }
 
 }//end NS myUtils
