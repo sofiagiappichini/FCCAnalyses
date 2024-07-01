@@ -4,11 +4,11 @@ import ROOT
 #Mandatory: List of processes
 processList = {
     'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10}, #check that it's fine to keep them in chunks, otherwise just remove the option and leave {},
-    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
 }
 
 inputDir = "/eos/user/s/sgiappic/HiggsCP/stage1_24_06_27/"
@@ -84,10 +84,13 @@ class RDFanalysis():
             .Define("GenHiggs_Reco_y",    "myUtils::get_ytvl(GenHiggs_Reco_p4)")
 
             .Define("GenHiggs_p4",      "myUtils::build_p4(GenHiggs_px, GenHiggs_py, GenHiggs_pz, GenHiggs_e)")
-            .Define("GenHiggs_gamma",  "myUtils::get_gamma(GenHiggs_p.at(0), GenHiggs_e.at(0))") # only works with one particle, not the whole class
+            #not needed for the boosting but nice to get a sense of the values
+            .Define("GenHiggs_beta",        "return (GenHiggs_p.at(0)/GenHiggs_e.at(0))")
+            .Define("GenHiggs_gamma",  "myUtils::get_gamma(GenHiggs_p.at(0), GenHiggs_e.at(0))") # only works with one particle, not the whole class #myUtils::get_gamma(GenHiggs_p.at(0), GenHiggs_e.at(0))
 
+            #boosted_p4 function will boost a vector of 4-vectors(tvl, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
             .Define("FSRGenTau_p4",     "myUtils::build_p4(FSRGenTau_px, FSRGenTau_py, FSRGenTau_pz, FSRGenTau_e)")
-            .Define("HiggsRF_GenTau_p4",     "myUtils::boosted_p4(GenHiggs_p4.at(0), FSRGenTau_p4, GenHiggs_gamma)")
+            .Define("HiggsRF_GenTau_p4",    "myUtils::boosted_p4_root(- GenHiggs_p4.at(0), FSRGenTau_p4)")
             .Define("HiggsRF_GenTau_px",    "myUtils::get_pxtvl(HiggsRF_GenTau_p4)")
             .Define("HiggsRF_GenTau_py",    "myUtils::get_pytvl(HiggsRF_GenTau_p4)")
             .Define("HiggsRF_GenTau_pz",    "myUtils::get_pxtvl(HiggsRF_GenTau_p4)")
@@ -103,6 +106,9 @@ class RDFanalysis():
                                     else if (HiggsRF_GenTau_y.at(0)<HiggsRF_GenTau_y.at(1)) return (HiggsRF_GenTau_eta.at(1) - HiggsRF_GenTau_eta.at(0)); else return float(-10.);")
             .Define("HiggsRF_GenDiTau_DPhi",    "if (HiggsRF_GenTau_y.at(0)>HiggsRF_GenTau_y.at(1)) return (HiggsRF_GenTau_phi.at(0) - HiggsRF_GenTau_phi.at(1)); \
                                     else if (HiggsRF_GenTau_y.at(0)<HiggsRF_GenTau_y.at(1)) return (HiggsRF_GenTau_phi.at(1) - HiggsRF_GenTau_phi.at(0)); else return float(-10.);")
+
+            #angle between higgs vector in lab frame and tau in higgs rest frame
+            .Define("HiggsRF_GenTau_thetaH",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenHiggs_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{HiggsRF_GenTau_p4.at(0)})/(GenHiggs_p.at(0)*HiggsRF_GenTau_p.at(0)))")
 
             ##################
             # Reco particles #
@@ -186,6 +192,7 @@ class RDFanalysis():
                 "GenHiggs_Reco_theta", 
                 "GenHiggs_Reco_phi", 
 
+                "GenHiggs_beta",
                 "GenHiggs_gamma",
 
                 "HiggsRF_GenTau_px",  
@@ -201,19 +208,20 @@ class RDFanalysis():
 
                 "HiggsRF_GenDiTau_DEta", 
                 "HiggsRF_GenDiTau_DPhi", 
+                "HiggsRF_GenTau_thetaH",
 
         ]
-        #branchList += [
-                #"nTau23PiCandidates", "Tau23PiCandidates_mass", "Tau23PiCandidates_B",
-                #"Tau23PiCandidates_px", "Tau23PiCandidates_py", "Tau23PiCandidates_pz", "Tau23PiCandidates_p", "Tau23PiCandidates_q",
-                #"Tau23PiCandidates_d0",  "Tau23PiCandidates_z0",
+        branchList += [
+                "n_Tau23PiCandidates", "Tau23PiCandidates_mass", "Tau23PiCandidates_B",
+                "Tau23PiCandidates_px", "Tau23PiCandidates_py", "Tau23PiCandidates_pz", "Tau23PiCandidates_p", "Tau23PiCandidates_q",
+                "Tau23PiCandidates_d0",  "Tau23PiCandidates_z0",
 
-                #"Tau23PiCandidates_pion1px", "Tau23PiCandidates_pion1py", "Tau23PiCandidates_pion1pz",
-                #"Tau23PiCandidates_pion1p", "Tau23PiCandidates_pion1q", "Tau23PiCandidates_pion1d0", "Tau23PiCandidates_pion1z0",
-                #"Tau23PiCandidates_pion2px", "Tau23PiCandidates_pion2py", "Tau23PiCandidates_pion2pz",
-                #"Tau23PiCandidates_pion2p", "Tau23PiCandidates_pion2q", "Tau23PiCandidates_pion2d0", "Tau23PiCandidates_pion2z0",
-                #"Tau23PiCandidates_pion3px", "Tau23PiCandidates_pion3py", "Tau23PiCandidates_pion3pz",
-                #"Tau23PiCandidates_pion3p", "Tau23PiCandidates_pion3q", "Tau23PiCandidates_pion3d0", "Tau23PiCandidates_pion3z0",   
-        #]
+                "Tau23PiCandidates_pion1px", "Tau23PiCandidates_pion1py", "Tau23PiCandidates_pion1pz",
+                "Tau23PiCandidates_pion1p", "Tau23PiCandidates_pion1q", "Tau23PiCandidates_pion1d0", "Tau23PiCandidates_pion1z0",
+                "Tau23PiCandidates_pion2px", "Tau23PiCandidates_pion2py", "Tau23PiCandidates_pion2pz",
+                "Tau23PiCandidates_pion2p", "Tau23PiCandidates_pion2q", "Tau23PiCandidates_pion2d0", "Tau23PiCandidates_pion2z0",
+                "Tau23PiCandidates_pion3px", "Tau23PiCandidates_pion3py", "Tau23PiCandidates_pion3pz",
+                "Tau23PiCandidates_pion3p", "Tau23PiCandidates_pion3q", "Tau23PiCandidates_pion3d0", "Tau23PiCandidates_pion3z0",   
+        ]
 
         return branchList

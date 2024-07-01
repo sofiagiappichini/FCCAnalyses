@@ -440,7 +440,7 @@ namespace myUtils{
 
   ROOT::VecOps::RVec<float> get_ytvl(ROOT::VecOps::RVec<TLorentzVector> vec);
 
-  ROOT::VecOps::RVec<TLorentzVector> boosted_p4(TLorentzVector boost, ROOT::VecOps::RVec<TLorentzVector> vec, float gamma);
+  ROOT::VecOps::RVec<TLorentzVector> boosted_p4(TLorentzVector boost, ROOT::VecOps::RVec<TLorentzVector> vec);
 
 }//end NS myUtils
 
