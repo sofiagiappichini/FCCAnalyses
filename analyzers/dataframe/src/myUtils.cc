@@ -2216,8 +2216,10 @@ int has_anglethrust_emin(ROOT::VecOps::RVec<float> angle){
   }
 
   float get_gamma(float p, float e) {
-    float beta = p*2.998e8/e;
-    return 1./(sqrt(1. - beta*beta));
+    float c = 2.998e8;
+    float beta = p/e;
+    float gamma = 1./(sqrt(1 - beta*beta));
+    return gamma;
   }
 
 //supports vectors of tvl of different sizes, if one of them is size one then it's used recursively otherwise the smaller size of the vectors is used to get the value
@@ -2334,16 +2336,11 @@ int has_anglethrust_emin(ROOT::VecOps::RVec<float> angle){
     return result;
   }
 
-  ROOT::VecOps::RVec<TLorentzVector> boosted_p4(TLorentzVector boost, ROOT::VecOps::RVec<TLorentzVector> vec, float gamma) {
+    ROOT::VecOps::RVec<TLorentzVector> boosted_p4(TLorentzVector boost, ROOT::VecOps::RVec<TLorentzVector> vec) {
     ROOT::VecOps::RVec<TLorentzVector> result;
     for (size_t i = 0; i < vec.size(); ++i) {
-      TLorentzVector boosted;
-      float scalar = vec[i].Px()*boost[0] + vec[i].Py()*boost[1] + vec[i].Pz()*boost[2];
-      boosted.SetPxPyPzE(
-        vec[i].Px() + (gamma -1)*scalar*boost[0]/(boost.P()*boost.P()) - gamma*vec[i].E()*boost[0]/2.998e8,
-        vec[i].Py() + (gamma -1)*scalar*boost[1]/(boost.P()*boost.P()) - gamma*vec[i].E()*boost[1]/2.998e8,
-        vec[i].Pz() + (gamma -1)*scalar*boost[2]/(boost.P()*boost.P()) - gamma*vec[i].E()*boost[2]/2.998e8,
-        gamma*(vec[i].E() - scalar/2.998e8));
+      TLorentzVector boosted=vec[i];
+      boosted.Boost( - boost.BoostVector());
       result.push_back(boosted);
     }
     return result;
