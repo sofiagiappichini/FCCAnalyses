@@ -10,6 +10,9 @@ import re
 import logging
 import ROOT
 
+# Set ROOT to batch mode
+ROOT.gROOT.SetBatch(True)
+
 def sorted_dict_values(dic: dict) -> list:
     ''''
     Sort values in the dictionary.
@@ -416,7 +419,6 @@ for cut in CUTS:
                 h.SetLineColor(colors[i])
                 if i == 0:
                     h.Draw("HIST")
-                    h.Scale(1.13) # scale lumi from 180 to 204# scale lumi from 180 to 204
                     h.GetYaxis().SetTitle("Events")
                     h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
                     #h.GetXaxis().SetTitle("{}".format(variable))

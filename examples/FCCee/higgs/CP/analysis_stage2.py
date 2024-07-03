@@ -108,7 +108,58 @@ class RDFanalysis():
                                     else if (HiggsRF_GenTau_y.at(0)<HiggsRF_GenTau_y.at(1)) return (HiggsRF_GenTau_phi.at(1) - HiggsRF_GenTau_phi.at(0)); else return float(-10.);")
 
             #angle between higgs vector in lab frame and tau in higgs rest frame
-            .Define("HiggsRF_GenTau_thetaH",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenHiggs_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{HiggsRF_GenTau_p4.at(0)})/(GenHiggs_p.at(0)*HiggsRF_GenTau_p.at(0)))")
+            .Define("HiggsRF_GenTau_thetastar",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenHiggs_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{HiggsRF_GenTau_p4.at(0)})/(GenHiggs_p.at(0)*HiggsRF_GenTau_p.at(0)))")
+
+            #reconstructing the Z assuming that the decay is visible (here for mumu)
+            .Define("GenDiMuon_e", "if (n_FSGenMuon>1) return (FSGenMuon_e.at(0) + FSGenMuon_e.at(1)); else return float(-1000.);")
+            .Define("GenDiMuon_px", "if (n_FSGenMuon>1) return (FSGenMuon_px.at(0) + FSGenMuon_px.at(1)); else return float(-1000.);")
+            .Define("GenDiMuon_py", "if (n_FSGenMuon>1) return (FSGenMuon_py.at(0) + FSGenMuon_py.at(1)); else return float(-1000.);")
+            .Define("GenDiMuon_pz", "if (n_FSGenMuon>1) return (FSGenMuon_pz.at(0) + FSGenMuon_pz.at(1)); else return float(-1000.);")
+
+            .Define("GenZ_Reco_p4",      "if (n_FSGenMuon>1) return myUtils::build_p4(ROOT::VecOps::RVec<float>{GenDiMuon_px}, ROOT::VecOps::RVec<float>{GenDiMuon_py}, ROOT::VecOps::RVec<float>{GenDiMuon_pz}, ROOT::VecOps::RVec<float>{GenDiMuon_e}); else return ROOT::VecOps::RVec<TLorentzVector>{}")
+            .Define("GenZ_Reco_px",    "myUtils::get_pxtvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_py",    "myUtils::get_pytvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_pz",    "myUtils::get_pxtvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_p",    "myUtils::get_ptvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_pt",    "myUtils::get_pttvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_e",    "myUtils::get_etvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_eta",    "myUtils::get_etatvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_phi",    "myUtils::get_phitvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_theta",    "myUtils::get_thetatvl(GenZ_Reco_p4)")
+            .Define("GenZ_Reco_y",    "myUtils::get_ytvl(GenZ_Reco_p4)")
+
+            .Define("GenZ_gamma",  "myUtils::get_gamma(GenZ_p.at(0), GenZ_e.at(0))") # only works with one particle, not the whole class #myUtils::get_gamma(GenZ_p.at(0), GenZ_e.at(0))
+
+            #boosted_p4 function will boost a vector of 4-vectors(tvl, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
+            .Define("FSGenMuon_p4",     "myUtils::build_p4(FSGenMuon_px, FSGenMuon_py, FSGenMuon_pz, FSGenMuon_e)")
+            .Define("ZRF_GenMuon_p4",    "myUtils::boosted_p4_root(- GenZ_p4.at(0), FSGenMuon_p4)")
+            .Define("ZRF_GenMuon_px",    "myUtils::get_pxtvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_py",    "myUtils::get_pytvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_pz",    "myUtils::get_pxtvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_p",    "myUtils::get_ptvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_pt",    "myUtils::get_pttvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_e",    "myUtils::get_etvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_eta",    "myUtils::get_etatvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_phi",    "myUtils::get_phitvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_theta",    "myUtils::get_thetatvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_y",    "myUtils::get_ytvl(ZRF_GenMuon_p4)")
+
+            .Define("ZRF_GenDiMuon_DEta",    "if (ZRF_GenMuon_y.at(0)>ZRF_GenMuon_y.at(1)) return (ZRF_GenMuon_eta.at(0) - ZRF_GenMuon_eta.at(1)); \
+                                    else if (ZRF_GenMuon_y.at(0)<ZRF_GenMuon_y.at(1)) return (ZRF_GenMuon_eta.at(1) - ZRF_GenMuon_eta.at(0)); else return float(-10.);")
+            .Define("ZRF_GenDiMuon_DPhi",    "if (ZRF_GenMuon_y.at(0)>ZRF_GenMuon_y.at(1)) return (ZRF_GenMuon_phi.at(0) - ZRF_GenMuon_phi.at(1)); \
+                                    else if (ZRF_GenMuon_y.at(0)<ZRF_GenMuon_y.at(1)) return (ZRF_GenMuon_phi.at(1) - ZRF_GenMuon_phi.at(0)); else return float(-10.);")
+
+            #angle between Z vector in lab frame and Muon in Z rest frame
+            .Define("ZRF_GenMuon_theta2",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenZ_Reco_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenMuon_p4.at(0)})/(GenZ_Reco_p.at(0)*ZRF_GenMuon_p.at(0)))")
+            #angle between decay planes of H and Z
+            .Define("GenHiggs_GenZ_phi1",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{HiggsRF_GenTau_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenMuon_p4.at(0)})/(HiggsRF_GenTau_p.at(0)*ZRF_GenMuon.at(0)))")
+            #angle between Z vector in lab frame and Muon in Z rest frame
+            .Define("Beam_vec",     "myUtils::build_p4(0, 0, 1, 0)") #unitary vector of beam axis along z
+            .Define("Beam_p",       "float(1.)") #magnitude
+            .Define("GenZ_phi",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenMuon_p4.at(0)})/(Beam_p*ZRF_GenMuon.at(0)))")
+            .Define("GenZ_theta1",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ROOT::VecOps::RVec<TLorentzVector>{GenZ_Reco_p4.at(0)})/(Beam_p*GenZ_Reco_p4.at(0)))")
+
+            .Define("FSGenMuon_plus_e",       "if (FSGenMuon_charge == 1 && n_FSGenMuon == 2) return FSGenMuon_e; else return float(-1.);")
 
             ##################
             # Reco particles #
@@ -165,7 +216,231 @@ class RDFanalysis():
     #__________________________________________________________
     #Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
+        #branches from stage1 to be kept for histogram booking in final and plotting
         branchList = [
+                "n_FSGenElectron",
+                "FSGenElectron_e",
+                "FSGenElectron_p",
+                "FSGenElectron_pt",
+                "FSGenElectron_px",
+                "FSGenElectron_py",
+                "FSGenElectron_pz",
+                "FSGenElectron_y",
+                "FSGenElectron_eta",
+                "FSGenElectron_theta",
+                "FSGenElectron_phi",
+                "FSGenElectron_charge",
+                "FSGenElectron_mass",
+                "FSGenElectron_parentPDG",
+                "FSGenElectron_vertex_x",
+                "FSGenElectron_vertex_y",
+                "FSGenElectron_vertex_z",
+
+                "n_FSGenMuon",
+                "FSGenMuon_e",
+                "FSGenMuon_p",
+                "FSGenMuon_pt",
+                "FSGenMuon_px",
+                "FSGenMuon_py",
+                "FSGenMuon_pz",
+                "FSGenMuon_y",
+                "FSGenMuon_eta",
+                "FSGenMuon_theta",
+                "FSGenMuon_phi",
+                "FSGenMuon_charge",
+                "FSGenMuon_mass",
+                "FSGenMuon_parentPDG",
+                "FSGenMuon_vertex_x",
+                "FSGenMuon_vertex_y",
+                "FSGenMuon_vertex_z",
+
+                "n_AllGenTau",
+                "AllGenTau_e",
+                "AllGenTau_p",
+                "AllGenTau_pt",
+                "AllGenTau_px",
+                "AllGenTau_py",
+                "AllGenTau_pz",
+                "AllGenTau_y",
+                "AllGenTau_eta",
+                "AllGenTau_theta",
+                "AllGenTau_phi",
+                "AllGenTau_charge",
+                "AllGenTau_mass",
+                "AllGenTau_parentPDG",
+                "AllGenTau_vertex_x",
+                "AllGenTau_vertex_y",
+                "AllGenTau_vertex_z",
+
+                "noFSRGenTau_parentPDG",
+
+                "n_FSRGenTau",
+                "FSRGenTau_e",
+                "FSRGenTau_p",
+                "FSRGenTau_pt",
+                "FSRGenTau_px",
+                "FSRGenTau_py",
+                "FSRGenTau_pz",
+                "FSRGenTau_y",
+                "FSRGenTau_eta",
+                "FSRGenTau_theta",
+                "FSRGenTau_phi",
+                "FSRGenTau_charge",
+                "FSRGenTau_mass",
+                "FSRGenTau_parentPDG",
+                "FSRGenTau_vertex_x",
+                "FSRGenTau_vertex_y",
+                "FSRGenTau_vertex_z",
+
+                "n_TauNeg_MuNuNu",       
+                "n_TauNeg_MuNuNu_Phot",  
+                "n_TauNeg_ENuNu",        
+                "n_TauNeg_ENuNu_Phot",   
+                "n_TauNeg_PiNu",         
+                "n_TauNeg_PiNu_Phot",    
+                "n_TauNeg_KNu",          
+                "n_TauNeg_KNu_Phot",     
+                "n_TauNeg_PiK0Nu",       
+                "n_TauNeg_PiK0Nu_Phot",  
+                "n_TauNeg_KK0Nu",        
+                "n_TauNeg_KK0Nu_Phot",   
+                "n_TauNeg_3PiNu",        
+                "n_TauNeg_3PiNu_Phot",   
+                "n_TauNeg_PiKKNu",       
+                "n_TauNeg_PiKKNu_Phot",  
+
+                "n_TauPos_MuNuNu",       
+                "n_TauPos_MuNuNu_Phot",  
+                "n_TauPos_ENuNu",        
+                "n_TauPos_ENuNu_Phot",   
+                "n_TauPos_PiNu",         
+                "n_TauPos_PiNu_Phot",    
+                "n_TauPos_KNu",          
+                "n_TauPos_KNu_Phot",     
+                "n_TauPos_PiK0Nu",       
+                "n_TauPos_PiK0Nu_Phot",  
+                "n_TauPos_KK0Nu",        
+                "n_TauPos_KK0Nu_Phot",   
+                "n_TauPos_3PiNu",        
+                "n_TauPos_3PiNu_Phot",   
+                "n_TauPos_PiKKNu",       
+                "n_TauPos_PiKKNu_Phot", 
+
+                "n_FSGenNeutrino",
+                "FSGenNeutrino_e",
+                "FSGenNeutrino_p",
+                "FSGenNeutrino_pt",
+                "FSGenNeutrino_px",
+                "FSGenNeutrino_py",
+                "FSGenNeutrino_pz",
+                "FSGenNeutrino_y",
+                "FSGenNeutrino_eta",
+                "FSGenNeutrino_theta",
+                "FSGenNeutrino_phi",
+                "FSGenNeutrino_charge",
+                #"FSGenNeutrino_parentPDG",
+
+                "n_FSGenPhoton",
+                "FSGenPhoton_e",
+                "FSGenPhoton_p",
+                "FSGenPhoton_pt",
+                "FSGenPhoton_px",
+                "FSGenPhoton_py",
+                "FSGenPhoton_pz",
+                "FSGenPhoton_y",
+                "FSGenPhoton_eta",
+                "FSGenPhoton_theta",
+                "FSGenPhoton_phi",
+                "FSGenPhoton_charge",
+                #"FSGenPhoton_parentPDG",
+
+                "n_GenZ",
+                "n_GenH",
+
+                ######## Reconstructed particles #######
+                "RecoMC_PID",
+
+                "n_RecoElectrons",
+                "RecoElectron_e",
+                "RecoElectron_p",
+                "RecoElectron_pt",
+                "RecoElectron_px",
+                "RecoElectron_py",
+                "RecoElectron_pz",
+                "RecoElectron_y",
+                "RecoElectron_eta",
+                "RecoElectron_theta",
+                "RecoElectron_phi",
+                "RecoElectron_charge",
+                "RecoElectronTrack_absD0",
+                "RecoElectronTrack_absZ0",
+                "RecoElectronTrack_absD0sig",
+                "RecoElectronTrack_absZ0sig",
+                "RecoElectronTrack_D0cov",
+                "RecoElectronTrack_Z0cov",
+
+                "n_RecoMuons",
+                "RecoMuon_e",
+                "RecoMuon_p",
+                "RecoMuon_pt",
+                "RecoMuon_px",
+                "RecoMuon_py",
+                "RecoMuon_pz",
+                "RecoMuon_y",
+                "RecoMuon_eta",
+                "RecoMuon_theta",
+                "RecoMuon_phi",
+                "RecoMuon_charge",
+                "RecoMuonTrack_absD0",
+                "RecoMuonTrack_absZ0",
+                "RecoMuonTrack_absD0sig",
+                "RecoMuonTrack_absZ0sig",
+                "RecoMuonTrack_D0cov",
+                "RecoMuonTrack_Z0cov",
+
+                "n_RecoPhotons",
+                "RecoPhoton_e",
+                "RecoPhoton_p",
+                "RecoPhoton_pt",
+                "RecoPhoton_px",
+                "RecoPhoton_py",
+                "RecoPhoton_pz",
+                "RecoPhoton_y",
+                "RecoPhoton_eta",
+                "RecoPhoton_theta",
+                "RecoPhoton_phi",
+                "RecoPhoton_charge",
+
+                "RecoMissingEnergy_e",
+                "RecoMissingEnergy_p",
+                "RecoMissingEnergy_pt",
+                "RecoMissingEnergy_px",
+                "RecoMissingEnergy_py",
+                "RecoMissingEnergy_pz",
+                "RecoMissingEnergy_eta",
+                "RecoMissingEnergy_theta",
+                "RecoMissingEnergy_phi",
+
+                "n_RecoTracks",
+                #"n_RecoVertex",
+                "RecoVertexObject",
+                "RecoVertex",
+                "n_PrimaryTracks",
+                "PrimaryVertexObject",
+                "PrimaryVertex", 
+                "PrimaryVertex_xyz",
+                "PrimaryVertes_xy",
+                "n_SecondaryTracks",
+                "SecondaryVertexObject",
+                "SecondaryVertex",
+                "SecondaryVertex_xyz",
+                "SecondaryVertes_xy",
+                "VertexObject", 
+                "RecoPartPID" ,
+                "RecoPartPIDAtVertex",
+        ]
+        #complex variables added here at stage2
+        branchList += [
                 ######## Monte-Carlo particles #######
                 "FSRGenTau_Lxyz",
                 "GenDiTau_e",
@@ -208,9 +483,46 @@ class RDFanalysis():
 
                 "HiggsRF_GenDiTau_DEta", 
                 "HiggsRF_GenDiTau_DPhi", 
-                "HiggsRF_GenTau_thetaH",
+                "HiggsRF_GenTau_thetastar",
+
+                "GenZ_Reco_e",
+                "GenZ_Reco_p", 
+                "GenZ_Reco_pt", 
+                "GenZ_Reco_px", 
+                "GenZ_Reco_py", 
+                "GenZ_Reco_pz", 
+                "GenZ_Reco_y", 
+                "GenZ_Reco_eta", 
+                "GenZ_Reco_theta", 
+                "GenZ_Reco_phi", 
+
+                "GenZ_gamma",
+
+                "ZRF_GenMuon_px",  
+                "ZRF_GenMuon_py",  
+                "ZRF_GenMuon_pz", 
+                "ZRF_GenMuon_p", 
+                "ZRF_GenMuon_pt",  
+                "ZRF_GenMuon_e",   
+                "ZRF_GenMuon_eta", 
+                "ZRF_GenMuon_phi",  
+                "ZRF_GenMuon_theta",    
+                "ZRF_GenMuon_y", 
+
+                "ZRF_GenDiMuon_DEta", 
+                "ZRF_GenDiMuon_DPhi", 
+                "ZRF_GenMuon_thetaH",
+
+                "HiggsRF_GenTau_thetastar",
+                "ZRF_GenMuon_theta2",
+                "GenHiggs_GenZ_phi1", 
+                "GenZ_phi", 
+                "GenZ_theta2",  
+                
+                "FSGenMuon_plus_e",
 
         ]
+
         branchList += [
                 "n_Tau23PiCandidates", "Tau23PiCandidates_mass", "Tau23PiCandidates_B",
                 "Tau23PiCandidates_px", "Tau23PiCandidates_py", "Tau23PiCandidates_pz", "Tau23PiCandidates_p", "Tau23PiCandidates_q",
