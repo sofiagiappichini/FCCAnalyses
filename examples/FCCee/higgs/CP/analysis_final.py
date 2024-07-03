@@ -221,7 +221,7 @@ histoList = {
     #"RecoPhoton_phi":      {"name":"RecoPhoton_phi",      "title":"Reco photon #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
     #"RecoPhoton_charge":   {"name":"RecoPhoton_charge",   "title":"Reco photon charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
 
-    "Reco_e":                   {"name":"Reco_e",         "title":"Reco lepton energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
+    "Reco_e":                   {"name":"Reco_e.at(0)",         "title":"Reco lepton energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
     "Reco_p":                   {"name":"Reco_p",         "title":"Reco lepton p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},
     "Reco_pt":                  {"name":"Reco_pt",        "title":"Reco lepton p_{T} [GeV]",        "bin":100,"xmin":0 ,"xmax":50},
     "Reco_px":                  {"name":"Reco_px",        "title":"Reco lepton p_{x} [GeV]",        "bin":100,"xmin":-50 ,"xmax":50},
