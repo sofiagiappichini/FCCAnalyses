@@ -395,9 +395,9 @@ replacement_words_all = [
 ]
 
 replacement_words_test =[
-    #"HNL_6.20e-10_20gev",
-    "HNL_2.86e-10_20gev",
-    #"HNL_8.69e-11_30gev"
+    
+    "HNL_6.67e-10_40gev_isr",
+    "HNL_6.67e-10_40gev_isrbm",
 
 ]
 
@@ -408,7 +408,7 @@ if not os.path.exists(backup_dir):
     os.makedirs(backup_dir)
 
 # Backup the original file
-shutil.copy("/afs/cern.ch/user/s/sgiappic/pythia_proc1.cmd", os.path.join(backup_dir, "pythia_proc_backup_original.cmd"))
+shutil.copy("/afs/cern.ch/user/s/sgiappic/pythia_proc.cmd", os.path.join(backup_dir, "pythia_proc_backup_original.cmd"))
 
 # Loop through each replacement word
 for replacement_word in replacement_words_test:

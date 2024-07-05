@@ -199,7 +199,7 @@ data_point = data[280:]
 
 log_coupling = np.log10(data_point[:, 0])
 mass = data_point[:, 1]
-significance = data_point[:, 2]*0.62*0.5
+significance = data_point[:, 2]
 #significance_DF = data_point[:, 3]
 
 #significance = []
@@ -210,7 +210,7 @@ mass_grid, coupling_grid = np.meshgrid(np.linspace(min(mass), max(mass), 8),
                                                     np.linspace(min(log_coupling), max(log_coupling), 6))
 significance_grid = griddata((mass, log_coupling), significance, (mass_grid, coupling_grid), method='linear')
 
-contour_levels = [3.2]
+contour_levels = [4]
 contour_lines = axes.contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='#8ab0ed', linewidths=2)
 
 ## prompt
@@ -262,4 +262,4 @@ axes.set_ylim(-12.1,-3.9)
 
 #plt.legend(loc='lower right',fontsize=18,frameon=False)
 
-plt.savefig("/eos/user/s/sgiappic/www/paper/future_constraints_onehnl.png")
+plt.savefig("/eos/user/s/sgiappic/www/paper/future_constraints_updated.png")
