@@ -12,7 +12,7 @@ import ROOT
 from array import array
 
 # Set ROOT to batch mode
-#ROOT.gROOT.SetBatch(True)
+ROOT.gROOT.SetBatch(True)
 
 def sorted_dict_values(dic: dict) -> list:
     ''''
@@ -229,7 +229,7 @@ for cut in CUTS:
 
     extralab = LABELS[cut]
 
-    for variable in ["Reco_cos"]:
+    for variable in VARIABLES_ALL:
 
         canvas = ROOT.TCanvas("", "", 1000, 1000)
         #canvas.SetTicks(1, 1)
@@ -364,10 +364,10 @@ for cut in CUTS:
         dummy.GetYaxis().SetTitleSize(0.08)
         dummy.GetYaxis().CenterTitle()
         #adjust the range for the ratio here
-        dummy.GetYaxis().SetRangeUser(1e-5,1)
+        dummy.GetYaxis().SetRangeUser(1e-5,1e5)
         dummy.GetYaxis().SetLabelSize(0.08)
         dummy.GetYaxis().SetNdivisions(5)
-        dummy.GetYaxis().SetTitleOffset(0.8)
+        dummy.GetYaxis().SetTitleOffset(0.5)
 
         dummy.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
         dummy.GetXaxis().SetTitleSize(0.08)
@@ -375,20 +375,21 @@ for cut in CUTS:
         dummy.GetXaxis().SetTitleOffset(1.2)
         dummy.Draw("hist")
 
-        for i in range(1,nsig):
-            ratio = histos[0].Clone("")
-            for j in range(ratio.GetNbinsX()):
-                ndata = histos[0].GetBinContent(j)
-                ndiv = histos[i].GetBinContent(j)
+        ratio_list = histos
+            
+        for i in range(1,nsig):  
+            '''for j in range(ratio_list[i].GetNbinsX()):
+                ndata = ratio_list[0].GetBinContent(j)
+                ndiv = ratio_list[i].GetBinContent(j)
                 if (ndata>0.0):
-                    ratio.SetBinContent(j, ndata/ndiv)
+                    ratio_list[i].SetBinContent(j, ndiv/ndata)
                 else:
-                    ratio.SetBinContent(j, 0.0)
-            #ratio.Divide(histos[i])
-            ratio.SetLineWidth(3)
-            ratio.SetLineColor(colors[i])
-            print(f"{legend[i]}")
-            ratio.Draw("ep same")
+                    ratio_list[i].SetBinContent(j, 0.0)'''
+            ratio_list[i].Divide(histos[0])
+            ratio_list[i].SetLineWidth(3)
+            ratio_list[i].SetLineColor(colors[i])
+            #print(f"{legend[i]}")
+            ratio_list[i].Draw("ep same")
             #legend2.AddEntry(ratio, legend[i], "l")
 
         #legend2.Draw()
