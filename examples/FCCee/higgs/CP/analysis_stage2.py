@@ -90,7 +90,7 @@ class RDFanalysis():
 
             #boosted_p4 function will boost a vector of 4-vectors(tvl, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
             .Define("FSRGenTau_p4",     "myUtils::build_p4(FSRGenTau_px, FSRGenTau_py, FSRGenTau_pz, FSRGenTau_e)")
-            .Define("HiggsRF_GenTau_p4",    "myUtils::boosted_p4_root(- GenHiggs_p4.at(0), FSRGenTau_p4)")
+            .Define("HiggsRF_GenTau_p4",    "myUtils::boosted_p4(- GenHiggs_p4.at(0), FSRGenTau_p4)")
             .Define("HiggsRF_GenTau_px",    "myUtils::get_pxtvl(HiggsRF_GenTau_p4)")
             .Define("HiggsRF_GenTau_py",    "myUtils::get_pytvl(HiggsRF_GenTau_p4)")
             .Define("HiggsRF_GenTau_pz",    "myUtils::get_pxtvl(HiggsRF_GenTau_p4)")
@@ -101,22 +101,21 @@ class RDFanalysis():
             .Define("HiggsRF_GenTau_phi",    "myUtils::get_phitvl(HiggsRF_GenTau_p4)")
             .Define("HiggsRF_GenTau_theta",    "myUtils::get_thetatvl(HiggsRF_GenTau_p4)")
             .Define("HiggsRF_GenTau_y",    "myUtils::get_ytvl(HiggsRF_GenTau_p4)")
+            .Define("HiggsRF_GenTau_charge",    "FSRGenTau_charge")
 
             .Define("HiggsRF_GenDiTau_DEta",    "if (HiggsRF_GenTau_y.at(0)>HiggsRF_GenTau_y.at(1)) return (HiggsRF_GenTau_eta.at(0) - HiggsRF_GenTau_eta.at(1)); \
                                     else if (HiggsRF_GenTau_y.at(0)<HiggsRF_GenTau_y.at(1)) return (HiggsRF_GenTau_eta.at(1) - HiggsRF_GenTau_eta.at(0)); else return float(-10.);")
             .Define("HiggsRF_GenDiTau_DPhi",    "if (HiggsRF_GenTau_y.at(0)>HiggsRF_GenTau_y.at(1)) return (HiggsRF_GenTau_phi.at(0) - HiggsRF_GenTau_phi.at(1)); \
                                     else if (HiggsRF_GenTau_y.at(0)<HiggsRF_GenTau_y.at(1)) return (HiggsRF_GenTau_phi.at(1) - HiggsRF_GenTau_phi.at(0)); else return float(-10.);")
 
-            #angle between higgs vector in lab frame and tau in higgs rest frame
-            .Define("HiggsRF_GenTau_thetastar",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenHiggs_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{HiggsRF_GenTau_p4.at(0)})/(GenHiggs_p.at(0)*HiggsRF_GenTau_p.at(0)))")
-
             #reconstructing the Z assuming that the decay is visible (here for mumu)
-            .Define("GenDiMuon_e", "if (n_FSGenMuon>1) return (FSGenMuon_e.at(0) + FSGenMuon_e.at(1)); else return float(-1000.);")
-            .Define("GenDiMuon_px", "if (n_FSGenMuon>1) return (FSGenMuon_px.at(0) + FSGenMuon_px.at(1)); else return float(-1000.);")
-            .Define("GenDiMuon_py", "if (n_FSGenMuon>1) return (FSGenMuon_py.at(0) + FSGenMuon_py.at(1)); else return float(-1000.);")
-            .Define("GenDiMuon_pz", "if (n_FSGenMuon>1) return (FSGenMuon_pz.at(0) + FSGenMuon_pz.at(1)); else return float(-1000.);")
+            .Define("GenDiMuon_e", "if (n_ZFSGenMuon==2) return (ZFSGenMuon_e.at(0) + ZFSGenMuon_e.at(1));") 
+            .Define("GenDiMuon_px", "if (n_ZFSGenMuon==2) return (ZFSGenMuon_px.at(0) + ZFSGenMuon_px.at(1));")
+            .Define("GenDiMuon_py", "if (n_ZFSGenMuon==2) return (ZFSGenMuon_py.at(0) + ZFSGenMuon_py.at(1));")
+            .Define("GenDiMuon_pz", "if (n_ZFSGenMuon==2) return (ZFSGenMuon_pz.at(0) + ZFSGenMuon_pz.at(1));")
+            .Define("GenDiMuon_invMass", "if (n_ZFSGenMuon==2) return sqrt(GenDiMuon_e*GenDiMuon_e - GenDiMuon_px*GenDiMuon_px - GenDiMuon_py*GenDiMuon_py - GenDiMuon_pz*GenDiMuon_pz );")
 
-            .Define("GenZ_Reco_p4",      "if (n_FSGenMuon>1) return myUtils::build_p4(ROOT::VecOps::RVec<float>{GenDiMuon_px}, ROOT::VecOps::RVec<float>{GenDiMuon_py}, ROOT::VecOps::RVec<float>{GenDiMuon_pz}, ROOT::VecOps::RVec<float>{GenDiMuon_e}); else return ROOT::VecOps::RVec<TLorentzVector>{}")
+            .Define("GenZ_Reco_p4",      "if (n_ZFSGenMuon==2) return myUtils::build_p4(ROOT::VecOps::RVec<float>{GenDiMuon_px}, ROOT::VecOps::RVec<float>{GenDiMuon_py}, ROOT::VecOps::RVec<float>{GenDiMuon_pz}, ROOT::VecOps::RVec<float>{GenDiMuon_e}); else return ROOT::VecOps::RVec<TLorentzVector>{}")
             .Define("GenZ_Reco_px",    "myUtils::get_pxtvl(GenZ_Reco_p4)")
             .Define("GenZ_Reco_py",    "myUtils::get_pytvl(GenZ_Reco_p4)")
             .Define("GenZ_Reco_pz",    "myUtils::get_pxtvl(GenZ_Reco_p4)")
@@ -131,8 +130,8 @@ class RDFanalysis():
             .Define("GenZ_gamma",  "myUtils::get_gamma(GenZ_p.at(0), GenZ_e.at(0))") # only works with one particle, not the whole class #myUtils::get_gamma(GenZ_p.at(0), GenZ_e.at(0))
 
             #boosted_p4 function will boost a vector of 4-vectors(tvl, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-            .Define("FSGenMuon_p4",     "myUtils::build_p4(FSGenMuon_px, FSGenMuon_py, FSGenMuon_pz, FSGenMuon_e)")
-            .Define("ZRF_GenMuon_p4",    "myUtils::boosted_p4_root(- GenZ_p4.at(0), FSGenMuon_p4)")
+            .Define("ZFSGenMuon_p4",     "myUtils::build_p4(ZFSGenMuon_px, ZFSGenMuon_py, ZFSGenMuon_pz, ZFSGenMuon_e)")
+            .Define("ZRF_GenMuon_p4",    "return myUtils::boosted_p4(- GenZ_p4.at(0), ZFSGenMuon_p4);")
             .Define("ZRF_GenMuon_px",    "myUtils::get_pxtvl(ZRF_GenMuon_p4)")
             .Define("ZRF_GenMuon_py",    "myUtils::get_pytvl(ZRF_GenMuon_p4)")
             .Define("ZRF_GenMuon_pz",    "myUtils::get_pxtvl(ZRF_GenMuon_p4)")
@@ -143,23 +142,31 @@ class RDFanalysis():
             .Define("ZRF_GenMuon_phi",    "myUtils::get_phitvl(ZRF_GenMuon_p4)")
             .Define("ZRF_GenMuon_theta",    "myUtils::get_thetatvl(ZRF_GenMuon_p4)")
             .Define("ZRF_GenMuon_y",    "myUtils::get_ytvl(ZRF_GenMuon_p4)")
+            .Define("ZRF_GenMuon_charge",    "if (n_FSGenMuon>1 && abs(FSGenMuon_parentPDG)==11) return  FSGenMuon_charge;")
 
             .Define("ZRF_GenDiMuon_DEta",    "if (ZRF_GenMuon_y.at(0)>ZRF_GenMuon_y.at(1)) return (ZRF_GenMuon_eta.at(0) - ZRF_GenMuon_eta.at(1)); \
                                     else if (ZRF_GenMuon_y.at(0)<ZRF_GenMuon_y.at(1)) return (ZRF_GenMuon_eta.at(1) - ZRF_GenMuon_eta.at(0)); else return float(-10.);")
             .Define("ZRF_GenDiMuon_DPhi",    "if (ZRF_GenMuon_y.at(0)>ZRF_GenMuon_y.at(1)) return (ZRF_GenMuon_phi.at(0) - ZRF_GenMuon_phi.at(1)); \
                                     else if (ZRF_GenMuon_y.at(0)<ZRF_GenMuon_y.at(1)) return (ZRF_GenMuon_phi.at(1) - ZRF_GenMuon_phi.at(0)); else return float(-10.);")
 
+            ### angles visualisation in figure 1 (2) at pag 8 of https://arxiv.org/pdf/2205.07715
+            #may be interesting to simnply keep the cosine of thetas (John Hopkins)
+            #angle between higgs vector in lab frame and tau in higgs rest frame
+            .Define("HiggsRF_GenTau_thetastar",      "if (HiggsRF_GenTau_charge==-1) return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenHiggs_p4.at(0)}, HiggsRF_GenTau_p4)/(GenHiggs_p.at(0)*HiggsRF_GenTau_p));")
             #angle between Z vector in lab frame and Muon in Z rest frame
-            .Define("ZRF_GenMuon_theta2",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenZ_Reco_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenMuon_p4.at(0)})/(GenZ_Reco_p.at(0)*ZRF_GenMuon_p.at(0)))")
+            .Define("ZRF_GenMuon_theta2",      "if (ZRF_GenMuon_charge==-1) return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenZ_Reco_p4.at(0)}, ZRF_GenMuon_p4)/(GenZ_Reco_p.at(0)*ZRF_GenMuon_p));")
             #angle between decay planes of H and Z
-            .Define("GenHiggs_GenZ_phi1",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{HiggsRF_GenTau_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenMuon_p4.at(0)})/(HiggsRF_GenTau_p.at(0)*ZRF_GenMuon.at(0)))")
+            .Define("GenHiggs_GenZ_phi1",      "if (ZRF_GenMuon_charge==-1 && HiggsRF_GenTau_charge==-1) return acos(myUtils::get_scalar(HiggsRF_GenTau_p4, ZRF_GenMuon_p4.at(0))/(HiggsRF_GenTau_p*ZRF_GenMuon));")
             #angle between Z vector in lab frame and Muon in Z rest frame
             .Define("Beam_vec",     "myUtils::build_p4(0, 0, 1, 0)") #unitary vector of beam axis along z
             .Define("Beam_p",       "float(1.)") #magnitude
-            .Define("GenZ_phi",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenMuon_p4.at(0)})/(Beam_p*ZRF_GenMuon.at(0)))")
+            .Define("GenZ_phi",      "if (ZRF_GenMuon_charge==-1) return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ZRF_GenMuon_p4)/(Beam_p*ZRF_GenMuon));")
             .Define("GenZ_theta1",      "return acos(myUtils::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ROOT::VecOps::RVec<TLorentzVector>{GenZ_Reco_p4.at(0)})/(Beam_p*GenZ_Reco_p4.at(0)))")
 
-            .Define("FSGenMuon_plus_e",       "if (FSGenMuon_charge == 1 && n_FSGenMuon == 2) return FSGenMuon_e; else return float(-1.);")
+            .Define("FSGenMuon_plus_e",       "if (FSGenMuon_charge == 1 && abs(FSGenMuon_parentPDG)==11) return FSGenMuon_e; else return float(-1.);")
+
+            #from https://arxiv.org/pdf/1705.04486 pag 1
+            .Define("Gen_HRecoil",      "return sqrt(240*240 + GenDiTau_invMass*GenDiTau_invMass - 2*GenHiggs_Reco_e*240)")
 
             ##################
             # Reco particles #
@@ -253,6 +260,23 @@ class RDFanalysis():
                 "FSGenMuon_vertex_x",
                 "FSGenMuon_vertex_y",
                 "FSGenMuon_vertex_z",
+
+                "n_ZFSGenMuon",
+                "ZFSGenMuon_e",
+                "ZFSGenMuon_p",
+                "ZFSGenMuon_pt",
+                "ZFSGenMuon_px",
+                "ZFSGenMuon_py",
+                "ZFSGenMuon_pz",
+                "ZFSGenMuon_y",
+                "ZFSGenMuon_eta",
+                "ZFSGenMuon_theta",
+                "ZFSGenMuon_phi",
+                "ZFSGenMuon_charge",
+                "ZFSGenMuon_mass",
+                "ZFSGenMuon_vertex_x",
+                "ZFSGenMuon_vertex_y",
+                "ZFSGenMuon_vertex_z",
 
                 "n_AllGenTau",
                 "AllGenTau_e",
@@ -483,7 +507,12 @@ class RDFanalysis():
 
                 "HiggsRF_GenDiTau_DEta", 
                 "HiggsRF_GenDiTau_DPhi", 
-                "HiggsRF_GenTau_thetastar",
+
+                "GenDiMuon_e",
+                "GenDiMuon_px",
+                "GenDiMuon_py", 
+                "GenDiMuon_pz", 
+                "GenDiMuon_invMass",
 
                 "GenZ_Reco_e",
                 "GenZ_Reco_p", 
@@ -520,6 +549,8 @@ class RDFanalysis():
                 "GenZ_theta2",  
                 
                 "FSGenMuon_plus_e",
+
+                "Gen_HRecoil",
 
         ]
 

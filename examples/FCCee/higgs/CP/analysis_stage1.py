@@ -12,14 +12,14 @@ processList = {
     #'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
 
-    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hmumu_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Htautau_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Hmumu_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
 
     'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':10},
     'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
@@ -35,7 +35,7 @@ processList = {
 prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1_24_06_27/"
+outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1_24_07_03/"
 
 ### necessary to run on HTCondor ###c
 eosType = "eosuser"
@@ -152,6 +152,26 @@ class RDFanalysis():
                 .Define("FSGenMuon_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( FSGenMuon )")
                 .Define("FSGenMuon_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( FSGenMuon )")
                 .Define("FSGenMuon_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( FSGenMuon )")
+                
+                #need to define a class only for muons coming from the Z
+                #info on gen Z are not kept at all, muons seem to come directly from initial state electron
+                .Define("ZFSGenMuon",   "FCCAnalyses::MCParticle::sel_parentID(11, true, true)(FSGenMuon,Particle,Particle0)")
+                .Define("n_ZFSGenMuon", "FCCAnalyses::MCParticle::get_n(ZFSGenMuon)")
+                .Define("ZFSGenMuon_e", "FCCAnalyses::MCParticle::get_e(ZFSGenMuon)")
+                .Define("ZFSGenMuon_p", "FCCAnalyses::MCParticle::get_p(ZFSGenMuon)")
+                .Define("ZFSGenMuon_pt", "FCCAnalyses::MCParticle::get_pt(ZFSGenMuon)")
+                .Define("ZFSGenMuon_px", "FCCAnalyses::MCParticle::get_px(ZFSGenMuon)")
+                .Define("ZFSGenMuon_py", "FCCAnalyses::MCParticle::get_py(ZFSGenMuon)")
+                .Define("ZFSGenMuon_pz", "FCCAnalyses::MCParticle::get_pz(ZFSGenMuon)")
+                .Define("ZFSGenMuon_y", "FCCAnalyses::MCParticle::get_y(ZFSGenMuon)")
+                .Define("ZFSGenMuon_eta", "FCCAnalyses::MCParticle::get_eta(ZFSGenMuon)")
+                .Define("ZFSGenMuon_theta", "FCCAnalyses::MCParticle::get_theta(ZFSGenMuon)")
+                .Define("ZFSGenMuon_phi", "FCCAnalyses::MCParticle::get_phi(ZFSGenMuon)")
+                .Define("ZFSGenMuon_charge", "FCCAnalyses::MCParticle::get_charge(ZFSGenMuon)")
+                .Define("ZFSGenMuon_mass",   "FCCAnalyses::MCParticle::get_mass(ZFSGenMuon)")
+                .Define("ZFSGenMuon_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( ZFSGenMuon )")
+                .Define("ZFSGenMuon_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( ZFSGenMuon )")
+                .Define("ZFSGenMuon_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( ZFSGenMuon )")
 
                 #distinguish between pre fsr and after iterative fsr taus and keep them in separate classes to be analysed
                 .Define("AllGenTauPlus",    "FCCAnalyses::MCParticle::sel_pdgID(-15, false)(Particle)")
@@ -625,6 +645,23 @@ class RDFanalysis():
             "FSGenMuon_vertex_x",
             "FSGenMuon_vertex_y",
             "FSGenMuon_vertex_z",
+
+            "n_ZFSGenMuon",
+            "ZFSGenMuon_e",
+            "ZFSGenMuon_p",
+            "ZFSGenMuon_pt",
+            "ZFSGenMuon_px",
+            "ZFSGenMuon_py",
+            "ZFSGenMuon_pz",
+            "ZFSGenMuon_y",
+            "ZFSGenMuon_eta",
+            "ZFSGenMuon_theta",
+            "ZFSGenMuon_phi",
+            "ZFSGenMuon_charge",
+            "ZFSGenMuon_mass",
+            "ZFSGenMuon_vertex_x",
+            "ZFSGenMuon_vertex_y",
+            "ZFSGenMuon_vertex_z",
 
             "n_AllGenTau",
             "AllGenTau_e",
