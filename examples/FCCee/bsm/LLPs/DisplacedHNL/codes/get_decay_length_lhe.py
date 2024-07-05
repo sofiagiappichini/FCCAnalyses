@@ -7,13 +7,6 @@ import pandas as pd
 from tqdm import tqdm
 
 replacement_words = [
-    "HNL_4e-10_20gev",
-    "HNL_4e-10_30gev",
-    "HNL_4e-10_40gev",
-    "HNL_4e-10_50gev",
-    "HNL_4e-10_60gev",
-    "HNL_4e-10_70gev",
-    "HNL_4e-10_80gev",
 
     "HNL_1.33e-7_20gev",
     "HNL_1.33e-7_30gev",
@@ -31,29 +24,14 @@ replacement_words = [
     "HNL_2.86e-12_70gev",
     "HNL_2.86e-12_80gev",
 
-    "HNL_5e-12_20gev",
-    "HNL_5e-12_30gev",
-    "HNL_5e-12_40gev",
-    "HNL_5e-12_50gev",
-    "HNL_5e-12_60gev",
-    "HNL_5e-12_70gev",
-    "HNL_5e-12_80gev",
+    "HNL_5e-10_20gev",
+    "HNL_5e-10_30gev",
+    "HNL_5e-10_40gev",
+    "HNL_5e-10_50gev",
+    "HNL_5e-10_60gev",
+    "HNL_5e-10_70gev",
+    "HNL_5e-10_80gev",
 
-    "HNL_6.67e-10_20gev",
-    "HNL_6.67e-10_30gev",
-    "HNL_6.67e-10_40gev",
-    "HNL_6.67e-10_50gev",
-    "HNL_6.67e-10_60gev",
-    "HNL_6.67e-10_70gev",
-    "HNL_6.67e-10_80gev",
-
-    "HNL_2.86e-7_20gev",
-    "HNL_2.86e-7_30gev",
-    "HNL_2.86e-7_40gev",
-    "HNL_2.86e-7_50gev",
-    "HNL_2.86e-7_60gev",
-    "HNL_2.86e-7_70gev",
-    "HNL_2.86e-7_80gev",
 ]
 
 replacement_words_flight = [
@@ -67,7 +45,7 @@ replacement_words_flight = [
 ]
 
 # Print the results
-output_file = "/eos/user/s/sgiappic/2HNL_ana/decay_length_lhe.txt"
+output_file = "/eos/user/s/sgiappic/2HNL_samples/decay_length_lhe.txt"
 
 # Write the content of the selected row to the output CSV file
 with open(output_file, "a") as file:
@@ -75,6 +53,8 @@ with open(output_file, "a") as file:
 
 # Loop through each replacement word
 for replacement_word in replacement_words:
+
+    os.system("gzip -d /eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe.gz".format(replacement_word))
 
     input_file = '/eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe'.format(replacement_word)
 
@@ -84,7 +64,7 @@ for replacement_word in replacement_words:
         for line in file:
             if "DECAY  9900012" in line:
                 content_of_row=float(line[15:])
-                ctau = 6.5e-25 * 3e+8 * 1e3 / content_of_row #converted from m to mm
+                #ctau = 6.5e-25 * 3e+8 * 1e3 / content_of_row #converted from m to mm
                 read=True
         if read == False:
             ctau='error'
@@ -125,11 +105,13 @@ for replacement_word in replacement_words:
 
     m = df.query('id == 9900012')['m'].values
 
-    dl = p * lf * 3e-1 / m #factor coming from converting ps into mm
+    dl = p * content_of_row *1e3 / m 
 
-    decay_length = np.max(dl)
+    decay_length = np.sum(dl)/m.size
 
     with open(output_file, "a") as file:
-            file.write("{}, {}, {}\n".format(replacement_word, decay_length, ctau))
+            file.write("{}, {}\n".format(replacement_word, decay_length))
+
+    os.system("gzip /eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe".format(replacement_word))
 
     print("Content from {} has been written to {}".format(replacement_word, output_file))

@@ -10,6 +10,9 @@ import re
 import logging
 import ROOT
 
+# Set ROOT to batch mode
+ROOT.gROOT.SetBatch(True)
+
 def sorted_dict_values(dic: dict) -> list:
     ''''
     Sort values in the dictionary.
@@ -24,8 +27,8 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
-DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
-DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/' 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/isr/final/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/isr/' 
 
 CUTS = [
     #"sel2RecoSF_vetoes_tracks_M80_5MEpt_0.8cos_chi",
@@ -43,7 +46,7 @@ CUTS = [
     #"sel2Reco_vetoes_notracks_nojets",
     #"sel2Reco_vetoes_notracks_nojetsexcl",
     #"sel2Reco_vetoes_jets_excl2",
-    #"sel2Reco_vetoes",
+    "sel2Reco_vetoes",
     #"sel2Reco_vetoes_notracks_nojets",
     #"sel2Reco_vetoes_notracks_nojets_M80",
     #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
@@ -330,13 +333,19 @@ bcolors_old = {
 
 signals = [
     #'HNL_2.86e-7_30gev',
-    'HNL_2.86e-12_30gev',
-    'HNL_6.67e-10_30gev',
-    'HNL_5e-12_60gev',
-    'HNL_1.33e-7_80gev',
+    #'HNL_2.86e-12_30gev',
+    #'HNL_6.67e-10_30gev',
+    #'HNL_5e-12_60gev',
+    #'HNL_1.33e-7_80gev',
+    "HNL_6.67e-10_40gev",
+    "HNL_6.67e-10_40gev_isr",
+    "HNL_6.67e-10_40gev_isrbm",
 ]
 
 slegend = {
+    'HNL_6.67e-10_40gev':"U^{2}=6.67e-10, M_{N}=40 GeV",
+    'HNL_6.67e-10_40gev_isr':"U^{2}=6.67e-10, M_{N}=40 GeV with ISR",
+    'HNL_6.67e-10_40gev_isrbm':"U^{2}=6.67e-10, M_{N}=40 GeV with ISR+BS",
     'HNL_2.86e-12_30gev':"U^{2}=2.86e-12, M_{N}=30 GeV",
     'HNL_2.86e-7_30gev':"U^{2}=2.86e-7, M_{N}=30 GeV",
     'HNL_6.67e-10_30gev':"U^{2}=6.67e-10, M_{N}=30 GeV",
@@ -345,6 +354,9 @@ slegend = {
 }
 
 scolors = {
+    'HNL_6.67e-10_40gev':ROOT.kBlue-8,
+    'HNL_6.67e-10_40gev_isr':ROOT.kRed-8,
+    'HNL_6.67e-10_40gev_isrbm':ROOT.kGreen-8,
     'HNL_2.86e-12_30gev': ROOT.kBlue-9,
     'HNL_6.67e-10_30gev': ROOT.kRed-9,
     'HNL_5e-12_60gev': ROOT.kRed-3,
@@ -395,7 +407,7 @@ for cut in CUTS:
                 hh.SetDirectory(0)
             histos.append(hh)
             colors.append(scolors[s])
-            leg.AddEntry(histos[-1], slegend[s], "l")
+            leg.AddEntry(histos[-1], f"{slegend[s]}, Integral: {histos[-1].Integral()}", "l")
 
         '''for b in backgrounds_old:
             fin = f"{DIRECTORY}{b}_{cut}_histo.root"
@@ -489,7 +501,7 @@ for cut in CUTS:
             BgMCHistYieldsDic = {}
             for i in range(nsig, nsig+nbkg):
                 h = histos[i]
-                h.Scale(1.13) # scale lumi from 180 to 204
+                #h.Scale(1.13) # scale lumi from 180 to 204
                 h.SetLineWidth(1)
                 h.SetLineColor(ROOT.kBlack)
                 h.SetFillColor(colors[i])
@@ -509,7 +521,8 @@ for cut in CUTS:
             # add the signal histograms
             for i in range(nsig):
                 h = histos[i]
-                h.Scale(1.13) # scale lumi from 180 to 204
+                #leg.AddEntry(h,  f"Integral: {h.Integral()}", "l")
+                #h.Scale(1.13) # scale lumi from 180 to 204
                 h.SetLineWidth(3)
                 h.SetLineColor(colors[i])
                 h.Draw("HIST SAME")

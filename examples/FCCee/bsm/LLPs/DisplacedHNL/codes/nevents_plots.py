@@ -134,4 +134,4 @@ axs[1].set_title(r'$Displaced\; events - Inverted\; Hierarchy$', fontsize=20, y=
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final_events_points_notaus.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final_events_points_notaus_fcc.png', format='png', dpi=330)

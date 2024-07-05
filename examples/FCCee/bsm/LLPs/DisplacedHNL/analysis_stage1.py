@@ -3,6 +3,12 @@ import ROOT
 #Mandatory: List of processes
 
 processList = {
+        "HNL_6.67e-10_40gev":{},
+        "HNL_6.67e-10_40gev_isr":{},
+        "HNL_6.67e-10_40gev_isrbm":{},
+}
+
+processList_q = {
 
         #centrally-produced backgrounds
         #'p8_ee_Zee_ecm91':{'chunks':100},
@@ -420,7 +426,7 @@ inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/notaus/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/isr/stage1/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -470,7 +476,7 @@ class RDFanalysis():
                 .Define("n_GenKLs",      "FCCAnalyses::MCParticle::get_n(GenKL)")
                 .Define("n_GenKpluss",      "FCCAnalyses::MCParticle::get_n(GenKplus)")
 
-                .Filter("n_GenTaus==0")
+                #.Filter("n_GenTaus>0")
                 #.Filter("n_GenPions>0 || n_GenKLs>0 || n_GenKpluss>0")
 
                 .Define("GenPion_e", "if (n_GenPions>0) return FCCAnalyses::MCParticle::get_e(GenPion); else return FCCAnalyses::MCParticle::get_genStatus(GenPion);")
