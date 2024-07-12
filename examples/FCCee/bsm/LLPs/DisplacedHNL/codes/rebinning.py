@@ -41,6 +41,7 @@ DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/'
 CUTS = [
     #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
     #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
  ] # cut to rebin
 
@@ -500,12 +501,13 @@ scolors = {
 }
 
 #asym_bins = [-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.35, 0.5, 0.8] #array of low bin edges wanted
-asym_bins = [0, 0.4, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8, 4.6] 
+#asym_bins = [0, 0.4, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8, 4.6] 
+asym_bins = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3, 4.4, 4.5] 
 nbins = len(asym_bins)-1
 ### note: The bin edges specified in xbins should correspond to bin edges in the original histogram. ###
 
-'''for CUT in CUTS:
-    NEWFILE='/eos/user/s/sgiappic/combine/' + VARIABLE + '_final_rebinned_' + CUT + '.root' # name of the rebinned file
+for CUT in CUTS:
+    NEWFILE='/eos/user/s/sgiappic/combine/' + VARIABLE + '_norebin_' + CUT + '.root' # name of the rebinned file
     nf= ROOT.TFile.Open(NEWFILE, "UPDATE") 
 
     #rebin FILES and save content in NEWFILE
@@ -528,6 +530,8 @@ nbins = len(asym_bins)-1
             if (hist.GetBinLowEdge(b) >= asym_bins[i]): #check if the interval edge has already been reached and if we are over it
                  #print(i, asym_bins[i])
                 new_hist.SetBinContent(i, bin_content)
+                if (bin_content == 0):
+                    new_hist.SetBinContent(i, 1e-20)
                 i += 1
                 bin_content = 0
                 if (i > nbins):
@@ -540,7 +544,7 @@ nbins = len(asym_bins)-1
     nf.Close()
 
 '''#plot the rebinned variable
-NEWFILE_SF='/eos/user/s/sgiappic/combine/Reco_DR_final_rebinned_sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos.root' # name of the rebinned file
+NEWFILE_SF='/eos/user/s/sgiappic/combine/Reco_DR_final_rebinned_sel2Reco_vetoes_notracks_nojets_M80_5MEpt_0.8cos.root' # name of the rebinned file
     
 #extralab = LABELS[CUT]
 
@@ -714,7 +718,7 @@ if nbkg != 0:
         h.Draw("HIST SAME")
 
     hStackBkg.GetYaxis().SetTitle("Events")
-    hStackBkg.GetXaxis().SetTitle("Reco #Delta R")
+    hStackBkg.GetXaxis().SetTitle("Reco #Delta R(l,l')")
     #hStackBkg.GetYaxis().SetTitleOffset(1.5)
     hStackBkg.GetXaxis().SetTitleOffset(1.2)
     #hStackBkg.GetXaxis().SetLimits(1, 1000)
@@ -784,5 +788,6 @@ canvas.Update()
 
 #canvas.SaveAs(dir + VARIABLE + "_rebinned.png")
 #canvas.SaveAs(dir+ VARIABLE + "_rebinned.pdf")
-canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned.png")
-canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned.pdf")
+
+canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_11july.png")
+canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_11july.pdf")'''

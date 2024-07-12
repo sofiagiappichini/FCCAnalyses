@@ -395,10 +395,7 @@ replacement_words_all = [
 ]
 
 replacement_words_test =[
-    
-    "HNL_6.67e-10_40gev_isr",
-    "HNL_6.67e-10_40gev_isrbm",
-
+    "llnunu"
 ]
 
 

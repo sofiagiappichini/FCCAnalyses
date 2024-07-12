@@ -27,8 +27,8 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
-DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/isr/final/' 
-DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/isr/' 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/' 
 
 CUTS = [
     #"sel2RecoSF_vetoes_tracks_M80_5MEpt_0.8cos_chi",
@@ -47,11 +47,16 @@ CUTS = [
     #"sel2Reco_vetoes_notracks_nojetsexcl",
     #"sel2Reco_vetoes_jets_excl2",
     "sel2Reco_vetoes",
-    #"sel2Reco_vetoes_notracks_nojets",
-    #"sel2Reco_vetoes_notracks_nojets_M80",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
+    "sel2Reco_vetoes_notracks",
+    "sel2Reco_vetoes_notracks_nojets",
+    "sel2Reco_vetoes_notracks_nojets_M80",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0",
+    #"sel2Reco_vetoes_notracks_nojets_pt10_2.5eta_0.4DR_M80_10MEpt_0.8cos",
+    #"sel2Reco_vetoes_notracks_nojets_M80",
+    #"sel2Reco_vetoes_notracks_nojets_M80_5MEpt", 
+    #"sel2Reco_vetoes_notracks_nojets_M80_5MEpt_0.8cos",
     
  
  ] 
@@ -74,14 +79,7 @@ LABELS = {
     "sel2RecoDF_vetoes_notracks_nojets_M80_7MEpt_0.8cos":"Two different flavor leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8",
     "sel2RecoDF_vetoes_notracks_nojets_M80_7MEpt_0.8cos_chi_0.5d0":"Two different flavor leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>11.5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
 
-    "sel2Reco_vetoes":"Two leptons, no photons",
     "sel2Gen_vetoes":"Two gen leptons, no photons",
-
-    "selNone": "No selection",
-    "sel2Reco_vetoes_notracks": "Two leptons, no photons, no other tracks",
-    "sel2Reco_vetoes_notracks_nojets": "Two leptons, no photons, no other tracks, no antikt jets",
-    "sel2Reco_vetoes_notracks_nojetsexcl": "Two leptons, no photons, no other tracks, no exclusive jets",
-
     "sel2Reco_vetoes":"Two leptons, no photons",
     "sel2Reco_vetoes_notracks":"Two leptons, no photons, no other tracks",
     "sel2Reco_vetoes_notracks_nojets":"Two leptons, no photons, no other tracks, no jets",
@@ -89,7 +87,12 @@ LABELS = {
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8, #chi^2<10, |d_{0}|>0.57 mm",
-    
+    "sel2Reco_vetoes_notracks_nojets_pt10_2.5eta_0.4DR_M80_10MEpt_0.8cos":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8, #chi^2<10, |d_{0}|>0.57 mm, MG cuts",
+ 
+    "sel2Reco_vetoes_notracks_nojets_M80":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, MG cuts",
+    "sel2Reco_vetoes_notracks_nojets_M80_5MEpt": "Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, MG cuts",
+    "sel2Reco_vetoes_notracks_nojets_M80_5MEpt_0.8cos":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, cos#theta>-0.8, MG cuts",
+ 
  }
 
 ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
@@ -174,6 +177,40 @@ VARIABLES_ALL = [
     "RecoTrack_absZ0sig_prompt",
     "RecoTrack_D0cov",
     "RecoTrack_Z0cov",
+
+    "Reco_e_led",
+    "Reco_p_led",
+    "Reco_pt_led",
+    "Reco_px_led",
+    "Reco_py_led",
+    "Reco_pz_led",
+    "Reco_eta_led",
+    "Reco_theta_led",
+    "Reco_phi_led",
+    #"Reco_charge_led",
+    "RecoTrack_absD0_led",
+    "RecoTrack_absZ0_led",
+    "RecoTrack_absD0sig_led",
+    "RecoTrack_absZ0sig_led",
+    "RecoTrack_D0cov_led",
+    "RecoTrack_Z0cov_led",
+
+    "Reco_e_sub",
+    "Reco_p_sub",
+    "Reco_pt_sub",
+    "Reco_px_sub",
+    "Reco_py_sub",
+    "Reco_pz_sub",
+    "Reco_eta_sub",
+    "Reco_theta_sub",
+    "Reco_phi_sub",
+    #"Reco_charge_sub",
+    "RecoTrack_absD0_sub",
+    "RecoTrack_absZ0_sub",
+    "RecoTrack_absD0sig_sub",
+    "RecoTrack_absZ0sig_sub",
+    "RecoTrack_D0cov_sub",
+    "RecoTrack_Z0cov_sub",
 
     "Reco_DecayVertexLepton_x",       
     "Reco_DecayVertexLepton_y",          
@@ -333,13 +370,13 @@ bcolors_old = {
 
 signals = [
     #'HNL_2.86e-7_30gev',
-    #'HNL_2.86e-12_30gev',
-    #'HNL_6.67e-10_30gev',
-    #'HNL_5e-12_60gev',
-    #'HNL_1.33e-7_80gev',
-    "HNL_6.67e-10_40gev",
-    "HNL_6.67e-10_40gev_isr",
-    "HNL_6.67e-10_40gev_isrbm",
+    'HNL_2.86e-12_30gev',
+    'HNL_6.67e-10_30gev',
+    'HNL_5e-12_60gev',
+    'HNL_1.33e-7_80gev',
+    #"HNL_6.67e-10_40gev",
+    #"HNL_6.67e-10_40gev_isr",
+    #"HNL_6.67e-10_40gev_isrbm",
 ]
 
 slegend = {
@@ -372,7 +409,7 @@ for cut in CUTS:
         canvas = ROOT.TCanvas("", "", 800, 800)
 
         nsig = len(signals)
-        nbkg = 0 # change according to type of plots, 6 for grouped backgrounds, #len(backgrounds)
+        nbkg = 6 # change according to type of plots, 6 for grouped backgrounds, #len(backgrounds)
 
         #legend coordinates and style
         
@@ -407,7 +444,7 @@ for cut in CUTS:
                 hh.SetDirectory(0)
             histos.append(hh)
             colors.append(scolors[s])
-            leg.AddEntry(histos[-1], f"{slegend[s]}, Integral: {histos[-1].Integral()}", "l")
+            leg.AddEntry(histos[-1], slegend[s], "l")
 
         '''for b in backgrounds_old:
             fin = f"{DIRECTORY}{b}_{cut}_histo.root"
@@ -501,7 +538,6 @@ for cut in CUTS:
             BgMCHistYieldsDic = {}
             for i in range(nsig, nsig+nbkg):
                 h = histos[i]
-                #h.Scale(1.13) # scale lumi from 180 to 204
                 h.SetLineWidth(1)
                 h.SetLineColor(ROOT.kBlack)
                 h.SetFillColor(colors[i])
@@ -521,8 +557,6 @@ for cut in CUTS:
             # add the signal histograms
             for i in range(nsig):
                 h = histos[i]
-                #leg.AddEntry(h,  f"Integral: {h.Integral()}", "l")
-                #h.Scale(1.13) # scale lumi from 180 to 204
                 h.SetLineWidth(3)
                 h.SetLineColor(colors[i])
                 h.Draw("HIST SAME")
@@ -541,7 +575,6 @@ for cut in CUTS:
                 h.SetLineColor(colors[i])
                 if i == 0:
                     h.Draw("HIST")
-                    h.Scale(1.13) # scale lumi from 180 to 204# scale lumi from 180 to 204
                     h.GetYaxis().SetTitle("Events")
                     h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
                     #h.GetXaxis().SetTitle("{}".format(variable))

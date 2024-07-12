@@ -24,8 +24,8 @@ replacement_bkgs = [
     "p8_ee_Zcc_ecm91",
     "p8_ee_Zud_ecm91",
     "p8_ee_Zss_ecm91",
-    #"emununu",
-    #"tatanunu"
+    "emununu",
+    "tatanunu"
 ]
 
 # Define the tree name
@@ -33,12 +33,12 @@ tree_name = "events"
 
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
-leaf_name = "RecoMissingEnergy_p"
+leaf_name = "Reco_pt"
 
-dir = "/eos/user/s/sgiappic/2HNL_ana/jets/final/"
+dir = "/eos/user/s/sgiappic/2HNL_ana/final/"
 
 cuts = [
-    "sel2Reco_vetoes_notracks_nojets",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
     #"sel2RecoDF_vetoes",
     #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
     #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",

@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/user/s/sgiappic/2HNL_ana/isr/stage1/"
+inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/isr/final/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/final/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 204e6 #pb^-1
@@ -20,12 +20,6 @@ nCPUS = 6
 doTree = False
 
 processList = {
-        "HNL_6.67e-10_40gev":{},
-        "HNL_6.67e-10_40gev_isr":{},
-        "HNL_6.67e-10_40gev_isrbm":{},
-}
-
-processList_i = {
     #run over the full statistics from stage1
 
     #backgrounds
@@ -38,8 +32,25 @@ processList_i = {
     #'p8_ee_Zss_ecm91':{},
         
     ### privately produced backgrounds ###
-    #'emununu':{},
-    #'tatanunu':{},
+    'emununu':{},
+    'tatanunu':{},
+}
+
+processList_e = {
+    #run over the full statistics from stage1
+
+    #backgrounds
+    'p8_ee_Zee_ecm91':{},
+    'p8_ee_Zmumu_ecm91':{},
+    'p8_ee_Ztautau_ecm91':{},
+    'p8_ee_Zbb_ecm91':{},
+    'p8_ee_Zcc_ecm91':{},
+    'p8_ee_Zud_ecm91':{},
+    'p8_ee_Zss_ecm91':{},
+        
+    ### privately produced backgrounds ###
+    'emununu':{},
+    'tatanunu':{},
 
     "HNL_1.33e-7_10gev":{},
     "HNL_1.33e-7_20gev":{},
@@ -847,13 +858,24 @@ cutList = {
                                                        #&& RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.5 && RecoTrack_absD0.at(1)>0.55 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
 
     "sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
-    #"sel2Reco_vetoes_notracks": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 ",
-    #"sel2Reco_vetoes_notracks_nojets": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0",
-    #"sel2Reco_vetoes_notracks_nojets_M80": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 \
-    #                                                   && RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.57 && RecoTrack_absD0.at(1)>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
+    "sel2Reco_vetoes_notracks": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 ",
+    "sel2Reco_vetoes_notracks_nojets": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0",
+    "sel2Reco_vetoes_notracks_nojets_M80": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 \
+                                                       && RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.57 && RecoTrack_absD0.at(1)>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
+    
+    
+    #"sel2Reco_vetoes_notracks_nojets_pt10_2.5eta_0.4DR_M80_10MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 \
+    #                                                                        && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4",
+    
+    #"sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4",
+    #"sel2Reco_vetoes_notracks": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4",
+    #"sel2Reco_vetoes_notracks_nojets": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4",
+    #"sel2Reco_vetoes_notracks_nojets_M80": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4 && Reco_invMass<80",
+    #"sel2Reco_vetoes_notracks_nojets_M80_5MEpt": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>5",
+    #"sel2Reco_vetoes_notracks_nojets_M80_5MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>5 && Reco_cos>-0.8",
     
 }
 
@@ -1076,6 +1098,58 @@ histoList = {
     "RecoTrack_D0cov":               {"name":"RecoTrack_D0cov",     "title":"Reco lepton tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
     "RecoTrack_Z0cov":               {"name":"RecoTrack_Z0cov",     "title":"Reco lepton tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
     
+    "Reco_e_led":                   {"name":"Reco_e_led",         "title":"Reco leading lepton energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
+    "Reco_p_led":                   {"name":"Reco_p_led",         "title":"Reco leading lepton p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},
+    "Reco_pt_led":                  {"name":"Reco_pt_led",        "title":"Reco leading lepton p_{T} [GeV]",        "bin":100,"xmin":0 ,"xmax":50},
+    "Reco_px_led":                  {"name":"Reco_px_led",        "title":"Reco leading lepton p_{x} [GeV]",        "bin":100,"xmin":-50 ,"xmax":50},
+    "Reco_py_led":                  {"name":"Reco_py_led",        "title":"Reco leading lepton p_{y} [GeV]",        "bin":100,"xmin":-50 ,"xmax":50},
+    "Reco_pz_led":                  {"name":"Reco_pz_led",        "title":"Reco leading lepton p_{z} [GeV]",        "bin":100,"xmin":-50 ,"xmax":50},
+    "Reco_eta_led":                 {"name":"Reco_eta_led",       "title":"Reco leading lepton #eta",               "bin":60, "xmin":-3,"xmax":3},
+    "Reco_theta_led":               {"name":"Reco_theta_led",     "title":"Reco leading lepton #theta",             "bin":64, "xmin":0,"xmax":3.2},
+    "Reco_phi_led":                 {"name":"Reco_phi_led",       "title":"Reco leading lepton #phi",               "bin":64, "xmin":-3.2,"xmax":3.2},
+    #"Reco_charge_led":              {"name":"Reco_charge_led",    "title":"Reco electron charge",           "bin":3, "xmin":-1.5,"xmax":1.5},
+
+    "RecoTrack_absD0_prompt_led":        {"name":"RecoTrack_absD0_led",        "title":"Reco leading lepton |d_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":1},
+    "RecoTrack_absZ0_prompt_led":        {"name":"RecoTrack_absZ0_led",        "title":"Reco leading lepton |z_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":1},
+    "RecoTrack_absD0_med_led":           {"name":"RecoTrack_absD0_led",        "title":"Reco leading lepton |d_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":10},
+    "RecoTrack_absZ0_med_led":           {"name":"RecoTrack_absZ0_led",        "title":"Reco leading lepton |z_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":10},
+    "RecoTrack_absD0_led":               {"name":"RecoTrack_absD0_led",        "title":"Reco leading lepton |d_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":2000},
+    "RecoTrack_absZ0_led":               {"name":"RecoTrack_absZ0_led",        "title":"Reco leading lepton |z_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":2000},
+    "RecoTrack_absD0sig_led":            {"name":"RecoTrack_absD0sig_led",  "title":"Reco leading lepton tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":10000},
+    "RecoTrack_absD0sig_med_led":        {"name":"RecoTrack_absD0sig_led",  "title":"Reco leading lepton tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":1000},
+    "RecoTrack_absD0sig_prompt_led":     {"name":"RecoTrack_absD0sig_led",  "title":"Reco leading lepton tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    "RecoTrack_absZ0sig_led":            {"name":"RecoTrack_absZ0sig_led",  "title":"Reco leading lepton tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":10000},
+    "RecoTrack_absZ0sig_prompt_led":     {"name":"RecoTrack_absZ0sig_led",  "title":"Reco leading lepton tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    "RecoTrack_absZ0sig_med_led":        {"name":"RecoTrack_absZ0sig_led",  "title":"Reco leading lepton tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":1000},
+    "RecoTrack_D0cov_led":               {"name":"RecoTrack_D0cov_led",     "title":"Reco leading lepton tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+    "RecoTrack_Z0cov_led":               {"name":"RecoTrack_Z0cov_led",     "title":"Reco leading lepton tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+
+    "Reco_e_sub":                   {"name":"Reco_e_sub",         "title":"Reco subleading lepton energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
+    "Reco_p_sub":                   {"name":"Reco_p_sub",         "title":"Reco subleading lepton p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},
+    "Reco_pt_sub":                  {"name":"Reco_pt_sub",        "title":"Reco subleading lepton p_{T} [GeV]",        "bin":100,"xmin":0 ,"xmax":50},
+    "Reco_px_sub":                  {"name":"Reco_px_sub",        "title":"Reco subleading lepton p_{x} [GeV]",        "bin":100,"xmin":-50 ,"xmax":50},
+    "Reco_py_sub":                  {"name":"Reco_py_sub",        "title":"Reco subleading lepton p_{y} [GeV]",        "bin":100,"xmin":-50 ,"xmax":50},
+    "Reco_pz_sub":                  {"name":"Reco_pz_sub",        "title":"Reco subleading lepton p_{z} [GeV]",        "bin":100,"xmin":-50 ,"xmax":50},
+    "Reco_eta_sub":                 {"name":"Reco_eta_sub",       "title":"Reco subleading lepton #eta",               "bin":60, "xmin":-3,"xmax":3},
+    "Reco_theta_sub":               {"name":"Reco_theta_sub",     "title":"Reco subleading lepton #theta",             "bin":64, "xmin":0,"xmax":3.2},
+    "Reco_phi_sub":                 {"name":"Reco_phi_sub",       "title":"Reco subleading lepton #phi",               "bin":64, "xmin":-3.2,"xmax":3.2},
+    #"Reco_charge_sub":              {"name":"Reco_charge_sub",    "title":"Reco electron charge",           "bin":3, "xmin":-1.5,"xmax":1.5},
+
+    "RecoTrack_absD0_prompt_sub":        {"name":"RecoTrack_absD0_sub",        "title":"Reco subleading lepton |d_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":1},
+    "RecoTrack_absZ0_prompt_sub":        {"name":"RecoTrack_absZ0_sub",        "title":"Reco subleading lepton |z_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":1},
+    "RecoTrack_absD0_med_sub":           {"name":"RecoTrack_absD0_sub",        "title":"Reco subleading lepton |d_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":10},
+    "RecoTrack_absZ0_med_sub":           {"name":"RecoTrack_absZ0_sub",        "title":"Reco subleading lepton |z_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":10},
+    "RecoTrack_absD0_sub":               {"name":"RecoTrack_absD0_sub",        "title":"Reco subleading lepton |d_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":2000},
+    "RecoTrack_absZ0_sub":               {"name":"RecoTrack_absZ0_sub",        "title":"Reco subleading lepton |z_{0}| [mm]",      "bin":100,"xmin":0 ,"xmax":2000},
+    "RecoTrack_absD0sig_sub":            {"name":"RecoTrack_absD0sig_sub",  "title":"Reco subleading lepton tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":10000},
+    "RecoTrack_absD0sig_med_sub":        {"name":"RecoTrack_absD0sig_sub",  "title":"Reco subleading lepton tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":1000},
+    "RecoTrack_absD0sig_prompt_sub":     {"name":"RecoTrack_absD0sig_sub",  "title":"Reco subleading lepton tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    "RecoTrack_absZ0sig_sub":            {"name":"RecoTrack_absZ0sig_sub",  "title":"Reco subleading lepton tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":10000},
+    "RecoTrack_absZ0sig_prompt_sub":     {"name":"RecoTrack_absZ0sig_sub",  "title":"Reco subleading lepton tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    "RecoTrack_absZ0sig_med_sub":        {"name":"RecoTrack_absZ0sig_sub",  "title":"Reco subleading lepton tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":1000},
+    "RecoTrack_D0cov_sub":               {"name":"RecoTrack_D0cov_sub",     "title":"Reco subleading lepton tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+    "RecoTrack_Z0cov_sub":               {"name":"RecoTrack_Z0cov_sub",     "title":"Reco subleading lepton tracks z_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},
+
     "Reco_DecayVertexLepton_x":           {"name":"RecoDecayVertexLepton.position.x",  "title":"Reco decay lepton vertex x [mm]",            "bin":100,"xmin":-2000 ,"xmax":2000},
     "Reco_DecayVertexLepton_y":           {"name":"RecoDecayVertexLepton.position.y",  "title":"Reco decay lepton vertex y [mm]",            "bin":100,"xmin":-2000 ,"xmax":2000},
     "Reco_DecayVertexLepton_z":           {"name":"RecoDecayVertexLepton.position.z",  "title":"Reco decay lepton vertex z [mm]",            "bin":100,"xmin":-2000 ,"xmax":2000},

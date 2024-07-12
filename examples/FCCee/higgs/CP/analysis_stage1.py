@@ -21,21 +21,21 @@ processList = {
     #'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
 
-    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hmumu_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Htautau_ecm240': {'fraction':0.25},
+    #'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_Hmumu_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1_24_07_03/"
+outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1/"
 
 ### necessary to run on HTCondor ###c
 eosType = "eosuser"
@@ -44,7 +44,7 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = True
+runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "tomorrow"
@@ -155,7 +155,7 @@ class RDFanalysis():
                 
                 #need to define a class only for muons coming from the Z
                 #info on gen Z are not kept at all, muons seem to come directly from initial state electron
-                .Define("ZFSGenMuon",   "FCCAnalyses::MCParticle::sel_parentID(11, true, true)(FSGenMuon,Particle,Particle0)")
+                .Define("ZFSGenMuon",   "FCCAnalyses::MCParticle::sel_parentID(15, false, true)(FSGenMuon,Particle,Particle0)")
                 .Define("n_ZFSGenMuon", "FCCAnalyses::MCParticle::get_n(ZFSGenMuon)")
                 .Define("ZFSGenMuon_e", "FCCAnalyses::MCParticle::get_e(ZFSGenMuon)")
                 .Define("ZFSGenMuon_p", "FCCAnalyses::MCParticle::get_p(ZFSGenMuon)")
@@ -169,6 +169,7 @@ class RDFanalysis():
                 .Define("ZFSGenMuon_phi", "FCCAnalyses::MCParticle::get_phi(ZFSGenMuon)")
                 .Define("ZFSGenMuon_charge", "FCCAnalyses::MCParticle::get_charge(ZFSGenMuon)")
                 .Define("ZFSGenMuon_mass",   "FCCAnalyses::MCParticle::get_mass(ZFSGenMuon)")
+                .Define("ZFSGenMuon_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(ZFSGenMuon,Particle,Particle0)")
                 .Define("ZFSGenMuon_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( ZFSGenMuon )")
                 .Define("ZFSGenMuon_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( ZFSGenMuon )")
                 .Define("ZFSGenMuon_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( ZFSGenMuon )")
@@ -405,6 +406,26 @@ class RDFanalysis():
                 .Define("RecoMuonTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoMuons,EFlowTrack_1))")
                 .Define("RecoMuonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoMuons,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons,EFlowTrack_1)")
+
+                .Define("ZRecoMuons",       "return ReconstructedParticle::sel_invMass(80, 120)(RecoMuons)")
+                .Define("n_ZRecoMuons",  "ReconstructedParticle::get_n(ZRecoMuons)") #count how many muons are in the event in total
+                .Define("ZRecoMuon_e",      "ReconstructedParticle::get_e(ZRecoMuons)")
+                .Define("ZRecoMuon_p",      "ReconstructedParticle::get_p(ZRecoMuons)")
+                .Define("ZRecoMuon_pt",      "ReconstructedParticle::get_pt(ZRecoMuons)")
+                .Define("ZRecoMuon_px",      "ReconstructedParticle::get_px(ZRecoMuons)")
+                .Define("ZRecoMuon_py",      "ReconstructedParticle::get_py(ZRecoMuons)")
+                .Define("ZRecoMuon_pz",      "ReconstructedParticle::get_pz(ZRecoMuons)")
+                .Define("ZRecoMuon_y",     "ReconstructedParticle::get_y(ZRecoMuons)")
+                .Define("ZRecoMuon_eta",     "ReconstructedParticle::get_eta(ZRecoMuons)") #pseudorapidity eta
+                .Define("ZRecoMuon_theta",   "ReconstructedParticle::get_theta(ZRecoMuons)")
+                .Define("ZRecoMuon_phi",     "ReconstructedParticle::get_phi(ZRecoMuons)") #polar angle in the transverse plane phi
+                .Define("ZRecoMuon_charge",  "ReconstructedParticle::get_charge(ZRecoMuons)")
+                .Define("ZRecoMuonTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(ZRecoMuons,EFlowTrack_1))")
+                .Define("ZRecoMuonTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(ZRecoMuons,EFlowTrack_1))")
+                .Define("ZRecoMuonTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(ZRecoMuons,EFlowTrack_1))") #significance
+                .Define("ZRecoMuonTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(ZRecoMuons,EFlowTrack_1))")
+                .Define("ZRecoMuonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(ZRecoMuons,EFlowTrack_1)") #variance (not sigma)
+                .Define("ZRecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(ZRecoMuons,EFlowTrack_1)")
 
                 #PHOTONS
                 .Alias("Photon0", "Photon#0.index") 
@@ -659,6 +680,7 @@ class RDFanalysis():
             "ZFSGenMuon_phi",
             "ZFSGenMuon_charge",
             "ZFSGenMuon_mass",
+            "ZFSGenMuon_parentPDG",
             "ZFSGenMuon_vertex_x",
             "ZFSGenMuon_vertex_y",
             "ZFSGenMuon_vertex_z",
@@ -819,6 +841,25 @@ class RDFanalysis():
             "RecoMuonTrack_D0cov",
             "RecoMuonTrack_Z0cov",
 
+            "n_ZRecoMuons",
+            "ZRecoMuon_e",
+            "ZRecoMuon_p",
+            "ZRecoMuon_pt",
+            "ZRecoMuon_px",
+            "ZRecoMuon_py",
+            "ZRecoMuon_pz",
+            "ZRecoMuon_y",
+            "ZRecoMuon_eta",
+            "ZRecoMuon_theta",
+            "ZRecoMuon_phi",
+            "ZRecoMuon_charge",
+            "ZRecoMuonTrack_absD0",
+            "ZRecoMuonTrack_absZ0",
+            "ZRecoMuonTrack_absD0sig",
+            "ZRecoMuonTrack_absZ0sig",
+            "ZRecoMuonTrack_D0cov",
+            "ZRecoMuonTrack_Z0cov",
+
             "n_RecoPhotons",
             "RecoPhoton_e",
             "RecoPhoton_p",
@@ -862,11 +903,11 @@ class RDFanalysis():
 
         ]
 
-        branchList += jetFlavourHelper_kt2.outputBranches() 
-        branchList += jetFlavourHelper_R5.outputBranches()
-        branchList += [obs for obs in jetFlavourHelper_kt2.definition.keys() if "pfcand_" in obs]
-        branchList += [obs for obs in jetFlavourHelper_R5. definition.keys() if "pfcand_" in obs]
-        branchList += ["jet_kt2_px", "jet_kt2_py", "jet_kt2_pz", "jet_kt2_phi", "jet_kt2_eta", "jet_kt2_energy", "jet_kt2_mass", "jet_kt2_flavor", "n_jets_kt2",]
-        branchList += ["jet_R5_px", "jet_R5_py", "jet_R5_pz", "jet_R5_phi", "jet_R5_eta", "jet_R5_energy", "jet_R5_mass", "jet_R5_flavor", "n_jets_R5", ]
+        #branchList += jetFlavourHelper_kt2.outputBranches() 
+        #branchList += jetFlavourHelper_R5.outputBranches()
+        #branchList += [obs for obs in jetFlavourHelper_kt2.definition.keys() if "pfcand_" in obs]
+        #branchList += [obs for obs in jetFlavourHelper_R5. definition.keys() if "pfcand_" in obs]
+        #branchList += ["jet_kt2_px", "jet_kt2_py", "jet_kt2_pz", "jet_kt2_phi", "jet_kt2_eta", "jet_kt2_energy", "jet_kt2_mass", "jet_kt2_flavor", "n_jets_kt2",]
+        #branchList += ["jet_R5_px", "jet_R5_py", "jet_R5_pz", "jet_R5_phi", "jet_R5_eta", "jet_R5_energy", "jet_R5_mass", "jet_R5_flavor", "n_jets_R5", ]
 
         return branchList

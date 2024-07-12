@@ -44,7 +44,7 @@ class RDFanalysis():
             #################
 
             # filter events based on gen or reco variables
-            .Filter("n_FSRGenTau==2 && n_GenHiggs>0")
+            #.Filter("n_FSRGenTau==2 && n_GenHiggs>0")
             
             .Define("FSRGenTau_Lxyz", "return sqrt(FSRGenTau_vertex_x*FSRGenTau_vertex_x + FSRGenTau_vertex_y*FSRGenTau_vertex_y + FSRGenTau_vertex_z*FSRGenTau_vertex_z);") #in mm
     
