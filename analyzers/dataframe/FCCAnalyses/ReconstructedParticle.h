@@ -169,6 +169,14 @@ namespace ReconstructedParticle{
   /// get number of b-jets
   int getJet_ntags(ROOT::VecOps::RVec<bool> in);
 
+  /// select ReconstructedParticles with invariant mass of a pair between some range
+  struct sel_invMass {
+    sel_invMass(float arg_min, float arg_max);
+    float m_min; //> charge condition
+    float  m_max;//> absolute value of the charge
+    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+  };
+
 }//end NS ReconstructedParticle
 
 }//end NS FCCAnalyses
