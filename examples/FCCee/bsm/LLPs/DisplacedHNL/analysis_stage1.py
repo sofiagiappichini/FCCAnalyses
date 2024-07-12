@@ -3,9 +3,16 @@ import ROOT
 #Mandatory: List of processes
 
 processList = {
-        "HNL_6.67e-10_40gev":{},
-        "HNL_6.67e-10_40gev_isr":{},
-        "HNL_6.67e-10_40gev_isrbm":{},
+        #'p8_ee_Zee_ecm91':{'fraction':0.0001},
+        #'p8_ee_Zmumu_ecm91':{'chunks':100},
+        #'p8_ee_Ztautau_ecm91':{'chunks':100},
+        #'p8_ee_Zbb_ecm91':{'chunks':100},
+        #'p8_ee_Zcc_ecm91':{'chunks':100},
+        #'p8_ee_Zud_ecm91':{'chunks':100},
+        #'p8_ee_Zss_ecm91':{'chunks':100},
+
+        #'emununu':{},
+        #'tatanunu':{},
 }
 
 processList_q = {
@@ -415,18 +422,18 @@ processList_q = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/winter2023/IDEA/"
+prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/isr/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1_test/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -438,7 +445,7 @@ nCPUS = 10
 runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "microcentury"
+batchQueue = "espresso"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -548,6 +555,28 @@ class RDFanalysis():
                 .Define("FSGenLepton_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x(FSGenLepton)")
                 .Define("FSGenLepton_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y(FSGenLepton)")
                 .Define("FSGenLepton_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z(FSGenLepton)")
+
+                .Define("FSGenLepton_e_led",     " if (n_FSGenLepton>1) return FSGenLepton_e.at(0); else return float(-1000.);")
+                .Define("FSGenLepton_p_led",     " if (n_FSGenLepton>1) return FSGenLepton_p.at(0); else return float(-1000.);")
+                .Define("FSGenLepton_pt_led",    " if (n_FSGenLepton>1) return FSGenLepton_pt.at(0); else return float(-1000.);")
+                .Define("FSGenLepton_px_led",    " if (n_FSGenLepton>1) return FSGenLepton_px.at(0); else return float(-1000.);")
+                .Define("FSGenLepton_py_led",     " if (n_FSGenLepton>1) return FSGenLepton_py.at(0); else return float(-1000.);")
+                .Define("FSGenLepton_pz_led",     " if (n_FSGenLepton>1) return FSGenLepton_pz.at(0); else return float(-1000.);")
+		.Define("FSGenLepton_eta_led",    " if (n_FSGenLepton>1) return FSGenLepton_eta.at(0); else return float(-1000.);") #pseudorapidity eta
+                .Define("FSGenLepton_theta_led",  " if (n_FSGenLepton>1) return FSGenLepton_theta.at(0); else return float(-1000.);")
+		.Define("FSGenLepton_phi_led",    " if (n_FSGenLepton>1) return FSGenLepton_phi.at(0); else return float(-1000.);") #polar angle in the transverse plane phi
+                .Define("FSGenLepton_charge_led", " if (n_FSGenLepton>1) return FSGenLepton_charge.at(0); else return float(-1000.);")
+
+                .Define("FSGenLepton_e_sub",     " if (n_FSGenLepton>1) return FSGenLepton_e.at(1); else return float(-1000.);")
+                .Define("FSGenLepton_p_sub",     " if (n_FSGenLepton>1) return FSGenLepton_p.at(1); else return float(-1000.);")
+                .Define("FSGenLepton_pt_sub",    " if (n_FSGenLepton>1) return FSGenLepton_pt.at(1); else return float(-1000.);")
+                .Define("FSGenLepton_px_sub",    " if (n_FSGenLepton>1) return FSGenLepton_px.at(1); else return float(-1000.);")
+                .Define("FSGenLepton_py_sub",     " if (n_FSGenLepton>1) return FSGenLepton_py.at(1); else return float(-1000.);")
+                .Define("FSGenLepton_pz_sub",     " if (n_FSGenLepton>1) return FSGenLepton_pz.at(1); else return float(-1000.);")
+		.Define("FSGenLepton_eta_sub",    " if (n_FSGenLepton>1) return FSGenLepton_eta.at(1); else return float(-1000.);") #pseudorapidity eta
+                .Define("FSGenLepton_theta_sub",  " if (n_FSGenLepton>1) return FSGenLepton_theta.at(1); else return float(-1000.);")
+		.Define("FSGenLepton_phi_sub",    " if (n_FSGenLepton>1) return FSGenLepton_phi.at(1); else return float(-1000.);") #polar angle in the transverse plane phi
+                .Define("FSGenLepton_charge_sub", " if (n_FSGenLepton>1) return FSGenLepton_charge.at(1); else return float(-1000.);")
 
                 # Finding the Lxy of the HNL
                 ### both leptons have the same vertex decaying from Z or W so when there are no electrons use one of the muons, when there are at least one electron use that ###
@@ -752,6 +781,40 @@ class RDFanalysis():
                 .Define("RecoTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoLeptons,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoLeptons,EFlowTrack_1)")
 
+                .Define("Reco_e_led",     " if (n_RecoLeptons>1) return Reco_e.at(0); else return float(-1000.);")
+                .Define("Reco_p_led",     " if (n_RecoLeptons>1) return Reco_p.at(0); else return float(-1000.);")
+                .Define("Reco_pt_led",    " if (n_RecoLeptons>1) return Reco_pt.at(0); else return float(-1000.);")
+                .Define("Reco_px_led",    " if (n_RecoLeptons>1) return Reco_px.at(0); else return float(-1000.);")
+                .Define("Reco_py_led",     " if (n_RecoLeptons>1) return Reco_py.at(0); else return float(-1000.);")
+                .Define("Reco_pz_led",     " if (n_RecoLeptons>1) return Reco_pz.at(0); else return float(-1000.);")
+		.Define("Reco_eta_led",    " if (n_RecoLeptons>1) return Reco_eta.at(0); else return float(-1000.);") #pseudorapidity eta
+                .Define("Reco_theta_led",  " if (n_RecoLeptons>1) return Reco_theta.at(0); else return float(-1000.);")
+		.Define("Reco_phi_led",    " if (n_RecoLeptons>1) return Reco_phi.at(0); else return float(-1000.);") #polar angle in the transverse plane phi
+                .Define("Reco_charge_led", " if (n_RecoLeptons>1) return Reco_charge.at(0); else return float(-1000.);")
+                .Define("RecoTrack_absD0_led"," if (n_RecoLeptons>1) return RecoTrack_absD0.at(0); else return float(-1000.);")
+                .Define("RecoTrack_absZ0_led"," if (n_RecoLeptons>1) return RecoTrack_absZ0.at(0); else return float(-1000.);")
+                .Define("RecoTrack_absD0sig_led"," if (n_RecoLeptons>1) return RecoTrack_absD0sig.at(0); else return float(-1000.);") #significance
+                .Define("RecoTrack_absZ0sig_led"," if (n_RecoLeptons>1) return RecoTrack_absZ0sig.at(0); else return float(-1000.);")
+                .Define("RecoTrack_D0cov_led"," if (n_RecoLeptons>1) return RecoTrack_D0cov.at(0); else return float(-1000.);") #variance (not sigma)
+                .Define("RecoTrack_Z0cov_led"," if (n_RecoLeptons>1) return RecoTrack_Z0cov.at(0); else return float(-1000.);")
+
+                .Define("Reco_e_sub",     " if (n_RecoLeptons>1) return Reco_e.at(1); else return float(-1000.);")
+                .Define("Reco_p_sub",     " if (n_RecoLeptons>1) return Reco_p.at(1); else return float(-1000.);")
+                .Define("Reco_pt_sub",    " if (n_RecoLeptons>1) return Reco_pt.at(1); else return float(-1000.);")
+                .Define("Reco_px_sub",    " if (n_RecoLeptons>1) return Reco_px.at(1); else return float(-1000.);")
+                .Define("Reco_py_sub",     " if (n_RecoLeptons>1) return Reco_py.at(1); else return float(-1000.);")
+                .Define("Reco_pz_sub",     " if (n_RecoLeptons>1) return Reco_pz.at(1); else return float(-1000.);")
+		.Define("Reco_eta_sub",    " if (n_RecoLeptons>1) return Reco_eta.at(1); else return float(-1000.);") #pseudorapidity eta
+                .Define("Reco_theta_sub",  " if (n_RecoLeptons>1) return Reco_theta.at(1); else return float(-1000.);")
+		.Define("Reco_phi_sub",    " if (n_RecoLeptons>1) return Reco_phi.at(1); else return float(-1000.);") #polar angle in the transverse plane phi
+                .Define("Reco_charge_sub", " if (n_RecoLeptons>1) return Reco_charge.at(1); else return float(-1000.);")
+                .Define("RecoTrack_absD0_sub"," if (n_RecoLeptons>1) return RecoTrack_absD0.at(1); else return float(-1000.);")
+                .Define("RecoTrack_absZ0_sub"," if (n_RecoLeptons>1) return RecoTrack_absZ0.at(1); else return float(-1000.);")
+                .Define("RecoTrack_absD0sig_sub"," if (n_RecoLeptons>1) return RecoTrack_absD0sig.at(1); else return float(-1000.);") #significance
+                .Define("RecoTrack_absZ0sig_sub"," if (n_RecoLeptons>1) return RecoTrack_absZ0sig.at(1); else return float(-1000.);")
+                .Define("RecoTrack_D0cov_sub"," if (n_RecoLeptons>1) return RecoTrack_D0cov.at(1); else return float(-1000.);") #variance (not sigma)
+                .Define("RecoTrack_Z0cov_sub"," if (n_RecoLeptons>1) return RecoTrack_Z0cov.at(1); else return float(-1000.);")
+
                 ### cosine between two leptons ###
                 .Define("Reco_TwoLeptons_p", "if (n_RecoLeptons>1) return (Reco_px.at(0)*Reco_px.at(1) + Reco_py.at(0)*Reco_py.at(1) + Reco_pz.at(0)*Reco_pz.at(1)); else return float(-2.);")
                 .Define("Reco_cos", "if (n_RecoLeptons>1) return (Reco_TwoLeptons_p/(Reco_p.at(0)*Reco_p.at(1))); else return float(-2.);")
@@ -857,6 +920,8 @@ class RDFanalysis():
                 .Define("Reco_invMass", "if (n_RecoLeptons>1) return sqrt(Reco_TwoLeptons_energy*Reco_TwoLeptons_energy - Reco_TwoLeptons_px*Reco_TwoLeptons_px - Reco_TwoLeptons_py*Reco_TwoLeptons_py - Reco_TwoLeptons_pz*Reco_TwoLeptons_pz ); else return float(-1.);")
 
                 .Define('RecoMC_PID', "ReconstructedParticle2MC::getRP2MC_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle)")
+
+                #.Filter("n_RecoPhotons==0 && n_RecoLeptons==2 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8")
                 
                )
                 return df2
@@ -868,26 +933,26 @@ class RDFanalysis():
                         "n_FSGenMuon",
                         "n_FSGenLepton",
                         "n_FSGenPhoton",
-                        "n_GenN",
-                        "n_FSGenNeutrino",
+                        #"n_GenN",
+                        #"n_FSGenNeutrino",
                         "GenParticles_PID",
-                        "FSGenParticles_PID",
-                        "DecGenParticles_PID",
+                        #"FSGenParticles_PID",
+                        #"DecGenParticles_PID",
 
-                        "n_GenTaus",
-                        "n_GenPions",
-                        "n_GenKLs",
-                        "n_GenKpluss",
+                        #"n_GenTaus",
+                        #"n_GenPions",
+                        #"n_GenKLs",
+                        #"n_GenKpluss",
 
-                        "GenPion_e",
-                        "GenTau_e",
-                        "GenKL_e",
-                        "GenKplus_e",
+                        #"GenPion_e",
+                        #"GenTau_e",
+                        #"GenKL_e",
+                        #"GenKplus_e",
 
-                        "GenPion_pt",
-                        "GenTau_pt",
-                        "GenKL_pt",
-                        "GenKplus_pt",
+                        #"GenPion_pt",
+                        #"GenTau_pt",
+                        #"GenKL_pt",
+                        #"GenKplus_pt",
 
                         #"FSGenLepton_e",
                         #"FSGenLepton_p",
@@ -903,6 +968,28 @@ class RDFanalysis():
                         #"FSGenLepton_vertex_x",
                         #"FSGenLepton_vertex_y",
                         #"FSGenLepton_vertex_z",
+
+                        #"FSGenLepton_e_led",
+                        #"FSGenLepton_p_led",
+                        #"FSGenLepton_pt_led",
+                        #"FSGenLepton_px_led",
+                        #"FSGenLepton_py_led",
+                        #"FSGenLepton_pz_led",
+                        #"FSGenLepton_eta_led",
+                        #"FSGenLepton_theta_led",
+                        #"FSGenLepton_phi_led",
+                        #"FSGenLepton_charge_led",
+
+                        #"FSGenLepton_e_sub",
+                        #"FSGenLepton_p_sub",
+                        #"FSGenLepton_pt_sub",
+                        #"FSGenLepton_px_sub",
+                        #"FSGenLepton_py_sub",
+                        #"FSGenLepton_pz_sub",
+                        #"FSGenLepton_eta_sub",
+                        #"FSGenLepton_theta_sub",
+                        #"FSGenLepton_phi_sub",
+                        #"FSGenLepton_charge_sub",
 
                         #"FSGen_Lxy",
                         #"FSGen_Lxyz",
@@ -928,10 +1015,10 @@ class RDFanalysis():
                         "n_RecoTracks",
                         #"n_PrimaryTracks",
                         #"n_SecondaryTracks",
-                        "n_jets",
-                        "n_jets_excl",
+                        #"n_jets",
+                        #"n_jets_excl",
                         "n_antikt_jets",
-                        "n_antikt_jets10",
+                        #"n_antikt_jets10",
                         #"n_RecoJets",
                         "n_RecoPhotons",
                         "n_RecoElectrons",
@@ -1024,6 +1111,40 @@ class RDFanalysis():
                         "RecoTrack_absZ0sig",
                         "RecoTrack_D0cov",
                         "RecoTrack_Z0cov",
+
+                        "Reco_e_led",
+                        "Reco_p_led",
+                        "Reco_pt_led",
+                        "Reco_px_led",
+                        "Reco_py_led",
+                        "Reco_pz_led",
+                        "Reco_eta_led",
+                        "Reco_theta_led",
+                        "Reco_phi_led",
+                        "Reco_charge_led",
+                        "RecoTrack_absD0_led",
+                        "RecoTrack_absZ0_led",
+                        "RecoTrack_absD0sig_led",
+                        "RecoTrack_absZ0sig_led",
+                        "RecoTrack_D0cov_led",
+                        "RecoTrack_Z0cov_led",
+
+                        "Reco_e_sub",
+                        "Reco_p_sub",
+                        "Reco_pt_sub",
+                        "Reco_px_sub",
+                        "Reco_py_sub",
+                        "Reco_pz_sub",
+                        "Reco_eta_sub",
+                        "Reco_theta_sub",
+                        "Reco_phi_sub",
+                        "Reco_charge_sub",
+                        "RecoTrack_absD0_sub",
+                        "RecoTrack_absZ0_sub",
+                        "RecoTrack_absD0sig_sub",
+                        "RecoTrack_absZ0sig_sub",
+                        "RecoTrack_D0cov_sub",
+                        "RecoTrack_Z0cov_sub",
 
                         "RecoDecayVertexLepton",
                         "Reco_Lxy",

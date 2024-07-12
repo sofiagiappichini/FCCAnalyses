@@ -30,7 +30,7 @@ SAMPLES_SCAN = [
     "HNL_6.67e-10_70mass_split"
 ]
 
-#needs to comment out the first plot to work properly on the second
+'''#needs to comment out the first plot to work properly on the second
 arrxs = []
 arrerr = []
 
@@ -82,9 +82,9 @@ pl1 = plt.xticks(datam)
 pl1 = plt.legend()
 pl1 = plt.grid()
 
-pl1 = plt.savefig('/eos/user/s/sgiappic/www/paper/mass_scan_angles.png', format='png', dpi=300)
+pl1 = plt.savefig('/eos/user/s/sgiappic/www/paper/mass_scan_angles.png', format='png', dpi=300)'''
 
-'''arrxs = []
+arrxs = []
 arrerr = []
 
 for rep in SAMPLES_SCAN:
@@ -114,7 +114,7 @@ xs3 = arrxs[12:18]
 er1 = arrerr[0:6]
 er2 = arrerr[6:12]
 er3 = arrerr[12:18]
-
+pl2 = plt.grid()
 # plot dividing the arrays for each sample file
 pl2 = plt.scatter(datam, np.array(xs1)/6.67e-10, label=r'$M_N=10\; GeV$', color="#CC3333")
 pl2 = plt.errorbar(x=datam, y=np.array(xs1)/6.67e-10, yerr=np.array(er1)/6.67e-10, color="#CC3333")
@@ -131,7 +131,8 @@ pl2 = plt.ylabel(r'$\sigma\; (pb)/U^2$')
 #pl2 = plt.yscale('log')
 pl2 = plt.xscale('log')
 #pl2 = plt.xlim([0.0, 15])
+pl2 = plt.xticks([1e-9, 1e-7, 1e-5, 1e-3, 1e-1, 1e1])
 pl2 = plt.legend()
-pl2 = plt.grid()
 
-pl2 = plt.savefig('/eos/user/s/sgiappic/www/paper/mass_scan_masses.png', format='png', dpi=300)'''
+
+pl2 = plt.savefig('/eos/user/s/sgiappic/www/paper/mass_scan_masses.png', format='png', dpi=300)

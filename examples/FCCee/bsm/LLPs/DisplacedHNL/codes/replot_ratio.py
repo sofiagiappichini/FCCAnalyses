@@ -380,7 +380,7 @@ for cut in CUTS:
 
         ratio_list = histos
             
-        for i in range(1,nsig):  
+        for i in range(0,nsig-1):  
             '''for j in range(ratio_list[i].GetNbinsX()):
                 ndata = ratio_list[0].GetBinContent(j)
                 ndiv = ratio_list[i].GetBinContent(j)
@@ -388,7 +388,7 @@ for cut in CUTS:
                     ratio_list[i].SetBinContent(j, ndiv/ndata)
                 else:
                     ratio_list[i].SetBinContent(j, 0.0)'''
-            ratio_list[i].Divide(histos[0])
+            ratio_list[i].Divide(histos[3])
             ratio_list[i].SetLineWidth(3)
             ratio_list[i].SetLineColor(colors[i])
             #print(f"{legend[i]}")
