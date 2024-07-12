@@ -460,6 +460,35 @@ int getJet_ntags(ROOT::VecOps::RVec<bool> in) {
   return result;
 }
 
+sel_invMass::sel_invMass(float arg_min, float arg_max) : m_min(arg_min), m_max(arg_max) {};
+
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> sel_invMass::operator() (ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> result;
+    result.reserve(in.size());
+
+    for (size_t i = 0; i < in.size(); ++i) {
+        auto & p1 = in[i];
+        for (size_t j = i + 1; j < in.size(); ++j){
+            auto & p2 = in[j];
+
+            if (p1.charge == - p2.charge) {
+              float px = p1.momentum.x + p2.momentum.x;
+              float py = p1.momentum.y + p2.momentum.y;
+              float pz = p1.momentum.z + p2.momentum.z;
+              float e = p1.energy + p2.energy;
+              float inv = std::sqrt( e*e - px*px - py*py - pz*pz);
+
+              if (inv>m_min && inv<m_max) {
+                  result.emplace_back(p1);
+                  result.emplace_back(p2);
+                  break;
+              }
+            }
+        }
+  }
+  return result;
+}
+
 }//end NS ReconstructedParticle
 
 }//end NS FCCAnalyses
