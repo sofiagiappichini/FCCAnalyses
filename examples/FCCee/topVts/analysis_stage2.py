@@ -40,7 +40,7 @@ outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/top/topVts/analysis
 
 #Optional
 nCPUS       = 8
-runBatch    = True
+runBatch    = False
 batchQueue = "nextweek"
 compGroup = "group_u_FCC.local_gen"
 
@@ -51,50 +51,50 @@ class RDFanalysis():
     #Mandatory: analysers funtion to define the analysers to process, please make sure you return the last dataframe, in this example it is df2
     def analysers(df):
         df2 = (df
-                .Define("jet_px",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_px; \
+                .Define("jet_ktN_px",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_px; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_px; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_px; \
                                             else return float(-1000.0)")
-                .Define("jet_py",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_py; \
+                .Define("jet_ktN_py",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_py; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_py; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_py; \
                                             else return float(-1000.0)")
-                .Define("jet_pz",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_pz; \
+                .Define("jet_ktN_pz",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_pz; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_pz; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_pz; \
                                             else return float(-1000.0)")
-                .Define("jet_phi",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_phi; \
+                .Define("jet_ktN_phi",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_phi; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_phi; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_phi; \
                                             else return float(-1000.0)")
-                .Define("jet_eta",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_eta; \
+                .Define("jet_ktN_eta",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_eta; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_eta; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_eta; \
                                             else return float(-1000.0)")
-                .Define("jet_energy",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_energy; \
+                .Define("jet_ktN_energy",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_energy; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_energy; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_energy; \
                                             else return float(-1000.0)")
-                .Define("jet_mass",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_mass; \
+                .Define("jet_ktN_mass",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_mass; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_mass; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_mass; \
                                             else return float(-1000.0)")
 
-                .Define("jet_dPhi_b",       "if (n_genBottoms>0) return (3.1416 - abs(3.1416 - abs(jet_phi - genBottom_phi.at(0)))); else return (3.1416+jet_phi);")
-                .Define("jet_dEta_b",       "if (n_genBottoms>0) return abs(jet_eta - genBottom_eta.at(0)); else return (99+jet_eta);")
-                .Define("jet_dR_b",         "sqrt(jet_dPhi_b*jet_dPhi_b + jet_dEta_b*jet_dEta_b)")
-                .Define("jet_dPhi_s",       "if (n_genStranges>0) return (3.1416 - abs(3.1416 - abs(jet_phi - genStrange_phi.at(0)))); else return (3.1416+jet_phi);")
-                .Define("jet_dEta_s",       "if (n_genStranges>0) return abs(jet_eta - genStrange_eta.at(0)); else return (99+jet_eta);")
-                .Define("jet_dR_s",         "sqrt(jet_dPhi_s*jet_dPhi_s + jet_dEta_s*jet_dEta_s)")
-                .Define("jet_isSig",        "(jet_dR_s<0.3) * 1.0")
-                .Define("jet_Max_mass",     "Max(jet_mass)")
-                .Define("jet_Min_energy",   "Min(jet_energy)")
+                .Define("jet_ktN_dPhi_b",       "if (n_genBottoms>0) return (3.1416 - abs(3.1416 - abs(jet_ktN_phi - genBottom_phi.at(0)))); else return (3.1416+jet_ktN_phi);")
+                .Define("jet_ktN_dEta_b",       "if (n_genBottoms>0) return abs(jet_ktN_eta - genBottom_eta.at(0)); else return (99+jet_ktN_eta);")
+                .Define("jet_ktN_dR_b",         "sqrt(jet_ktN_dPhi_b*jet_ktN_dPhi_b + jet_ktN_dEta_b*jet_ktN_dEta_b)")
+                .Define("jet_ktN_dPhi_s",       "if (n_genStranges>0) return (3.1416 - abs(3.1416 - abs(jet_ktN_phi - genStrange_phi.at(0)))); else return (3.1416+jet_ktN_phi);")
+                .Define("jet_ktN_dEta_s",       "if (n_genStranges>0) return abs(jet_ktN_eta - genStrange_eta.at(0)); else return (99+jet_ktN_eta);")
+                .Define("jet_ktN_dR_s",         "sqrt(jet_ktN_dPhi_s*jet_ktN_dPhi_s + jet_ktN_dEta_s*jet_ktN_dEta_s)")
+                .Define("jet_ktN_isSig",        "(jet_ktN_dR_s<0.3) * 1.0")
+                .Define("jet_ktN_Max_mass",     "Max(jet_ktN_mass)")
+                .Define("jet_ktN_Min_energy",   "Min(jet_ktN_energy)")
 
-                .Define("jet_flavour",      "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_flavour; \
+                .Define("jet_ktN_flavour",      "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_flavour; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_flavour; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_flavour; \
                                             else return float(-1000.0)")
-                .Define("n_jets",      "if (n_muons_sel==0 && n_electrons_sel==0) return n_jets_kt6; \
+                .Define("n_ktN_jets",      "if (n_muons_sel==0 && n_electrons_sel==0) return n_jets_kt6; \
                                             if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return n_jets_kt4; \
                                             if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return n_jets_kt2; \
                                             else return float(-1000.0)")
@@ -190,6 +190,6 @@ class RDFanalysis():
                        "jet_kt6_subC_mass",  "jet_kt6_subC_flavor",  "jet_kt6_subC_dR_b",  "jet_kt6_subC_dR_s",  "jet_kt6_subC_isSig",
                        "jet_kt6_subC_isG",   "jet_kt6_subC_isQ",     "jet_kt6_subC_isS",   "jet_kt6_subC_isC",   "jet_kt6_subC_isB"]
 
-        branchList += ["jet_px", "jet_py", "jet_pz", "jet_phi", "jet_eta", "jet_energy", "jet_mass", "jet_flavor"]
+        branchList += ["jet_ktN_px", "jet_ktN_py", "jet_ktN_pz", "jet_ktN_phi", "jet_ktN_eta", "jet_ktN_energy", "jet_ktN_mass", "jet_ktN_flavor"]
 
         return branchList
