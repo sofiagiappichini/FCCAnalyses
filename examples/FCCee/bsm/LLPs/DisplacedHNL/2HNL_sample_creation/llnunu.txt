@@ -1,0 +1,235 @@
+import model sm
+
+define l = e+ mu+ ta+ e- mu- ta-
+define e = e+ e-
+define mu = mu+ mu-
+define ta = ta+ ta-
+define nu = vl vl~   
+
+generate e+ e- > e mu nu nu @0
+add process e+ e- > e ta nu nu @1
+add process e+ e- > mu ta nu nu @2
+
+output /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+#run 1
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set iseed 0
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 2
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 3
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 4
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 5
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 6
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 7
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 8
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 9
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done
+
+#run 10
+launch /eos/user/s/sgiappic/2HNL_prod/llnunu
+
+set sde_strategy 1
+
+set ptl 1
+#charged lepton pt
+set el 2
+#charged lepton energy, same cut as delphes efficiency
+set etal -1
+set drll 0
+set misset 5 
+#missing energy calculated as vector sum of neutrinos pt
+
+set lpp1 0
+set lpp2 0
+set ebeam1 45.594
+set ebeam2 45.594
+
+set nevents 100000
+done

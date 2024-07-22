@@ -2,7 +2,7 @@
 inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/final/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/final_july/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 204e6 #pb^-1
@@ -19,7 +19,7 @@ nCPUS = 6
 #produces ROOT TTrees, default is False
 doTree = False
 
-processList = {
+processList_e = {
     #run over the full statistics from stage1
 
     #backgrounds
@@ -32,11 +32,11 @@ processList = {
     #'p8_ee_Zss_ecm91':{},
         
     ### privately produced backgrounds ###
-    'emununu':{},
-    'tatanunu':{},
+    #'emununu':{},
+    #'tatanunu':{},
 }
 
-processList_e = {
+processList = {
     #run over the full statistics from stage1
 
     #backgrounds
@@ -49,8 +49,10 @@ processList_e = {
     'p8_ee_Zss_ecm91':{},
         
     ### privately produced backgrounds ###
-    'emununu':{},
+    'eenunu':{},
+    'mumununu':{},
     'tatanunu':{},
+    'llnunu':{},
 
     "HNL_1.33e-7_10gev":{},
     "HNL_1.33e-7_20gev":{},
@@ -811,8 +813,10 @@ procDictAdd = {
     'HNL_2.86e-11_70gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.2319764975593675e-08, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'HNL_2.86e-11_80gev':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 5.365835313916999e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
-    "tatanunu":{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.855e-4, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "emununu":{"numberOfEvents": 999997, "sumOfWeights": 999997, "crossSection": 7.619e-4, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "eenunu":{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.01060, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "mumununu":{"numberOfEvents": 654807, "sumOfWeights": 654807, "crossSection": 0.01046, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "tatanunu":{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.001425, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "llnunu":{"numberOfEvents": 999983, "sumOfWeights": 999983, "crossSection": 0.00203, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
     'HNL_6.67e-10_40gev_isr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.364544236800001e-07,  "kfactor": 1.0, "matchingEfficiency": 1.0},
     'HNL_6.67e-10_40gev_isrbm':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.3881989487e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
@@ -857,26 +861,19 @@ cutList = {
     #"sel2RecoDF_vetoes_notracks_nojets_M80_5MEpt_0.8cos_chi_0.55d0": "n_RecoElectrons==1 && n_RecoMuons==1 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>5 && Reco_cos>-0.8 \
                                                        #&& RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.5 && RecoTrack_absD0.at(1)>0.55 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
 
-    "sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
-    "sel2Reco_vetoes_notracks": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 ",
-    "sel2Reco_vetoes_notracks_nojets": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0",
-    "sel2Reco_vetoes_notracks_nojets_M80": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 \
-                                                       && RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0.at(0)>0.57 && RecoTrack_absD0.at(1)>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
+    ### vetoes now applied at stage 1 for all samples ###
+    #"sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
     
-    
-    #"sel2Reco_vetoes_notracks_nojets_pt10_2.5eta_0.4DR_M80_10MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 \
-    #                                                                        && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4",
-    
-    #"sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4",
-    #"sel2Reco_vetoes_notracks": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4",
-    #"sel2Reco_vetoes_notracks_nojets": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4",
-    #"sel2Reco_vetoes_notracks_nojets_M80": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4 && Reco_invMass<80",
-    #"sel2Reco_vetoes_notracks_nojets_M80_5MEpt": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>5",
-    #"sel2Reco_vetoes_notracks_nojets_M80_5MEpt_0.8cos": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_pt.at(0)>10 && Reco_pt.at(1)>10 && abs(Reco_eta.at(0))<2.5 && abs(Reco_eta.at(1))<2.5 && Reco_DR>0.4 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>5 && Reco_cos>-0.8",
-    
+    "selNone":"true",
+    #"sel2Reco_vetoes_notracks": "n_noLeptonTracks==0 ",
+    #"sel2Reco_vetoes_notracks_nojets": "n_noLeptonTracks==0 && n_antikt_jets==0",
+    #"sel2Reco_vetoes_notracks_nonh": "n_noLeptonTracks==0 && n_NeutralHadrons==0",
+
+    #"sel2Reco_vetoes_notracks_nojets_M80": "n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt": "n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos": "n_noLeptonTracks == 0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0": "n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8 && RecoDecayVertexLepton.chi2<10 && RecoTrack_absD0_led>0.57 && RecoTrack_absD0_sub>0.57 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
+
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -899,11 +896,11 @@ cutLabels = {
     #"sel2RecoDF_vetoes_notracks_nojets_M80_5MEpt_0.8cos":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, cos\theta>-0.8",
     #"sel2RecoDF_vetoes_notracks_nojets_M80_5MEpt_0.8cos_chi_0.5d0":"Two different flavor leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, cos\theta>-0.8, \chi^2<10, |d_0|>0.55 mm",
 
-    "sel2Reco_vetoes":"Two leptons, no photons",
+    #"sel2Reco_vetoes":"Two leptons, no photons",
     "sel2Reco_vetoes_notracks":"Two leptons, no photons, no other trac",
     "sel2Reco_vetoes_notracks_nojets":"Two leptons, no photons, no other track, no jets",
     "sel2Reco_vetoes_notracks_nojets_M80":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV",
-    "sel2Reco_vetoes_n otracks_nojets_M80_10MEpt":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV",
+    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos\theta>-0.8",
     "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0":"Two leptons, no photons, no other track, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos\theta>-0.8, \chi^2<10, |d_{0}|>0.57 mm",
     
@@ -925,8 +922,6 @@ histoList = {
     #"n_FSGenNeutrino":                   {"name":"n_FSGenNeutrino",                  "title":"Number of final state gen neutrinos",        "bin":5,"xmin":-0.5 ,"xmax":4.5},
     
     #"GenParticles_PID":                    {"name":"GenParticles_PID",                    "title":"Gen Particles PID",            "bin":840,"xmin":-420,"xmax":420},
-    #"FSGenParticles_PID":                    {"name":"FSGenParticles_PID",                    "title":"Final state Gen Particles PID",            "bin":840,"xmin":-420,"xmax":420},
-    #"DecGenParticles_PID":                    {"name":"DecGenParticles_PID",                    "title":"Decaying Gen Particles PID",            "bin":840,"xmin":-420,"xmax":420},
     
     #"GenTau_e":                        {"name":"GenTau_e",                      "title":"Gen tau energy",              "bin":100,"xmin":0 ,"xmax":50},
     #"GenPion_e":                       {"name":"GenPion_e",                    "title":"Gen pion energy",            "bin":100,"xmin":0 ,"xmax":50},
@@ -987,8 +982,8 @@ histoList = {
     #"FSGenPhoton_charge":              {"name":"FSGenPhoton_charge",             "title":"Final state gen photons charge",             "bin":3, "xmin":-1.5,"xmax":1.5},
 
     ######### RECO VARIABLES
-    "n_RecoTracks":                    {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",             "bin":10,"xmin":0 ,"xmax":10},
-    "n_noLeptonTracks":                    {"name":"n_noLeptonTracks",           "title":"Total number of non lepton tracks",             "bin":10,"xmin":0 ,"xmax":10},
+    "n_RecoTracks":                     {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",             "bin":10,"xmin":0 ,"xmax":10},
+    "n_noLeptonTracks":                 {"name":"n_noLeptonTracks",           "title":"Total number of non lepton tracks",             "bin":10,"xmin":0 ,"xmax":10},
     #"n_PrimaryTracks":                 {"name":"n_PrimaryTracks",                "title":"Total number of primary tracks",          "bin":10,"xmin":-0.5 ,"xmax":9.5},
     #"n_SecondaryTracks":               {"name":"n_SecondaryTracks",              "title":"Total number of secondary tracks",        "bin":10,"xmin":-0.5 ,"xmax":9.5},
     #"n_RecoDVs":                       {"name":"n_RecoDVs",                      "title":"Total number of DVs",                     "bin":5,"xmin":-0.5 ,"xmax":4.5},
@@ -996,11 +991,12 @@ histoList = {
     "n_RecoElectrons":                 {"name":"n_RecoElectrons",                "title":"Total number of reco electrons",          "bin":5,"xmin":0 ,"xmax":5},
     "n_RecoMuons":                     {"name":"n_RecoMuons",                    "title":"Total number of reco muons",              "bin":5,"xmin":0 ,"xmax":5},
     "n_RecoLeptons":                   {"name":"n_RecoLeptons",                  "title":"Total number of reco leptons",            "bin":5,"xmin":0 ,"xmax":5},
+    "n_NeutralHadrons":                  {"name":"n_NeutralHadrons",                  "title":"Total number of reco leptons",            "bin":5,"xmin":0 ,"xmax":5},
     #"n_jets":                           {"name":"n_jets",                         "title":"Total number of reco jets",               "bin":5,"xmin":0 ,"xmax":5},
-    #"n_jets_excl":                           {"name":"n_jets_excl",                "title":"Total number of reco jets",               "bin":5,"xmin":0 ,"xmax":5},
-    "n_antikt_jets":                           {"name":"n_antikt_jets",              "title":"Total number of reco jets",               "bin":10,"xmin":0 ,"xmax":10},
-    #"n_antikt_jets10":                           {"name":"n_antikt_jets10",                         "title":"Total number of reco jets",               "bin":10,"xmin":0,"xmax":10},
-    #"n_RecoJets":                           {"name":"n_RecoJets",                         "title":"Total number of reco jets",               "bin":5,"xmin":-0.5 ,"xmax":4.5},
+    #"n_jets_excl":                      {"name":"n_jets_excl",                "title":"Total number of reco jets",               "bin":5,"xmin":0 ,"xmax":5},
+    "n_antikt_jets":                     {"name":"n_antikt_jets",              "title":"Total number of reco jets",               "bin":10,"xmin":0 ,"xmax":10},
+    #"n_antikt_jets10":                  {"name":"n_antikt_jets10",                         "title":"Total number of reco jets",               "bin":10,"xmin":0,"xmax":10},
+    #"n_RecoJets":                       {"name":"n_RecoJets",                         "title":"Total number of reco jets",               "bin":5,"xmin":-0.5 ,"xmax":4.5},
     
     #"n_RecoTaus":                        {"name":"n_RecoTaus",                      "title":"Number of final state reco tau",              "bin":5,"xmin":-0.5 ,"xmax":4.5},
     #"n_RecoPions":                       {"name":"n_RecoPions",                    "title":"Number of final state reco pion",            "bin":5,"xmin":-0.5 ,"xmax":4.5},
@@ -1019,7 +1015,6 @@ histoList = {
 
     #"RecoMC_PID":                    {"name":"RecoMC_PID",                    "title":"Reco Particles PID",            "bin":800,"xmin":-400,"xmax":400},
 
-    #"jets_e":        {"name":"jets_e",        "title":"Reco jet energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     #"RecoJet_e":        {"name":"RecoJet_e",        "title":"Reco jet energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     #"RecoJet_p":        {"name":"RecoJet_p",        "title":"Reco jet p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
     #"RecoJet_pt":       {"name":"RecoJet_pt",       "title":"Reco jet p_{T} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
@@ -1071,6 +1066,18 @@ histoList = {
     #"RecoPhoton_theta":    {"name":"RecoPhoton_theta",    "title":"Reco photon #theta",       "bin":64, "xmin":0,"xmax":3.2},
     #"RecoPhoton_phi":      {"name":"RecoPhoton_phi",      "title":"Reco photon #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
     #"RecoPhoton_charge":   {"name":"RecoPhoton_charge",   "title":"Reco photon charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
+
+    "NeutralHadrons_e":        {"name":"NeutralHadrons_e",        "title":"Reco neutral hadron energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "NeutralHadrons_p":        {"name":"NeutralHadrons_p",        "title":"Reco neutral hadron p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
+    "NeutralHadrons_px":        {"name":"NeutralHadrons_px",        "title":"Reco neutral hadron px [GeV]",      "bin":100,"xmin": -50,"xmax":50},
+    "NeutralHadrons_py":        {"name":"NeutralHadrons_py",        "title":"Reco neutral hadron py [GeV]",      "bin":100,"xmin":-50 ,"xmax":50},
+    "NeutralHadrons_pz":        {"name":"NeutralHadrons_pz",        "title":"Reco neutral hadron pz [GeV]",      "bin":100,"xmin":-50 ,"xmax":50},
+    "NeutralHadrons_pt":       {"name":"NeutralHadrons_pt",       "title":"Reco neutral hadron p_{T} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
+    "NeutralHadrons_eta":      {"name":"NeutralHadrons_eta",      "title":"Reco neutral hadron #eta",         "bin":60, "xmin":-3,"xmax":3},
+    "NeutralHadrons_theta":    {"name":"NeutralHadrons_theta",    "title":"Reco neutral hadron #theta",       "bin":64, "xmin":0,"xmax":3.2},
+    "NeutralHadrons_phi":      {"name":"NeutralHadrons_phi",      "title":"Reco neutral hadron #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
+    "NeutralHadrons_charge":   {"name":"NeutralHadrons_charge",   "title":"Reco neutral hadron charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
+    "NeutralHadrons_mass":   {"name":"NeutralHadrons_mass",   "title":"Reco neutral hadron mass [GeV]",       "bin":100, "xmin":0,"xmax":1.},
 
     "Reco_e":                   {"name":"Reco_e",         "title":"Reco lepton energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
     "Reco_p":                   {"name":"Reco_p",         "title":"Reco lepton p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},
@@ -1171,17 +1178,23 @@ histoList = {
     "Reco_cos":         {"name":"Reco_cos",         "title":"Reco cos#theta(l,l')",          "bin":100,"xmin":-1., "xmax":1.},
     "Reco_DR":          {"name":"Reco_DR",          "title":"Reco #Delta R(l,l')",           "bin":70,"xmin":0, "xmax":7},
 
-    "2DHsito":     {"cols":["Reco_invMass","RecoMissingEnergy_e"],     "title":"Invariant mass - Missing Energy",            "bins":[(100,0,100),(100,0,50)]},
+    #"2DHsito":     {"cols":["Reco_invMass","RecoMissingEnergy_e"],     "title":"Invariant mass - Missing Energy",            "bins":[(100,0,100),(100,0,50)]},
 
     "RecoMissingEnergy_e":       {"name":"RecoMissingEnergy_e",       "title":"Reco Total Missing Energy [GeV]",    "bin":100,"xmin":0 ,"xmax":50},
     "RecoMissingEnergy_p":       {"name":"RecoMissingEnergy_p",       "title":"Reco Total Missing p [GeV]",         "bin":100,"xmin":0 ,"xmax":50},
     "RecoMissingEnergy_pt":      {"name":"RecoMissingEnergy_pt",      "title":"Reco Missing p_{T} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_px":      {"name":"RecoMissingEnergy_px",      "title":"Reco Missing p_{x} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_py":      {"name":"RecoMissingEnergy_py",      "title":"Reco Missing p_{y} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
-    "RecoMissingEnergy_pz":      {"name":"RecoMissingEnergy_pz",      "title":"Reco Missing p_{z} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
+    "RecoMissingEnergy_px":      {"name":"RecoMissingEnergy_px",      "title":"Reco Missing p_{x} [GeV]",           "bin":100,"xmin":-50 ,"xmax":50},
+    "RecoMissingEnergy_py":      {"name":"RecoMissingEnergy_py",      "title":"Reco Missing p_{y} [GeV]",           "bin":100,"xmin":-50 ,"xmax":50},
+    "RecoMissingEnergy_pz":      {"name":"RecoMissingEnergy_pz",      "title":"Reco Missing p_{z} [GeV]",           "bin":100,"xmin":-50 ,"xmax":50},
     "RecoMissingEnergy_eta":     {"name":"RecoMissingEnergy_eta",     "title":"Reco Missing Energy #eta",           "bin":60,"xmin":-3 ,"xmax":3},
     "RecoMissingEnergy_theta":   {"name":"RecoMissingEnergy_theta",   "title":"Reco Missing Energy #theta",         "bin":64,"xmin":0 , "xmax":3.2},
     "RecoMissingEnergy_phi":     {"name":"RecoMissingEnergy_phi",     "title":"Reco Missing Energy #phi",           "bin":64,"xmin":-3.2 ,"xmax":3.2},
+
+    "RecoEmiss_e":       {"name":"RecoEmiss_e",       "title":"Reco Total Missing Energy [GeV]",    "bin":100,"xmin":0 ,"xmax":100},
+    "RecoEmiss_pt":      {"name":"RecoEmiss_pt",      "title":"Reco Missing p_{T} [GeV]",           "bin":100,"xmin":0 ,"xmax":50},
+    "RecoEmiss_px":      {"name":"RecoEmiss_px",      "title":"Reco Missing p_{x} [GeV]",           "bin":100,"xmin":-50 ,"xmax":50},
+    "RecoEmiss_py":      {"name":"RecoEmiss_py",      "title":"Reco Missing p_{y} [GeV]",           "bin":100,"xmin":-50 ,"xmax":50},
+    "RecoEmiss_pz":      {"name":"RecoEmiss_pz",      "title":"Reco Missing p_{z} [GeV]",           "bin":100,"xmin":-50 ,"xmax":50},
 
     #"noLep_e":                   {"name":"noLep_e",         "title":"Reco non lepton energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
     #"noLep_p":                   {"name":"noLep_p",         "title":"Reco non lepton p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},

@@ -3,7 +3,7 @@ import ROOT
 #Mandatory: List of processes
 
 processList = {
-        #'p8_ee_Zee_ecm91':{'fraction':0.0001},
+        #'p8_ee_Zee_ecm91':{'chunks':100},
         #'p8_ee_Zmumu_ecm91':{'chunks':100},
         #'p8_ee_Ztautau_ecm91':{'chunks':100},
         #'p8_ee_Zbb_ecm91':{'chunks':100},
@@ -11,11 +11,13 @@ processList = {
         #'p8_ee_Zud_ecm91':{'chunks':100},
         #'p8_ee_Zss_ecm91':{'chunks':100},
 
-        #'emununu':{},
-        #'tatanunu':{},
+        'eenunu':{},
+        'mumununu':{},
+        'tatanunu':{},
+        'llnunu':{}
 }
 
-processList_q = {
+processList_e = {
 
         #centrally-produced backgrounds
         #'p8_ee_Zee_ecm91':{'chunks':100},
@@ -422,18 +424,20 @@ processList_q = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
+# additional/costom C++ functions, defined in header files (optional)
+includePaths = ["functions.h"]
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1_test/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -445,7 +449,7 @@ nCPUS = 10
 runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "espresso"
+batchQueue = "tomorrow"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -659,30 +663,6 @@ class RDFanalysis():
                 ################### Reconstructed particles #####################
                 .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
 
-
-                ### not the right way to get the particles, use one of the PID functions using particleIDs.begin and end, not type ###
-                .Define("Reco_PID",   "ReconstructedParticles.type")
-
-                .Define("RecoPion",   "ReconstructedParticles[ReconstructedParticles.type == 211]")
-                .Define("RecoTau",   "ReconstructedParticles[ReconstructedParticles.type == 15]")
-                .Define("RecoKL",   "ReconstructedParticles[ReconstructedParticles.type == 130]")
-                .Define("RecoKplus",   "ReconstructedParticles[ReconstructedParticles.type == 321]")
-
-                .Define("n_RecoTaus",      "ReconstructedParticle::get_n(RecoTau)")
-                .Define("n_RecoPions",      "ReconstructedParticle::get_n(RecoPion)")
-                .Define("n_RecoKLs",      "ReconstructedParticle::get_n(RecoKL)")
-                .Define("n_RecoKpluss",      "ReconstructedParticle::get_n(RecoKplus)")
-
-                .Define("RecoPion_e", "ReconstructedParticle::get_e(RecoPion)")
-                .Define("RecoKL_e", "ReconstructedParticle::get_e(RecoKL)")
-                .Define("RecoTau_e", "ReconstructedParticle::get_e(RecoTau)")
-                .Define("RecoKplus_e", "ReconstructedParticle::get_e(RecoKplus)")
-
-                .Define("RecoPion_pt", "ReconstructedParticle::get_pt(RecoPion)")
-                .Define("RecoKL_pt", "ReconstructedParticle::get_pt(RecoKL)")
-                .Define("RecoTau_pt", "ReconstructedParticle::get_pt(RecoTau)")
-                .Define("RecoKplus_pt", "ReconstructedParticle::get_pt(RecoKplus)")
-
                 #JETS
                 ### count how many jets are in the event in total to check, it doesn't work with this method on reclustered jets, only on the edm4hep collections Jet ###
 		.Define("n_RecoJets", "ReconstructedParticle::get_n(Jet)") 
@@ -718,6 +698,23 @@ class RDFanalysis():
                 .Define("RecoPhoton_theta",   "ReconstructedParticle::get_theta(RecoPhotons)")
 		.Define("RecoPhoton_phi",     "ReconstructedParticle::get_phi(RecoPhotons)") #polar angle in the transverse plane phi
                 .Define("RecoPhoton_charge",  "ReconstructedParticle::get_charge(RecoPhotons)")
+
+                #NEUTRAL HADRONS
+                #.Define("Candidates", "ReconstructedParticle::remove(ReconstructedParticles, RecoPhotons)") #does not work well, there are more "photons" than expected at e<2 Gev(no efficiency) that are not in Photons but in RecoParticle so they are kept here
+                .Define("NeutralHadrons_cand",   "ReconstructedParticles[ReconstructedParticles.type != 22]") #this instead excludes all photons with type 22, type 0 is charged particles and then type 130 is K0 that we are interested in, pi0 always decay in gamma-gamma
+                .Define("NeutralHadrons",       "ReconstructedParticle::sel_charge(0, true) (NeutralHadrons_cand)")
+                .Define("n_NeutralHadrons",  "ReconstructedParticle::get_n(NeutralHadrons)") #count how many photons are in the event in total
+                .Define("NeutralHadrons_e",      "ReconstructedParticle::get_e(NeutralHadrons)")
+                .Define("NeutralHadrons_p",      "ReconstructedParticle::get_p(NeutralHadrons)")
+                .Define("NeutralHadrons_pt",      "ReconstructedParticle::get_pt(NeutralHadrons)")
+                .Define("NeutralHadrons_px",      "ReconstructedParticle::get_px(NeutralHadrons)")
+                .Define("NeutralHadrons_py",      "ReconstructedParticle::get_py(NeutralHadrons)")
+                .Define("NeutralHadrons_pz",      "ReconstructedParticle::get_pz(NeutralHadrons)")
+		.Define("NeutralHadrons_eta",     "ReconstructedParticle::get_eta(NeutralHadrons)") #pseudorapidity eta
+                .Define("NeutralHadrons_theta",   "ReconstructedParticle::get_theta(NeutralHadrons)")
+		.Define("NeutralHadrons_phi",     "ReconstructedParticle::get_phi(NeutralHadrons)") #polar angle in the transverse plane phi
+                .Define("NeutralHadrons_charge",  "ReconstructedParticle::get_charge(NeutralHadrons)")
+                .Define("NeutralHadrons_mass",  "ReconstructedParticle::get_mass(NeutralHadrons)")
 
 		#ELECTRONS 
 		.Alias("Electron0", "Electron#0.index")
@@ -912,6 +909,14 @@ class RDFanalysis():
 		.Define("RecoMissingEnergy_theta", "ReconstructedParticle::get_theta(MissingET)")
 		.Define("RecoMissingEnergy_phi", "ReconstructedParticle::get_phi(MissingET)") #angle of RecoMissingEnergy
 
+                # different definition of missing energy from fccanalysis classes instead of edm4hep
+                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(91.188, ReconstructedParticles)") #ecm 
+                .Define("RecoEmiss_px",  "RecoEmiss[0].momentum.x")
+                .Define("RecoEmiss_py",  "RecoEmiss[0].momentum.y")
+                .Define("RecoEmiss_pz",  "RecoEmiss[0].momentum.z")
+                .Define("RecoEmiss_pt",  "return sqrt(RecoEmiss_px*RecoEmiss_px + RecoEmiss_py*RecoEmiss_py)")
+                .Define("RecoEmiss_e",   "RecoEmiss[0].energy")
+
                 ### dilepton invariant mass ###
                 .Define("Reco_TwoLeptons_energy", "if (n_RecoLeptons>1) return (Reco_e.at(0) + Reco_e.at(1)); else return float(-1.);")
                 .Define("Reco_TwoLeptons_px", "if (n_RecoLeptons>1) return (Reco_px.at(0) + Reco_px.at(1)); else return float(-1.);")
@@ -921,8 +926,12 @@ class RDFanalysis():
 
                 .Define('RecoMC_PID', "ReconstructedParticle2MC::getRP2MC_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle)")
 
-                #.Filter("n_RecoPhotons==0 && n_RecoLeptons==2 && n_antikt_jets==0 && n_noLeptonTracks == 0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10 && Reco_cos>-0.8")
-                
+                #### FILTERS APPLIED TO ALL THE EVENTS ####
+                ### minimal selection for hnls final state
+                .Filter("n_RecoPhotons==0 && n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1))")
+                ### generator selection on llnunu background that needs to be applied consinstently to the others
+                #.Filter("Reco_pt.at(0) > 1 && Reco_pt.at(1) > 1 && RecoEmiss_pt > 5")
+
                )
                 return df2
 
@@ -935,9 +944,8 @@ class RDFanalysis():
                         "n_FSGenPhoton",
                         #"n_GenN",
                         #"n_FSGenNeutrino",
-                        "GenParticles_PID",
-                        #"FSGenParticles_PID",
-                        #"DecGenParticles_PID",
+
+                        #"GenParticles_PID",
 
                         #"n_GenTaus",
                         #"n_GenPions",
@@ -1013,32 +1021,20 @@ class RDFanalysis():
 
                         ######## Reconstructed particles #######
                         "n_RecoTracks",
+                        "n_noLeptonTracks",
                         #"n_PrimaryTracks",
                         #"n_SecondaryTracks",
+
                         #"n_jets",
                         #"n_jets_excl",
                         "n_antikt_jets",
                         #"n_antikt_jets10",
                         #"n_RecoJets",
+
                         "n_RecoPhotons",
                         "n_RecoElectrons",
                         "n_RecoMuons",
                         "n_RecoLeptons",
-
-                        #"n_RecoTaus",
-                        #"n_RecoPions",
-                        #"n_RecoKLs",
-                        #"n_RecoKpluss",
-
-                        #"RecoPion_e",
-                        #"RecoTau_e",
-                        #"RecoKL_e",
-                        #"RecoKplus_e",
-
-                        #"RecoPion_pt",
-                        #"RecoTau_pt",
-                        #"RecoKL_pt",
-                        #"RecoKplus_pt",
 
                         #"RecoJet_e",
                         #"RecoJet_p",
@@ -1085,6 +1081,19 @@ class RDFanalysis():
                         #"RecoElectronTrack_D0cov",
                         #"RecoElectronTrack_Z0cov",
 
+                        "n_NeutralHadrons",
+                        "NeutralHadrons_e",
+                        "NeutralHadrons_p",
+                        "NeutralHadrons_pt",
+                        "NeutralHadrons_px",
+                        "NeutralHadrons_py",
+                        "NeutralHadrons_pz",
+                        "NeutralHadrons_eta",
+                        "NeutralHadrons_theta",
+                        "NeutralHadrons_phi",
+                        "NeutralHadrons_charge",
+                        "NeutralHadrons_mass",
+
                         "RecoMissingEnergy_e",
                         "RecoMissingEnergy_p",
                         "RecoMissingEnergy_pt",
@@ -1094,6 +1103,12 @@ class RDFanalysis():
                         "RecoMissingEnergy_eta",
                         "RecoMissingEnergy_theta",
                         "RecoMissingEnergy_phi",
+
+                        "RecoEmiss_px",
+                        "RecoEmiss_py",
+                        "RecoEmiss_pz",
+                        "RecoEmiss_pt",
+                        "RecoEmiss_e",
 
                         "Reco_e",
                         "Reco_p",
@@ -1159,7 +1174,6 @@ class RDFanalysis():
 
                         #"RecoMC_PID",
                         
-                        "n_noLeptonTracks",
                         #"noLep_e",
                         #"noLep_p",   
                         #"noLep_pt",   
