@@ -44,18 +44,23 @@ def pt(weight, s, n, events):
 
 def e(weight, s, n, events):
     en = []
+    en_p = []
     for event in events:
         for particle in event.particles:
-            if particle.status == 1 and particle.id in [11, -11, 13, -13, 15, -15]:
-                en.append(particle.e)
+            if particle.status == 1:# and particle.id in [11, -11, 13, -13, 15, -15]:
+                en_p.append(particle.e)
                 weight.append(s*204e6/n)
+        en.append(np.sum(en_p))
+        en_p = []
+    print(np.max(en))
     return en
 
 
 replacement_words = [
-    "HNL_6.67e-10_40gev",
-    "HNL_6.67e-10_40gev_isr",
-    "HNL_6.67e-10_40gev_isrbm",
+    #"HNL_6.67e-10_40gev",
+    #"HNL_6.67e-10_40gev_isr",
+    #"HNL_6.67e-10_40gev_isrbm",
+    "mumununu"
 ]
 
 fig, ax = plt.subplots(ncols=3, figsize=(24,6))
@@ -101,7 +106,7 @@ En_w =[]
 En_isr_w =[]
 En_isrbm_w =[]
 
-event = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/HNL_6.67e-10_40gev.lhe')
+'''event = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/HNL_6.67e-10_40gev.lhe')
 event_isr = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/HNL_6.67e-10_40gev_isr.lhe')
 event_isrbm = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/HNL_6.67e-10_40gev_isrbm.lhe')
 
@@ -123,10 +128,12 @@ event_isrbm = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/HNL_6.67e-10
 
 En = e(En_w, xsec[0], 50000, event)
 En_isr = e(En_isr_w, xsec[1], 10000, event_isr)
-En_isrbm = e(En_isrbm_w, xsec[2], 10000, event_isrbm)
+En_isrbm = e(En_isrbm_w, xsec[2], 10000, event_isrbm)'''
 
+event = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/mumununu.lhe')
+En = e(En_w, xsec[0], 1000000, event)
 
-ax[0].hist([Pt, Pt_isr, Pt_isrbm], 50, weights=[Pt_w, Pt_isr_w, Pt_isrbm_w], stacked=False, histtype='step',color=['blue', 'green', 'red'])
+'''ax[0].hist([Pt, Pt_isr, Pt_isrbm], 50, weights=[Pt_w, Pt_isr_w, Pt_isrbm_w], stacked=False, histtype='step',color=['blue', 'green', 'red'])
 
 ax[0].set_title(r'$U^2=6.67e-10, \; M=40$ GeV, L=204ab$-1$')
 ax[0].set_xlabel(r'$p_T$')
@@ -146,11 +153,19 @@ ax[2].set_title(r'$U^2=6.67e-10, \; M=40$ GeV, L=204ab$-1$')
 ax[2].set_xlabel(r'$E$')
 ax[2].set_ylabel(r'events')
 ax[2].set_yscale('log')
-ax[2].legend(loc='center left', bbox_to_anchor=(1, 0.5))
+ax[2].legend(loc='center left', bbox_to_anchor=(1, 0.5))'''
 
-plt.savefig('/eos/user/s/sgiappic/www/paper/lhe_isr.png')
+ax[0].hist([En], 100, weights=[En_w], stacked=False, histtype='step', label=['mumununu'], color=['blue'])
 
-#for replacement_word in replacement_words:
+ax[0].set_title(r'$U^2=6.67e-10, \; M=40$ GeV, L=204ab$-1$')
+ax[0].set_xlabel(r'$E$')
+ax[0].set_ylabel(r'events')
+ax[0].set_yscale('log')
+ax[0].legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+plt.savefig('/eos/user/s/sgiappic/www/paper/mumununu_ecm.png')
+
+for replacement_word in replacement_words:
     
-    #os.system("gzip /eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe".format(replacement_word))
+    os.system("gzip /eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe".format(replacement_word))
 

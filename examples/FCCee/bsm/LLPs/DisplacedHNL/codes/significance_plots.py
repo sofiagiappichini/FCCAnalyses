@@ -20,7 +20,7 @@ def split_into_three(arr):
     return arr[:third], arr[third:2*third], arr[2*third:]
 
 data_files = [
-    "/eos/user/s/sgiappic/combine/output_cos.csv",
+    "/eos/user/s/sgiappic/combine/output_norebin2.csv",
     ]
 
 
@@ -128,4 +128,4 @@ axs[1].set_title(r'$Shape\; analysis - Inverted\; Hierarchy$', fontsize=20, y=1.
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final_points_norebin.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final_points_norebin2.png', format='png', dpi=330)
