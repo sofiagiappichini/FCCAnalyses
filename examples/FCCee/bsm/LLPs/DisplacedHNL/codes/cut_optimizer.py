@@ -4,7 +4,7 @@ import shutil
 import numpy as np
 
 replacement_words = [
-    #'HNL_4e-8_10gev',
+    'HNL_4e-8_10gev',
     #'HNL_1.33e-9_20gev',
     'HNL_2.86e-12_30gev',
     'HNL_2.86e-7_30gev',
@@ -24,8 +24,10 @@ replacement_bkgs = [
     "p8_ee_Zcc_ecm91",
     "p8_ee_Zud_ecm91",
     "p8_ee_Zss_ecm91",
-    "emununu",
-    "tatanunu"
+    "eenunu",
+    "mumununu",
+    "tatanunu",
+    "llnunu",
 ]
 
 # Define the tree name
@@ -33,21 +35,18 @@ tree_name = "events"
 
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
-leaf_name = "Reco_pt"
+leaf_name = "Reco_DR"
 
-dir = "/eos/user/s/sgiappic/2HNL_ana/final/"
+dir = "/eos/user/s/sgiappic/2HNL_ana/final_july/"
 
 cuts = [
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
-    #"sel2RecoDF_vetoes",
-    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
+    "selReco_gen_notracks_nohad_M80_0.7cos_20MEpt",
 ]
 
 for cut in cuts:
 
     # Print the results
-    output_file = "/eos/user/s/sgiappic/2HNL_ana/" +leaf_name+ "_" +cut+"_optimization.txt"
+    output_file = "/eos/user/s/sgiappic/2HNL_ana/" +leaf_name+ "_optimization.txt"
 
     # book array for background entries
     entries_bkg = []
@@ -72,9 +71,10 @@ for cut in cuts:
         entries = []
 
         # get associated value of variable from the bin and store the high edge (low edge of successive bin)
-        for i in range(len(bin_edges)-50): #exclude one of the edges as bins have both 0. and max but the content is n-1
-            #entries.append(sum(y_values[:i]))
-            entries.append(sum(y_values[i:]))
+        #for i in range(0, len(bin_edges)-50, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
+        for i in range(len(bin_edges), len(bin_edges)-50, -1):
+            entries.append(sum(y_values[:i]))
+            #entries.append(sum(y_values[i:]))
 
         #add the entries for each background into the same array
         for i in range(len(entries)):
@@ -102,9 +102,10 @@ for cut in cuts:
         entries_signal = []
 
         # get associated value of variable from the bin and store the high edge (low edge of successive bin)
-        for i in range(len(bin_edges_signal)-50): #exclude one of the edges as bins have both 0. and max but the content is n-1
-            #entries_signal.append(sum(y_values_signal[:i]))
-            entries_signal.append(sum(y_values_signal[i:]))
+        #for i in range(0, len(bin_edges)-50, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
+        for i in range(len(bin_edges), len(bin_edges)-50, -1):
+            entries_signal.append(sum(y_values_signal[:i]))
+            #entries_signal.append(sum(y_values_signal[i:]))
 
         # calculate significance for each bin 
         s = []
@@ -114,10 +115,10 @@ for cut in cuts:
                 s.append(entries_signal[i] / np.sqrt(entries_signal[i] + entries_bkg[i]))
                 
                 with open(output_file, "a") as file:
-                    file.write("significance = {} for cut at MEpt={} Gev \n".format(s[i], i*(0.5)))
+                    file.write("significance = {} for cut at MEpt={} Gev \n".format(s[i], i*(0.1)))
             
         s_max = np.max(s)
-        index = s.index(s_max)*(0.5)
+        index = s.index(s_max)*(0.1)
 
         with open(output_file, "a") as file:
             file.write("\n Max significance of {} = {} for cut at MEpt={} Gev \n\n".format(replacement_word, s_max, index))

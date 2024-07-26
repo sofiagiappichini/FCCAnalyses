@@ -51,53 +51,80 @@ class RDFanalysis():
     #Mandatory: analysers funtion to define the analysers to process, please make sure you return the last dataframe, in this example it is df2
     def analysers(df):
         df2 = (df
-                .Define("jet_ktN_px",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_px; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_px; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_px; \
-                                            else return float(-1000.0)")
-                .Define("jet_ktN_py",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_py; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_py; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_py; \
-                                            else return float(-1000.0)")
-                .Define("jet_ktN_pz",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_pz; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_pz; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_pz; \
-                                            else return float(-1000.0)")
-                .Define("jet_ktN_phi",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_phi; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_phi; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_phi; \
-                                            else return float(-1000.0)")
-                .Define("jet_ktN_eta",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_eta; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_eta; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_eta; \
-                                            else return float(-1000.0)")
-                .Define("jet_ktN_energy",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_energy; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_energy; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_energy; \
-                                            else return float(-1000.0)")
-                .Define("jet_ktN_mass",           "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_mass; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_mass; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_mass; \
-                                            else return float(-1000.0)")
 
-                .Define("jet_ktN_dPhi_b",       "if (n_genBottoms>0) return (3.1416 - abs(3.1416 - abs(jet_ktN_phi - genBottom_phi.at(0)))); else return (3.1416+jet_ktN_phi);")
-                .Define("jet_ktN_dEta_b",       "if (n_genBottoms>0) return abs(jet_ktN_eta - genBottom_eta.at(0)); else return (99+jet_ktN_eta);")
-                .Define("jet_ktN_dR_b",         "sqrt(jet_ktN_dPhi_b*jet_ktN_dPhi_b + jet_ktN_dEta_b*jet_ktN_dEta_b)")
-                .Define("jet_ktN_dPhi_s",       "if (n_genStranges>0) return (3.1416 - abs(3.1416 - abs(jet_ktN_phi - genStrange_phi.at(0)))); else return (3.1416+jet_ktN_phi);")
-                .Define("jet_ktN_dEta_s",       "if (n_genStranges>0) return abs(jet_ktN_eta - genStrange_eta.at(0)); else return (99+jet_ktN_eta);")
-                .Define("jet_ktN_dR_s",         "sqrt(jet_ktN_dPhi_s*jet_ktN_dPhi_s + jet_ktN_dEta_s*jet_ktN_dEta_s)")
-                .Define("jet_ktN_isSig",        "(jet_ktN_dR_s<0.3) * 1.0")
-                .Define("jet_ktN_Max_mass",     "Max(jet_ktN_mass)")
-                .Define("jet_ktN_Min_energy",   "Min(jet_ktN_energy)")
 
-                .Define("jet_ktN_flavour",      "if (n_muons_sel==0 && n_electrons_sel==0) return jet_kt6_flavour; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return jet_kt4_flavour; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return jet_kt2_flavour; \
-                                            else return float(-1000.0)")
-                .Define("n_ktN_jets",      "if (n_muons_sel==0 && n_electrons_sel==0) return n_jets_kt6; \
-                                            if ((n_muons_sel==1 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==1)) return n_jets_kt4; \
-                                            if ((n_muons_sel==2 && n_electrons_sel==0) || (n_muons_sel==0 && n_electrons_sel==2)) return n_jets_kt2; \
-                                            else return float(-1000.0)")
+                #### INCLUSIVE JET ALGORITHM
+
+                .Define("dilep_R5_cat",   "(n_muons_sel+n_electrons_sel==2 and n_jets_pass==2) * 1.0")
+                .Define("semilep_R5_cat", "(n_muons_sel+n_electrons_sel==1 and n_jets_pass==4) * 1.0")
+                .Define("dihad_R5_cat",   "(n_muons_sel+n_electrons_sel==0 and n_jets_pass==6) * 1.0")
+
+                .Define("jet_R5_cat_p4",     "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return myUtils::build_p4(jet_pass_px, jet_pass_py, jet_pass_pz, jet_pass_energy); else return ROOT::VecOps::RVec<TLorentzVector>{};")
+                .Define("jet_R5_cat_px",     "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_px; else return float(-99.);")
+                .Define("jet_R5_cat_py",     "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_py; else return float(-99.);")
+                .Define("jet_R5_cat_pz",     "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_pz; else return float(-99.);")
+                .Define("jet_R5_cat_phi",    "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_phi; else return float(-99.);")
+                .Define("jet_R5_cat_eta",    "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_eta; else return float(-99.);")
+                .Define("jet_R5_cat_energy", "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_energy; else return float(-99.);")
+                .Define("jet_R5_cat_mass",   "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_mass; else return float(-99.);")
+                .Define("jet_R5_cat_dR_b",   "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_dR_b; else return float(-99.);")
+                .Define("jet_R5_cat_dR_s",   "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_dR_s; else return float(-99.);")
+                .Define("jet_R5_cat_isSig",  "(jet_R5_cat_dR_s<0.3) * 1.0")
+
+                .Define("jet_R5_cat_flavor", "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_flavor; else return float(-99.);")
+                .Define("jet_R5_cat_isG",    "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_isG; else return float(-99.);")
+                .Define("jet_R5_cat_isQ",    "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_isQ; else return float(-99.);")
+                .Define("jet_R5_cat_isS",    "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_isS; else return float(-99.);")
+                .Define("jet_R5_cat_isC",    "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_isC; else return float(-99.);")
+                .Define("jet_R5_cat_isB",    "if (dilep_R5_cat==1 || semilep_R5_cat==1 || dihad_R5_cat==1) return jet_pass_isB; else return float(-99.);")
+
+                .Define("n_jets_R5_cat",     "return int(jet_R5_cat_flavor.size())")
+
+                .Define("dijet_R5_cs_ind",         "FCCAnalyses::ZHfunctions::sel_dijet_score(jet_R5_cat_isC, jet_R5_cat_isS)")
+                .Define("dijet_R5_cat_px",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_R5_cs_ind, jet_R5_cat_p4)")
+                .Define("dijet_R5_cat_py",     "FCCAnalyses::ZHfunctions::get_dijet_py(dijet_R5_cs_ind, jet_R5_cat_p4)")
+                .Define("dijet_R5_cat_pz",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_R5_cs_ind, jet_R5_cat_p4)")
+                .Define("dijet_R5_cat_energy", "FCCAnalyses::ZHfunctions::get_dijet_energy(dijet_R5_cs_ind, jet_R5_cat_p4)")
+                .Define("dijet_R5_cat_mass",   "FCCAnalyses::ZHfunctions::get_dijet_mass(dijet_R5_cs_ind, jet_R5_cat_p4)")
+
+
+                #### EXCLUSIVE JET ALGORITHMS
+
+                .Define("jet_ktN_cat_p4",               "if (dilep_cat==1) return myUtils::build_p4(jet_kt6_px, jet_kt6_py, jet_kt6_pz, jet_kt6_energy); if (semilep_cat==1) return myUtils::build_p4(jet_kt4_px, jet_kt4_py, jet_kt4_pz, jet_kt4_energy); \
+                                                        if (dihad_cat==1) return myUtils::build_p4(jet_kt2_px, jet_kt2_py, jet_kt2_pz, jet_kt2_energy); else return ROOT::VecOps::RVec<TLorentzVector>{};")
+                .Define("jet_ktN_cat_cat_px",           "if (dilep_cat==1) return jet_kt6_px; if (semilep_cat==1) return jet_kt4_px; if (dihad_cat==1) return jet_kt2_px; else return float(-99.0)")
+                .Define("jet_ktN_cat_cat_py",           "if (dilep_cat==1) return jet_kt6_py; if (semilep_cat==1) return jet_kt4_py; if (dihad_cat==1) return jet_kt2_py; else return float(-99.0)")
+                .Define("jet_ktN_cat_cat_pz",           "if (dilep_cat==1) return jet_kt6_pz; if (semilep_cat==1) return jet_kt4_pz; if (dihad_cat==1) return jet_kt2_pz; else return float(-99.0)")
+                .Define("jet_ktN_cat_cat_phi",           "if (dilep_cat==1) return jet_kt6_phi; if (semilep_cat==1) return jet_kt4_phi; if (dihad_cat==1) return jet_kt2_phi; else return float(-99.0)")
+                .Define("jet_ktN_cat_cat_eta",           "if (dilep_cat==1) return jet_kt6_eta; if (semilep_cat==1) return jet_kt4_eta; if (dihad_cat==1) return jet_kt2_eta; else return float(-99.0)")
+                .Define("jet_ktN_cat_cat_energy",           "if (dilep_cat==1) return jet_kt6_energy; if (semilep_cat==1) return jet_kt4_energy; if (dihad_cat==1) return jet_kt2_energy; else return float(-99.0)")
+                .Define("jet_ktN_cat_cat_mass",           "if (dilep_cat==1) return jet_kt6_mass; if (semilep_cat==1) return jet_kt4_mass; if (dihad_cat==1) return jet_kt2_mass; else return float(-99.0)")
+
+                .Define("jet_ktN_cat_cat_dPhi_b",       "if (n_genBottoms>0) return (3.1416 - abs(3.1416 - abs(jet_ktN_cat_cat_phi - genBottom_phi.at(0)))); else return (3.1416+jet_ktN_cat_cat_phi);")
+                .Define("jet_ktN_cat_cat_dEta_b",       "if (n_genBottoms>0) return abs(jet_ktN_cat_eta - genBottom_eta.at(0)); else return (99+jet_ktN_cat_eta);")
+                .Define("jet_ktN_cat_dR_b",         "sqrt(jet_ktN_cat_dPhi_b*jet_ktN_cat_dPhi_b + jet_ktN_cat_dEta_b*jet_ktN_cat_dEta_b)")
+                .Define("jet_ktN_cat_dPhi_s",       "if (n_genStranges>0) return (3.1416 - abs(3.1416 - abs(jet_ktN_cat_phi - genStrange_phi.at(0)))); else return (3.1416+jet_ktN_cat_phi);")
+                .Define("jet_ktN_cat_dEta_s",       "if (n_genStranges>0) return abs(jet_ktN_cat_eta - genStrange_eta.at(0)); else return (99+jet_ktN_cat_eta);")
+                .Define("jet_ktN_cat_dR_s",         "sqrt(jet_ktN_cat_dPhi_s*jet_ktN_cat_dPhi_s + jet_ktN_cat_dEta_s*jet_ktN_cat_dEta_s)")
+                .Define("jet_ktN_cat_isSig",        "(jet_ktN_cat_dR_s<0.3) * 1.0")
+                .Define("jet_ktN_cat_Max_mass",     "Max(jet_ktN_cat_mass)")
+                .Define("jet_ktN_cat_Min_energy",   "Min(jet_ktN_cat_energy)")
+
+                .Define("jet_ktN_cat_flavour",      "if (dilep_cat==1) return jet_kt6_flavour; if (semilep_cat==1) return jet_kt4_flavour; if (dihad_cat==1) return jet_kt2_flavour; else return float(-99.0)")
+                .Define("jet_ktN_cat_isG",    "if (dilep_cat==1) return recojet_isG_kt6; if (semilep_cat==1) return recojet_isG_kt4; if (dihad_cat==1) return recojet_isG_kt2; else return float(-99.);")
+                .Define("jet_ktN_cat_isQ",    "if (dilep_cat==1) return recojet_isQ_kt6; if (semilep_cat==1) return recojet_isQ_kt4; if (dihad_cat==1) return recojet_isQ_kt2; else return float(-99.);")
+                .Define("jet_ktN_cat_isS",    "if (dilep_cat==1) return recojet_isS_kt6; if (semilep_cat==1) return recojet_isS_kt4; if (dihad_cat==1) return recojet_isS_kt2; else return float(-99.);")
+                .Define("jet_ktN_cat_isC",    "if (dilep_cat==1) return recojet_isC_kt6; if (semilep_cat==1) return recojet_isC_kt4; if (dihad_cat==1) return recojet_isC_kt2; else return float(-99.);")
+                .Define("jet_ktN_cat_isB",    "if (dilep_cat==1) return recojet_isB_kt6; if (semilep_cat==1) return recojet_isB_kt4; if (dihad_cat==1) return recojet_isB_kt2; else return float(-99.);")
+
+                .Define("n_jets_ktN_cat",      "if (dilep_cat==1) return n_jets_kt6; if (semilep_cat==1) return n_jets_kt4; if (dihad_cat==1) return n_jets_kt2; else return float(-99.0)")
+
+                .Define("dijet_ktN_cs_ind",         "FCCAnalyses::ZHfunctions::sel_dijet_score(jet_ktN_cat_isC, jet_ktN_cat_isS)")
+                .Define("dijet_ktN_cat_px",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_ktN_cs_ind, jet_ktN_cat_p4)")
+                .Define("dijet_ktN_cat_py",     "FCCAnalyses::ZHfunctions::get_dijet_py(dijet_ktN_cs_ind, jet_ktN_cat_p4)")
+                .Define("dijet_ktN_cat_pz",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_ktN_cs_ind, jet_ktN_cat_p4)")
+                .Define("dijet_ktN_cat_energy", "FCCAnalyses::ZHfunctions::get_dijet_energy(dijet_ktN_cs_ind, jet_ktN_cat_p4)")
+                .Define("dijet_ktN_cat_mass",   "FCCAnalyses::ZHfunctions::get_dijet_mass(dijet_ktN_cs_ind, jet_ktN_cat_p4)")
 
         )
         return df2
@@ -190,6 +217,13 @@ class RDFanalysis():
                        "jet_kt6_subC_mass",  "jet_kt6_subC_flavor",  "jet_kt6_subC_dR_b",  "jet_kt6_subC_dR_s",  "jet_kt6_subC_isSig",
                        "jet_kt6_subC_isG",   "jet_kt6_subC_isQ",     "jet_kt6_subC_isS",   "jet_kt6_subC_isC",   "jet_kt6_subC_isB"]
 
-        branchList += ["jet_ktN_px", "jet_ktN_py", "jet_ktN_pz", "jet_ktN_phi", "jet_ktN_eta", "jet_ktN_energy", "jet_ktN_mass", "jet_ktN_flavor"]
+        #### stage2 variables ####
+        branchList += ["dilep_R5_cat", "semilep_R5_cat", "dihad_R5_cat"]
+        branchList += ["jet_R5_cat_px", "jet_R5_cat_py", "jet_R5_cat_pz", "jet_R5_cat_phi", "jet_R5_cat_eta", "jet_R5_cat_energy", "jet_R5_cat_mass", "jet_R5_cat_flavor",
+                        "n_jets_R5_cat", "jet_R5_cat_isG", "jet_R5_cat_isQ", "jet_R5_cat_isS", "jet_R5_cat_isC", "jet_R5_cat_isB",
+                        "dijet_R5_cat_px", "dijet_R5_cat_py", "dijet_R5_cat_pz", "dijet_R5_cat_energy", "dijet_R5_cat_mass"]
+        branchList += ["jet_ktN_cat_px", "jet_ktN_cat_py", "jet_ktN_cat_pz", "jet_ktN_cat_phi", "jet_ktN_cat_eta", "jet_ktN_cat_energy", "jet_ktN_cat_mass", "jet_ktN_cat_flavor",
+                        "n_jets_ktN_cat", "jet_ktN_cat_isG", "jet_ktN_cat_isQ", "jet_ktN_cat_isS", "jet_ktN_cat_isC", "jet_ktN_cat_isB",
+                        "dijet_ktN_cat_px", "dijet_ktN_cat_py", "dijet_ktN_cat_pz", "dijet_ktN_cat_energy", "dijet_ktN_cat_mass"]
 
         return branchList

@@ -864,10 +864,29 @@ cutList = {
     ### vetoes now applied at stage 1 for all samples ###
     #"sel2Reco_vetoes": "n_RecoLeptons==2 && ((Reco_charge.at(0)==1 && Reco_charge.at(1)==-1) || (Reco_charge.at(0)==-1 && Reco_charge.at(1)==1)) && n_RecoPhotons==0",
     
-    "selNone":"true",
-    #"sel2Reco_vetoes_notracks": "n_noLeptonTracks==0 ",
-    #"sel2Reco_vetoes_notracks_nojets": "n_noLeptonTracks==0 && n_antikt_jets==0",
-    #"sel2Reco_vetoes_notracks_nonh": "n_noLeptonTracks==0 && n_NeutralHadrons==0",
+    #"selNone":"true",
+    ### cuts for SM llnunu at generator level to be applied to everything properly
+    #"selReco_gen": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>5", ## Reco_e>2 is taken care of by delphes already, no need to specify it here
+    #"selReco_gen_notracks": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>5 && n_noLeptonTracks==0",
+    ####"selReco_gen_notrack_nojets": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_antikt_jets==0",
+    "selReco_gen_notracks_2eh": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0",
+    #"selReco_gen_notracks_nohad_M80": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80",
+    #"selReco_gen_notracks_nohad_M80_0.8cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.8",
+    #"selReco_gen_notracks_nohad_M80_0.8cos0.8": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.8 && Reco_cos<0.8",
+    
+    #"selReco_gen_notracks_nohad_M80_0.7cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.7",
+    #"selReco_gen_notracks_nohad_5M80_0.7cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_invMass>5 && Reco_cos>-0.7",
+    #"selReco_gen_notracks_nohad_M80_0.7cos_5pt": "Reco_pt.at(0)>5 && Reco_pt.at(1)>5  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.7",
+    #"selReco_gen_notracks_nohad_M80_0.7cos_20MEpt": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>20 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.7",
+    #"selReco_gen_notracks_nohad_5M80_0.7cos_20MEpt": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>20 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_invMass>5 && Reco_cos>-0.7",
+    #"selReco_gen_notracks_nohad_5M80_0.7cos_10MEpt_SF": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_invMass>5 && Reco_cos>-0.7 && (n_RecoElectrons==2 || n_RecoMuons==2)",
+    #"selReco_gen_notracks_nohad_5M80_0.7cos_10MEpt_DF": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_invMass>5 && Reco_cos>-0.7 && (n_RecoElectrons==1 || n_RecoMuons==1)",
+
+    #"selReco_gen_notracks_lehad_M80_0.8cos_10MEpt": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && NeutralHadrons_e.at(i)<2 && Reco_invMass<80 && Reco_cos>-0.8",
+    #"selReco_gen_notracks_nojets_5M80_0.8cos_10MEpt": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && Reco_invMass>5 && Reco_cos>-0.8",
+
+    #"selReco_gen_notracks_nohad_SF": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && (n_RecoElectrons==2 || n_RecoMuons==2)",
+    #"selReco_gen_notracks_nohad_DF": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && (n_RecoElectrons==1 || n_RecoMuons==1)",
 
     #"sel2Reco_vetoes_notracks_nojets_M80": "n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80",
     #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt": "n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_invMass<80 && RecoMissingEnergy_pt.at(0)>10",

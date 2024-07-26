@@ -27,38 +27,46 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
-DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
-DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/' 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_july/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/july/' 
 
 CUTS = [
     #"sel2RecoSF_vetoes_tracks_M80_5MEpt_0.8cos_chi",
     #"sel2RecoDF_vetoes_tracks_M80_5MEpt_0.8cos_chi",
     #"sel2RecoSF_vetoes_tracks_M80_5MEpt_0.8cos",
     #"sel2RecoDF_vetoes_tracks_M80_5MEpt_0.8cos",
+
     #"sel2Reco_vetoes",
     #"sel2Gen_vetoes",
-    #"sel2RecoSF_vetoes",
-    #"sel2RecoDF_vetoes",
-    #"selNone",
+
     #"sel2Reco_vetoes",
     #"sel2Reco_vetoes_notracks",
-    #"sel2Reco_vetoes_tracks",
     #"sel2Reco_vetoes_notracks_nojets",
-    #"sel2Reco_vetoes_notracks_nojetsexcl",
-    #"sel2Reco_vetoes_jets_excl2",
-    "sel2Reco_vetoes",
-    "sel2Reco_vetoes_notracks",
-    "sel2Reco_vetoes_notracks_nojets",
-    "sel2Reco_vetoes_notracks_nojets_M80",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0",
-    #"sel2Reco_vetoes_notracks_nojets_pt10_2.5eta_0.4DR_M80_10MEpt_0.8cos",
     #"sel2Reco_vetoes_notracks_nojets_M80",
-    #"sel2Reco_vetoes_notracks_nojets_M80_5MEpt", 
-    #"sel2Reco_vetoes_notracks_nojets_M80_5MEpt_0.8cos",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos_chi10_0.57d0",
+
+    #"selNone",
+    #"selReco_gen",
+    #"selReco_gen_notracks",
+    #"selReco_gen_notrack_nojets",
+    #"selReco_gen_notracks_nohad",
+    #"selReco_gen_notracks_nohad_M80",
+    #"selReco_gen_notracks_nohad_M80_0.8cos",
+    #"selReco_gen_notracks_nohad_M80_0.8cos0.8",
+    #"selReco_gen_notracks_nohad_SF",
+    #"selReco_gen_notracks_nohad_DF",
     
- 
+    
+    #"selReco_gen_notracks_nohad_M80_0.8cos0.8_8MET",
+    #"selReco_gen_notracks_nohad_M80_0.7cos",
+    #"selReco_gen_notracks_nohad_5M80_0.7cos",
+    #"selReco_gen_notracks_nohad_M80_0.7cos_5pt",
+    #"selReco_gen_notracks_nohad_M80_0.7cos_20MEpt",
+    #"selReco_gen_notracks_nohad_5M80_0.7cos_5pt_20MEpt",
+    #"selReco_gen_notracks_nojets_M80_0.8cos_10MEpt",
+    "selReco_gen_notracks_2eh",
  ] 
 
 LABELS = {
@@ -92,6 +100,24 @@ LABELS = {
     "sel2Reco_vetoes_notracks_nojets_M80":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, MG cuts",
     "sel2Reco_vetoes_notracks_nojets_M80_5MEpt": "Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, MG cuts",
     "sel2Reco_vetoes_notracks_nojets_M80_5MEpt_0.8cos":"Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>5 GeV, cos#theta>-0.8, MG cuts",
+ 
+    "selNone":"Two leptons, no photons",
+    "selReco_gen": "Two leptons, no photons, p_{T}>1 GeV, p_{T, miss}>5 GeV",
+    "selReco_gen_notracks": "Two leptons, no photons, no tracks, p_{T}>1 GeV, p_{T, miss}>5 GeV",
+    "selReco_gen_notrack_nojets": "Two leptons, no photons, no tracks, no jets, p_{T}>1 GeV, p_{T, miss}>5 GeV",
+    "selReco_gen_notracks_nohad": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, p_{T, miss}>5 GeV",
+    "selReco_gen_notracks_nohad_M80": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, p_{T, miss}>5 GeV, M(l,l')<80 GeV",
+    "selReco_gen_notracks_nohad_M80_0.8cos": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, p_{T, miss}>5 GeV, M(l,l')<80 GeV, cos#theta>-0.8",
+    "selReco_gen_notracks_nohad_M80_0.8cos0.8": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, p_{T, miss}>5 GeV, M(l,l')<80 GeV, -0.8<cos#theta<0.8",
+    "selReco_gen_notracks_nojets_M80_0.8cos_10MEpt": "Two leptons, no photons, no tracks, no jets, p_{T}>1 GeV, p_{T, miss}>10 GeV, M(l,l')<80 GeV",
+    "selReco_gen_notracks_nojets_5M80_0.8cos_10MEpt": "Two leptons, no photons, no tracks, no jets, p_{T}>1 GeV, p_{T, miss}>10 GeV, 5<M(l,l')<80 GeV",
+    
+    "selReco_gen_notracks_nohad_SF": "Two leptons SF, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, p_{T, miss}>5 GeV",
+    "selReco_gen_notracks_nohad_DF": "Two leptons DF, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, p_{T, miss}>5 GeV",
+
+    "selReco_gen_notracks_2eh": "Two leptons, no photons, no neutral hadrons (E>2 GeV), no tracks, p_{T}>1 GeV, p_{T, miss}>5 GeV",
+
+    "selReco_gen_notracks_nojets_M80_0.8cos_10MEpt": "Two leptons, no photons, no tracks, no jets, p_{T}>1 GeV, p_{T, miss}>10 GeV, M(l,l')<80 GeV, cos#theta>-0.8",
  
  }
 
@@ -243,6 +269,12 @@ VARIABLES_ALL = [
     "Reco_cos",
     "Reco_DR",
 
+    "RecoEmiss_px",
+    "RecoEmiss_py",
+    "RecoEmiss_pz",
+    "RecoEmiss_pt",
+    "RecoEmiss_e",
+
     "RecoMissingEnergy_e",
     "RecoMissingEnergy_p",
     "RecoMissingEnergy_pt",
@@ -264,7 +296,7 @@ VARIBALES_JETS = [
     "noLep_py",   
     "noLep_pz",    
     "noLep_eta",   
-    "noLep_theta",
+    "noLep_{T}heta",
     "noLep_phi",  
     "noLep_charge",  
     "RecoTracknoLep_absD0", 
@@ -327,7 +359,7 @@ VARIABLES_PID = [
     "GenKplus_pt",
 ]
 
-backgrounds_old = [
+backgrounds = [
     'p8_ee_Zee_ecm91',
     'p8_ee_Zmumu_ecm91',
     'p8_ee_Ztautau_ecm91',
@@ -335,58 +367,48 @@ backgrounds_old = [
     'p8_ee_Zcc_ecm91',
     'p8_ee_Zud_ecm91',
     'p8_ee_Zss_ecm91',
-    'emununu',
+    'eenunu',
+    'mumununu',
     'tatanunu',
+    'llnunu',
 ]
 
 blegend = {
     'p8_ee_Zee_ecm91': 'Z #rightarrow ll',
+    #'p8_ee_Zee_ecm91': 'Z #rightarrow ee',
+    'p8_ee_Zmumu_ecm91': 'Z #rightarrow mumu',
     'p8_ee_Ztautau_ecm91': 'Z #rightarrow #tau#tau',
     'p8_ee_Zbb_ecm91': 'Z #rightarrow bb',
     'p8_ee_Zcc_ecm91': 'Z #rightarrow cc',
     'p8_ee_Zud_ecm91': 'Z #rightarrow uds',
-    'emununu': 'll#nu#nu',
-}
-
-blegend_old = {
-    'p8_ee_Zee_ecm91': 'Z #rightarrow ee',
-    'p8_ee_Zmumu_ecm91': 'Z #rightarrow #mu#mu',
-    'p8_ee_Ztautau_ecm91': 'Z #rightarrow #tau#tau',
-    'p8_ee_Zbb_ecm91': 'Z #rightarrow bb',
-    'p8_ee_Zcc_ecm91': 'Z #rightarrow cc',
-    'p8_ee_Zud_ecm91': 'Z #rightarrow ud',
     'p8_ee_Zss_ecm91': 'Z #rightarrow ss',
-    'emununu': 'll#nu#nu',
+    'eenunu': 'ee#nu#nu',
+    'mumununu': '#mu#mu#nu#nu',
     'tatanunu': '#tau#tau#nu#nu',
+    'llnunu': 'll#nu#nu',
 }
 
 bcolors = {
-    'emununu': 33,
     'p8_ee_Zee_ecm91': 40,
+    #'p8_ee_Zee_ecm91': 48,
+    #'p8_ee_Zmumu_ecm91': 44,
     'p8_ee_Ztautau_ecm91': 36,
     'p8_ee_Zbb_ecm91': 48,
     'p8_ee_Zcc_ecm91': 44,
     'p8_ee_Zud_ecm91': 20,
-}
-
-bcolors_old = {
-    'p8_ee_Zee_ecm91': 29,
-    'p8_ee_Zmumu_ecm91': 32,
-    'p8_ee_Ztautau_ecm91': 34,
-    'p8_ee_Zbb_ecm91': 48,
-    'p8_ee_Zcc_ecm91': 44,
-    'p8_ee_Zud_ecm91': 41,
-    'p8_ee_Zss_ecm91': 20,
-    'emununu': 40,
+    'eenunu': 30,
+    'mumununu': 32,
     'tatanunu': 38,
+    'llnunu': 33,
 }
 
 signals = [
-    #'HNL_2.86e-7_30gev',
     'HNL_2.86e-12_30gev',
     'HNL_6.67e-10_30gev',
     'HNL_5e-12_60gev',
     'HNL_1.33e-7_80gev',
+    
+    
     #"HNL_6.67e-10_40gev",
     #"HNL_6.67e-10_40gev_isr",
     #"HNL_6.67e-10_40gev_isrbm",
@@ -422,7 +444,7 @@ for cut in CUTS:
         canvas = ROOT.TCanvas("", "", 800, 800)
 
         nsig = len(signals)
-        nbkg = 6 # change according to type of plots, 6 for grouped backgrounds, #len(backgrounds)
+        nbkg = 9 # change according to type of plots, 6 for grouped backgrounds, #len(backgrounds)
 
         #legend coordinates and style
         
@@ -458,6 +480,7 @@ for cut in CUTS:
             histos.append(hh)
             colors.append(scolors[s])
             leg.AddEntry(histos[-1], slegend[s], "l")
+            #leg.AddEntry(histos[-1], blegend[s]+": "+str(histos[-1].Integral()), "l")
 
         '''for b in backgrounds_old:
             fin = f"{DIRECTORY}{b}_{cut}_histo.root"
@@ -470,21 +493,43 @@ for cut in CUTS:
             leg2.AddEntry(histos[-1], blegend_old[b], "f")'''
         
         if nbkg != 0:
+
             #add some backgrounds to the same histogram
-            fin = f"{DIRECTORY}emununu_{cut}_histo.root"
+            fin = f"{DIRECTORY}eenunu_{cut}_histo.root"
             with ROOT.TFile(fin) as tf:
                 h = tf.Get(variable)
                 hh = copy.deepcopy(h)
                 hh.SetDirectory(0)
-            fin1 = f"{DIRECTORY}tatanunu_{cut}_histo.root"
-            with ROOT.TFile(fin1) as tf1:
-                h1 = tf1.Get(variable)
-                hh1 = copy.deepcopy(h1)
-                hh1.SetDirectory(0)
-            hh.Add(hh1)
             histos.append(hh)
-            colors.append(bcolors["emununu"])
-            leg2.AddEntry(histos[-1], blegend["emununu"], "f")
+            colors.append(bcolors["eenunu"])
+            leg2.AddEntry(histos[-1], blegend["eenunu"], "f")
+
+            fin = f"{DIRECTORY}mumununu_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            histos.append(hh)
+            colors.append(bcolors["mumununu"])
+            leg2.AddEntry(histos[-1], blegend["mumununu"], "f")
+
+            fin = f"{DIRECTORY}tatanunu_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            histos.append(hh)
+            colors.append(bcolors["tatanunu"])
+            leg2.AddEntry(histos[-1], blegend["tatanunu"], "f")
+
+            fin = f"{DIRECTORY}llnunu_{cut}_histo.root"
+            with ROOT.TFile(fin) as tf:
+                h = tf.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+            histos.append(hh)
+            colors.append(bcolors["llnunu"])
+            leg2.AddEntry(histos[-1], blegend["llnunu"], "f")
             
             fin = f"{DIRECTORY}p8_ee_Zee_ecm91_{cut}_histo.root"
             with ROOT.TFile(fin) as tf:

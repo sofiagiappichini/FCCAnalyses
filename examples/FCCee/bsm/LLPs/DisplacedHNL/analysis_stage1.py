@@ -3,18 +3,19 @@ import ROOT
 #Mandatory: List of processes
 
 processList = {
-        #'p8_ee_Zee_ecm91':{'chunks':100},
-        #'p8_ee_Zmumu_ecm91':{'chunks':100},
-        #'p8_ee_Ztautau_ecm91':{'chunks':100},
-        #'p8_ee_Zbb_ecm91':{'chunks':100},
-        #'p8_ee_Zcc_ecm91':{'chunks':100},
-        #'p8_ee_Zud_ecm91':{'chunks':100},
-        #'p8_ee_Zss_ecm91':{'chunks':100},
+        'p8_ee_Zee_ecm91':{'chunks':100},
+        'p8_ee_Zmumu_ecm91':{'chunks':100},
+        'p8_ee_Ztautau_ecm91':{'chunks':100},
+        'p8_ee_Zbb_ecm91':{'chunks':100},
+        'p8_ee_Zcc_ecm91':{'chunks':100},
+        'p8_ee_Zud_ecm91':{'chunks':100},
+        'p8_ee_Zss_ecm91':{'chunks':100},
 
-        'eenunu':{},
-        'mumununu':{},
-        'tatanunu':{},
-        'llnunu':{}
+        #'eenunu':{},
+        #'mumununu':{},
+        #'tatanunu':{},
+        #'llnunu':{}
+        #'mumununu_2_off':{},
 }
 
 processList_e = {
@@ -424,20 +425,20 @@ processList_e = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/winter2023/IDEA/"
+prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
 
 #Optional: output directory, default is local dir
 #outputDir = "output_stage1/"
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1_hadeff/"
 
 ### necessary to run on HTCondor ###
 eosType = "eosuser"
@@ -446,7 +447,7 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = False
+runBatch = True
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "tomorrow"
@@ -701,7 +702,7 @@ class RDFanalysis():
 
                 #NEUTRAL HADRONS
                 #.Define("Candidates", "ReconstructedParticle::remove(ReconstructedParticles, RecoPhotons)") #does not work well, there are more "photons" than expected at e<2 Gev(no efficiency) that are not in Photons but in RecoParticle so they are kept here
-                .Define("NeutralHadrons_cand",   "ReconstructedParticles[ReconstructedParticles.type != 22]") #this instead excludes all photons with type 22, type 0 is charged particles and then type 130 is K0 that we are interested in, pi0 always decay in gamma-gamma
+                .Define("NeutralHadrons_cand",   "ReconstructedParticles[ReconstructedParticles.type != 22 && ReconstructedParticles.energy > 2]") #this instead excludes all photons with type 22, type 0 is charged particles and then type 130 is K0 that we are interested in, pi0 always decay in gamma-gamma
                 .Define("NeutralHadrons",       "ReconstructedParticle::sel_charge(0, true) (NeutralHadrons_cand)")
                 .Define("n_NeutralHadrons",  "ReconstructedParticle::get_n(NeutralHadrons)") #count how many photons are in the event in total
                 .Define("NeutralHadrons_e",      "ReconstructedParticle::get_e(NeutralHadrons)")
