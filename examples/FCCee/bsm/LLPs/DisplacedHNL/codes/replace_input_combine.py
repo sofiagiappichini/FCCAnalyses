@@ -404,7 +404,7 @@ if not os.path.exists(backup_dir):
 for replacement_word in replacement_words:
 
     # Backup the original file
-    shutil.copy("/eos/user/s/sgiappic/combine/datacard_norebin.txt", os.path.join(backup_dir, "datacard_backup.txt"))
+    shutil.copy("/eos/user/s/sgiappic/combine/datacard_24july.txt", os.path.join(backup_dir, "datacard_backup.txt"))
 
     # Perform substitution using sed within the loop
     with open(os.path.join(backup_dir, "datacard_backup.txt"), "r") as file:
@@ -417,7 +417,7 @@ for replacement_word in replacement_words:
 
     # Define the file names
     input_file = "significance.txt"
-    output_file = "/eos/user/s/sgiappic/combine/output_norebin.csv"
+    output_file = "/eos/user/s/sgiappic/combine/output_24july.csv"
 
     with open(input_file, "r") as file:
             read = False

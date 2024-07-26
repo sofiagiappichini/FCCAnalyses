@@ -44,15 +44,11 @@ def pt(weight, s, n, events):
 
 def e(weight, s, n, events):
     en = []
-    en_p = []
     for event in events:
         for particle in event.particles:
-            if particle.status == 1:# and particle.id in [11, -11, 13, -13, 15, -15]:
-                en_p.append(particle.e)
+            if particle.status == 1 and particle.id in [11, -11, 13, -13, 15, -15]:
+                en.append(particle.e)
                 weight.append(s*204e6/n)
-        en.append(np.sum(en_p))
-        en_p = []
-    print(np.max(en))
     return en
 
 
@@ -60,16 +56,18 @@ replacement_words = [
     #"HNL_6.67e-10_40gev",
     #"HNL_6.67e-10_40gev_isr",
     #"HNL_6.67e-10_40gev_isrbm",
-    "mumununu"
+    "mumununu",
+    "mumununu_2",
 ]
 
 fig, ax = plt.subplots(ncols=3, figsize=(24,6))
 xsec = []
+nev = []
 
 # Loop through each replacement word
 for replacement_word in replacement_words:
 
-    #os.system("gzip -d /eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe.gz".format(replacement_word))
+    os.system("gzip -d /eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe.gz".format(replacement_word))
 
     input_file = '/eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe'.format(replacement_word)
 
@@ -79,11 +77,15 @@ for replacement_word in replacement_words:
         for line in file:
             if "#  Integrated weight (pb)  :" in line:
                 xsec.append(float(line[30:]))
-                read=True
+
+            if "#  Number of Events        :" in line:
+                nev.append(float(line[30:]))
+                read = True
+
         if read == False:
             content_of_row='error'
-
 print(xsec)
+print(nev)
 
 invMass =[]
 invMass_isr =[]
@@ -131,7 +133,22 @@ En_isr = e(En_isr_w, xsec[1], 10000, event_isr)
 En_isrbm = e(En_isrbm_w, xsec[2], 10000, event_isrbm)'''
 
 event = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/mumununu.lhe')
-En = e(En_w, xsec[0], 1000000, event)
+event_isr = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/mumununu_2.lhe')
+
+invMass = inv(invMass_w, xsec[0], nev[0], event)
+invMass_isr = inv(invMass_isr_w, xsec[1], nev[1], event_isr)
+
+event = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/mumununu.lhe')
+event_isr = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/mumununu_2.lhe')
+
+Pt = pt(Pt_w, xsec[0], nev[0], event)
+Pt_isr = pt(Pt_isr_w, xsec[1], nev[1], event_isr)
+
+event = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/mumununu.lhe')
+event_isr = pylhe.read_lhe('/eos/user/s/sgiappic/2HNL_samples/lhe/mumununu_2.lhe')
+
+En = e(En_w, xsec[0], nev[0], event)
+En_isr = e(En_isr_w, xsec[1], nev[1], event_isr)
 
 '''ax[0].hist([Pt, Pt_isr, Pt_isrbm], 50, weights=[Pt_w, Pt_isr_w, Pt_isrbm_w], stacked=False, histtype='step',color=['blue', 'green', 'red'])
 
@@ -155,15 +172,29 @@ ax[2].set_ylabel(r'events')
 ax[2].set_yscale('log')
 ax[2].legend(loc='center left', bbox_to_anchor=(1, 0.5))'''
 
-ax[0].hist([En], 100, weights=[En_w], stacked=False, histtype='step', label=['mumununu'], color=['blue'])
+ax[0].hist([Pt, Pt_isr], 50, weights=[Pt_w, Pt_isr_w], stacked=False, histtype='step',color=['blue', 'green'])
 
 ax[0].set_title(r'$U^2=6.67e-10, \; M=40$ GeV, L=204ab$-1$')
-ax[0].set_xlabel(r'$E$')
+ax[0].set_xlabel(r'$p_T$')
 ax[0].set_ylabel(r'events')
 ax[0].set_yscale('log')
-ax[0].legend(loc='center left', bbox_to_anchor=(1, 0.5))
 
-plt.savefig('/eos/user/s/sgiappic/www/paper/mumununu_ecm.png')
+ax[1].hist([invMass, invMass_isr], 100, weights=[invMass_w, invMass_isr_w], stacked=False, histtype='step', color=['blue', 'green'])
+
+ax[1].set_title(r'$U^2=6.67e-10, \; M=40$ GeV, L=204ab$-1$')
+ax[1].set_xlabel(r'$M(l,l)$')
+ax[1].set_ylabel(r'events')
+ax[1].set_yscale('log')
+
+ax[2].hist([En, En_isr], 100, weights=[En_w, En_isr_w], stacked=False, histtype='step', label=['massless mu', 'massive mu'], color=['blue', 'green'])
+
+ax[2].set_title(r'$U^2=6.67e-10, \; M=40$ GeV, L=204ab$-1$')
+ax[2].set_xlabel(r'$E$')
+ax[2].set_ylabel(r'events')
+ax[2].set_yscale('log')
+ax[2].legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
+plt.savefig('/eos/user/s/sgiappic/www/paper/mumununu_scaled.png')
 
 for replacement_word in replacement_words:
     

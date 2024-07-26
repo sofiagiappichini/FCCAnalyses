@@ -36,13 +36,14 @@ energy         = 91
 collider       = 'FCC-ee'
 intLumi        = 204 #ab-1
 
-DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final/' 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_july/' 
 
 CUTS = [
     #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
     #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
     #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
-    "sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
+    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
+    "selReco_gen_notracks_nohad_5M80_0.7cos_20MEpt",
  ] # cut to rebin
 
 VARIABLE = "Reco_DR" # variable to rebin
@@ -55,8 +56,10 @@ FILES = [
     "p8_ee_Zcc_ecm91",
     "p8_ee_Zud_ecm91",
     "p8_ee_Zss_ecm91",
-    "emununu",
+    "eenunu",
+    "mumununu",
     "tatanunu",
+    "llnunu",
     
     "HNL_1.33e-7_10gev",
     "HNL_1.33e-7_20gev",
@@ -458,25 +461,42 @@ LABELS = {
     
  }
 
+backgrounds = [
+    'p8_ee_Zee_ecm91',
+    'p8_ee_Zmumu_ecm91',
+    'p8_ee_Ztautau_ecm91',
+    'p8_ee_Zbb_ecm91',
+    'p8_ee_Zcc_ecm91',
+    'p8_ee_Zud_ecm91',
+    'p8_ee_Zss_ecm91',
+    'eenunu',
+    'mumununu'
+    'tatanunu',
+    'llnunu'
+]
+
 blegend = {
     'p8_ee_Zee_ecm91': 'Z #rightarrow ll',
-    'p8_ee_Zmumu_ecm91': 'Z #rightarrow #mu#mu',
     'p8_ee_Ztautau_ecm91': 'Z #rightarrow #tau#tau',
     'p8_ee_Zbb_ecm91': 'Z #rightarrow bb',
     'p8_ee_Zcc_ecm91': 'Z #rightarrow cc',
     'p8_ee_Zud_ecm91': 'Z #rightarrow uds',
-    'p8_ee_Zss_ecm91': 'Z #rightarrow ss',
-    'emununu': 'll#nu#nu',
+    'eenunu': 'ee#nu#nu',
+    'mumununu': '#mu#mu#nu#nu',
     'tatanunu': '#tau#tau#nu#nu',
+    'llnunu': 'll#nu#nu',
 }
 
 bcolors = {
-    'emununu': 33,
     'p8_ee_Zee_ecm91': 40,
     'p8_ee_Ztautau_ecm91': 36,
     'p8_ee_Zbb_ecm91': 48,
     'p8_ee_Zcc_ecm91': 44,
     'p8_ee_Zud_ecm91': 20,
+    'eenunu': 30,
+    'mumununu': 32,
+    'tatanunu': 33,
+    'llnunu': 38,
 }
 
 signals = [
@@ -502,11 +522,12 @@ scolors = {
 
 #asym_bins = [-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.35, 0.5, 0.8] #array of low bin edges wanted
 #asym_bins = [0, 0.4, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8, 4.6] 
-asym_bins = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3, 4.4, 4.5] 
+#asym_bins = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3, 4.4, 4.5] 
+asym_bins = [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4.0, 4.2, 4.4, 4.6] 
 nbins = len(asym_bins)-1
 ### note: The bin edges specified in xbins should correspond to bin edges in the original histogram. ###
 
-for CUT in CUTS:
+'''for CUT in CUTS:
     NEWFILE='/eos/user/s/sgiappic/combine/' + VARIABLE + '_norebin_' + CUT + '.root' # name of the rebinned file
     nf= ROOT.TFile.Open(NEWFILE, "UPDATE") 
 
@@ -544,14 +565,14 @@ for CUT in CUTS:
     nf.Close()
 
 '''#plot the rebinned variable
-NEWFILE_SF='/eos/user/s/sgiappic/combine/Reco_DR_final_rebinned_sel2Reco_vetoes_notracks_nojets_M80_5MEpt_0.8cos.root' # name of the rebinned file
+NEWFILE_SF='/eos/user/s/sgiappic/combine/Reco_DR_norebin_selReco_gen_notracks_nohad_5M80_0.7cos_20MEpt.root' # name of the rebinned file
     
 #extralab = LABELS[CUT]
 
 canvas = ROOT.TCanvas("", "", 800, 800)
 
 nsig = len(signals)
-nbkg = 6 # change according to type of plots, 6 for grouped backgrounds
+nbkg = 9 # change according to type of plots, 6 for grouped backgrounds
 
 #legend coordinates and style
 legsize = 0.06*nsig 
@@ -608,27 +629,36 @@ if nbkg != 0:
     fin_SF = NEWFILE_SF
     #fin_DF = NEWFILE_DF
     with ROOT.TFile(fin_SF) as tf_SF:
-        h = tf_SF.Get( "emununu_" + VARIABLE)
+        h = tf_SF.Get( "eenunu_" + VARIABLE)
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
-    #with ROOT.TFile(fin_DF) as tf_DF:
-    #    h1 = tf_DF.Get( "emununu_" + VARIABLE)
-    #    hh1 = copy.deepcopy(h1)
-    #    hh1.SetDirectory(0)
-    with ROOT.TFile(fin_SF) as tf_SF:
-        h2 = tf_SF.Get( "tatanunu_" + VARIABLE)
-        hh2 = copy.deepcopy(h2)
-        hh2.SetDirectory(0)
-    #with ROOT.TFile(fin_DF) as tf_DF:
-    #    h3 = tf_DF.Get( "tatanunu_" + VARIABLE)
-    #    hh3 = copy.deepcopy(h3)
-    #    hh3.SetDirectory(0)
-    #hh.Add(hh1)
-    hh.Add(hh2)
-    #hh.Add(hh3)
     histos.append(hh)
-    colors.append(bcolors["emununu"])
-    leg2.AddEntry(histos[-1], blegend["emununu"], "f")
+    colors.append(bcolors["eenunu"])
+    leg2.AddEntry(histos[-1], blegend["eenunu"], "f")
+
+    with ROOT.TFile(fin_SF) as tf_SF:
+        h = tf_SF.Get( "mumununu_" + VARIABLE)
+        hh = copy.deepcopy(h)
+        hh.SetDirectory(0)
+    histos.append(hh)
+    colors.append(bcolors["mumununu"])
+    leg2.AddEntry(histos[-1], blegend["mumununu"], "f")
+
+    with ROOT.TFile(fin_SF) as tf_SF:
+        h = tf_SF.Get( "tatanunu_" + VARIABLE)
+        hh = copy.deepcopy(h)
+        hh.SetDirectory(0)
+    histos.append(hh)
+    colors.append(bcolors["tatanunu"])
+    leg2.AddEntry(histos[-1], blegend["tatanunu"], "f")
+
+    with ROOT.TFile(fin_SF) as tf_SF:
+        h = tf_SF.Get( "llnunu_" + VARIABLE)
+        hh = copy.deepcopy(h)
+        hh.SetDirectory(0)
+    histos.append(hh)
+    colors.append(bcolors["llnunu"])
+    leg2.AddEntry(histos[-1], blegend["llnunu"], "f")
     
     with ROOT.TFile(fin_SF) as tf_SF:
         h = tf_SF.Get( "p8_ee_Zee_ecm91_" + VARIABLE)
@@ -647,11 +677,6 @@ if nbkg != 0:
         h = tf_SF.Get( "p8_ee_Ztautau_ecm91_" + VARIABLE)
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
-    #with ROOT.TFile(fin_DF) as tf_DF:
-    #    h1 = tf_DF.Get( "p8_ee_Ztautau_ecm91_" + VARIABLE)
-    #    hh1 = copy.deepcopy(h1)
-    #    hh1.SetDirectory(0)
-    #hh.Add(hh1)
     histos.append(hh)
     colors.append(bcolors["p8_ee_Ztautau_ecm91"])
     leg2.AddEntry(histos[-1], blegend["p8_ee_Ztautau_ecm91"], "f")
@@ -759,7 +784,7 @@ latex.SetTextSize(0.03)
 latex.DrawLatex(0.18, 0.80, text)
 
 #text = '#bf{#it{' + extralab + '}}'
-text = '#bf{#it{Two leptons, no photons, no other tracks, no jets, M(l,l)<80 GeV, p_{T,miss}>10 GeV, cos#theta>-0.8}}'
+text = '#bf{#it{Two leptons, no photons, no other tracks, no neutral hadrons, 5<M(l,l)<80 GeV, p_{T,miss}>20 GeV, cos#theta>-0.7}}'
 latex.SetTextSize(0.02)
 latex.DrawLatex(0.18, 0.76, text)
 
@@ -789,5 +814,5 @@ canvas.Update()
 #canvas.SaveAs(dir + VARIABLE + "_rebinned.png")
 #canvas.SaveAs(dir+ VARIABLE + "_rebinned.pdf")
 
-canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_11july.png")
-canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_11july.pdf")'''
+canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_24july.png")
+canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_24july.pdf")

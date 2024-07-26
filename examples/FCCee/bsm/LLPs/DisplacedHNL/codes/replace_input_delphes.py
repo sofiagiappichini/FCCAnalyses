@@ -406,7 +406,7 @@ replacement_words_test =[
     #"llnunu_9",
     #"llnunu_10",
     #"eenunu",
-    "mumununu",
+    "mumununu_2",
     #"tatanunu",
 ]
 
@@ -435,10 +435,11 @@ for replacement_word in replacement_words_test:
         file.write(file_data)
     
     # Execute the DelphesPythia8_EDM4HEP command
-    os.system("source /cvmfs/sw.hsf.org/spackages6/key4hep-stack/2022-12-23/x86_64-centos7-gcc11.2.0-opt/ll3gi/setup.sh && DelphesPythia8_EDM4HEP /afs/cern.ch/user/s/sgiappic/card_IDEA.tcl /afs/cern.ch/user/s/sgiappic/edm4hep_IDEA.tcl {} /eos/user/s/sgiappic/2HNL_samples/root/{}_off.root".format(os.path.join(backup_dir, "pythia_proc_backup_{}.cmd".format(replacement_word)), replacement_word))
+    os.system("source /cvmfs/sw.hsf.org/spackages6/key4hep-stack/2022-12-23/x86_64-centos7-gcc11.2.0-opt/ll3gi/setup.sh && DelphesPythia8_EDM4HEP /afs/cern.ch/user/s/sgiappic/card_IDEA.tcl /afs/cern.ch/user/s/sgiappic/edm4hep_IDEA.tcl {} /eos/user/s/sgiappic/2HNL_samples/root/{}.root".format(os.path.join(backup_dir, "pythia_proc_backup_{}.cmd".format(replacement_word)), replacement_word))
     
     # Remove the temporary backup file
     os.remove(os.path.join(backup_dir, "pythia_proc_backup_{}.cmd".format(replacement_word)))
 
     os.system("gzip /eos/user/s/sgiappic/2HNL_samples/lhe/{}.lhe".format(replacement_word))
 
+os.system("rm -r {}".format(backup_dir))
