@@ -35,7 +35,7 @@ inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/top/topVts/analysis_tup
 outputDir   = "outputs/"
 
 #EOS output directory for batch jobs
-outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/top/topVts/analysis_tuples_2024July10/winter2023"
+outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/top/topVts/analysis_tuples_2024July10/winter2023/stage2_ktN"
 
 #Optional
 nCPUS       = 8
