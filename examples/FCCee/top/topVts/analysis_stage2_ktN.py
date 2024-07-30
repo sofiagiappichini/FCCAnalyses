@@ -32,14 +32,14 @@ processList = {
 
 #Optional: output directory, default is local running directory
 inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/top/topVts/analysis_tuples_2024July24/winter2023"
-outputDir   = "outputs/"
+outputDir   = "/eos/user/s/sgiappic/topVts/stage2_ktN"
 
 #EOS output directory for batch jobs
 outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/top/topVts/analysis_tuples_2024July10/winter2023/stage2_ktN"
 
 #Optional
 nCPUS       = 8
-runBatch    = False
+runBatch    = True
 batchQueue = "nextweek"
 compGroup = "group_u_FCC.local_gen"
 
@@ -79,17 +79,17 @@ class RDFanalysis():
                 .Define("jet_ktN_Max_mass",     "Max(jet_ktN_mass)")
                 .Define("jet_ktN_Min_energy",   "Min(jet_ktN_energy)")
 
-                .Define("jet_ktN_flavour",      "if (dilep_cat==1) return jet_kt6_flavour; if (semilep_cat==1) return jet_kt4_flavour; if (dihad_cat==1) return jet_kt2_flavour; else return ROOT::VecOps::RVec<float>{}")
+                .Define("jet_ktN_flavor",      "if (dilep_cat==1) return jet_kt6_flavor; if (semilep_cat==1) return jet_kt4_flavor; if (dihad_cat==1) return jet_kt2_flavor; else return ROOT::VecOps::RVec<int>{}")
                 .Define("jet_ktN_isG",    "if (dilep_cat==1) return recojet_isG_kt6; if (semilep_cat==1) return recojet_isG_kt4; if (dihad_cat==1) return recojet_isG_kt2; else return ROOT::VecOps::RVec<float>{};")
                 .Define("jet_ktN_isQ",    "if (dilep_cat==1) return recojet_isQ_kt6; if (semilep_cat==1) return recojet_isQ_kt4; if (dihad_cat==1) return recojet_isQ_kt2; else return ROOT::VecOps::RVec<float>{};")
                 .Define("jet_ktN_isS",    "if (dilep_cat==1) return recojet_isS_kt6; if (semilep_cat==1) return recojet_isS_kt4; if (dihad_cat==1) return recojet_isS_kt2; else return ROOT::VecOps::RVec<float>{};")
                 .Define("jet_ktN_isC",    "if (dilep_cat==1) return recojet_isC_kt6; if (semilep_cat==1) return recojet_isC_kt4; if (dihad_cat==1) return recojet_isC_kt2; else return ROOT::VecOps::RVec<float>{};")
                 .Define("jet_ktN_isB",    "if (dilep_cat==1) return recojet_isB_kt6; if (semilep_cat==1) return recojet_isB_kt4; if (dihad_cat==1) return recojet_isB_kt2; else return ROOT::VecOps::RVec<float>{};")
 
-                .Define("n_jets_ktN",      "if (dilep_cat==1) return n_jets_kt6; if (semilep_cat==1) return n_jets_kt4; if (dihad_cat==1) return n_jets_kt2; else return ROOT::VecOps::RVec<float>{}")
-                .Define("n_jets_ktN_btag",      "if (dilep_cat==1) return n_btags_kt6; if (semilep_cat==1) return n_btags_kt4; if (dihad_cat==1) return n_btags_kt2; else return ROOT::VecOps::RVec<float>{}")
-                .Define("n_jets_ktN_ctag",      "if (dilep_cat==1) return n_ctags_kt6; if (semilep_cat==1) return n_ctags_kt4; if (dihad_cat==1) return n_ctags_kt2; else return ROOT::VecOps::RVec<float>{}")
-                .Define("n_jets_ktN_stag",      "if (dilep_cat==1) return n_stags_kt6; if (semilep_cat==1) return n_stags_kt4; if (dihad_cat==1) return n_stags_kt2; else return ROOT::VecOps::RVec<float>{}")
+                .Define("n_jets_ktN",      "if (dilep_cat==1) return n_jets_kt6; if (semilep_cat==1) return n_jets_kt4; if (dihad_cat==1) return n_jets_kt2; else return int(-1)")
+                .Define("n_jets_ktN_btag",      "if (dilep_cat==1) return n_btags_kt6; if (semilep_cat==1) return n_btags_kt4; if (dihad_cat==1) return n_btags_kt2; else return int(-1)")
+                .Define("n_jets_ktN_ctag",      "if (dilep_cat==1) return n_ctags_kt6; if (semilep_cat==1) return n_ctags_kt4; if (dihad_cat==1) return n_ctags_kt2; else return int(-1)")
+                .Define("n_jets_ktN_stag",      "if (dilep_cat==1) return n_stags_kt6; if (semilep_cat==1) return n_stags_kt4; if (dihad_cat==1) return n_stags_kt2; else return int(-1)")
 
                 .Define("dijet_ktN_cs_ind",         "FCCAnalyses::ZHfunctions::sel_dijet_score(jet_ktN_isC, jet_ktN_isS)")
                 .Define("dijet_ktN_px",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_ktN_cs_ind, jet_ktN_p4)")
