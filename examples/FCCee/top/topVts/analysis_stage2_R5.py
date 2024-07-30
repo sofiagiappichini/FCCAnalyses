@@ -32,7 +32,7 @@ processList = {
 
 #Optional: output directory, default is local running directory
 inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/top/topVts/analysis_tuples_2024July24/winter2023"
-outputDir   = "outputs/"
+outputDir   = "/eos/user/s/sgiappic/topVts/stage2_R5"
 
 #EOS output directory for batch jobs
 outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/top/topVts/analysis_tuples_2024July24/winter2023/stage2_R5"
