@@ -262,13 +262,17 @@ float get_cosTheta_miss(Vec_rp met){
     return costheta;
 }
 
-std::vector<std::vector<int>> sel_dijet_score(ROOT::VecOps::RVec<float> u_score, ROOT::VecOps::RVec<float> d_score) {
+std::vector<std::vector<int>> sel_dijet_score(ROOT::VecOps::RVec<float> score1, ROOT::VecOps::RVec<float> score2, std::vector<int> exclude_jets, bool exclude_pair_flip) {
     std::vector<std::vector<int>> result; //returns vectors of indices of pairs of jets passing the selection
 
-    for (size_t i = 0; i < u_score.size(); ++i) { //assuming here that u_score and d_score for the same jet are complementary so a jet wouldn't pass the check with itself
-        for (size_t j = 0; j < u_score.size(); ++j){ //making sure not to check the same pair twice in this way
+    for (size_t i = 0; i < score1.size(); ++i) { //assuming here that u_score and d_score for the same jet are complementary so a jet wouldn't pass the check with itself
+        if (std::find(exclude_jets.begin(), exclude_jets.end(), i) != exclude_jets.end()) continue;
+        for (size_t j = 0; j < score2.size(); ++j){ //making sure not to check the same pair twice in this way
+            if (std::find(exclude_jets.begin(), exclude_jets.end(), j) != exclude_jets.end()) continue;
+
+            if (exclude_pair_flip == true && j<=i) continue; //excludes checking for the same pair and saving the dijet twice, useful is scores are the same variable being checked twice
             
-            if ((u_score[i]>0.5 && d_score[j]>0.5)){
+            if ((score1[i]>0.5 && score2[j]>0.5)){
                 result.emplace_back(); //creates new row
 
                 result.back().emplace_back(i); //fill the row with the pair of jets indices, they correspond to the same class used for the jets variables and the scores
@@ -280,60 +284,138 @@ std::vector<std::vector<int>> sel_dijet_score(ROOT::VecOps::RVec<float> u_score,
     return result; //result.size() will give the number of pairs/rows passing the selection
   }
 
-std::vector<float> get_dijet_mass(std::vector<std::vector<int>> jets_ind,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+std::vector<float> get_dijet_mass(std::vector<std::vector<int>> dijets_idx,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
     std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
 
-    for (size_t i = 0; i < jets_ind.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+    for (size_t i = 0; i < dijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
 
-        TLorentzVector p4 = jets_p4[jets_ind[i][0]] + jets_p4[jets_ind[i][1]];
+        TLorentzVector p4 = jets_p4[dijets_idx[i][0]] + jets_p4[dijets_idx[i][1]];
         result.emplace_back(p4.M()); //invariant mass of the dijet
         }
   
     return result; //result.size() will give the number of pairs/rows passing the selection
 }
 
-std::vector<float> get_dijet_px(std::vector<std::vector<int>> jets_ind,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+std::vector<float> get_dijet_px(std::vector<std::vector<int>> dijets_idx,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
     std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
 
-    for (size_t i = 0; i < jets_ind.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+    for (size_t i = 0; i < dijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
 
-        TLorentzVector p4 = jets_p4[jets_ind[i][0]] + jets_p4[jets_ind[i][1]];
+        TLorentzVector p4 = jets_p4[dijets_idx[i][0]] + jets_p4[dijets_idx[i][1]];
         result.emplace_back(p4.Px()); //px of the dijet
         }
   
     return result; //result.size() will give the number of pairs/rows passing the selection
 }
 
-std::vector<float> get_dijet_py(std::vector<std::vector<int>> jets_ind,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+std::vector<float> get_dijet_py(std::vector<std::vector<int>> dijets_idx,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
     std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
 
-    for (size_t i = 0; i < jets_ind.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+    for (size_t i = 0; i < dijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
 
-        TLorentzVector p4 = jets_p4[jets_ind[i][0]] + jets_p4[jets_ind[i][1]];
+        TLorentzVector p4 = jets_p4[dijets_idx[i][0]] + jets_p4[dijets_idx[i][1]];
         result.emplace_back(p4.Py()); //py of the dijet
         }
   
     return result; //result.size() will give the number of pairs/rows passing the selection
 }
 
-std::vector<float> get_dijet_pz(std::vector<std::vector<int>> jets_ind,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+std::vector<float> get_dijet_pz(std::vector<std::vector<int>> dijets_idx,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
     std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
 
-    for (size_t i = 0; i < jets_ind.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+    for (size_t i = 0; i < dijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
 
-        TLorentzVector p4 = jets_p4[jets_ind[i][0]] + jets_p4[jets_ind[i][1]];
+        TLorentzVector p4 = jets_p4[dijets_idx[i][0]] + jets_p4[dijets_idx[i][1]];
         result.emplace_back(p4.Pz()); //pz of the dijet
         }
   
     return result; //result.size() will give the number of pairs/rows passing the selection
 }
 
-std::vector<float> get_dijet_energy(std::vector<std::vector<int>> jets_ind,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+std::vector<float> get_dijet_energy(std::vector<std::vector<int>> dijets_idx,  ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
     std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
 
-    for (size_t i = 0; i < jets_ind.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+    for (size_t i = 0; i < dijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
 
-        TLorentzVector p4 = jets_p4[jets_ind[i][0]] + jets_p4[jets_ind[i][1]];
+        TLorentzVector p4 = jets_p4[dijets_idx[i][0]] + jets_p4[dijets_idx[i][1]];
+        result.emplace_back(p4.E()); //energy of the dijet
+        }
+  
+    return result; //result.size() will give the number of pairs/rows passing the selection
+}
+
+std::vector<std::tuple<int, int, int, int, bool>> get_trijet_idx(std::vector<std::vector<int>> dijets_idx, int lead_jet_idx, bool lead_jet_flavor) { 
+    std::vector<std::tuple<int, int, int, int, bool>> result; 
+
+    for (size_t i = 0; i < dijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+        std::tuple<int, int, int, int, bool> trijet(
+            lead_jet_idx,           // Leading jet index
+            dijets_idx[i][0],       // First dijet index
+            dijets_idx[i][1],       // Second dijet index
+            static_cast<int>(i),    // Index of the dijet pair
+            lead_jet_flavor         // Leading jet flavor
+        );
+        
+        result.push_back(trijet);
+        }
+  
+    return result; //result.size() will give the number of pairs/rows passing the selection
+}
+
+std::vector<float> get_trijet_mass(std::vector<std::tuple<int, int, int, int, bool>> trijets_idx, ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+    std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
+
+    for (size_t i = 0; i < trijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+
+        TLorentzVector p4 = jets_p4[std::get<0>(trijets_idx[i])] + jets_p4[std::get<1>(trijets_idx[i])] + jets_p4[std::get<2>(trijets_idx[i])];
+        result.emplace_back(p4.M()); //invariant mass of the dijet
+        }
+  
+    return result; //result.size() will give the number of pairs/rows passing the selection
+}
+
+std::vector<float> get_trijet_px(std::vector<std::tuple<int, int, int, int, bool>> trijets_idx, ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+    std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
+
+    for (size_t i = 0; i < trijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+
+        TLorentzVector p4 = jets_p4[std::get<0>(trijets_idx[i])] + jets_p4[std::get<1>(trijets_idx[i])] + jets_p4[std::get<2>(trijets_idx[i])];
+        result.emplace_back(p4.Px()); //px of the dijet
+        }
+  
+    return result; //result.size() will give the number of pairs/rows passing the selection
+}
+
+std::vector<float> get_trijet_py(std::vector<std::tuple<int, int, int, int, bool>> trijets_idx, ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+    std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
+
+    for (size_t i = 0; i < trijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+
+        TLorentzVector p4 = jets_p4[std::get<0>(trijets_idx[i])] + jets_p4[std::get<1>(trijets_idx[i])] + jets_p4[std::get<2>(trijets_idx[i])];
+        result.emplace_back(p4.Py()); //py of the dijet
+        }
+  
+    return result; //result.size() will give the number of pairs/rows passing the selection
+}
+
+std::vector<float> get_trijet_pz(std::vector<std::tuple<int, int, int, int, bool>> trijets_idx, ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+    std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
+
+    for (size_t i = 0; i < trijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+
+        TLorentzVector p4 = jets_p4[std::get<0>(trijets_idx[i])] + jets_p4[std::get<1>(trijets_idx[i])] + jets_p4[std::get<2>(trijets_idx[i])];
+        result.emplace_back(p4.Pz()); //pz of the dijet
+        }
+  
+    return result; //result.size() will give the number of pairs/rows passing the selection
+}
+
+std::vector<float> get_trijet_energy(std::vector<std::tuple<int, int, int, int, bool>> trijets_idx, ROOT::VecOps::RVec<TLorentzVector> jets_p4) { 
+    std::vector<float> result; //returns vectors of indices of pairs of jets passing the selection
+
+    for (size_t i = 0; i < trijets_idx.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+
+        TLorentzVector p4 = jets_p4[std::get<0>(trijets_idx[i])] + jets_p4[std::get<1>(trijets_idx[i])] + jets_p4[std::get<2>(trijets_idx[i])];
         result.emplace_back(p4.E()); //energy of the dijet
         }
   
