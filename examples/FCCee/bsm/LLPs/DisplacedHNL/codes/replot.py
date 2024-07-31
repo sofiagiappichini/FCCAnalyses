@@ -360,17 +360,24 @@ VARIABLES_PID = [
 ]
 
 backgrounds = [
-    'p8_ee_Zee_ecm91',
-    'p8_ee_Zmumu_ecm91',
+    #'p8_ee_Zee_ecm91',
+    #'p8_ee_Zmumu_ecm91',
     'p8_ee_Ztautau_ecm91',
     'p8_ee_Zbb_ecm91',
     'p8_ee_Zcc_ecm91',
+    #'p8_ee_Zud_ecm91',
+    #'p8_ee_Zss_ecm91',
+    'eenunu_m',
+    'mumununu_m',
+    'tatanunu_m',
+    'llnunu_m',
+]
+
+backgrounds_pairs = [
+    'p8_ee_Zee_ecm91',
+    'p8_ee_Zmumu_ecm91',
     'p8_ee_Zud_ecm91',
     'p8_ee_Zss_ecm91',
-    'eenunu',
-    'mumununu',
-    'tatanunu',
-    'llnunu',
 ]
 
 blegend = {
@@ -382,10 +389,10 @@ blegend = {
     'p8_ee_Zcc_ecm91': 'Z #rightarrow cc',
     'p8_ee_Zud_ecm91': 'Z #rightarrow uds',
     'p8_ee_Zss_ecm91': 'Z #rightarrow ss',
-    'eenunu': 'ee#nu#nu',
-    'mumununu': '#mu#mu#nu#nu',
-    'tatanunu': '#tau#tau#nu#nu',
-    'llnunu': 'll#nu#nu',
+    'eenunu_m': 'ee#nu#nu',
+    'mumununu_m': '#mu#mu#nu#nu',
+    'tatanunu_m': '#tau#tau#nu#nu',
+    'llnunu_m': 'll#nu#nu',
 }
 
 bcolors = {
@@ -481,112 +488,36 @@ for cut in CUTS:
             colors.append(scolors[s])
             leg.AddEntry(histos[-1], slegend[s], "l")
             #leg.AddEntry(histos[-1], blegend[s]+": "+str(histos[-1].Integral()), "l")
-
-        '''for b in backgrounds_old:
-            fin = f"{DIRECTORY}{b}_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            histos.append(hh)
-            colors.append(bcolors_old[b])
-            leg2.AddEntry(histos[-1], blegend_old[b], "f")'''
         
         if nbkg != 0:
 
-            #add some backgrounds to the same histogram
-            fin = f"{DIRECTORY}eenunu_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            histos.append(hh)
-            colors.append(bcolors["eenunu"])
-            leg2.AddEntry(histos[-1], blegend["eenunu"], "f")
+            for b in backgrounds:
+                fin = f"{DIRECTORY}{b}_{cut}_histo.root"
+                with ROOT.TFile(fin) as tf:
+                    h = tf.Get(variable)
+                    hh = copy.deepcopy(h)
+                    hh.SetDirectory(0)
+                histos.append(hh)
+                colors.append(bcolors[b])
+                leg2.AddEntry(histos[-1], blegend[b], "f")
 
-            fin = f"{DIRECTORY}mumununu_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            histos.append(hh)
-            colors.append(bcolors["mumununu"])
-            leg2.AddEntry(histos[-1], blegend["mumununu"], "f")
-
-            fin = f"{DIRECTORY}tatanunu_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            histos.append(hh)
-            colors.append(bcolors["tatanunu"])
-            leg2.AddEntry(histos[-1], blegend["tatanunu"], "f")
-
-            fin = f"{DIRECTORY}llnunu_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            histos.append(hh)
-            colors.append(bcolors["llnunu"])
-            leg2.AddEntry(histos[-1], blegend["llnunu"], "f")
-            
-            fin = f"{DIRECTORY}p8_ee_Zee_ecm91_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            fin1 = f"{DIRECTORY}p8_ee_Zmumu_ecm91_{cut}_histo.root"
-            with ROOT.TFile(fin1) as tf1:
-                h1 = tf1.Get(variable)
-                hh1 = copy.deepcopy(h1)
-                hh1.SetDirectory(0)
-            hh.Add(hh1)
-            histos.append(hh)
-            colors.append(bcolors["p8_ee_Zee_ecm91"])
-            leg2.AddEntry(histos[-1], blegend["p8_ee_Zee_ecm91"], "f")
-
-            fin = f"{DIRECTORY}p8_ee_Ztautau_ecm91_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            histos.append(hh)
-            colors.append(bcolors["p8_ee_Ztautau_ecm91"])
-            leg2.AddEntry(histos[-1], blegend["p8_ee_Ztautau_ecm91"], "f")
-
-            fin = f"{DIRECTORY}p8_ee_Zud_ecm91_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            fin1 = f"{DIRECTORY}p8_ee_Zss_ecm91_{cut}_histo.root"
-            with ROOT.TFile(fin1) as tf1:
-                h1 = tf1.Get(variable)
-                hh1 = copy.deepcopy(h1)
-                hh1.SetDirectory(0)
-            hh.Add(hh1)
-            histos.append(hh)
-            colors.append(bcolors["p8_ee_Zud_ecm91"])
-            leg2.AddEntry(histos[-1], blegend["p8_ee_Zud_ecm91"], "f")
-
-            fin = f"{DIRECTORY}p8_ee_Zcc_ecm91_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            histos.append(hh)
-            colors.append(bcolors["p8_ee_Zcc_ecm91"])
-            leg2.AddEntry(histos[-1], blegend["p8_ee_Zcc_ecm91"], "f")
-
-            fin = f"{DIRECTORY}p8_ee_Zbb_ecm91_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable)
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
-            histos.append(hh)
-            colors.append(bcolors["p8_ee_Zbb_ecm91"])
-            leg2.AddEntry(histos[-1], blegend["p8_ee_Zbb_ecm91"], "f")
+            for i in range(0, len(backgrounds_pairs), 2):
+                p = backgrounds_pairs[i]
+                p1 = backgrounds_pairs[i + 1]
+                fin = f"{DIRECTORY}{p}_{cut}_histo.root"
+                with ROOT.TFile(fin) as tf:
+                    h = tf.Get(variable)
+                    hh = copy.deepcopy(h)
+                    hh.SetDirectory(0)
+                fin1 = f"{DIRECTORY}{p1}_{cut}_histo.root"
+                with ROOT.TFile(fin1) as tf1:
+                    h1 = tf1.Get(variable)
+                    hh1 = copy.deepcopy(h1)
+                    hh1.SetDirectory(0)
+                hh.Add(hh1)
+                histos.append(hh)
+                colors.append(bcolors.get(p))
+                leg2.AddEntry(histos[-1], blegend.get(p), "f")
 
             #drawing stack for backgrounds
             hStackBkg = ROOT.THStack("hStackBkg", "")
