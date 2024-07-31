@@ -3,19 +3,36 @@ import ROOT
 #Mandatory: List of processes
 
 processList = {
-        'p8_ee_Zee_ecm91':{'chunks':100},
-        'p8_ee_Zmumu_ecm91':{'chunks':100},
-        'p8_ee_Ztautau_ecm91':{'chunks':100},
-        'p8_ee_Zbb_ecm91':{'chunks':100},
-        'p8_ee_Zcc_ecm91':{'chunks':100},
-        'p8_ee_Zud_ecm91':{'chunks':100},
-        'p8_ee_Zss_ecm91':{'chunks':100},
+        #'p8_ee_Zee_ecm91':{'chunks':100},
+        #'p8_ee_Zmumu_ecm91':{'chunks':100},
+        #'p8_ee_Ztautau_ecm91':{'chunks':100},
+        #'p8_ee_Zbb_ecm91':{'chunks':100},
+        #'p8_ee_Zcc_ecm91':{'chunks':100},
+        #'p8_ee_Zud_ecm91':{'chunks':100},
+        #'p8_ee_Zss_ecm91':{'chunks':100},
 
-        #'eenunu':{},
-        #'mumununu':{},
-        #'tatanunu':{},
-        #'llnunu':{}
-        #'mumununu_2_off':{},
+        #'eenunu_m':{},
+        #'mumununu_m':{},
+        #'tatanunu_m':{},
+        'llnunu_m':{}
+
+        #"HNL_1.33e-7_10gev_dr":{},
+        #"HNL_1.33e-7_20gev_dr":{},
+        #"HNL_1.33e-7_30gev_dr":{},
+        #"HNL_1.33e-7_40gev_dr":{},
+        #"HNL_1.33e-7_50gev_dr":{},
+        #"HNL_1.33e-7_60gev_dr":{},
+        #"HNL_1.33e-7_70gev_dr":{},
+        #"HNL_1.33e-7_80gev_dr":{},
+
+        #"HNL_5e-12_10gev_ne":{},
+        #"HNL_5e-12_20gev_ne":{},
+        #"HNL_5e-12_30gev_ne":{},
+        #"HNL_5e-12_40gev_ne":{},
+        #"HNL_5e-12_50gev_ne":{},
+        #"HNL_5e-12_60gev_ne":{},
+        #"HNL_5e-12_70gev_ne":{},
+        #"HNL_5e-12_80gev_ne":{},
 }
 
 processList_e = {
@@ -425,13 +442,13 @@ processList_e = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
 #inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-#inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
+inputDir = "/eos/user/s/sgiappic/2HNL_samples/root/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -447,10 +464,10 @@ eosType = "eosuser"
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = True
+runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "tomorrow"
+batchQueue = "espresso"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"

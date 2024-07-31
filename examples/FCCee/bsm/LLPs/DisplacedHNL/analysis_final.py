@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
+inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1_hadeff/"
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/final_july/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/final_massive/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 204e6 #pb^-1
@@ -20,20 +20,24 @@ nCPUS = 6
 doTree = False
 
 processList_e = {
-    #run over the full statistics from stage1
 
-    #backgrounds
-    #'p8_ee_Zee_ecm91':{},
-    #'p8_ee_Zmumu_ecm91':{},
-    #'p8_ee_Ztautau_ecm91':{},
-    #'p8_ee_Zbb_ecm91':{},
-    #'p8_ee_Zcc_ecm91':{},
-    #'p8_ee_Zud_ecm91':{},
-    #'p8_ee_Zss_ecm91':{},
-        
-    ### privately produced backgrounds ###
-    #'emununu':{},
-    #'tatanunu':{},
+    "HNL_1.33e-7_10gev_dr":{},
+    "HNL_1.33e-7_20gev_dr":{},
+    "HNL_1.33e-7_30gev_dr":{},
+    "HNL_1.33e-7_40gev_dr":{},
+    "HNL_1.33e-7_50gev_dr":{},
+    "HNL_1.33e-7_60gev_dr":{},
+    "HNL_1.33e-7_70gev_dr":{},
+    "HNL_1.33e-7_80gev_dr":{},
+
+    "HNL_5e-12_10gev_ne":{},
+    "HNL_5e-12_20gev_ne":{},
+    "HNL_5e-12_30gev_ne":{},
+    "HNL_5e-12_40gev_ne":{},
+    #"HNL_5e-12_50gev_ne":{},
+    "HNL_5e-12_60gev_ne":{},
+    "HNL_5e-12_70gev_ne":{},
+    "HNL_5e-12_80gev_ne":{},
 }
 
 processList = {
@@ -49,10 +53,10 @@ processList = {
     'p8_ee_Zss_ecm91':{},
         
     ### privately produced backgrounds ###
-    'eenunu':{},
-    'mumununu':{},
-    'tatanunu':{},
-    'llnunu':{},
+    'eenunu_m':{},
+    'mumununu_m':{},
+    'tatanunu_m':{},
+    'llnunu_m':{},
 
     "HNL_1.33e-7_10gev":{},
     "HNL_1.33e-7_20gev":{},
@@ -818,8 +822,32 @@ procDictAdd = {
     "tatanunu":{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.001425, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "llnunu":{"numberOfEvents": 999983, "sumOfWeights": 999983, "crossSection": 0.00203, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
+    "eenunu_m":{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.01094, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "mumununu_m":{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.004782, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "tatanunu_m":{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.001426, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "llnunu_m":{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.004597, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
     'HNL_6.67e-10_40gev_isr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.364544236800001e-07,  "kfactor": 1.0, "matchingEfficiency": 1.0},
     'HNL_6.67e-10_40gev_isrbm':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.3881989487e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+    'HNL_1.33e-7_10gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.000246600738, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_1.33e-7_10gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.000246600738, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_1.33e-7_20gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00023419337999999997, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_1.33e-7_30gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00021033024999999998, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_1.33e-7_40gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00017970328, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_1.33e-7_50gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00014209491100000002, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_1.33e-7_60gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00010009022000000001, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_1.33e-7_70gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 5.723556210142545e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_1.33e-7_80gev_dr':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.2748340176980002e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_5e-12_10gev_ne':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 9.221105800000001e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_5e-12_20gev_ne':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 8.7724238e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_5e-12_30gev_ne':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 7.884434700000001e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_5e-12_40gev_ne':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.7279601e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_5e-12_50gev_ne':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 5.32159568e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_5e-12_60gev_ne':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 3.74773048e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_5e-12_70gev_ne':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 2.1485878217331445e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'HNL_5e-12_80gev_ne':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 8.544747541040001e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
     
 }
 
@@ -866,13 +894,12 @@ cutList = {
     
     #"selNone":"true",
     ### cuts for SM llnunu at generator level to be applied to everything properly
-    #"selReco_gen": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>5", ## Reco_e>2 is taken care of by delphes already, no need to specify it here
-    #"selReco_gen_notracks": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>5 && n_noLeptonTracks==0",
+    "selReco_gen": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>5", ## Reco_e>2 is taken care of by delphes already, no need to specify it here
+    "selReco_gen_notracks": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>5 && n_noLeptonTracks==0",
     ####"selReco_gen_notrack_nojets": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1 && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_antikt_jets==0",
     "selReco_gen_notracks_2eh": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0",
-    #"selReco_gen_notracks_nohad_M80": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80",
-    #"selReco_gen_notracks_nohad_M80_0.8cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.8",
-    #"selReco_gen_notracks_nohad_M80_0.8cos0.8": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.8 && Reco_cos<0.8",
+    "selReco_gen_notracks_2eh_M80": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80",
+    "selReco_gen_notracks_2eh_M80_0.8cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.8",
     
     #"selReco_gen_notracks_nohad_M80_0.7cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.7",
     #"selReco_gen_notracks_nohad_5M80_0.7cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_invMass>5 && Reco_cos>-0.7",
