@@ -86,13 +86,6 @@ class RDFanalysis():
                 .Define("n_jets_ktN_ctag",      "if (dilep_cat==1) return n_ctags_kt6; if (semilep_cat==1) return n_ctags_kt4; if (dihad_cat==1) return n_ctags_kt2; else return int(-1)")
                 .Define("n_jets_ktN_stag",      "if (dilep_cat==1) return n_stags_kt6; if (semilep_cat==1) return n_stags_kt4; if (dihad_cat==1) return n_stags_kt2; else return int(-1)")
 
-                .Define("dijet_ktN_cs_ind",         "FCCAnalyses::ZHfunctions::sel_dijet_score(jet_ktN_isC, jet_ktN_isS)")
-                .Define("dijet_ktN_px",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_ktN_cs_ind, jet_ktN_p4)")
-                .Define("dijet_ktN_py",     "FCCAnalyses::ZHfunctions::get_dijet_py(dijet_ktN_cs_ind, jet_ktN_p4)")
-                .Define("dijet_ktN_pz",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_ktN_cs_ind, jet_ktN_p4)")
-                .Define("dijet_ktN_energy", "FCCAnalyses::ZHfunctions::get_dijet_energy(dijet_ktN_cs_ind, jet_ktN_p4)")
-                .Define("dijet_ktN_mass",   "FCCAnalyses::ZHfunctions::get_dijet_mass(dijet_ktN_cs_ind, jet_ktN_p4)")
-
                 .Define("jet_ktN_leadS_idx",    "if (dilep_cat==1) return jet_kt6_leadS_idx; if (semilep_cat==1) return jet_kt4_leadS_idx; if (dihad_cat==1) return jet_kt2_leadS_idx; else return int(-1)")
                 .Define("jet_ktN_leadS_px",     "if (dilep_cat==1) return jet_kt6_leadS_px; if (semilep_cat==1) return jet_kt4_leadS_px; if (dihad_cat==1) return jet_kt2_leadS_px; else return float(-99.)")
                 .Define("jet_ktN_leadS_py",     "if (dilep_cat==1) return jet_kt6_leadS_py; if (semilep_cat==1) return jet_kt4_leadS_py; if (dihad_cat==1) return jet_kt2_leadS_py; else return float(-99.)")
@@ -201,6 +194,57 @@ class RDFanalysis():
                 .Define("jet_ktN_subB_isC",    "if (dilep_cat==1) return jet_kt6_subB_isC; if (semilep_cat==1) return jet_kt4_subB_isC; if (dihad_cat==1) return jet_kt2_subB_isC; else return float(-99.)")
                 .Define("jet_ktN_subB_isB",    "if (dilep_cat==1) return jet_kt6_subB_isB; if (semilep_cat==1) return jet_kt4_subB_isB; if (dihad_cat==1) return jet_kt2_subB_isB; else return float(-99.)")
 
+                ## cs dijets and trijets
+
+                .Define("dijet_cs_ktN_idx",     "FCCAnalyses::ZHfunctions::sel_dijet_score(jet_ktN_isC, jet_ktN_isS, {jet_ktN_leadS_idx, jet_ktN_leadB_idx}, false)")
+                .Define("dijet_cs_ktN_px",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_cs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("dijet_cs_ktN_py",     "FCCAnalyses::ZHfunctions::get_dijet_py(dijet_cs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("dijet_cs_ktN_pz",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_cs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("dijet_cs_ktN_energy", "FCCAnalyses::ZHfunctions::get_dijet_energy(dijet_cs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("dijet_cs_ktN_mass",   "FCCAnalyses::ZHfunctions::get_dijet_mass(dijet_cs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("n_dijet_cs_ktN",   "int(dijet_cs_ktN_mass.size())")
+
+                .Define("trijet_Scs_ktN_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_cs_ktN_idx, jet_ktN_leadS_idx, true)")
+                .Define("trijet_Scs_ktN_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Scs_ktN_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Scs_ktN_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Scs_ktN_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Scs_ktN_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("n_trijet_Scs_ktN",   "int(trijet_Scs_ktN_mass.size())")
+
+                .Define("trijet_Bcs_ktN_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_cs_ktN_idx, jet_ktN_leadB_idx, false)")
+                .Define("trijet_Bcs_ktN_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Bcs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Bcs_ktN_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(trijet_Bcs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Bcs_ktN_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Bcs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Bcs_ktN_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(trijet_Bcs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Bcs_ktN_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(trijet_Bcs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("n_trijet_Bcs_ktN",   "int(trijet_Bcs_ktN_mass.size())")
+
+                ## ud dijets and trijets
+
+                .Define("dijet_ud_ktN_idx",     "FCCAnalyses::ZHfunctions::sel_dijet_score(jet_ktN_isQ, jet_ktN_isQ, {jet_ktN_leadS_idx, jet_ktN_leadB_idx}, true)")
+                .Define("dijet_ud_ktN_px",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_ud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("dijet_ud_ktN_py",     "FCCAnalyses::ZHfunctions::get_dijet_py(dijet_ud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("dijet_ud_ktN_pz",     "FCCAnalyses::ZHfunctions::get_dijet_px(dijet_ud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("dijet_ud_ktN_energy", "FCCAnalyses::ZHfunctions::get_dijet_energy(dijet_ud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("dijet_ud_ktN_mass",   "FCCAnalyses::ZHfunctions::get_dijet_mass(dijet_ud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("n_dijet_ud_ktN",   "int(dijet_ud_ktN_mass.size())")
+
+                .Define("trijet_Sud_ktN_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_ud_ktN_idx, jet_leadS_idx, true)")
+                .Define("trijet_Sud_ktN_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Sud_ktN_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Sud_ktN_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Sud_ktN_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Sud_ktN_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(trijet_Scs_ktN_idx, jet_ktN_cat_p4)")
+                .Define("n_trijet_Sud_ktN",   "int(trijet_Sud_ktN_mass.size())")
+
+                .Define("trijet_Bud_ktN_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_ud_ktN_idx, jet_leadB_idx, false)")
+                .Define("trijet_Bud_ktN_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Bud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Bud_ktN_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(trijet_Bud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Bud_ktN_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Bud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Bud_ktN_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(trijet_Bud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("trijet_Bud_ktN_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(trijet_Bud_ktN_idx, jet_ktN_cat_p4)")
+                .Define("n_trijet_Bud_ktN",   "int(trijet_Bud_ktN_mass.size())") 
 
         )
         return df2
@@ -256,6 +300,12 @@ class RDFanalysis():
         branchList += ["jet_ktN_subB_idx", "jet_ktN_subB_px",    "jet_ktN_subB_py",      "jet_ktN_subB_pz",    "jet_ktN_subB_phi",   "jet_ktN_subB_eta", "jet_ktN_subB_energy",
                        "jet_ktN_subB_mass",  "jet_ktN_subB_flavor",  "jet_ktN_subB_dR_b",  "jet_ktN_subB_dR_s",  "jet_ktN_subB_isSig",
                        "jet_ktN_subB_isG",   "jet_ktN_subB_isQ",     "jet_ktN_subB_isS",   "jet_ktN_subB_isC",   "jet_kt2_subB_isB"]
+        branchList += ["dijet_cs_ktN_idx", "dijet_cs_ktN_px", "dijet_cs_ktN_py", "dijet_cs_ktN_pz", "dijet_cs_ktN_energy", "dijet_cs_ktN_mass", "n_cs_dijet_ktN",
+                        "trijet_Scs_ktN_idx", "trijet_Scs_ktN_px", "trijet_Scs_ktN_py", "trijet_Scs_ktN_pz", "trijet_Scs_ktN_energy", "trijet_Scs_ktN_mass", "n_Scs_trijet_ktN",
+                        "trijet_Bcs_ktN_idx", "trijet_Bcs_ktN_px", "trijet_Bcs_ktN_py", "trijet_Bcs_ktN_pz", "trijet_Bcs_ktN_energy", "trijet_Bcs_ktN_mass", "n_Bcs_trijet_ktN"]
+        branchList += ["dijet_ud_ktN_idx", "dijet_ud_ktN_px", "dijet_ud_ktN_py", "dijet_ud_ktN_pz", "dijet_ud_ktN_energy", "dijet_ud_ktN_mass", "n_ud_dijet_ktN",
+                        "trijet_Sud_ktN_idx", "trijet_Sud_ktN_px", "trijet_Sud_ktN_py", "trijet_Sud_ktN_pz", "trijet_Sud_ktN_energy", "trijet_Sud_ktN_mass", "n_Sud_trijet_ktN",
+                        "trijet_Bud_ktN_idx", "trijet_Bud_ktN_px", "trijet_Bud_ktN_py", "trijet_Bud_ktN_pz", "trijet_Bud_ktN_energy", "trijet_Bud_ktN_mass", "n_Bud_trijet_ktN"]
         
 
         return branchList
