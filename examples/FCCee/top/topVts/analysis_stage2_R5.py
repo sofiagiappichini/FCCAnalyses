@@ -2,7 +2,6 @@ import os, copy # tagging
 
 #Mandatory: List of processes
 processList = {
-            'wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365': {'chunks':1, 'fraction':0.0001},
             'wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365':   {'chunks':6},
             'wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365': {'chunks':6},
             'wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365': {'chunks':6},
@@ -103,6 +102,24 @@ class RDFanalysis():
         #branchList += ["jet_R5_px", "jet_R5_py", "jet_R5_pz", "jet_R5_phi", "jet_R5_eta", "jet_R5_energy", "jet_R5_mass", "jet_R5_flavor"]
         branchList += ["jet_pass_px", "jet_pass_py", "jet_pass_pz", "jet_pass_phi", "jet_pass_eta", "jet_pass_energy", "jet_pass_mass", "jet_pass_flavor",
                        "jet_pass_dR_b", "jet_pass_dR_s", "jet_pass_isSig", "jet_pass_isG", "jet_pass_isQ", "jet_pass_isS", "jet_pass_isC", "jet_pass_isB", "n_jets_pass"]
+        branchList += ["jet_leadS_px",   "jet_leadS_py",     "jet_leadS_pz",   "jet_leadS_phi",  "jet_leadS_eta", "jet_leadS_energy", 
+                       "jet_leadS_mass", "jet_leadS_flavor", "jet_leadS_dR_b", "jet_leadS_dR_s", "jet_leadS_isSig",
+                       "jet_leadS_isG",  "jet_leadS_isQ",    "jet_leadS_isS",  "jet_leadS_isC",  "jet_leadS_isB"]
+        branchList += ["jet_subS_px",   "jet_subS_py",     "jet_subS_pz",   "jet_subS_phi",  "jet_subS_eta", "jet_subS_energy",
+                       "jet_subS_mass", "jet_subS_flavor", "jet_subS_dR_b", "jet_subS_dR_s", "jet_subS_isSig",
+                       "jet_subS_isG",  "jet_subS_isQ",    "jet_subS_isS",  "jet_subS_isC",  "jet_subS_isB"]
+        branchList += ["jet_leadC_px",   "jet_leadC_py",     "jet_leadC_pz",   "jet_leadC_phi",  "jet_leadC_eta", "jet_leadC_energy",
+                       "jet_leadC_mass", "jet_leadC_flavor", "jet_leadC_dR_b", "jet_leadC_dR_s", "jet_leadC_isSig",
+                       "jet_leadC_isG",  "jet_leadC_isQ",    "jet_leadC_isS",  "jet_leadC_isC",  "jet_leadC_isB"]
+        branchList += ["jet_subC_px",   "jet_subC_py",     "jet_subC_pz",   "jet_subC_phi",  "jet_subC_eta", "jet_subC_energy",
+                       "jet_subC_mass", "jet_subC_flavor", "jet_subC_dR_b", "jet_subC_dR_s", "jet_subC_isSig",
+                       "jet_subC_isG",  "jet_subC_isQ",    "jet_subC_isS",  "jet_subC_isC",  "jet_subC_isB"]
+        branchList += ["jet_leadB_px",   "jet_leadB_py",     "jet_leadB_pz",   "jet_leadB_phi",  "jet_leadB_eta", "jet_leadB_energy", 
+                       "jet_leadB_mass", "jet_leadB_flavor", "jet_leadB_dR_b", "jet_leadB_dR_s", "jet_leadB_isBig",
+                       "jet_leadB_isG",  "jet_leadB_isQ",    "jet_leadB_isS",  "jet_leadB_isC",  "jet_leadB_isB"]
+        branchList += ["jet_subB_px",   "jet_subB_py",     "jet_subB_pz",   "jet_subB_phi",  "jet_subB_eta", "jet_subB_energy",
+                       "jet_subB_mass", "jet_subB_flavor", "jet_subB_dR_b", "jet_subB_dR_s", "jet_subB_isBig",
+                       "jet_subB_isG",  "jet_subB_isQ",    "jet_subB_isS",  "jet_subB_isC",  "jet_subB_isB"]
 
         #### stage2 variables ####
         branchList += ["dilep_R5_cat", "semilep_R5_cat", "dihad_R5_cat"]
