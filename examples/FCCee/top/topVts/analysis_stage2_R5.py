@@ -74,20 +74,19 @@ class RDFanalysis():
                 .Define("dijet_cs_R5_mass",   "FCCAnalyses::ZHfunctions::get_dijet_mass(dijet_cs_R5_idx, jet_R5_cat_p4)")
                 .Define("n_dijet_cs_R5",   "int(dijet_cs_R5_mass.size())")
 
-                .Define("trijet_Scs_R5_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_cs_R5_idx, jet_leadS_idx, true)")
-                .Define("trijet_Scs_R5_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Scs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Scs_R5_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(trijet_Scs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Scs_R5_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Scs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Scs_R5_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(trijet_Scs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Scs_R5_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(trijet_Scs_R5_idx, jet_R5_cat_p4)")
+                .Define("trijet_Scs_R5_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(dijet_cs_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
+                .Define("trijet_Scs_R5_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(dijet_cs_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
+                .Define("trijet_Scs_R5_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(dijet_cs_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
+                .Define("trijet_Scs_R5_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(dijet_cs_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
+                .Define("trijet_Scs_R5_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(dijet_cs_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
                 .Define("n_trijet_Scs_R5",   "int(trijet_Scs_R5_mass.size())")
 
-                .Define("trijet_Bcs_R5_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_cs_R5_idx, jet_leadB_idx, false)")
-                .Define("trijet_Bcs_R5_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Bcs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Bcs_R5_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(trijet_Bcs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Bcs_R5_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Bcs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Bcs_R5_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(trijet_Bcs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Bcs_R5_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(trijet_Bcs_R5_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bcs_R5_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_cs_R5_idx, jet_leadB_idx, jet_leadB_idx, false)")
+                .Define("trijet_Bcs_R5_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(dijet_cs_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bcs_R5_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(dijet_cs_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bcs_R5_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(dijet_cs_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bcs_R5_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(dijet_cs_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bcs_R5_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(dijet_cs_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
                 .Define("n_trijet_Bcs_R5",   "int(trijet_Bcs_R5_mass.size())")
 
                 ## ud dijets and trijets
@@ -100,20 +99,18 @@ class RDFanalysis():
                 .Define("dijet_ud_R5_mass",   "FCCAnalyses::ZHfunctions::get_dijet_mass(dijet_ud_R5_idx, jet_R5_cat_p4)")
                 .Define("n_dijet_ud_R5",   "int(dijet_ud_R5_mass.size())")
 
-                .Define("trijet_Sud_R5_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_ud_R5_idx, jet_leadS_idx, true)")
-                .Define("trijet_Sud_R5_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Scs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Sud_R5_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(trijet_Scs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Sud_R5_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Scs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Sud_R5_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(trijet_Scs_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Sud_R5_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(trijet_Scs_R5_idx, jet_R5_cat_p4)")
+                .Define("trijet_Sud_R5_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(dijet_ud_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
+                .Define("trijet_Sud_R5_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(dijet_ud_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
+                .Define("trijet_Sud_R5_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(dijet_ud_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
+                .Define("trijet_Sud_R5_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(dijet_ud_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
+                .Define("trijet_Sud_R5_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(dijet_ud_R5_idx, jet_leadS_idx, jet_R5_cat_p4)")
                 .Define("n_trijet_Sud_R5",   "int(trijet_Sud_R5_mass.size())")
 
-                .Define("trijet_Bud_R5_idx",     "FCCAnalyses::ZHfunctions::get_trijet_idx(dijet_ud_R5_idx, jet_leadB_idx, false)")
-                .Define("trijet_Bud_R5_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Bud_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Bud_R5_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(trijet_Bud_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Bud_R5_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(trijet_Bud_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Bud_R5_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(trijet_Bud_R5_idx, jet_R5_cat_p4)")
-                .Define("trijet_Bud_R5_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(trijet_Bud_R5_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bud_R5_px",     "FCCAnalyses::ZHfunctions::get_trijet_px(dijet_ud_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bud_R5_py",     "FCCAnalyses::ZHfunctions::get_trijet_py(dijet_ud_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bud_R5_pz",     "FCCAnalyses::ZHfunctions::get_trijet_px(dijet_ud_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bud_R5_energy", "FCCAnalyses::ZHfunctions::get_trijet_energy(dijet_ud_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
+                .Define("trijet_Bud_R5_mass",   "FCCAnalyses::ZHfunctions::get_trijet_mass(dijet_ud_R5_idx, jet_leadB_idx, jet_R5_cat_p4)")
                 .Define("n_trijet_Bud_R5",   "int(trijet_Bud_R5_mass.size())")                
 
                 
@@ -174,6 +171,6 @@ class RDFanalysis():
                         "trijet_Scs_R5_idx", "trijet_Scs_R5_px", "trijet_Scs_R5_py", "trijet_Scs_R5_pz", "trijet_Scs_R5_energy", "trijet_Scs_R5_mass", "n_Scs_trijet_R5",
                         "trijet_Bcs_R5_idx", "trijet_Bcs_R5_px", "trijet_Bcs_R5_py", "trijet_Bcs_R5_pz", "trijet_Bcs_R5_energy", "trijet_Bcs_R5_mass", "n_Bcs_trijet_R5"]
         branchList += ["dijet_ud_R5_idx", "dijet_ud_R5_px", "dijet_ud_R5_py", "dijet_ud_R5_pz", "dijet_ud_R5_energy", "dijet_ud_R5_mass", "n_ud_dijet_R5",
-                        "trijet_Sud_R5_idx", "trijet_Sud_R5_px", "trijet_Sud_R5_py", "trijet_Sud_R5_pz", "trijet_Sud_R5_energy", "trijet_Sud_R5_mass", "n_Sud_trijet_R5",
-                        "trijet_Bud_R5_idx", "trijet_Bud_R5_px", "trijet_Bud_R5_py", "trijet_Bud_R5_pz", "trijet_Bud_R5_energy", "trijet_Bud_R5_mass", "n_Bud_trijet_R5"]
+                        "trijet_Sud_R5_px", "trijet_Sud_R5_py", "trijet_Sud_R5_pz", "trijet_Sud_R5_energy", "trijet_Sud_R5_mass", "n_Sud_trijet_R5",
+                        "trijet_Bud_R5_px", "trijet_Bud_R5_py", "trijet_Bud_R5_pz", "trijet_Bud_R5_energy", "trijet_Bud_R5_mass", "n_Bud_trijet_R5"]
         return branchList
