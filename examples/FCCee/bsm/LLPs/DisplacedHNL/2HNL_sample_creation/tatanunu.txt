@@ -1,4 +1,4 @@
-import model sm
+import model sm-lepton_masses
 
 define l = e+ mu+ ta+ e- mu- ta-
 define e = e+ e-
@@ -8,8 +8,8 @@ define nu = vl vl~
 
 generate e+ e- > ta+ ta- nu nu 
 
-output /eos/user/s/sgiappic/2HNL_prod/tatanunu
-launch /eos/user/s/sgiappic/2HNL_prod/tatanunu
+output /eos/user/s/sgiappic/2HNL_prod/tatanunu_m
+launch /eos/user/s/sgiappic/2HNL_prod/tatanunu_m
 
 set ptl 1 #charged lepton pt
 set el 2 #charged lepton energy, same cut as delphes efficiency

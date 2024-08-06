@@ -4,7 +4,7 @@
 # es per macOS: brew install ghostscript
 
 # Directory containing the EPS files
-EPS_DIR="/eos/user/s/sgiappic/diagrams/llnunu"
+EPS_DIR="/eos/user/s/sgiappic/diagrams/HNLs"
 
 # Change to the directory containing EPS files
 cd "$EPS_DIR"
