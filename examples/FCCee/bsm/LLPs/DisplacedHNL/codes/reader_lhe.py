@@ -19,6 +19,12 @@ def get_particle_pt(particle):
     py = particle.py
     return (px**2 + py**2)**0.5
 
+def get_particle_p(particle):
+    px = particle.px
+    py = particle.py
+    pz = particle.pz
+    return (px**2 + py**2 + pz**2)**0.5
+
 def calculate_weights(cross_section, num_events, luminosity=204e6):
     return cross_section * luminosity / num_events
 
@@ -36,9 +42,13 @@ def extract_event_data(events, cross_section, num_events):
                 final_state_particles.append(particle)
         if len(final_state_particles) == 2:
             invariant_masses.append(get_invariant_mass(final_state_particles))
-            transverse_momenta.extend(get_particle_pt(p) for p in final_state_particles)
-            energies.extend(p.e for p in final_state_particles)
-            weight_list.extend([weight] * len(final_state_particles))
+            if (get_particle_p(final_state_particles[0]) > get_particle_p(final_state_particles[1])):
+                transverse_momenta.append(get_particle_pt(final_state_particles[0]))
+                energies.append(final_state_particles[0].e)
+            else:
+                transverse_momenta.append(get_particle_pt(final_state_particles[1]))
+                energies.append(final_state_particles[1].e)
+            weight_list.append(weight)
 
     return invariant_masses, transverse_momenta, energies, weight_list
 

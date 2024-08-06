@@ -1,13 +1,69 @@
-import shutil
+# from https://github.com/mpresill/PlotsConfigurations/blob/matteo/Configurations/VBS_ZV/scripts/rebinning.py#L23-L66
+# relevant lines for rebinning only: 23-66 
+# https://root.cern/doc/master/classTH1.html#a9eef6f499230b88582648892e5e4e2ce on rebin 
+# requires python3 from key4hep stack sourcing, not cmsenv
+
 import os
+import ROOT
+import shutil
+from matplotlib import pyplot as plt
+import pandas as pd
+import array
+import sys
+import os.path
+import ntpath
+import importlib
+import copy
+import re
+import logging
+import numpy as np
+import uproot
 
-# Define the original sample name and the replacement sample name
-nomeFile = "HNL_2.86e-7_80gev"  # original file name
+def sorted_dict_values(dic: dict) -> list:
+    ''''
+    Sort values in the dictionary.
+    '''
+    keys = sorted(dic)
+    return [dic[key] for key in keys]
 
-cut_SF = "selReco_gen_notracks_nojets_5M80_0.8cos_10MET_22ME70_leadE40"
-cut_DF = "selReco_gen_notracks_nojets_5M80_0.8cos_10MET"
+def make_dir_if_not_exists(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        print(f"Directory created successfully.")
+    else:
+        print(f"Directory already exists.")
 
-replacement_words = [ 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_august/' 
+
+CUTS = [
+    "selReco_gen_notracks_2eh_M80_10MET_0cos",
+ ] # cut to rebin
+
+SUBCUTS = [
+    "10gev",
+    "20gev",
+    "30gev",
+    "40gev",
+    "50gev",
+    "60gev",
+    "70gev",
+ ]
+
+VARIABLE = "RecoEmiss_e" # variable to rebin
+
+FILES = [
+    #"p8_ee_Zee_ecm91",
+    #"p8_ee_Zmumu_ecm91",
+    #"p8_ee_Ztautau_ecm91",
+    #"p8_ee_Zbb_ecm91",
+    #"p8_ee_Zcc_ecm91",
+    #"p8_ee_Zud_ecm91",
+    #"p8_ee_Zss_ecm91",
+    #"eenunu",
+    #"mumununu",
+    #"tatanunu",
+    #"llnunu",
+    
     "HNL_1.33e-7_10gev",
     "HNL_1.33e-7_20gev",
     "HNL_1.33e-7_30gev",
@@ -395,84 +451,36 @@ replacement_words = [
     "HNL_2.86e-11_60gev",
     "HNL_2.86e-11_70gev",
     "HNL_2.86e-11_80gev",
-    
-    
-]  # Add more replacement words as needed
+]
 
-SUBCUTS = [
-    "_10gev",
-    "_20gev",
-    "_30gev",
- ]
+for cut in CUTS:
 
-SUBSTRING = [
-    "_40gev",
-    "_50gev",
-    "_60gev",
-    "_70gev",
-    "_80gev", 
- ]
+    output_file = "/eos/user/s/sgiappic/2HNL_ana/" + cut + "_" + VARIABLE + "_minbin.txt"
 
-# Create a backup directory if it doesn't exist
-backup_dir = "combine_backup"
-if not os.path.exists(backup_dir):
-    os.makedirs(backup_dir)
+    for file in FILES:
 
-# Loop through each replacement word
-for replacement_word in replacement_words:
+        #if "10gev" in file:
+            
+            histo_file_path = DIRECTORY + file + "_" + cut + "_DF_histo.root"
 
-    # Backup the original file
-    shutil.copy("/eos/user/s/sgiappic/combine/datacard_24july.txt", os.path.join(backup_dir, "datacard_backup.txt"))
+            # Get the selected leaf from the tree
+            histo_file = uproot.open(histo_file_path)
 
-    '''if "_10gev" in replacement_word:
-        with open("/eos/user/s/sgiappic/combine/datacard_24july_10gev_DF.txt", "r") as file:
-            file_data = file.read()
-    else:'''
-        # Perform substitution using sed within the loop
-    with open(os.path.join(backup_dir, "datacard_backup.txt"), "r") as file:
-        file_data = file.read()
+            selected_leaf = histo_file[VARIABLE]
 
-    file_data = file_data.replace(nomeFile, replacement_word)
+            # Get scaled number of events from histograms, array
+            y_values = selected_leaf.values()
 
-    '''for mass in SUBSTRING:
-        if mass in replacement_word:
+            # Get bin edges in arrays
+            bin_edges = selected_leaf.axis().edges()
 
-            #newcut_SF = "selReco_gen_notracks_2eh_M80_10MET_0cos_SF"
-            #file_data = file_data.replace(cut_SF, newcut_SF)
-            newcut_DF = "selReco_gen_notracks_2eh_M80_10MET_0cos_45ME_e35_DF"
-            file_data = file_data.replace(cut_DF, newcut_DF)
-            with open(os.path.join(backup_dir, "datacard_backup.txt"), "w") as file:
-                file.write(file_data)
+            entries = []
 
-    for mass in SUBCUTS:
-        if mass in replacement_word:'''
-                 
-            #newcut_SF = "selReco_gen_notracks_2eh_M80_10MET_0cos" + mass + "_SF"
-            #file_data = file_data.replace(cut_SF, newcut_SF)
-    newcut_DF = "selReco_gen_notracks_2eh_M80_10MET_0cos" # + mass + "_DF"
-    file_data = file_data.replace(cut_SF, newcut_DF)
-    with open(os.path.join(backup_dir, "datacard_backup.txt"), "w") as file:
-        file.write(file_data)
+            for i in range(len(y_values)):
+                if y_values[i]!=0:
+                    entries.append(bin_edges[i])
 
-    os.system("combine -M Significance {} -t -1 --expectSignal=1 >significance.txt".format(os.path.join(backup_dir, "datacard_backup.txt")))
+            min = np.min(entries)
 
-    # Define the file names
-    input_file = "significance.txt"
-    output_file = "/eos/user/s/sgiappic/combine/output_5aug_0cos.csv"
-
-    with open(input_file, "r") as file:
-            read = False
-            for line in file:
-                if "Significance:" in line:
-                    content_of_row=float(line[14:])
-                    read=True
-            if read == False:
-                content_of_row='error'
-
-    # Write the content of the selected row to the output CSV file
-    with open(output_file, "a") as csv_file:
-        csv_file.write("{}, {}\n".format(replacement_word, content_of_row))
-
-    #os.remove(os.path.join(backup_dir, "datacard_backup.txt"))
-
-    print("Content from {} has been written to {}".format(replacement_word, output_file))
+            with open(output_file, "a") as f:
+                f.write("File {} has min bin non empty in {} \n".format(file, min))

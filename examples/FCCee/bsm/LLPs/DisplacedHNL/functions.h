@@ -262,7 +262,57 @@ float get_cosTheta_miss(Vec_rp met){
     return costheta;
 }
 
- 
+
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> get_leading(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> x) {
+    std::vector<edm4hep::ReconstructedParticleData> result; //use a vector even if it is one element so it's compatible with the other functions
+    std::vector<float> momentum;
+
+    for (size_t i = 0; i < x.size(); ++i) {
+        float px1 = x.at(i).momentum.x;
+        float py1 = x.at(i).momentum.y;
+        float pz1 = x.at(i).momentum.z;
+        momentum.emplace_back(std::sqrt(px1* px1 + py1*py1 + pz1*pz1));
+        }
+
+    auto maxp = std::max_element(momentum.begin(), momentum.end());
+    int maxp_index = std::distance(momentum.begin(), maxp); //index corresponding to the reconstructed particle class
+    result.emplace_back(x.at(maxp_index));
+    return ROOT::VecOps::RVec(result);
+}
+
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> get_subleading(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> x) {
+    std::vector<edm4hep::ReconstructedParticleData> result; //use a vector even if it is one element so it's compatible with the other functions
+    std::vector<float> momentum;
+
+    for (size_t i = 0; i < x.size(); ++i) {
+        float px1 = x.at(i).momentum.x;
+        float py1 = x.at(i).momentum.y;
+        float pz1 = x.at(i).momentum.z;
+        momentum.emplace_back(std::sqrt(px1* px1 + py1*py1 + pz1*pz1));
+        }
+
+    auto maxp = std::max_element(momentum.begin(), momentum.end());
+    int maxp_index = std::distance(momentum.begin(), maxp); //index corresponding to the reconstructed particle class
+    *maxp = 0; //replace maximum value with 0 
+
+    auto maxp2 = std::max_element(momentum.begin(), momentum.end());
+    int maxp2_index = std::distance(momentum.begin(), maxp2); //index corresponding to the reconstructed particle class, now second largest value
+
+    result.emplace_back(x.at(maxp2_index));
+    return ROOT::VecOps::RVec(result);
+}
+
+ROOT::VecOps::RVec<fastjet::PseudoJet> sel_e(float min_e, ROOT::VecOps::RVec<fastjet::PseudoJet> in) {
+  ROOT::VecOps::RVec<fastjet::PseudoJet> result;
+  result.reserve(in.size());
+  for (size_t i = 0; i < in.size(); ++i) {
+    auto &p = in[i];
+    if (p.E() > min_e) {
+      result.emplace_back(p);
+    }
+  }
+  return result;
+}
  
 
 }}
