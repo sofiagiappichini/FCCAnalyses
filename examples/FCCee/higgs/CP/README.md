@@ -1,15 +1,16 @@
 # Instruction for Higgs CP analysis
 
-The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLPFCCTutorial/blob/main/README.md](https://github.com/jalimena/LLPFCCTutorial/blob/main/README.md)
-
 - [Instruction for Higgs CP analysis](#instruction-for-higgs-cp-analysis)
-  - [Event production](#event-production)
-    - [Central backgrounds](#central-backgrounds)
-    - [Stage 1 ntuples](#stage-1-ntuples)
   - [FCCAnalyses setup](#fccanalyses-setup)
   - [Running the analysis](#running-the-analysis)
     - [How to add new functions](#how-to-add-new-functions)
     - [Changes made to the general code](#changes-made-to-the-general-code)
+  - [Event production](#event-production)
+    - [Central backgrounds](#central-backgrounds)
+    - [Stage 1 ntuples](#stage-1-ntuples)
+    - [Stage2 for cross section measurement](#stage2-for-cross-section-measurement)
+    - [Final stage](#final-stage)
+    - [Combine](#combine)
   - [Additional codes](#additional-codes)
     - [Access LHE files](#access-lhe-files)
     - [LHE conversion to ROOT](#lhe-conversion-to-root)
@@ -17,30 +18,8 @@ The instructions mainly follow the LLP tutorial [https://github.com/jalimena/LLP
     - [Rebinning](#rebinning)
     - [Cut optimizer](#cut-optimizer)
     - [Plots](#plots)
-    - [Combine](#combine)
+    - [Combine](#combine-1)
     - [Other](#other)
-
-## Event production
-
-### Central backgrounds
-
-The SM LO samples come from the [central winter 23 production](https://fcc-physics-events.web.cern.ch/FCCee/winter2023/Delphesevents_IDEA.php). For ZH at $\sqrt{s}=$240 GeV the samples are produced in [Wizard v. 3.0.3](https://github.com/HEP-FCC/FCC-config/tree/winter2023/FCCee/Generator/Whizard/v3.0.3) and showered with Pythia 6. The file names indicates the other particles besides the H (s channel Z -> ZH or if possible with the same final state WW -> H is also included) and also the decay of the H. The stage 1 ntuples already available are:
-
-- wzp6_ee_nunuH_Htautau_ecm240: 1,200,000 gen events
-- wzp6_ee_nunuH_Hbb_ecm240: 1,200,000 gen events
-- wzp6_ee_nunuH_Hcc_ecm240: 1,100,000 gen events
-- wzp6_ee_nunuH_Huu_ecm240: 4,900,000 gen events
-- wzp6_ee_nunuH_Hdd_ecm240: 4,979,640 gen events
-- wzp6_ee_nunuH_Hss_ecm240: 1,008,052 gen events
-- wzp6_ee_nunuH_Hmumu_ecm240: 400,000 gen events
-
-### Stage 1 ntuples
-
-The ntuples contain information about the thruth level variables for final state electrons and muons, number of Z, final state neutrinos (all flavors together), and final state photons. For the thruth level tau variables there is one class with all taus (AllGenTau) and one for only after FSR or in case of no FSR at all taus (FSRGenTau), there is also noFSRGenTau_parentPDG which refers to the tau produced in the decay of the boson/quark. 
-
-For the reconstructed particles there are final state electrons, muons and photons, missing energy, primary and secondary tracks and two jets classes inherited from the tau tagging study (exclusive Durham kt with 2 jets and inclusive anti kt with R=0.5 and $p_T>$1 GeV, both exclude electrons and muons with $p>$15 GeV from the clustering). 
-
-The files can be found at `/ceph/sgiappic/HiggsCP/stage1_` with corresponding date (`aa_mm_dd`). 
 
 ## FCCAnalyses setup 
 
@@ -87,7 +66,7 @@ The files can be found at `/ceph/sgiappic/HiggsCP/stage1_` with corresponding da
 
     This is the stage where you can add or modify the variables that you want to save in the trees, remember to update the other stages as well to get the plots.
 
-    In the first stage simple variables are builkt for thrut and reconstructed particles. In the second stage, complex variables are built from the information from the stage1. In stage 2 you can also filter events by requiring or not to have certain particles present, i.e. differentiate decay channels.
+    In the first stage simple variables are builkt for truth and reconstructed particles. In the second stage, complex variables are built from the information from the stage1. In stage 2 you can also filter events by requiring or not to have certain particles present, i.e. differentiate decay channels.
 
 2. Then run the chosen selections on top of that:
 
@@ -144,6 +123,134 @@ In [`FCCAnalyses/python/run_final_analysis.py`](https://github.com/sofiagiappich
 Because of that, the plotting code is modified to not scale to the luminosity anymore but simply takes the argument to print it onto the plots. In this way, the histograms are correctly scaled in the `final` step and can be used as input into CMS Combine with the correct number of expected events.
 
 Note: the uncertainty on the number of events that is saved in the tables is the square root of the number of events (scaled or not).
+
+## Event production
+
+### Central backgrounds
+
+The SM LO samples come from the [central winter 23 production](https://fcc-physics-events.web.cern.ch/FCCee/winter2023/Delphesevents_IDEA.php). For ZH at $\sqrt{s}=$240 GeV the samples are produced in [Wizard v. 3.0.3](https://github.com/HEP-FCC/FCC-config/tree/winter2023/FCCee/Generator/Whizard/v3.0.3) and showered with Pythia 6. The file names indicates the other particles besides the H (s channel Z -> ZH or if possible with the same final state WW -> H is also included) and also the decay of the H.
+
+The Delphes root files can be also found at ETP under `/ceph/sgiappic/HiggsCP/winter23`.
+
+### Stage 1 ntuples
+
+The ntuples contain information about the thruth level variables for final state electrons and muons, number of Z, final state neutrinos (all flavors together), and final state photons. For the thruth level tau variables there is one class with all taus (AllGenTau) and one for only after FSR or in case of no FSR at all taus (FSRGenTau), there is also `noFSRGenTau` which refers to the tau produced in the decay of the boson/quark. 
+
+For the reconstructed particles there are:
+- final state electrons, muons, leptons (electrons+muons)
+- final state electrons, muon, leptons that have p>20 GeV, and are isolated (0.25) (`_sel`)
+- final state photons, missing energy, primary and secondary tracks
+- two jets classes, one with R5 removing the isolated letons and one with exclusive gen kt with 4 jets on all final state particles
+- two reconstructed hadronic tau classes based respectively on the two jet classes 
+- one jet class based on R5 with jets that are not being considered as tau jets (`_sel`)
+
+### Stage2 for cross section measurement
+
+After porcessing stage1 on all the available samples, in stage2 we define separate categories based on the decay products fo the Z and H bosons. The selection to define the catagories is on the number of particles (leptons, hadronic taus, jets), on the charges (and flavor) of the lepton pairs from the Z, on the charges of the reconstructed taus. The unnamed stage2 containes CP sensitive variables for generated particles.
+
+Two functions are available to determine the origin of two pairs of leptons when the final state has four, checking that the pair is neutral and same flavor, and one to determine the pair of leptons form the Z if there are three leptons, again checking that the pair is neutral and same flavor. The flavor check is done by considering the mass of the leptons. These can be found in `functions.h`, along with all the other functions used in stage2.
+
+- **LLLL**: 4 final state leptons
+- **LLLH**: 3 final state leptons and one hadronic tau
+- **LLHH**: 2 final state leptons and two hadronic taus
+    - p8_ee_WW_ecm240
+    - p8_ee_Zqq_ecm240
+    - p8_ee_ZZ_ecm240
+    - wzp6_ee_tautau_ecm240
+
+    - wzp6_ee_eeH_Htautau_ecm240 (signal)
+    - wzp6_ee_eeH_Hbb_ecm240
+    - wzp6_ee_eeH_Hcc_ecm240
+    - wzp6_ee_eeH_Huu_ecm240
+    - wzp6_ee_eeH_Hdd_ecm240
+    - wzp6_ee_eeH_Hss_ecm240
+    - wzp6_ee_eeH_HWW_ecm240
+    - wzp6_ee_eeH_HZZ_ecm240
+
+    - wzp6_ee_mumuH_Htautau_ecm240 (signal)
+    - wzp6_ee_mumuH_Hbb_ecm240
+    - wzp6_ee_mumuH_Hcc_ecm240
+    - wzp6_ee_mumuH_Huu_ecm240
+    - wzp6_ee_mumuH_Hdd_ecm240
+    - wzp6_ee_mumuH_Hss_ecm240
+    - wzp6_ee_mumuH_HWW_ecm240
+    - wzp6_ee_mumuH_HZZ_ecm240
+
+    - wzp6_ee_tautauH_Htautau_ecm240
+    - wzp6_ee_tautauH_Hbb_ecm240
+    - wzp6_ee_tautauH_Hcc_ecm240
+    - wzp6_ee_tautauH_Huu_ecm240
+    - wzp6_ee_tautauH_Hdd_ecm240
+    - wzp6_ee_tautauH_Hss_ecm240
+    - wzp6_ee_tautauH_HWW_ecm240
+    - wzp6_ee_tautauH_HZZ_ecm240
+
+- **QQLL**: two jets from Z, two leptonic taus
+- **QQLH**: two jets from Z, one leptonic tau, one hadronic tau
+- **QQHH**: two jets from Z, two hadronic taus
+    - p8_ee_WW_ecm240
+    - p8_ee_Zqq_ecm240
+    - p8_ee_ZZ_ecm240
+    - wzp6_ee_tautau_ecm240
+
+    - wzp6_ee_bbH_Htautau_ecm240 (signal)
+    - wzp6_ee_bbH_Hbb_ecm240
+    - wzp6_ee_bbH_Hcc_ecm240
+    - wzp6_ee_bbH_Huu_ecm240
+    - wzp6_ee_bbH_Hdd_ecm240
+    - wzp6_ee_bbH_Hss_ecm240
+    - wzp6_ee_bbH_HWW_ecm240
+    - wzp6_ee_bbH_HZZ_ecm240
+
+    - wzp6_ee_ccH_Htautau_ecm240 (signal)
+    - wzp6_ee_ccH_Hbb_ecm240
+    - wzp6_ee_ccH_Hcc_ecm240
+    - wzp6_ee_ccH_Huu_ecm240
+    - wzp6_ee_ccH_Hdd_ecm240
+    - wzp6_ee_ccH_Hss_ecm240
+    - wzp6_ee_ccH_HWW_ecm240
+    - wzp6_ee_ccH_HZZ_ecm240
+
+    - wzp6_ee_ssH_Htautau_ecm240 (signal)
+    - wzp6_ee_ssH_Hbb_ecm240
+    - wzp6_ee_ssH_Hcc_ecm240
+    - wzp6_ee_ssH_Huu_ecm240
+    - wzp6_ee_ssH_Hdd_ecm240
+    - wzp6_ee_ssH_Hss_ecm240
+    - wzp6_ee_ssH_HWW_ecm240
+    - wzp6_ee_ssH_HZZ_ecm240
+
+    - wzp6_ee_qqH_Htautau_ecm240 (signal)
+    - wzp6_ee_qqH_Hbb_ecm240
+    - wzp6_ee_qqH_Hcc_ecm240
+    - wzp6_ee_qqH_Huu_ecm240
+    - wzp6_ee_qqH_Hdd_ecm240
+    - wzp6_ee_qqH_Hss_ecm240
+    - wzp6_ee_qqH_HWW_ecm240
+    - wzp6_ee_qqH_HZZ_ecm240
+
+    - wzp6_ee_tautauH_Htautau_ecm240
+    - wzp6_ee_tautauH_Hbb_ecm240
+    - wzp6_ee_tautauH_Hcc_ecm240
+    - wzp6_ee_tautauH_Huu_ecm240
+    - wzp6_ee_tautauH_Hdd_ecm240
+    - wzp6_ee_tautauH_Hss_ecm240
+    - wzp6_ee_tautauH_HWW_ecm240
+    - wzp6_ee_tautauH_HZZ_ecm240
+
+**Note**: the output should be in separate directories named after the final states so there is no confusion between the files.
+
+### Final stage
+
+Here we keep the same categories as stage2 and apply the respective cuts on kinematical variables. 
+
+**Note**: the output should be in separate directories named after the final states so there is no confusion between the files.
+
+### Combine
+
+To get the relative uncertainty on the $ H \to \tau \tau $ cross section, we can use [CMS Combine](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/latest/) to get the value from analyzing the signal and background histograms after final selection (shape based analysis).
+
+To do this, we need to make datacards that combine uses as input. They can be found under `FCCAnalyses/examples/FCCee/higgs/CP/combine` for each respective category. The code `replace_input_combine.py` automatically sources the environment and computes the uncertainty, storing the output in a text file.
 
 ## Additional codes
 
