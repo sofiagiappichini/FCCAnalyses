@@ -1,0 +1,13 @@
+ <<< Combine >>> 
+>>> including systematics
+>>> method used is FitDiagnostics
+>>> random number generator seed is 123456
+Computing results starting from expected outcome (a-priori)
+Constraints of type RooPoisson: 3
+Constraints of type SimpleGaussianConstraint: 241
+Constraints of type RooPoisson: 3
+Constraints of type SimpleGaussianConstraint: 241
+
+ --- FitDiagnostics ---
+Best fit r: -1.65056e-06  -8.15245e-05/+8.60778e-05  (68% CL)
+Done in 0.04 min (cpu), 0.05 min (real)

@@ -3,39 +3,93 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
+
+    #'p8_ee_WW_ecm240':{'chunks':100},
+    #'p8_ee_Zqq_ecm240':{'chunks':100},
+    #'p8_ee_ZZ_ecm240':{'chunks':100},
+    #'wzp6_ee_tautau_ecm240':{'chunks':100},
+
     #'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
-    ##'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
-    ##'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
-    #'wzp6_ee_nunuH_Hmumu_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_HZZ_ecm240': {'chunks':10},
 
     #'wzp6_ee_eeH_Htautau_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_Hbb_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_Hmumu_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
 
-    'wzp6_ee_mumuH_Htautau_ecm240': {'fraction':0.25},
+    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_Hmumu_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
+
+    #'wzp6_ee_bbH_Htautau_ecm240': {'chunks':10},
+    #'wzp6_ee_bbH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_bbH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_bbH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_bbH_Hdd_ecm240': {'chunks':10},
+    #'wzp6_ee_bbH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_bbH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_bbH_HZZ_ecm240': {'chunks':10},
+
+    #'wzp6_ee_ccH_Htautau_ecm240': {'chunks':10},
+    #'wzp6_ee_ccH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_ccH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_ccH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_ccH_Hdd_ecm240': {'chunks':10},
+    #'wzp6_ee_ccH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_ccH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_ccH_HZZ_ecm240': {'chunks':10},
+
+    #'wzp6_ee_ssH_Htautau_ecm240': {'chunks':10},
+    #'wzp6_ee_ssH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_ssH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_ssH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_ssH_Hdd_ecm240': {'chunks':10},
+    #'wzp6_ee_ssH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_ssH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_ssH_HZZ_ecm240': {'chunks':10},
+
+    #'wzp6_ee_qqH_Htautau_ecm240': {'chunks':10},
+    #'wzp6_ee_qqH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_qqH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_qqH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_qqH_Hdd_ecm240': {'chunks':10},
+    #'wzp6_ee_qqH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
+
+    #'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_Huu_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_Hdd_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
+
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
+
+inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/user/s/sgiappic/HiggsCP/stage1/"
+outputDir   = "stage1/"
 
 ### necessary to run on HTCondor ###c
 eosType = "eosuser"
@@ -52,47 +106,8 @@ batchQueue = "tomorrow"
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
 
-### tagging
-## latest particle transformer model, trained on 9M jets in winter2023 samples
-model_name = "fccee_flavtagging_edm4hep_wc_v1"
-
-## model files needed for unit testing in CI
-url_model_dir = "https://fccsw.web.cern.ch/fccsw/testsamples/jet_flavour_tagging/winter2023/wc_pt_13_01_2022/"
-url_preproc = "{}/{}.json".format(url_model_dir, model_name)
-url_model = "{}/{}.onnx".format(url_model_dir, model_name)
-
-## model files locally stored on /eos
-model_dir = (
-    "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_13_01_2022/"
-)
-local_preproc = "{}/{}.json".format(model_dir, model_name)
-local_model = "{}/{}.onnx".format(model_dir, model_name)
-
-## get local file, else download from url
-def get_file_path(url, filename):
-    if os.path.exists(filename):
-        return os.path.abspath(filename)
-    else:
-        urllib.request.urlretrieve(url, os.path.basename(url))
-        return os.path.basename(url)
-
-
-weaver_preproc = get_file_path(url_preproc, local_preproc)
-weaver_model = get_file_path(url_model, local_model)
-
-from addons.ONNXRuntime.jetFlavourHelper import JetFlavourHelper
-from addons.FastJet.jetClusteringHelper import (
-    ExclusiveJetClusteringHelper,
-    InclusiveJetClusteringHelper,
-)
-
-jetFlavourHelper = None
-jetClusteringHelper = None
-
-jetClusteringHelper_kt2   = None
-jetClusteringHelper_R5   = None
-jetFlavourHelper_kt2   = None
-jetFlavourHelper_R5   = None
+# additional/costom C++ functions, defined in header files (optional)
+includePaths = ["functions.h"]
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -378,12 +393,39 @@ class RDFanalysis():
                 .Define("RecoElectron_theta",   "ReconstructedParticle::get_theta(RecoElectrons)")
                 .Define("RecoElectron_phi",     "ReconstructedParticle::get_phi(RecoElectrons)") #polar angle in the transverse plane phi
                 .Define("RecoElectron_charge",  "ReconstructedParticle::get_charge(RecoElectrons)")
+                .Define("RecoElectron_mass",     "ReconstructedParticle::get_mass(RecoElectrons)")
+                .Define("RecoElectron_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoElectrons)")
                 .Define("RecoElectronTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoElectrons,EFlowTrack_1))")
                 .Define("RecoElectronTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoElectrons,EFlowTrack_1))")
                 .Define("RecoElectronTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoElectrons,EFlowTrack_1))") #significance
                 .Define("RecoElectronTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoElectrons,EFlowTrack_1))")
                 .Define("RecoElectronTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoElectrons,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoElectronTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoElectrons,EFlowTrack_1)")
+
+                .Define("RecoElectrons_hard", "FCCAnalyses::ReconstructedParticle::sel_p(20)(RecoElectrons)")
+                .Define("RecoElectrons_iso",  "FCCAnalyses::ZHfunctions::coneIsolation(0.01, 0.5)(RecoElectrons_hard, ReconstructedParticles)")
+                .Define("RecoElectrons_sel", "FCCAnalyses::ZHfunctions::sel_iso(0.25)(RecoElectrons_hard, RecoElectrons_iso)")
+
+                .Define("n_RecoElectrons_sel",  "ReconstructedParticle::get_n(RecoElectrons_sel)") 
+                .Define("RecoElectron_sel_e",      "ReconstructedParticle::get_e(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_p",      "ReconstructedParticle::get_p(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_pt",      "ReconstructedParticle::get_pt(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_px",      "ReconstructedParticle::get_px(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_py",      "ReconstructedParticle::get_py(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_pz",      "ReconstructedParticle::get_pz(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_y",      "ReconstructedParticle::get_y(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_eta",     "ReconstructedParticle::get_eta(RecoElectrons_sel)") #pseudorapidity eta
+                .Define("RecoElectron_sel_theta",   "ReconstructedParticle::get_theta(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_phi",     "ReconstructedParticle::get_phi(RecoElectrons_sel)") #polar angle in the transverse plane phi
+                .Define("RecoElectron_sel_charge",  "ReconstructedParticle::get_charge(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_mass",     "ReconstructedParticle::get_mass(RecoElectrons_sel)")
+                .Define("RecoElectron_sel_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoElectrons_sel)")
+                .Define("RecoElectronTrack_sel_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoElectrons_sel,EFlowTrack_1))")
+                .Define("RecoElectronTrack_sel_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoElectrons_sel,EFlowTrack_1))")
+                .Define("RecoElectronTrack_sel_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoElectrons_sel,EFlowTrack_1))") #significance
+                .Define("RecoElectronTrack_sel_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoElectrons_sel,EFlowTrack_1))")
+                .Define("RecoElectronTrack_sel_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoElectrons_sel,EFlowTrack_1)") #variance (not sigma)
+                .Define("RecoElectronTrack_sel_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoElectrons_sel,EFlowTrack_1)")
 
                 # MUONS
                 .Alias("Muon0", "Muon#0.index")
@@ -400,6 +442,8 @@ class RDFanalysis():
                 .Define("RecoMuon_theta",   "ReconstructedParticle::get_theta(RecoMuons)")
                 .Define("RecoMuon_phi",     "ReconstructedParticle::get_phi(RecoMuons)") #polar angle in the transverse plane phi
                 .Define("RecoMuon_charge",  "ReconstructedParticle::get_charge(RecoMuons)")
+                .Define("RecoMuon_mass",     "ReconstructedParticle::get_mass(RecoMuons)")
+                .Define("RecoMuon_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoMuons)")
                 .Define("RecoMuonTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoMuons,EFlowTrack_1))")
                 .Define("RecoMuonTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoMuons,EFlowTrack_1))")
                 .Define("RecoMuonTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoMuons,EFlowTrack_1))") #significance
@@ -407,25 +451,75 @@ class RDFanalysis():
                 .Define("RecoMuonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoMuons,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons,EFlowTrack_1)")
 
-                .Define("ZRecoMuons",       "return ReconstructedParticle::sel_invMass(80, 120)(RecoMuons)")
-                .Define("n_ZRecoMuons",  "ReconstructedParticle::get_n(ZRecoMuons)") #count how many muons are in the event in total
-                .Define("ZRecoMuon_e",      "ReconstructedParticle::get_e(ZRecoMuons)")
-                .Define("ZRecoMuon_p",      "ReconstructedParticle::get_p(ZRecoMuons)")
-                .Define("ZRecoMuon_pt",      "ReconstructedParticle::get_pt(ZRecoMuons)")
-                .Define("ZRecoMuon_px",      "ReconstructedParticle::get_px(ZRecoMuons)")
-                .Define("ZRecoMuon_py",      "ReconstructedParticle::get_py(ZRecoMuons)")
-                .Define("ZRecoMuon_pz",      "ReconstructedParticle::get_pz(ZRecoMuons)")
-                .Define("ZRecoMuon_y",     "ReconstructedParticle::get_y(ZRecoMuons)")
-                .Define("ZRecoMuon_eta",     "ReconstructedParticle::get_eta(ZRecoMuons)") #pseudorapidity eta
-                .Define("ZRecoMuon_theta",   "ReconstructedParticle::get_theta(ZRecoMuons)")
-                .Define("ZRecoMuon_phi",     "ReconstructedParticle::get_phi(ZRecoMuons)") #polar angle in the transverse plane phi
-                .Define("ZRecoMuon_charge",  "ReconstructedParticle::get_charge(ZRecoMuons)")
-                .Define("ZRecoMuonTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(ZRecoMuons,EFlowTrack_1))")
-                .Define("ZRecoMuonTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(ZRecoMuons,EFlowTrack_1))")
-                .Define("ZRecoMuonTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(ZRecoMuons,EFlowTrack_1))") #significance
-                .Define("ZRecoMuonTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(ZRecoMuons,EFlowTrack_1))")
-                .Define("ZRecoMuonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(ZRecoMuons,EFlowTrack_1)") #variance (not sigma)
-                .Define("ZRecoMuonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(ZRecoMuons,EFlowTrack_1)")
+                .Define("RecoMuons_hard", "FCCAnalyses::ReconstructedParticle::sel_p(20)(RecoMuons)")
+                .Define("RecoMuons_iso",  "FCCAnalyses::ZHfunctions::coneIsolation(0.01, 0.5)(RecoMuons_hard, ReconstructedParticles)")
+                .Define("RecoMuons_sel", "FCCAnalyses::ZHfunctions::sel_iso(0.25)(RecoMuons_hard, RecoMuons_iso)")
+                
+                .Define("n_RecoMuons_sel",  "ReconstructedParticle::get_n(RecoMuons_sel)") 
+                .Define("RecoMuon_sel_e",      "ReconstructedParticle::get_e(RecoMuons_sel)")
+                .Define("RecoMuon_sel_p",      "ReconstructedParticle::get_p(RecoMuons_sel)")
+                .Define("RecoMuon_sel_pt",      "ReconstructedParticle::get_pt(RecoMuons_sel)")
+                .Define("RecoMuon_sel_px",      "ReconstructedParticle::get_px(RecoMuons_sel)")
+                .Define("RecoMuon_sel_py",      "ReconstructedParticle::get_py(RecoMuons_sel)")
+                .Define("RecoMuon_sel_pz",      "ReconstructedParticle::get_pz(RecoMuons_sel)")
+                .Define("RecoMuon_sel_y",      "ReconstructedParticle::get_y(RecoMuons_sel)")
+                .Define("RecoMuon_sel_eta",     "ReconstructedParticle::get_eta(RecoMuons_sel)") #pseudorapidity eta
+                .Define("RecoMuon_sel_theta",   "ReconstructedParticle::get_theta(RecoMuons_sel)")
+                .Define("RecoMuon_sel_phi",     "ReconstructedParticle::get_phi(RecoMuons_sel)") #polar angle in the transverse plane phi
+                .Define("RecoMuon_sel_charge",  "ReconstructedParticle::get_charge(RecoMuons_sel)")
+                .Define("RecoMuon_sel_mass",     "ReconstructedParticle::get_mass(RecoMuons_sel)")
+                .Define("RecoMuon_sel_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoMuons_sel)")
+                .Define("RecoMuonTrack_sel_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoMuons_sel,EFlowTrack_1))")
+                .Define("RecoMuonTrack_sel_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoMuons_sel,EFlowTrack_1))")
+                .Define("RecoMuonTrack_sel_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoMuons_sel,EFlowTrack_1))") #significance
+                .Define("RecoMuonTrack_sel_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoMuons_sel,EFlowTrack_1))")
+                .Define("RecoMuonTrack_sel_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoMuons_sel,EFlowTrack_1)") #variance (not sigma)
+                .Define("RecoMuonTrack_sel_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons_sel,EFlowTrack_1)")
+
+                # LEPTONS
+                .Define("RecoLeptons", "ReconstructedParticle::merge(RecoElectrons, RecoMuons)")
+                .Define("n_RecoLeptons",  "ReconstructedParticle::get_n(RecoLeptons)") 
+                .Define("RecoLepton_e",      "ReconstructedParticle::get_e(RecoLeptons)")
+                .Define("RecoLepton_p",      "ReconstructedParticle::get_p(RecoLeptons)")
+                .Define("RecoLepton_pt",      "ReconstructedParticle::get_pt(RecoLeptons)")
+                .Define("RecoLepton_px",      "ReconstructedParticle::get_px(RecoLeptons)")
+                .Define("RecoLepton_py",      "ReconstructedParticle::get_py(RecoLeptons)")
+                .Define("RecoLepton_pz",      "ReconstructedParticle::get_pz(RecoLeptons)")
+                .Define("RecoLepton_y",      "ReconstructedParticle::get_y(RecoLeptons)")
+                .Define("RecoLepton_eta",     "ReconstructedParticle::get_eta(RecoLeptons)") #pseudorapidity eta
+                .Define("RecoLepton_theta",   "ReconstructedParticle::get_theta(RecoLeptons)")
+                .Define("RecoLepton_phi",     "ReconstructedParticle::get_phi(RecoLeptons)") #polar angle in the transverse plane phi
+                .Define("RecoLepton_charge",  "ReconstructedParticle::get_charge(RecoLeptons)")
+                .Define("RecoLepton_mass",     "ReconstructedParticle::get_mass(RecoLeptons)")
+                .Define("RecoLepton_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoLeptons)")
+                .Define("RecoLeptonTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoLeptons,EFlowTrack_1))")
+                .Define("RecoLeptonTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoLeptons,EFlowTrack_1))")
+                .Define("RecoLeptonTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoLeptons,EFlowTrack_1))") #significance
+                .Define("RecoLeptonTrack_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoLeptons,EFlowTrack_1))")
+                .Define("RecoLeptonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoLeptons,EFlowTrack_1)") #variance (not sigma)
+                .Define("RecoLeptonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoLeptons,EFlowTrack_1)")
+
+                .Define("RecoLeptons_sel", "ReconstructedParticle::merge(RecoElectrons_sel, RecoMuons_sel)")
+                .Define("n_RecoLeptons_sel",  "ReconstructedParticle::get_n(RecoLeptons_sel)") 
+                .Define("RecoLepton_sel_e",      "ReconstructedParticle::get_e(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_p",      "ReconstructedParticle::get_p(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_pt",      "ReconstructedParticle::get_pt(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_px",      "ReconstructedParticle::get_px(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_py",      "ReconstructedParticle::get_py(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_pz",      "ReconstructedParticle::get_pz(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_y",      "ReconstructedParticle::get_y(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_eta",     "ReconstructedParticle::get_eta(RecoLeptons_sel)") #pseudorapidity eta
+                .Define("RecoLepton_sel_theta",   "ReconstructedParticle::get_theta(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_phi",     "ReconstructedParticle::get_phi(RecoLeptons_sel)") #polar angle in the transverse plane phi
+                .Define("RecoLepton_sel_charge",  "ReconstructedParticle::get_charge(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_mass",     "ReconstructedParticle::get_mass(RecoLeptons_sel)")
+                .Define("RecoLepton_sel_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoLeptons_sel)")
+                .Define("RecoLeptonTrack_sel_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoLeptons_sel,EFlowTrack_1))")
+                .Define("RecoLeptonTrack_sel_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoLeptons_sel,EFlowTrack_1))")
+                .Define("RecoLeptonTrack_sel_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoLeptons_sel,EFlowTrack_1))") #significance
+                .Define("RecoLeptonTrack_sel_absZ0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoLeptons_sel,EFlowTrack_1))")
+                .Define("RecoLeptonTrack_sel_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoLeptons_sel,EFlowTrack_1)") #variance (not sigma)
+                .Define("RecoLeptonTrack_sel_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoLeptons_sel,EFlowTrack_1)")
 
                 #PHOTONS
                 .Alias("Photon0", "Photon#0.index") 
@@ -443,16 +537,14 @@ class RDFanalysis():
 		        .Define("RecoPhoton_phi",     "ReconstructedParticle::get_phi(RecoPhotons)") #polar angle in the transverse plane phi
                 .Define("RecoPhoton_charge",  "ReconstructedParticle::get_charge(RecoPhotons)")
 
-                #EVENTWIDE VARIABLES: Access quantities that exist only once per event, such as the missing energy (despite the name, the MissingET collection contains the total missing energy)
-                .Define("RecoMissingEnergy_e", "ReconstructedParticle::get_e(MissingET)")
-                .Define("RecoMissingEnergy_p", "ReconstructedParticle::get_p(MissingET)")
-                .Define("RecoMissingEnergy_pt", "ReconstructedParticle::get_pt(MissingET)")
-                .Define("RecoMissingEnergy_px", "ReconstructedParticle::get_px(MissingET)") #x-component of RecoMissingEnergy
-                .Define("RecoMissingEnergy_py", "ReconstructedParticle::get_py(MissingET)") #y-component of RecoMissingEnergy
-                .Define("RecoMissingEnergy_pz", "ReconstructedParticle::get_pz(MissingET)") #z-component of RecoMissingEnergy
-                .Define("RecoMissingEnergy_eta", "ReconstructedParticle::get_eta(MissingET)")
-                .Define("RecoMissingEnergy_theta", "ReconstructedParticle::get_theta(MissingET)")
-                .Define("RecoMissingEnergy_phi", "ReconstructedParticle::get_phi(MissingET)") #angle of RecoMissingEnergy
+                # different definition of missing energy from fccanalysis classes instead of edm4hep
+                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(91.188, ReconstructedParticles)") #ecm 
+                .Define("RecoEmiss_px",  "RecoEmiss[0].momentum.x")
+                .Define("RecoEmiss_py",  "RecoEmiss[0].momentum.y")
+                .Define("RecoEmiss_pz",  "RecoEmiss[0].momentum.z")
+                .Define("RecoEmiss_pt",  "return sqrt(RecoEmiss_px*RecoEmiss_px + RecoEmiss_py*RecoEmiss_py)")
+                .Define("RecoEmiss_p",  "return sqrt(RecoEmiss_px*RecoEmiss_px + RecoEmiss_py*RecoEmiss_py + RecoEmiss_pz*RecoEmiss_pz)")
+                .Define("RecoEmiss_e",   "RecoEmiss[0].energy")
 
                 # reconstructed tracks
                 .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
@@ -483,6 +575,39 @@ class RDFanalysis():
 
                 # JETS, reclustered from the reconstructed particles, never use the class in the samples
                 ### https://github.com/HEP-FCC/FCCAnalyses/blob/master/addons/FastJet/JetClustering.h ###
+
+                .Define("ReconstructedParticlesNoMuons", "FCCAnalyses::ReconstructedParticle::remove(ReconstructedParticles,RecoMuons_sel)")
+                .Define("ReconstructedParticlesNoLeps",  "FCCAnalyses::ReconstructedParticle::remove(ReconstructedParticlesNoMuons,RecoElectrons_sel)")
+            
+                .Define("RP_px_sel",          "ReconstructedParticle::get_px(ReconstructedParticlesNoLeps)")
+                .Define("RP_py_sel",          "ReconstructedParticle::get_py(ReconstructedParticlesNoLeps)")
+                .Define("RP_pz_sel",          "ReconstructedParticle::get_pz(ReconstructedParticlesNoLeps)")
+                .Define("RP_e_sel",           "ReconstructedParticle::get_e(ReconstructedParticlesNoLeps)")
+                .Define("RP_m_sel",           "ReconstructedParticle::get_mass(ReconstructedParticlesNoLeps)")
+                .Define("RP_q_sel",           "ReconstructedParticle::get_charge(ReconstructedParticlesNoLeps)")
+                #.Define("pseudo_jets",    "JetClusteringUtils::set_pseudoJets_xyzm(RP_px, RP_py, RP_pz, RP_m)")
+                # build pseudo jets with the RP, using the interface that takes px,py,pz,E
+                .Define("pseudo_jets_sel",  "JetClusteringUtils::set_pseudoJets(RP_px_sel, RP_py_sel, RP_pz_sel, RP_e_sel)" )
+
+                #R5 inclusive
+                .Define("FCCAnalysesJets_R5", "JetClustering::clustering_ee_genkt(0.5, 0, 2., 0, 1, -1)(pseudo_jets_sel)")
+                .Define("Jets_R5",  "JetClusteringUtils::get_pseudoJets( FCCAnalysesJets_R5 )") 
+                .Define("Jet_GetConstituents_R5","JetClusteringUtils::get_constituents(FCCAnalysesJets_R5)")
+                .Define("Jets_Constituents_R5", "JetConstituentsUtils::build_constituents_cluster(ReconstructedParticlesNoLeps, Jet_GetConstituents_R5)") #build jet constituents lists for tau reconstruction
+
+		        .Define("Jets_R5_e",      "JetClusteringUtils::get_e(Jets_R5)")
+                .Define("Jets_R5_p",      "JetClusteringUtils::get_p(Jets_R5)") #momentum p
+                .Define("Jets_R5_pt",      "JetClusteringUtils::get_pt(Jets_R5)") #transverse momentum pt
+                .Define("Jets_R5_px",      "JetClusteringUtils::get_px(Jets_R5)")
+                .Define("Jets_R5_py",      "JetClusteringUtils::get_py(Jets_R5)")
+                .Define("Jets_R5_pz",      "JetClusteringUtils::get_pz(Jets_R5)")
+		        .Define("Jets_R5_eta",     "JetClusteringUtils::get_eta(Jets_R5)") #pseudorapidity eta
+                .Define("Jets_R5_theta",   "JetClusteringUtils::get_theta(Jets_R5)")
+		        .Define("Jets_R5_phi",     "JetClusteringUtils::get_phi(Jets_R5)") #polar angle in the transverse plane phi
+                .Define("Jets_R5_mass",      "JetClusteringUtils::get_m(Jets_R5)")
+                .Define("Jets_R5_flavor",      "JetTaggingUtils::get_flavour(Jets_R5, Particle)")
+                .Define("n_Jets_R5", "Jets_R5_e.size()")
+
                 .Define("RP_px",          "ReconstructedParticle::get_px(ReconstructedParticles)")
                 .Define("RP_py",          "ReconstructedParticle::get_py(ReconstructedParticles)")
                 .Define("RP_pz",          "ReconstructedParticle::get_pz(ReconstructedParticles)")
@@ -493,139 +618,68 @@ class RDFanalysis():
                 # build pseudo jets with the RP, using the interface that takes px,py,pz,E
                 .Define("pseudo_jets",  "JetClusteringUtils::set_pseudoJets(RP_px, RP_py, RP_pz, RP_e)" )
 
-                # Durham algo, exclusive clustering (first number 2) N_jets=0 (second number), E-scheme=0 (third and forth numbers)
-                .Define( "FCCAnalysesJets_ee_kt",  "JetClustering::clustering_ee_kt(2, 0, 1, 0)(pseudo_jets)" )
-                .Define("Jets_kt2",  "JetClusteringUtils::get_pseudoJets( FCCAnalysesJets_ee_kt )") 
-		        .Define("Jets_kt2_e",      "JetClusteringUtils::get_e(Jets_kt2)")
-                .Define("Jets_kt2_p",      "JetClusteringUtils::get_p(Jets_kt2)") #momentum p
-                .Define("Jets_kt2_pt",      "JetClusteringUtils::get_pt(Jets_kt2)") #transverse momentum pt
-                .Define("Jets_kt2_px",      "JetClusteringUtils::get_px(Jets_kt2)")
-                .Define("Jets_kt2_py",      "JetClusteringUtils::get_py(Jets_kt2)")
-                .Define("Jets_kt2_pz",      "JetClusteringUtils::get_pz(Jets_kt2)")
-		        .Define("Jets_kt2_eta",     "JetClusteringUtils::get_eta(Jets_kt2)") #pseudorapidity eta
-                .Define("Jets_kt2_theta",   "JetClusteringUtils::get_theta(Jets_kt2)")
-		        .Define("Jets_kt2_phi",     "JetClusteringUtils::get_phi(Jets_kt2)") #polar angle in the transverse plane phi
-                .Define("Jets_kt2_mass",      "JetClusteringUtils::get_m(Jets_kt2)")
-                .Define("Jets_kt2_flavor",      "JetTaggingUtils::get_flavour(Jets_kt2, Particle)")
-                .Define("n_Jets_kt2", "Jets_kt2_e.size()")
+                .Define("FCCAnalysesJets_excl4", "JetClustering::clustering_ee_kt(2, 4, 1, 0)(pseudo_jets)")
+                .Define("Jets_excl4",           "JetClusteringUtils::get_pseudoJets(FCCAnalysesJets_excl4)")
+                .Define("Jet_Constituents_recluster","JetClusteringUtils::get_constituents(FCCAnalysesJets_excl4)")
+                .Define("Jets_Constituents", "JetConstituentsUtils::build_constituents_cluster(ReconstructedParticles, Jet_Constituents_recluster)") #build jet constituents lists
 
-                # Inclusive anitkt algorithm, numbers are jet radius paramter, exclusive clustering, pt cut, pt ordering, recombination scheme
-                .Define("FCCAnalysesJets_antikt5", "JetClustering::clustering_antikt(0.5, 0, 5., 0, 0)(pseudo_jets)")
-                .Define("Jets_antikt5", "JetClusteringUtils::get_pseudoJets(FCCAnalysesJets_antikt5)")
-                .Define("Jets_antikt5_e",      "JetClusteringUtils::get_e(Jets_antikt5)")
-                .Define("Jets_antikt5_p",      "JetClusteringUtils::get_p(Jets_antikt5)") #momentum p
-                .Define("Jets_antikt5_pt",      "JetClusteringUtils::get_pt(Jets_antikt5)") #transverse momentum pt
-                .Define("Jets_antikt5_px",      "JetClusteringUtils::get_px(Jets_antikt5)")
-                .Define("Jets_antikt5_py",      "JetClusteringUtils::get_py(Jets_antikt5)")
-                .Define("Jets_antikt5_pz",      "JetClusteringUtils::get_pz(Jets_antikt5)")
-		        .Define("Jets_antikt5_eta",     "JetClusteringUtils::get_eta(Jets_antikt5)") #pseudorapidity eta
-                .Define("Jets_antikt5_theta",   "JetClusteringUtils::get_theta(Jets_antikt5)")
-		        .Define("Jets_antikt5_phi",     "JetClusteringUtils::get_phi(Jets_antikt5)") #polar angle in the transverse plane phi
-                .Define("Jets_antikt5_mass",      "JetClusteringUtils::get_m(Jets_antikt5)")
-                .Define("Jets_antikt5_flavor",      "JetTaggingUtils::get_flavour(Jets_antikt5, Particle)")
-                .Define("n_Jets_antikt5", "Jets_antikt5_e.size()")
+                .Define("Jets_excl4_e",      "JetClusteringUtils::get_e(Jets_excl4)")
+                .Define("Jets_excl4_p",      "JetClusteringUtils::get_p(Jets_excl4)") #momentum p
+                .Define("Jets_excl4_pt",      "JetClusteringUtils::get_pt(Jets_excl4)") #transverse momentum pt
+                .Define("Jets_excl4_px",      "JetClusteringUtils::get_px(Jets_excl4)")
+                .Define("Jets_excl4_py",      "JetClusteringUtils::get_py(Jets_excl4)")
+                .Define("Jets_excl4_pz",      "JetClusteringUtils::get_pz(Jets_excl4)")
+		        .Define("Jets_excl4_eta",     "JetClusteringUtils::get_eta(Jets_excl4)") #pseudorapidity eta
+                .Define("Jets_excl4_theta",   "JetClusteringUtils::get_theta(Jets_excl4)")
+		        .Define("Jets_excl4_phi",     "JetClusteringUtils::get_phi(Jets_excl4)") #polar angle in the transverse plane phi
+                .Define("Jets_excl4_mass",      "JetClusteringUtils::get_m(Jets_excl4)")
+                .Define("Jets_excl4_flavor",      "JetTaggingUtils::get_flavour(Jets_excl4, Particle)")
+                .Define("n_Jets_excl4", "Jets_excl4_e.size()")
+
+                ### reconstruction of hadronic taus from jets
+                .Define("TauFromJet_R5", "FCCAnalyses::ZHfunctions::findTauInJet(Jets_Constituents_R5)") 
+                .Define("TauFromJet_R5_tau", "TauFromJet_R5[TauFromJet_R5_type>=0]") 
+                .Define("TauFromJet_R5_pt","ReconstructedParticle::get_pt(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_px","ReconstructedParticle::get_px(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_py","ReconstructedParticle::get_py(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_pz","ReconstructedParticle::get_pz(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_theta","ReconstructedParticle::get_theta(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_phi","ReconstructedParticle::get_phi(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_e","ReconstructedParticle::get_e(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_charge","ReconstructedParticle::get_charge(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_type","ReconstructedParticle::get_type(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_mass","ReconstructedParticle::get_mass(TauFromJet_R5_tau)")
+                .Define("n_TauFromJet_R5","(UInt_t)TauFromJet_R5_pt.size()")
+
+                .Define("TauFromJet", "FCCAnalyses::ZHfunctions::findTauInJet(Jets_Constituents)") 
+                .Define("TauFromJet_tau", "TauFromJet_R5[TauFromJet_type>=0]") 
+                .Define("TauFromJet_pt","ReconstructedParticle::get_pt(TauFromJet_tau)")
+                .Define("TauFromJet_px","ReconstructedParticle::get_px(TauFromJet_tau)")
+                .Define("TauFromJet_py","ReconstructedParticle::get_py(TauFromJet_tau)")
+                .Define("TauFromJet_pz","ReconstructedParticle::get_pz(TauFromJet_tau)")
+                .Define("TauFromJet_theta","ReconstructedParticle::get_theta(TauFromJet_tau)")
+                .Define("TauFromJet_phi","ReconstructedParticle::get_phi(TauFromJet_tau)")
+                .Define("TauFromJet_e","ReconstructedParticle::get_e(TauFromJet_tau)")
+                .Define("TauFromJet_charge","ReconstructedParticle::get_charge(TauFromJet_tau)")
+                .Define("TauFromJet_type","ReconstructedParticle::get_type(TauFromJet_tau)")
+                .Define("TauFromJet_mass","ReconstructedParticle::get_mass(TauFromJet_tau)")
+                .Define("n_TauFromJet","(UInt_t)TauFromJet_pt.size()")
+
+                .Define("Jets_R5_sel_e",      "Jets_R5_e[TauFromJet_R5_type<0]")
+                .Define("Jets_R5_sel_p",      "Jets_R5_p[TauFromJet_R5_type<0]")
+                .Define("Jets_R5_sel_pt",      "Jets_R5_pt[TauFromJet_R5_type<0]")
+                .Define("Jets_R5_sel_px",      "Jets_R5_px[TauFromJet_R5_type<0]")
+                .Define("Jets_R5_sel_py",      "Jets_R5_py[TauFromJet_R5_type<0]")
+                .Define("Jets_R5_sel_pz",      "Jets_R5_pz[TauFromJet_R5_type<0]")
+		        .Define("Jets_R5_sel_eta",     "Jets_R5_eta[TauFromJet_R5_type<0]")
+                .Define("Jets_R5_sel_theta",   "Jets_R5_theta[TauFromJet_R5_type<0]")
+		        .Define("Jets_R5_sel_phi",     "Jets_R5_phi[TauFromJet_R5_type<0]")
+                .Define("Jets_R5_sel_mass",      "Jets_R5_mass[TauFromJet_R5_type<0]")
+                .Define("Jets_R5_sel_flavor",      "Jets_R5_flavor[TauFromJet_R5_type<0]")
+                .Define("n_Jets_R5_sel", "Jets_R5_sel_e.size()")
                
         )
-
-        ### tagging, inherited from lars to build the tau tagging alogirthm later on
-        # cleaning out low momentum leptons
-        df3 = (df2
-               .Define("muons_15",     "FCCAnalyses::ReconstructedParticle::sel_p(15)(RecoMuons)")
-               .Define("electrons_15", "FCCAnalyses::ReconstructedParticle::sel_p(15)(RecoElectrons)")
-               .Define("ReconstructedParticlesNoMuons", "FCCAnalyses::ReconstructedParticle::remove(ReconstructedParticles,muons_15)")
-               .Define("ReconstructedParticlesNoLeps",  "FCCAnalyses::ReconstructedParticle::remove(ReconstructedParticlesNoMuons,electrons_15)")
-        )
-
-        global jetClusteringHelper_kt2
-        global jetClusteringHelper_R5
-        global jetFlavourHelper_kt2
-        global jetFlavourHelper_R5
-        ## define jet and run clustering parameters
-        ## name of collections in EDM root files
-        collections = {
-            "GenParticles": "Particle",
-            "PFParticles": "ReconstructedParticles",
-            "PFTracks": "EFlowTrack",
-            "PFPhotons": "EFlowPhoton",
-            "PFNeutralHadrons": "EFlowNeutralHadron",
-            "TrackState": "EFlowTrack_1",
-            "TrackerHits": "TrackerHits",
-            "CalorimeterHits": "CalorimeterHits",
-            "dNdx": "EFlowTrack_2",
-            "PathLength": "EFlowTrack_L",
-            "Bz": "magFieldBz",
-        }
-        collections_noleps = copy.deepcopy(collections)
-        collections_noleps["PFParticles"] = "ReconstructedParticlesNoLeps"
-
-        ## def __init__(self, coll, njets, tag="")
-        jetClusteringHelper_kt2 = ExclusiveJetClusteringHelper(
-            collections_noleps["PFParticles"], 2, "kt2",
-        )
-        jetClusteringHelper_R5  = InclusiveJetClusteringHelper(
-            collections_noleps["PFParticles"], 0.5, 1, "R5",
-        )
-        df3 = jetClusteringHelper_kt2.define(df3)
-        df3 = jetClusteringHelper_R5. define(df3)
-
-        ## define jet flavour tagging parameters
-
-        jetFlavourHelper_kt2 = JetFlavourHelper(
-            collections_noleps,
-            jetClusteringHelper_kt2.jets,
-            jetClusteringHelper_kt2.constituents,
-            "kt2",
-        )
-        jetFlavourHelper_R5 = JetFlavourHelper(
-            collections_noleps,
-            jetClusteringHelper_R5.jets,
-            jetClusteringHelper_R5.constituents,
-            "R5",
-        )
-        ## define observables for tagger
-        df3 = jetFlavourHelper_kt2.define(df3)
-        df3 = jetFlavourHelper_R5. define(df3)
-
-        ## tagger inference
-        df3 = jetFlavourHelper_kt2.inference(weaver_preproc, weaver_model, df3)
-        df3 = jetFlavourHelper_R5. inference(weaver_preproc, weaver_model, df3)
-
-        # is this needed?
-        # no, this is just variables for output
-        df3 = df3.Define(
-            "jets_kt2_p4",
-            "JetConstituentsUtils::compute_tlv_jets({})".format(
-                jetClusteringHelper_kt2.jets
-            ),
-        )
-
-        df3 = (df3
-            .Define("jet_kt2_px",           "JetClusteringUtils::get_px({})".format(jetClusteringHelper_kt2.jets))
-            .Define("jet_kt2_py",           "JetClusteringUtils::get_py({})".format(jetClusteringHelper_kt2.jets))
-            .Define("jet_kt2_pz",           "JetClusteringUtils::get_pz({})".format(jetClusteringHelper_kt2.jets))
-            .Define("jet_kt2_phi",          "JetClusteringUtils::get_phi({})".format(jetClusteringHelper_kt2.jets))
-            .Define("jet_kt2_eta",          "JetClusteringUtils::get_eta({})".format(jetClusteringHelper_kt2.jets))
-            .Define("jet_kt2_energy",       "JetClusteringUtils::get_e({})".format(jetClusteringHelper_kt2.jets))
-            .Define("jet_kt2_mass",         "JetClusteringUtils::get_m({})".format(jetClusteringHelper_kt2.jets))
-            .Define("jet_kt2_flavor", "JetTaggingUtils::get_flavour({}, Particle)".format(jetClusteringHelper_kt2.jets))
-            .Define("n_jets_kt2",           "return jet_kt2_flavor.size()")
-            #.Define("pfcand_PID_kt2", "JetConstituentsUtils::get_PIDs(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,_jet_kt2)")
-            
-            .Define("jet_R5_px",           "JetClusteringUtils::get_px({})".format(jetClusteringHelper_R5.jets))
-            .Define("jet_R5_py",           "JetClusteringUtils::get_py({})".format(jetClusteringHelper_R5.jets))
-            .Define("jet_R5_pz",           "JetClusteringUtils::get_pz({})".format(jetClusteringHelper_R5.jets))
-            .Define("jet_R5_phi",          "JetClusteringUtils::get_phi({})".format(jetClusteringHelper_R5.jets))
-            .Define("jet_R5_eta",          "JetClusteringUtils::get_eta({})".format(jetClusteringHelper_R5.jets))
-            .Define("jet_R5_energy",       "JetClusteringUtils::get_e({})".format(jetClusteringHelper_R5.jets))
-            .Define("jet_R5_mass",         "JetClusteringUtils::get_m({})".format(jetClusteringHelper_R5.jets))
-            .Define("jet_R5_flavor", "JetTaggingUtils::get_flavour({}, Particle)".format(jetClusteringHelper_R5.jets) )
-            .Define("n_jets_R5",           "return jet_R5_flavor.size()")
-            #.Define("pfcand_PID_R5", "JetConstituentsUtils::get_PIDs(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,_jet_R5)")
-        )
-        return df3
-
-        ## tagging
-
+        return df2
     #__________________________________________________________
     #Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
@@ -667,43 +721,43 @@ class RDFanalysis():
             "FSGenMuon_vertex_y",
             "FSGenMuon_vertex_z",
 
-            "n_ZFSGenMuon",
-            "ZFSGenMuon_e",
-            "ZFSGenMuon_p",
-            "ZFSGenMuon_pt",
-            "ZFSGenMuon_px",
-            "ZFSGenMuon_py",
-            "ZFSGenMuon_pz",
-            "ZFSGenMuon_y",
-            "ZFSGenMuon_eta",
-            "ZFSGenMuon_theta",
-            "ZFSGenMuon_phi",
-            "ZFSGenMuon_charge",
-            "ZFSGenMuon_mass",
-            "ZFSGenMuon_parentPDG",
-            "ZFSGenMuon_vertex_x",
-            "ZFSGenMuon_vertex_y",
-            "ZFSGenMuon_vertex_z",
+            #"n_ZFSGenMuon",
+            #"ZFSGenMuon_e",
+            #"ZFSGenMuon_p",
+            #"ZFSGenMuon_pt",
+            #"ZFSGenMuon_px",
+            #"ZFSGenMuon_py",
+            #"ZFSGenMuon_pz",
+            #"ZFSGenMuon_y",
+            #"ZFSGenMuon_eta",
+            #"ZFSGenMuon_theta",
+            #"ZFSGenMuon_phi",
+            #"ZFSGenMuon_charge",
+            #"ZFSGenMuon_mass",
+            #"ZFSGenMuon_parentPDG",
+            #"ZFSGenMuon_vertex_x",
+            #"ZFSGenMuon_vertex_y",
+            #"ZFSGenMuon_vertex_z",
 
-            "n_AllGenTau",
-            "AllGenTau_e",
-            "AllGenTau_p",
-            "AllGenTau_pt",
-            "AllGenTau_px",
-            "AllGenTau_py",
-            "AllGenTau_pz",
-            "AllGenTau_y",
-            "AllGenTau_eta",
-            "AllGenTau_theta",
-            "AllGenTau_phi",
-            "AllGenTau_charge",
-            "AllGenTau_mass",
-            "AllGenTau_parentPDG",
-            "AllGenTau_vertex_x",
-            "AllGenTau_vertex_y",
-            "AllGenTau_vertex_z",
+            #"n_AllGenTau",
+            #"AllGenTau_e",
+            #"AllGenTau_p",
+            #"AllGenTau_pt",
+            #"AllGenTau_px",
+            #"AllGenTau_py",
+            #"AllGenTau_pz",
+            #"AllGenTau_y",
+            #"AllGenTau_eta",
+            #"AllGenTau_theta",
+            #"AllGenTau_phi",
+            #"AllGenTau_charge",
+            #"AllGenTau_mass",
+            #"AllGenTau_parentPDG",
+            #"AllGenTau_vertex_x",
+            #"AllGenTau_vertex_y",
+            #"AllGenTau_vertex_z",
 
-            "noFSRGenTau_parentPDG",
+            #"noFSRGenTau_parentPDG",
 
             "n_FSRGenTau",
             "FSRGenTau_e",
@@ -785,8 +839,8 @@ class RDFanalysis():
             "FSGenPhoton_charge",
             #"FSGenPhoton_parentPDG",
 
-            "n_GenZ",
-            "n_GenW",
+            #"n_GenZ",
+            #"n_GenW",
             "n_GenHiggs",
             "GenHiggs_e",
             "GenHiggs_p", 
@@ -801,7 +855,7 @@ class RDFanalysis():
             "GenHiggs_charge", 
 
             ######## Reconstructed particles #######
-            "RecoMC_PID",
+            #"RecoMC_PID",
 
             "n_RecoElectrons",
             "RecoElectron_e",
@@ -815,12 +869,35 @@ class RDFanalysis():
             "RecoElectron_theta",
             "RecoElectron_phi",
             "RecoElectron_charge",
+            "RecoElectron_mass",
+            "RecoElectron_PID",
             "RecoElectronTrack_absD0",
             "RecoElectronTrack_absZ0",
             "RecoElectronTrack_absD0sig",
             "RecoElectronTrack_absZ0sig",
             "RecoElectronTrack_D0cov",
             "RecoElectronTrack_Z0cov",
+
+            "n_RecoElectrons_sel",
+            "RecoElectron_sel_e",
+            "RecoElectron_sel_p",
+            "RecoElectron_sel_pt",
+            "RecoElectron_sel_px",
+            "RecoElectron_sel_py",
+            "RecoElectron_sel_pz",
+            "RecoElectron_sel_y",
+            "RecoElectron_sel_eta",
+            "RecoElectron_sel_theta",
+            "RecoElectron_sel_phi",
+            "RecoElectron_sel_charge",
+            "RecoElectron_sel_mass",
+            "RecoElectron_sel_PID",
+            "RecoElectronTrack_sel_absD0",
+            "RecoElectronTrack_sel_absZ0",
+            "RecoElectronTrack_sel_absD0sig",
+            "RecoElectronTrack_sel_absZ0sig",
+            "RecoElectronTrack_sel_D0cov",
+            "RecoElectronTrack_sel_Z0cov",
 
             "n_RecoMuons",
             "RecoMuon_e",
@@ -834,6 +911,8 @@ class RDFanalysis():
             "RecoMuon_theta",
             "RecoMuon_phi",
             "RecoMuon_charge",
+            "RecoMuon_mass",
+            "RecoMuon_PID",
             "RecoMuonTrack_absD0",
             "RecoMuonTrack_absZ0",
             "RecoMuonTrack_absD0sig",
@@ -841,24 +920,68 @@ class RDFanalysis():
             "RecoMuonTrack_D0cov",
             "RecoMuonTrack_Z0cov",
 
-            "n_ZRecoMuons",
-            "ZRecoMuon_e",
-            "ZRecoMuon_p",
-            "ZRecoMuon_pt",
-            "ZRecoMuon_px",
-            "ZRecoMuon_py",
-            "ZRecoMuon_pz",
-            "ZRecoMuon_y",
-            "ZRecoMuon_eta",
-            "ZRecoMuon_theta",
-            "ZRecoMuon_phi",
-            "ZRecoMuon_charge",
-            "ZRecoMuonTrack_absD0",
-            "ZRecoMuonTrack_absZ0",
-            "ZRecoMuonTrack_absD0sig",
-            "ZRecoMuonTrack_absZ0sig",
-            "ZRecoMuonTrack_D0cov",
-            "ZRecoMuonTrack_Z0cov",
+            "n_RecoMuons_sel",
+            "RecoMuon_sel_e",
+            "RecoMuon_sel_p",
+            "RecoMuon_sel_pt",
+            "RecoMuon_sel_px",
+            "RecoMuon_sel_py",
+            "RecoMuon_sel_pz",
+            "RecoMuon_sel_y",
+            "RecoMuon_sel_eta",
+            "RecoMuon_sel_theta",
+            "RecoMuon_sel_phi",
+            "RecoMuon_sel_charge",
+            "RecoMuon_sel_mass",
+            "RecoMuon_sel_PID",
+            "RecoMuonTrack_sel_absD0",
+            "RecoMuonTrack_sel_absZ0",
+            "RecoMuonTrack_sel_absD0sig",
+            "RecoMuonTrack_sel_absZ0sig",
+            "RecoMuonTrack_sel_D0cov",
+            "RecoMuonTrack_sel_Z0cov",
+
+            "n_RecoLeptons",
+            "RecoLepton_e",
+            "RecoLepton_p",
+            "RecoLepton_pt",
+            "RecoLepton_px",
+            "RecoLepton_py",
+            "RecoLepton_pz",
+            "RecoLepton_y",
+            "RecoLepton_eta",
+            "RecoLepton_theta",
+            "RecoLepton_phi",
+            "RecoLepton_charge",
+            "RecoLepton_mass",
+            "RecoLepton_PID",
+            "RecoLeptonTrack_absD0",
+            "RecoLeptonTrack_absZ0",
+            "RecoLeptonTrack_absD0sig",
+            "RecoLeptonTrack_absZ0sig",
+            "RecoLeptonTrack_D0cov",
+            "RecoLeptonTrack_Z0cov",
+
+            "n_RecoLeptons_sel",
+            "RecoLepton_sel_e",
+            "RecoLepton_sel_p",
+            "RecoLepton_sel_pt",
+            "RecoLepton_sel_px",
+            "RecoLepton_sel_py",
+            "RecoLepton_sel_pz",
+            "RecoLepton_sel_y",
+            "RecoLepton_sel_eta",
+            "RecoLepton_sel_theta",
+            "RecoLepton_sel_phi",
+            "RecoLepton_sel_charge",
+            "RecoLepton_sel_mass",
+            "RecoLepton_sel_PID",
+            "RecoLeptonTrack_sel_absD0",
+            "RecoLeptonTrack_sel_absZ0",
+            "RecoLeptonTrack_sel_absD0sig",
+            "RecoLeptonTrack_sel_absZ0sig",
+            "RecoLeptonTrack_sel_D0cov",
+            "RecoLeptonTrack_sel_Z0cov",
 
             "n_RecoPhotons",
             "RecoPhoton_e",
@@ -873,15 +996,12 @@ class RDFanalysis():
             "RecoPhoton_phi",
             "RecoPhoton_charge",
 
-            "RecoMissingEnergy_e",
-            "RecoMissingEnergy_p",
-            "RecoMissingEnergy_pt",
-            "RecoMissingEnergy_px",
-            "RecoMissingEnergy_py",
-            "RecoMissingEnergy_pz",
-            "RecoMissingEnergy_eta",
-            "RecoMissingEnergy_theta",
-            "RecoMissingEnergy_phi",
+            "RecoEmiss_px",
+            "RecoEmiss_py",
+            "RecoEmiss_pz",
+            "RecoEmiss_pt",
+            "RecoEmiss_p",
+            "RecoEmiss_e",
 
             "n_RecoTracks",
             #"n_RecoVertex",
@@ -897,17 +1017,75 @@ class RDFanalysis():
             "SecondaryVertex",
             "SecondaryVertex_xyz",
             "SecondaryVertes_xy",
-            "VertexObject", 
-            "RecoPartPID" ,
-            "RecoPartPIDAtVertex",
+            #"VertexObject", 
+            #"RecoPartPID" ,
+            #"RecoPartPIDAtVertex",
+
+            "Jets_R5_e",     
+            "Jets_R5_p",     
+            "Jets_R5_pt",     
+            "Jets_R5_px",   
+            "Jets_R5_py",   
+            "Jets_R5_pz",     
+            "Jets_R5_eta",    
+            "Jets_R5_theta",   
+            "Jets_R5_phi",     
+            "Jets_R5_mass",      
+            "Jets_R5_flavor",      
+            "n_Jets_R5", 
+
+            "Jets_excl4_e",     
+            "Jets_excl4_p",     
+            "Jets_excl4_pt",     
+            "Jets_excl4_px",   
+            "Jets_excl4_py",   
+            "Jets_excl4_pz",     
+            "Jets_excl4_eta",    
+            "Jets_excl4_theta",   
+            "Jets_excl4_phi",     
+            "Jets_excl4_mass",      
+            "Jets_excl4_flavor",      
+            "n_Jets_excl4", 
+
+            "TauFromJet_R5_tau", 
+            "TauFromJet_R5_pt",
+            "TauFromJet_R5_px",
+            "TauFromJet_R5_py",
+            "TauFromJet_R5_pz",
+            "TauFromJet_R5_theta",
+            "TauFromJet_R5_phi",
+            "TauFromJet_R5_e",
+            "TauFromJet_R5_charge",
+            "TauFromJet_R5_type",
+            "TauFromJet_R5_mass",
+            "n_TauFromJet_R5",
+
+            "TauFromJet_tau", 
+            "TauFromJet_pt",
+            "TauFromJet_px",
+            "TauFromJet_py",
+            "TauFromJet_pz",
+            "TauFromJet_theta",
+            "TauFromJet_phi",
+            "TauFromJet_e",
+            "TauFromJet_charge",
+            "TauFromJet_type",
+            "TauFromJet_mass",
+            "n_TauFromJet",
+
+            "Jets_R5_sel_e",     
+            "Jets_R5_sel_p",     
+            "Jets_R5_sel_pt",     
+            "Jets_R5_sel_px",   
+            "Jets_R5_sel_py",   
+            "Jets_R5_sel_pz",     
+            "Jets_R5_sel_eta",    
+            "Jets_R5_sel_theta",   
+            "Jets_R5_sel_phi",     
+            "Jets_R5_sel_mass",      
+            "Jets_R5_sel_flavor",      
+            "n_Jets_R5_sel", 
 
         ]
-
-        #branchList += jetFlavourHelper_kt2.outputBranches() 
-        #branchList += jetFlavourHelper_R5.outputBranches()
-        #branchList += [obs for obs in jetFlavourHelper_kt2.definition.keys() if "pfcand_" in obs]
-        #branchList += [obs for obs in jetFlavourHelper_R5. definition.keys() if "pfcand_" in obs]
-        #branchList += ["jet_kt2_px", "jet_kt2_py", "jet_kt2_pz", "jet_kt2_phi", "jet_kt2_eta", "jet_kt2_energy", "jet_kt2_mass", "jet_kt2_flavor", "n_jets_kt2",]
-        #branchList += ["jet_R5_px", "jet_R5_py", "jet_R5_pz", "jet_R5_phi", "jet_R5_eta", "jet_R5_energy", "jet_R5_mass", "jet_R5_flavor", "n_jets_R5", ]
 
         return branchList
