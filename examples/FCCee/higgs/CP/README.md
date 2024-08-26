@@ -11,6 +11,7 @@
     - [Stage2 for cross section measurement](#stage2-for-cross-section-measurement)
     - [Final stage](#final-stage)
     - [Combine](#combine)
+    - [Maria Cepeda code](#maria-cepeda-code)
   - [Additional codes](#additional-codes)
     - [Access LHE files](#access-lhe-files)
     - [LHE conversion to ROOT](#lhe-conversion-to-root)
@@ -251,6 +252,12 @@ Here we keep the same categories as stage2 and apply the respective cuts on kine
 To get the relative uncertainty on the $ H \to \tau \tau $ cross section, we can use [CMS Combine](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/latest/) to get the value from analyzing the signal and background histograms after final selection (shape based analysis).
 
 To do this, we need to make datacards that combine uses as input. They can be found under `FCCAnalyses/examples/FCCee/higgs/CP/combine` for each respective category. The code `replace_input_combine.py` automatically sources the environment and computes the uncertainty, storing the output in a text file.
+
+### Maria Cepeda code
+
+The tau reco function is [here](https://github.com/mcepeda/FCCAnalyses/blob/master/analyzers/dataframe/src/myUtils.cc#L2559).
+The stage1 Htautau script is [here](https://github.com/mcepeda/FCCAnalyses/blob/master/examples/FCCee/higgs/tautau/test/analysis_stage1_fromjets_win23.py).
+And then [these files](https://github.com/mcepeda/ExamplesFCCee/tree/main/ZHTauTau) are for making plots.
 
 ## Additional codes
 
