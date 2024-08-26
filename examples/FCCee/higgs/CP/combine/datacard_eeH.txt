@@ -1,4 +1,5 @@
-# combine -M Significance /eos/user/s/sgiappic/combine/datacard_test_SF.txt -t -1 --expectSignal=1
+# text2workspace.py datacard_{}.txt -o ws_{}.root
+# combine -M FitDiagnostics -t -1 --expectSignal=1 ws_{}.root --rMin -2 
 
 imax    1 number of bins
 jmax    * number of processes minus 1
