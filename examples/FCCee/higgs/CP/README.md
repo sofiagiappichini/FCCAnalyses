@@ -10,6 +10,7 @@
     - [Stage 1 ntuples](#stage-1-ntuples)
     - [Stage2 for cross section measurement](#stage2-for-cross-section-measurement)
     - [Final stage](#final-stage)
+    - [Plotting](#plotting)
     - [Combine](#combine)
     - [Maria Cepeda code](#maria-cepeda-code)
   - [Additional codes](#additional-codes)
@@ -76,12 +77,6 @@
     ```
 
     The selections are based on the objects stored in the trees in the first stages. The step will also create a latex table with the number of events after each selection and the efficiency. If you want the historgams and number of events in the table to be scaled to the respective luminosity and cross section, turn on the corresponding option.
-
-3. `replot.py` is inspired by `do_plots.py`. It allows to plot log scale x axis and it's made to be more adaptable. The current version stacks backgrounds and not signals. Plots for only one group can be done. Also, there is the possibility of having a logarithmic scale for y or x.
-
-    ```
-    python replot.py
-    ```
 
 ### How to add new functions
 
@@ -165,6 +160,7 @@ Two functions are available to determine the origin of two pairs of leptons when
     - wzp6_ee_eeH_Huu_ecm240
     - wzp6_ee_eeH_Hdd_ecm240
     - wzp6_ee_eeH_Hss_ecm240
+    - wzp6_ee_eeH_Hgg_ecm240
     - wzp6_ee_eeH_HWW_ecm240
     - wzp6_ee_eeH_HZZ_ecm240
 
@@ -174,6 +170,7 @@ Two functions are available to determine the origin of two pairs of leptons when
     - wzp6_ee_mumuH_Huu_ecm240
     - wzp6_ee_mumuH_Hdd_ecm240
     - wzp6_ee_mumuH_Hss_ecm240
+    - wzp6_ee_mumuH_Hgg_ecm240
     - wzp6_ee_mumuH_HWW_ecm240
     - wzp6_ee_mumuH_HZZ_ecm240
 
@@ -183,8 +180,57 @@ Two functions are available to determine the origin of two pairs of leptons when
     - wzp6_ee_tautauH_Huu_ecm240
     - wzp6_ee_tautauH_Hdd_ecm240
     - wzp6_ee_tautauH_Hss_ecm240
+    - wzp6_ee_tautauH_Hgg_ecm240
     - wzp6_ee_tautauH_HWW_ecm240
     - wzp6_ee_tautauH_HZZ_ecm240
+
+- **NuNuLL**: 2 final state leptons
+- **NuNuLH**: 1 final state leptons and one hadronic tau
+- **NuNuHH**: two hadronic taus
+    - p8_ee_WW_ecm240
+    - p8_ee_Zqq_ecm240
+    - p8_ee_ZZ_ecm240
+    - wzp6_ee_tautau_ecm240
+
+    - wzp6_ee_eeH_Htautau_ecm240 
+    - wzp6_ee_eeH_Hbb_ecm240
+    - wzp6_ee_eeH_Hcc_ecm240
+    - wzp6_ee_eeH_Huu_ecm240
+    - wzp6_ee_eeH_Hdd_ecm240
+    - wzp6_ee_eeH_Hss_ecm240
+    - wzp6_ee_eeH_Hgg_ecm240
+    - wzp6_ee_eeH_HWW_ecm240
+    - wzp6_ee_eeH_HZZ_ecm240
+
+    - wzp6_ee_mumuH_Htautau_ecm240 
+    - wzp6_ee_mumuH_Hbb_ecm240
+    - wzp6_ee_mumuH_Hcc_ecm240
+    - wzp6_ee_mumuH_Huu_ecm240
+    - wzp6_ee_mumuH_Hdd_ecm240
+    - wzp6_ee_mumuH_Hss_ecm240
+    - wzp6_ee_mumuH_Hgg_ecm240
+    - wzp6_ee_mumuH_HWW_ecm240
+    - wzp6_ee_mumuH_HZZ_ecm240
+
+    - wzp6_ee_tautauH_Htautau_ecm240
+    - wzp6_ee_tautauH_Hbb_ecm240
+    - wzp6_ee_tautauH_Hcc_ecm240
+    - wzp6_ee_tautauH_Huu_ecm240
+    - wzp6_ee_tautauH_Hdd_ecm240
+    - wzp6_ee_tautauH_Hss_ecm240
+    - wzp6_ee_tautauH_Hgg_ecm240
+    - wzp6_ee_tautauH_HWW_ecm240
+    - wzp6_ee_tautauH_HZZ_ecm240
+
+    - wzp6_ee_nunuH_Htautau_ecm240 (signal)
+    - wzp6_ee_nunuH_Hbb_ecm240
+    - wzp6_ee_nunuH_Hcc_ecm240
+    - wzp6_ee_nunuH_Huu_ecm240
+    - wzp6_ee_nunuH_Hdd_ecm240
+    - wzp6_ee_nunuH_Hss_ecm240
+    - wzp6_ee_nunuH_Hgg_ecm240
+    - wzp6_ee_nunuH_HWW_ecm240
+    - wzp6_ee_nunuH_HZZ_ecm240
 
 - **QQLL**: two jets from Z, two leptonic taus
 - **QQLH**: two jets from Z, one leptonic tau, one hadronic tau
@@ -200,6 +246,7 @@ Two functions are available to determine the origin of two pairs of leptons when
     - wzp6_ee_bbH_Huu_ecm240
     - wzp6_ee_bbH_Hdd_ecm240
     - wzp6_ee_bbH_Hss_ecm240
+    - wzp6_ee_bbH_Hgg_ecm240
     - wzp6_ee_bbH_HWW_ecm240
     - wzp6_ee_bbH_HZZ_ecm240
 
@@ -209,6 +256,7 @@ Two functions are available to determine the origin of two pairs of leptons when
     - wzp6_ee_ccH_Huu_ecm240
     - wzp6_ee_ccH_Hdd_ecm240
     - wzp6_ee_ccH_Hss_ecm240
+    - wzp6_ee_ccH_Hgg_ecm240
     - wzp6_ee_ccH_HWW_ecm240
     - wzp6_ee_ccH_HZZ_ecm240
 
@@ -218,6 +266,7 @@ Two functions are available to determine the origin of two pairs of leptons when
     - wzp6_ee_ssH_Huu_ecm240
     - wzp6_ee_ssH_Hdd_ecm240
     - wzp6_ee_ssH_Hss_ecm240
+    - wzp6_ee_ssH_Hgg_ecm240
     - wzp6_ee_ssH_HWW_ecm240
     - wzp6_ee_ssH_HZZ_ecm240
 
@@ -227,6 +276,7 @@ Two functions are available to determine the origin of two pairs of leptons when
     - wzp6_ee_qqH_Huu_ecm240
     - wzp6_ee_qqH_Hdd_ecm240
     - wzp6_ee_qqH_Hss_ecm240
+    - wzp6_ee_qqH_Hgg_ecm240
     - wzp6_ee_qqH_HWW_ecm240
     - wzp6_ee_qqH_HZZ_ecm240
 
@@ -236,6 +286,7 @@ Two functions are available to determine the origin of two pairs of leptons when
     - wzp6_ee_tautauH_Huu_ecm240
     - wzp6_ee_tautauH_Hdd_ecm240
     - wzp6_ee_tautauH_Hss_ecm240
+    - wzp6_ee_tautauH_Hgg_ecm240
     - wzp6_ee_tautauH_HWW_ecm240
     - wzp6_ee_tautauH_HZZ_ecm240
 
@@ -247,11 +298,15 @@ Here we keep the same categories as stage2 and apply the respective cuts on kine
 
 **Note**: the output should be in separate directories named after the final states so there is no confusion between the files.
 
+### Plotting
+
+`FCCAnalyses/examples/FCCee/higgs/CP/replot.py` is inspired by `do_plots.py`. It allows to plot log scale y axis and it's made to be more adaptable. The current version stacks backgrounds and not signals. Plots for only one group can be done. The histograms are organised by Z decay and H($ \tau\tau $) decay: processes for each type are merged into one histogram, common backgrounds are kept separate. For efficiency, the final stage root files need to be organised in corresponding directories based on Z decay with subdirectories on H decays.
+
 ### Combine
 
 To get the relative uncertainty on the $ H \to \tau \tau $ cross section, we can use [CMS Combine](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/latest/) to get the value from analyzing the signal and background histograms after final selection (shape based analysis).
 
-To do this, we need to make datacards that combine uses as input. They can be found under `FCCAnalyses/examples/FCCee/higgs/CP/combine` for each respective category. The code `replace_input_combine.py` automatically sources the environment and computes the uncertainty, storing the output in a text file.
+To do this, we need to make datacards that combine uses as input. They can be created with `FCCAnalyses/examples/FCCee/higgs/CP/combine/make_datacards.py` for each respective category and for the combined ones. The code `FCCAnalyses/examples/FCCee/higgs/CP/combine/replace_input_combine.py` automatically sources the environment and computes the uncertainty, storing the output in a text file.
 
 ### Maria Cepeda code
 

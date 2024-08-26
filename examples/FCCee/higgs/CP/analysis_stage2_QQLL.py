@@ -8,12 +8,13 @@ processList = {
     #'p8_ee_ZZ_ecm240':{'chunks':100},
     #'wzp6_ee_tautau_ecm240':{'chunks':100},
 
-    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':10},
     #'wzp6_ee_bbH_Hbb_ecm240': {'chunks':10},
     #'wzp6_ee_bbH_Hcc_ecm240': {'chunks':10},
     #'wzp6_ee_bbH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_bbH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_bbH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_bbH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_bbH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_bbH_HZZ_ecm240': {'chunks':10},
 
@@ -23,6 +24,7 @@ processList = {
     #'wzp6_ee_ccH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_ccH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_ccH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_ccH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_ccH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_ccH_HZZ_ecm240': {'chunks':10},
 
@@ -32,6 +34,7 @@ processList = {
     #'wzp6_ee_ssH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_ssH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_ssH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_ssH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_ssH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_ssH_HZZ_ecm240': {'chunks':10},
 
@@ -41,6 +44,7 @@ processList = {
     #'wzp6_ee_qqH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_qqH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_qqH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_qqH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
 
@@ -50,6 +54,7 @@ processList = {
     #'wzp6_ee_tautauH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_tautauH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
 }

@@ -1,28 +1,51 @@
 import shutil
 import os
 
-category = [
-    "eeH",
-    "mumuH",
-    "bbH",
-    "ccH",
-    "ssH",
-    "qqH",
-    "QQH",
+CAT = [
+    "QQ",
+    "LL",
+    "NuNu",
 ]
+SUBDIR = [
+    'LL',
+    'LH',
+    'HH',
+]
+cut = ""
 ## need to work in centos7 : portal1-centos7.etp.kit.edu
 os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
 os.system("cd /work/nfaltermann/cmssw/CMSSW_10_6_0/src/")
 os.system("cmsenv")
-os.system("cd FCCAnalyses/examples/FCCee/higgs/CP/combine/")
 
 input_file = "significance.txt"
-output_file = "FCCAnalyses/examples/FCCee/higgs/CP/output_xsec.csv"
+output_file = "FCCAnalyses/examples/FCCee/higgs/CP/combine/output_xsec.csv"
+outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/CP/combine/"
 
-for cat in category:
+for cat in CAT:
+    for sub in SUBDIR:
 
-    os.system("text2workspace.py datacard_{}.txt -o ws_{}.root".format(cat, cat))
-    os.system("combine -M FitDiagnostics -t -1 --expectSignal=1 ws_{}.root --rMin -2 >significance.txt".format(cat))
+        #get fit from subcategories
+        os.system(f"text2workspace.py {outputDir}/{cat}/{sub}/datacard.txt -o {outputDir}/{cat}/{sub}/ws.root")
+        os.system(f"combine -M FitDiagnostics -t -1 --expectSignal=1 {outputDir}/{cat}/{sub}/ws.root --rMin -2 >{outputDir}/{cat}/{sub}/{input_file}")
+
+        with open(input_file, "r") as file:
+                read = False
+                for line in file:
+                    if "Best fit r:" in line:
+                        content_of_row=line[11:]
+                        read=True
+                if read == False:
+                    content_of_row='error'
+
+        # Write the content of the selected row to the output CSV file
+        with open(output_file, "a") as csv_file:
+            csv_file.write(f"{cat}/{sub}: {content_of_row} \n")
+
+        print("Content from {} has been written to {}".format(sub, output_file))
+
+    #now for the combined subcategories
+    os.system(f"text2workspace.py {outputDir}/{cat}/datacard.txt -o {outputDir}/{cat}/ws.root")
+    os.system(f"combine -M FitDiagnostics -t -1 --expectSignal=1 {outputDir}/{cat}/ws.root --rMin -2 >{outputDir}/{cat}/{input_file}")
 
     with open(input_file, "r") as file:
             read = False
@@ -35,12 +58,13 @@ for cat in category:
 
     # Write the content of the selected row to the output CSV file
     with open(output_file, "a") as csv_file:
-        csv_file.write("{}: {} \n".format(cat, content_of_row))
+        csv_file.write(f"{cat}: {content_of_row} \n")
 
     print("Content from {} has been written to {}".format(cat, output_file))
 
-os.system("text2workspace.py datacard_combined.txt -o ws_combined.root")
-os.system("combine -M FitDiagnostics -t -1 --expectSignal=1 ws_combined.root --rMin -2  >significance.txt")
+#final fit on everything
+os.system(f"text2workspace.py {outputDir}/datacard.txt -o {outputDir}/ws.root")
+os.system(f"combine -M FitDiagnostics -t -1 --expectSignal=1 {outputDir}/ws.root --rMin -2 >{outputDir}/{input_file}")
 
 with open(input_file, "r") as file:
         read = False
@@ -53,12 +77,6 @@ with open(input_file, "r") as file:
 
 # Write the content of the selected row to the output CSV file
 with open(output_file, "a") as csv_file:
-    csv_file.write("combination: {} \n".format(content_of_row))
+    csv_file.write(f"combined: {content_of_row} \n")
 
-print("Content from {} has been written to {}".format(dir, output_file))
-
-with open(output_file, "a") as csv_file:
-    csv_file.write("\n")
-
-# combineCards.py ee=datacard_eeH.txt mumu=datacard_mumuH.txt QQ=datacard_QQH.txt > datacard_combined.txt
-# combineCards.py bb=datacard_bbH.txt cc=datacard_ccH.txt ss=datacard_ssH.txt qq=datacard_qqH.txt > datacard_QQH.txt
+print("Content from combined has been written to {}".format(output_file))

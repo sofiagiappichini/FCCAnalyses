@@ -29,11 +29,11 @@ def make_dir_if_not_exists(directory):
         print(f"Directory already exists.")
 
 # directory with final stage files
-DIRECTORY = [
-    '/final/LL',
-    '/final/QQ',
-    '/final/NuNu',
-]
+DIRECTORY = {
+    'LL':'/final/LL',
+    'QQ':'/final/QQ',
+    'NuNu':'/final/NuNu',
+}
 SUBDIR = [
     '/LL/',
     '/LH/',
@@ -660,6 +660,7 @@ backgrounds_TauTau = [
     'wzp6_ee_tautauH_Huu_ecm240',
     'wzp6_ee_tautauH_Hdd_ecm240',
     'wzp6_ee_tautauH_Hss_ecm240',
+    'wzp6_ee_tautauH_Hgg_ecm240',
     'wzp6_ee_tautauH_HWW_ecm240',
     'wzp6_ee_tautauH_HZZ_ecm240',
 ]
@@ -714,41 +715,9 @@ backgrounds_LL =[
     'wzp6_ee_mumuH_Hss_ecm240',
     'wzp6_ee_mumuH_HWW_ecm240',
     'wzp6_ee_mumuH_HZZ_ecm240',
-
-    'wzp6_ee_tautauH_Hbb_ecm240',
-    'wzp6_ee_tautauH_Hcc_ecm240',
-    'wzp6_ee_tautauH_Huu_ecm240',
-    'wzp6_ee_tautauH_Hdd_ecm240',
-    'wzp6_ee_tautauH_Hss_ecm240',
-    'wzp6_ee_tautauH_HWW_ecm240',
-    'wzp6_ee_tautauH_HZZ_ecm240',
 ]
 
 backgrounds_NuNu = [
-    'wzp6_ee_eeH_Hbb_ecm240',
-    'wzp6_ee_eeH_Hcc_ecm240',
-    'wzp6_ee_eeH_Huu_ecm240',
-    'wzp6_ee_eeH_Hdd_ecm240',
-    'wzp6_ee_eeH_Hss_ecm240',
-    'wzp6_ee_eeH_HWW_ecm240',
-    'wzp6_ee_eeH_HZZ_ecm240',
-
-    'wzp6_ee_mumuH_Hbb_ecm240',
-    'wzp6_ee_mumuH_Hcc_ecm240',
-    'wzp6_ee_mumuH_Huu_ecm240',
-    'wzp6_ee_mumuH_Hdd_ecm240',
-    'wzp6_ee_mumuH_Hss_ecm240',
-    'wzp6_ee_mumuH_HWW_ecm240',
-    'wzp6_ee_mumuH_HZZ_ecm240',
-
-    'wzp6_ee_tautauH_Hbb_ecm240',
-    'wzp6_ee_tautauH_Hcc_ecm240',
-    'wzp6_ee_tautauH_Huu_ecm240',
-    'wzp6_ee_tautauH_Hdd_ecm240',
-    'wzp6_ee_tautauH_Hss_ecm240',
-    'wzp6_ee_tautauH_HWW_ecm240',
-    'wzp6_ee_tautauH_HZZ_ecm240',
-
     'wzp6_ee_nunuH_Hbb_ecm240',
     'wzp6_ee_nunuH_Hcc_ecm240',
     'wzp6_ee_nunuH_Huu_ecm240',
@@ -810,8 +779,6 @@ scolors = {
 }
 
 LIST_VAR = {
-    "all": VARIABLES_all,
-    "TauTau": VARIABLES_TauTau,
     "QQ": VARIABLES_QQ,
     "LL":VARIABLES_LL,
     "NuNu":VARIABLES_NuNu,
@@ -830,49 +797,73 @@ LIST_B = {
 }
 
 for cut in CUTS:
-    for directory in DIRECTORY:
-        for cat in CAT:
-            if cat in directory:
-                VARIABLES = VARIABLES + LIST_VAR[cat]
-                for variable in VARIABLES:
+    for cat in CAT:
+        VARIABLES = VARIABLES + LIST_VAR[cat] 
+        directory = DIRECTORY[cat]
+            for variable in VARIABLES:
 
-                    canvas = ROOT.TCanvas("", "", 800, 800)
+                canvas = ROOT.TCanvas("", "", 800, 800)
 
-                    nsig = 1
-                    nbkg = 3 #half of the actual number (rounded up) beacuse they go into two colomuns 
+                nsig = 1
+                nbkg = 3 #half of the actual number (rounded up) beacuse they go into two colomuns 
 
-                    #legend coordinates and style
-                    legsize = 0.04*nsig
-                    legsize2 = 0.04*nbkg
-                    leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
-                    leg.SetFillColor(0)
-                    leg.SetFillStyle(0)
-                    leg.SetLineColor(0)
-                    leg.SetShadowColor(0)
-                    leg.SetTextSize(0.025)
-                    leg.SetTextFont(42)
+                #legend coordinates and style
+                legsize = 0.04*nsig
+                legsize2 = 0.04*nbkg
+                leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
+                leg.SetFillColor(0)
+                leg.SetFillStyle(0)
+                leg.SetLineColor(0)
+                leg.SetShadowColor(0)
+                leg.SetTextSize(0.025)
+                leg.SetTextFont(42)
 
-                    leg2 = ROOT.TLegend(0.55, 0.70 - legsize2, 0.85, 0.70)
-                    leg2.SetNColumns(2)
-                    leg2.SetFillColor(0)
-                    leg2.SetFillStyle(0)
-                    leg2.SetLineColor(0)
-                    leg2.SetShadowColor(0)
-                    leg2.SetTextSize(0.025)
-                    leg2.SetTextFont(42)
+                leg2 = ROOT.TLegend(0.55, 0.70 - legsize2, 0.85, 0.70)
+                leg2.SetNColumns(2)
+                leg2.SetFillColor(0)
+                leg2.SetFillStyle(0)
+                leg2.SetLineColor(0)
+                leg2.SetShadowColor(0)
+                leg2.SetTextSize(0.025)
+                leg2.SetTextFont(42)
 
-                    #global arrays for histos and colors
-                    histos = []
-                    colors = []
+                #global arrays for histos and colors
+                histos = []
+                colors = []
 
-                    #loop over files for signals and backgrounds and assign corresponding colors and titles
-                    #loop to merge different sources into one histograms for easier plotting
+                #loop over files for signals and backgrounds and assign corresponding colors and titles
+                #loop to merge different sources into one histograms for easier plotting
+                i = 0
+                hh = None
+                for s in LIST_S[cat]:
+                    j = 0
+                    for sub in SUBDIR:
+                        fin = f"{directory}{sub}{s}_{cut}_histo.root"
+                        if (i==0 and j==0):
+                            with ROOT.TFile(fin) as tf:
+                                h = tf.Get(variable)
+                                hh = copy.deepcopy(h)
+                                hh.SetDirectory(0)
+                        else:
+                            with ROOT.TFile(fin) as tf:
+                                h = tf.Get(variable)
+                                hh1 = copy.deepcopy(h)
+                                hh1.SetDirectory(0)
+                            hh.Add(hh1)
+                        j += 1
+                    i += 1
+                histos.append(hh)
+                colors.append(scolors[cat])
+                leg.AddEntry(histos[-1], slegend[cat], "l")
+
+                if nbkg!=0:
+                    #add common and specific backgrounds based on the category
                     i = 0
                     hh = None
-                    for s in LIST_S[cat]:
+                    for b in LIST_B[cat]:
                         j = 0
                         for sub in SUBDIR:
-                            fin = f"{directory}{sub}{s}_{cut}_histo.root"
+                            fin = f"{directory}{sub}{b}_{cut}_histo.root"
                             if (i==0 and j==0):
                                 with ROOT.TFile(fin) as tf:
                                     h = tf.Get(variable)
@@ -887,14 +878,13 @@ for cut in CUTS:
                             j += 1
                         i += 1
                     histos.append(hh)
-                    colors.append(scolors[cat])
-                    leg.AddEntry(histos[-1], slegend[cat], "l")
+                    colors.append(bcolors[cat])
+                    leg2.AddEntry(histos[-1], blegend[cat], "f")
 
-                    if nbkg!=0:
-                        #add common and specific backgrounds based on the category
+                    if cat=="NuNu":
                         i = 0
                         hh = None
-                        for b in LIST_B[cat]:
+                        for b in LIST_B["LL"]:
                             j = 0
                             for sub in SUBDIR:
                                 fin = f"{directory}{sub}{b}_{cut}_histo.root"
@@ -912,168 +902,168 @@ for cut in CUTS:
                                 j += 1
                             i += 1
                         histos.append(hh)
-                        colors.append(bcolors[cat])
-                        leg2.AddEntry(histos[-1], blegend[cat], "f")
+                        colors.append(bcolors["LL"])
+                        leg2.AddEntry(histos[-1], blegend["LL"], "f")
 
-                        i = 0
-                        hh = None
-                        for b in backgrounds_TauTau:
-                            j = 0
-                            for sub in SUBDIR:
-                                fin = f"{directory}{sub}{b}_{cut}_histo.root"
-                                if (i==0 and j==0):
-                                    with ROOT.TFile(fin) as tf:
-                                        h = tf.Get(variable)
-                                        hh = copy.deepcopy(h)
-                                        hh.SetDirectory(0)
-                                else:
-                                    with ROOT.TFile(fin) as tf:
-                                        h = tf.Get(variable)
-                                        hh1 = copy.deepcopy(h)
-                                        hh1.SetDirectory(0)
-                                    hh.Add(hh1)
-                                j += 1
-                            i += 1
-                        histos.append(hh)
-                        colors.append(bcolors["TauTau"])
-                        leg2.AddEntry(histos[-1], blegend["TauTau"], "f")
-
-                        #for the common backgrounds i want to keep them separate into different histograms
-                        hh = None
-                        for b in backgrounds_all:
-                            j = 0
-                            for sub in SUBDIR:
-                                fin = f"{directory}{sub}{b}_{cut}_histo.root"
-                                if (j==0):
-                                    with ROOT.TFile(fin) as tf:
-                                        h = tf.Get(variable)
-                                        hh = copy.deepcopy(h)
-                                        hh.SetDirectory(0)
-                                else:
-                                    with ROOT.TFile(fin) as tf:
-                                        h = tf.Get(variable)
-                                        hh1 = copy.deepcopy(h)
-                                        hh1.SetDirectory(0)
-                                    hh.Add(hh1)
-                                j += 1
-                            histos.append(hh)
-                            colors.append(bcolors[b])
-                            leg2.AddEntry(histos[-1], blegend[b], "f")
-                    
-                        #drawing stack for backgrounds
-                        hStackBkg = ROOT.THStack("hStackBkg", "")
-                        if LOGY==True :
-                            hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                            hStackBkg.SetMaximum(1e25) #leave some space on top for the legend
-                        BgMCHistYieldsDic = {}
-                        for i in range(nsig, nsig+nbkg):
-                            h = histos[i]
-                            h.SetLineWidth(1)
-                            h.SetLineColor(ROOT.kBlack)
-                            h.SetFillColor(colors[i])
-                            if h.Integral() > 0:
-                                BgMCHistYieldsDic[h.Integral()] = h
+                    i = 0
+                    hh = None
+                    for b in backgrounds_TauTau:
+                        j = 0
+                        for sub in SUBDIR:
+                            fin = f"{directory}{sub}{b}_{cut}_histo.root"
+                            if (i==0 and j==0):
+                                with ROOT.TFile(fin) as tf:
+                                    h = tf.Get(variable)
+                                    hh = copy.deepcopy(h)
+                                    hh.SetDirectory(0)
                             else:
-                                BgMCHistYieldsDic[-1*nbkg] = h
+                                with ROOT.TFile(fin) as tf:
+                                    h = tf.Get(variable)
+                                    hh1 = copy.deepcopy(h)
+                                    hh1.SetDirectory(0)
+                                hh.Add(hh1)
+                            j += 1
+                        i += 1
+                    histos.append(hh)
+                    colors.append(bcolors["TauTau"])
+                    leg2.AddEntry(histos[-1], blegend["TauTau"], "f")
 
-                        # sort stack by yields (smallest to largest)
-                        BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
-                        for h in BgMCHistYieldsDic:
-                            hStackBkg.Add(h)
+                    #for the common backgrounds i want to keep them separate into different histograms
+                    hh = None
+                    for b in backgrounds_all:
+                        j = 0
+                        for sub in SUBDIR:
+                            fin = f"{directory}{sub}{b}_{cut}_histo.root"
+                            if (j==0):
+                                with ROOT.TFile(fin) as tf:
+                                    h = tf.Get(variable)
+                                    hh = copy.deepcopy(h)
+                                    hh.SetDirectory(0)
+                            else:
+                                with ROOT.TFile(fin) as tf:
+                                    h = tf.Get(variable)
+                                    hh1 = copy.deepcopy(h)
+                                    hh1.SetDirectory(0)
+                                hh.Add(hh1)
+                            j += 1
+                        histos.append(hh)
+                        colors.append(bcolors[b])
+                        leg2.AddEntry(histos[-1], blegend[b], "f")
+                
+                    #drawing stack for backgrounds
+                    hStackBkg = ROOT.THStack("hStackBkg", "")
+                    if LOGY==True :
+                        hStackBkg.SetMinimum(1e-5) #change the range to be plotted
+                        hStackBkg.SetMaximum(1e25) #leave some space on top for the legend
+                    BgMCHistYieldsDic = {}
+                    for i in range(nsig, nsig+nbkg):
+                        h = histos[i]
+                        h.SetLineWidth(1)
+                        h.SetLineColor(ROOT.kBlack)
+                        h.SetFillColor(colors[i])
+                        if h.Integral() > 0:
+                            BgMCHistYieldsDic[h.Integral()] = h
+                        else:
+                            BgMCHistYieldsDic[-1*nbkg] = h
 
-                        #draw the histograms
-                        hStackBkg.Draw("HIST")
+                    # sort stack by yields (smallest to largest)
+                    BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
+                    for h in BgMCHistYieldsDic:
+                        hStackBkg.Add(h)
 
-                        # add the signal histograms
-                        for i in range(nsig):
-                            h = histos[i]
-                            h.SetLineWidth(3)
-                            h.SetLineColor(colors[i])
+                    #draw the histograms
+                    hStackBkg.Draw("HIST")
+
+                    # add the signal histograms
+                    for i in range(nsig):
+                        h = histos[i]
+                        h.SetLineWidth(3)
+                        h.SetLineColor(colors[i])
+                        h.Draw("HIST SAME")
+
+                    hStackBkg.GetYaxis().SetTitle("Events")
+                    hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
+                    #hStackBkg.GetYaxis().SetTitleOffset(1.5)
+                    hStackBkg.GetXaxis().SetTitleOffset(1.2)
+                    #hStackBkg.GetXaxis().SetLimits(1, 1000)
+
+                else: 
+                    # add the signal histograms
+                    for i in range(nsig):
+                        h = histos[i]
+                        h.SetLineWidth(3)
+                        h.SetLineColor(colors[i])
+                        if i == 0:
+                            h.Draw("HIST")
+                            h.GetYaxis().SetTitle("Events")
+                            h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
+                            #h.GetXaxis().SetTitle("{}".format(variable))
+                            h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
+                            #h.GetYaxis().SetTitleOffset(1.5)
+                            h.GetXaxis().SetTitleOffset(1.2)
+                            #h.GetXaxis().SetLimits(1, 1000)
+                        else: 
                             h.Draw("HIST SAME")
 
-                        hStackBkg.GetYaxis().SetTitle("Events")
-                        hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
-                        #hStackBkg.GetYaxis().SetTitleOffset(1.5)
-                        hStackBkg.GetXaxis().SetTitleOffset(1.2)
-                        #hStackBkg.GetXaxis().SetLimits(1, 1000)
+                #labels around the plot
+                extralab = LABELS[cut]
 
-                    else: 
-                        # add the signal histograms
-                        for i in range(nsig):
-                            h = histos[i]
-                            h.SetLineWidth(3)
-                            h.SetLineColor(colors[i])
-                            if i == 0:
-                                h.Draw("HIST")
-                                h.GetYaxis().SetTitle("Events")
-                                h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
-                                #h.GetXaxis().SetTitle("{}".format(variable))
-                                h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
-                                #h.GetYaxis().SetTitleOffset(1.5)
-                                h.GetXaxis().SetTitleOffset(1.2)
-                                #h.GetXaxis().SetLimits(1, 1000)
-                            else: 
-                                h.Draw("HIST SAME")
+                if 'ee' in collider:
+                    leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
+                rightText = f'#sqrt{{s}} = {energy} GeV, L={intLumi} ab^{{-1}}'
 
-                    #labels around the plot
-                    extralab = LABELS[cut]
+                latex = ROOT.TLatex()
+                latex.SetNDC()
 
-                    if 'ee' in collider:
-                        leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
-                    rightText = f'#sqrt{{s}} = {energy} GeV, L={intLumi} ab^{{-1}}'
+                text = '#bf{#it{'+rightText+'}}'
+                latex.SetTextSize(0.03)
+                latex.DrawLatex(0.18, 0.84, text)
 
-                    latex = ROOT.TLatex()
-                    latex.SetNDC()
+                text = '#bf{#it{' + ana_tex + '}}'
+                latex.SetTextSize(0.03)
+                latex.DrawLatex(0.18, 0.80, text)
 
-                    text = '#bf{#it{'+rightText+'}}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.18, 0.84, text)
+                text = '#bf{#it{' + extralab + '}}'
+                latex.SetTextSize(0.02)
+                latex.DrawLatex(0.18, 0.74, text)
 
-                    text = '#bf{#it{' + ana_tex + '}}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.18, 0.80, text)
+                latex.SetTextAlign(31)
+                text = '#it{' + leftText + '}'
+                latex.SetTextSize(0.03)
+                latex.DrawLatex(0.92, 0.92, text)
 
-                    text = '#bf{#it{' + extralab + '}}'
-                    latex.SetTextSize(0.02)
-                    latex.DrawLatex(0.18, 0.74, text)
+                leg.Draw()
+                leg2.Draw()
 
-                    latex.SetTextAlign(31)
-                    text = '#it{' + leftText + '}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.92, 0.92, text)
+                # Set Logarithmic scales for both x and y axes
+                if LOGY == True:
+                    canvas.SetLogy()
+                    canvas.SetTicks(1, 1)
+                    canvas.SetLeftMargin(0.14)
+                    canvas.SetRightMargin(0.08)
+                    canvas.GetFrame().SetBorderSize(12)
 
-                    leg.Draw()
-                    leg2.Draw()
+                    canvas.RedrawAxis()
+                    canvas.Modified()
+                    canvas.Update()
 
-                    # Set Logarithmic scales for both x and y axes
-                    if LOGY == True:
-                        canvas.SetLogy()
-                        canvas.SetTicks(1, 1)
-                        canvas.SetLeftMargin(0.14)
-                        canvas.SetRightMargin(0.08)
-                        canvas.GetFrame().SetBorderSize(12)
+                    dir = DIR_PLOTS + SUBDIR + "/" + cut + "/"
+                    make_dir_if_not_exists(dir)
 
-                        canvas.RedrawAxis()
-                        canvas.Modified()
-                        canvas.Update()
+                    canvas.SaveAs(dir + variable + "_log.png")
+                    canvas.SaveAs(dir + variable + "_log.pdf")
+                else:
+                    canvas.SetTicks(1, 1)
+                    canvas.SetLeftMargin(0.14)
+                    canvas.SetRightMargin(0.08)
+                    canvas.GetFrame().SetBorderSize(12)
 
-                        dir = DIR_PLOTS + SUBDIR + "/" + cut + "/"
-                        make_dir_if_not_exists(dir)
+                    canvas.RedrawAxis()
+                    canvas.Modified()
+                    canvas.Update()
 
-                        canvas.SaveAs(dir + variable + "_log.png")
-                        canvas.SaveAs(dir + variable + "_log.pdf")
-                    else:
-                        canvas.SetTicks(1, 1)
-                        canvas.SetLeftMargin(0.14)
-                        canvas.SetRightMargin(0.08)
-                        canvas.GetFrame().SetBorderSize(12)
+                    dir = DIR_PLOTS + SUBDIR + "/" + cut + "/"
+                    make_dir_if_not_exists(dir)
 
-                        canvas.RedrawAxis()
-                        canvas.Modified()
-                        canvas.Update()
-
-                        dir = DIR_PLOTS + SUBDIR + "/" + cut + "/"
-                        make_dir_if_not_exists(dir)
-
-                        canvas.SaveAs(dir + variable + ".png")
-                        canvas.SaveAs(dir + variable + ".pdf")
+                    canvas.SaveAs(dir + variable + ".png")
+                    canvas.SaveAs(dir + variable + ".pdf")
