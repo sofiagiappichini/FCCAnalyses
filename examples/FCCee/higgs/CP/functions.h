@@ -646,7 +646,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
         for (const auto& jc : jcs) {
 
             // No electrons or muons
-            if(  fabs(jc.mass -  0.105658) < 1.e-03) {
+            if (fabs(jc.mass -  0.105658) < 1.e-03) {
                 tauID=-13;
                 continue; 
                 }

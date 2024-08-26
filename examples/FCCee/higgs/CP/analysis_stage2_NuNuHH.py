@@ -14,6 +14,7 @@ processList = {
     #'wzp6_ee_eeH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
 
@@ -23,6 +24,7 @@ processList = {
     #'wzp6_ee_mumuH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
 
@@ -32,6 +34,7 @@ processList = {
     #'wzp6_ee_tautauH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_tautauH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
 
@@ -41,6 +44,7 @@ processList = {
     #'wzp6_ee_nunuH_Huu_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hdd_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
+    #'wzp6_ee_nunuH_Hgg_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
     #'wzp6_ee_nunuH_HZZ_ecm240': {'chunks':10},
 

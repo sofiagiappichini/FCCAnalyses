@@ -1,0 +1,45 @@
+# text2workspace.py datacard.txt -o ws.root
+# combine -M FitDiagnostics -t -1 --expectSignal=1 ws.root --rMin -2 
+imax    1 number of bins
+jmax    * number of processes minus 1
+kmax    * number of nuisance parameters
+--------------------------------------------------------------------------------
+shapes wzp6_ee_eeH_Htautau_ecm240 * /final/LL/LL/wzp6_ee_eeH_Htautau_ecm240__histo.root $PROCESS
+shapes wzp6_ee_mumuH_Htautau_ecm240 * /final/LL/LL/wzp6_ee_mumuH_Htautau_ecm240__histo.root $PROCESS
+shapes wzp6_ee_eeH_Hbb_ecm240 * /final/LL/LL/wzp6_ee_eeH_Hbb_ecm240__histo.root $PROCESS
+shapes wzp6_ee_eeH_Hcc_ecm240 * /final/LL/LL/wzp6_ee_eeH_Hcc_ecm240__histo.root $PROCESS
+shapes wzp6_ee_eeH_Huu_ecm240 * /final/LL/LL/wzp6_ee_eeH_Huu_ecm240__histo.root $PROCESS
+shapes wzp6_ee_eeH_Hdd_ecm240 * /final/LL/LL/wzp6_ee_eeH_Hdd_ecm240__histo.root $PROCESS
+shapes wzp6_ee_eeH_Hss_ecm240 * /final/LL/LL/wzp6_ee_eeH_Hss_ecm240__histo.root $PROCESS
+shapes wzp6_ee_eeH_HWW_ecm240 * /final/LL/LL/wzp6_ee_eeH_HWW_ecm240__histo.root $PROCESS
+shapes wzp6_ee_eeH_HZZ_ecm240 * /final/LL/LL/wzp6_ee_eeH_HZZ_ecm240__histo.root $PROCESS
+shapes wzp6_ee_mumuH_Hbb_ecm240 * /final/LL/LL/wzp6_ee_mumuH_Hbb_ecm240__histo.root $PROCESS
+shapes wzp6_ee_mumuH_Hcc_ecm240 * /final/LL/LL/wzp6_ee_mumuH_Hcc_ecm240__histo.root $PROCESS
+shapes wzp6_ee_mumuH_Huu_ecm240 * /final/LL/LL/wzp6_ee_mumuH_Huu_ecm240__histo.root $PROCESS
+shapes wzp6_ee_mumuH_Hdd_ecm240 * /final/LL/LL/wzp6_ee_mumuH_Hdd_ecm240__histo.root $PROCESS
+shapes wzp6_ee_mumuH_Hss_ecm240 * /final/LL/LL/wzp6_ee_mumuH_Hss_ecm240__histo.root $PROCESS
+shapes wzp6_ee_mumuH_HWW_ecm240 * /final/LL/LL/wzp6_ee_mumuH_HWW_ecm240__histo.root $PROCESS
+shapes wzp6_ee_mumuH_HZZ_ecm240 * /final/LL/LL/wzp6_ee_mumuH_HZZ_ecm240__histo.root $PROCESS
+shapes p8_ee_WW_ecm240 * /final/LL/LL/p8_ee_WW_ecm240__histo.root $PROCESS
+shapes p8_ee_Zqq_ecm240 * /final/LL/LL/p8_ee_Zqq_ecm240__histo.root $PROCESS
+shapes p8_ee_ZZ_ecm240 * /final/LL/LL/p8_ee_ZZ_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautau_ecm240 * /final/LL/LL/wzp6_ee_tautau_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautauH_Htautau_ecm240 * /final/LL/LL/wzp6_ee_tautauH_Htautau_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautauH_Hbb_ecm240 * /final/LL/LL/wzp6_ee_tautauH_Hbb_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautauH_Hcc_ecm240 * /final/LL/LL/wzp6_ee_tautauH_Hcc_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautauH_Huu_ecm240 * /final/LL/LL/wzp6_ee_tautauH_Huu_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautauH_Hdd_ecm240 * /final/LL/LL/wzp6_ee_tautauH_Hdd_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautauH_Hss_ecm240 * /final/LL/LL/wzp6_ee_tautauH_Hss_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautauH_HWW_ecm240 * /final/LL/LL/wzp6_ee_tautauH_HWW_ecm240__histo.root $PROCESS
+shapes wzp6_ee_tautauH_HZZ_ecm240 * /final/LL/LL/wzp6_ee_tautauH_HZZ_ecm240__histo.root $PROCESS
+shapes data_obs * /final/LL/LL/wzp6_ee_eeH_Htautau_ecm240__histo.root wzp6_ee_eeH_Htautau_ecm240
+--------------------------------------------------------------------------------
+bin                        Recoil_mass
+observation                -1
+--------------------------------------------------------------------------------
+bin                        Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                         Recoil_mass                        
+process                    wzp6_ee_eeH_Htautau_ecm240          wzp6_ee_mumuH_Htautau_ecm240        wzp6_ee_eeH_Hbb_ecm240              wzp6_ee_eeH_Hcc_ecm240              wzp6_ee_eeH_Huu_ecm240              wzp6_ee_eeH_Hdd_ecm240              wzp6_ee_eeH_Hss_ecm240              wzp6_ee_eeH_HWW_ecm240              wzp6_ee_eeH_HZZ_ecm240              wzp6_ee_mumuH_Hbb_ecm240            wzp6_ee_mumuH_Hcc_ecm240            wzp6_ee_mumuH_Huu_ecm240            wzp6_ee_mumuH_Hdd_ecm240            wzp6_ee_mumuH_Hss_ecm240            wzp6_ee_mumuH_HWW_ecm240            wzp6_ee_mumuH_HZZ_ecm240            p8_ee_WW_ecm240                     p8_ee_Zqq_ecm240                    p8_ee_ZZ_ecm240                     wzp6_ee_tautau_ecm240               wzp6_ee_tautauH_Htautau_ecm240      wzp6_ee_tautauH_Hbb_ecm240          wzp6_ee_tautauH_Hcc_ecm240          wzp6_ee_tautauH_Huu_ecm240          wzp6_ee_tautauH_Hdd_ecm240          wzp6_ee_tautauH_Hss_ecm240          wzp6_ee_tautauH_HWW_ecm240          wzp6_ee_tautauH_HZZ_ecm240         
+process                    -1                                  0                                   1                                   2                                   3                                   4                                   5                                   6                                   7                                   8                                   9                                   10                                  11                                  12                                  13                                  14                                  15                                  16                                  17                                  18                                  19                                  20                                  21                                  22                                  23                                  24                                  25                                  26                                 
+rate                       -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                 
+--------------------------------------------------------------------------------
+* autoMCStats 10 1
