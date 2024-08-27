@@ -645,374 +645,262 @@ VARIABLES_NuNu = [
     "Visible_mass",
 ]
 
-#list of backgorunds, then legend and colors to be assigned to them
-backgrounds_all = [
-    "p8_ee_WW_ecm240",
-    "p8_ee_Zqq_ecm240",
-    "p8_ee_ZZ_ecm240",
-
-    "wzp6_ee_LL_ecm240",
-    "wzp6_ee_tautau_ecm240",
-
-    "wzp6_ee_nuenueZ_ecm240",
-
-    "wzp6_ee_egamma_eZ_ZLL_ecm240",
-    
-    "wzp6_ee_gaga_LL_60_ecm240",
-    "wzp6_ee_gaga_tautau_60_ecm240",
-
-    "wzp6_ee_tautauH_Htautau_ecm240",
-    "wzp6_ee_tautauH_HQQ_ecm240",
-    "wzp6_ee_tautauH_Hgg_ecm240",
-    "wzp6_ee_tautauH_HVV_ecm240",
-
-    "wzp6_ee_nunuH_HQQ_ecm240",
-    "wzp6_ee_nunuH_Hgg_ecm240",
-    "wzp6_ee_nunuH_HVV_ecm240",
-
-    "wzp6_ee_eeH_HQQ_ecm240",
-    "wzp6_ee_eeH_Hgg_ecm240",
-    "wzp6_ee_eeH_HVV_ecm240",
-
-    "wzp6_ee_mumuH_HQQ_ecm240",
-    "wzp6_ee_mumuH_Hgg_ecm240",
-    "wzp6_ee_mumuH_HVV_ecm240",
-
-    "wzp6_ee_ZheavyH_HQQ_ecm240",
-    "wzp6_ee_ZheavyH_Hgg_ecm240",
-    "wzp6_ee_ZheavyH_HVV_ecm240",
-
-    "wzp6_ee_ZlightH_HQQ_ecm240",
-    "wzp6_ee_ZlightH_Hgg_ecm240",
-    "wzp6_ee_ZlightH_HVV_ecm240",
+#list of backgrounds, then legend and colors to be assigned to them
+backgrounds_1 = [
+    'wzp6_ee_mumu_ecm240',
+    'wzp6_ee_ee_Mee_30_150_ecm240',
 ]
 
-blegend = {
-    'p8_ee_WW_ecm240':"WW",
-    'p8_ee_Zqq_ecm240':"Z #rightarrow QQ",
-    'p8_ee_ZZ_ecm240':"ZZ",
-
-    'wzp6_ee_LL_ecm240':"ll",
-    'wzp6_ee_tautau_ecm240':"#tau#tau",
-
-    "wzp6_ee_nuenueZ_ecm240":"#nu_e#nu_e Z",
-
-    "wzp6_ee_egamma_eZ_ZLL_ecm240":"e#gamma #rightarrow eZ(ll)",
-    
-    "wzp6_ee_gaga_LL_60_ecm240":"#gamma#gamma #rightarrow ll",
-    "wzp6_ee_gaga_tautau_60_ecm240":"#gamma#gamma #rightarrow #tau#tau",
-
-    "wzp6_ee_tautauH_Htautau_ecm240":"Z(#tau#tau)H(#tau#tau)",
-    "wzp6_ee_tautauH_HQQ_ecm240":"Z(#tau#tau)H(QQ)",
-    "wzp6_ee_tautauH_Hgg_ecm240":"Z(#tau#tau)H(gg)",
-    "wzp6_ee_tautauH_HVV_ecm240":"Z(#tau#tau)H(VV)",
-
-    "wzp6_ee_nunuH_HQQ_ecm240":"Z(#nu#nu)H(QQ)",
-    "wzp6_ee_nunuH_Hgg_ecm240":"Z(#nu#nu)H(gg)",
-    "wzp6_ee_nunuH_HVV_ecm240":"Z(#nu#nu)H(VV)",
-
-    "wzp6_ee_eeH_HQQ_ecm240":"Z(ee)H(QQ)",
-    "wzp6_ee_eeH_Hgg_ecm240":"Z(ee)H(gg)",
-    "wzp6_ee_eeH_HVV_ecm240":"Z(ee)H(VV)",
-
-    "wzp6_ee_mumuH_HQQ_ecm240":"Z(#mu#mu)H(QQ)",
-    "wzp6_ee_mumuH_Hgg_ecm240":"Z(#mu#mu)H(gg)",
-    "wzp6_ee_mumuH_HVV_ecm240":"Z(#mu#mu)H(VV)",
-
-    "wzp6_ee_ZheavyH_HQQ_ecm240":"Z(bb, cc)H(QQ)",
-    "wzp6_ee_ZheavyH_Hgg_ecm240":"Z(bb, cc)H(gg)",
-    "wzp6_ee_ZheavyH_HVV_ecm240":"Z(bb, cc)H(VV)",
-
-    "wzp6_ee_ZlightH_HQQ_ecm240":"Z(uu, dd, ss)H(QQ)",
-    "wzp6_ee_ZlightH_Hgg_ecm240":"Z(uu, dd, ss)H(gg)",
-    "wzp6_ee_ZlightH_HVV_ecm240":"Z(uu, dd, ss)H(VV)",
-}
-
-bcolors = {
-    'p8_ee_WW_ecm240':ROOT.kGreen-2,
-    'p8_ee_Zqq_ecm240':ROOT.kMagenta-2,
-    'p8_ee_ZZ_ecm240':ROOT.kGreen-3,
-
-    'wzp6_ee_LL_ecm240':ROOT.kCyan-2,
-    'wzp6_ee_tautau_ecm240':ROOT.kRed-2,
-
-    "wzp6_ee_nuenueZ_ecm240":ROOT.kOrange-2,
-
-    "wzp6_ee_egamma_eZ_ZLL_ecm240":ROOT.kOrange+1,
-    
-    "wzp6_ee_gaga_LL_60_ecm240":ROOT.kOrange-3,
-    "wzp6_ee_gaga_tautau_60_ecm240":ROOT.kOrange+2,
-
-    "wzp6_ee_tautauH_Htautau_ecm240":ROOT.kViolet+6,
-    "wzp6_ee_tautauH_HQQ_ecm240":ROOT.kViolet+5,
-    "wzp6_ee_tautauH_Hgg_ecm240":ROOT.kViolet-4,
-    "wzp6_ee_tautauH_HVV_ecm240":ROOT.kViolet+1,
-
-    "wzp6_ee_nunuH_HQQ_ecm240":ROOT.kGreen-5,
-    "wzp6_ee_nunuH_Hgg_ecm240":ROOT.kGreen-8,
-    "wzp6_ee_nunuH_HVV_ecm240":ROOT.kGreen-10,
-
-    "wzp6_ee_eeH_HQQ_ecm240":ROOT.kCyan-5,
-    "wzp6_ee_eeH_Hgg_ecm240":ROOT.kCyan-8,
-    "wzp6_ee_eeH_HVV_ecm240":ROOT.kCyan-10,
-
-    "wzp6_ee_mumuH_HQQ_ecm240":ROOT.kBlue-5,
-    "wzp6_ee_mumuH_Hgg_ecm240":ROOT.kBlue-8,
-    "wzp6_ee_mumuH_HVV_ecm240":ROOT.kBlue-10,
-
-    "wzp6_ee_ZheavyH_HQQ_ecm240":ROOT.kRed-5,
-    "wzp6_ee_ZheavyH_Hgg_ecm240":ROOT.kRed-8,
-    "wzp6_ee_ZheavyH_HVV_ecm240":ROOT.kRed-10,
-
-    "wzp6_ee_ZlightH_HQQ_ecm240":ROOT.kMagenta-5,
-    "wzp6_ee_ZlightH_Hgg_ecm240":ROOT.kMagenta-8,
-    "wzp6_ee_ZlightH_HVV_ecm240":ROOT.kMagenta-10,
-}
-
-#list of signals, then legend and colors to be assigned to them
-signals_QQ = [
-    'wzp6_ee_ZheavyH_Htautau_ecm240',
-    'wzp6_ee_ZlightH_Htautau_ecm240',
+backgrounds_2 = [
+    'wzp6_egamma_eZ_Zmumu_ecm240',
+    'wzp6_egamma_eZ_Zee_ecm240',
+    'wzp6_gammae_eZ_Zmumu_ecm240',
+    'wzp6_gammae_eZ_Zee_ecm240',
 ]
 
-signals_LL = [
+backgrounds_3 = [
+    'wzp6_gaga_mumu_60_ecm240',
+    'wzp6_gaga_ee_60_ecm240',
+]
+
+backgrounds_4 = [
+    'wzp6_ee_tautauH_Hbb_ecm240',
+    'wzp6_ee_tautauH_Hcc_ecm240',
+    'wzp6_ee_tautauH_Hss_ecm240',
+]
+
+backgrounds_5 = [
+    'wzp6_ee_tautauH_HWW_ecm240',
+    'wzp6_ee_tautauH_HZZ_ecm240',
+]
+
+backgrounds_6 = [
+    'wzp6_ee_nunuH_Hbb_ecm240',
+    'wzp6_ee_nunuH_Hcc_ecm240',
+    'wzp6_ee_nunuH_Hss_ecm240',
+]
+
+backgrounds_7 = [
+    'wzp6_ee_nunuH_HWW_ecm240',
+    'wzp6_ee_nunuH_HZZ_ecm240',
+]
+
+backgrounds_8 = [
+    'wzp6_ee_eeH_Hbb_ecm240',
+    'wzp6_ee_eeH_Hcc_ecm240',
+    'wzp6_ee_eeH_Hss_ecm240',
+
+    'wzp6_ee_mumuH_Hbb_ecm240',
+    'wzp6_ee_mumuH_Hcc_ecm240',
+    'wzp6_ee_mumuH_Hss_ecm240',
+]
+
+backgrounds_9 = [
+    'wzp6_ee_eeH_HWW_ecm240',
+    'wzp6_ee_eeH_HZZ_ecm240',
+
+    'wzp6_ee_mumuH_HWW_ecm240',
+    'wzp6_ee_mumuH_HZZ_ecm240',
+]
+
+backgrounds_10 = [
+    'wzp6_ee_eeH_Hbb_ecm240',
+    'wzp6_ee_eeH_Hcc_ecm240',
+    'wzp6_ee_eeH_Hss_ecm240',
+]
+
+backgrounds_11 = [
+    'wzp6_ee_eeH_HWW_ecm240',
+    'wzp6_ee_eeH_HZZ_ecm240',
+]
+
+backgrounds_12 = [
+    'wzp6_ee_mumuH_Hbb_ecm240',
+    'wzp6_ee_mumuH_Hcc_ecm240',
+    'wzp6_ee_mumuH_Hss_ecm240',
+]
+
+backgrounds_13 = [
+    'wzp6_ee_mumuH_HWW_ecm240',
+    'wzp6_ee_mumuH_HZZ_ecm240',
+]
+
+backgrounds_14 = [
+    'wzp6_ee_bbH_Hbb_ecm240',
+    'wzp6_ee_bbH_Hcc_ecm240',
+    'wzp6_ee_bbH_Hss_ecm240',
+
+    'wzp6_ee_ccH_Hbb_ecm240',
+    'wzp6_ee_ccH_Hcc_ecm240',
+    'wzp6_ee_ccH_Hss_ecm240',
+
+    'wzp6_ee_ssH_Hbb_ecm240',
+    'wzp6_ee_ssH_Hcc_ecm240',
+    'wzp6_ee_ssH_Hss_ecm240',
+
+    'wzp6_ee_qqH_Hbb_ecm240',
+    'wzp6_ee_qqH_Hcc_ecm240',
+    'wzp6_ee_qqH_Hss_ecm240',
+]
+
+backgrounds_15 = [
+    'wzp6_ee_bbH_Hbb_ecm240',
+    'wzp6_ee_bbH_Hcc_ecm240',
+    'wzp6_ee_bbH_Hss_ecm240',
+
+    'wzp6_ee_ccH_Hbb_ecm240',
+    'wzp6_ee_ccH_Hcc_ecm240',
+    'wzp6_ee_ccH_Hss_ecm240',
+]
+
+backgrounds_16 = [
+    'wzp6_ee_ssH_Hbb_ecm240',
+    'wzp6_ee_ssH_Hcc_ecm240',
+    'wzp6_ee_ssH_Hss_ecm240',
+
+    'wzp6_ee_qqH_Hbb_ecm240',
+    'wzp6_ee_qqH_Hcc_ecm240',
+    'wzp6_ee_qqH_Hss_ecm240',
+]
+backgrounds_17 = [
+    'wzp6_ee_bbH_HWW_ecm240',
+    'wzp6_ee_bbH_HZZ_ecm240',
+
+    'wzp6_ee_ccH_HWW_ecm240',
+    'wzp6_ee_ccH_HZZ_ecm240',
+
+    'wzp6_ee_ssH_HWW_ecm240',
+    'wzp6_ee_ssH_HZZ_ecm240',
+    
+    'wzp6_ee_qqH_HWW_ecm240',
+    'wzp6_ee_qqH_HZZ_ecm240',
+]
+
+backgrounds_18 = [
+    'wzp6_ee_bbH_HWW_ecm240',
+    'wzp6_ee_bbH_HZZ_ecm240',
+
+    'wzp6_ee_ccH_HWW_ecm240',
+    'wzp6_ee_ccH_HZZ_ecm240',
+]
+
+backgrounds_19 = [    
+    'wzp6_ee_ssH_HWW_ecm240',
+    'wzp6_ee_ssH_HZZ_ecm240',
+    
+    'wzp6_ee_qqH_HWW_ecm240',
+    'wzp6_ee_qqH_HZZ_ecm240',
+]
+
+backgrounds_20 = [
+    'wzp6_ee_bbH_Hgg_ecm240',
+    'wzp6_ee_ccH_Hgg_ecm240',
+    'wzp6_ee_ssH_Hgg_ecm240',
+    'wzp6_ee_qqH_Hgg_ecm240',
+]
+
+backgrounds_21 = [
+    'wzp6_ee_bbH_Hgg_ecm240',
+    'wzp6_ee_ccH_Hgg_ecm240',
+]
+
+backgrounds_22 = [
+    'wzp6_ee_ssH_Hgg_ecm240',
+    'wzp6_ee_qqH_Hgg_ecm240',
+]
+
+backgrounds_23 = [
+    'wzp6_ee_eeH_Hgg_ecm240',
+    'wzp6_ee_mumuH_Hgg_ecm240',
+]
+#signals
+backgrounds_24 = [
     'wzp6_ee_eeH_Htautau_ecm240',
     'wzp6_ee_mumuH_Htautau_ecm240',
 ]
+backgrounds_25 = [
+    'wzp6_ee_bbH_Htautau_ecm240',
+    'wzp6_ee_ccH_Htautau_ecm240',
 
-signals_NuNu= [
-    'wzp6_ee_nunuH_Htautau_ecm240',
+    'wzp6_ee_ssH_Htautau_ecm240',
+    'wzp6_ee_qqH_Htautau_ecm240',
 ]
 
-slegend = {
-    'wzp6_ee_ZheavyH_Htautau_ecm240':"Z(bb, cc)H(#tau#tau)",
-    'wzp6_ee_ZlightH_Htautau_ecm240':"Z(uu, dd, ss)H(#tau#tau)",
-    'wzp6_ee_eeH_Htautau_ecm240':"Z(ee)H(#tau#tau)",
-    'wzp6_ee_mumuH_Htautau_ecm240':"Z(#mu#mu)H(#tau#tau)",
-    'wzp6_ee_nunuH_Htautau_ecm240':"Z(#nu#nu)H(#tau#tau)",
-}
+backgrounds_26 = [
+    'wzp6_ee_bbH_Htautau_ecm240',
+    'wzp6_ee_ccH_Htautau_ecm240',
+]
 
-scolors = {
-    'wzp6_ee_ZheavyH_Htautau_ecm240':ROOT.kRed-3,
-    'wzp6_ee_ZlightH_Htautau_ecm240':ROOT.kRed-9,
-    'wzp6_ee_eeH_Htautau_ecm240':ROOT.kBlue-9,
-    'wzp6_ee_mumuH_Htautau_ecm240':ROOT.kBlue-3,
-    'wzp6_ee_nunuH_Htautau_ecm240':ROOT.kGreen-6,
-}
+backgrounds_27 = [
+    'wzp6_ee_ssH_Htautau_ecm240',
+    'wzp6_ee_qqH_Htautau_ecm240',
+]
 
-LIST_VAR = {
-    "QQ": VARIABLES_QQ,
-    "LL":VARIABLES_LL,
-    "NuNu":VARIABLES_NuNu,
-}
+legend = {
+    "1":"wzp6_ee_LL_ecm240",
 
-LIST_S = {
-    "QQ": signals_QQ,
-    "LL":signals_LL,
-    "NuNu":signals_NuNu,
+    "2":"wzp6_ee_egamma_eZ_ZLL_ecm240",
+    "3":"wzp6_ee_gaga_LL_60_ecm240",
+
+    "4":"wzp6_ee_tautauH_HQQ_ecm240",
+    "5":"wzp6_ee_tautauH_HVV_ecm240",
+
+    "6":"wzp6_ee_nunuH_HQQ_ecm240",
+    "7":"wzp6_ee_nunuH_HVV_ecm240",
+
+    "8":"wzp6_ee_LLH_HQQ_ecm240",
+    "9":"wzp6_ee_LLH_HVV_ecm240",
+    "10":"wzp6_ee_eeH_HQQ_ecm240",
+    "11":"wzp6_ee_eeH_HVV_ecm240",
+    "12":"wzp6_ee_mumuH_HQQ_ecm240",
+    "13":"wzp6_ee_mumuH_HVV_ecm240",
+
+    "14":"wzp6_ee_QQH_HQQ_ecm240",
+    "15":"wzp6_ee_ZheavyH_HQQ_ecm240",
+    "16":"wzp6_ee_ZlightQH_HQQ_ecm240",
+    "17":"wzp6_ee_QQH_HVV_ecm240",
+    "18":"wzp6_ee_ZheavyH_HVV_ecm240",
+    "19":"wzp6_ee_ZlightH_HVV_ecm240",
+
+    "20":"wzp6_ee_QQH_Hgg_ecm240",
+    "21":"wzp6_ee_ZheavyH_Hgg_ecm240",
+    "22":"wzp6_ee_ZlightH_Hgg_ecm240",
+
+    "23":"wzp6_ee_LLH_Hgg_ecm240",
+    #signals
+    "24":"wzp6_ee_LLH_Htautau_ecm240",
+
+    "25":"wzp6_ee_QQH_Htautau_ecm240",
+    "26":"wzp6_ee_ZheavyH_Htautau_ecm240",
+    "27":"wzp6_ee_ZlightH_Htautau_ecm240",
 }
 
 for cut in CUTS:
     for cat in CAT:
         variables = VARIABLES + LIST_VAR[cat] 
+        directory = DIRECTORY[cat]
         for sub in SUBDIR:
-            directory = DIRECTORY[cat] + "/" + sub = "/"
-            for variable in variables:
-
-                canvas = ROOT.TCanvas("", "", 800, 800)
-
-                nsig = len(LIST_S[cat])
-                nbkg = len(backgrounds_all) #half of the actual number (rounded up) beacuse they go into two colomuns 
-
-                #legend coordinates and style
-                legsize = 0.04*nsig
-                legsize2 = 0.03*nbkg/2
-                leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
-                leg.SetFillColor(0)
-                leg.SetFillStyle(0)
-                leg.SetLineColor(0)
-                leg.SetShadowColor(0)
-                leg.SetTextSize(0.025)
-                leg.SetTextFont(42)
-
-                leg2 = ROOT.TLegend(0.55, 0.70 - legsize2, 0.85, 0.70)
-                leg2.SetNColumns(2)
-                leg2.SetFillColor(0)
-                leg2.SetFillStyle(0)
-                leg2.SetLineColor(0)
-                leg2.SetShadowColor(0)
-                leg2.SetTextSize(0.025)
-                leg2.SetTextFont(42)
-
-                #global arrays for histos and colors
-                histos = []
-                colors = []
-
-                #loop over files for signals and backgrounds and assign corresponding colors and titles
-                #loop to merge different sources into one histograms for easier plotting
-                for s in LIST_S[cat]:
-                    fin = f"{directory}{s}_{cut}_histo.root"
-                    with ROOT.TFile(fin) as tf:
-                        h = tf.Get(variable)
-                        hh = copy.deepcopy(h)
-                        hh.SetDirectory(0)
-                    histos.append(hh)
-                    colors.append(scolors[s])
-                    leg.AddEntry(histos[-1], slegend[s], "l")
-
-                if nbkg!=0:
-                    #for the common backgrounds i want to keep them separate into different histograms
-                    #no need to have the ones that are empty
-                    nbkg = 0
-                    for b in backgrounds_all:
-                        fin = f"{directory}{b}_{cut}_histo.root"
-                        with ROOT.TFile(fin) as tf:
-                            h = tf.Get(variable)
+            for num in range(0,10):
+                outFile = ROOT.TFile.Open(f"{directory}/{sub}/{legend[num]}_{cut}_histo.root", "RECREATE")
+                for var in variables:
+                    #loop to merge different sources into one histograms for easier plotting
+                    j = 0
+                    hh = None
+                    for b in backgrounds_[num]:
+                        tf = ROOT.TFile.Open(f"{directory}/{sub}/{b}_{cut}_histo.root", "READ")
+                        if (j==0):
+                            h = tf.Get(var)
                             hh = copy.deepcopy(h)
                             hh.SetDirectory(0)
-                        if (hh.Integral() > 0): 
-                            histos.append(hh)
-                            colors.append(bcolors[b])
-                            leg2.AddEntry(histos[-1], blegend[b], "f")
-
-                    #merge backgrounds in plotting
-                    '''i = 0
-                    hh = None
-                    for b in LIST_B[cat]:
-                        j = 0
-                        for sub in SUBDIR:
-                            fin = f"{directory}{sub}{b}_{cut}_histo.root"
-                            if (i==0 and j==0):
-                                with ROOT.TFile(fin) as tf:
-                                    h = tf.Get(variable)
-                                    hh = copy.deepcopy(h)
-                                    hh.SetDirectory(0)
-                            else:
-                                with ROOT.TFile(fin) as tf:
-                                    h = tf.Get(variable)
-                                    hh1 = copy.deepcopy(h)
-                                    hh1.SetDirectory(0)
-                                hh.Add(hh1)
-                            j += 1
-                        i += 1
-                    histos.append(hh)
-                    colors.append(bcolors[cat])
-                    leg2.AddEntry(histos[-1], blegend[cat], "f")'''
-                    
-                    #drawing stack for backgrounds
-                    hStackBkg = ROOT.THStack("hStackBkg", "")
-                    if LOGY==True :
-                        hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                        hStackBkg.SetMaximum(1e25) #leave some space on top for the legend
-                    BgMCHistYieldsDic = {}
-                    for i in range(nsig, len(histos)):
-                        h = histos[i]
-                        h.SetLineWidth(1)
-                        h.SetLineColor(ROOT.kBlack)
-                        h.SetFillColor(colors[i])
-                        if h.Integral() > 0:
-                            BgMCHistYieldsDic[h.Integral()] = h
                         else:
-                            BgMCHistYieldsDic[-1*nbkg] = h
-
-                    # sort stack by yields (smallest to largest)
-                    BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
-                    for h in BgMCHistYieldsDic:
-                        hStackBkg.Add(h)
-
-                    #draw the histograms
-                    hStackBkg.Draw("HIST")
-
-                    # add the signal histograms
-                    for i in range(nsig):
-                        h = histos[i]
-                        h.SetLineWidth(3)
-                        h.SetLineColor(colors[i])
-                        h.Draw("HIST SAME")
-
-                    hStackBkg.GetYaxis().SetTitle("Events")
-                    hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
-                    #hStackBkg.GetYaxis().SetTitleOffset(1.5)
-                    hStackBkg.GetXaxis().SetTitleOffset(1.2)
-                    #hStackBkg.GetXaxis().SetLimits(1, 1000)
-
-                else: 
-                    # add the signal histograms
-                    for i in range(nsig):
-                        h = histos[i]
-                        h.SetLineWidth(3)
-                        h.SetLineColor(colors[i])
-                        if i == 0:
-                            h.Draw("HIST")
-                            h.GetYaxis().SetTitle("Events")
-                            h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
-                            #h.GetXaxis().SetTitle("{}".format(variable))
-                            h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
-                            #h.GetYaxis().SetTitleOffset(1.5)
-                            h.GetXaxis().SetTitleOffset(1.2)
-                            #h.GetXaxis().SetLimits(1, 1000)
-                        else: 
-                            h.Draw("HIST SAME")
-
-                #labels around the plot
-                extralab = LABELS[cut]
-
-                if 'ee' in collider:
-                    leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
-                rightText = f'#sqrt{{s}} = {energy} GeV, L={intLumi} ab^{{-1}}'
-
-                latex = ROOT.TLatex()
-                latex.SetNDC()
-
-                text = '#bf{#it{'+rightText+'}}'
-                latex.SetTextSize(0.03)
-                latex.DrawLatex(0.18, 0.84, text)
-
-                text = '#bf{#it{' + ana_tex + '}}'
-                latex.SetTextSize(0.03)
-                latex.DrawLatex(0.18, 0.80, text)
-
-                text = '#bf{#it{' + extralab + '}}'
-                latex.SetTextSize(0.02)
-                latex.DrawLatex(0.18, 0.74, text)
-
-                latex.SetTextAlign(31)
-                text = '#it{' + leftText + '}'
-                latex.SetTextSize(0.03)
-                latex.DrawLatex(0.92, 0.92, text)
-
-                leg.Draw()
-                leg2.Draw()
-
-                # Set Logarithmic scales for both x and y axes
-                if LOGY == True:
-                    canvas.SetLogy()
-                    canvas.SetTicks(1, 1)
-                    canvas.SetLeftMargin(0.14)
-                    canvas.SetRightMargin(0.08)
-                    canvas.GetFrame().SetBorderSize(12)
-
-                    canvas.RedrawAxis()
-                    canvas.Modified()
-                    canvas.Update()
-
-                    dir = DIR_PLOTS + SUBDIR + "/" + cut + "/"
-                    make_dir_if_not_exists(dir)
-
-                    canvas.SaveAs(dir + variable + "_log.png")
-                    canvas.SaveAs(dir + variable + "_log.pdf")
-                else:
-                    canvas.SetTicks(1, 1)
-                    canvas.SetLeftMargin(0.14)
-                    canvas.SetRightMargin(0.08)
-                    canvas.GetFrame().SetBorderSize(12)
-
-                    canvas.RedrawAxis()
-                    canvas.Modified()
-                    canvas.Update()
-
-                    dir = DIR_PLOTS + SUBDIR + "/" + cut + "/"
-                    make_dir_if_not_exists(dir)
-
-                    canvas.SaveAs(dir + variable + ".png")
-                    canvas.SaveAs(dir + variable + ".pdf")
+                            h = tf.Get(var)
+                            hh1 = copy.deepcopy(h)
+                            hh1.SetDirectory(0)
+                            hh.Add(hh1)
+                        j += 1
+                        tf.Close()
+                    #write the histogram in the file    
+                    outFile.cd()
+                    hh.Write()
+                    
+                outFile.Close()

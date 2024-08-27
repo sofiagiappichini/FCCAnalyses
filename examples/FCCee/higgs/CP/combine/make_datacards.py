@@ -37,90 +37,49 @@ cut = ""
 VARIABLE = "Recoil_mass"
 
 backgrounds_all = [
-    'p8_ee_WW_ecm240',
-    'p8_ee_Zqq_ecm240',
-    'p8_ee_ZZ_ecm240',
-    'wzp6_ee_tautau_ecm240',
-]
+    "p8_ee_WW_ecm240",
+    "p8_ee_Zqq_ecm240",
+    "p8_ee_ZZ_ecm240",
 
-backgrounds_TauTau = [
-    'wzp6_ee_tautauH_Htautau_ecm240',
-    'wzp6_ee_tautauH_Hbb_ecm240',
-    'wzp6_ee_tautauH_Hcc_ecm240',
-    'wzp6_ee_tautauH_Huu_ecm240',
-    'wzp6_ee_tautauH_Hdd_ecm240',
-    'wzp6_ee_tautauH_Hss_ecm240',
-    'wzp6_ee_tautauH_HWW_ecm240',
-    'wzp6_ee_tautauH_HZZ_ecm240',
-]
+    "wzp6_ee_LL_ecm240",
+    "wzp6_ee_tautau_ecm240",
 
-backgrounds_QQ = [
-    'wzp6_ee_bbH_Hbb_ecm240',
-    'wzp6_ee_bbH_Hcc_ecm240',
-    'wzp6_ee_bbH_Huu_ecm240',
-    'wzp6_ee_bbH_Hdd_ecm240',
-    'wzp6_ee_bbH_Hss_ecm240',
-    'wzp6_ee_bbH_HWW_ecm240',
-    'wzp6_ee_bbH_HZZ_ecm240',
+    "wzp6_ee_nuenueZ_ecm240",
 
-    'wzp6_ee_ccH_Hbb_ecm240',
-    'wzp6_ee_ccH_Hcc_ecm240',
-    'wzp6_ee_ccH_Huu_ecm240',
-    'wzp6_ee_ccH_Hdd_ecm240',
-    'wzp6_ee_ccH_Hss_ecm240',
-    'wzp6_ee_ccH_HWW_ecm240',
-    'wzp6_ee_ccH_HZZ_ecm240',
+    "wzp6_ee_egamma_eZ_ZLL_ecm240",
+    
+    "wzp6_ee_gaga_LL_60_ecm240",
+    "wzp6_ee_gaga_tautau_60_ecm240",
 
-    'wzp6_ee_ssH_Hbb_ecm240',
-    'wzp6_ee_ssH_Hcc_ecm240',
-    'wzp6_ee_ssH_Huu_ecm240',
-    'wzp6_ee_ssH_Hdd_ecm240',
-    'wzp6_ee_ssH_Hss_ecm240',
-    'wzp6_ee_ssH_HWW_ecm240',
-    'wzp6_ee_ssH_HZZ_ecm240',
+    "wzp6_ee_tautauH_Htautau_ecm240",
+    "wzp6_ee_tautauH_HQQ_ecm240",
+    "wzp6_ee_tautauH_Hgg_ecm240",
+    "wzp6_ee_tautauH_HVV_ecm240",
 
-    'wzp6_ee_qqH_Hbb_ecm240',
-    'wzp6_ee_qqH_Hcc_ecm240',
-    'wzp6_ee_qqH_Huu_ecm240',
-    'wzp6_ee_qqH_Hdd_ecm240',
-    'wzp6_ee_qqH_Hss_ecm240',
-    'wzp6_ee_qqH_HWW_ecm240',
-    'wzp6_ee_qqH_HZZ_ecm240',
-]
+    "wzp6_ee_nunuH_HQQ_ecm240",
+    "wzp6_ee_nunuH_Hgg_ecm240",
+    "wzp6_ee_nunuH_HVV_ecm240",
 
-backgrounds_LL =[
-    'wzp6_ee_eeH_Hbb_ecm240',
-    'wzp6_ee_eeH_Hcc_ecm240',
-    'wzp6_ee_eeH_Huu_ecm240',
-    'wzp6_ee_eeH_Hdd_ecm240',
-    'wzp6_ee_eeH_Hss_ecm240',
-    'wzp6_ee_eeH_HWW_ecm240',
-    'wzp6_ee_eeH_HZZ_ecm240',
+    "wzp6_ee_eeH_HQQ_ecm240",
+    "wzp6_ee_eeH_Hgg_ecm240",
+    "wzp6_ee_eeH_HVV_ecm240",
 
-    'wzp6_ee_mumuH_Hbb_ecm240',
-    'wzp6_ee_mumuH_Hcc_ecm240',
-    'wzp6_ee_mumuH_Huu_ecm240',
-    'wzp6_ee_mumuH_Hdd_ecm240',
-    'wzp6_ee_mumuH_Hss_ecm240',
-    'wzp6_ee_mumuH_HWW_ecm240',
-    'wzp6_ee_mumuH_HZZ_ecm240',
-]
+    "wzp6_ee_mumuH_HQQ_ecm240",
+    "wzp6_ee_mumuH_Hgg_ecm240",
+    "wzp6_ee_mumuH_HVV_ecm240",
 
-backgrounds_NuNu = [
-    'wzp6_ee_nunuH_Hbb_ecm240',
-    'wzp6_ee_nunuH_Hcc_ecm240',
-    'wzp6_ee_nunuH_Huu_ecm240',
-    'wzp6_ee_nunuH_Hdd_ecm240',
-    'wzp6_ee_nunuH_Hss_ecm240',
-    'wzp6_ee_nunuH_HWW_ecm240',
-    'wzp6_ee_nunuH_HZZ_ecm240',
+    "wzp6_ee_ZheavyH_HQQ_ecm240",
+    "wzp6_ee_ZheavyH_Hgg_ecm240",
+    "wzp6_ee_ZheavyH_HVV_ecm240",
+
+    "wzp6_ee_ZlightH_HQQ_ecm240",
+    "wzp6_ee_ZlightH_Hgg_ecm240",
+    "wzp6_ee_ZlightH_HVV_ecm240",
 ]
 
 signals_QQ = [
-    'wzp6_ee_bbH_Htautau_ecm240',
-    'wzp6_ee_ccH_Htautau_ecm240',
-    'wzp6_ee_ssH_Htautau_ecm240',
-    'wzp6_ee_qqH_Htautau_ecm240',
+    'wzp6_ee_ZheavyH_Htautau_ecm240',
+    'wzp6_ee_ZlightH_Htautau_ecm240',
 ]
 
 signals_LL = [
@@ -144,11 +103,6 @@ LIST_S = {
     "NuNu":signals_NuNu,
 }
 
-LIST_B = {
-    "QQ": backgrounds_QQ,
-    "LL":backgrounds_LL,
-    "NuNu":backgrounds_NuNu,
-}
 
 lspace = 35
 # here i want to make separeate datacard for each final state so we can check each values independently, then combine them with combineCards.py
@@ -171,14 +125,7 @@ for cat in CAT:
         #add the processes in the respective lists
         for s in LIST_S[cat]:
             check_nonzero(directory, cut, s, sig_procs, VARIABLE)
-        for b in LIST_B[cat]:
-            check_nonzero(directory, cut, b, bkg_procs, VARIABLE)
-        if cat=="NuNu":
-            for b in LIST_B["LL"]:
-                check_nonzero(directory, cut, b, bkg_procs, VARIABLE)
         for b in backgrounds_all:
-            check_nonzero(directory, cut, b, bkg_procs, VARIABLE)
-        for b in backgrounds_TauTau:
             check_nonzero(directory, cut, b, bkg_procs, VARIABLE)
 
         procs = sig_procs + bkg_procs

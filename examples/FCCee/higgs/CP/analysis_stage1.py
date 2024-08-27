@@ -3,7 +3,7 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-'p8_ee_WW_ecm240':{'chunks':100},
+    'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
     
@@ -657,7 +657,7 @@ class RDFanalysis():
                 .Define("n_TauFromJet_R5","(UInt_t)TauFromJet_R5_pt.size()")
 
                 .Define("TauFromJet", "FCCAnalyses::ZHfunctions::findTauInJet(Jets_Constituents)") 
-                .Define("TauFromJet_tau", "TauFromJet_R5[TauFromJet_type>=0]") 
+                .Define("TauFromJet_tau", "TauFromJet[TauFromJet_type>=0]") 
                 .Define("TauFromJet_pt","ReconstructedParticle::get_pt(TauFromJet_tau)")
                 .Define("TauFromJet_px","ReconstructedParticle::get_px(TauFromJet_tau)")
                 .Define("TauFromJet_py","ReconstructedParticle::get_py(TauFromJet_tau)")
