@@ -3,40 +3,88 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-        #'p8_ee_WW_ecm240':{'chunks':100},
-    #'p8_ee_Zqq_ecm240':{'chunks':100},
-    #'p8_ee_ZZ_ecm240':{'chunks':100},
-    #'wzp6_ee_tautau_ecm240':{'chunks':100},
+    'p8_ee_WW_ecm240':{'chunks':100},
+    'p8_ee_Zqq_ecm240':{'chunks':100},
+    'p8_ee_ZZ_ecm240':{'chunks':100},
+    
+    'wzp6_ee_tautau_ecm240':{'chunks':100},
+    'wzp6_ee_mumu_ecm240':{'chunks':100},
+    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
 
-    #'wzp6_ee_eeH_Htautau_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_Hbb_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_Hcc_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_Huu_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_Hdd_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
-    #'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_egamma_eZ_Zmumu_ecm240': {'chunks':10},
+    'wzp6_egamma_eZ_Zee_ecm240': {'chunks':10},
+    'wzp6_gammae_eZ_Zmumu_ecm240': {'chunks':10},
+    'wzp6_gammae_eZ_Zee_ecm240': {'chunks':10},
+
+    'wzp6_gaga_tautau_60_ecm240': {'chunks':100},
+    'wzp6_gaga_mumu_60_ecm240': {'chunks':100},
+    'wzp6_gaga_ee_60_ecm240': {'chunks':100},
+
+    'wzp6_ee_nuenueZ_ecm240': {'chunks':10},
+
+    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
 
     'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_Huu_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_Hdd_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
-    #'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
 
-    #'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
-    #'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
-    #'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
-    #'wzp6_ee_tautauH_Huu_ecm240': {'chunks':10},
-    #'wzp6_ee_tautauH_Hdd_ecm240': {'chunks':10},
-    #'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
-    #'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
-    #'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
-    #'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_ccH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_ccH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_ccH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_ccH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_ccH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_ccH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_ssH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_ssH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_ssH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_ssH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_ssH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_ssH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_qqH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_qqH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_qqH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_qqH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
 }
 
 inputDir = "stage1/"
@@ -74,10 +122,10 @@ class RDFanalysis():
 
                 .Filter("n_TauFromJet_R5==1 && n_Jets_R5_sel==0")
 
-                .Define("AllLeptons",    "((n_RecoElectrons==3 or n_RecoMuons==3) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + TauFromJet_R5_charge.at(0))==0)*1.0")
+                .Define("ThreeLeptons",    "((n_RecoElectrons==3 or n_RecoMuons==3) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + TauFromJet_R5_charge.at(0))==0)*1.0")
                 .Define("OnePair",     "((n_RecoElectrons==2 and n_RecoMuons==1 and (RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0 and (RecoMuon_charge.at(0) + TauFromJet_R5_charge.at(0))==0) or (n_RecoElectrons==1 and n_RecoMuons==2 and (RecoMuon_charge.at(0) + RecoMuon_charge.at(1))==0 and (RecoElectron_charge.at(0) + TauFromJet_R5_charge.at(0))==0))*1.0")
 
-                .Filter("(AllLeptons==1 || OnePair==1)") 
+                .Filter("(ThreeLeptons==1 || OnePair==1)") 
 
                 ##################
                 # Reco particles #
