@@ -6,29 +6,7 @@ processList = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
-    
     'wzp6_ee_tautau_ecm240':{'chunks':100},
-    'wzp6_ee_mumu_ecm240':{'chunks':100},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
-
-    'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
-
-    'wzp6_egamma_eZ_Zmumu_ecm240': {'chunks':10},
-    'wzp6_egamma_eZ_Zee_ecm240': {'chunks':10},
-    'wzp6_gammae_eZ_Zmumu_ecm240': {'chunks':10},
-    'wzp6_gammae_eZ_Zee_ecm240': {'chunks':10},
-
-    'wzp6_gaga_tautau_60_ecm240': {'chunks':100},
-    'wzp6_gaga_mumu_60_ecm240': {'chunks':100},
-    'wzp6_gaga_ee_60_ecm240': {'chunks':100},
-
-    'wzp6_ee_nuenueZ_ecm240': {'chunks':10},
 
     'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
@@ -85,6 +63,25 @@ processList = {
     'wzp6_ee_qqH_Hgg_ecm240': {'chunks':10},
     'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_egamma_eZ_Zmumu_ecm240': {'chunks':10},
+    'wzp6_egamma_eZ_Zee_ecm240': {'chunks':10},
+    'wzp6_gammae_eZ_Zmumu_ecm240': {'chunks':10},
+    'wzp6_gammae_eZ_Zee_ecm240': {'chunks':10},
+
+    'wzp6_gaga_tautau_60_ecm240': {'chunks':100},
+    'wzp6_gaga_mumu_60_ecm240': {'chunks':100},
+    'wzp6_gaga_ee_60_ecm240': {'chunks':100},
+
+    'wzp6_ee_nuenueZ_ecm240': {'chunks':10},
 }
 
 inputDir = "stage1/"
