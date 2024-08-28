@@ -36,14 +36,10 @@ energy         = 91
 collider       = 'FCC-ee'
 intLumi        = 204 #ab-1
 
-DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_july/' 
+DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_final/' 
 
 CUTS = [
-    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
-    #"sel2Reco_vetoes_notracks_nojets_M80_10MEpt_0.8cos",
-    "selReco_gen_notracks_nohad_5M80_0.7cos_20MEpt",
+    "selReco_gen_notracks_2eh_M80_10MET_0cos_45ME_e35_10gev_DF",
  ] # cut to rebin
 
 VARIABLE = "Reco_DR" # variable to rebin
@@ -522,17 +518,18 @@ scolors = {
 
 #asym_bins = [-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.35, 0.5, 0.8] #array of low bin edges wanted
 #asym_bins = [0, 0.4, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8, 4.6] 
-#asym_bins = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3, 4.4, 4.5] 
-asym_bins = [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4.0, 4.2, 4.4, 4.6] 
+asym_bins = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3, 4.4, 4.5] 
+#asym_bins = [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4.0, 4.2, 4.4, 4.6] 
 nbins = len(asym_bins)-1
 ### note: The bin edges specified in xbins should correspond to bin edges in the original histogram. ###
 
-'''for CUT in CUTS:
-    NEWFILE='/eos/user/s/sgiappic/combine/' + VARIABLE + '_norebin_' + CUT + '.root' # name of the rebinned file
+for CUT in CUTS:
+    #NEWFILE='/eos/user/s/sgiappic/combine/' + VARIABLE + '_norebin_' + CUT + '.root' # name of the rebinned file
+    NEWFILE = "/eos/user/s/sgiappic/2HNL_ana/final_final/HNL_6.67e-8_10gev_" + CUT + ".root"
     nf= ROOT.TFile.Open(NEWFILE, "UPDATE") 
 
     #rebin FILES and save content in NEWFILE
-    for file in FILES:
+    for file in ["HNL_1.39e-8_10gev",]:# "p8_ee_Ztautau_ecm91", "llnunu_m", "eenunu_m", "mumununu_m"]:
 
         FILE = DIRECTORY + file + '_' + CUT + '_histo.root'
         f= ROOT.TFile.Open(FILE, "READ")
@@ -540,19 +537,17 @@ nbins = len(asym_bins)-1
 
         print("Rebinning variable {}, {} from {} bins to {} bins\n".format(VARIABLE, FILE, hist.GetNbinsX(), nbins))
 
-        hist_name = file+"_"+VARIABLE
+        hist_name = file +"_"+VARIABLE
         new_hist = ROOT.TH1F(hist_name, "Rebinned #Delta R", nbins, array.array('d', asym_bins))
 
         #for each bin in the original distribution, sum until one interval is reached
         i = 0
         bin_content = 0
         for b in range(hist.GetNbinsX()):
-            bin_content += hist.GetBinContent(b) * 1.13 # scale lumi from 180 to 204
+            bin_content += hist.GetBinContent(b) * 4.7 # scale lumi from 180 to 204
             if (hist.GetBinLowEdge(b) >= asym_bins[i]): #check if the interval edge has already been reached and if we are over it
                  #print(i, asym_bins[i])
                 new_hist.SetBinContent(i, bin_content)
-                if (bin_content == 0):
-                    new_hist.SetBinContent(i, 1e-20)
                 i += 1
                 bin_content = 0
                 if (i > nbins):
@@ -815,4 +810,4 @@ canvas.Update()
 #canvas.SaveAs(dir+ VARIABLE + "_rebinned.pdf")
 
 canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_24july.png")
-canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_24july.pdf")
+canvas.SaveAs("/eos/user/s/sgiappic/www/paper/Reco_DR_rebinned_24july.pdf")'''

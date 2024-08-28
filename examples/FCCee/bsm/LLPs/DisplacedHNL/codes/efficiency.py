@@ -11,81 +11,66 @@ replacement_bkgs = [
     "p8_ee_Zcc_ecm91",
     "p8_ee_Zud_ecm91",
     "p8_ee_Zss_ecm91",
-    "emununu",
-    "tatanunu"
+    "eenunu_m",
+    "mumununu_m",
+    "tatanunu_m",
+    "llnunu_m",
 ]
-replacement = ['HNL_1.33e-7_80gev']
-
-# Define the tree name
-tree_name = "events"
 
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
-#leaf_name = "n_RecoTracks"
-#leaf_name = "n_antikt_jets"
-#leaf_name = "Reco_invMass"
-#leaf_name = "RecoMissingEnergy_pt"
+#leaf_name = "n_noLeptonTracks"
+#leaf_name = "n_NeutralHadrons"
+leaf_name = "Reco_invMass"
 #leaf_name = "Reco_cos"
 #leaf_name = "Reco_DecayVertexLepton_chi2"
 #leaf_name = "Reco_Lxy"
-leaf_name = "Reco_DecayVertexLepton_z"
+#leaf_name = "Reco_DecayVertexLepton_z"
+#leaf_name = "RecoEmiss_e"
+#leaf_name = "RecoEmiss_pt"
+#leaf_name = "Reco_e_lead"
 
+dir = "/eos/user/s/sgiappic/2HNL_ana/final_paper/"
 
+cut = "selReco_gen"
 
-dir = "/eos/user/s/sgiappic/2HNL_ana/final/"
+# Print the results
+output_file = "/eos/user/s/sgiappic/2HNL_ana/"+cut+"_efficiency.txt"
 
-cuts = [
-    "sel2Reco_vetoes",
-    #"sel2RecoDF_vetoes",
-    #"sel2RecoSF_vetoes_tracks_M80_p40_11.5MEpt_0.8cos",
-    #"sel2RecoDF_vetoes_tracks_M80_7MEpt_0.8cos",
-]
+# Loop through each replacement word
+for replacement_word in replacement_bkgs:
 
-for cut in cuts:
+    # Define the ROOT file path
+    histo_file_path = dir + "{}_".format(replacement_word) + cut + "_histo.root"
 
-    # Print the results
-    output_file = "/eos/user/s/sgiappic/2HNL_ana/"+cut+"_efficiency.txt"
+    # Get the selected leaf from the tree
+    histo_file = uproot.open(histo_file_path)
 
-    # book array for background entries
-    entries_bkg = []
+    selected_leaf = histo_file[leaf_name]
 
-    # Loop through each replacement word
-    for replacement_word in replacement:
-    
-        # Define the ROOT file path
-        histo_file_path = dir + "{}_".format(replacement_word) + cut + "_histo.root"
+    #some variables don't show all events in the range if the histo so taking ne that does
+    additional_leaf = histo_file["Reco_DR"]
 
-        # Get the selected leaf from the tree
-        histo_file = uproot.open(histo_file_path)
+    # Get scaled number of events from histograms, array
+    y_values = selected_leaf.values()
+    total_entries = sum(additional_leaf.values())
 
-        selected_leaf = histo_file[leaf_name]
+    entries = sum(y_values[:81]) #values up to the bin number i want plus 1
+    #print(len(y_values))
+    #print(f"entries: {entries}")
 
-        #some variables don't show all events in the range if the histo so taking ne that does
-        additional_leaf = histo_file["Reco_DR"]
+    #to use in the case of a cut on a varibale that has all events in the histo or when the cut is up to a value
+    efficiency = entries / total_entries
 
-        # Get scaled number of events from histograms, array
-        y_values = selected_leaf.values()
-        total_entries = sum(additional_leaf.values())
+    #to use when the variable doesn't have all events in the histo and the cut is from a value 
+    ########   BUT SUM THE ENTRIES UP TO THE CUT ANYWAY TO EXCLUDE THEM    #########
+    #if (total_entries - entries)>0:
+    #     efficiency = (total_entries - entries) / total_entries
+    #else:
+    #    efficiency = 0 # for some reason it gets an higher number of entries than the total number of events are lower so it gets a negative number
+    #print(f"total - entries: {total_entries - entries}")
 
-        # Get bin edges in arrays
-        bin_edges = selected_leaf.axis().edges()
+    with open(output_file, "a") as file:
+        file.write("Relative efficiency of {} after cut on {}: {} \n".format(replacement_word, leaf_name, efficiency))
 
-        entries = sum(y_values[:100]) #values up to the bin number i want
-        #print(len(y_values))
-        #print(f"entries: {entries}")
-
-        #to use in the case of a cut on a varibale that has all events in the histo or when the cut is up to a value
-        efficiency = entries / total_entries
-
-        #to use when the variable doesn't have all events in the histo and the cut is from a value 
-        ########   BUT SUM THE ENTRIES UP TO THE CUT ANYWAY TO EXCLUDE THEM    #########
-        #if (total_entries - entries)>0:
-        #     efficiency = (total_entries - entries) / total_entries
-        #else:
-        #    efficiency = 0 # for some reason it gets an higher number of entries than the total number of events are lower so it gets a negative number
-        #print(f"total - entries: {total_entries - entries}")
-
-        with open(output_file, "a") as file:
-            file.write("Relative efficiency of {} after cut on {}: {} \n".format(replacement_word, leaf_name, efficiency))
-
-        print(output_file)
+    print(output_file)
