@@ -192,7 +192,7 @@ plt.fill_between(x_ShiSigl_SN,-3.6,y_ShiSigl_SN,facecolor='darkslateblue', alpha
 
 #my data
 ## displaced
-data = np.genfromtxt("/eos/user/s/sgiappic/combine/nevents_final_3june.csv", delimiter=',')
+data = np.genfromtxt("/eos/user/s/sgiappic/combine/nevents_7aug2.csv", delimiter=',')
 #data = np.genfromtxt("/eos/user/s/sgiappic/combine/nevents_notaus.csv", delimiter=',')
 #only take the points relative the point 6
 data_point = data[280:]
@@ -214,7 +214,7 @@ contour_levels = [4]
 contour_lines = axes.contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='#8ab0ed', linewidths=2)
 
 ## prompt
-data = np.genfromtxt("/eos/user/s/sgiappic/combine/output_final_3june.csv", delimiter=',')
+data = np.genfromtxt("/eos/user/s/sgiappic/combine/output_7aug_final.csv", delimiter=',')
 #only take the points relative the point 6
 data_point = data[280:]
 
@@ -234,7 +234,7 @@ contour_lines = axes.contour(mass_grid, coupling_grid, significance_grid, levels
 plt.text(14.3-9, -10.5, 'FCC-ee muon HNL',fontsize=11,rotation=0,color='#6d8f76')
 plt.text(14.3-9, -10.9, 'theoretical prediction',fontsize=11,rotation=0,color='#6d8f76')
 #plt.text(18-9, -8., r'$\mathrm{Realistic\; HNLs}$',fontsize=12,rotation=0,color='#8BA1C3')
-plt.text(19-9, -8.2, r'FCC-ee $N_{1,2}\to \ell\ell\nu}$',fontsize=13,rotation=0,color='#8ab0ed')
+plt.text(19-9, -7.7, r'FCC-ee $N_{1,2}\to \ell\ell\nu}$',fontsize=13,rotation=0,color='#8ab0ed')
 #plt.text(20.6-9, -9.5, r'$\mathrm{Realistic\; displaced \; HNLs}$',fontsize=12,rotation=0,color='#8BA1C3')
 plt.text(24-9, -9.5, r'FCC-ee $N_{1,2}\to \ell\ell\nu}$',fontsize=13,rotation=0,color='#8ab0ed')
 plt.text(24-9, -9.9, 'displaced events',fontsize=14,rotation=0,color='#8ab0ed')
@@ -262,4 +262,4 @@ axes.set_ylim(-12.1,-3.9)
 
 #plt.legend(loc='lower right',fontsize=18,frameon=False)
 
-plt.savefig("/eos/user/s/sgiappic/www/paper/future_constraints_updated.png")
+plt.savefig("/eos/user/s/sgiappic/www/paper/final/future_constraints.png")
