@@ -162,7 +162,7 @@ Here we keep the same categories as stage2 and apply the respective cuts on kine
 
 To get the relative uncertainty on the $ H \to \tau \tau $ cross section, we can use [CMS Combine](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/latest/) to get the value from analyzing the signal and background histograms after final selection (shape based analysis).
 
-To do this, we need to make datacards that combine uses as input. They can be created with `FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/make_datacards.py` for each respective category and for the combined ones. The code `FCCAnalyses/examples/FCCee/tautau/xsec/combine/replace_input_combine.py` automatically sources the environment and computes the uncertainty, storing the output in a text file.
+To do this, we need to make datacards that combine uses as input. They can be created with `FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/make_datacards.py` for each respective category and for the combined ones. The code `FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/replace_input_combine.py` automatically sources the environment and computes the uncertainty, storing the output in a text file.
 
 ### Maria Cepeda code
 

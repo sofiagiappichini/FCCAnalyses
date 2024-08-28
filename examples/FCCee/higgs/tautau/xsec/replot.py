@@ -28,33 +28,38 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
+def file_exists(file_path):
+    return os.path.isfile(file_path)
+
 # directory with final stage files
 DIRECTORY = {
-    'LL':'/final/LL',
-    'QQ':'/final/QQ',
-    'NuNu':'/final/NuNu',
+    'LL':'/ceph/sgiappic/HiggsCP/final/LL',
+    #'QQ':'/final/QQ',
+    #'NuNu':'/final/NuNu',
 }
 SUBDIR = [
     'LL',
-    'LH',
-    'HH',
+    #'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 
 #directory where you want your plots to go
 DIR_PLOTS = '/web/sgiappic/public_html/Higgs/xsec/' 
 #list of cuts you want to plot
 CUTS = [
-    "selNone",
+    "selReco",
+    "selReco_Maria",
  ] 
 #labels for the cuts in the plots
 LABELS = {
-    "selNone": "No additional selection",
+    "selReco": "No additional selection",
+    "selReco_Maria": "Selection imported from Maria",
  }
 
 ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau"
@@ -221,7 +226,7 @@ VARIABLES = [
 
     #"n_GenZ",
     #"n_GenW",
-    "n_GenHiggs",
+    #############"n_GenHiggs",
     "GenHiggs_e",
     "GenHiggs_p", 
     "GenHiggs_pt", 
@@ -816,7 +821,7 @@ for cut in CUTS:
     for cat in CAT:
         variables = VARIABLES + LIST_VAR[cat] 
         for sub in SUBDIR:
-            directory = DIRECTORY[cat] + "/" + sub = "/"
+            directory = DIRECTORY[cat] + "/" + sub + "/"
             for variable in variables:
 
                 canvas = ROOT.TCanvas("", "", 800, 800)
@@ -826,7 +831,7 @@ for cut in CUTS:
 
                 #legend coordinates and style
                 legsize = 0.04*nsig
-                legsize2 = 0.03*nbkg/2
+                legsize2 = 0.04*nbkg/2
                 leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
                 leg.SetFillColor(0)
                 leg.SetFillStyle(0)
@@ -850,15 +855,20 @@ for cut in CUTS:
 
                 #loop over files for signals and backgrounds and assign corresponding colors and titles
                 #loop to merge different sources into one histograms for easier plotting
+
                 for s in LIST_S[cat]:
                     fin = f"{directory}{s}_{cut}_histo.root"
-                    with ROOT.TFile(fin) as tf:
+                    if file_exists(fin): #might be an empty file after stage2 
+                        tf = ROOT.TFile.Open(fin, 'READ')
                         h = tf.Get(variable)
                         hh = copy.deepcopy(h)
-                        hh.SetDirectory(0)
-                    histos.append(hh)
-                    colors.append(scolors[s])
-                    leg.AddEntry(histos[-1], slegend[s], "l")
+                        if hh is not None:
+                            hh.SetDirectory(0)
+                            if hh.Integral()>0:
+                                histos.append(hh)
+                                colors.append(scolors[s])
+                                leg.AddEntry(histos[-1], slegend[s], "l")
+                nsig=len(histos)
 
                 if nbkg!=0:
                     #for the common backgrounds i want to keep them separate into different histograms
@@ -866,14 +876,16 @@ for cut in CUTS:
                     nbkg = 0
                     for b in backgrounds_all:
                         fin = f"{directory}{b}_{cut}_histo.root"
-                        with ROOT.TFile(fin) as tf:
+                        if file_exists(fin):
+                            tf = ROOT.TFile.Open(fin, 'READ')
                             h = tf.Get(variable)
                             hh = copy.deepcopy(h)
-                            hh.SetDirectory(0)
-                        if (hh.Integral() > 0): 
-                            histos.append(hh)
-                            colors.append(bcolors[b])
-                            leg2.AddEntry(histos[-1], blegend[b], "f")
+                            if hh is not None:
+                                hh.SetDirectory(0)
+                                if hh.Integral()>0:
+                                    histos.append(hh)
+                                    colors.append(bcolors[b])
+                                    leg2.AddEntry(histos[-1], blegend[b], "f")
 
                     #merge backgrounds in plotting
                     '''i = 0
@@ -996,7 +1008,7 @@ for cut in CUTS:
                     canvas.Modified()
                     canvas.Update()
 
-                    dir = DIR_PLOTS + SUBDIR + "/" + cut + "/"
+                    dir = DIR_PLOTS + "/" + sub + "/" + cut + "/"
                     make_dir_if_not_exists(dir)
 
                     canvas.SaveAs(dir + variable + "_log.png")
@@ -1011,7 +1023,7 @@ for cut in CUTS:
                     canvas.Modified()
                     canvas.Update()
 
-                    dir = DIR_PLOTS + SUBDIR + "/" + cut + "/"
+                    dir = DIR_PLOTS + "/" + sub + "/" + cut + "/"
                     make_dir_if_not_exists(dir)
 
                     canvas.SaveAs(dir + variable + ".png")
