@@ -870,10 +870,11 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_pi0(const RO
 		
 		//check if how many pi0 can be in photons(max is set to 3)
 		if(count_pho>1){
-			double min_mass_diff = 10000.;
+			
 			double mass_tolerance = 0.015732*6.5; //stolen from Lars from some Breit-Wigner-Fit
 			int best_mass_idx[6] = {-1,-1,-1,-1,-1,-1};
 			for(i=0; i<6;i=i+2){
+				double min_mass_diff = 10000.;
 				int current_best_idx[2] = {-1,-1};
 				int gamma1_idx = 0;
 				for(const auto& jc : jcs){
