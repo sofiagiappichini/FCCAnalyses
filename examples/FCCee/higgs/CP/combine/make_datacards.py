@@ -172,7 +172,7 @@ for cat in CAT:
             dc += f"{dc_tmp}\n"'''
 
         ## auto MC stats
-        dc += "* autoMCStats 10 1"
+        dc += "* autoMCStats 1 1"
 
         # write cards
         if not os.path.exists(f"{outputDir}/{cat}/{sub}"):
