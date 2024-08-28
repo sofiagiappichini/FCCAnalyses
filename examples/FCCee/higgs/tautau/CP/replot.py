@@ -47,7 +47,7 @@ CAT = [
 ]
 
 #directory where you want your plots to go
-DIR_PLOTS = '/plots/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs/xsec/' 
 #list of cuts you want to plot
 CUTS = [
     "selNone",
