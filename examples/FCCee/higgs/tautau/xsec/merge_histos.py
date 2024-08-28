@@ -28,40 +28,34 @@ def make_dir_if_not_exists(directory):
     else:
         print(f"Directory already exists.")
 
+def file_exists(file_path):
+    return os.path.isfile(file_path)
+
 # directory with final stage files
 DIRECTORY = {
-    'LL':'/final/LL',
-    'QQ':'/final/QQ',
-    'NuNu':'/final/NuNu',
+    'LL':'/ceph/sgiappic/HiggsCP/final/LL',
+    #'QQ':'/final/QQ',
+    #'NuNu':'/final/NuNu',
 }
 SUBDIR = [
     'LL',
-    'LH',
-    'HH',
+    #'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 
 #directory where you want your plots to go
 DIR_PLOTS = '/plots/' 
 #list of cuts you want to plot
 CUTS = [
-    "selNone",
+    "selReco",
+    "selReco_Maria",
  ] 
-#labels for the cuts in the plots
-LABELS = {
-    "selNone": "No additional selection",
- }
-
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau"
-energy         = 91
-collider       = 'FCC-ee'
-intLumi        = 10.8 #ab-1
-LOGY = True
 
 #now you can list all the histograms that you want to plot
 VARIABLES = [
@@ -645,6 +639,12 @@ VARIABLES_NuNu = [
     "Visible_mass",
 ]
 
+LIST_VAR = {
+    "QQ": VARIABLES_QQ,
+    "LL":VARIABLES_LL,
+    "NuNu":VARIABLES_NuNu,
+}
+
 #list of backgrounds, then legend and colors to be assigned to them
 backgrounds_1 = [
     'wzp6_ee_mumu_ecm240',
@@ -837,42 +837,42 @@ backgrounds_27 = [
 ]
 
 legend = {
-    "1":"wzp6_ee_LL_ecm240",
+    1:"wzp6_ee_LL_ecm240",
 
-    "2":"wzp6_ee_egamma_eZ_ZLL_ecm240",
-    "3":"wzp6_ee_gaga_LL_60_ecm240",
+    2:"wzp6_ee_egamma_eZ_ZLL_ecm240",
+    3:"wzp6_ee_gaga_LL_60_ecm240",
 
-    "4":"wzp6_ee_tautauH_HQQ_ecm240",
-    "5":"wzp6_ee_tautauH_HVV_ecm240",
+    4:"wzp6_ee_tautauH_HQQ_ecm240",
+    5:"wzp6_ee_tautauH_HVV_ecm240",
 
-    "6":"wzp6_ee_nunuH_HQQ_ecm240",
-    "7":"wzp6_ee_nunuH_HVV_ecm240",
+    6:"wzp6_ee_nunuH_HQQ_ecm240",
+    7:"wzp6_ee_nunuH_HVV_ecm240",
 
-    "8":"wzp6_ee_LLH_HQQ_ecm240",
-    "9":"wzp6_ee_LLH_HVV_ecm240",
-    "10":"wzp6_ee_eeH_HQQ_ecm240",
-    "11":"wzp6_ee_eeH_HVV_ecm240",
-    "12":"wzp6_ee_mumuH_HQQ_ecm240",
-    "13":"wzp6_ee_mumuH_HVV_ecm240",
+    8:"wzp6_ee_LLH_HQQ_ecm240",
+    9:"wzp6_ee_LLH_HVV_ecm240",
+    10:"wzp6_ee_eeH_HQQ_ecm240",
+    11:"wzp6_ee_eeH_HVV_ecm240",
+    12:"wzp6_ee_mumuH_HQQ_ecm240",
+    13:"wzp6_ee_mumuH_HVV_ecm240",
 
-    "14":"wzp6_ee_QQH_HQQ_ecm240",
-    "15":"wzp6_ee_ZheavyH_HQQ_ecm240",
-    "16":"wzp6_ee_ZlightQH_HQQ_ecm240",
-    "17":"wzp6_ee_QQH_HVV_ecm240",
-    "18":"wzp6_ee_ZheavyH_HVV_ecm240",
-    "19":"wzp6_ee_ZlightH_HVV_ecm240",
+    14:"wzp6_ee_QQH_HQQ_ecm240",
+    15:"wzp6_ee_ZheavyH_HQQ_ecm240",
+    16:"wzp6_ee_ZlightQH_HQQ_ecm240",
+    17:"wzp6_ee_QQH_HVV_ecm240",
+    18:"wzp6_ee_ZheavyH_HVV_ecm240",
+    19:"wzp6_ee_ZlightH_HVV_ecm240",
 
-    "20":"wzp6_ee_QQH_Hgg_ecm240",
-    "21":"wzp6_ee_ZheavyH_Hgg_ecm240",
-    "22":"wzp6_ee_ZlightH_Hgg_ecm240",
+    20:"wzp6_ee_QQH_Hgg_ecm240",
+    21:"wzp6_ee_ZheavyH_Hgg_ecm240",
+    22:"wzp6_ee_ZlightH_Hgg_ecm240",
 
-    "23":"wzp6_ee_LLH_Hgg_ecm240",
+    23:"wzp6_ee_LLH_Hgg_ecm240",
     #signals
-    "24":"wzp6_ee_LLH_Htautau_ecm240",
+    24:"wzp6_ee_LLH_Htautau_ecm240",
 
-    "25":"wzp6_ee_QQH_Htautau_ecm240",
-    "26":"wzp6_ee_ZheavyH_Htautau_ecm240",
-    "27":"wzp6_ee_ZlightH_Htautau_ecm240",
+    25:"wzp6_ee_QQH_Htautau_ecm240",
+    26:"wzp6_ee_ZheavyH_Htautau_ecm240",
+    27:"wzp6_ee_ZlightH_Htautau_ecm240",
 }
 
 for cut in CUTS:
@@ -880,27 +880,36 @@ for cut in CUTS:
         variables = VARIABLES + LIST_VAR[cat] 
         directory = DIRECTORY[cat]
         for sub in SUBDIR:
-            for num in range(0,10):
-                outFile = ROOT.TFile.Open(f"{directory}/{sub}/{legend[num]}_{cut}_histo.root", "RECREATE")
+            for num in range(1,28):
+                output = f"{directory}/{sub}/{legend[num]}_{cut}_histo.root"
+                outFile = ROOT.TFile.Open(output, "RECREATE")
+                check = False
                 for var in variables:
                     #loop to merge different sources into one histograms for easier plotting
                     j = 0
                     hh = None
-                    for b in backgrounds_[num]:
-                        tf = ROOT.TFile.Open(f"{directory}/{sub}/{b}_{cut}_histo.root", "READ")
-                        if (j==0):
-                            h = tf.Get(var)
-                            hh = copy.deepcopy(h)
-                            hh.SetDirectory(0)
-                        else:
-                            h = tf.Get(var)
-                            hh1 = copy.deepcopy(h)
-                            hh1.SetDirectory(0)
-                            hh.Add(hh1)
-                        j += 1
-                        tf.Close()
-                    #write the histogram in the file    
-                    outFile.cd()
-                    hh.Write()
+                    list = f"backgrounds_{num}"
+                    for b in list:
+                        file = f"{directory}/{sub}/{b}_{cut}_histo.root"
+                        if file_exists(file):
+                            tf = ROOT.TFile.Open(file, "READ")
+                            if (j==0):
+                                h = tf.Get(var)
+                                hh = copy.deepcopy(h)
+                                hh.SetDirectory(0)
+                            else:
+                                h = tf.Get(var)
+                                hh1 = copy.deepcopy(h)
+                                hh1.SetDirectory(0)
+                                hh.Add(hh1)
+                            j += 1
+                            tf.Close()
+                        #write the histogram in the file
+                        if hh is not None:    
+                            outFile.cd()
+                            hh.Write()
+                            check = True
                     
                 outFile.Close()
+                if check==False: #if nothing was written i don't want the file saved at all
+                    os.remove(output)
