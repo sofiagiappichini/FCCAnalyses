@@ -779,7 +779,7 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_pi0(const RO
         edm4hep::ReconstructedParticleData partMod;
         FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
         int tauID=-1;
-        int count_piP=0, count_piM=0, count_nu=0, count_pho=0;
+        int count_piP=0, count_piM=0, count_nu=0, count_pho=0, count_pi0=0;
 
         // Find Lead (This needs to change to first sort the jcs by p or pt, it is very messy right now)
 
