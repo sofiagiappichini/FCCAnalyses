@@ -33,32 +33,29 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':'/ceph/sgiappic/HiggsCP/final/LL',
-    #'QQ':'/final/QQ',
-    #'NuNu':'/final/NuNu',
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",,
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
     'LL',
-    #'LH',
-    #'HH',
+    'LH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
+    "QQ",
     "LL",
-    #"NuNu",
+    "NuNu",
 ]
-
-#directory where you want your plots to go
-DIR_PLOTS = '/plots/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
-    "selReco_Maria",
  ] 
 
 #now you can list all the histograms that you want to plot
 VARIABLES = [
+     ######## Monte-Carlo particles #######
     "n_FSGenElectron",
     "FSGenElectron_e",
     "FSGenElectron_p",
@@ -223,6 +220,7 @@ VARIABLES = [
     "GenHiggs_py", 
     "GenHiggs_pz", 
     "GenHiggs_y", 
+    "GenHiggs_mass",
     "GenHiggs_eta", 
     "GenHiggs_theta", 
     "GenHiggs_phi", 
@@ -244,7 +242,6 @@ VARIABLES = [
     "RecoElectron_phi",
     "RecoElectron_charge",
     "RecoElectron_mass",
-    "RecoElectron_PID",
     "RecoElectronTrack_absD0",
     "RecoElectronTrack_absZ0",
     "RecoElectronTrack_absD0sig",
@@ -265,7 +262,6 @@ VARIABLES = [
     "RecoElectron_sel_phi",
     "RecoElectron_sel_charge",
     "RecoElectron_sel_mass",
-    "RecoElectron_sel_PID",
     "RecoElectronTrack_sel_absD0",
     "RecoElectronTrack_sel_absZ0",
     "RecoElectronTrack_sel_absD0sig",
@@ -286,7 +282,6 @@ VARIABLES = [
     "RecoMuon_phi",
     "RecoMuon_charge",
     "RecoMuon_mass",
-    "RecoMuon_PID",
     "RecoMuonTrack_absD0",
     "RecoMuonTrack_absZ0",
     "RecoMuonTrack_absD0sig",
@@ -307,7 +302,6 @@ VARIABLES = [
     "RecoMuon_sel_phi",
     "RecoMuon_sel_charge",
     "RecoMuon_sel_mass",
-    "RecoMuon_sel_PID",
     "RecoMuonTrack_sel_absD0",
     "RecoMuonTrack_sel_absZ0",
     "RecoMuonTrack_sel_absD0sig",
@@ -328,7 +322,6 @@ VARIABLES = [
     "RecoLepton_phi",
     "RecoLepton_charge",
     "RecoLepton_mass",
-    "RecoLepton_PID",
     "RecoLeptonTrack_absD0",
     "RecoLeptonTrack_absZ0",
     "RecoLeptonTrack_absD0sig",
@@ -349,7 +342,6 @@ VARIABLES = [
     "RecoLepton_sel_phi",
     "RecoLepton_sel_charge",
     "RecoLepton_sel_mass",
-    "RecoLepton_sel_PID",
     "RecoLeptonTrack_sel_absD0",
     "RecoLeptonTrack_sel_absZ0",
     "RecoLeptonTrack_sel_absD0sig",
@@ -377,20 +369,19 @@ VARIABLES = [
     "RecoEmiss_p",
     "RecoEmiss_e",
 
-    "n_RecoTracks",
-    #"n_RecoVertex",
-    "RecoVertexObject",
-    "RecoVertex",
-    "n_PrimaryTracks",
-    "PrimaryVertexObject",
-    "PrimaryVertex", 
-    "PrimaryVertex_xyz",
-    "PrimaryVertes_xy",
-    "n_SecondaryTracks",
-    "SecondaryVertexObject",
-    "SecondaryVertex",
-    "SecondaryVertex_xyz",
-    "SecondaryVertes_xy",
+    #"n_RecoTracks",
+    #"RecoVertexObject",
+    #"RecoVertex",
+    #"n_PrimaryTracks",
+    #"PrimaryVertexObject",
+    #"PrimaryVertex", 
+    #"PrimaryVertex_xyz",
+    #"PrimaryVertes_xy",
+    #"n_SecondaryTracks",
+    #"SecondaryVertexObject",
+    #"SecondaryVertex",
+    #"SecondaryVertex_xyz",
+    #"SecondaryVertes_xy",
     #"VertexObject", 
     #"RecoPartPID" ,
     #"RecoPartPIDAtVertex",
@@ -404,8 +395,7 @@ VARIABLES = [
     "Jets_R5_eta",    
     "Jets_R5_theta",   
     "Jets_R5_phi",     
-    "Jets_R5_mass",      
-    "Jets_R5_flavor",      
+    "Jets_R5_mass",        
     "n_Jets_R5", 
 
     "Jets_excl4_e",     
@@ -417,11 +407,10 @@ VARIABLES = [
     "Jets_excl4_eta",    
     "Jets_excl4_theta",   
     "Jets_excl4_phi",     
-    "Jets_excl4_mass",      
-    "Jets_excl4_flavor",      
+    "Jets_excl4_mass",        
     "n_Jets_excl4", 
 
-    "TauFromJet_R5_tau", 
+    "TauFromJet_R5_p",
     "TauFromJet_R5_pt",
     "TauFromJet_R5_px",
     "TauFromJet_R5_py",
@@ -434,7 +423,7 @@ VARIABLES = [
     "TauFromJet_R5_mass",
     "n_TauFromJet_R5",
 
-    "TauFromJet_tau", 
+    "TauFromJet_p",
     "TauFromJet_pt",
     "TauFromJet_px",
     "TauFromJet_py",
@@ -457,7 +446,6 @@ VARIABLES = [
     "Jets_R5_sel_theta",   
     "Jets_R5_sel_phi",     
     "Jets_R5_sel_mass",      
-    "Jets_R5_sel_flavor",      
     "n_Jets_R5_sel",
 ]
 
@@ -875,6 +863,36 @@ legend = {
     27:"wzp6_ee_ZlightH_Htautau_ecm240",
 }
 
+list = {
+    1:backgrounds_1,
+    2:backgrounds_2,
+    3:backgrounds_3,
+    4:backgrounds_4,
+    5:backgrounds_5,
+    6:backgrounds_6,
+    7:backgrounds_7,
+    8:backgrounds_8,
+    9:backgrounds_9,
+    10:backgrounds_10,
+    11:backgrounds_11,
+    12:backgrounds_12,
+    13:backgrounds_13,
+    14:backgrounds_14,
+    15:backgrounds_15,
+    16:backgrounds_16,
+    17:backgrounds_17,
+    18:backgrounds_18,
+    19:backgrounds_19,
+    20:backgrounds_20,
+    21:backgrounds_21,
+    22:backgrounds_22,
+    23:backgrounds_23,
+    24:backgrounds_24,
+    25:backgrounds_25,
+    26:backgrounds_26,
+    27:backgrounds_27,
+}
+
 for cut in CUTS:
     for cat in CAT:
         variables = VARIABLES + LIST_VAR[cat] 
@@ -882,16 +900,20 @@ for cut in CUTS:
         for sub in SUBDIR:
             for num in range(1,28):
                 output = f"{directory}/{sub}/{legend[num]}_{cut}_histo.root"
+                #print(output)
                 outFile = ROOT.TFile.Open(output, "RECREATE")
                 check = False
                 for var in variables:
                     #loop to merge different sources into one histograms for easier plotting
                     j = 0
                     hh = None
-                    list = f"backgrounds_{num}"
-                    for b in list:
+                    #print(list)
+                    for b in list[num]:
+                        #print(b)
                         file = f"{directory}/{sub}/{b}_{cut}_histo.root"
+                        #print(file)
                         if file_exists(file):
+                            check = True
                             tf = ROOT.TFile.Open(file, "READ")
                             if (j==0):
                                 h = tf.Get(var)
@@ -904,11 +926,11 @@ for cut in CUTS:
                                 hh.Add(hh1)
                             j += 1
                             tf.Close()
-                        #write the histogram in the file
-                        if hh is not None:    
-                            outFile.cd()
-                            hh.Write()
-                            check = True
+                    #write the histogram in the file   
+                    if check==True:
+                        outFile.cd()
+                        hh.Write()
+                #print(check)
                     
                 outFile.Close()
                 if check==False: #if nothing was written i don't want the file saved at all

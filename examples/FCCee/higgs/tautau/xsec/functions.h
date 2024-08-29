@@ -739,6 +739,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
             partMod.momentum.y=sum_tau.Py();
             partMod.momentum.z=sum_tau.Pz();
             partMod.mass= sum_tau.M();
+            partMod.energy= sum_tau.E();
             partMod.charge= (count_piP-count_piM);
             partMod.type = tauID;
 
@@ -748,6 +749,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
                 partMod.momentum.y = 0;
                 partMod.momentum.z = 0;
                 partMod.mass = 0;
+                partMod.energy= 0;
                 partMod.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
                 tauID = -2;
                 partMod.type = tauID;

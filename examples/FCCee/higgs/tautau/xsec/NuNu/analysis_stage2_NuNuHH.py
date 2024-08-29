@@ -85,27 +85,13 @@ processList = {
     'wzp6_ee_qqH_Hgg_ecm240': {'chunks':10},
     'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
+
 }
 
-inputDir = "stage1/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "output/" #your output directory
-
-#Optional: ncpus, default is 4
-nCPUS = 10
-
-### necessary to run on HTCondor ###
-eosType = "eosuser"
-
-#Optional running on HTCondor, default is False
-runBatch = False
-
-#Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "microcentury"
-
-#Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-compGroup = "group_u_FCC.local_gen"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2/NuNu/HH/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -115,17 +101,12 @@ class RDFanalysis():
     def analysers(df):
         df2 = (df
 
-            ### to find already made functions, this is where they are or where they can be added instead of writing them here
-            ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
+                ### to find already made functions, this is where they are or where they can be added instead of writing them here
+                ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
 
-            ### defining filters for two sel lepotons, two no tau jets
+                ### defining filters for two hadronic taus
 
-            ### when working with Z jets, remember to use the Leptons_sel class because they are the ones not in the jets
-            ### when working with tau jets it does not matter since the tau jets don't have any lepton in them so there is no confusion
-
-                .Define("OnePair",     "(n_RecoLeptons==2  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0")
-
-                .Filter("n_TauFromJet_R5==0 && OnePair==1 && n_Jets_R5_sel==2")
+                .Filter("n_TauFromJet_R5==2 && n_Jets_R5_sel==0 && n_RecoLeptons==0 && (TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0") 
 
                 ##################
                 # Reco particles #
@@ -138,30 +119,30 @@ class RDFanalysis():
                 .Define("RecoEmiss_y",    "RecoEmiss_p4.Rapidity()")
                 .Define("RecoEmiss_costheta",   "abs(std::cos(RecoEmiss_theta))")
 
-                #.Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_px, RecoLepton_py, RecoLepton_pz, RecoLepton_e)")
+                .Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_px, RecoLepton_py, RecoLepton_pz, RecoLepton_e)")
 
-                #.Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_3(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188)")
+                #.Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_4(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188, 125.25)")
 
-                .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(Jets_R5_sel_px.at(0), Jets_R5_sel_py.at(0), Jets_R5_sel_pz.at(0), Jets_R5_sel_e.at(0))")
-                .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(Jets_R5_sel_px.at(1), Jets_R5_sel_py.at(1), Jets_R5_sel_pz.at(1), Jets_R5_sel_e.at(1))")
+                #.Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[0]), RecoLepton_py.at(RecoZH_idx[0]), RecoLepton_pz.at(RecoZH_idx[0]), RecoLepton_e.at(RecoZH_idx[0]))")
+                #.Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[1]), RecoLepton_py.at(RecoZH_idx[1]), RecoLepton_pz.at(RecoZH_idx[1]), RecoLepton_e.at(RecoZH_idx[1]))")
                 
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_sel_px.at(0), RecoLepton_sel_py.at(0), RecoLepton_sel_pz.at(0), RecoLepton_sel_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_sel_px.at(1), RecoLepton_sel_py.at(1), RecoLepton_sel_pz.at(1), RecoLepton_sel_e.at(1))")
+                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
+                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
 
-                .Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
+                #.Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
 
-                .Define("RecoZ_px",    "RecoZ_p4.Px()")
-                .Define("RecoZ_py",    "RecoZ_p4.Py()")
-                .Define("RecoZ_pz",    "RecoZ_p4.Pz()")
-                .Define("RecoZ_p",    "RecoZ_p4.P()")
-                .Define("RecoZ_pt",    "RecoZ_p4.Pt()")
-                .Define("RecoZ_e",     "RecoZ_p4.E()")
-                .Define("RecoZ_eta",    "RecoZ_p4.Eta()")
-                .Define("RecoZ_phi",    "RecoZ_p4.Phi()")
-                .Define("RecoZ_theta",    "RecoZ_p4.Theta()")
-                .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
-                .Define("RecoZ_mass",    "RecoZ_p4.M()")
+                #.Define("RecoZ_px",    "RecoZ_p4.Px()")
+                #.Define("RecoZ_py",    "RecoZ_p4.Py()")
+                #.Define("RecoZ_pz",    "RecoZ_p4.Pz()")
+                #.Define("RecoZ_p",    "RecoZ_p4.P()")
+                #.Define("RecoZ_pt",    "RecoZ_p4.Pt()")
+                #.Define("RecoZ_e",     "RecoZ_p4.E()")
+                #.Define("RecoZ_eta",    "RecoZ_p4.Eta()")
+                #.Define("RecoZ_phi",    "RecoZ_p4.Phi()")
+                #.Define("RecoZ_theta",    "RecoZ_p4.Theta()")
+                #.Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
+                #.Define("RecoZ_mass",    "RecoZ_p4.M()")
 
                 .Define("RecoH_px",    "RecoH_p4.Px()")
                 .Define("RecoH_py",    "RecoH_p4.Py()")
@@ -174,8 +155,8 @@ class RDFanalysis():
                 .Define("RecoH_theta",    "RecoH_p4.Theta()")
                 .Define("RecoH_y",     "RecoH_p4.Rapidity()")
                 .Define("RecoH_mass",    "RecoH_p4.M()")
-                
-                .Define("TauLead_p4","if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_p4; else return RecoTau2_p4;")
+
+                .Define("TauLead_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_p4; else return RecoTau2_p4;")
                 .Define("TauLead_px",    "TauLead_p4.Px()")
                 .Define("TauLead_py",    "TauLead_p4.Py()")
                 .Define("TauLead_pz",    "TauLead_p4.Pz()")
@@ -201,8 +182,8 @@ class RDFanalysis():
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
 
-                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
-                .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
+                #.Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
+                #.Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
 
                 .Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")
                 .Define("r0",       "abs((RecoEmiss_py*TauLead_px-RecoEmiss_px*TauLead_py)/p12)")
@@ -210,6 +191,9 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
+
+                .Define("Visible_mass",     "return RecoH_mass;")
+
         )
         return df2
 
@@ -219,41 +203,41 @@ class RDFanalysis():
         #branches from stage1 to be kept for histogram booking in final and plotting
         branchList = [
             ######## Monte-Carlo particles #######
-            #"n_FSGenElectron",
-            #"FSGenElectron_e",
-            #"FSGenElectron_p",
-            #"FSGenElectron_pt",
-            #"FSGenElectron_px",
-            #"FSGenElectron_py",
-            #"FSGenElectron_pz",
-            #"FSGenElectron_y",
-            #"FSGenElectron_eta",
-            #"FSGenElectron_theta",
-            #"FSGenElectron_phi",
-            #"FSGenElectron_charge",
-            #"FSGenElectron_mass",
-            #"FSGenElectron_parentPDG",
-            #"FSGenElectron_vertex_x",
-            #"FSGenElectron_vertex_y",
-            #"FSGenElectron_vertex_z",
+            "n_FSGenElectron",
+            "FSGenElectron_e",
+            "FSGenElectron_p",
+            "FSGenElectron_pt",
+            "FSGenElectron_px",
+            "FSGenElectron_py",
+            "FSGenElectron_pz",
+            "FSGenElectron_y",
+            "FSGenElectron_eta",
+            "FSGenElectron_theta",
+            "FSGenElectron_phi",
+            "FSGenElectron_charge",
+            "FSGenElectron_mass",
+            "FSGenElectron_parentPDG",
+            "FSGenElectron_vertex_x",
+            "FSGenElectron_vertex_y",
+            "FSGenElectron_vertex_z",
 
-            #"n_FSGenMuon",
-            #"FSGenMuon_e",
-            #"FSGenMuon_p",
-            #"FSGenMuon_pt",
-            #"FSGenMuon_px",
-            #"FSGenMuon_py",
-            #"FSGenMuon_pz",
-            #"FSGenMuon_y",
-            #"FSGenMuon_eta",
-            #"FSGenMuon_theta",
-            #"FSGenMuon_phi",
-            #"FSGenMuon_charge",
-            #"FSGenMuon_mass",
-            #"FSGenMuon_parentPDG",
-            #"FSGenMuon_vertex_x",
-            #"FSGenMuon_vertex_y",
-            #"FSGenMuon_vertex_z",
+            "n_FSGenMuon",
+            "FSGenMuon_e",
+            "FSGenMuon_p",
+            "FSGenMuon_pt",
+            "FSGenMuon_px",
+            "FSGenMuon_py",
+            "FSGenMuon_pz",
+            "FSGenMuon_y",
+            "FSGenMuon_eta",
+            "FSGenMuon_theta",
+            "FSGenMuon_phi",
+            "FSGenMuon_charge",
+            "FSGenMuon_mass",
+            "FSGenMuon_parentPDG",
+            "FSGenMuon_vertex_x",
+            "FSGenMuon_vertex_y",
+            "FSGenMuon_vertex_z",
 
             #"n_ZFSGenMuon",
             #"ZFSGenMuon_e",
@@ -293,23 +277,23 @@ class RDFanalysis():
 
             #"noFSRGenTau_parentPDG",
 
-            #"n_FSRGenTau",
-            #"FSRGenTau_e",
-            #"FSRGenTau_p",
-            #"FSRGenTau_pt",
-            #"FSRGenTau_px",
-            #"FSRGenTau_py",
-            #"FSRGenTau_pz",
-            #"FSRGenTau_y",
-            #"FSRGenTau_eta",
-            #"FSRGenTau_theta",
-            #"FSRGenTau_phi",
-            #"FSRGenTau_charge",
-            #"FSRGenTau_mass",
-            #"FSRGenTau_parentPDG",
-            #"FSRGenTau_vertex_x",
-            #"FSRGenTau_vertex_y",
-            #"FSRGenTau_vertex_z",
+            "n_FSRGenTau",
+            "FSRGenTau_e",
+            "FSRGenTau_p",
+            "FSRGenTau_pt",
+            "FSRGenTau_px",
+            "FSRGenTau_py",
+            "FSRGenTau_pz",
+            "FSRGenTau_y",
+            "FSRGenTau_eta",
+            "FSRGenTau_theta",
+            "FSRGenTau_phi",
+            "FSRGenTau_charge",
+            "FSRGenTau_mass",
+            "FSRGenTau_parentPDG",
+            "FSRGenTau_vertex_x",
+            "FSRGenTau_vertex_y",
+            "FSRGenTau_vertex_z",
 
             "n_TauNeg_MuNuNu",       
             "n_TauNeg_MuNuNu_Phot",  
@@ -345,48 +329,49 @@ class RDFanalysis():
             "n_TauPos_PiKKNu",       
             "n_TauPos_PiKKNu_Phot", 
 
-            #"n_FSGenNeutrino",
-            #"FSGenNeutrino_e",
-            #"FSGenNeutrino_p",
-            #"FSGenNeutrino_pt",
-            #"FSGenNeutrino_px",
-            #"FSGenNeutrino_py",
-            #"FSGenNeutrino_pz",
-            #"FSGenNeutrino_y",
-            #"FSGenNeutrino_eta",
-            #"FSGenNeutrino_theta",
-            #"FSGenNeutrino_phi",
-            #"FSGenNeutrino_charge",
+            "n_FSGenNeutrino",
+            "FSGenNeutrino_e",
+            "FSGenNeutrino_p",
+            "FSGenNeutrino_pt",
+            "FSGenNeutrino_px",
+            "FSGenNeutrino_py",
+            "FSGenNeutrino_pz",
+            "FSGenNeutrino_y",
+            "FSGenNeutrino_eta",
+            "FSGenNeutrino_theta",
+            "FSGenNeutrino_phi",
+            "FSGenNeutrino_charge",
             #"FSGenNeutrino_parentPDG",
 
-            #"n_FSGenPhoton",
-            #"FSGenPhoton_e",
-            #"FSGenPhoton_p",
-            #"FSGenPhoton_pt",
-            #"FSGenPhoton_px",
-            #"FSGenPhoton_py",
-            #"FSGenPhoton_pz",
-            #"FSGenPhoton_y",
-            #"FSGenPhoton_eta",
-            #"FSGenPhoton_theta",
-            #"FSGenPhoton_phi",
-            #"FSGenPhoton_charge",
+            "n_FSGenPhoton",
+            "FSGenPhoton_e",
+            "FSGenPhoton_p",
+            "FSGenPhoton_pt",
+            "FSGenPhoton_px",
+            "FSGenPhoton_py",
+            "FSGenPhoton_pz",
+            "FSGenPhoton_y",
+            "FSGenPhoton_eta",
+            "FSGenPhoton_theta",
+            "FSGenPhoton_phi",
+            "FSGenPhoton_charge",
             #"FSGenPhoton_parentPDG",
 
             #"n_GenZ",
             #"n_GenW",
-            #"n_GenHiggs",
-            #"GenHiggs_e",
-            #"GenHiggs_p", 
-            #"GenHiggs_pt", 
-            #"GenHiggs_px", 
-            #"GenHiggs_py", 
-            #"GenHiggs_pz", 
-            #"GenHiggs_y", 
-            #"GenHiggs_eta", 
-            #"GenHiggs_theta", 
-            #"GenHiggs_phi", 
-            #"GenHiggs_charge", 
+            "n_GenHiggs",
+            "GenHiggs_e",
+            "GenHiggs_p", 
+            "GenHiggs_pt", 
+            "GenHiggs_px", 
+            "GenHiggs_py", 
+            "GenHiggs_pz", 
+            "GenHiggs_y", 
+            "GenHiggs_mass",
+            "GenHiggs_eta", 
+            "GenHiggs_theta", 
+            "GenHiggs_phi", 
+            "GenHiggs_charge", 
 
             ######## Reconstructed particles #######
             #"RecoMC_PID",
@@ -404,7 +389,6 @@ class RDFanalysis():
             "RecoElectron_phi",
             "RecoElectron_charge",
             "RecoElectron_mass",
-            "RecoElectron_PID",
             "RecoElectronTrack_absD0",
             "RecoElectronTrack_absZ0",
             "RecoElectronTrack_absD0sig",
@@ -425,7 +409,6 @@ class RDFanalysis():
             "RecoElectron_sel_phi",
             "RecoElectron_sel_charge",
             "RecoElectron_sel_mass",
-            "RecoElectron_sel_PID",
             "RecoElectronTrack_sel_absD0",
             "RecoElectronTrack_sel_absZ0",
             "RecoElectronTrack_sel_absD0sig",
@@ -446,7 +429,6 @@ class RDFanalysis():
             "RecoMuon_phi",
             "RecoMuon_charge",
             "RecoMuon_mass",
-            "RecoMuon_PID",
             "RecoMuonTrack_absD0",
             "RecoMuonTrack_absZ0",
             "RecoMuonTrack_absD0sig",
@@ -467,7 +449,6 @@ class RDFanalysis():
             "RecoMuon_sel_phi",
             "RecoMuon_sel_charge",
             "RecoMuon_sel_mass",
-            "RecoMuon_sel_PID",
             "RecoMuonTrack_sel_absD0",
             "RecoMuonTrack_sel_absZ0",
             "RecoMuonTrack_sel_absD0sig",
@@ -488,7 +469,6 @@ class RDFanalysis():
             "RecoLepton_phi",
             "RecoLepton_charge",
             "RecoLepton_mass",
-            "RecoLepton_PID",
             "RecoLeptonTrack_absD0",
             "RecoLeptonTrack_absZ0",
             "RecoLeptonTrack_absD0sig",
@@ -509,7 +489,6 @@ class RDFanalysis():
             "RecoLepton_sel_phi",
             "RecoLepton_sel_charge",
             "RecoLepton_sel_mass",
-            "RecoLepton_sel_PID",
             "RecoLeptonTrack_sel_absD0",
             "RecoLeptonTrack_sel_absZ0",
             "RecoLeptonTrack_sel_absD0sig",
@@ -537,20 +516,19 @@ class RDFanalysis():
             "RecoEmiss_p",
             "RecoEmiss_e",
 
-            "n_RecoTracks",
-            #"n_RecoVertex",
-            "RecoVertexObject",
-            "RecoVertex",
-            "n_PrimaryTracks",
-            "PrimaryVertexObject",
-            "PrimaryVertex", 
-            "PrimaryVertex_xyz",
-            "PrimaryVertes_xy",
-            "n_SecondaryTracks",
-            "SecondaryVertexObject",
-            "SecondaryVertex",
-            "SecondaryVertex_xyz",
-            "SecondaryVertes_xy",
+            #"n_RecoTracks",
+            #"RecoVertexObject",
+            #"RecoVertex",
+            #"n_PrimaryTracks",
+            #"PrimaryVertexObject",
+            #"PrimaryVertex", 
+            #"PrimaryVertex_xyz",
+            #"PrimaryVertes_xy",
+            #"n_SecondaryTracks",
+            #"SecondaryVertexObject",
+            #"SecondaryVertex",
+            #"SecondaryVertex_xyz",
+            #"SecondaryVertes_xy",
             #"VertexObject", 
             #"RecoPartPID" ,
             #"RecoPartPIDAtVertex",
@@ -564,8 +542,7 @@ class RDFanalysis():
             "Jets_R5_eta",    
             "Jets_R5_theta",   
             "Jets_R5_phi",     
-            "Jets_R5_mass",      
-            "Jets_R5_flavor",      
+            "Jets_R5_mass",        
             "n_Jets_R5", 
 
             "Jets_excl4_e",     
@@ -577,11 +554,10 @@ class RDFanalysis():
             "Jets_excl4_eta",    
             "Jets_excl4_theta",   
             "Jets_excl4_phi",     
-            "Jets_excl4_mass",      
-            "Jets_excl4_flavor",      
+            "Jets_excl4_mass",        
             "n_Jets_excl4", 
-
-            "TauFromJet_R5_tau", 
+ 
+            "TauFromJet_R5_p",
             "TauFromJet_R5_pt",
             "TauFromJet_R5_px",
             "TauFromJet_R5_py",
@@ -594,7 +570,7 @@ class RDFanalysis():
             "TauFromJet_R5_mass",
             "n_TauFromJet_R5",
 
-            "TauFromJet_tau", 
+            "TauFromJet_p",
             "TauFromJet_pt",
             "TauFromJet_px",
             "TauFromJet_py",
@@ -617,30 +593,28 @@ class RDFanalysis():
             "Jets_R5_sel_theta",   
             "Jets_R5_sel_phi",     
             "Jets_R5_sel_mass",      
-            "Jets_R5_sel_flavor",      
             "n_Jets_R5_sel", 
 
         ]
         #complex variables added here at stage2
         branchList += [
-
                 "RecoEmiss_eta",
                 "RecoEmiss_phi",
                 "RecoEmiss_theta",
                 "RecoEmiss_y",
                 "RecoEmiss_costheta",
 
-                "RecoZ_px",
-                "RecoZ_py",
-                "RecoZ_pz",
-                "RecoZ_p",
-                "RecoZ_pt",
-                "RecoZ_e",
-                "RecoZ_eta",
-                "RecoZ_phi",
-                "RecoZ_theta",
-                "RecoZ_y",
-                "RecoZ_mass",
+                #"RecoZ_px",
+                #"RecoZ_py",
+                #"RecoZ_pz",
+                #"RecoZ_p",
+                #"RecoZ_pt",
+                #"RecoZ_e",
+                #"RecoZ_eta",
+                #"RecoZ_phi",
+                #"RecoZ_theta",
+                #"RecoZ_y",
+                #"RecoZ_mass",
 
                 "RecoH_px",
                 "RecoH_py",
@@ -678,9 +652,9 @@ class RDFanalysis():
                 "TauSub_y",    
                 "TauSub_mass",
 
-                "Recoil",
+                #"Recoil",
                 "Collinear_mass",
+                "Visible_mass",
 
-        ]
-
+            ]
         return branchList

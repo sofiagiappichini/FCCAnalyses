@@ -85,28 +85,15 @@ processList = {
     'wzp6_ee_qqH_Hgg_ecm240': {'chunks':10},
     'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
-
 }
 
-inputDir = "stage1/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "output/" #your output directory
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2/LL/LH/" 
 
 #Optional: ncpus, default is 4
 nCPUS = 10
-
-### necessary to run on HTCondor ###
-eosType = "eosuser"
-
-#Optional running on HTCondor, default is False
-runBatch = False
-
-#Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "microcentury"
-
-#Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-compGroup = "group_u_FCC.local_gen"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -116,14 +103,17 @@ class RDFanalysis():
     def analysers(df):
         df2 = (df
 
-                ### to find already made functions, this is where they are or where they can be added instead of writing them here
-                ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
+            ### to find already made functions, this is where they are or where they can be added instead of writing them here
+            ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
 
-                ### defining filters for 2 lepton final state 
+            ### defining filters for 3 lepton final state based on flavor combination: 3 same flavor, 1 pair, all plus one hadronic taus
 
-                .Define("OnePair",     "(n_RecoLeptons==2  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0")
+                .Filter("n_TauFromJet_R5==1 && n_Jets_R5_sel==0")
 
-                .Filter("OnePair==1 &&  && n_Jets_R5_sel==0 && n_TauFromJet_R5==0") 
+                .Define("ThreeLeptons",    "((n_RecoElectrons==3 or n_RecoMuons==3) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + TauFromJet_R5_charge.at(0))==0)*1.0")
+                .Define("OnePair",     "((n_RecoElectrons==2 and n_RecoMuons==1 and (RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0 and (RecoMuon_charge.at(0) + TauFromJet_R5_charge.at(0))==0) or (n_RecoElectrons==1 and n_RecoMuons==2 and (RecoMuon_charge.at(0) + RecoMuon_charge.at(1))==0 and (RecoElectron_charge.at(0) + TauFromJet_R5_charge.at(0))==0))*1.0")
+
+                .Filter("(ThreeLeptons==1 || OnePair==1)") 
 
                 ##################
                 # Reco particles #
@@ -138,28 +128,30 @@ class RDFanalysis():
 
                 .Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_px, RecoLepton_py, RecoLepton_pz, RecoLepton_e)")
 
-                #.Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_4(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188, 125.25)")
+                .Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_3(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188)")
 
-                #.Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[0]), RecoLepton_py.at(RecoZH_idx[0]), RecoLepton_pz.at(RecoZH_idx[0]), RecoLepton_e.at(RecoZH_idx[0]))")
-                #.Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[1]), RecoLepton_py.at(RecoZH_idx[1]), RecoLepton_pz.at(RecoZH_idx[1]), RecoLepton_e.at(RecoZH_idx[1]))")
+                .Filter("RecoZH_idx[0]>=0 && RecoZH_idx[1]>=0 && RecoZH_idx[2]>=0")
+
+                .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[0]), RecoLepton_py.at(RecoZH_idx[0]), RecoLepton_pz.at(RecoZH_idx[0]), RecoLepton_e.at(RecoZH_idx[0]))")
+                .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[1]), RecoLepton_py.at(RecoZH_idx[1]), RecoLepton_pz.at(RecoZH_idx[1]), RecoLepton_e.at(RecoZH_idx[1]))")
                 
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(0), RecoLepton_py.at(0), RecoLepton_pz.at(0), RecoLepton_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(1), RecoLepton_py.at(1), RecoLepton_pz.at(1), RecoLepton_e.at(1))")
+                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[2]), RecoLepton_py.at(RecoZH_idx[2]), RecoLepton_pz.at(RecoZH_idx[2]), RecoLepton_e.at(RecoZH_idx[2]))")
+                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
 
-                #.Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
+                .Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
 
-                #.Define("RecoZ_px",    "RecoZ_p4.Px()")
-                #.Define("RecoZ_py",    "RecoZ_p4.Py()")
-                #.Define("RecoZ_pz",    "RecoZ_p4.Pz()")
-                #.Define("RecoZ_p",    "RecoZ_p4.P()")
-                #.Define("RecoZ_pt",    "RecoZ_p4.Pt()")
-                #.Define("RecoZ_e",     "RecoZ_p4.E()")
-                #.Define("RecoZ_eta",    "RecoZ_p4.Eta()")
-                #.Define("RecoZ_phi",    "RecoZ_p4.Phi()")
-                #.Define("RecoZ_theta",    "RecoZ_p4.Theta()")
-                #.Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
-                #.Define("RecoZ_mass",    "RecoZ_p4.M()")
+                .Define("RecoZ_px",    "RecoZ_p4.Px()")
+                .Define("RecoZ_py",    "RecoZ_p4.Py()")
+                .Define("RecoZ_pz",    "RecoZ_p4.Pz()")
+                .Define("RecoZ_p",    "RecoZ_p4.P()")
+                .Define("RecoZ_pt",    "RecoZ_p4.Pt()")
+                .Define("RecoZ_e",     "RecoZ_p4.E()")
+                .Define("RecoZ_eta",    "RecoZ_p4.Eta()")
+                .Define("RecoZ_phi",    "RecoZ_p4.Phi()")
+                .Define("RecoZ_theta",    "RecoZ_p4.Theta()")
+                .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
+                .Define("RecoZ_mass",    "RecoZ_p4.M()")
 
                 .Define("RecoH_px",    "RecoH_p4.Px()")
                 .Define("RecoH_py",    "RecoH_p4.Py()")
@@ -199,17 +191,15 @@ class RDFanalysis():
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
 
-                #.Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
-                #.Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
+                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
+                .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
 
-                #.Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")
-                #.Define("r0",       "abs((RecoEmiss_py*TauLead_px-RecoEmiss_px*TauLead_py)/p12)")
-                #.Define("f0",       "1./(1.+r0)")
-                #.Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
-                #.Define("f1",       "1./(1.+r1)")
-                #.Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
-
-                .Define("Visible_mass",     "return RecoH_mass;")
+                .Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")
+                .Define("r0",       "abs((RecoEmiss_py*TauLead_px-RecoEmiss_px*TauLead_py)/p12)")
+                .Define("f0",       "1./(1.+r0)")
+                .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
+                .Define("f1",       "1./(1.+r1)")
+                .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
 
         )
         return df2
@@ -384,6 +374,7 @@ class RDFanalysis():
             "GenHiggs_py", 
             "GenHiggs_pz", 
             "GenHiggs_y", 
+            "GenHiggs_mass",
             "GenHiggs_eta", 
             "GenHiggs_theta", 
             "GenHiggs_phi", 
@@ -405,7 +396,6 @@ class RDFanalysis():
             "RecoElectron_phi",
             "RecoElectron_charge",
             "RecoElectron_mass",
-            "RecoElectron_PID",
             "RecoElectronTrack_absD0",
             "RecoElectronTrack_absZ0",
             "RecoElectronTrack_absD0sig",
@@ -426,7 +416,6 @@ class RDFanalysis():
             "RecoElectron_sel_phi",
             "RecoElectron_sel_charge",
             "RecoElectron_sel_mass",
-            "RecoElectron_sel_PID",
             "RecoElectronTrack_sel_absD0",
             "RecoElectronTrack_sel_absZ0",
             "RecoElectronTrack_sel_absD0sig",
@@ -447,7 +436,6 @@ class RDFanalysis():
             "RecoMuon_phi",
             "RecoMuon_charge",
             "RecoMuon_mass",
-            "RecoMuon_PID",
             "RecoMuonTrack_absD0",
             "RecoMuonTrack_absZ0",
             "RecoMuonTrack_absD0sig",
@@ -468,7 +456,6 @@ class RDFanalysis():
             "RecoMuon_sel_phi",
             "RecoMuon_sel_charge",
             "RecoMuon_sel_mass",
-            "RecoMuon_sel_PID",
             "RecoMuonTrack_sel_absD0",
             "RecoMuonTrack_sel_absZ0",
             "RecoMuonTrack_sel_absD0sig",
@@ -489,7 +476,6 @@ class RDFanalysis():
             "RecoLepton_phi",
             "RecoLepton_charge",
             "RecoLepton_mass",
-            "RecoLepton_PID",
             "RecoLeptonTrack_absD0",
             "RecoLeptonTrack_absZ0",
             "RecoLeptonTrack_absD0sig",
@@ -510,7 +496,6 @@ class RDFanalysis():
             "RecoLepton_sel_phi",
             "RecoLepton_sel_charge",
             "RecoLepton_sel_mass",
-            "RecoLepton_sel_PID",
             "RecoLeptonTrack_sel_absD0",
             "RecoLeptonTrack_sel_absZ0",
             "RecoLeptonTrack_sel_absD0sig",
@@ -538,20 +523,19 @@ class RDFanalysis():
             "RecoEmiss_p",
             "RecoEmiss_e",
 
-            "n_RecoTracks",
-            #"n_RecoVertex",
-            "RecoVertexObject",
-            "RecoVertex",
-            "n_PrimaryTracks",
-            "PrimaryVertexObject",
-            "PrimaryVertex", 
-            "PrimaryVertex_xyz",
-            "PrimaryVertes_xy",
-            "n_SecondaryTracks",
-            "SecondaryVertexObject",
-            "SecondaryVertex",
-            "SecondaryVertex_xyz",
-            "SecondaryVertes_xy",
+            #"n_RecoTracks",
+            #"RecoVertexObject",
+            #"RecoVertex",
+            #"n_PrimaryTracks",
+            #"PrimaryVertexObject",
+            #"PrimaryVertex", 
+            #"PrimaryVertex_xyz",
+            #"PrimaryVertes_xy",
+            #"n_SecondaryTracks",
+            #"SecondaryVertexObject",
+            #"SecondaryVertex",
+            #"SecondaryVertex_xyz",
+            #"SecondaryVertes_xy",
             #"VertexObject", 
             #"RecoPartPID" ,
             #"RecoPartPIDAtVertex",
@@ -581,8 +565,8 @@ class RDFanalysis():
             "Jets_excl4_mass",      
             "Jets_excl4_flavor",      
             "n_Jets_excl4", 
-
-            "TauFromJet_R5_tau", 
+ 
+            "TauFromJet_R5_p",
             "TauFromJet_R5_pt",
             "TauFromJet_R5_px",
             "TauFromJet_R5_py",
@@ -595,7 +579,7 @@ class RDFanalysis():
             "TauFromJet_R5_mass",
             "n_TauFromJet_R5",
 
-            "TauFromJet_tau", 
+            "TauFromJet_p",
             "TauFromJet_pt",
             "TauFromJet_px",
             "TauFromJet_py",
@@ -619,7 +603,7 @@ class RDFanalysis():
             "Jets_R5_sel_phi",     
             "Jets_R5_sel_mass",      
             "Jets_R5_sel_flavor",      
-            "n_Jets_R5_sel",
+            "n_Jets_R5_sel", 
 
         ]
         #complex variables added here at stage2
@@ -630,17 +614,17 @@ class RDFanalysis():
                 "RecoEmiss_y",
                 "RecoEmiss_costheta",
 
-                #"RecoZ_px",
-                #"RecoZ_py",
-                #"RecoZ_pz",
-                #"RecoZ_p",
-                #"RecoZ_pt",
-                #"RecoZ_e",
-                #"RecoZ_eta",
-                #"RecoZ_phi",
-                #"RecoZ_theta",
-                #"RecoZ_y",
-                #"RecoZ_mass",
+                "RecoZ_px",
+                "RecoZ_py",
+                "RecoZ_pz",
+                "RecoZ_p",
+                "RecoZ_pt",
+                "RecoZ_e",
+                "RecoZ_eta",
+                "RecoZ_phi",
+                "RecoZ_theta",
+                "RecoZ_y",
+                "RecoZ_mass",
 
                 "RecoH_px",
                 "RecoH_py",
@@ -678,9 +662,9 @@ class RDFanalysis():
                 "TauSub_y",    
                 "TauSub_mass",
 
-                #"Recoil",
-                #"Collinear_mass",
-                "Visible_mass",
+                "Recoil",
+                "Collinear_mass",
 
-            ]
+        ]
+
         return branchList

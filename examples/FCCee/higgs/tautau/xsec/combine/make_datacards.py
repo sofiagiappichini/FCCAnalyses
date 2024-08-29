@@ -12,29 +12,39 @@ import ROOT
 import array
 import uproot
 
+def file_exists(file_path):
+    return os.path.isfile(file_path)
+
 def check_nonzero(directory, cut, process, list, variable):
     path = f"{directory}{process}_{cut}_histo.root"
-    histo_file = uproot.open(path)
-    selected_leaf = histo_file[variable]
-    y_values = selected_leaf.values()
-    if (sum(y_values)!=0):
-        list.append(process)
+    if file_exists(path):
+        histo_file = uproot.open(path)
+        selected_leaf = histo_file[variable]
+        y_values = selected_leaf.values()
+        if (sum(y_values)!=0):
+            list.append(process)
     return list
 
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/CP/combine/"
+outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/"
 
 DIRECTORY = {
-    'LL':'/final/LL',
-    'QQ':'/final/QQ',
-    'NuNu':'/final/NuNu',
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",,
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
     'LL',
     'LH',
     'HH',
 ]
-cut = ""
-VARIABLE = "Recoil_mass"
+#category to plot
+CAT = [
+    "QQ",
+    "LL",
+    "NuNu",
+]
+cut = "selReco"
+VARIABLE = "Recoil"
 
 backgrounds_all = [
     "p8_ee_WW_ecm240",
@@ -91,12 +101,6 @@ signals_NuNu= [
     'wzp6_ee_nunuH_Htautau_ecm240',
 ]
 
-CAT = [
-    "QQ",
-    "LL",
-    "NuNu",
-]
-
 LIST_S = {
     "QQ": signals_QQ,
     "LL":signals_LL,
@@ -138,8 +142,8 @@ for cat in CAT:
         rates_procs = " ".join([f"{'-1':{' '}{'<'}{lspace}}"] * nprocs)
         
         for proc in procs:
-            dc += f"shapes {proc} * {directory}{proc}_{cut}_histo.root $PROCESS\n"
-        dc += f"shapes data_obs * {directory}{procs[0]}_{cut}_histo.root {procs[0]}\n"
+            dc += f"shapes {proc} * {directory}{proc}_{cut}_histo.root $CHANNEL\n"
+        dc += f"shapes data_obs * {directory}{procs[0]}_{cut}_histo.root $CHANNEL\n"
         dc += f"--------------------------------------------------------------------------------\n"
         dc += f"bin                        {VARIABLE}\n"
         dc += f"observation                -1\n"

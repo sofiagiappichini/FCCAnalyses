@@ -177,7 +177,7 @@ def run(rdf_module, args):
             process_events_test[process_name], events_ttree_test[process_name] = \
                 get_entries(infilepath)
             if process_events_test[process_name]is not None and events_ttree_test[process_name]is not None:
-                process_events_test[process_name], events_ttree_test[process_name] = \
+                process_events[process_name], events_ttree[process_name] = \
                 get_entries(infilepath)
                 file_list[process_name].push_back(infilepath)
 

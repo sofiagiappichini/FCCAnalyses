@@ -94,22 +94,10 @@ processList = {
 inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
 #Optional: output directory, default is local running directory
-outputDir   = "stage1/"
-
-### necessary to run on HTCondor ###c
-eosType = "eosuser"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
-
-#Optional running on HTCondor, default is False
-runBatch = False
-
-#Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "tomorrow"
-
-#Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-compGroup = "group_u_FCC.local_gen"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -371,6 +359,7 @@ class RDFanalysis():
                 .Define("GenHiggs_py", "FCCAnalyses::MCParticle::get_py(GenHiggs)")
                 .Define("GenHiggs_pz", "FCCAnalyses::MCParticle::get_pz(GenHiggs)")
                 .Define("GenHiggs_y", "FCCAnalyses::MCParticle::get_y(GenHiggs)")
+                .Define("GenHiggs_mass",  "FCCAnalyses::MCParticle::get_mass(GenHiggs)")
                 .Define("GenHiggs_eta", "FCCAnalyses::MCParticle::get_eta(GenHiggs)")
                 .Define("GenHiggs_theta", "FCCAnalyses::MCParticle::get_theta(GenHiggs)")
                 .Define("GenHiggs_phi", "FCCAnalyses::MCParticle::get_phi(GenHiggs)")
@@ -399,7 +388,6 @@ class RDFanalysis():
                 .Define("RecoElectron_phi",     "ReconstructedParticle::get_phi(RecoElectrons)") #polar angle in the transverse plane phi
                 .Define("RecoElectron_charge",  "ReconstructedParticle::get_charge(RecoElectrons)")
                 .Define("RecoElectron_mass",     "ReconstructedParticle::get_mass(RecoElectrons)")
-                .Define("RecoElectron_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoElectrons)")
                 .Define("RecoElectronTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoElectrons,EFlowTrack_1))")
                 .Define("RecoElectronTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoElectrons,EFlowTrack_1))")
                 .Define("RecoElectronTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoElectrons,EFlowTrack_1))") #significance
@@ -424,7 +412,6 @@ class RDFanalysis():
                 .Define("RecoElectron_sel_phi",     "ReconstructedParticle::get_phi(RecoElectrons_sel)") #polar angle in the transverse plane phi
                 .Define("RecoElectron_sel_charge",  "ReconstructedParticle::get_charge(RecoElectrons_sel)")
                 .Define("RecoElectron_sel_mass",     "ReconstructedParticle::get_mass(RecoElectrons_sel)")
-                .Define("RecoElectron_sel_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoElectrons_sel)")
                 .Define("RecoElectronTrack_sel_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoElectrons_sel,EFlowTrack_1))")
                 .Define("RecoElectronTrack_sel_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoElectrons_sel,EFlowTrack_1))")
                 .Define("RecoElectronTrack_sel_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoElectrons_sel,EFlowTrack_1))") #significance
@@ -448,7 +435,6 @@ class RDFanalysis():
                 .Define("RecoMuon_phi",     "ReconstructedParticle::get_phi(RecoMuons)") #polar angle in the transverse plane phi
                 .Define("RecoMuon_charge",  "ReconstructedParticle::get_charge(RecoMuons)")
                 .Define("RecoMuon_mass",     "ReconstructedParticle::get_mass(RecoMuons)")
-                .Define("RecoMuon_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoMuons)")
                 .Define("RecoMuonTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoMuons,EFlowTrack_1))")
                 .Define("RecoMuonTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoMuons,EFlowTrack_1))")
                 .Define("RecoMuonTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoMuons,EFlowTrack_1))") #significance
@@ -473,7 +459,6 @@ class RDFanalysis():
                 .Define("RecoMuon_sel_phi",     "ReconstructedParticle::get_phi(RecoMuons_sel)") #polar angle in the transverse plane phi
                 .Define("RecoMuon_sel_charge",  "ReconstructedParticle::get_charge(RecoMuons_sel)")
                 .Define("RecoMuon_sel_mass",     "ReconstructedParticle::get_mass(RecoMuons_sel)")
-                .Define("RecoMuon_sel_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoMuons_sel)")
                 .Define("RecoMuonTrack_sel_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoMuons_sel,EFlowTrack_1))")
                 .Define("RecoMuonTrack_sel_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoMuons_sel,EFlowTrack_1))")
                 .Define("RecoMuonTrack_sel_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoMuons_sel,EFlowTrack_1))") #significance
@@ -496,7 +481,6 @@ class RDFanalysis():
                 .Define("RecoLepton_phi",     "ReconstructedParticle::get_phi(RecoLeptons)") #polar angle in the transverse plane phi
                 .Define("RecoLepton_charge",  "ReconstructedParticle::get_charge(RecoLeptons)")
                 .Define("RecoLepton_mass",     "ReconstructedParticle::get_mass(RecoLeptons)")
-                .Define("RecoLepton_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoLeptons)")
                 .Define("RecoLeptonTrack_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoLeptons,EFlowTrack_1))")
                 .Define("RecoLeptonTrack_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoLeptons,EFlowTrack_1))")
                 .Define("RecoLeptonTrack_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoLeptons,EFlowTrack_1))") #significance
@@ -518,7 +502,6 @@ class RDFanalysis():
                 .Define("RecoLepton_sel_phi",     "ReconstructedParticle::get_phi(RecoLeptons_sel)") #polar angle in the transverse plane phi
                 .Define("RecoLepton_sel_charge",  "ReconstructedParticle::get_charge(RecoLeptons_sel)")
                 .Define("RecoLepton_sel_mass",     "ReconstructedParticle::get_mass(RecoLeptons_sel)")
-                .Define("RecoLepton_sel_PID",     "FCCAnalyses::ZHfunctions::get_PID(RecoLeptons_sel)")
                 .Define("RecoLeptonTrack_sel_absD0", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoLeptons_sel,EFlowTrack_1))")
                 .Define("RecoLeptonTrack_sel_absZ0", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoLeptons_sel,EFlowTrack_1))")
                 .Define("RecoLeptonTrack_sel_absD0sig", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoLeptons_sel,EFlowTrack_1))") #significance
@@ -543,7 +526,7 @@ class RDFanalysis():
                 .Define("RecoPhoton_charge",  "ReconstructedParticle::get_charge(RecoPhotons)")
 
                 # different definition of missing energy from fccanalysis classes instead of edm4hep
-                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(91.188, ReconstructedParticles)") #ecm 
+                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(240, ReconstructedParticles)") #ecm 
                 .Define("RecoEmiss_px",  "RecoEmiss[0].momentum.x")
                 .Define("RecoEmiss_py",  "RecoEmiss[0].momentum.y")
                 .Define("RecoEmiss_pz",  "RecoEmiss[0].momentum.z")
@@ -555,7 +538,6 @@ class RDFanalysis():
                 .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
                 .Define("RecoVertexObject",   "VertexFitterSimple::VertexFitter_Tk( 0, EFlowTrack_1)" ) ### reconstructing a vertex withour any request n=0 ###
                 .Define("RecoVertex",  "VertexingUtils::get_VertexData( RecoVertexObject )")
-                #.Define("n_RecoVertex",  "VertexingUtils::get_Nvertex(RecoVertex)")
 
                 .Define("PrimaryTracks",  "VertexFitterSimple::get_PrimaryTracks( EFlowTrack_1, true, 4.5, 20e-3, 300, 0., 0., 0.)") 
                 .Define("n_PrimaryTracks",  "ReconstructedParticle2Track::getTK_n( PrimaryTracks )")
@@ -610,7 +592,6 @@ class RDFanalysis():
                 .Define("Jets_R5_theta",   "JetClusteringUtils::get_theta(Jets_R5)")
 		        .Define("Jets_R5_phi",     "JetClusteringUtils::get_phi(Jets_R5)") #polar angle in the transverse plane phi
                 .Define("Jets_R5_mass",      "JetClusteringUtils::get_m(Jets_R5)")
-                .Define("Jets_R5_flavor",      "JetTaggingUtils::get_flavour(Jets_R5, Particle)")
                 .Define("n_Jets_R5", "Jets_R5_e.size()")
 
                 .Define("RP_px",          "ReconstructedParticle::get_px(ReconstructedParticles)")
@@ -638,13 +619,13 @@ class RDFanalysis():
                 .Define("Jets_excl4_theta",   "JetClusteringUtils::get_theta(Jets_excl4)")
 		        .Define("Jets_excl4_phi",     "JetClusteringUtils::get_phi(Jets_excl4)") #polar angle in the transverse plane phi
                 .Define("Jets_excl4_mass",      "JetClusteringUtils::get_m(Jets_excl4)")
-                .Define("Jets_excl4_flavor",      "JetTaggingUtils::get_flavour(Jets_excl4, Particle)")
                 .Define("n_Jets_excl4", "Jets_excl4_e.size()")
 
                 ### reconstruction of hadronic taus from jets
                 .Define("TauFromJet_R5", "FCCAnalyses::ZHfunctions::findTauInJet(Jets_Constituents_R5)") 
                 .Define("TauFromJet_R5_type_sel","ReconstructedParticle::get_type(TauFromJet_R5)")
                 .Define("TauFromJet_R5_tau", "TauFromJet_R5[TauFromJet_R5_type_sel>=0]") 
+                .Define("TauFromJet_R5_p","ReconstructedParticle::get_p(TauFromJet_R5_tau)")
                 .Define("TauFromJet_R5_pt","ReconstructedParticle::get_pt(TauFromJet_R5_tau)")
                 .Define("TauFromJet_R5_px","ReconstructedParticle::get_px(TauFromJet_R5_tau)")
                 .Define("TauFromJet_R5_py","ReconstructedParticle::get_py(TauFromJet_R5_tau)")
@@ -660,6 +641,7 @@ class RDFanalysis():
                 .Define("TauFromJet", "FCCAnalyses::ZHfunctions::findTauInJet(Jets_Constituents)") 
                 .Define("TauFromJet_type_sel","ReconstructedParticle::get_type(TauFromJet)")
                 .Define("TauFromJet_tau", "TauFromJet[TauFromJet_type_sel>=0]") 
+                .Define("TauFromJet_p","ReconstructedParticle::get_p(TauFromJet_tau)")
                 .Define("TauFromJet_pt","ReconstructedParticle::get_pt(TauFromJet_tau)")
                 .Define("TauFromJet_px","ReconstructedParticle::get_px(TauFromJet_tau)")
                 .Define("TauFromJet_py","ReconstructedParticle::get_py(TauFromJet_tau)")
@@ -682,7 +664,6 @@ class RDFanalysis():
                 .Define("Jets_R5_sel_theta",   "Jets_R5_theta[TauFromJet_R5_type_sel<0]")
 		        .Define("Jets_R5_sel_phi",     "Jets_R5_phi[TauFromJet_R5_type_sel<0]")
                 .Define("Jets_R5_sel_mass",      "Jets_R5_mass[TauFromJet_R5_type_sel<0]")
-                .Define("Jets_R5_sel_flavor",      "Jets_R5_flavor[TauFromJet_R5_type_sel<0]")
                 .Define("n_Jets_R5_sel", "Jets_R5_sel_e.size()")
                
         )
@@ -856,6 +837,7 @@ class RDFanalysis():
             "GenHiggs_py", 
             "GenHiggs_pz", 
             "GenHiggs_y", 
+            "GenHiggs_mass",
             "GenHiggs_eta", 
             "GenHiggs_theta", 
             "GenHiggs_phi", 
@@ -877,7 +859,6 @@ class RDFanalysis():
             "RecoElectron_phi",
             "RecoElectron_charge",
             "RecoElectron_mass",
-            "RecoElectron_PID",
             "RecoElectronTrack_absD0",
             "RecoElectronTrack_absZ0",
             "RecoElectronTrack_absD0sig",
@@ -898,7 +879,6 @@ class RDFanalysis():
             "RecoElectron_sel_phi",
             "RecoElectron_sel_charge",
             "RecoElectron_sel_mass",
-            "RecoElectron_sel_PID",
             "RecoElectronTrack_sel_absD0",
             "RecoElectronTrack_sel_absZ0",
             "RecoElectronTrack_sel_absD0sig",
@@ -919,7 +899,6 @@ class RDFanalysis():
             "RecoMuon_phi",
             "RecoMuon_charge",
             "RecoMuon_mass",
-            "RecoMuon_PID",
             "RecoMuonTrack_absD0",
             "RecoMuonTrack_absZ0",
             "RecoMuonTrack_absD0sig",
@@ -940,7 +919,6 @@ class RDFanalysis():
             "RecoMuon_sel_phi",
             "RecoMuon_sel_charge",
             "RecoMuon_sel_mass",
-            "RecoMuon_sel_PID",
             "RecoMuonTrack_sel_absD0",
             "RecoMuonTrack_sel_absZ0",
             "RecoMuonTrack_sel_absD0sig",
@@ -961,7 +939,6 @@ class RDFanalysis():
             "RecoLepton_phi",
             "RecoLepton_charge",
             "RecoLepton_mass",
-            "RecoLepton_PID",
             "RecoLeptonTrack_absD0",
             "RecoLeptonTrack_absZ0",
             "RecoLeptonTrack_absD0sig",
@@ -982,7 +959,6 @@ class RDFanalysis():
             "RecoLepton_sel_phi",
             "RecoLepton_sel_charge",
             "RecoLepton_sel_mass",
-            "RecoLepton_sel_PID",
             "RecoLeptonTrack_sel_absD0",
             "RecoLeptonTrack_sel_absZ0",
             "RecoLeptonTrack_sel_absD0sig",
@@ -1011,7 +987,6 @@ class RDFanalysis():
             "RecoEmiss_e",
 
             #"n_RecoTracks",
-            #"n_RecoVertex",
             #"RecoVertexObject",
             #"RecoVertex",
             #"n_PrimaryTracks",
@@ -1037,8 +1012,7 @@ class RDFanalysis():
             "Jets_R5_eta",    
             "Jets_R5_theta",   
             "Jets_R5_phi",     
-            "Jets_R5_mass",      
-            "Jets_R5_flavor",      
+            "Jets_R5_mass",        
             "n_Jets_R5", 
 
             "Jets_excl4_e",     
@@ -1050,10 +1024,10 @@ class RDFanalysis():
             "Jets_excl4_eta",    
             "Jets_excl4_theta",   
             "Jets_excl4_phi",     
-            "Jets_excl4_mass",      
-            "Jets_excl4_flavor",      
+            "Jets_excl4_mass",        
             "n_Jets_excl4", 
  
+            "TauFromJet_R5_p",
             "TauFromJet_R5_pt",
             "TauFromJet_R5_px",
             "TauFromJet_R5_py",
@@ -1066,6 +1040,7 @@ class RDFanalysis():
             "TauFromJet_R5_mass",
             "n_TauFromJet_R5",
 
+            "TauFromJet_p",
             "TauFromJet_pt",
             "TauFromJet_px",
             "TauFromJet_py",
@@ -1088,9 +1063,10 @@ class RDFanalysis():
             "Jets_R5_sel_theta",   
             "Jets_R5_sel_phi",     
             "Jets_R5_sel_mass",      
-            "Jets_R5_sel_flavor",      
             "n_Jets_R5_sel", 
 
+        #for testing
+            #"TauFromJet_R5_type_sel",
         ]
 
         return branchList

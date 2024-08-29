@@ -23,7 +23,7 @@ def sorted_dict_values(dic: dict) -> list:
 def make_dir_if_not_exists(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
-        os.system("cp /eos/user/s/sgiappic/www/index.php {}".format(directory)) #copy index to show plots in web page automatically
+        os.system("cp /web/sgiappic/public_html/index.php {}".format(directory)) #copy index to show plots in web page automatically
         print(f"Directory created successfully.")
     else:
         print(f"Directory already exists.")
@@ -33,43 +33,46 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':'/ceph/sgiappic/HiggsCP/final/LL',
-    #'QQ':'/final/QQ',
-    #'NuNu':'/final/NuNu',
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",,
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
     'LL',
-    #'LH',
-    #'HH',
+    'LH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
+    "QQ",
     "LL",
-    #"NuNu",
+    "NuNu",
 ]
-
 #directory where you want your plots to go
 DIR_PLOTS = '/web/sgiappic/public_html/Higgs/xsec/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
-    "selReco_Maria",
  ] 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
-    "selReco_Maria": "Selection imported from Maria",
  }
 
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau"
-energy         = 91
+ana_tex = {
+    'LL':"e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau_{L}#tau_{L}",
+    'LH':"e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau_{L}#tau_{h}",
+    'HH':"e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau_{h}#tau_{h}",
+    }
+
+energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = True
+LOGY = False
 
 #now you can list all the histograms that you want to plot
 VARIABLES = [
+    ######## Monte-Carlo particles #######
     "n_FSGenElectron",
     "FSGenElectron_e",
     "FSGenElectron_p",
@@ -226,7 +229,7 @@ VARIABLES = [
 
     #"n_GenZ",
     #"n_GenW",
-    #############"n_GenHiggs",
+    "n_GenHiggs",
     "GenHiggs_e",
     "GenHiggs_p", 
     "GenHiggs_pt", 
@@ -234,6 +237,7 @@ VARIABLES = [
     "GenHiggs_py", 
     "GenHiggs_pz", 
     "GenHiggs_y", 
+    "GenHiggs_mass",
     "GenHiggs_eta", 
     "GenHiggs_theta", 
     "GenHiggs_phi", 
@@ -255,7 +259,6 @@ VARIABLES = [
     "RecoElectron_phi",
     "RecoElectron_charge",
     "RecoElectron_mass",
-    "RecoElectron_PID",
     "RecoElectronTrack_absD0",
     "RecoElectronTrack_absZ0",
     "RecoElectronTrack_absD0sig",
@@ -276,7 +279,6 @@ VARIABLES = [
     "RecoElectron_sel_phi",
     "RecoElectron_sel_charge",
     "RecoElectron_sel_mass",
-    "RecoElectron_sel_PID",
     "RecoElectronTrack_sel_absD0",
     "RecoElectronTrack_sel_absZ0",
     "RecoElectronTrack_sel_absD0sig",
@@ -297,7 +299,6 @@ VARIABLES = [
     "RecoMuon_phi",
     "RecoMuon_charge",
     "RecoMuon_mass",
-    "RecoMuon_PID",
     "RecoMuonTrack_absD0",
     "RecoMuonTrack_absZ0",
     "RecoMuonTrack_absD0sig",
@@ -318,7 +319,6 @@ VARIABLES = [
     "RecoMuon_sel_phi",
     "RecoMuon_sel_charge",
     "RecoMuon_sel_mass",
-    "RecoMuon_sel_PID",
     "RecoMuonTrack_sel_absD0",
     "RecoMuonTrack_sel_absZ0",
     "RecoMuonTrack_sel_absD0sig",
@@ -339,7 +339,6 @@ VARIABLES = [
     "RecoLepton_phi",
     "RecoLepton_charge",
     "RecoLepton_mass",
-    "RecoLepton_PID",
     "RecoLeptonTrack_absD0",
     "RecoLeptonTrack_absZ0",
     "RecoLeptonTrack_absD0sig",
@@ -360,7 +359,6 @@ VARIABLES = [
     "RecoLepton_sel_phi",
     "RecoLepton_sel_charge",
     "RecoLepton_sel_mass",
-    "RecoLepton_sel_PID",
     "RecoLeptonTrack_sel_absD0",
     "RecoLeptonTrack_sel_absZ0",
     "RecoLeptonTrack_sel_absD0sig",
@@ -388,20 +386,19 @@ VARIABLES = [
     "RecoEmiss_p",
     "RecoEmiss_e",
 
-    "n_RecoTracks",
-    #"n_RecoVertex",
-    "RecoVertexObject",
-    "RecoVertex",
-    "n_PrimaryTracks",
-    "PrimaryVertexObject",
-    "PrimaryVertex", 
-    "PrimaryVertex_xyz",
-    "PrimaryVertes_xy",
-    "n_SecondaryTracks",
-    "SecondaryVertexObject",
-    "SecondaryVertex",
-    "SecondaryVertex_xyz",
-    "SecondaryVertes_xy",
+    #"n_RecoTracks",
+    #"RecoVertexObject",
+    #"RecoVertex",
+    #"n_PrimaryTracks",
+    #"PrimaryVertexObject",
+    #"PrimaryVertex", 
+    #"PrimaryVertex_xyz",
+    #"PrimaryVertes_xy",
+    #"n_SecondaryTracks",
+    #"SecondaryVertexObject",
+    #"SecondaryVertex",
+    #"SecondaryVertex_xyz",
+    #"SecondaryVertes_xy",
     #"VertexObject", 
     #"RecoPartPID" ,
     #"RecoPartPIDAtVertex",
@@ -415,8 +412,7 @@ VARIABLES = [
     "Jets_R5_eta",    
     "Jets_R5_theta",   
     "Jets_R5_phi",     
-    "Jets_R5_mass",      
-    "Jets_R5_flavor",      
+    "Jets_R5_mass",        
     "n_Jets_R5", 
 
     "Jets_excl4_e",     
@@ -428,11 +424,10 @@ VARIABLES = [
     "Jets_excl4_eta",    
     "Jets_excl4_theta",   
     "Jets_excl4_phi",     
-    "Jets_excl4_mass",      
-    "Jets_excl4_flavor",      
+    "Jets_excl4_mass",        
     "n_Jets_excl4", 
 
-    "TauFromJet_R5_tau", 
+    "TauFromJet_R5_p",
     "TauFromJet_R5_pt",
     "TauFromJet_R5_px",
     "TauFromJet_R5_py",
@@ -445,7 +440,7 @@ VARIABLES = [
     "TauFromJet_R5_mass",
     "n_TauFromJet_R5",
 
-    "TauFromJet_tau", 
+    "TauFromJet_p",
     "TauFromJet_pt",
     "TauFromJet_px",
     "TauFromJet_py",
@@ -468,8 +463,7 @@ VARIABLES = [
     "Jets_R5_sel_theta",   
     "Jets_R5_sel_phi",     
     "Jets_R5_sel_mass",      
-    "Jets_R5_sel_flavor",      
-    "n_Jets_R5_sel",
+    "n_Jets_R5_sel", 
 ]
 
 VARIABLES_LL = [
@@ -827,11 +821,11 @@ for cut in CUTS:
                 canvas = ROOT.TCanvas("", "", 800, 800)
 
                 nsig = len(LIST_S[cat])
-                nbkg = len(backgrounds_all) #half of the actual number (rounded up) beacuse they go into two colomuns 
+                nbkg = len(backgrounds_all) #put to zero if you only want to look at signals
 
                 #legend coordinates and style
                 legsize = 0.04*nsig
-                legsize2 = 0.04*nbkg/2
+                legsize2 = 0.04*nbkg
                 leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
                 leg.SetFillColor(0)
                 leg.SetFillStyle(0)
@@ -840,7 +834,7 @@ for cut in CUTS:
                 leg.SetTextSize(0.025)
                 leg.SetTextFont(42)
 
-                leg2 = ROOT.TLegend(0.55, 0.70 - legsize2, 0.85, 0.70)
+                leg2 = ROOT.TLegend(0.45, 0.70 - legsize2, 0.90, 0.70)
                 leg2.SetNColumns(2)
                 leg2.SetFillColor(0)
                 leg2.SetFillStyle(0)
@@ -864,16 +858,14 @@ for cut in CUTS:
                         hh = copy.deepcopy(h)
                         if hh is not None:
                             hh.SetDirectory(0)
-                            if hh.Integral()>0:
-                                histos.append(hh)
-                                colors.append(scolors[s])
-                                leg.AddEntry(histos[-1], slegend[s], "l")
+                            histos.append(hh)
+                            colors.append(scolors[s])
+                            leg.AddEntry(histos[-1], slegend[s], "l")
                 nsig=len(histos)
 
                 if nbkg!=0:
                     #for the common backgrounds i want to keep them separate into different histograms
                     #no need to have the ones that are empty
-                    nbkg = 0
                     for b in backgrounds_all:
                         fin = f"{directory}{b}_{cut}_histo.root"
                         if file_exists(fin):
@@ -882,10 +874,9 @@ for cut in CUTS:
                             hh = copy.deepcopy(h)
                             if hh is not None:
                                 hh.SetDirectory(0)
-                                if hh.Integral()>0:
-                                    histos.append(hh)
-                                    colors.append(bcolors[b])
-                                    leg2.AddEntry(histos[-1], blegend[b], "f")
+                                histos.append(hh)
+                                colors.append(bcolors[b])
+                                leg2.AddEntry(histos[-1], blegend[b], "f")
 
                     #merge backgrounds in plotting
                     '''i = 0
@@ -915,7 +906,13 @@ for cut in CUTS:
                     hStackBkg = ROOT.THStack("hStackBkg", "")
                     if LOGY==True :
                         hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                        hStackBkg.SetMaximum(1e25) #leave some space on top for the legend
+                        hStackBkg.SetMaximum(1e21) #leave some space on top for the legend
+                    else:
+                        max_y = hStackBkg.GetMaximum() 
+                        # Set the y-axis range with additional white space
+                        hStackBkg.SetMinimum(0)
+                        hStackBkg.SetMaximum(max_y*2.5)
+
                     BgMCHistYieldsDic = {}
                     for i in range(nsig, len(histos)):
                         h = histos[i]
@@ -959,10 +956,14 @@ for cut in CUTS:
                             h.GetYaxis().SetTitle("Events")
                             h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
                             #h.GetXaxis().SetTitle("{}".format(variable))
-                            h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
                             #h.GetYaxis().SetTitleOffset(1.5)
                             h.GetXaxis().SetTitleOffset(1.2)
                             #h.GetXaxis().SetLimits(1, 1000)
+                            if LOGY==True :
+                                h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
+                            else:
+                                max_y = h.GetMaximum() 
+                                h.GetYaxis().SetRangeUser(0, max_y*2.5 )
                         else: 
                             h.Draw("HIST SAME")
 
@@ -980,7 +981,7 @@ for cut in CUTS:
                 latex.SetTextSize(0.03)
                 latex.DrawLatex(0.18, 0.84, text)
 
-                text = '#bf{#it{' + ana_tex + '}}'
+                text = '#bf{#it{' + ana_tex[sub] + '}}'
                 latex.SetTextSize(0.03)
                 latex.DrawLatex(0.18, 0.80, text)
 
@@ -992,6 +993,14 @@ for cut in CUTS:
                 text = '#it{' + leftText + '}'
                 latex.SetTextSize(0.03)
                 latex.DrawLatex(0.92, 0.92, text)
+
+                #fix legened height after having the correct number of processes
+
+                legsize = 0.04*nsig
+                legsize2 = 0.04*(len(histos)-nsig)/2
+                leg.SetY1(0.70 - legsize)
+
+                leg2.SetY1(0.70 - legsize2)
 
                 leg.Draw()
                 leg2.Draw()
