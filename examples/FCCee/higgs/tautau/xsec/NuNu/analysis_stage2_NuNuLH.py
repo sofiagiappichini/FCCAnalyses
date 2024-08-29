@@ -88,25 +88,10 @@ processList = {
 
 }
 
-inputDir = "stage1/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "output/" #your output directory
-
-#Optional: ncpus, default is 4
-nCPUS = 10
-
-### necessary to run on HTCondor ###
-eosType = "eosuser"
-
-#Optional running on HTCondor, default is False
-runBatch = False
-
-#Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "microcentury"
-
-#Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-compGroup = "group_u_FCC.local_gen"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2/NuNu/LH/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -382,6 +367,7 @@ class RDFanalysis():
             "GenHiggs_py", 
             "GenHiggs_pz", 
             "GenHiggs_y", 
+            "GenHiggs_mass",
             "GenHiggs_eta", 
             "GenHiggs_theta", 
             "GenHiggs_phi", 
@@ -403,7 +389,6 @@ class RDFanalysis():
             "RecoElectron_phi",
             "RecoElectron_charge",
             "RecoElectron_mass",
-            "RecoElectron_PID",
             "RecoElectronTrack_absD0",
             "RecoElectronTrack_absZ0",
             "RecoElectronTrack_absD0sig",
@@ -424,7 +409,6 @@ class RDFanalysis():
             "RecoElectron_sel_phi",
             "RecoElectron_sel_charge",
             "RecoElectron_sel_mass",
-            "RecoElectron_sel_PID",
             "RecoElectronTrack_sel_absD0",
             "RecoElectronTrack_sel_absZ0",
             "RecoElectronTrack_sel_absD0sig",
@@ -445,7 +429,6 @@ class RDFanalysis():
             "RecoMuon_phi",
             "RecoMuon_charge",
             "RecoMuon_mass",
-            "RecoMuon_PID",
             "RecoMuonTrack_absD0",
             "RecoMuonTrack_absZ0",
             "RecoMuonTrack_absD0sig",
@@ -466,7 +449,6 @@ class RDFanalysis():
             "RecoMuon_sel_phi",
             "RecoMuon_sel_charge",
             "RecoMuon_sel_mass",
-            "RecoMuon_sel_PID",
             "RecoMuonTrack_sel_absD0",
             "RecoMuonTrack_sel_absZ0",
             "RecoMuonTrack_sel_absD0sig",
@@ -487,7 +469,6 @@ class RDFanalysis():
             "RecoLepton_phi",
             "RecoLepton_charge",
             "RecoLepton_mass",
-            "RecoLepton_PID",
             "RecoLeptonTrack_absD0",
             "RecoLeptonTrack_absZ0",
             "RecoLeptonTrack_absD0sig",
@@ -508,7 +489,6 @@ class RDFanalysis():
             "RecoLepton_sel_phi",
             "RecoLepton_sel_charge",
             "RecoLepton_sel_mass",
-            "RecoLepton_sel_PID",
             "RecoLeptonTrack_sel_absD0",
             "RecoLeptonTrack_sel_absZ0",
             "RecoLeptonTrack_sel_absD0sig",
@@ -536,20 +516,19 @@ class RDFanalysis():
             "RecoEmiss_p",
             "RecoEmiss_e",
 
-            "n_RecoTracks",
-            #"n_RecoVertex",
-            "RecoVertexObject",
-            "RecoVertex",
-            "n_PrimaryTracks",
-            "PrimaryVertexObject",
-            "PrimaryVertex", 
-            "PrimaryVertex_xyz",
-            "PrimaryVertes_xy",
-            "n_SecondaryTracks",
-            "SecondaryVertexObject",
-            "SecondaryVertex",
-            "SecondaryVertex_xyz",
-            "SecondaryVertes_xy",
+            #"n_RecoTracks",
+            #"RecoVertexObject",
+            #"RecoVertex",
+            #"n_PrimaryTracks",
+            #"PrimaryVertexObject",
+            #"PrimaryVertex", 
+            #"PrimaryVertex_xyz",
+            #"PrimaryVertes_xy",
+            #"n_SecondaryTracks",
+            #"SecondaryVertexObject",
+            #"SecondaryVertex",
+            #"SecondaryVertex_xyz",
+            #"SecondaryVertes_xy",
             #"VertexObject", 
             #"RecoPartPID" ,
             #"RecoPartPIDAtVertex",
@@ -563,8 +542,7 @@ class RDFanalysis():
             "Jets_R5_eta",    
             "Jets_R5_theta",   
             "Jets_R5_phi",     
-            "Jets_R5_mass",      
-            "Jets_R5_flavor",      
+            "Jets_R5_mass",        
             "n_Jets_R5", 
 
             "Jets_excl4_e",     
@@ -576,11 +554,10 @@ class RDFanalysis():
             "Jets_excl4_eta",    
             "Jets_excl4_theta",   
             "Jets_excl4_phi",     
-            "Jets_excl4_mass",      
-            "Jets_excl4_flavor",      
+            "Jets_excl4_mass",        
             "n_Jets_excl4", 
-
-            "TauFromJet_R5_tau", 
+ 
+            "TauFromJet_R5_p",
             "TauFromJet_R5_pt",
             "TauFromJet_R5_px",
             "TauFromJet_R5_py",
@@ -593,7 +570,7 @@ class RDFanalysis():
             "TauFromJet_R5_mass",
             "n_TauFromJet_R5",
 
-            "TauFromJet_tau", 
+            "TauFromJet_p",
             "TauFromJet_pt",
             "TauFromJet_px",
             "TauFromJet_py",
@@ -616,8 +593,7 @@ class RDFanalysis():
             "Jets_R5_sel_theta",   
             "Jets_R5_sel_phi",     
             "Jets_R5_sel_mass",      
-            "Jets_R5_sel_flavor",      
-            "n_Jets_R5_sel",
+            "n_Jets_R5_sel", 
 
         ]
         #complex variables added here at stage2
