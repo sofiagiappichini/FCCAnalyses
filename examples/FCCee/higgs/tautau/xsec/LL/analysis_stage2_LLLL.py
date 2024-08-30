@@ -189,6 +189,11 @@ class RDFanalysis():
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
 
+                .Define("Tau_Acoplanarity",      "(TauLead_phi-TauSub_phi)")
+                .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
+                .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLEad_pz*TauSub_pz)")
+                .Define("Tau_cos",      "RecoH_p/Tau_scalar")
+
                 .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
                 .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
 
@@ -656,6 +661,10 @@ class RDFanalysis():
                 "TauSub_theta",    
                 "TauSub_y",    
                 "TauSub_mass",
+
+                "Tau_Acoplanarity",
+                "Tau_DR",
+                "Tau_cos",
 
                 "Recoil",
                 "Collinear_mass",
