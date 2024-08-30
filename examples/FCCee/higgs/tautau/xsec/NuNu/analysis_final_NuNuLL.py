@@ -487,7 +487,7 @@ histoList = {
     "RecoH_phi":                {"name":"RecoH_phi",                "title":"Reco H #phi",                   "bin":64, "xmin":-3.2,"xmax":3.2},
     "RecoH_theta":              {"name":"RecoH_theta",              "title":"Reco H #theta",                 "bin":64, "xmin":0,"xmax":3.2},
     "RecoH_y":                  {"name":"RecoH_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":100, "xmin":50, "xmax":150},
+    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":150, "xmin":0, "xmax":150},
 
     "TauLead_px":               {"name":"TauLead_px",                 "title":"#tau_{lead} p_{x} [GeV]",            "bin":200,"xmin":-100 ,"xmax":100},   
     "TauLead_py":               {"name":"TauLead_py",                 "title":"#tau_{lead} p_{y} [GeV]",            "bin":200,"xmin":-100 ,"xmax":100},   
@@ -513,9 +513,13 @@ histoList = {
     "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{second} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "TauSub_mass":              {"name":"TauSub_mass",               "title":"#tau_{second} mass",                   "bin":30, "xmin":0., "xmax":3.},
 
+    "Tau_Acoplanarity":         {"name":"Tau_Acoplanarity",           "title":"#Delta#phi(#tau#tau)",                "bin":64, "xmin":-3.2,"xmax":3.2},
+    "Tau_DR":                   {"name":"Tau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
+    "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":200, "xmin":-1.,"xmax":1.},
+    
     #"Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
     "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
 
 
-    "Visisble_mass":               {"name":"Visibile_mass",               "title":"M_{visible} [GeV]",                   "bin":100, "xmin":50, "xmax":150},
+    "Visisble_mass":               {"name":"Visibile_mass",               "title":"M_{visible} [GeV]",                   "bin":150, "xmin":0, "xmax":150},
 }
