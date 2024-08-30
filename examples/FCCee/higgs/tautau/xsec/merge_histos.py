@@ -504,6 +504,10 @@ VARIABLES_LL = [
     "TauSub_y",    
     "TauSub_mass",
 
+    "Tau_Acoplanarity",
+    "Tau_DR",
+    "Tau_cos",
+
     "Recoil",
     "Collinear_mass",
 ]
@@ -563,6 +567,10 @@ VARIABLES_QQ = [
     "TauSub_y",    
     "TauSub_mass",
 
+    "Tau_Acoplanarity",
+    "Tau_DR",
+    "Tau_cos",
+
     "Recoil",
     "Collinear_mass",
 ]
@@ -621,6 +629,10 @@ VARIABLES_NuNu = [
     "TauSub_theta",    
     "TauSub_y",    
     "TauSub_mass",
+
+    "Tau_Acoplanarity",
+    "Tau_DR",
+    "Tau_cos",
 
     #"Recoil",
     "Collinear_mass",
