@@ -555,7 +555,6 @@ class RDFanalysis():
             "Jets_R5_theta",   
             "Jets_R5_phi",     
             "Jets_R5_mass",      
-            "Jets_R5_flavor",      
             "n_Jets_R5", 
 
             "Jets_excl4_e",     
@@ -568,7 +567,6 @@ class RDFanalysis():
             "Jets_excl4_theta",   
             "Jets_excl4_phi",     
             "Jets_excl4_mass",      
-            "Jets_excl4_flavor",      
             "n_Jets_excl4", 
  
             "TauFromJet_R5_p",
@@ -607,7 +605,6 @@ class RDFanalysis():
             "Jets_R5_sel_theta",   
             "Jets_R5_sel_phi",     
             "Jets_R5_sel_mass",      
-            "Jets_R5_sel_flavor",      
             "n_Jets_R5_sel", 
 
         ]
