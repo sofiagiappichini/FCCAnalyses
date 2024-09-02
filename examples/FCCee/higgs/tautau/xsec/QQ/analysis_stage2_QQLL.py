@@ -108,9 +108,9 @@ class RDFanalysis():
             ### when working with Z jets, remember to use the Leptons_sel class because they are the ones not in the jets
             ### when working with tau jets it does not matter since the tau jets don't have any lepton in them so there is no confusion
 
-                .Define("OnePair",     "(n_RecoLeptons==2  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0")
+                .Define("OnePair",     "(n_RecoLeptons_sel==2  and (RecoLepton_sel_charge.at(0) + RecoLepton_sel_charge.at(1))==0)*1.0")
 
-                .Filter("n_TauFromJet_R5==0 && OnePair==1 && n_Jets_R5_sel==2")
+                .Filter("OnePair==1 && n_TauFromJet_R5==0 && n_Jets_R5_sel==2")
 
                 ##################
                 # Reco particles #
