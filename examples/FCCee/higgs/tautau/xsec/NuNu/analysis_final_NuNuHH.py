@@ -522,5 +522,5 @@ histoList = {
     "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
 
 
-    "Visisble_mass":               {"name":"Visibile_mass",               "title":"M_{visible} [GeV]",                   "bin":150, "xmin":0, "xmax":150},
+    "Visible_mass":               {"name":"Visible_mass",               "title":"M_{visible} [GeV]",                   "bin":150, "xmin":0, "xmax":150},
 }
