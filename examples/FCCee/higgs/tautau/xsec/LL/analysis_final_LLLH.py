@@ -12,7 +12,7 @@ intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
 doScale = True
 
 #Save event yields in a table (optional)
-saveTabular = False
+saveTabular = True
 
 #Number of CPUs to use
 nCPUS = 4
