@@ -518,8 +518,8 @@ histoList = {
     "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":200, "xmin":-1.,"xmax":1.},
     
     #"Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
-    "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
+    #"Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
 
 
-    "Visisble_mass":               {"name":"Visibile_mass",               "title":"M_{visible} [GeV]",                   "bin":150, "xmin":0, "xmax":150},
+    "Visible_mass":               {"name":"Visible_mass",               "title":"M_{visible} [GeV]",                   "bin":150, "xmin":0, "xmax":150},
 }
