@@ -108,7 +108,7 @@ class RDFanalysis():
 
                 .Define("OnePair",     "(n_RecoLeptons==2  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0")
 
-                .Filter("OnePair==1 &&  && n_Jets_R5_sel==0 && n_TauFromJet_R5==0") 
+                .Filter("OnePair==1 && n_Jets_R5_sel==0 && n_TauFromJet_R5==0") 
 
                 ##################
                 # Reco particles #
