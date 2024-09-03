@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2/LL/LH/"
+inputDir_EFT = "/ceph/sgiappic/HiggsCP/CP/stage1"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final/LL/LH/" 
+outputDir_EFT = "/ceph/sgiappic/HiggsCP/CP/stage2"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -20,91 +20,14 @@ nCPUS = 4
 #produces ROOT TTrees, default is False
 doTree = False
 
-processList = {
-    'p8_ee_WW_ecm240':{},
-    'p8_ee_Zqq_ecm240':{},
-    'p8_ee_ZZ_ecm240':{},
-    
-    'wzp6_ee_tautau_ecm240':{},
-    'wzp6_ee_mumu_ecm240':{},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{},
-
-    'wzp6_ee_tautauH_Htautau_ecm240': {},
-    'wzp6_ee_tautauH_Hbb_ecm240': {},
-    'wzp6_ee_tautauH_Hcc_ecm240': {},
-    'wzp6_ee_tautauH_Hss_ecm240': {},
-    'wzp6_ee_tautauH_Hgg_ecm240': {},
-    'wzp6_ee_tautauH_HWW_ecm240': {},
-    'wzp6_ee_tautauH_HZZ_ecm240': {},
-
-    'wzp6_egamma_eZ_Zmumu_ecm240': {},
-    'wzp6_egamma_eZ_Zee_ecm240': {},
-    'wzp6_gammae_eZ_Zmumu_ecm240': {},
-    'wzp6_gammae_eZ_Zee_ecm240': {},
-
-    'wzp6_gaga_tautau_60_ecm240': {},
-    'wzp6_gaga_mumu_60_ecm240': {},
-    'wzp6_gaga_ee_60_ecm240': {},
-
-    'wzp6_ee_nuenueZ_ecm240': {},
-
-    'wzp6_ee_nunuH_Htautau_ecm240': {},
-    'wzp6_ee_nunuH_Hbb_ecm240': {},
-    'wzp6_ee_nunuH_Hcc_ecm240': {},
-    'wzp6_ee_nunuH_Hss_ecm240': {},
-    'wzp6_ee_nunuH_Hgg_ecm240': {},
-    'wzp6_ee_nunuH_HWW_ecm240': {},
-    'wzp6_ee_nunuH_HZZ_ecm240': {},
-
-    'wzp6_ee_eeH_Htautau_ecm240': {},
-    'wzp6_ee_eeH_Hbb_ecm240': {},
-    'wzp6_ee_eeH_Hcc_ecm240': {},
-    'wzp6_ee_eeH_Hss_ecm240': {},
-    'wzp6_ee_eeH_Hgg_ecm240': {},
-    'wzp6_ee_eeH_HWW_ecm240': {},
-    'wzp6_ee_eeH_HZZ_ecm240': {},
-
-    'wzp6_ee_mumuH_Htautau_ecm240': {},
-    'wzp6_ee_mumuH_Hbb_ecm240': {},
-    'wzp6_ee_mumuH_Hcc_ecm240': {},
-    'wzp6_ee_mumuH_Hss_ecm240': {},
-    'wzp6_ee_mumuH_Hgg_ecm240': {},
-    'wzp6_ee_mumuH_HWW_ecm240': {},
-    'wzp6_ee_mumuH_HZZ_ecm240': {},
-
-    'wzp6_ee_bbH_Htautau_ecm240': {},
-    'wzp6_ee_bbH_Hbb_ecm240': {},
-    'wzp6_ee_bbH_Hcc_ecm240': {},
-    'wzp6_ee_bbH_Hss_ecm240': {},
-    'wzp6_ee_bbH_Hgg_ecm240': {},
-    'wzp6_ee_bbH_HWW_ecm240': {},
-    'wzp6_ee_bbH_HZZ_ecm240': {},
-
-    'wzp6_ee_ccH_Htautau_ecm240': {},
-    'wzp6_ee_ccH_Hbb_ecm240': {},
-    'wzp6_ee_ccH_Hcc_ecm240': {},
-    'wzp6_ee_ccH_Hss_ecm240': {},
-    'wzp6_ee_ccH_Hgg_ecm240': {},
-    'wzp6_ee_ccH_HWW_ecm240': {},
-    'wzp6_ee_ccH_HZZ_ecm240': {},
-
-    'wzp6_ee_ssH_Htautau_ecm240': {},
-    'wzp6_ee_ssH_Hbb_ecm240': {},
-    'wzp6_ee_ssH_Hcc_ecm240': {},
-    'wzp6_ee_ssH_Hss_ecm240': {},
-    'wzp6_ee_ssH_Hgg_ecm240': {},
-    'wzp6_ee_ssH_HWW_ecm240': {},
-    'wzp6_ee_ssH_HZZ_ecm240': {},
-
-    'wzp6_ee_qqH_Htautau_ecm240': {},
-    'wzp6_ee_qqH_Hbb_ecm240': {},
-    'wzp6_ee_qqH_Hcc_ecm240': {},
-    'wzp6_ee_qqH_Hss_ecm240': {},
-    'wzp6_ee_qqH_Hgg_ecm240': {},
-    'wzp6_ee_qqH_HWW_ecm240': {},
-    'wzp6_ee_qqH_HZZ_ecm240': {},
+#Mandatory: List of processes
+processList_EFT = {
+    'noISR_e+e-_noCuts_EWonly':{},
+    'noISR_e+e-_noCuts_cehim_m1':{},
+    'noISR_e+e-_noCuts_cehim_p1':{},
+    'noISR_e+e-_noCuts_cehre_m1':{},
+    'noISR_e+e-_noCuts_cehre_p1':{},
 }
-
 ###Dictionary for prettier names of processes (optional)
 #change them if you want but they don't do anything
 processLabels = {}
@@ -517,7 +440,7 @@ histoList = {
     "Tau_Acoplanarity":         {"name":"Tau_Acoplanarity",           "title":"#Delta#phi(#tau#tau)",                "bin":64, "xmin":-3.2,"xmax":3.2},
     "Tau_DR":                   {"name":"Tau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
     "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":200, "xmin":-1.,"xmax":1.},
-    
+
     "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
     "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
 }

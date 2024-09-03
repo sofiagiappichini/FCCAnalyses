@@ -33,8 +33,8 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",,
+    'LL':"c",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
@@ -68,7 +68,7 @@ ana_tex = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = False
+LOGY = True
 
 #now you can list all the histograms that you want to plot
 VARIABLES = [
@@ -652,7 +652,7 @@ VARIABLES_NuNu = [
     "Tau_cos",
 
     #"Recoil",
-    "Collinear_mass",
+    #"Collinear_mass",
     "Visible_mass",
 ]
 
@@ -677,28 +677,33 @@ backgrounds_all = [
     "wzp6_ee_tautauH_Hgg_ecm240",
     "wzp6_ee_tautauH_HVV_ecm240",
 
+    "wzp6_ee_nunuH_Htautau_ecm240",
     "wzp6_ee_nunuH_HQQ_ecm240",
     "wzp6_ee_nunuH_Hgg_ecm240",
     "wzp6_ee_nunuH_HVV_ecm240",
 
+    "wzp6_ee_eeH_Htautau_ecm240",
     "wzp6_ee_eeH_HQQ_ecm240",
     "wzp6_ee_eeH_Hgg_ecm240",
     "wzp6_ee_eeH_HVV_ecm240",
 
+    "wzp6_ee_mumuH_Htautau_ecm240",
     "wzp6_ee_mumuH_HQQ_ecm240",
     "wzp6_ee_mumuH_Hgg_ecm240",
     "wzp6_ee_mumuH_HVV_ecm240",
 
+    "wzp6_ee_ZheavyH_Htautau_ecm240",
     "wzp6_ee_ZheavyH_HQQ_ecm240",
     "wzp6_ee_ZheavyH_Hgg_ecm240",
     "wzp6_ee_ZheavyH_HVV_ecm240",
 
+    "wzp6_ee_ZlightH_Htautau_ecm240",
     "wzp6_ee_ZlightH_HQQ_ecm240",
     "wzp6_ee_ZlightH_Hgg_ecm240",
     "wzp6_ee_ZlightH_HVV_ecm240",
 ]
 
-blegend = {
+legend = {
     'p8_ee_WW_ecm240':"WW",
     'p8_ee_Zqq_ecm240':"Z #rightarrow QQ",
     'p8_ee_ZZ_ecm240':"ZZ",
@@ -706,7 +711,7 @@ blegend = {
     'wzp6_ee_LL_ecm240':"ll",
     'wzp6_ee_tautau_ecm240':"#tau#tau",
 
-    "wzp6_ee_nuenueZ_ecm240":"#nu_e#nu_e Z",
+    "wzp6_ee_nuenueZ_ecm240":"#nu_{e}#nu_{e} Z",
 
     "wzp6_ee_egamma_eZ_ZLL_ecm240":"e#gamma #rightarrow eZ(ll)",
     
@@ -737,9 +742,15 @@ blegend = {
     "wzp6_ee_ZlightH_HQQ_ecm240":"Z(uu, dd, ss)H(QQ)",
     "wzp6_ee_ZlightH_Hgg_ecm240":"Z(uu, dd, ss)H(gg)",
     "wzp6_ee_ZlightH_HVV_ecm240":"Z(uu, dd, ss)H(VV)",
+
+    'wzp6_ee_ZheavyH_Htautau_ecm240':"Z(bb, cc)H(#tau#tau)",
+    'wzp6_ee_ZlightH_Htautau_ecm240':"Z(uu, dd, ss)H(#tau#tau)",
+    'wzp6_ee_eeH_Htautau_ecm240':"Z(ee)H(#tau#tau)",
+    'wzp6_ee_mumuH_Htautau_ecm240':"Z(#mu#mu)H(#tau#tau)",
+    'wzp6_ee_nunuH_Htautau_ecm240':"Z(#nu#nu)H(#tau#tau)",
 }
 
-bcolors = {
+legcolors = {
     'p8_ee_WW_ecm240':ROOT.kGreen-2,
     'p8_ee_Zqq_ecm240':ROOT.kMagenta-2,
     'p8_ee_ZZ_ecm240':ROOT.kGreen-3,
@@ -778,6 +789,12 @@ bcolors = {
     "wzp6_ee_ZlightH_HQQ_ecm240":ROOT.kMagenta-5,
     "wzp6_ee_ZlightH_Hgg_ecm240":ROOT.kMagenta-8,
     "wzp6_ee_ZlightH_HVV_ecm240":ROOT.kMagenta-10,
+
+    'wzp6_ee_ZheavyH_Htautau_ecm240':ROOT.kRed-3,
+    'wzp6_ee_ZlightH_Htautau_ecm240':ROOT.kRed-9,
+    'wzp6_ee_eeH_Htautau_ecm240':ROOT.kBlue-9,
+    'wzp6_ee_mumuH_Htautau_ecm240':ROOT.kBlue-3,
+    'wzp6_ee_nunuH_Htautau_ecm240':ROOT.kGreen-6,
 }
 
 #list of signals, then legend and colors to be assigned to them
@@ -794,22 +811,6 @@ signals_LL = [
 signals_NuNu= [
     'wzp6_ee_nunuH_Htautau_ecm240',
 ]
-
-slegend = {
-    'wzp6_ee_ZheavyH_Htautau_ecm240':"Z(bb, cc)H(#tau#tau)",
-    'wzp6_ee_ZlightH_Htautau_ecm240':"Z(uu, dd, ss)H(#tau#tau)",
-    'wzp6_ee_eeH_Htautau_ecm240':"Z(ee)H(#tau#tau)",
-    'wzp6_ee_mumuH_Htautau_ecm240':"Z(#mu#mu)H(#tau#tau)",
-    'wzp6_ee_nunuH_Htautau_ecm240':"Z(#nu#nu)H(#tau#tau)",
-}
-
-scolors = {
-    'wzp6_ee_ZheavyH_Htautau_ecm240':ROOT.kRed-3,
-    'wzp6_ee_ZlightH_Htautau_ecm240':ROOT.kRed-9,
-    'wzp6_ee_eeH_Htautau_ecm240':ROOT.kBlue-9,
-    'wzp6_ee_mumuH_Htautau_ecm240':ROOT.kBlue-3,
-    'wzp6_ee_nunuH_Htautau_ecm240':ROOT.kGreen-6,
-}
 
 LIST_VAR = {
     "QQ": VARIABLES_QQ,
@@ -868,27 +869,26 @@ for cut in CUTS:
                         tf = ROOT.TFile.Open(fin, 'READ')
                         h = tf.Get(variable)
                         hh = copy.deepcopy(h)
-                        if hh is not None:
-                            hh.SetDirectory(0)
-                            histos.append(hh)
-                            colors.append(scolors[s])
-                            leg.AddEntry(histos[-1], slegend[s], "l")
+                        hh.SetDirectory(0)
+                        histos.append(hh)
+                        colors.append(legcolors[s])
+                        leg.AddEntry(histos[-1], legend[s], "l")
                 nsig=len(histos)
 
                 if nbkg!=0:
                     #for the common backgrounds i want to keep them separate into different histograms
                     #no need to have the ones that are empty
                     for b in backgrounds_all:
-                        fin = f"{directory}{b}_{cut}_histo.root"
-                        if file_exists(fin):
-                            tf = ROOT.TFile.Open(fin, 'READ')
-                            h = tf.Get(variable)
-                            hh = copy.deepcopy(h)
-                            if hh is not None:
+                        if b not in LIST_S[cat]:
+                            fin = f"{directory}{b}_{cut}_histo.root"
+                            if file_exists(fin):
+                                tf = ROOT.TFile.Open(fin, 'READ')
+                                h = tf.Get(variable)
+                                hh = copy.deepcopy(h)
                                 hh.SetDirectory(0)
                                 histos.append(hh)
-                                colors.append(bcolors[b])
-                                leg2.AddEntry(histos[-1], blegend[b], "f")
+                                colors.append(legcolors[b])
+                                leg2.AddEntry(histos[-1], legend[b], "f")
 
                     #merge backgrounds in plotting
                     '''i = 0
@@ -916,14 +916,6 @@ for cut in CUTS:
                     
                     #drawing stack for backgrounds
                     hStackBkg = ROOT.THStack("hStackBkg", "")
-                    if LOGY==True :
-                        hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                        hStackBkg.SetMaximum(1e21) #leave some space on top for the legend
-                    else:
-                        max_y = hStackBkg.GetMaximum() 
-                        # Set the y-axis range with additional white space
-                        hStackBkg.SetMinimum(0)
-                        hStackBkg.SetMaximum(max_y*2.5)
 
                     BgMCHistYieldsDic = {}
                     for i in range(nsig, len(histos)):
@@ -940,6 +932,19 @@ for cut in CUTS:
                     BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
                     for h in BgMCHistYieldsDic:
                         hStackBkg.Add(h)
+
+                    if LOGY==True :
+                        hStackBkg.SetMinimum(1e-5) #change the range to be plotted
+                        hStackBkg.SetMaximum(1e21) #leave some space on top for the legend
+                    else:
+                        h = hStackBkg.GetHists() #list of histograms 
+                        last = 0
+                        for item in h:
+                            if (last<item.GetMaximum()):
+                                last = item.GetMaximum() 
+                            # Set the y-axis range with additional white space
+                        #hStackBkg.SetMinimum(0)
+                        hStackBkg.SetMaximum(last*2.5)
 
                     #draw the histograms
                     hStackBkg.Draw("HIST")
@@ -1029,7 +1034,7 @@ for cut in CUTS:
                     canvas.Modified()
                     canvas.Update()
 
-                    dir = DIR_PLOTS + "/" + sub + "/" + cut + "/"
+                    dir = DIR_PLOTS + "/" + cat + "/" + sub + "/" + cut + "/"
                     make_dir_if_not_exists(dir)
 
                     canvas.SaveAs(dir + variable + "_log.png")
@@ -1044,7 +1049,7 @@ for cut in CUTS:
                     canvas.Modified()
                     canvas.Update()
 
-                    dir = DIR_PLOTS + "/" + sub + "/" + cut + "/"
+                    dir = DIR_PLOTS + "/" + cat + "/" + sub + "/" + cut + "/"
                     make_dir_if_not_exists(dir)
 
                     canvas.SaveAs(dir + variable + ".png")

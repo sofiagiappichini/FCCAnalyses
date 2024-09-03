@@ -1,8 +1,18 @@
 import os, copy # tagging
 import ROOT
 
+EFT = True
+
 #Mandatory: List of processes
-processList = {
+processList_EFT = {
+    'noISR_e+e-_noCuts_EWonly':{},
+    'noISR_e+e-_noCuts_cehim_m1':{},
+    'noISR_e+e-_noCuts_cehim_p1':{},
+    'noISR_e+e-_noCuts_cehre_m1':{},
+    'noISR_e+e-_noCuts_cehre_p1':{},
+}
+
+processList_xsec = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -91,13 +101,26 @@ processList = {
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/winter2023/IDEA/"
 
-inputDir = "/ceph/sgiappic/HiggsCP/winter23"
+inputDir_xsec = "/ceph/sgiappic/HiggsCP/winter23"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
+outputDir_xsec   = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
+
+inputDir_EFT = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
+
+outputDir_EFT = "/ceph/sgiappic/HiggsCP/CP/stage1"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
+
+if EFT :
+    processList = processList_EFT
+    inputDir = inputDir_EFT
+    outputDir = outputDir_EFT
+else:
+    processList = processList_xsec
+    inputDir = inputDir_xsec
+    outputDir = outputDir_xsec
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -346,6 +369,18 @@ class RDFanalysis():
 
                 .Define("GenZ",   "FCCAnalyses::MCParticle::sel_pdgID(23, true)(Particle)")
                 .Define("n_GenZ",   "FCCAnalyses::MCParticle::get_n(GenZ)")
+                .Define("GenZ_e", "FCCAnalyses::MCParticle::get_e(GenZ)")
+                .Define("GenZ_p", "FCCAnalyses::MCParticle::get_p(GenZ)")
+                .Define("GenZ_pt", "FCCAnalyses::MCParticle::get_pt(GenZ)")
+                .Define("GenZ_px", "FCCAnalyses::MCParticle::get_px(GenZ)")
+                .Define("GenZ_py", "FCCAnalyses::MCParticle::get_py(GenZ)")
+                .Define("GenZ_pz", "FCCAnalyses::MCParticle::get_pz(GenZ)")
+                .Define("GenZ_y", "FCCAnalyses::MCParticle::get_y(GenZ)")
+                .Define("GenZ_mass",  "FCCAnalyses::MCParticle::get_mass(GenZ)")
+                .Define("GenZ_eta", "FCCAnalyses::MCParticle::get_eta(GenZ)")
+                .Define("GenZ_theta", "FCCAnalyses::MCParticle::get_theta(GenZ)")
+                .Define("GenZ_phi", "FCCAnalyses::MCParticle::get_phi(GenZ)")
+                .Define("GenZ_charge", "FCCAnalyses::MCParticle::get_charge(GenZ)")
 
                 .Define("GenW",   "FCCAnalyses::MCParticle::sel_pdgID(24, true)(Particle)")
                 .Define("n_GenW",   "FCCAnalyses::MCParticle::get_n(GenW)")
@@ -827,8 +862,22 @@ class RDFanalysis():
             "FSGenPhoton_charge",
             #"FSGenPhoton_parentPDG",
 
-            #"n_GenZ",
+            "n_GenZ",
+            "GenZ_e",
+            "GenZ_p", 
+            "GenZ_pt", 
+            "GenZ_px", 
+            "GenZ_py", 
+            "GenZ_pz", 
+            "GenZ_y", 
+            "GenZ_mass",
+            "GenZ_eta", 
+            "GenZ_theta", 
+            "GenZ_phi", 
+            "GenZ_charge", 
+
             #"n_GenW",
+            
             "n_GenHiggs",
             "GenHiggs_e",
             "GenHiggs_p", 
