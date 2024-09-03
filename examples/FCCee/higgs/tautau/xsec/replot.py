@@ -33,7 +33,7 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':"c",
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
     'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }

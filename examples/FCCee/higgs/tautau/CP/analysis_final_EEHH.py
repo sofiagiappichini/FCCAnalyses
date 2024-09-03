@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir_EFT = "/ceph/sgiappic/HiggsCP/CP/stage1"
+inputDir = "/ceph/sgiappic/HiggsCP/CP/stage2_id2"
 
 #Optional: output directory, default is local running directory
-outputDir_EFT = "/ceph/sgiappic/HiggsCP/CP/stage2"
+outputDir = "/ceph/sgiappic/HiggsCP/CP/final_id2"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -21,7 +21,7 @@ nCPUS = 4
 doTree = False
 
 #Mandatory: List of processes
-processList_EFT = {
+processList = {
     'noISR_e+e-_noCuts_EWonly':{},
     'noISR_e+e-_noCuts_cehim_m1':{},
     'noISR_e+e-_noCuts_cehim_p1':{},
@@ -36,7 +36,14 @@ processLabels = {}
 procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add provate samples as it is not an offical process
-procDictAdd = {}
+procDictAdd = {
+    'noISR_e+e-_noCuts_EWonly':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.00051559935862, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'noISR_e+e-_noCuts_cehim_m1':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.00051749741618, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'noISR_e+e-_noCuts_cehim_p1':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.00051749741618, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'noISR_e+e-_noCuts_cehre_m1':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.00058001482393, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'noISR_e+e-_noCuts_cehre_p1':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.00045498699833000005, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+}
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
@@ -165,6 +172,18 @@ histoList = {
     "FSGenPhoton_theta":                {"name":"FSGenPhoton_theta",              "title":"Final state gen photons #theta",                 "bin":64, "xmin":0,"xmax":3.2},
     "FSGenPhoton_phi":                  {"name":"FSGenPhoton_phi",                "title":"Final state gen photons #phi",                   "bin":64, "xmin":-3.2,"xmax":3.2},
     "FSGenPhoton_charge":               {"name":"FSGenPhoton_charge",             "title":"Final state gen photons charge",                 "bin":3, "xmin":-1.5,"xmax":1.5},
+
+    "GenZ_e":                       {"name":"GenZ_e",                  "title":"Gen Z energy [GeV]",           "bin":150, "xmin":0, "xmax":150},
+    "GenZ_p":                       {"name":"GenZ_p",                  "title":"Gen Z p [GeV]",                "bin":150, "xmin":0 ,"xmax":150},
+    "GenZ_pt":                      {"name":"GenZ_pt",                 "title":"Gen Z p_{T} [GeV]",            "bin":150, "xmin":0 ,"xmax":150},
+    "GenZ_px":                      {"name":"GenZ_px",                 "title":"Gen Z p_{x} [GeV]",            "bin":300, "xmin":-150 ,"xmax":150},
+    "GenZ_py":                      {"name":"GenZ_py",                 "title":"Gen Z p_{y} [GeV]",            "bin":300, "xmin":-150 ,"xmax":150},
+    "GenZ_pz":                      {"name":"GenZ_pz",                 "title":"Gen Z p_{z} [GeV]",            "bin":300, "xmin":-150 ,"xmax":150},
+    "GenZ_y":                       {"name":"GenZ_y",                  "title":"Gen Z rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    "GenZ_mass":                    {"name":"GenZ_y",                  "title":"Gen Z M [GeV]",                "bin":50, "xmin":90, "xmax":140},
+    "GenZ_eta":                     {"name":"GenZ_eta",                "title":"Gen Z #eta",                   "bin":60, "xmin":-3,"xmax":3},
+    "GenZ_theta":                   {"name":"GenZ_theta",              "title":"Gen Z #theta",                 "bin":64, "xmin":0,"xmax":3.2},
+    "GenZ_phi":                     {"name":"GenZ_phi",                "title":"Gen Z #phi",                   "bin":64, "xmin":-3.2,"xmax":3.2},
 
     "n_GenHiggs":                       {"name":"n_GenHiggs",                  "title":"Number of gen Higgs",              "bin":5, "xmin":-0.5, "xmax":4.5},
     "GenHiggs_e":                       {"name":"GenHiggs_e",                  "title":"Gen Higgs energy [GeV]",           "bin":150, "xmin":0, "xmax":150},
@@ -371,6 +390,8 @@ histoList = {
     "TauFromJet_R5_theta":      {"name":"TauFromJet_R5_theta",               "title":"#tau from jet_{R5} #theta",                         "bin":64, "xmin":0,"xmax":3.2},
     "TauFromJet_R5_phi":        {"name":"TauFromJet_R5_phi",                 "title":"#tau from jet_{R5} #phi",                           "bin":64, "xmin":-3.2,"xmax":3.2},
     "TauFromJet_R5_e":          {"name":"TauFromJet_R5_e",                   "title":"#tau from jet_{R5} energy [GeV]",                   "bin":100,"xmin":0 ,"xmax":100},
+    "TauFromJet_R5_eta":        {"name":"TauFromJet_R5_eta",                 "title":"#tau from jet_{R5} #eta",                           "bin":64, "xmin":-3.2,"xmax":3.2},
+    "TauFromJet_R5_y":          {"name":"TauFromJet_R5_y",                   "title":"#tau from jet_{R5} rapidity",                       "bin":80,"xmin":-4. ,"xmax":4.},
     "TauFromJet_R5_charge":     {"name":"TauFromJet_R5_charge",              "title":"#tau from jet_{R5} charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "TauFromJet_R5_type":       {"name":"TauFromJet_R5_type",                "title":"#tau from jet_{R5} decay type",                     "bin":100, "xmin":-20, "xmax":80},
     "TauFromJet_R5_mass":       {"name":"TauFromJet_R5_mass",                "title":"#tau from jet_{R5} mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
@@ -383,6 +404,8 @@ histoList = {
     "TauFromJet_pz":            {"name":"TauFromJet_pz",                  "title":"#tau from jet_{kt} p_{z} [GeV]",                    "bin":200,"xmin":-100 ,"xmax":100},
     "TauFromJet_theta":         {"name":"TauFromJet_theta",               "title":"#tau from jet_{kt} #theta",                         "bin":64, "xmin":0,"xmax":3.2},
     "TauFromJet_phi":           {"name":"TauFromJet_phi",                 "title":"#tau from jet_{kt} #phi",                           "bin":64, "xmin":-3.2,"xmax":3.2},
+    "TauFromJet_eta":           {"name":"TauFromJet_eta",                 "title":"#tau from jet_{kt} #eta",                           "bin":64, "xmin":-3.2,"xmax":3.2},
+    "TauFromJet_y":             {"name":"TauFromJet_y",                   "title":"#tau from jet_{kt} rapidity",                       "bin":80,"xmin":-4. ,"xmax":4.},
     "TauFromJet_e":             {"name":"TauFromJet_e",                   "title":"#tau from jet_{kt} energy [GeV]",                   "bin":100,"xmin":0 ,"xmax":100},
     "TauFromJet_charge":        {"name":"TauFromJet_charge",              "title":"#tau from jet_{kt} charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "TauFromJet_type":          {"name":"TauFromJet_type",                "title":"#tau from jet_{kt} decay type",                     "bin":100, "xmin":-20, "xmax":80},
@@ -425,17 +448,17 @@ histoList = {
     "TauLead_y":                {"name":"TauLead_y",                  "title":"#tau_{lead} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "TauLead_mass":             {"name":"TauLead_mass",               "title":"#tau_{lead} mass",                   "bin":30, "xmin":0., "xmax":3.},
 
-    "TauSub_px":                {"name":"TauSub_px",                 "title":"#tau_{second} p_{x} [GeV]",            "bin":200,"xmin":-100 ,"xmax":100}, 
-    "TauSub_py":                {"name":"TauSub_py",                 "title":"#tau_{second} p_{y} [GeV]",            "bin":200,"xmin":-100 ,"xmax":100}, 
-    "TauSub_pz":                {"name":"TauSub_pz",                 "title":"#tau_{second} p_{z} [GeV]",            "bin":200,"xmin":-100 ,"xmax":100}, 
-    "TauSub_p":                 {"name":"TauSub_p",                  "title":"#tau_{second} p [GeV]",                "bin":100,"xmin":0 ,"xmax":100},
-    "TauSub_pt":                {"name":"TauSub_pt",                 "title":"#tau_{second} p_{T} [GeV]",            "bin":100,"xmin":0 ,"xmax":100},
-    "TauSub_e":                 {"name":"TauSub_e",                  "title":"#tau_{second} energy [GeV]",           "bin":100, "xmin":0, "xmax":100},
-    "TauSub_eta":               {"name":"TauSub_eta",                "title":"#tau_{second} #eta",                   "bin":60, "xmin":-3,"xmax":3},
-    "TauSub_phi":               {"name":"TauSub_phi",                "title":"#tau_{second} #phi",                   "bin":64, "xmin":-3.2,"xmax":3.2},
-    "TauSub_theta":             {"name":"TauSub_theta",              "title":"#tau_{second} #theta",                 "bin":64, "xmin":0,"xmax":3.2},
-    "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{second} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "TauSub_mass":              {"name":"TauSub_mass",               "title":"#tau_{second} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    "TauSub_px":                {"name":"TauSub_px",                 "title":"#tau_{sublead} p_{x} [GeV]",            "bin":200,"xmin":-100 ,"xmax":100}, 
+    "TauSub_py":                {"name":"TauSub_py",                 "title":"#tau_{sublead} p_{y} [GeV]",            "bin":200,"xmin":-100 ,"xmax":100}, 
+    "TauSub_pz":                {"name":"TauSub_pz",                 "title":"#tau_{sublead} p_{z} [GeV]",            "bin":200,"xmin":-100 ,"xmax":100}, 
+    "TauSub_p":                 {"name":"TauSub_p",                  "title":"#tau_{sublead} p [GeV]",                "bin":100,"xmin":0 ,"xmax":100},
+    "TauSub_pt":                {"name":"TauSub_pt",                 "title":"#tau_{sublead} p_{T} [GeV]",            "bin":100,"xmin":0 ,"xmax":100},
+    "TauSub_e":                 {"name":"TauSub_e",                  "title":"#tau_{sublead} energy [GeV]",           "bin":100, "xmin":0, "xmax":100},
+    "TauSub_eta":               {"name":"TauSub_eta",                "title":"#tau_{sublead} #eta",                   "bin":60, "xmin":-3,"xmax":3},
+    "TauSub_phi":               {"name":"TauSub_phi",                "title":"#tau_{sublead} #phi",                   "bin":64, "xmin":-3.2,"xmax":3.2},
+    "TauSub_theta":             {"name":"TauSub_theta",              "title":"#tau_{sublead} #theta",                 "bin":64, "xmin":0,"xmax":3.2},
+    "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{sublead} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "TauSub_mass":              {"name":"TauSub_mass",               "title":"#tau_{sublead} mass",                   "bin":30, "xmin":0., "xmax":3.},
 
     "Tau_Acoplanarity":         {"name":"Tau_Acoplanarity",           "title":"#Delta#phi(#tau#tau)",                "bin":64, "xmin":-3.2,"xmax":3.2},
     "Tau_DR":                   {"name":"Tau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
@@ -443,4 +466,87 @@ histoList = {
 
     "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
     "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
+
+    "GenDiTau_DEta":              {"name":"GenDiTau_DEta",              "title":"Gen di-#tau #Delta#eta",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "GenDiTau_DPhi":              {"name":"GenDiTau_DPhi",              "title":"Gen di-#tau #Delta#phi",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "GenDiTau_absDEta":           {"name":"GenDiTau_absDEta",           "title":"Gen di-#tau |#Delta#eta|",                "bin":32, "xmin":0,"xmax":3.2},
+    "GenDiTau_absDPhi":           {"name":"GenDiTau_absDPhi",           "title":"Gen di-#tau |#Delta#phi|",                "bin":32, "xmin":0,"xmax":3.2},
+    "GenDiTau_cos":               {"name":"GenDiTau_cos",               "title":"Gen di-#tau cos#theta",                   "bin":200, "xmin":-1.,"xmax":1.},
+    "GenDiTau_DR":                {"name":"GenDiTau_DR",                "title":"Gen di-#tau #Delta R",                    "bin":70, "xmin":0,"xmax":7.},
+
+    "GenDiTau_DEta":           {"name":"GenDiTau_DEta",           "title":"Gen di-#tau #Delta#eta in H rest frame",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "GenDiTau_DPhi":           {"name":"GenDiTau_DPhi",           "title":"Gen di-#tau #Delta#phi in H rest frame",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+
+    "HRF_GenTau_px":                 {"name":"HRF_GenTau_px",                 "title":"Gen #tau p_{x} [GeV] in H rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "HRF_GenTau_py":                 {"name":"HRF_GenTau_py",                 "title":"Gen #tau p_{y} [GeV] in H rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "HRF_GenTau_pz":                 {"name":"HRF_GenTau_pz",                 "title":"Gen #tau p_{z} [GeV] in H rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "HRF_GenTau_p":                  {"name":"HRF_GenTau_p",                  "title":"Gen #tau p [GeV] in H rest frame",                "bin":150, "xmin":0, "xmax":150},
+    "HRF_GenTau_pt":                 {"name":"HRF_GenTau_pt",                 "title":"Gen #tau p_{T} [GeV] in H rest frame",            "bin":150, "xmin":0, "xmax":150},
+    "HRF_GenTau_e":                  {"name":"HRF_GenTau_e",                  "title":"Gen #tau energy [GeV] in H rest frame",           "bin":150, "xmin":0, "xmax":150},
+    "HRF_GenTau_eta":                {"name":"HRF_GenTau_eta",                "title":"Gen #tau #eta in H rest frame",                   "bin":60, "xmin":-3,"xmax":3},
+    "HRF_GenTau_phi":                {"name":"HRF_GenTau_phi",                "title":"Gen #tau #phi in H rest frame",                   "bin":64, "xmin":-3.2,"xmax":3.2},
+    "HRF_GenTau_theta":              {"name":"HRF_GenTau_theta",              "title":"Gen #tau #theta in H rest frame",                 "bin":64, "xmin":0,"xmax":3.2},
+    "HRF_GenTau_y":                  {"name":"HRF_GenTau_y",                  "title":"Gen #tau rapidity in H rest frame",               "bin":40, "xmin":-4., "xmax":4.},
+        
+    "HRF_GenDiTau_DEta":           {"name":"HRF_GenDiTau_DEta",           "title":"Gen di-#tau #Delta#eta in H rest frame",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "HRF_GenDiTau_DPhi":           {"name":"HRF_GenDiTau_DPhi",           "title":"Gen di-#tau #Delta#phi in H rest frame",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+
+    "GenThetastar":           {"name":"GenThetastar",         "title":"Gen #theta^{*}",                  "bin":32, "xmin":0,"xmax":3.2},
+    "GenTheta2":              {"name":"GenTheta2",            "title":"Gen #theta_{2}",                  "bin":32, "xmin":0,"xmax":3.2},
+    "GenPhi1":                {"name":"GenPhi1",              "title":"Gen #phi_{1}",                    "bin":32, "xmin":0,"xmax":3.2},
+    "GenPhi":                 {"name":"GenPhi",               "title":"Gen #phi",                        "bin":32, "xmin":0,"xmax":3.2},
+    "GenTheta1":              {"name":"GenTheta1",            "title":"Gen #theta_{1}",                  "bin":32, "xmin":0,"xmax":3.2},
+
+    "GenThetastar_cos":           {"name":"GenThetastar_cos",         "title":"Gen cos#theta^{*}",                  "bin":50, "xmin":-1.,"xmax":1.},
+    "GenTheta2_cos":              {"name":"GenTheta2_cos",            "title":"Gen cos#theta_{2}",                  "bin":50, "xmin":-1.,"xmax":1.},
+    "GenPhi1_cos":                {"name":"GenPhi1_cos",              "title":"Gen cos#phi_{1}",                    "bin":50, "xmin":-1.,"xmax":1.},
+    "GenPhi_cos":                 {"name":"GenPhi_cos",               "title":"Gen cos#phi",                        "bin":50, "xmin":-1.,"xmax":1.},
+    "GenTheta1_cos":              {"name":"GenTheta1_cos",            "title":"Gen cos#theta_{1}",                  "bin":50, "xmin":-1.,"xmax":1.},
+
+    "RecoDiTau_DEta":               {"name":"RecoDiTau_DEta",           "title":"Reco di-#tau #Delta#eta",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "RecoDiTau_DPhi":               {"name":"RecoDiTau_DPhi",           "title":"Reco di-#tau #Delta#phi",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+
+    "RecoDiElectron_DEta":           {"name":"RecoDiElectron_DEta",           "title":"Reco di-electron #Delta#eta",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "RecoDiElectron_DPhi":           {"name":"RecoDiElectron_DPhi",           "title":"Reco di-electron #Delta#phi",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+
+    "HRF_RecoTau_px":                 {"name":"HRF_RecoTau_px",                 "title":"Reco #tau p_{x} [GeV] in H rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "HRF_RecoTau_py":                 {"name":"HRF_RecoTau_py",                 "title":"Reco #tau p_{y} [GeV] in H rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "HRF_RecoTau_pz":                 {"name":"HRF_RecoTau_pz",                 "title":"Reco #tau p_{z} [GeV] in H rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "HRF_RecoTau_p":                  {"name":"HRF_RecoTau_p",                  "title":"Reco #tau p [GeV] in H rest frame",                "bin":150, "xmin":0, "xmax":150},
+    "HRF_RecoTau_pt":                 {"name":"HRF_RecoTau_pt",                 "title":"Reco #tau p_{T} [GeV] in H rest frame",            "bin":150, "xmin":0, "xmax":150},
+    "HRF_RecoTau_e":                  {"name":"HRF_RecoTau_e",                  "title":"Reco #tau energy [GeV] in H rest frame",           "bin":150, "xmin":0, "xmax":150},
+    "HRF_RecoTau_eta":                {"name":"HRF_RecoTau_eta",                "title":"Reco #tau #eta in H rest frame",                   "bin":60, "xmin":-3,"xmax":3},
+    "HRF_RecoTau_phi":                {"name":"HRF_RecoTau_phi",                "title":"Reco #tau #phi in H rest frame",                   "bin":64, "xmin":-3.2,"xmax":3.2},
+    "HRF_RecoTau_theta":              {"name":"HRF_RecoTau_theta",              "title":"Reco #tau #theta in H rest frame",                 "bin":64, "xmin":0,"xmax":3.2},
+    "HRF_RecoTau_y":                  {"name":"HRF_RecoTau_y",                  "title":"Reco #tau rapidity in H rest frame",               "bin":40, "xmin":-4., "xmax":4.},
+        
+    "HRF_RecoDiTau_DEta":           {"name":"HRF_RecoDiTau_DEta",           "title":"Reco di-#tau #Delta#eta in H rest frame",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "HRF_RecoDiTau_DPhi":           {"name":"HRF_RecoDiTau_DPhi",           "title":"Reco di-#tau #Delta#phi in H rest frame",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+
+    "ZRF_RecoElectron_px":                 {"name":"ZRF_RecoElectron_px",                 "title":"Reco electron p_{x} [GeV] in Z rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "ZRF_RecoElectron_py":                 {"name":"ZRF_RecoElectron_py",                 "title":"Reco electron p_{y} [GeV] in Z rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "ZRF_RecoElectron_pz":                 {"name":"ZRF_RecoElectron_pz",                 "title":"Reco electron p_{z} [GeV] in Z rest frame",            "bin":200,"xmin":-100 ,"xmax":100},
+    "ZRF_RecoElectron_p":                  {"name":"ZRF_RecoElectron_p",                  "title":"Reco electron p [GeV] in Z rest frame",                "bin":150, "xmin":0, "xmax":150},
+    "ZRF_RecoElectron_pt":                 {"name":"ZRF_RecoElectron_pt",                 "title":"Reco electron p_{T} [GeV] in Z rest frame",            "bin":150, "xmin":0, "xmax":150},
+    "ZRF_RecoElectron_e":                  {"name":"ZRF_RecoElectron_e",                  "title":"Reco electron energy [GeV] in Z rest frame",           "bin":150, "xmin":0, "xmax":150},
+    "ZRF_RecoElectron_eta":                {"name":"ZRF_RecoElectron_eta",                "title":"Reco electron #eta in Z rest frame",                   "bin":60, "xmin":-3,"xmax":3},
+    "ZRF_RecoElectron_phi":                {"name":"ZRF_RecoElectron_phi",                "title":"Reco electron #phi in Z rest frame",                   "bin":64, "xmin":-3.2,"xmax":3.2},
+    "ZRF_RecoElectron_theta":              {"name":"ZRF_RecoElectron_theta",              "title":"Reco electron #theta in Z rest frame",                 "bin":64, "xmin":0,"xmax":3.2},
+    "ZRF_RecoElectron_y":                  {"name":"ZRF_RecoElectron_y",                  "title":"Reco electron rapidity in Z rest frame",               "bin":40, "xmin":-4., "xmax":4.},
+        
+    "ZRF_RecoDiElectron_DEta":           {"name":"ZRF_RecoDiElectron_DEta",           "title":"Reco di-electron #Delta#eta in Z rest frame",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "ZRF_RecoDiElectron_DPhi":           {"name":"ZRF_RecoDiElectron_DPhi",           "title":"Reco di-electron #Delta#phi in Z rest frame",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+
+    "RecoThetastar":           {"name":"RecoThetastar",         "title":"Reco #theta^{*}",                  "bin":32, "xmin":0,"xmax":3.2},
+    "RecoTheta2":              {"name":"RecoTheta2",            "title":"Reco #theta_{2}",                  "bin":32, "xmin":0,"xmax":3.2},
+    "RecoPhi1":                {"name":"RecoPhi1",              "title":"Reco #phi_{1}",                    "bin":32, "xmin":0,"xmax":3.2},
+    "RecoPhi":                 {"name":"RecoPhi",               "title":"Reco #phi",                        "bin":32, "xmin":0,"xmax":3.2},
+    "RecoTheta1":              {"name":"RecoTheta1",            "title":"Reco #theta_{1}",                  "bin":32, "xmin":0,"xmax":3.2},
+
+    "RecoThetastar_cos":           {"name":"RecoThetastar_cos",         "title":"Reco cos#theta^{*}",                  "bin":50, "xmin":-1.,"xmax":1.},
+    "RecoTheta2_cos":              {"name":"RecoTheta2_cos",            "title":"Reco cos#theta_{2}",                  "bin":50, "xmin":-1.,"xmax":1.},
+    "RecoPhi1_cos":                {"name":"RecoPhi1_cos",              "title":"Reco cos#phi_{1}",                    "bin":50, "xmin":-1.,"xmax":1.},
+    "RecoPhi_cos":                 {"name":"RecoPhi_cos",               "title":"Reco cos#phi",                        "bin":50, "xmin":-1.,"xmax":1.},
+    "RecoTheta1_cos":              {"name":"RecoTheta1_cos",            "title":"Reco cos#theta_{1}",                  "bin":50, "xmin":-1.,"xmax":1.},
+
 }

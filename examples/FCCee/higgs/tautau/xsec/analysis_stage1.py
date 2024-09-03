@@ -1,18 +1,7 @@
 import os, copy # tagging
 import ROOT
 
-EFT = True
-
-#Mandatory: List of processes
-processList_EFT = {
-    'noISR_e+e-_noCuts_EWonly':{},
-    'noISR_e+e-_noCuts_cehim_m1':{},
-    'noISR_e+e-_noCuts_cehim_p1':{},
-    'noISR_e+e-_noCuts_cehre_m1':{},
-    'noISR_e+e-_noCuts_cehre_p1':{},
-}
-
-processList_xsec = {
+processList = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -101,26 +90,13 @@ processList_xsec = {
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/winter2023/IDEA/"
 
-inputDir_xsec = "/ceph/sgiappic/HiggsCP/winter23"
+inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
 #Optional: output directory, default is local running directory
-outputDir_xsec   = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
-
-inputDir_EFT = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
-
-outputDir_EFT = "/ceph/sgiappic/HiggsCP/CP/stage1"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
-
-if EFT :
-    processList = processList_EFT
-    inputDir = inputDir_EFT
-    outputDir = outputDir_EFT
-else:
-    processList = processList_xsec
-    inputDir = inputDir_xsec
-    outputDir = outputDir_xsec
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
