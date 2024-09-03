@@ -678,7 +678,6 @@ class RDFanalysis():
 
                 "ZRF_GenDiMuon_DEta", 
                 "ZRF_GenDiMuon_DPhi", 
-                "ZRF_GenMuon_thetaH",
 
                 "HiggsRF_GenTau_thetastar",
                 "ZRF_GenMuon_theta2",

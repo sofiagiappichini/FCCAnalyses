@@ -110,7 +110,7 @@ class RDFanalysis():
 
                 .Filter("n_TauFromJet_R5==1 && n_Jets_R5_sel==0")
 
-                .Define("ThreeLeptons",    "((n_RecoElectrons==3 or n_RecoMuons==3) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + TauFromJet_R5_charge.at(0))==0)*1.0")
+                .Define("ThreeLeptons",    "(((n_RecoElectrons==3 and n_RecoMuons==0) or (n_RecoElectrons==0 and n_RecoMuons==3)) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + TauFromJet_R5_charge.at(0))==0)*1.0")
                 .Define("OnePair",     "((n_RecoElectrons==2 and n_RecoMuons==1 and (RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0 and (RecoMuon_charge.at(0) + TauFromJet_R5_charge.at(0))==0) or (n_RecoElectrons==1 and n_RecoMuons==2 and (RecoMuon_charge.at(0) + RecoMuon_charge.at(1))==0 and (RecoElectron_charge.at(0) + TauFromJet_R5_charge.at(0))==0))*1.0")
 
                 .Filter("(ThreeLeptons==1 || OnePair==1)") 

@@ -34,7 +34,7 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",,
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
@@ -55,7 +55,7 @@ CUTS = [
 
 #now you can list all the histograms that you want to plot
 VARIABLES = [
-     ######## Monte-Carlo particles #######
+    ######## Monte-Carlo particles #######
     "n_FSGenElectron",
     "FSGenElectron_e",
     "FSGenElectron_p",
@@ -446,7 +446,7 @@ VARIABLES = [
     "Jets_R5_sel_theta",   
     "Jets_R5_sel_phi",     
     "Jets_R5_sel_mass",      
-    "n_Jets_R5_sel",
+    "n_Jets_R5_sel", 
 ]
 
 VARIABLES_LL = [
@@ -635,7 +635,7 @@ VARIABLES_NuNu = [
     "Tau_cos",
 
     #"Recoil",
-    "Collinear_mass",
+    #"Collinear_mass",
     "Visible_mass",
 ]
 

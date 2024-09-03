@@ -109,7 +109,7 @@ class RDFanalysis():
 
                 ### defining filters for 4 lepton final state based on flavor combination: 4 same flavor, 2 pairs, 1 pair plus one mixed from the taus
 
-                .Define("AllLeptons",    "((n_RecoElectrons==4 or n_RecoMuons==4) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + RecoLepton_charge.at(3))==0)*1.0")
+                .Define("AllLeptons",    "(((n_RecoElectrons==4 and n_RecoMuons==0) or (n_RecoElectrons==0 and n_RecoMuons==4)) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + RecoLepton_charge.at(3))==0)*1.0")
                 .Define("TwoPairs",     "((n_RecoElectrons==2 and n_RecoMuons==2) and (RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0 and (RecoMuon_charge.at(0) + RecoMuon_charge.at(1))==0)*1.0")
                 .Define("OnePair",     "(((n_RecoElectrons==3 and n_RecoMuons==1) or (n_RecoElectrons==1 and n_RecoMuons==3))  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + RecoLepton_charge.at(3))==0)*1.0")
 

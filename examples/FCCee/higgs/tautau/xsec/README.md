@@ -10,6 +10,7 @@
     - [Stage 1 ntuples](#stage-1-ntuples)
     - [Stage2 for cross section measurement](#stage2-for-cross-section-measurement)
     - [Final stage](#final-stage)
+    - [Merging histograms](#merging-histograms)
     - [Plotting](#plotting)
     - [Combine](#combine)
     - [Maria Cepeda code](#maria-cepeda-code)
@@ -153,6 +154,10 @@ Two functions are available to determine the origin of two pairs of leptons when
 Here we keep the same categories as stage2 and apply the respective cuts on kinematical variables. 
 
 **Note**: the output should be in separate directories named after the final states so there is no confusion between the files.
+
+### Merging histograms
+
+We want to merge some final states already at this stage so it's easier to plot and also then we can take these histograms for the combine shape analysis. This is done with `merge_histos.py`. Plotting only really works if we merged the histograms already or we need to redifine the sample list.
 
 ### Plotting
 
