@@ -32,10 +32,10 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CP/final_id0/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/CP/final_oneprong/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs/CP/EEHH_id2/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs/CP/EEHH_oneprong/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
@@ -45,7 +45,7 @@ LABELS = {
     "selReco": "No additional selection",
  }
 
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (#pi#pi^{0}#nu)"
+ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (one prong)"
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
@@ -516,6 +516,10 @@ VARIABLES = [
     "TauSub_theta",    
     "TauSub_y",    
     "TauSub_mass",
+
+    "Tau_Acoplanarity",
+    "Tau_DR",
+    "Tau_cos",
 
     "Recoil",
     "Collinear_mass",
