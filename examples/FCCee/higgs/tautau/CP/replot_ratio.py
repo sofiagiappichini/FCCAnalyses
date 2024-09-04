@@ -32,10 +32,10 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CP/final_id2/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/CP/final_alltau/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs/CP/EEHH_id2/normalised/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs/CP/EEHH_alltau/normalised/ratio/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
@@ -755,14 +755,22 @@ scolors = {
 for cut in CUTS:
     for variable in VARIABLES:
 
-        canvas = ROOT.TCanvas("", "", 800, 800)
+        canvas = ROOT.TCanvas("", "", 1000, 1000)
+        #canvas.SetTicks(1, 1)
+
+        pad = ROOT.TPad("", "", 0.0, 0.3, 1.0, 1.0)
+        
+        pad2 = ROOT.TPad("", "", 0.0, 0.0, 1.0, 0.3)
+
+        pad.Draw()
+        pad2.Draw()
+        canvas.cd()
+        pad.cd()
 
         nsig = len(signals)
-        nbkg = 0 #half of the actual number (rounded up) beacuse they go into two colomuns 
 
         #legend coordinates and style
         legsize = 0.04*nsig
-        legsize2 = 0.03*nbkg/2
         leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
         leg.SetFillColor(0)
         leg.SetFillStyle(0)
@@ -771,21 +779,12 @@ for cut in CUTS:
         leg.SetTextSize(0.025)
         leg.SetTextFont(42)
 
-        leg2 = ROOT.TLegend(0.55, 0.70 - legsize2, 0.85, 0.70)
-        leg2.SetNColumns(2)
-        leg2.SetFillColor(0)
-        leg2.SetFillStyle(0)
-        leg2.SetLineColor(0)
-        leg2.SetShadowColor(0)
-        leg2.SetTextSize(0.025)
-        leg2.SetTextFont(42)
-
         #global arrays for histos and colors
         histos = []
         colors = []
+        legend = []
 
         #loop over files for signals and backgrounds and assign corresponding colors and titles
-        #loop to merge different sources into one histograms for easier plotting
         for s in signals:
             fin = f"{DIRECTORY}{s}_{cut}_histo.root"
             with ROOT.TFile(fin) as tf:
@@ -796,91 +795,29 @@ for cut in CUTS:
             colors.append(scolors[s])
             leg.AddEntry(histos[-1], slegend[s], "l")
 
-        if nbkg!=0:
-            for b in backgrounds_all:
-                fin = f"{DIRECTORY}{b}_{cut}_histo.root"
-                with ROOT.TFile(fin) as tf:
-                    h = tf.Get(variable)
-                    hh = copy.deepcopy(h)
-                    hh.SetDirectory(0)
-                if (hh.Integral() > 0): 
-                    histos.append(hh)
-                    colors.append(bcolors[b])
-                    leg2.AddEntry(histos[-1], blegend[b], "f")
-            
-            #drawing stack for backgrounds
-            hStackBkg = ROOT.THStack("hStackBkg", "")
-            BgMCHistYieldsDic = {}
-            for i in range(nsig, len(histos)):
-                h = histos[i]
-                h.SetLineWidth(1)
-                h.SetLineColor(ROOT.kBlack)
-                h.SetFillColor(colors[i])
-                if h.Integral() > 0:
-                    BgMCHistYieldsDic[h.Integral()] = h
-                else:
-                    BgMCHistYieldsDic[-1*nbkg] = h
+        # add the signal histograms
 
-            # sort stack by yields (smallest to largest)
-            BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
-            for h in BgMCHistYieldsDic:
-                hStackBkg.Add(h)
-
-            if LOGY==True :
-                hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                hStackBkg.SetMaximum(1e21) #leave some space on top for the legend
-            else:
-                h = hStackBkg.GetHists() #list of histograms 
-                last = 0
-                for item in h:
-                    if (last<item.GetMaximum()):
-                        last = item.GetMaximum() 
-                    # Set the y-axis range with additional white space
-                #hStackBkg.SetMinimum(0)
-                hStackBkg.SetMaximum(last*2.5)
-
-            #draw the histograms
-            hStackBkg.Draw("HIST")
-
-            # add the signal histograms
-            for i in range(nsig):
-                h = histos[i]
-                h.SetLineWidth(3)
-                h.SetLineColor(colors[i])
+        for i in range(nsig):
+            h = histos[i]
+            h.SetLineWidth(3)
+            h.SetLineColor(colors[i])
+            if i == 0:
+                h.Draw("HIST")
+                h.GetYaxis().SetTitle("Events")
+                #h.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
+                #h.GetXaxis().SetTitleOffset(1.2)
+                if h.Integral()>0:
+                    h.Scale(1./(h.Integral()))
+                max_y = h.GetMaximum() 
+                h.GetYaxis().SetRangeUser(0, max_y*2.5)
+            else: 
+                if h.Integral()>0:
+                    h.Scale(1./(h.Integral()))
                 h.Draw("HIST SAME")
-
-            hStackBkg.GetYaxis().SetTitle("Events")
-            hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
-            #hStackBkg.GetYaxis().SetTitleOffset(1.5)
-            hStackBkg.GetXaxis().SetTitleOffset(1.2)
-            #hStackBkg.GetXaxis().SetLimits(1, 1000)
-
-        else: 
-            # add the signal histograms
-            for i in range(nsig):
-                h = histos[i]
-                h.SetLineWidth(3)
-                h.SetLineColor(colors[i])
-                if i == 0:
-                    h.Draw("HIST")
-                    h.GetYaxis().SetTitle("Events")
-                    h.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
-                    h.GetXaxis().SetTitleOffset(1.2)
-                    if h.Integral()>0:
-                        h.Scale(1./(h.Integral()))
-                    if LOGY==True :
-                        h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
-                    else:
-                        max_y = h.GetMaximum() 
-                        h.GetYaxis().SetRangeUser(0, max_y*2.5 )
-                else: 
-                    if h.Integral()>0:
-                        h.Scale(1./(h.Integral()))
-                    h.Draw("HIST SAME")
-
-        #labels around the plot
+        
         extralab = LABELS[cut]
 
+        #labels around the plot
         if 'ee' in collider:
             leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
         rightText = f'#sqrt{{s}} = {energy} GeV, L={intLumi} ab^{{-1}}'
@@ -900,43 +837,91 @@ for cut in CUTS:
         latex.SetTextSize(0.02)
         latex.DrawLatex(0.18, 0.74, text)
 
+        leg.Draw()
+
         latex.SetTextAlign(31)
         text = '#it{' + leftText + '}'
         latex.SetTextSize(0.03)
-        latex.DrawLatex(0.92, 0.92, text)
 
-        leg.Draw()
-        leg2.Draw()
 
-        # Set Logarithmic scales for both x and y axes
-        if LOGY == True:
-            canvas.SetLogy()
-            canvas.SetTicks(1, 1)
-            canvas.SetLeftMargin(0.14)
-            canvas.SetRightMargin(0.08)
-            canvas.GetFrame().SetBorderSize(12)
+        pad.SetLeftMargin(0.14)
+        pad.SetRightMargin(0.08)
+        pad.GetFrame().SetBorderSize(12)
+        pad.SetBottomMargin(0)
 
-            canvas.RedrawAxis()
-            canvas.Modified()
-            canvas.Update()
+        canvas.cd()
+        
+        #### ratio plot ####
+        pad2.cd()
+ 
+        legend2size = 0.1*(nsig-1)
+        legend2 = ROOT.TLegend(0.16, 0.90 - legend2size, 0.45, 0.74)
+        legend2.SetFillColor(0)
+        legend2.SetFillStyle(0)
+        legend2.SetLineColor(0)
+        legend2.SetShadowColor(0)
+        legend2.SetTextSize(0.04)
+        legend2.SetTextFont(42)
 
-            dir = DIR_PLOTS + "/" + cut + "/"
-            make_dir_if_not_exists(dir)
+        #dummy plot
+        dummy = histos[0].Clone("")
+        for i in range(dummy.GetNbinsX()):
+            dummy.SetBinContent(i,1.0)
+        dummy.SetLineColor(0)
+        dummy.SetMarkerColor(0)
+        dummy.SetLineWidth(0)
+        dummy.SetMarkerSize(0)
+
+        dummy.GetYaxis().SetTitle("Ratio")
+        dummy.GetYaxis().SetTitleSize(0.08)
+        dummy.GetYaxis().CenterTitle()
+        #adjust the range for the ratio here
+        dummy.GetYaxis().SetRangeUser(0.5,1.5)
+        dummy.GetYaxis().SetLabelSize(0.08)
+        dummy.GetYaxis().SetNdivisions(5)
+        dummy.GetYaxis().SetTitleOffset(0.5)
+
+        dummy.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
+        dummy.GetXaxis().SetTitleSize(0.08)
+        dummy.GetXaxis().SetLabelSize(0.08)
+        dummy.GetXaxis().SetTitleOffset(1.2)
+        dummy.Draw("hist")
+            
+        ratio_list = []
+        for i in range(3,nsig):  
+            ratio = histos[i].Clone("")
+            ratio.Divide(histos[0])
+            ratio.SetLineWidth(3)
+            ratio.SetLineColor(colors[i])
+            #print(f"{legend[i]}")
+            ratio.Draw("hist same")
+            ratio_list.append(ratio)
+            #legend2.AddEntry(ratio, legend[i], "l")
+
+        #legend2.Draw()
+        
+        pad2.SetLeftMargin(0.14)
+        pad2.SetRightMargin(0.08)
+        pad2.GetFrame().SetBorderSize(12)
+        pad2.SetTopMargin(0)
+        pad2.SetBottomMargin(0.3)
+        #pad2.SetLogy()
+
+        #canvas.cd()
+
+        #canvas.RedrawAxis()
+        #canvas.Modified()
+        #canvas.Update()
+
+        dir = DIR_PLOTS + "/" + cut + "/"
+        make_dir_if_not_exists(dir)
+
+        if (LOGY == True):
 
             canvas.SaveAs(dir + variable + "_log.png")
-            canvas.SaveAs(dir + variable + "_log.pdf")
+            canvas.SaveAs(dir+ variable + "_log.pdf")
+
         else:
-            canvas.SetTicks(1, 1)
-            canvas.SetLeftMargin(0.14)
-            canvas.SetRightMargin(0.08)
-            canvas.GetFrame().SetBorderSize(12)
-
-            canvas.RedrawAxis()
-            canvas.Modified()
-            canvas.Update()
-
-            dir = DIR_PLOTS + "/" + cut + "/"
-            make_dir_if_not_exists(dir)
 
             canvas.SaveAs(dir + variable + ".png")
-            canvas.SaveAs(dir + variable + ".pdf")
+            canvas.SaveAs(dir+ variable + ".pdf")

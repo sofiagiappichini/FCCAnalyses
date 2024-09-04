@@ -128,6 +128,30 @@ class RDFanalysis():
 
                 .Define("RecoZ1_p4",      "RecoLepton_p4.at(0)")
                 .Define("RecoZ2_p4",      "RecoLepton_p4.at(1)")
+
+                .Define("RecoZ1_px",    "RecoZ1_p4.Px()")
+                .Define("RecoZ1_py",    "RecoZ1_p4.Py()")
+                .Define("RecoZ1_pz",    "RecoZ1_p4.Pz()")
+                .Define("RecoZ1_p",    "RecoZ1_p4.P()")
+                .Define("RecoZ1_pt",    "RecoZ1_p4.Pt()")
+                .Define("RecoZ1_e",     "RecoZ1_p4.E()")
+                .Define("RecoZ1_eta",    "RecoZ1_p4.Eta()")
+                .Define("RecoZ1_phi",    "RecoZ1_p4.Phi()")
+                .Define("RecoZ1_theta",    "RecoZ1_p4.Theta()")
+                .Define("RecoZ1_y",     "RecoZ1_p4.Rapidity()")
+                .Define("RecoZ1_mass",    "RecoZ1_p4.M()")
+
+                .Define("RecoZ2_px",    "RecoZ2_p4.Px()")
+                .Define("RecoZ2_py",    "RecoZ2_p4.Py()")
+                .Define("RecoZ2_pz",    "RecoZ2_p4.Pz()")
+                .Define("RecoZ2_p",    "RecoZ2_p4.P()")
+                .Define("RecoZ2_pt",    "RecoZ2_p4.Pt()")
+                .Define("RecoZ2_e",     "RecoZ2_p4.E()")
+                .Define("RecoZ2_eta",    "RecoZ2_p4.Eta()")
+                .Define("RecoZ2_phi",    "RecoZ2_p4.Phi()")
+                .Define("RecoZ2_theta",    "RecoZ2_p4.Theta()")
+                .Define("RecoZ2_y",     "RecoZ2_p4.Rapidity()")
+                .Define("RecoZ2_mass",    "RecoZ2_p4.M()")
                 
                 .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
                 .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
@@ -624,6 +648,30 @@ class RDFanalysis():
                 "RecoZ_theta",
                 "RecoZ_y",
                 "RecoZ_mass",
+
+                "RecoZ1_px", 
+                "RecoZ1_py",   
+                "RecoZ1_pz",   
+                "RecoZ1_p",    
+                "RecoZ1_pt",   
+                "RecoZ1_e",    
+                "RecoZ1_eta",    
+                "RecoZ1_phi",    
+                "RecoZ1_theta",   
+                "RecoZ1_y",     
+                "RecoZ1_mass",   
+
+                "RecoZ2_px",    
+                "RecoZ2_py",   
+                "RecoZ2_pz",   
+                "RecoZ2_p",   
+                "RecoZ2_pt",  
+                "RecoZ2_e",     
+                "RecoZ2_eta",   
+                "RecoZ2_phi",   
+                "RecoZ2_theta",    
+                "RecoZ2_y",    
+                "RecoZ2_mass",   
 
                 "RecoH_px",
                 "RecoH_py",
