@@ -33,24 +33,26 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
+    'LL':"/ceph/sgiappic/HiggsCP/final/LL",
+    #'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
+    #'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
     'LL',
-    'LH',
-    'HH',
+    #'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 #list of cuts you want to plot
 CUTS = [
-    "selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_10Me",
  ] 
 
 #now you can list all the histograms that you want to plot

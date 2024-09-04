@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/sgiappic/HiggsCP/CP/stage2_oneprong"
+inputDir = "/ceph/sgiappic/HiggsCP/CP/stage2_id2"
 
 #Optional: output directory, default is local running directory
-outputDir = "/ceph/sgiappic/HiggsCP/CP/final_oneprong"
+outputDir = "/ceph/sgiappic/HiggsCP/CP/final_id2"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev

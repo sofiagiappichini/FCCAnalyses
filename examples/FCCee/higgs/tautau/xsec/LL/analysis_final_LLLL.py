@@ -12,7 +12,7 @@ intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
 doScale = True
 
 #Save event yields in a table (optional)
-saveTabular = False
+saveTabular = True
 
 #Number of CPUs to use
 nCPUS = 4
@@ -118,9 +118,11 @@ procDictAdd = {}
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    #"selReco": "true",
+    "selReco": "true",
     "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
     "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
+    "selReco_100Coll150_115Rec160_10Me": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10",
+    "selReco_100Coll150_115Rec160_10Me_e80": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoLepton_e.at(0)<80 && RecoLepton_e.at(1)<80 && RecoLepton_e.at(2)<80 && RecoLepton_e.at(3)<80",
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -449,8 +451,8 @@ histoList = {
     "TauFromJet_R5_theta":      {"name":"TauFromJet_R5_theta",               "title":"#tau from jet_{R5} #theta",                         "bin":16, "xmin":0,"xmax":3.2},
     "TauFromJet_R5_phi":        {"name":"TauFromJet_R5_phi",                 "title":"#tau from jet_{R5} #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TauFromJet_R5_e":          {"name":"TauFromJet_R5_e",                   "title":"#tau from jet_{R5} energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    #"TauFromJet_R5_eta":        {"name":"TauFromJet_R5_eta",                 "title":"#tau from jet_{R5} #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    #"TauFromJet_R5_y":          {"name":"TauFromJet_R5_y",                   "title":"#tau from jet_{R5} rapidity",                       "bin":80,"xmin":-4. ,"xmax":4.},
+    "TauFromJet_R5_eta":        {"name":"TauFromJet_R5_eta",                 "title":"#tau from jet_{R5} #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauFromJet_R5_y":          {"name":"TauFromJet_R5_y",                   "title":"#tau from jet_{R5} rapidity",                       "bin":80,"xmin":-4. ,"xmax":4.},
     "TauFromJet_R5_charge":     {"name":"TauFromJet_R5_charge",              "title":"#tau from jet_{R5} charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "TauFromJet_R5_type":       {"name":"TauFromJet_R5_type",                "title":"#tau from jet_{R5} decay type",                     "bin":100, "xmin":-20, "xmax":80},
     "TauFromJet_R5_mass":       {"name":"TauFromJet_R5_mass",                "title":"#tau from jet_{R5} mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
@@ -463,8 +465,8 @@ histoList = {
     "TauFromJet_pz":            {"name":"TauFromJet_pz",                  "title":"#tau from jet_{kt} p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
     "TauFromJet_theta":         {"name":"TauFromJet_theta",               "title":"#tau from jet_{kt} #theta",                         "bin":16, "xmin":0,"xmax":3.2},
     "TauFromJet_phi":           {"name":"TauFromJet_phi",                 "title":"#tau from jet_{kt} #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    #"TauFromJet_eta":           {"name":"TauFromJet_eta",                 "title":"#tau from jet_{kt} #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    #"TauFromJet_y":             {"name":"TauFromJet_y",                   "title":"#tau from jet_{kt} rapidity",                       "bin":80,"xmin":-4. ,"xmax":4.},
+    "TauFromJet_eta":           {"name":"TauFromJet_eta",                 "title":"#tau from jet_{kt} #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauFromJet_y":             {"name":"TauFromJet_y",                   "title":"#tau from jet_{kt} rapidity",                       "bin":80,"xmin":-4. ,"xmax":4.},
     "TauFromJet_e":             {"name":"TauFromJet_e",                   "title":"#tau from jet_{kt} energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
     "TauFromJet_charge":        {"name":"TauFromJet_charge",              "title":"#tau from jet_{kt} charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "TauFromJet_type":          {"name":"TauFromJet_type",                "title":"#tau from jet_{kt} decay type",                     "bin":100, "xmin":-20, "xmax":80},

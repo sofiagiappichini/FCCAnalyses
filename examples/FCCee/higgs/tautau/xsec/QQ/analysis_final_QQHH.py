@@ -119,7 +119,9 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    #"selReco_Maria": " (Recoil>120 && Recoil<140) && (TauFromJet_type[0]>=0 && TauFromJet_type[1]>=0)",
+    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
+    "selReco_100Coll150_115Rec160_10Me": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10",
 }
 
 # Dictionary for prettier names of cuts (optional)

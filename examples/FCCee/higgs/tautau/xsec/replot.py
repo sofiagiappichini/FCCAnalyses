@@ -46,17 +46,23 @@ SUBDIR = [
 CAT = [
     "QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 #directory where you want your plots to go
 DIR_PLOTS = '/web/sgiappic/public_html/Higgs/xsec/' 
 #list of cuts you want to plot
 CUTS = [
-    "selReco",
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_10Me",
  ] 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
+    "selReco_100Coll150": "100<M_{collinear}<150 GeV",
+    "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
+    "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
  }
 
 ana_tex = {
@@ -485,6 +491,30 @@ VARIABLES_LL = [
     "RecoZ_y",
     "RecoZ_mass",
 
+    "RecoZ1_px", 
+    "RecoZ1_py",   
+    "RecoZ1_pz",   
+    "RecoZ1_p",    
+    "RecoZ1_pt",   
+    "RecoZ1_e",    
+    "RecoZ1_eta",    
+    "RecoZ1_phi",    
+    "RecoZ1_theta",   
+    "RecoZ1_y",     
+    "RecoZ1_mass",   
+
+    "RecoZ2_px",    
+    "RecoZ2_py",   
+    "RecoZ2_pz",   
+    "RecoZ2_p",   
+    "RecoZ2_pt",  
+    "RecoZ2_e",     
+    "RecoZ2_eta",   
+    "RecoZ2_phi",   
+    "RecoZ2_theta",    
+    "RecoZ2_y",    
+    "RecoZ2_mass",   
+
     "RecoH_px",
     "RecoH_py",
     "RecoH_pz",
@@ -547,6 +577,30 @@ VARIABLES_QQ = [
     "RecoZ_theta",
     "RecoZ_y",
     "RecoZ_mass",
+
+    "RecoZ1_px", 
+    "RecoZ1_py",   
+    "RecoZ1_pz",   
+    "RecoZ1_p",    
+    "RecoZ1_pt",   
+    "RecoZ1_e",    
+    "RecoZ1_eta",    
+    "RecoZ1_phi",    
+    "RecoZ1_theta",   
+    "RecoZ1_y",     
+    "RecoZ1_mass",   
+
+    "RecoZ2_px",    
+    "RecoZ2_py",   
+    "RecoZ2_pz",   
+    "RecoZ2_p",   
+    "RecoZ2_pt",  
+    "RecoZ2_e",     
+    "RecoZ2_eta",   
+    "RecoZ2_phi",   
+    "RecoZ2_theta",    
+    "RecoZ2_y",    
+    "RecoZ2_mass",   
 
     "RecoH_px",
     "RecoH_py",
