@@ -646,6 +646,8 @@ class RDFanalysis():
                 .Define("TauFromJet_R5_pz","ReconstructedParticle::get_pz(TauFromJet_R5_tau)")
                 .Define("TauFromJet_R5_theta","ReconstructedParticle::get_theta(TauFromJet_R5_tau)")
                 .Define("TauFromJet_R5_phi","ReconstructedParticle::get_phi(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_eta","ReconstructedParticle::get_eta(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_y","ReconstructedParticle::get_y(TauFromJet_R5_tau)")
                 .Define("TauFromJet_R5_e","ReconstructedParticle::get_e(TauFromJet_R5_tau)")
                 .Define("TauFromJet_R5_charge","ReconstructedParticle::get_charge(TauFromJet_R5_tau)")
                 .Define("TauFromJet_R5_type","ReconstructedParticle::get_type(TauFromJet_R5_tau)")
@@ -662,6 +664,8 @@ class RDFanalysis():
                 .Define("TauFromJet_pz","ReconstructedParticle::get_pz(TauFromJet_tau)")
                 .Define("TauFromJet_theta","ReconstructedParticle::get_theta(TauFromJet_tau)")
                 .Define("TauFromJet_phi","ReconstructedParticle::get_phi(TauFromJet_tau)")
+                .Define("TauFromJet_eta","ReconstructedParticle::get_eta(TauFromJet_tau)")
+                .Define("TauFromJet_y","ReconstructedParticle::get_y(TauFromJet_tau)")
                 .Define("TauFromJet_e","ReconstructedParticle::get_e(TauFromJet_tau)")
                 .Define("TauFromJet_charge","ReconstructedParticle::get_charge(TauFromJet_tau)")
                 .Define("TauFromJet_type","ReconstructedParticle::get_type(TauFromJet_tau)")
@@ -1063,6 +1067,8 @@ class RDFanalysis():
             "TauFromJet_R5_theta",
             "TauFromJet_R5_phi",
             "TauFromJet_R5_e",
+            "TauFromJet_R5_eta",
+            "TauFromJet_R5_y",
             "TauFromJet_R5_charge",
             "TauFromJet_R5_type",
             "TauFromJet_R5_mass",
@@ -1075,6 +1081,8 @@ class RDFanalysis():
             "TauFromJet_pz",
             "TauFromJet_theta",
             "TauFromJet_phi",
+            "TauFromJet_eta",
+            "TauFromJet_y",
             "TauFromJet_e",
             "TauFromJet_charge",
             "TauFromJet_type",
