@@ -55,11 +55,11 @@ def get_entries(infilepath: str) -> tuple[int, int]:
             if events_ttree:
                 events_in_ttree = events_ttree.GetEntries()
             else:
-                LOGGER.error(f'Input file {infilepath} is missing "events" TTree! Skipping this file...')
+                LOGGER.warning(f'Input file {infilepath} is missing "events" TTree! Skipping this file...')
                 return None, None
 
         except AttributeError:
-            LOGGER.error(f'Input file {infilepath} is missing "events" TTree! Skipping this file...')
+            LOGGER.warning(f'Input file {infilepath} is missing "events" TTree! Skipping this file...')
             return None, None
 
 

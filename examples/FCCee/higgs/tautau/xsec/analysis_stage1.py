@@ -1,7 +1,10 @@
 import os, copy # tagging
 import ROOT
-
 processList = {
+    'wzp6_ee_ssH_Hgg_ecm240': {'chunks':10},
+}
+
+processList_ = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
