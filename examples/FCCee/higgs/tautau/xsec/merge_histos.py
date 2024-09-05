@@ -33,25 +33,26 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':"/ceph/sgiappic/HiggsCP/final/LL",
-    #'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
-    #'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
     'LL',
-    #'LH',
-    #'HH',
+    'LH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
+    "QQ",
     "LL",
     #"NuNu",
 ]
 #list of cuts you want to plot
 CUTS = [
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
+    "selReco",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
     "selReco_100Coll150_115Rec160_10Me",
  ] 
 
@@ -420,6 +421,8 @@ VARIABLES = [
     "TauFromJet_R5_theta",
     "TauFromJet_R5_phi",
     "TauFromJet_R5_e",
+    "TauFromJet_R5_eta",
+    "TauFromJet_R5_y",
     "TauFromJet_R5_charge",
     "TauFromJet_R5_type",
     "TauFromJet_R5_mass",
@@ -432,6 +435,8 @@ VARIABLES = [
     "TauFromJet_pz",
     "TauFromJet_theta",
     "TauFromJet_phi",
+    "TauFromJet_eta",
+    "TauFromJet_y",
     "TauFromJet_e",
     "TauFromJet_charge",
     "TauFromJet_type",
@@ -448,7 +453,7 @@ VARIABLES = [
     "Jets_R5_sel_theta",   
     "Jets_R5_sel_phi",     
     "Jets_R5_sel_mass",      
-    "n_Jets_R5_sel", 
+    "n_Jets_R5_sel",
 ]
 
 VARIABLES_LL = [
@@ -469,6 +474,30 @@ VARIABLES_LL = [
     "RecoZ_theta",
     "RecoZ_y",
     "RecoZ_mass",
+
+    "RecoZ1_px", 
+    "RecoZ1_py",   
+    "RecoZ1_pz",   
+    "RecoZ1_p",    
+    "RecoZ1_pt",   
+    "RecoZ1_e",    
+    "RecoZ1_eta",    
+    "RecoZ1_phi",    
+    "RecoZ1_theta",   
+    "RecoZ1_y",     
+    "RecoZ1_mass",   
+
+    "RecoZ2_px",    
+    "RecoZ2_py",   
+    "RecoZ2_pz",   
+    "RecoZ2_p",   
+    "RecoZ2_pt",  
+    "RecoZ2_e",     
+    "RecoZ2_eta",   
+    "RecoZ2_phi",   
+    "RecoZ2_theta",    
+    "RecoZ2_y",    
+    "RecoZ2_mass",   
 
     "RecoH_px",
     "RecoH_py",
@@ -532,6 +561,30 @@ VARIABLES_QQ = [
     "RecoZ_theta",
     "RecoZ_y",
     "RecoZ_mass",
+
+    "RecoZ1_px", 
+    "RecoZ1_py",   
+    "RecoZ1_pz",   
+    "RecoZ1_p",    
+    "RecoZ1_pt",   
+    "RecoZ1_e",    
+    "RecoZ1_eta",    
+    "RecoZ1_phi",    
+    "RecoZ1_theta",   
+    "RecoZ1_y",     
+    "RecoZ1_mass",   
+
+    "RecoZ2_px",    
+    "RecoZ2_py",   
+    "RecoZ2_pz",   
+    "RecoZ2_p",   
+    "RecoZ2_pt",  
+    "RecoZ2_e",     
+    "RecoZ2_eta",   
+    "RecoZ2_phi",   
+    "RecoZ2_theta",    
+    "RecoZ2_y",    
+    "RecoZ2_mass",   
 
     "RecoH_px",
     "RecoH_py",

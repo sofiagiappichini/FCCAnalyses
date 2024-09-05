@@ -122,12 +122,25 @@ cutList = {
     "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
     "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
     "selReco_100Coll150_115Rec160_10Me": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10",
-    "selReco_100Coll150_115Rec160_10Me_e80": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoLepton_e.at(0)<80 && RecoLepton_e.at(1)<80 && RecoLepton_e.at(2)<80 && RecoLepton_e.at(3)<80",
+    "selReco_100Coll150_115Rec160_10Me_70Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>70 && RecoZ_mass<100",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>70 && RecoZ_mass<100 && Tau_DR>2",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>70 && RecoZ_mass<100 && Tau_DR>2 && Tau_cos<0",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>70 && RecoZ_mass<100 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
 }
 
 # Dictionary for prettier names of cuts (optional)
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
-cutLabels = {}
+cutLabels = {
+    "selReco": "No additional selection",
+    "selReco_100Coll150": "100<M_{collinear}<150 GeV",
+    "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
+    "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
+    "selReco_100Coll150_115Rec160_10Me_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
+
+}
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
 histoList = {
@@ -484,6 +497,30 @@ histoList = {
     "RecoZ_theta":              {"name":"RecoZ_theta",              "title":"Reco Z #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "RecoZ_y":                  {"name":"RecoZ_y",                  "title":"Reco Z rapidity",               "bin":40, "xmin":-4., "xmax":4.},
     "RecoZ_mass":               {"name":"RecoZ_mass",               "title":"Reco Z mass",                   "bin":100, "xmin":50., "xmax":150},
+
+    "RecoZ1_px":               {"name":"RecoZ1_px",                 "title":"Reco first Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoZ1_py":               {"name":"RecoZ1_py",                 "title":"Reco first Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoZ1_pz":               {"name":"RecoZ1_pz",                 "title":"Reco first Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoZ1_p":                {"name":"RecoZ1_p",                  "title":"Reco first Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZ1_pt":               {"name":"RecoZ1_pt",                 "title":"Reco first Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZ1_e":                {"name":"RecoZ1_e",                  "title":"Reco first Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoZ1_eta":              {"name":"RecoZ1_eta",                "title":"Reco first Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZ1_phi":              {"name":"RecoZ1_phi",                "title":"Reco first Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZ1_theta":            {"name":"RecoZ1_theta",              "title":"Reco first Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoZ1_y":                {"name":"RecoZ1_y",                  "title":"Reco first Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoZ1_mass":             {"name":"RecoZ1_mass",               "title":"Reco first Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
+
+    "RecoZ2_px":                {"name":"RecoZ2_px",                 "title":"Reco second Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZ2_py":                {"name":"RecoZ2_py",                 "title":"Reco second Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZ2_pz":                {"name":"RecoZ2_pz",                 "title":"Reco second Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZ2_p":                 {"name":"RecoZ2_p",                  "title":"Reco second Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZ2_pt":                {"name":"RecoZ2_pt",                 "title":"Reco second Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZ2_e":                 {"name":"RecoZ2_e",                  "title":"Reco second Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoZ2_eta":               {"name":"RecoZ2_eta",                "title":"Reco second Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZ2_phi":               {"name":"RecoZ2_phi",                "title":"Reco second Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZ2_theta":             {"name":"RecoZ2_theta",              "title":"Reco second Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoZ2_y":                 {"name":"RecoZ2_y",                  "title":"Reco second Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoZ2_mass":              {"name":"RecoZ2_mass",               "title":"Reco second Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
                                 
     "RecoH_px":                 {"name":"RecoH_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "RecoH_py":                 {"name":"RecoH_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
