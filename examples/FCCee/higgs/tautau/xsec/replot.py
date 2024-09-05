@@ -49,13 +49,18 @@ CAT = [
     #"NuNu",
 ]
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs/xsec/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
 #list of cuts you want to plot
 CUTS = [
     #"selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_10Me",
+    #"selReco_100Coll150_115Rec160_10Me",
+    "selReco_100Coll150_115Rec160_10Me_70Z100",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+
  ] 
 #labels for the cuts in the plots
 LABELS = {
@@ -63,6 +68,11 @@ LABELS = {
     "selReco_100Coll150": "100<M_{collinear}<150 GeV",
     "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
     "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
+    "selReco_100Coll150_115Rec160_10Me_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
+
  }
 
 ana_tex = {
@@ -74,10 +84,10 @@ ana_tex = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = True
+LOGY = False
 
 #now you can list all the histograms that you want to plot
-VARIABLES = [
+VARIABLES_ALL = [
     ######## Monte-Carlo particles #######
     "n_FSGenElectron",
     "FSGenElectron_e",
@@ -472,6 +482,287 @@ VARIABLES = [
     "n_Jets_R5_sel", 
 ]
 
+VARIABLES_GEN = [
+    ######## Monte-Carlo particles #######
+    "n_FSGenElectron",
+    "FSGenElectron_e",
+    "FSGenElectron_p",
+    "FSGenElectron_pt",
+    "FSGenElectron_px",
+    "FSGenElectron_py",
+    "FSGenElectron_pz",
+    "FSGenElectron_y",
+    "FSGenElectron_eta",
+    "FSGenElectron_theta",
+    "FSGenElectron_phi",
+    "FSGenElectron_charge",
+    "FSGenElectron_mass",
+    "FSGenElectron_parentPDG",
+    "FSGenElectron_vertex_x",
+    "FSGenElectron_vertex_y",
+    "FSGenElectron_vertex_z",
+
+    "n_FSGenMuon",
+    "FSGenMuon_e",
+    "FSGenMuon_p",
+    "FSGenMuon_pt",
+    "FSGenMuon_px",
+    "FSGenMuon_py",
+    "FSGenMuon_pz",
+    "FSGenMuon_y",
+    "FSGenMuon_eta",
+    "FSGenMuon_theta",
+    "FSGenMuon_phi",
+    "FSGenMuon_charge",
+    "FSGenMuon_mass",
+    "FSGenMuon_parentPDG",
+    "FSGenMuon_vertex_x",
+    "FSGenMuon_vertex_y",
+    "FSGenMuon_vertex_z",
+
+    #"n_ZFSGenMuon",
+    #"ZFSGenMuon_e",
+    #"ZFSGenMuon_p",
+    #"ZFSGenMuon_pt",
+    #"ZFSGenMuon_px",
+    #"ZFSGenMuon_py",
+    #"ZFSGenMuon_pz",
+    #"ZFSGenMuon_y",
+    #"ZFSGenMuon_eta",
+    #"ZFSGenMuon_theta",
+    #"ZFSGenMuon_phi",
+    #"ZFSGenMuon_charge",
+    #"ZFSGenMuon_mass",
+    #"ZFSGenMuon_parentPDG",
+    #"ZFSGenMuon_vertex_x",
+    #"ZFSGenMuon_vertex_y",
+    #"ZFSGenMuon_vertex_z",
+
+    #"n_AllGenTau",
+    #"AllGenTau_e",
+    #"AllGenTau_p",
+    #"AllGenTau_pt",
+    #"AllGenTau_px",
+    #"AllGenTau_py",
+    #"AllGenTau_pz",
+    #"AllGenTau_y",
+    #"AllGenTau_eta",
+    #"AllGenTau_theta",
+    #"AllGenTau_phi",
+    #"AllGenTau_charge",
+    #"AllGenTau_mass",
+    #"AllGenTau_parentPDG",
+    #"AllGenTau_vertex_x",
+    #"AllGenTau_vertex_y",
+    #"AllGenTau_vertex_z",
+
+    #"noFSRGenTau_parentPDG",
+
+    "n_FSRGenTau",
+    "FSRGenTau_e",
+    "FSRGenTau_p",
+    "FSRGenTau_pt",
+    "FSRGenTau_px",
+    "FSRGenTau_py",
+    "FSRGenTau_pz",
+    "FSRGenTau_y",
+    "FSRGenTau_eta",
+    "FSRGenTau_theta",
+    "FSRGenTau_phi",
+    "FSRGenTau_charge",
+    "FSRGenTau_mass",
+    "FSRGenTau_parentPDG",
+    "FSRGenTau_vertex_x",
+    "FSRGenTau_vertex_y",
+    "FSRGenTau_vertex_z",
+
+    "n_TauNeg_MuNuNu",       
+    "n_TauNeg_MuNuNu_Phot",  
+    "n_TauNeg_ENuNu",        
+    "n_TauNeg_ENuNu_Phot",   
+    "n_TauNeg_PiNu",         
+    "n_TauNeg_PiNu_Phot",    
+    "n_TauNeg_KNu",          
+    "n_TauNeg_KNu_Phot",     
+    "n_TauNeg_PiK0Nu",       
+    "n_TauNeg_PiK0Nu_Phot",  
+    "n_TauNeg_KK0Nu",        
+    "n_TauNeg_KK0Nu_Phot",   
+    "n_TauNeg_3PiNu",        
+    "n_TauNeg_3PiNu_Phot",   
+    "n_TauNeg_PiKKNu",       
+    "n_TauNeg_PiKKNu_Phot",  
+
+    "n_TauPos_MuNuNu",       
+    "n_TauPos_MuNuNu_Phot",  
+    "n_TauPos_ENuNu",        
+    "n_TauPos_ENuNu_Phot",   
+    "n_TauPos_PiNu",         
+    "n_TauPos_PiNu_Phot",    
+    "n_TauPos_KNu",          
+    "n_TauPos_KNu_Phot",     
+    "n_TauPos_PiK0Nu",       
+    "n_TauPos_PiK0Nu_Phot",  
+    "n_TauPos_KK0Nu",        
+    "n_TauPos_KK0Nu_Phot",   
+    "n_TauPos_3PiNu",        
+    "n_TauPos_3PiNu_Phot",   
+    "n_TauPos_PiKKNu",       
+    "n_TauPos_PiKKNu_Phot", 
+
+    "n_FSGenNeutrino",
+    "FSGenNeutrino_e",
+    "FSGenNeutrino_p",
+    "FSGenNeutrino_pt",
+    "FSGenNeutrino_px",
+    "FSGenNeutrino_py",
+    "FSGenNeutrino_pz",
+    "FSGenNeutrino_y",
+    "FSGenNeutrino_eta",
+    "FSGenNeutrino_theta",
+    "FSGenNeutrino_phi",
+    "FSGenNeutrino_charge",
+    #"FSGenNeutrino_parentPDG",
+
+    "n_FSGenPhoton",
+    "FSGenPhoton_e",
+    "FSGenPhoton_p",
+    "FSGenPhoton_pt",
+    "FSGenPhoton_px",
+    "FSGenPhoton_py",
+    "FSGenPhoton_pz",
+    "FSGenPhoton_y",
+    "FSGenPhoton_eta",
+    "FSGenPhoton_theta",
+    "FSGenPhoton_phi",
+    "FSGenPhoton_charge",
+    #"FSGenPhoton_parentPDG",
+
+    #"n_GenZ",
+    #"n_GenW",
+    "n_GenHiggs",
+    "GenHiggs_e",
+    "GenHiggs_p", 
+    "GenHiggs_pt", 
+    "GenHiggs_px", 
+    "GenHiggs_py", 
+    "GenHiggs_pz", 
+    "GenHiggs_y", 
+    "GenHiggs_mass",
+    "GenHiggs_eta", 
+    "GenHiggs_theta", 
+    "GenHiggs_phi", 
+    "GenHiggs_charge",
+]
+
+VARIABLES_RECO = [
+
+    ######## Reconstructed particles #######
+    #"RecoMC_PID",
+
+    "n_RecoLeptons",
+    "RecoLepton_e",
+    "RecoLepton_p",
+    "RecoLepton_pt",
+    "RecoLepton_px",
+    "RecoLepton_py",
+    "RecoLepton_pz",
+    "RecoLepton_y",
+    "RecoLepton_eta",
+    "RecoLepton_theta",
+    "RecoLepton_phi",
+    "RecoLepton_charge",
+    "RecoLepton_mass",
+    "RecoLeptonTrack_absD0",
+    "RecoLeptonTrack_absZ0",
+    "RecoLeptonTrack_absD0sig",
+    "RecoLeptonTrack_absZ0sig",
+    "RecoLeptonTrack_D0cov",
+    "RecoLeptonTrack_Z0cov",
+
+    "n_RecoLeptons_sel",
+    "RecoLepton_sel_e",
+    "RecoLepton_sel_p",
+    "RecoLepton_sel_pt",
+    "RecoLepton_sel_px",
+    "RecoLepton_sel_py",
+    "RecoLepton_sel_pz",
+    "RecoLepton_sel_y",
+    "RecoLepton_sel_eta",
+    "RecoLepton_sel_theta",
+    "RecoLepton_sel_phi",
+    "RecoLepton_sel_charge",
+    "RecoLepton_sel_mass",
+    "RecoLeptonTrack_sel_absD0",
+    "RecoLeptonTrack_sel_absZ0",
+    "RecoLeptonTrack_sel_absD0sig",
+    "RecoLeptonTrack_sel_absZ0sig",
+    "RecoLeptonTrack_sel_D0cov",
+    "RecoLeptonTrack_sel_Z0cov",
+
+    "n_RecoPhotons",
+    "RecoPhoton_e",
+    "RecoPhoton_p",
+    "RecoPhoton_pt",
+    "RecoPhoton_px",
+    "RecoPhoton_py",
+    "RecoPhoton_pz",
+    "RecoPhoton_y",
+    "RecoPhoton_eta",
+    "RecoPhoton_theta",
+    "RecoPhoton_phi",
+    "RecoPhoton_charge",
+
+    "RecoEmiss_px",
+    "RecoEmiss_py",
+    "RecoEmiss_pz",
+    "RecoEmiss_pt",
+    "RecoEmiss_p",
+    "RecoEmiss_e",
+
+    #"n_RecoTracks",
+    #"RecoVertexObject",
+    #"RecoVertex",
+    #"n_PrimaryTracks",
+    #"PrimaryVertexObject",
+    #"PrimaryVertex", 
+    #"PrimaryVertex_xyz",
+    #"PrimaryVertes_xy",
+    #"n_SecondaryTracks",
+    #"SecondaryVertexObject",
+    #"SecondaryVertex",
+    #"SecondaryVertex_xyz",
+    #"SecondaryVertes_xy",
+    #"VertexObject", 
+    #"RecoPartPID" ,
+    #"RecoPartPIDAtVertex",
+
+    "TauFromJet_R5_p",
+    "TauFromJet_R5_pt",
+    "TauFromJet_R5_px",
+    "TauFromJet_R5_py",
+    "TauFromJet_R5_pz",
+    "TauFromJet_R5_theta",
+    "TauFromJet_R5_phi",
+    "TauFromJet_R5_e",
+    "TauFromJet_R5_charge",
+    "TauFromJet_R5_type",
+    "TauFromJet_R5_mass",
+    "n_TauFromJet_R5",
+
+    "Jets_R5_sel_e",     
+    "Jets_R5_sel_p",     
+    "Jets_R5_sel_pt",     
+    "Jets_R5_sel_px",   
+    "Jets_R5_sel_py",   
+    "Jets_R5_sel_pz",     
+    "Jets_R5_sel_eta",    
+    "Jets_R5_sel_theta",   
+    "Jets_R5_sel_phi",     
+    "Jets_R5_sel_mass",      
+    "n_Jets_R5_sel", 
+]
+
 VARIABLES_LL = [
     "RecoEmiss_eta",
     "RecoEmiss_phi",
@@ -736,25 +1027,35 @@ backgrounds_all = [
     "wzp6_ee_nunuH_Hgg_ecm240",
     "wzp6_ee_nunuH_HVV_ecm240",
 
-    "wzp6_ee_eeH_Htautau_ecm240",
-    "wzp6_ee_eeH_HQQ_ecm240",
-    "wzp6_ee_eeH_Hgg_ecm240",
-    "wzp6_ee_eeH_HVV_ecm240",
+    "wzp6_ee_LLH_Htautau_ecm240",
+    "wzp6_ee_LLH_HQQ_ecm240",
+    "wzp6_ee_LLH_Hgg_ecm240",
+    "wzp6_ee_LLH_HVV_ecm240",
 
-    "wzp6_ee_mumuH_Htautau_ecm240",
-    "wzp6_ee_mumuH_HQQ_ecm240",
-    "wzp6_ee_mumuH_Hgg_ecm240",
-    "wzp6_ee_mumuH_HVV_ecm240",
+    "wzp6_ee_QQH_Htautau_ecm240",
+    "wzp6_ee_QQH_HQQ_ecm240",
+    "wzp6_ee_QQH_Hgg_ecm240",
+    "wzp6_ee_QQH_HVV_ecm240",
 
-    "wzp6_ee_ZheavyH_Htautau_ecm240",
-    "wzp6_ee_ZheavyH_HQQ_ecm240",
-    "wzp6_ee_ZheavyH_Hgg_ecm240",
-    "wzp6_ee_ZheavyH_HVV_ecm240",
+    #"wzp6_ee_eeH_Htautau_ecm240",
+    #"wzp6_ee_eeH_HQQ_ecm240",
+    #"wzp6_ee_eeH_Hgg_ecm240",
+    #"wzp6_ee_eeH_HVV_ecm240",
 
-    "wzp6_ee_ZlightH_Htautau_ecm240",
-    "wzp6_ee_ZlightH_HQQ_ecm240",
-    "wzp6_ee_ZlightH_Hgg_ecm240",
-    "wzp6_ee_ZlightH_HVV_ecm240",
+    #"wzp6_ee_mumuH_Htautau_ecm240",
+    #"wzp6_ee_mumuH_HQQ_ecm240",
+    #"wzp6_ee_mumuH_Hgg_ecm240",
+    #"wzp6_ee_mumuH_HVV_ecm240",
+
+    #"wzp6_ee_ZheavyH_Htautau_ecm240",
+    #"wzp6_ee_ZheavyH_HQQ_ecm240",
+    #"wzp6_ee_ZheavyH_Hgg_ecm240",
+    #"wzp6_ee_ZheavyH_HVV_ecm240",
+
+    #"wzp6_ee_ZlightH_Htautau_ecm240",
+    #"wzp6_ee_ZlightH_HQQ_ecm240",
+    #"wzp6_ee_ZlightH_Hgg_ecm240",
+    #"wzp6_ee_ZlightH_HVV_ecm240",
 ]
 
 legend = {
@@ -762,10 +1063,10 @@ legend = {
     'p8_ee_Zqq_ecm240':"Z #rightarrow QQ",
     'p8_ee_ZZ_ecm240':"ZZ",
 
-    'wzp6_ee_LL_ecm240':"ll",
-    'wzp6_ee_tautau_ecm240':"#tau#tau",
+    'wzp6_ee_LL_ecm240':"e^{+}e^{-}#rightarrow ll",
+    'wzp6_ee_tautau_ecm240':"e^{+}e^{-}#rightarrow #tau#tau",
 
-    "wzp6_ee_nuenueZ_ecm240":"#nu_{e}#nu_{e} Z",
+    "wzp6_ee_nuenueZ_ecm240":"e^{+}e^{-}#rightarrow #nu_{e}#nu_{e} Z",
 
     "wzp6_ee_egamma_eZ_ZLL_ecm240":"e#gamma #rightarrow eZ(ll)",
     
@@ -777,89 +1078,110 @@ legend = {
     "wzp6_ee_tautauH_Hgg_ecm240":"Z(#tau#tau)H(gg)",
     "wzp6_ee_tautauH_HVV_ecm240":"Z(#tau#tau)H(VV)",
 
+    'wzp6_ee_nunuH_Htautau_ecm240':"Z(#nu#nu)H(#tau#tau)",
     "wzp6_ee_nunuH_HQQ_ecm240":"Z(#nu#nu)H(QQ)",
     "wzp6_ee_nunuH_Hgg_ecm240":"Z(#nu#nu)H(gg)",
     "wzp6_ee_nunuH_HVV_ecm240":"Z(#nu#nu)H(VV)",
 
+    'wzp6_ee_eeH_Htautau_ecm240':"Z(ee)H(#tau#tau)",
     "wzp6_ee_eeH_HQQ_ecm240":"Z(ee)H(QQ)",
     "wzp6_ee_eeH_Hgg_ecm240":"Z(ee)H(gg)",
     "wzp6_ee_eeH_HVV_ecm240":"Z(ee)H(VV)",
 
+    'wzp6_ee_mumuH_Htautau_ecm240':"Z(#mu#mu)H(#tau#tau)",
     "wzp6_ee_mumuH_HQQ_ecm240":"Z(#mu#mu)H(QQ)",
     "wzp6_ee_mumuH_Hgg_ecm240":"Z(#mu#mu)H(gg)",
     "wzp6_ee_mumuH_HVV_ecm240":"Z(#mu#mu)H(VV)",
 
+    'wzp6_ee_ZheavyH_Htautau_ecm240':"Z(bb, cc)H(#tau#tau)",
     "wzp6_ee_ZheavyH_HQQ_ecm240":"Z(bb, cc)H(QQ)",
     "wzp6_ee_ZheavyH_Hgg_ecm240":"Z(bb, cc)H(gg)",
     "wzp6_ee_ZheavyH_HVV_ecm240":"Z(bb, cc)H(VV)",
 
+    'wzp6_ee_ZlightH_Htautau_ecm240':"Z(uu, dd, ss)H(#tau#tau)",
     "wzp6_ee_ZlightH_HQQ_ecm240":"Z(uu, dd, ss)H(QQ)",
     "wzp6_ee_ZlightH_Hgg_ecm240":"Z(uu, dd, ss)H(gg)",
     "wzp6_ee_ZlightH_HVV_ecm240":"Z(uu, dd, ss)H(VV)",
 
-    'wzp6_ee_ZheavyH_Htautau_ecm240':"Z(bb, cc)H(#tau#tau)",
-    'wzp6_ee_ZlightH_Htautau_ecm240':"Z(uu, dd, ss)H(#tau#tau)",
-    'wzp6_ee_eeH_Htautau_ecm240':"Z(ee)H(#tau#tau)",
-    'wzp6_ee_mumuH_Htautau_ecm240':"Z(#mu#mu)H(#tau#tau)",
-    'wzp6_ee_nunuH_Htautau_ecm240':"Z(#nu#nu)H(#tau#tau)",
+    'wzp6_ee_LLH_Htautau_ecm240':"Z(ll)H(#tau#tau)",
+    "wzp6_ee_LLH_HQQ_ecm240":"Z(ll)H(QQ)",
+    "wzp6_ee_LLH_Hgg_ecm240":"Z(ll)H(gg)",
+    "wzp6_ee_LLH_HVV_ecm240":"Z(ll)H(VV)",
+
+    'wzp6_ee_QQH_Htautau_ecm240':"Z(qq)H(#tau#tau)",
+    "wzp6_ee_QQH_HQQ_ecm240":"Z(qq)H(QQ)",
+    "wzp6_ee_QQH_Hgg_ecm240":"Z(qq)H(gg)",
+    "wzp6_ee_QQH_HVV_ecm240":"Z(qq)H(VV)",
 }
 
 legcolors = {
-    'p8_ee_WW_ecm240':ROOT.kGreen-2,
-    'p8_ee_Zqq_ecm240':ROOT.kMagenta-2,
-    'p8_ee_ZZ_ecm240':ROOT.kGreen-3,
+    'p8_ee_WW_ecm240':ROOT.kSpring+2,
+    'p8_ee_Zqq_ecm240':ROOT.kMagenta-8,
+    'p8_ee_ZZ_ecm240':ROOT.kSpring+3,
 
-    'wzp6_ee_LL_ecm240':ROOT.kCyan-2,
-    'wzp6_ee_tautau_ecm240':ROOT.kRed-2,
+    'wzp6_ee_LL_ecm240':ROOT.kMagenta-6,
+    'wzp6_ee_tautau_ecm240':ROOT.kPink+1,
 
-    "wzp6_ee_nuenueZ_ecm240":ROOT.kOrange-2,
+    "wzp6_ee_nuenueZ_ecm240":ROOT.kPink-4,
 
-    "wzp6_ee_egamma_eZ_ZLL_ecm240":ROOT.kOrange+1,
+    "wzp6_ee_egamma_eZ_ZLL_ecm240":ROOT.kOrange-4,
     
-    "wzp6_ee_gaga_LL_60_ecm240":ROOT.kOrange-3,
-    "wzp6_ee_gaga_tautau_60_ecm240":ROOT.kOrange+2,
+    "wzp6_ee_gaga_LL_60_ecm240":ROOT.kOrange-9,
+    "wzp6_ee_gaga_tautau_60_ecm240":ROOT.kOrange+6,
 
     "wzp6_ee_tautauH_Htautau_ecm240":ROOT.kViolet+6,
     "wzp6_ee_tautauH_HQQ_ecm240":ROOT.kViolet+5,
     "wzp6_ee_tautauH_Hgg_ecm240":ROOT.kViolet-4,
     "wzp6_ee_tautauH_HVV_ecm240":ROOT.kViolet+1,
 
+    'wzp6_ee_nunuH_Htautau_ecm240':ROOT.kGreen-3,
     "wzp6_ee_nunuH_HQQ_ecm240":ROOT.kGreen-5,
     "wzp6_ee_nunuH_Hgg_ecm240":ROOT.kGreen-8,
     "wzp6_ee_nunuH_HVV_ecm240":ROOT.kGreen-10,
 
+    'wzp6_ee_eeH_Htautau_ecm240':ROOT.kBlue-9,
     "wzp6_ee_eeH_HQQ_ecm240":ROOT.kCyan-5,
     "wzp6_ee_eeH_Hgg_ecm240":ROOT.kCyan-8,
     "wzp6_ee_eeH_HVV_ecm240":ROOT.kCyan-10,
 
+    'wzp6_ee_mumuH_Htautau_ecm240':ROOT.kBlue-3,
     "wzp6_ee_mumuH_HQQ_ecm240":ROOT.kBlue-5,
     "wzp6_ee_mumuH_Hgg_ecm240":ROOT.kBlue-8,
     "wzp6_ee_mumuH_HVV_ecm240":ROOT.kBlue-10,
 
+    'wzp6_ee_ZheavyH_Htautau_ecm240':ROOT.kRed-3,
     "wzp6_ee_ZheavyH_HQQ_ecm240":ROOT.kRed-5,
     "wzp6_ee_ZheavyH_Hgg_ecm240":ROOT.kRed-8,
     "wzp6_ee_ZheavyH_HVV_ecm240":ROOT.kRed-10,
 
+    'wzp6_ee_ZlightH_Htautau_ecm240':ROOT.kRed-9,
     "wzp6_ee_ZlightH_HQQ_ecm240":ROOT.kMagenta-5,
     "wzp6_ee_ZlightH_Hgg_ecm240":ROOT.kMagenta-8,
     "wzp6_ee_ZlightH_HVV_ecm240":ROOT.kMagenta-10,
 
-    'wzp6_ee_ZheavyH_Htautau_ecm240':ROOT.kRed-3,
-    'wzp6_ee_ZlightH_Htautau_ecm240':ROOT.kRed-9,
-    'wzp6_ee_eeH_Htautau_ecm240':ROOT.kBlue-9,
-    'wzp6_ee_mumuH_Htautau_ecm240':ROOT.kBlue-3,
-    'wzp6_ee_nunuH_Htautau_ecm240':ROOT.kGreen-6,
+    'wzp6_ee_LLH_Htautau_ecm240':ROOT.kBlue-9,
+    "wzp6_ee_LLH_HQQ_ecm240":ROOT.kCyan-5,
+    "wzp6_ee_LLH_Hgg_ecm240":ROOT.kCyan-8,
+    "wzp6_ee_LLH_HVV_ecm240":ROOT.kCyan-10,
+
+    'wzp6_ee_QQH_Htautau_ecm240':ROOT.kRed-9,
+    "wzp6_ee_QQH_HQQ_ecm240":ROOT.kMagenta-5,
+    "wzp6_ee_QQH_Hgg_ecm240":ROOT.kMagenta-8,
+    "wzp6_ee_QQH_HVV_ecm240":ROOT.kMagenta-10,
+
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals_QQ = [
-    'wzp6_ee_ZheavyH_Htautau_ecm240',
-    'wzp6_ee_ZlightH_Htautau_ecm240',
+    #'wzp6_ee_ZheavyH_Htautau_ecm240',
+    #'wzp6_ee_ZlightH_Htautau_ecm240',
+    'wzp6_ee_QQH_Htautau_ecm240',
 ]
 
 signals_LL = [
-    'wzp6_ee_eeH_Htautau_ecm240',
-    'wzp6_ee_mumuH_Htautau_ecm240',
+    #'wzp6_ee_eeH_Htautau_ecm240',
+    #'wzp6_ee_mumuH_Htautau_ecm240',
+    'wzp6_ee_LLH_Htautau_ecm240',
 ]
 
 signals_NuNu= [
@@ -880,7 +1202,7 @@ LIST_S = {
 
 for cut in CUTS:
     for cat in CAT:
-        variables = VARIABLES + LIST_VAR[cat] 
+        variables = VARIABLES_RECO + LIST_VAR[cat] 
         for sub in SUBDIR:
             directory = DIRECTORY[cat] + "/" + sub + "/"
             for variable in variables:
@@ -1088,11 +1410,11 @@ for cut in CUTS:
                     canvas.Modified()
                     canvas.Update()
 
-                    dir = DIR_PLOTS + "/" + cat + "/" + sub + "/" + cut + "/"
+                    dir = DIR_PLOTS + "/" + cat + "/" + sub + "/log/" + cut + "/"
                     make_dir_if_not_exists(dir)
 
-                    canvas.SaveAs(dir + variable + "_log.png")
-                    canvas.SaveAs(dir + variable + "_log.pdf")
+                    canvas.SaveAs(dir + variable + ".png")
+                    canvas.SaveAs(dir + variable + ".pdf")
                 else:
                     canvas.SetTicks(1, 1)
                     canvas.SetLeftMargin(0.14)
@@ -1103,7 +1425,7 @@ for cut in CUTS:
                     canvas.Modified()
                     canvas.Update()
 
-                    dir = DIR_PLOTS + "/" + cat + "/" + sub + "/" + cut + "/"
+                    dir = DIR_PLOTS + "/" + cat + "/" + sub + "/lin/" + cut + "/"
                     make_dir_if_not_exists(dir)
 
                     canvas.SaveAs(dir + variable + ".png")

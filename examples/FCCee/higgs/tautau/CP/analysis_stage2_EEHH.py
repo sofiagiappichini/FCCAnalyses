@@ -98,25 +98,25 @@ processList_xsec = {
 
 }
 
-inputDir_xsec = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
+inputr_xsec = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
-outputDir_xsec   = "/ceph/awiedl/FCCee/HiggsCP/stage2/"
+outputr_xsec   = "/ceph/awiedl/FCCee/HiggsCP/stage2/"
 
-inputDir_EFT = "/ceph/sgiappic/HiggsCP/CP/stage1"
+inputr_EFT = "/ceph/sgiappic/HiggsCP/CP/stage1"
 
-outputDir_EFT = "/ceph/sgiappic/HiggsCP/CP/stage2_id2"
+outputr_EFT = "/ceph/sgiappic/HiggsCP/CP/stage2_id2"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
 
 if EFT :
     processList = processList_EFT
-    inputDir = inputDir_EFT
-    outputDir = outputDir_EFT
+    inputr = inputr_EFT
+    outputr = outputr_EFT
 else:
     processList = processList_xsec
-    inputDir = inputDir_xsec
-    outputDir = outputDir_xsec
+    inputr = inputr_xsec
+    outputr = outputr_xsec
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -151,26 +151,24 @@ class RDFanalysis():
                 .Define("FSRGenTau_Lxyz", "return sqrt(FSRGenTau_vertex_x*FSRGenTau_vertex_x + FSRGenTau_vertex_y*FSRGenTau_vertex_y + FSRGenTau_vertex_z*FSRGenTau_vertex_z);") #in mm
         
                 # tautau invariant mass
-                .Define("GenDiTau_e", "if (n_FSRGenTau>1) return (FSRGenTau_e.at(0) + FSRGenTau_e.at(1)); else return float(-1000.);")
-                .Define("GenDiTau_px", "if (n_FSRGenTau>1) return (FSRGenTau_px.at(0) + FSRGenTau_px.at(1)); else return float(-1000.);")
-                .Define("GenDiTau_py", "if (n_FSRGenTau>1) return (FSRGenTau_py.at(0) + FSRGenTau_py.at(1)); else return float(-1000.);")
-                .Define("GenDiTau_pz", "if (n_FSRGenTau>1) return (FSRGenTau_pz.at(0) + FSRGenTau_pz.at(1)); else return float(-1000.);")
-                .Define("GenDiTau_invMass", "if (n_FSRGenTau>1) return sqrt(GenDiTau_e*GenDiTau_e - GenDiTau_px*GenDiTau_px - GenDiTau_py*GenDiTau_py - GenDiTau_pz*GenDiTau_pz ); else return float(-1000.);")
+                .Define("GenTau_e", "if (n_FSRGenTau>1) return (FSRGenTau_e.at(0) + FSRGenTau_e.at(1)); else return float(-1000.);")
+                .Define("GenTau_px", "if (n_FSRGenTau>1) return (FSRGenTau_px.at(0) + FSRGenTau_px.at(1)); else return float(-1000.);")
+                .Define("GenTau_py", "if (n_FSRGenTau>1) return (FSRGenTau_py.at(0) + FSRGenTau_py.at(1)); else return float(-1000.);")
+                .Define("GenTau_pz", "if (n_FSRGenTau>1) return (FSRGenTau_pz.at(0) + FSRGenTau_pz.at(1)); else return float(-1000.);")
+                .Define("GenTau_invMass", "if (n_FSRGenTau>1) return sqrt(GenTau_e*GenTau_e - GenTau_px*GenTau_px - GenTau_py*GenTau_py - GenTau_pz*GenTau_pz ); else return float(-1000.);")
                 
                 # cosine between two leptons, in lab frame
-                .Define("GenDiTau_p", "if (n_FSRGenTau>1) return sqrt(GenDiTau_px*GenDiTau_px + GenDiTau_py*GenDiTau_py + GenDiTau_pz*GenDiTau_pz); else return float(-1.);")
-                .Define("GenDiTau_scalar", "if (n_FSRGenTau>1) return (FSRGenTau_px.at(0)*FSRGenTau_px.at(1) + FSRGenTau_py.at(0)*FSRGenTau_py.at(1) + FSRGenTau_pz.at(0)*FSRGenTau_pz.at(1)); else return float(-1000.);")
-                .Define("GenDiTau_cos", "if (n_FSRGenTau>1) return (GenDiTau_scalar/(FSRGenTau_p.at(0)*FSRGenTau_p.at(1))); else return float(-2.);")
+                .Define("GenTau_p", "if (n_FSRGenTau>1) return sqrt(GenTau_px*GenTau_px + GenTau_py*GenTau_py + GenTau_pz*GenTau_pz); else return float(-1.);")
+                .Define("GenTau_scalar", "if (n_FSRGenTau>1) return (FSRGenTau_px.at(0)*FSRGenTau_px.at(1) + FSRGenTau_py.at(0)*FSRGenTau_py.at(1) + FSRGenTau_pz.at(0)*FSRGenTau_pz.at(1)); else return float(-1000.);")
+                .Define("GenTau_cos", "if (n_FSRGenTau>1) return (GenTau_scalar/(FSRGenTau_p.at(0)*FSRGenTau_p.at(1))); else return float(-2.);")
 
                 # angular distance between two leptons, in lab frame
                 # deltaEta and deltaPhi return the absolute values of the difference, may be intersting to keep the sign and order the taus by rapidity (y) (DOI: 10.1103/PhysRevD.99.095007) or soemthing else (pt...)
-                .Define("GenDiTau_absDEta","if (n_FSRGenTau>1) return myUtils::deltaEta(FSRGenTau_eta.at(0), FSRGenTau_eta.at(1)); else return float(-10.);")
-                .Define("GenDiTau_absDPhi","if (n_FSRGenTau>1) return myUtils::deltaPhi(FSRGenTau_phi.at(0), FSRGenTau_phi.at(1)); else return float(-10.);")
-                .Define("GenDiTau_DEta","if (n_FSRGenTau>1 && FSRGenTau_y.at(0)>FSRGenTau_y.at(1)) return FSRGenTau_eta.at(0) - FSRGenTau_eta.at(1); \
+                .Define("GenTau_DEta","if (n_FSRGenTau>1 && FSRGenTau_y.at(0)>FSRGenTau_y.at(1)) return FSRGenTau_eta.at(0) - FSRGenTau_eta.at(1); \
                                         else if (n_FSRGenTau>1 && FSRGenTau_y.at(0)<FSRGenTau_y.at(1)) return FSRGenTau_eta.at(1) - FSRGenTau_eta.at(0); else return float(-10.);")
-                .Define("GenDiTau_DPhi","if (n_FSRGenTau>1 && FSRGenTau_y.at(0)>FSRGenTau_y.at(1)) return FSRGenTau_phi.at(0) - FSRGenTau_phi.at(1); \
+                .Define("GenTau_Acoplanarity","if (n_FSRGenTau>1 && FSRGenTau_y.at(0)>FSRGenTau_y.at(1)) return FSRGenTau_phi.at(0) - FSRGenTau_phi.at(1); \
                                         else if (n_FSRGenTau>1 && FSRGenTau_y.at(0)<FSRGenTau_y.at(1)) return FSRGenTau_phi.at(1) - FSRGenTau_phi.at(0); else return float(-10.); ")
-                .Define("GenDiTau_DR","if (n_FSRGenTau>1) return myUtils::deltaR(FSRGenTau_phi.at(0), FSRGenTau_phi.at(1), FSRGenTau_eta.at(0), FSRGenTau_eta.at(1)); else return float(-1.);")
+                .Define("GenTau_DR","if (n_FSRGenTau>1) return myUtils::deltaR(FSRGenTau_phi.at(0), FSRGenTau_phi.at(1), FSRGenTau_eta.at(0), FSRGenTau_eta.at(1)); else return float(-1.);")
 
                 .Define("GenHiggs_p4",      "FCCAnalyses::ZHfunctions::build_p4(GenHiggs_px, GenHiggs_py, GenHiggs_pz, GenHiggs_e)")
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
@@ -188,13 +186,13 @@ class RDFanalysis():
                 .Define("HRF_GenTau_y",    "FCCAnalyses::ZHfunctions::get_y_tlv(HRF_GenTau_p4)")
                 .Define("HRF_GenTau_charge",    "FSRGenTau_charge")
 
-                .Define("HRF_GenDiTau_DEta",    "if (HRF_GenTau_y.at(0)>HRF_GenTau_y.at(1)) return (HRF_GenTau_eta.at(0) - HRF_GenTau_eta.at(1)); \
+                .Define("HRF_GenTau_DEta",    "if (HRF_GenTau_y.at(0)>HRF_GenTau_y.at(1)) return (HRF_GenTau_eta.at(0) - HRF_GenTau_eta.at(1)); \
                                         else if (HRF_GenTau_y.at(0)<HRF_GenTau_y.at(1)) return (HRF_GenTau_eta.at(1) - HRF_GenTau_eta.at(0)); else return float(-10.);")
-                .Define("HRF_GenDiTau_DPhi",    "if (HRF_GenTau_y.at(0)>HRF_GenTau_y.at(1)) return (HRF_GenTau_phi.at(0) - HRF_GenTau_phi.at(1)); \
+                .Define("HRF_GenTau_Acoplanarity",    "if (HRF_GenTau_y.at(0)>HRF_GenTau_y.at(1)) return (HRF_GenTau_phi.at(0) - HRF_GenTau_phi.at(1)); \
                                         else if (HRF_GenTau_y.at(0)<HRF_GenTau_y.at(1)) return (HRF_GenTau_phi.at(1) - HRF_GenTau_phi.at(0)); else return float(-10.);")
 
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                .Define("GenZ_p4",     "FCCAnalyses::ZHfunctions::build_p4_single((FSGenElectron_px.at(0)+FSGenElectron_px.at(1)), (FSGenElectron_py.at(0)+FSGenElectron_py.at(1)), (FSGenElectron_pz.at(0)+FSGenElectron_pz.at(1)), (FSGenElectron_e.at(0)+FSGenElectron_e.at(1)))")
+                .Define("GenZ_p4",     "FCCAnalyses::ZHfunctions::build_p4_single((FSGenZDaughter_px.at(0)+FSGenZDaughter_px.at(1)), (FSGenZDaughter_py.at(0)+FSGenZDaughter_py.at(1)), (FSGenZDaughter_pz.at(0)+FSGenZDaughter_pz.at(1)), (FSGenZDaughter_e.at(0)+FSGenZDaughter_e.at(1)))")
                 .Define("GenZ_px",    "GenZ_p4.Px()")
                 .Define("GenZ_py",    "GenZ_p4.Py()")
                 .Define("GenZ_pz",    "GenZ_p4.Pz()")
@@ -207,41 +205,42 @@ class RDFanalysis():
                 .Define("GenZ_y",     "GenZ_p4.Rapidity()")
                 .Define("GenZ_mass",    "GenZ_p4.M()")
                 
-                .Define("FSGenElectron_p4",     "FCCAnalyses::ZHfunctions::build_p4(FSGenElectron_px, FSGenElectron_py, FSGenElectron_pz, FSGenElectron_e)")
-                .Define("ZRF_GenElectron_p4",    "return myUtils::boosted_p4(- GenZ_p4, FSGenElectron_p4);")
-                .Define("ZRF_GenElectron_px",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_py",    "FCCAnalyses::ZHfunctions::get_py_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_pz",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_p",    "FCCAnalyses::ZHfunctions::get_p_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_pt",    "FCCAnalyses::ZHfunctions::get_pt_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_e",    "FCCAnalyses::ZHfunctions::get_e_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_eta",    "FCCAnalyses::ZHfunctions::get_eta_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_phi",    "FCCAnalyses::ZHfunctions::get_phi_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_theta",    "FCCAnalyses::ZHfunctions::get_theta_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_y",    "FCCAnalyses::ZHfunctions::get_y_tlv(ZRF_GenElectron_p4)")
-                .Define("ZRF_GenElectron_charge",    "FSGenElectron_charge")
+                .Define("FSGenZDaughter_p4",     "FCCAnalyses::ZHfunctions::build_p4(FSGenElectron_px, FSGenElectron_py, FSGenElectron_pz, FSGenElectron_e)")
+                .Define("ZRF_GenZDaughter_p4",    "return myUtils::boosted_p4(- GenZ_p4, FSGenZDaughter_p4);")
+                .Define("ZRF_GenZDaughter_px",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_py",    "FCCAnalyses::ZHfunctions::get_py_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_pz",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_p",    "FCCAnalyses::ZHfunctions::get_p_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_pt",    "FCCAnalyses::ZHfunctions::get_pt_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_e",    "FCCAnalyses::ZHfunctions::get_e_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_eta",    "FCCAnalyses::ZHfunctions::get_eta_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_phi",    "FCCAnalyses::ZHfunctions::get_phi_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_theta",    "FCCAnalyses::ZHfunctions::get_theta_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_y",    "FCCAnalyses::ZHfunctions::get_y_tlv(ZRF_GenZDaughter_p4)")
+                .Define("ZRF_GenZDaughter_charge",    "FSGenElectron_charge")
 
-                .Define("ZRF_GenDiElectron_DEta",    "if (ZRF_GenElectron_y.at(0)>ZRF_GenElectron_y.at(1)) return (ZRF_GenElectron_eta.at(0) - ZRF_GenElectron_eta.at(1)); \
-                                        else if (ZRF_GenElectron_y.at(0)<ZRF_GenElectron_y.at(1)) return (ZRF_GenElectron_eta.at(1) - ZRF_GenElectron_eta.at(0)); else return float(-10.);")
-                .Define("ZRF_GenDiElectron_DPhi",    "if (ZRF_GenElectron_y.at(0)>ZRF_GenElectron_y.at(1)) return (ZRF_GenElectron_phi.at(0) - ZRF_GenElectron_phi.at(1)); \
-                                        else if (ZRF_GenElectron_y.at(0)<ZRF_GenElectron_y.at(1)) return (ZRF_GenElectron_phi.at(1) - ZRF_GenElectron_phi.at(0)); else return float(-10.);")
+                .Define("ZRF_GenZDaughter_DEta",    "if (ZRF_GenZDaughter_y.at(0)>ZRF_GenZDaughter_y.at(1)) return (ZRF_GenZDaughter_eta.at(0) - ZRF_GenZDaughter_eta.at(1)); \
+                                        else if (ZRF_GenZDaughter_y.at(0)<ZRF_GenZDaughter_y.at(1)) return (ZRF_GenZDaughter_eta.at(1) - ZRF_GenZDaughter_eta.at(0)); else return float(-10.);")
+                .Define("ZRF_GenZDaughter_Acoplanarity",    "if (ZRF_GenZDaughter_y.at(0)>ZRF_GenZDaughter_y.at(1)) return (ZRF_GenZDaughter_phi.at(0) - ZRF_GenZDaughter_phi.at(1)); \
+                                        else if (ZRF_GenZDaughter_y.at(0)<ZRF_GenZDaughter_y.at(1)) return (ZRF_GenZDaughter_phi.at(1) - ZRF_GenZDaughter_phi.at(0)); else return float(-10.);")
 
                 ### angles visualisation in figure 1 (2) at pag 8 of https://arxiv.org/pdf/2205.07715, changed some of the names around
                 #may be interesting to simnply keep the cosine of thetas (John Hopkins)
                 .Define("HRF_GenTauM_p4",       "HRF_GenTau_p4[HRF_GenTau_charge==-1]")
                 .Define("HRF_GenTauM_p",       "HRF_GenTau_p[HRF_GenTau_charge==-1]")
-                .Define("ZRF_GenElectronM_p4",       "ZRF_GenElectron_p4[ZRF_GenElectron_charge==-1]")
-                .Define("ZRF_GenElectronM_p",       "ZRF_GenElectron_p[ZRF_GenElectron_charge==-1]")
+                .Define("ZRF_GenZDaughterM_p4",       "ZRF_GenZDaughter_p4[ZRF_GenZDaughter_charge==-1]")
+                .Define("ZRF_GenZDaughterM_p",       "ZRF_GenZDaughter_p[ZRF_GenZDaughter_charge==-1]")
                 #angle between H vector in lab frame and tau in H rest frame
                 .Define("GenTheta2",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenHiggs_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{HRF_GenTauM_p4.at(0)})/(GenHiggs_p.at(0)*HRF_GenTauM_p.at(0)))")
                 #angle between Z vector in lab frame and Muon in Z rest frame
-                .Define("GenTheta1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenZ_p4}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenElectronM_p4.at(0)})/(GenZ_p*ZRF_GenElectronM_p.at(0)))")
+                .Define("GenTheta1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{GenZ_p4}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenZDaughterM_p4.at(0)})/(GenZ_p*ZRF_GenZDaughterM_p.at(0)))")
                 #angle between decay planes of H and Z
-                .Define("GenPhi",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{HRF_GenTauM_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenElectronM_p4.at(0)})/(HRF_GenTauM_p.at(0)*ZRF_GenElectronM_p.at(0)))")
+                .Define("GenPhi",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{HRF_GenTauM_p4.at(0)}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenZDaughterM_p4.at(0)})/(HRF_GenTauM_p.at(0)*ZRF_GenZDaughterM_p.at(0)))")
                 #angle between beam line and Z decay plane
                 .Define("Beam_vec",     "FCCAnalyses::ZHfunctions::build_p4_single(0, 0, 1, 0)") #unitary vector of beam axis along z
                 .Define("Beam_p",       "float(1.)") #magnitude
-                .Define("GenPhi1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenElectronM_p4.at(0)})/(Beam_p*ZRF_GenElectronM_p.at(0)))")
+
+                .Define("GenPhi1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ROOT::VecOps::RVec<TLorentzVector>{ZRF_GenZDaughterM_p4.at(0)})/(Beam_p*ZRF_GenZDaughterM_p.at(0)))")
                 .Define("GenThetastar",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ROOT::VecOps::RVec<TLorentzVector>{GenZ_p4})/(Beam_p*GenZ_p))")
 
                 .Define("GenThetastar_cos",        "(cos(GenThetastar))")
@@ -277,12 +276,36 @@ class RDFanalysis():
 
                 .Define("RecoZ1_p4",      "RecoLepton_p4.at(0)")
                 .Define("RecoZ2_p4",      "RecoLepton_p4.at(1)")
+
+                .Define("RecoZ1_px",    "RecoZ1_p4.Px()")
+                .Define("RecoZ1_py",    "RecoZ1_p4.Py()")
+                .Define("RecoZ1_pz",    "RecoZ1_p4.Pz()")
+                .Define("RecoZ1_p",    "RecoZ1_p4.P()")
+                .Define("RecoZ1_pt",    "RecoZ1_p4.Pt()")
+                .Define("RecoZ1_e",     "RecoZ1_p4.E()")
+                .Define("RecoZ1_eta",    "RecoZ1_p4.Eta()")
+                .Define("RecoZ1_phi",    "RecoZ1_p4.Phi()")
+                .Define("RecoZ1_theta",    "RecoZ1_p4.Theta()")
+                .Define("RecoZ1_y",     "RecoZ1_p4.Rapidity()")
+                .Define("RecoZ1_mass",    "RecoZ1_p4.M()")
+
+                .Define("RecoZ2_px",    "RecoZ2_p4.Px()")
+                .Define("RecoZ2_py",    "RecoZ2_p4.Py()")
+                .Define("RecoZ2_pz",    "RecoZ2_p4.Pz()")
+                .Define("RecoZ2_p",    "RecoZ2_p4.P()")
+                .Define("RecoZ2_pt",    "RecoZ2_p4.Pt()")
+                .Define("RecoZ2_e",     "RecoZ2_p4.E()")
+                .Define("RecoZ2_eta",    "RecoZ2_p4.Eta()")
+                .Define("RecoZ2_phi",    "RecoZ2_p4.Phi()")
+                .Define("RecoZ2_theta",    "RecoZ2_p4.Theta()")
+                .Define("RecoZ2_y",     "RecoZ2_p4.Rapidity()")
+                .Define("RecoZ2_mass",    "RecoZ2_p4.M()")
                 
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
+                .Define("Tau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
+                .Define("Tau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
 
                 .Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
-                .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
+                .Define("RecoH_p4",         "Tau1_p4+Tau2_p4")
 
                 .Define("RecoZ_px",    "RecoZ_p4.Px()")
                 .Define("RecoZ_py",    "RecoZ_p4.Py()")
@@ -308,7 +331,7 @@ class RDFanalysis():
                 .Define("RecoH_y",     "RecoH_p4.Rapidity()")
                 .Define("RecoH_mass",    "RecoH_p4.M()")
                 
-                .Define("TauLead_p4","if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_p4; else return RecoTau2_p4;")
+                .Define("TauLead_p4","if (Tau1_p4.Pt()>Tau2_p4.Pt()) return Tau1_p4; else return Tau2_p4;")
                 .Define("TauLead_px",    "TauLead_p4.Px()")
                 .Define("TauLead_py",    "TauLead_p4.Py()")
                 .Define("TauLead_pz",    "TauLead_p4.Pz()")
@@ -321,7 +344,7 @@ class RDFanalysis():
                 .Define("TauLead_y",     "TauLead_p4.Rapidity()")
                 .Define("TauLead_mass",    "TauLead_p4.M()")
 
-                .Define("TauSub_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_p4; else return RecoTau1_p4;")
+                .Define("TauSub_p4",       "if (Tau1_p4.Pt()>Tau2_p4.Pt()) return Tau2_p4; else return Tau1_p4;")
                 .Define("TauSub_px",    "TauSub_p4.Px()")
                 .Define("TauSub_py",    "TauSub_p4.Py()")
                 .Define("TauSub_pz",    "TauSub_p4.Pz()")
@@ -334,7 +357,7 @@ class RDFanalysis():
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
 
-                .Define("Tau_Acoplanarity",      "(TauLead_phi-TauSub_phi)")
+                #.Define("Tau_Acoplanarity",      "(TauLead_phi-TauSub_phi)")
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
                 .Define("Tau_cos",      "RecoH_p/Tau_scalar")
@@ -351,67 +374,67 @@ class RDFanalysis():
 
                 #### reco CP angular variables
 
-                .Define("RecoDiTau_DEta",    "if (TauLead_y>TauSub_y) return (TauLead_eta - TauSub_eta); \
+                .Define("Tau_DEta",    "if (TauLead_y>TauSub_y) return (TauLead_eta - TauSub_eta); \
                                         else if (TauLead_y<TauSub_y) return (TauSub_eta - TauLead_eta); else return double(-10.);")
-                .Define("RecoDiTau_DPhi",    "if (TauLead_y>TauSub_y) return (TauLead_phi - TauSub_phi); \
+                .Define("Tau_Acoplanarity",    "if (TauLead_y>TauSub_y) return (TauLead_phi - TauSub_phi); \
                                         else if (TauLead_y<TauSub_y) return (TauSub_phi - TauLead_phi); else return double(-10.);")
 
-                .Define("RecoDiElectron_DEta",    "if (RecoElectron_y.at(0)>RecoElectron_y.at(1)) return (RecoElectron_eta.at(0) - RecoElectron_eta.at(1)); \
-                                        else if (RecoElectron_y.at(0)<RecoElectron_y.at(1)) return (RecoElectron_eta.at(1) - RecoElectron_eta.at(0)); else return float(-10.);")
-                .Define("RecoDiElectron_DPhi",    "if (RecoElectron_y.at(0)>RecoElectron_y.at(1)) return (RecoElectron_phi.at(0) - RecoElectron_phi.at(1)); \
-                                        else if (RecoElectron_y.at(0)<RecoElectron_y.at(1)) return (RecoElectron_phi.at(1) - RecoElectron_phi.at(0)); else return float(-10.);")
+                .Define("RecoZDaughter_DEta",    "if (RecoZ1_y>RecoZ2_y) return (RecoZ1_eta - RecoZ2_eta); \
+                                        else if (RecoZ1_y<RecoZ2_y) return (RecoZ2_eta - RecoZ1_eta); else return float(-10.);")
+                .Define("RecoZDaughter_Acoplanarity",    "if (RecoZ1_y>RecoZ2_y) return (RecoZ1_phi - RecoZ2_phi); \
+                                        else if (RecoZ1_y<RecoZ2_y) return (RecoZ2_phi - RecoZ1_phi); else return float(-10.);")
 
 
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                .Define("RecoTau_p4",       "FCCAnalyses::ZHfunctions::build_p4(TauFromJet_R5_px, TauFromJet_R5_py, TauFromJet_R5_pz, TauFromJet_R5_e)")
-                .Define("HRF_RecoTau_p4",    "myUtils::boosted_p4(- RecoH_p4, RecoTau_p4)")
-                .Define("HRF_RecoTau_px",    "FCCAnalyses::ZHfunctions::get_px_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_py",    "FCCAnalyses::ZHfunctions::get_py_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_pz",    "FCCAnalyses::ZHfunctions::get_px_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_p",    "FCCAnalyses::ZHfunctions::get_p_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_pt",    "FCCAnalyses::ZHfunctions::get_pt_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_e",    "FCCAnalyses::ZHfunctions::get_e_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_eta",    "FCCAnalyses::ZHfunctions::get_eta_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_phi",    "FCCAnalyses::ZHfunctions::get_phi_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_theta",    "FCCAnalyses::ZHfunctions::get_theta_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_y",    "FCCAnalyses::ZHfunctions::get_y_tlv(HRF_RecoTau_p4)")
-                .Define("HRF_RecoTau_charge",    "TauFromJet_R5_charge")
+                .Define("Tau_p4",       "FCCAnalyses::ZHfunctions::build_p4(TauFromJet_R5_px, TauFromJet_R5_py, TauFromJet_R5_pz, TauFromJet_R5_e)")
+                .Define("HRF_Tau_p4",    "myUtils::boosted_p4(- RecoH_p4, Tau_p4)")
+                .Define("HRF_Tau_px",    "FCCAnalyses::ZHfunctions::get_px_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_py",    "FCCAnalyses::ZHfunctions::get_py_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_pz",    "FCCAnalyses::ZHfunctions::get_px_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_p",    "FCCAnalyses::ZHfunctions::get_p_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_pt",    "FCCAnalyses::ZHfunctions::get_pt_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_e",    "FCCAnalyses::ZHfunctions::get_e_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_eta",    "FCCAnalyses::ZHfunctions::get_eta_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_phi",    "FCCAnalyses::ZHfunctions::get_phi_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_theta",    "FCCAnalyses::ZHfunctions::get_theta_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_y",    "FCCAnalyses::ZHfunctions::get_y_tlv(HRF_Tau_p4)")
+                .Define("HRF_Tau_charge",    "TauFromJet_R5_charge")
 
-                .Define("HRF_RecoDiTau_DEta",    "if (HRF_RecoTau_y.at(0)>HRF_RecoTau_y.at(1)) return (HRF_RecoTau_eta.at(0) - HRF_RecoTau_eta.at(1)); \
-                                        else if (HRF_RecoTau_y.at(0)<HRF_RecoTau_y.at(1)) return (HRF_RecoTau_eta.at(1) - HRF_RecoTau_eta.at(0)); else return float(-10.);")
-                .Define("HRF_RecoDiTau_DPhi",    "if (HRF_RecoTau_y.at(0)>HRF_RecoTau_y.at(1)) return (HRF_RecoTau_phi.at(0) - HRF_RecoTau_phi.at(1)); \
-                                        else if (HRF_RecoTau_y.at(0)<HRF_RecoTau_y.at(1)) return (HRF_RecoTau_phi.at(1) - HRF_RecoTau_phi.at(0)); else return float(-10.);")
+                .Define("HRF_Tau_DEta",    "if (HRF_Tau_y.at(0)>HRF_Tau_y.at(1)) return (HRF_Tau_eta.at(0) - HRF_Tau_eta.at(1)); \
+                                        else if (HRF_Tau_y.at(0)<HRF_Tau_y.at(1)) return (HRF_Tau_eta.at(1) - HRF_Tau_eta.at(0)); else return float(-10.);")
+                .Define("HRF_Tau_Acoplanarity",    "if (HRF_Tau_y.at(0)>HRF_Tau_y.at(1)) return (HRF_Tau_phi.at(0) - HRF_Tau_phi.at(1)); \
+                                        else if (HRF_Tau_y.at(0)<HRF_Tau_y.at(1)) return (HRF_Tau_phi.at(1) - HRF_Tau_phi.at(0)); else return float(-10.);")
 
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                .Define("RecoElectron_p4",     "FCCAnalyses::ZHfunctions::build_p4(RecoElectron_px, RecoElectron_py, RecoElectron_pz, RecoElectron_e)")
-                .Define("ZRF_RecoElectron_p4",    "return myUtils::boosted_p4(- RecoZ_p4, RecoElectron_p4);")
-                .Define("ZRF_RecoElectron_px",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_py",    "FCCAnalyses::ZHfunctions::get_py_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_pz",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_p",    "FCCAnalyses::ZHfunctions::get_p_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_pt",    "FCCAnalyses::ZHfunctions::get_pt_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_e",    "FCCAnalyses::ZHfunctions::get_e_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_eta",    "FCCAnalyses::ZHfunctions::get_eta_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_phi",    "FCCAnalyses::ZHfunctions::get_phi_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_theta",    "FCCAnalyses::ZHfunctions::get_theta_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_y",    "FCCAnalyses::ZHfunctions::get_y_tlv(ZRF_RecoElectron_p4)")
-                .Define("ZRF_RecoElectron_charge",    "RecoElectron_charge")
+                .Define("RecoZDaughter_p4",     "FCCAnalyses::ZHfunctions::build_p4(RecoElectron_px, RecoElectron_py, RecoElectron_pz, RecoElectron_e)")
+                .Define("ZRF_RecoZDaughter_p4",    "return myUtils::boosted_p4(- RecoZ_p4, RecoZDaughter_p4);")
+                .Define("ZRF_RecoZDaughter_px",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_py",    "FCCAnalyses::ZHfunctions::get_py_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_pz",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_p",    "FCCAnalyses::ZHfunctions::get_p_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_pt",    "FCCAnalyses::ZHfunctions::get_pt_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_e",    "FCCAnalyses::ZHfunctions::get_e_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_eta",    "FCCAnalyses::ZHfunctions::get_eta_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_phi",    "FCCAnalyses::ZHfunctions::get_phi_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_theta",    "FCCAnalyses::ZHfunctions::get_theta_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_y",    "FCCAnalyses::ZHfunctions::get_y_tlv(ZRF_RecoZDaughter_p4)")
+                .Define("ZRF_RecoZDaughter_charge",    "RecoElectron_charge")
 
-                .Define("ZRF_RecoDiElectron_DEta",    "if (ZRF_RecoElectron_y.at(0)>ZRF_RecoElectron_y.at(1)) return (ZRF_RecoElectron_eta.at(0) - ZRF_RecoElectron_eta.at(1)); \
-                                        else if (ZRF_RecoElectron_y.at(0)<ZRF_RecoElectron_y.at(1)) return (ZRF_RecoElectron_eta.at(1) - ZRF_RecoElectron_eta.at(0)); else return float(-10.);")
-                .Define("ZRF_RecoDiElectron_DPhi",    "if (ZRF_RecoElectron_y.at(0)>ZRF_RecoElectron_y.at(1)) return (ZRF_RecoElectron_phi.at(0) - ZRF_RecoElectron_phi.at(1)); \
-                                        else if (ZRF_RecoElectron_y.at(0)<ZRF_RecoElectron_y.at(1)) return (ZRF_RecoElectron_phi.at(1) - ZRF_RecoElectron_phi.at(0)); else return float(-10.);")
+                .Define("ZRF_RecoZDaughter_DEta",    "if (ZRF_RecoZDaughter_y.at(0)>ZRF_RecoZDaughter_y.at(1)) return (ZRF_RecoZDaughter_eta.at(0) - ZRF_RecoZDaughter_eta.at(1)); \
+                                        else if (ZRF_RecoZDaughter_y.at(0)<ZRF_RecoZDaughter_y.at(1)) return (ZRF_RecoZDaughter_eta.at(1) - ZRF_RecoZDaughter_eta.at(0)); else return float(-10.);")
+                .Define("ZRF_RecoZDaughter_Acoplanarity",    "if (ZRF_RecoZDaughter_y.at(0)>ZRF_RecoZDaughter_y.at(1)) return (ZRF_RecoZDaughter_phi.at(0) - ZRF_RecoZDaughter_phi.at(1)); \
+                                        else if (ZRF_RecoZDaughter_y.at(0)<ZRF_RecoZDaughter_y.at(1)) return (ZRF_RecoZDaughter_phi.at(1) - ZRF_RecoZDaughter_phi.at(0)); else return float(-10.);")
 
                 ### angles visualisation in figure 1 (2) at pag 8 of https://arxiv.org/pdf/2205.07715
                 #may be interesting to simnply keep the cosine of thetas (John Hopkins)
                 #angle between H vector in lab frame and tau in H rest frame
-                .Define("RecoTheta2",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{RecoH_p4}, HRF_RecoTau_p4[HRF_RecoTau_charge==-1])/(RecoH_p*HRF_RecoTau_p[HRF_RecoTau_charge==-1]))")
+                .Define("RecoTheta2",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{RecoH_p4}, HRF_Tau_p4[HRF_Tau_charge==-1])/(RecoH_p*HRF_Tau_p[HRF_Tau_charge==-1]))")
                 #angle between Z vector in lab frame and Muon in Z rest frame
-                .Define("RecoTheta1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{RecoZ_p4}, ZRF_RecoElectron_p4[ZRF_RecoElectron_charge==-1])/(RecoZ_p*ZRF_RecoElectron_p[ZRF_RecoElectron_charge==-1]))")
+                .Define("RecoTheta1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{RecoZ_p4}, ZRF_RecoZDaughter_p4[ZRF_RecoZDaughter_charge==-1])/(RecoZ_p*ZRF_RecoZDaughter_p[ZRF_RecoZDaughter_charge==-1]))")
                 #angle between decay planes of H and Z
-                .Define("RecoPhi",      "acos(FCCAnalyses::ZHfunctions::get_scalar(HRF_RecoTau_p4[HRF_RecoTau_charge==-1], ZRF_RecoElectron_p4[ZRF_RecoElectron_charge==-1])/(HRF_RecoTau_p[HRF_RecoTau_charge==-1]*ZRF_RecoElectron_p[ZRF_RecoElectron_charge==-1]))")
+                .Define("RecoPhi",      "acos(FCCAnalyses::ZHfunctions::get_scalar(HRF_Tau_p4[HRF_Tau_charge==-1], ZRF_RecoZDaughter_p4[ZRF_RecoZDaughter_charge==-1])/(HRF_Tau_p[HRF_Tau_charge==-1]*ZRF_RecoZDaughter_p[ZRF_RecoZDaughter_charge==-1]))")
                 #angle between beam line and Z decay plane
-                .Define("RecoPhi1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ZRF_RecoElectron_p4[ZRF_RecoElectron_charge==-1])/(Beam_p*ZRF_RecoElectron_p[ZRF_RecoElectron_charge==-1]))")
+                .Define("RecoPhi1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ZRF_RecoZDaughter_p4[ZRF_RecoZDaughter_charge==-1])/(Beam_p*ZRF_RecoZDaughter_p[ZRF_RecoZDaughter_charge==-1]))")
                 .Define("RecoThetastar",      "acos(FCCAnalyses::ZHfunctions::get_scalar(ROOT::VecOps::RVec<TLorentzVector>{Beam_vec}, ROOT::VecOps::RVec<TLorentzVector>{RecoZ_p4})/(Beam_p*RecoZ_p))")
 
                 .Define("RecoThetastar_cos",        "(cos(RecoThetastar))")
@@ -429,23 +452,23 @@ class RDFanalysis():
         #branches from stage1 to be kept for histogram booking in final and plotting
         branchList = [
             ######## Monte-Carlo particles #######
-            "n_FSGenElectron",
-            "FSGenElectron_e",
-            "FSGenElectron_p",
-            "FSGenElectron_pt",
-            "FSGenElectron_px",
-            "FSGenElectron_py",
-            "FSGenElectron_pz",
-            "FSGenElectron_y",
-            "FSGenElectron_eta",
-            "FSGenElectron_theta",
-            "FSGenElectron_phi",
-            "FSGenElectron_charge",
-            "FSGenElectron_mass",
-            "FSGenElectron_parentPDG",
-            "FSGenElectron_vertex_x",
-            "FSGenElectron_vertex_y",
-            "FSGenElectron_vertex_z",
+            "n_FSGenZDaughter",
+            "FSGenZDaughter_e",
+            "FSGenZDaughter_p",
+            "FSGenZDaughter_pt",
+            "FSGenZDaughter_px",
+            "FSGenZDaughter_py",
+            "FSGenZDaughter_pz",
+            "FSGenZDaughter_y",
+            "FSGenZDaughter_eta",
+            "FSGenZDaughter_theta",
+            "FSGenZDaughter_phi",
+            "FSGenZDaughter_charge",
+            "FSGenZDaughter_mass",
+            "FSGenZDaughter_parentPDG",
+            "FSGenZDaughter_vertex_x",
+            "FSGenZDaughter_vertex_y",
+            "FSGenZDaughter_vertex_z",
 
             "n_FSGenMuon",
             "FSGenMuon_e",
@@ -828,55 +851,6 @@ class RDFanalysis():
         ]
         #complex variables added here at stage2
         branchList += [
-            ######## Monte-Carlo particles #######
-            "GenZ_e",
-            "GenZ_p", 
-            "GenZ_pt", 
-            "GenZ_px", 
-            "GenZ_py", 
-            "GenZ_pz", 
-            "GenZ_y", 
-            "GenZ_mass",
-            "GenZ_eta", 
-            "GenZ_theta", 
-            "GenZ_phi", 
-            
-            "GenDiTau_DEta",
-            "GenDiTau_DPhi",
-            "GenDiTau_absDEta",
-            "GenDiTau_absDPhi",
-            "GenDiTau_cos",
-            "GenDiTau_DR",
-
-            "HRF_GenTau_px",  
-            "HRF_GenTau_py",  
-            "HRF_GenTau_pz", 
-            "HRF_GenTau_p", 
-            "HRF_GenTau_pt",  
-            "HRF_GenTau_e",   
-            "HRF_GenTau_eta", 
-            "HRF_GenTau_phi",  
-            "HRF_GenTau_theta",    
-            "HRF_GenTau_y", 
-
-            "HRF_GenDiTau_DEta", 
-            "HRF_GenDiTau_DPhi",
-
-            "GenThetastar",
-            "GenTheta2",
-            "GenPhi1", 
-            "GenPhi", 
-            "GenTheta1", 
-
-            "GenThetastar_cos",
-            "GenTheta2_cos",
-            "GenPhi1_cos", 
-            "GenPhi_cos", 
-            "GenTheta1_cos", 
-
-        ]
-
-        branchList += [
                 "RecoEmiss_eta",
                 "RecoEmiss_phi",
                 "RecoEmiss_theta",
@@ -894,6 +868,30 @@ class RDFanalysis():
                 "RecoZ_theta",
                 "RecoZ_y",
                 "RecoZ_mass",
+
+                "RecoZ1_px", 
+                "RecoZ1_py",   
+                "RecoZ1_pz",   
+                "RecoZ1_p",    
+                "RecoZ1_pt",   
+                "RecoZ1_e",    
+                "RecoZ1_eta",    
+                "RecoZ1_phi",    
+                "RecoZ1_theta",   
+                "RecoZ1_y",     
+                "RecoZ1_mass",   
+
+                "RecoZ2_px",    
+                "RecoZ2_py",   
+                "RecoZ2_pz",   
+                "RecoZ2_p",   
+                "RecoZ2_pt",  
+                "RecoZ2_e",     
+                "RecoZ2_eta",   
+                "RecoZ2_phi",   
+                "RecoZ2_theta",    
+                "RecoZ2_y",    
+                "RecoZ2_mass",   
 
                 "RecoH_px",
                 "RecoH_py",
@@ -938,41 +936,101 @@ class RDFanalysis():
                 "Recoil",
                 "Collinear_mass", 
         ]
+        branchList += [
+            ######## Monte-Carlo particles #######
+            "GenZ_e",
+            "GenZ_p", 
+            "GenZ_pt", 
+            "GenZ_px", 
+            "GenZ_py", 
+            "GenZ_pz", 
+            "GenZ_y", 
+            "GenZ_mass",
+            "GenZ_eta", 
+            "GenZ_theta", 
+            "GenZ_phi", 
+
+            "ZRF_GenZDaughter_px",  
+            "ZRF_GenZDaughter_py",  
+            "ZRF_GenZDaughter_pz", 
+            "ZRF_GenZDaughter_p", 
+            "ZRF_GenZDaughter_pt",  
+            "ZRF_GenZDaughter_e",   
+            "ZRF_GenZDaughter_eta", 
+            "ZRF_GenZDaughter_phi",  
+            "ZRF_GenZDaughter_theta",    
+            "ZRF_GenZDaughter_y", 
+
+            "ZRF_GenZDaughter_DEta", 
+            "ZRF_GenZDaughter_Acoplanarity", 
+            
+            "GenTau_DEta",
+            "GenTau_Acoplanarity",
+            "GenTau_cos",
+            "GenTau_DR",
+
+            "HRF_GenTau_px",  
+            "HRF_GenTau_py",  
+            "HRF_GenTau_pz", 
+            "HRF_GenTau_p", 
+            "HRF_GenTau_pt",  
+            "HRF_GenTau_e",   
+            "HRF_GenTau_eta", 
+            "HRF_GenTau_phi",  
+            "HRF_GenTau_theta",    
+            "HRF_GenTau_y", 
+
+            "HRF_GenTau_DEta", 
+            "HRF_GenTau_Acoplanarity",
+
+            "GenThetastar",
+            "GenTheta2",
+            "GenPhi1", 
+            "GenPhi", 
+            "GenTheta1", 
+
+            "GenThetastar_cos",
+            "GenTheta2_cos",
+            "GenPhi1_cos", 
+            "GenPhi_cos", 
+            "GenTheta1_cos", 
+
+        ]
 
         branchList += [
 
-            "RecoDiTau_DEta", 
-            "RecoDiTau_DPhi", 
-            "RecoDiElectron_DEta", 
-            "RecoDiElectron_DPhi", 
+            "Tau_DEta", 
+            "Tau_Acoplanarity", 
+            "RecoZDaughter_DEta", 
+            "RecoZDaughter_Acoplanarity", 
 
-            "HRF_RecoTau_px",  
-            "HRF_RecoTau_py",  
-            "HRF_RecoTau_pz", 
-            "HRF_RecoTau_p", 
-            "HRF_RecoTau_pt",  
-            "HRF_RecoTau_e",   
-            "HRF_RecoTau_eta", 
-            "HRF_RecoTau_phi",  
-            "HRF_RecoTau_theta",    
-            "HRF_RecoTau_y", 
+            "HRF_Tau_px",  
+            "HRF_Tau_py",  
+            "HRF_Tau_pz", 
+            "HRF_Tau_p", 
+            "HRF_Tau_pt",  
+            "HRF_Tau_e",   
+            "HRF_Tau_eta", 
+            "HRF_Tau_phi",  
+            "HRF_Tau_theta",    
+            "HRF_Tau_y", 
 
-            "HRF_RecoDiTau_DEta", 
-            "HRF_RecoDiTau_DPhi", 
+            "HRF_Tau_DEta", 
+            "HRF_Tau_Acoplanarity", 
 
-            "ZRF_RecoElectron_px",  
-            "ZRF_RecoElectron_py",  
-            "ZRF_RecoElectron_pz", 
-            "ZRF_RecoElectron_p", 
-            "ZRF_RecoElectron_pt",  
-            "ZRF_RecoElectron_e",   
-            "ZRF_RecoElectron_eta", 
-            "ZRF_RecoElectron_phi",  
-            "ZRF_RecoElectron_theta",    
-            "ZRF_RecoElectron_y", 
+            "ZRF_RecoZDaughter_px",  
+            "ZRF_RecoZDaughter_py",  
+            "ZRF_RecoZDaughter_pz", 
+            "ZRF_RecoZDaughter_p", 
+            "ZRF_RecoZDaughter_pt",  
+            "ZRF_RecoZDaughter_e",   
+            "ZRF_RecoZDaughter_eta", 
+            "ZRF_RecoZDaughter_phi",  
+            "ZRF_RecoZDaughter_theta",    
+            "ZRF_RecoZDaughter_y", 
 
-            "ZRF_RecoDiElectron_DEta", 
-            "ZRF_RecoDiElectron_DPhi", 
+            "ZRF_RecoZDaughter_DEta", 
+            "ZRF_RecoZDaughter_Acoplanarity", 
 
             "RecoThetastar",
             "RecoTheta2",
