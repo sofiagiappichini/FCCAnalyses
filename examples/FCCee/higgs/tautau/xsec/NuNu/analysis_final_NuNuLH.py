@@ -118,13 +118,27 @@ procDictAdd = {}
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
-    #"selReco_Maria": " (Recoil>120 && Recoil<140) && (TauFromJet_type[0]>=0 && TauFromJet_type[1]>=0)",
+    #"selReco": "true",
+    #"selReco_100Me": "RecoEmiss_e>100",
+    #"selReco_100Me_TauAc3": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3",
+    #"selReco_100Me_TauAc3_2DR": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2",
+    #"selReco_100Me_TauAc3_2DR_cos0": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2 && Tau_cos<0",
+    #"selReco_100Me_TauAc3_2DR_cos0_misscos0.98": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
+
 }
 
 # Dictionary for prettier names of cuts (optional)
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
-cutLabels = {}
+cutLabels = {
+    "selReco": "No additional selection",
+    "selReco_100Me": "E_{miss}>100 GeV",
+    "selReco_100Me_TauAc3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
+    "selReco_100Me_TauAc3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
+    "selReco_100Me_TauAc3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98}",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98} && |y_{miss}|<1",
+}
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
 histoList = {
