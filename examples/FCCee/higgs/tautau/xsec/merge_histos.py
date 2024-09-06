@@ -44,16 +44,33 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    "QQ",
-    "LL",
-    #"NuNu",
+    #"QQ",
+    #"LL",
+    "NuNu",
 ]
 #list of cuts you want to plot
 CUTS = [
-    "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_10Me",
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_10Me",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+
+    #"selReco_100Coll150_115Rec160_10Me_80Z95",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+
+    #"selReco_100Me",
+    #"selReco_100Me_TauAc3",
+    #"selReco_100Me_TauAc3_2DR",
+    #"selReco_100Me_TauAc3_2DR_cos0",
+    #"selReco_100Me_TauAc3_2DR_cos0_misscos0.98",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+
  ] 
 
 #now you can list all the histograms that you want to plot
@@ -705,41 +722,34 @@ backgrounds_1 = [
     'wzp6_ee_mumu_ecm240',
     'wzp6_ee_ee_Mee_30_150_ecm240',
 ]
-
 backgrounds_2 = [
     'wzp6_egamma_eZ_Zmumu_ecm240',
     'wzp6_egamma_eZ_Zee_ecm240',
     'wzp6_gammae_eZ_Zmumu_ecm240',
     'wzp6_gammae_eZ_Zee_ecm240',
 ]
-
 backgrounds_3 = [
     'wzp6_gaga_mumu_60_ecm240',
     'wzp6_gaga_ee_60_ecm240',
 ]
-
 backgrounds_4 = [
     'wzp6_ee_tautauH_Hbb_ecm240',
     'wzp6_ee_tautauH_Hcc_ecm240',
     'wzp6_ee_tautauH_Hss_ecm240',
 ]
-
 backgrounds_5 = [
     'wzp6_ee_tautauH_HWW_ecm240',
     'wzp6_ee_tautauH_HZZ_ecm240',
 ]
-
 backgrounds_6 = [
     'wzp6_ee_nunuH_Hbb_ecm240',
     'wzp6_ee_nunuH_Hcc_ecm240',
     'wzp6_ee_nunuH_Hss_ecm240',
 ]
-
 backgrounds_7 = [
     'wzp6_ee_nunuH_HWW_ecm240',
     'wzp6_ee_nunuH_HZZ_ecm240',
 ]
-
 backgrounds_8 = [
     'wzp6_ee_eeH_Hbb_ecm240',
     'wzp6_ee_eeH_Hcc_ecm240',
@@ -749,7 +759,6 @@ backgrounds_8 = [
     'wzp6_ee_mumuH_Hcc_ecm240',
     'wzp6_ee_mumuH_Hss_ecm240',
 ]
-
 backgrounds_9 = [
     'wzp6_ee_eeH_HWW_ecm240',
     'wzp6_ee_eeH_HZZ_ecm240',
@@ -757,29 +766,24 @@ backgrounds_9 = [
     'wzp6_ee_mumuH_HWW_ecm240',
     'wzp6_ee_mumuH_HZZ_ecm240',
 ]
-
 backgrounds_10 = [
     'wzp6_ee_eeH_Hbb_ecm240',
     'wzp6_ee_eeH_Hcc_ecm240',
     'wzp6_ee_eeH_Hss_ecm240',
 ]
-
 backgrounds_11 = [
     'wzp6_ee_eeH_HWW_ecm240',
     'wzp6_ee_eeH_HZZ_ecm240',
 ]
-
 backgrounds_12 = [
     'wzp6_ee_mumuH_Hbb_ecm240',
     'wzp6_ee_mumuH_Hcc_ecm240',
     'wzp6_ee_mumuH_Hss_ecm240',
 ]
-
 backgrounds_13 = [
     'wzp6_ee_mumuH_HWW_ecm240',
     'wzp6_ee_mumuH_HZZ_ecm240',
 ]
-
 backgrounds_14 = [
     'wzp6_ee_bbH_Hbb_ecm240',
     'wzp6_ee_bbH_Hcc_ecm240',
@@ -797,7 +801,6 @@ backgrounds_14 = [
     'wzp6_ee_qqH_Hcc_ecm240',
     'wzp6_ee_qqH_Hss_ecm240',
 ]
-
 backgrounds_15 = [
     'wzp6_ee_bbH_Hbb_ecm240',
     'wzp6_ee_bbH_Hcc_ecm240',
@@ -807,7 +810,6 @@ backgrounds_15 = [
     'wzp6_ee_ccH_Hcc_ecm240',
     'wzp6_ee_ccH_Hss_ecm240',
 ]
-
 backgrounds_16 = [
     'wzp6_ee_ssH_Hbb_ecm240',
     'wzp6_ee_ssH_Hcc_ecm240',
@@ -830,7 +832,6 @@ backgrounds_17 = [
     'wzp6_ee_qqH_HWW_ecm240',
     'wzp6_ee_qqH_HZZ_ecm240',
 ]
-
 backgrounds_18 = [
     'wzp6_ee_bbH_HWW_ecm240',
     'wzp6_ee_bbH_HZZ_ecm240',
@@ -838,7 +839,6 @@ backgrounds_18 = [
     'wzp6_ee_ccH_HWW_ecm240',
     'wzp6_ee_ccH_HZZ_ecm240',
 ]
-
 backgrounds_19 = [    
     'wzp6_ee_ssH_HWW_ecm240',
     'wzp6_ee_ssH_HZZ_ecm240',
@@ -846,24 +846,20 @@ backgrounds_19 = [
     'wzp6_ee_qqH_HWW_ecm240',
     'wzp6_ee_qqH_HZZ_ecm240',
 ]
-
 backgrounds_20 = [
     'wzp6_ee_bbH_Hgg_ecm240',
     'wzp6_ee_ccH_Hgg_ecm240',
     'wzp6_ee_ssH_Hgg_ecm240',
     'wzp6_ee_qqH_Hgg_ecm240',
 ]
-
 backgrounds_21 = [
     'wzp6_ee_bbH_Hgg_ecm240',
     'wzp6_ee_ccH_Hgg_ecm240',
 ]
-
 backgrounds_22 = [
     'wzp6_ee_ssH_Hgg_ecm240',
     'wzp6_ee_qqH_Hgg_ecm240',
 ]
-
 backgrounds_23 = [
     'wzp6_ee_eeH_Hgg_ecm240',
     'wzp6_ee_mumuH_Hgg_ecm240',
@@ -880,12 +876,10 @@ backgrounds_25 = [
     'wzp6_ee_ssH_Htautau_ecm240',
     'wzp6_ee_qqH_Htautau_ecm240',
 ]
-
 backgrounds_26 = [
     'wzp6_ee_bbH_Htautau_ecm240',
     'wzp6_ee_ccH_Htautau_ecm240',
 ]
-
 backgrounds_27 = [
     'wzp6_ee_ssH_Htautau_ecm240',
     'wzp6_ee_qqH_Htautau_ecm240',

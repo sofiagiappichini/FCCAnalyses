@@ -122,11 +122,11 @@ cutList = {
     "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
     "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
     "selReco_100Coll150_115Rec160_10Me": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10",
-    "selReco_100Coll150_115Rec160_10Me_70Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>70 && RecoZ_mass<100",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>70 && RecoZ_mass<100 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>70 && RecoZ_mass<100 && Tau_DR>2 && Tau_cos<0",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>70 && RecoZ_mass<100 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
-
+    "selReco_100Coll150_115Rec160_10Me_80Z95": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
+    
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -136,10 +136,10 @@ cutLabels = {
     "selReco_100Coll150": "100<M_{collinear}<150 GeV",
     "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
     "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
-    "selReco_100Coll150_115Rec160_10Me_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
+    "selReco_100Coll150_115Rec160_10Me_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
 
 }
 

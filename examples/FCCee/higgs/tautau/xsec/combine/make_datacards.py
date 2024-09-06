@@ -15,11 +15,11 @@ import uproot
 def file_exists(file_path):
     return os.path.isfile(file_path)
 
-def check_nonzero(directory, cut, process, list, variable):
+def check_nonzero(directory, cut, process, list, VARIABLE):
     path = f"{directory}{process}_{cut}_histo.root"
     if file_exists(path):
         histo_file = uproot.open(path)
-        selected_leaf = histo_file[variable]
+        selected_leaf = histo_file[VARIABLE]
         y_values = selected_leaf.values()
         if (sum(y_values)!=0):
             list.append(process)
@@ -29,7 +29,7 @@ outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine
 
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",,
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
@@ -43,8 +43,16 @@ CAT = [
     "LL",
     "NuNu",
 ]
-cut = "selReco"
-VARIABLE = "Recoil"
+cut = {
+    'LL':"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+    'QQ':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+    'NuNu':"selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+}
+VARIABLE = {
+    'LL':"Recoil",
+    'QQ':"Recoil",
+    'NuNu':"Visible_mass",
+    }
 
 backgrounds_all = [
     "p8_ee_WW_ecm240",
@@ -66,35 +74,52 @@ backgrounds_all = [
     "wzp6_ee_tautauH_Hgg_ecm240",
     "wzp6_ee_tautauH_HVV_ecm240",
 
+    "wzp6_ee_nunuH_Htautau_ecm240",
     "wzp6_ee_nunuH_HQQ_ecm240",
     "wzp6_ee_nunuH_Hgg_ecm240",
     "wzp6_ee_nunuH_HVV_ecm240",
 
-    "wzp6_ee_eeH_HQQ_ecm240",
-    "wzp6_ee_eeH_Hgg_ecm240",
-    "wzp6_ee_eeH_HVV_ecm240",
+    "wzp6_ee_LLH_Htautau_ecm240",
+    "wzp6_ee_LLH_HQQ_ecm240",
+    "wzp6_ee_LLH_Hgg_ecm240",
+    "wzp6_ee_LLH_HVV_ecm240",
 
-    "wzp6_ee_mumuH_HQQ_ecm240",
-    "wzp6_ee_mumuH_Hgg_ecm240",
-    "wzp6_ee_mumuH_HVV_ecm240",
+    "wzp6_ee_QQH_Htautau_ecm240",
+    "wzp6_ee_QQH_HQQ_ecm240",
+    "wzp6_ee_QQH_Hgg_ecm240",
+    "wzp6_ee_QQH_HVV_ecm240",
 
-    "wzp6_ee_ZheavyH_HQQ_ecm240",
-    "wzp6_ee_ZheavyH_Hgg_ecm240",
-    "wzp6_ee_ZheavyH_HVV_ecm240",
+    #"wzp6_ee_eeH_Htautau_ecm240",
+    #"wzp6_ee_eeH_HQQ_ecm240",
+    #"wzp6_ee_eeH_Hgg_ecm240",
+    #"wzp6_ee_eeH_HVV_ecm240",
 
-    "wzp6_ee_ZlightH_HQQ_ecm240",
-    "wzp6_ee_ZlightH_Hgg_ecm240",
-    "wzp6_ee_ZlightH_HVV_ecm240",
+    #"wzp6_ee_mumuH_Htautau_ecm240",
+    #"wzp6_ee_mumuH_HQQ_ecm240",
+    #"wzp6_ee_mumuH_Hgg_ecm240",
+    #"wzp6_ee_mumuH_HVV_ecm240",
+
+    #"wzp6_ee_ZheavyH_Htautau_ecm240",
+    #"wzp6_ee_ZheavyH_HQQ_ecm240",
+    #"wzp6_ee_ZheavyH_Hgg_ecm240",
+    #"wzp6_ee_ZheavyH_HVV_ecm240",
+
+    #"wzp6_ee_ZlightH_Htautau_ecm240",
+    #"wzp6_ee_ZlightH_HQQ_ecm240",
+    #"wzp6_ee_ZlightH_Hgg_ecm240",
+    #"wzp6_ee_ZlightH_HVV_ecm240",
 ]
 
 signals_QQ = [
-    'wzp6_ee_ZheavyH_Htautau_ecm240',
-    'wzp6_ee_ZlightH_Htautau_ecm240',
+    #'wzp6_ee_ZheavyH_Htautau_ecm240',
+    #'wzp6_ee_ZlightH_Htautau_ecm240',
+    'wzp6_ee_QQH_Htautau_ecm240',
 ]
 
 signals_LL = [
-    'wzp6_ee_eeH_Htautau_ecm240',
-    'wzp6_ee_mumuH_Htautau_ecm240',
+    #'wzp6_ee_eeH_Htautau_ecm240',
+    #'wzp6_ee_mumuH_Htautau_ecm240',
+    'wzp6_ee_LLH_Htautau_ecm240',
 ]
 
 signals_NuNu= [
@@ -127,25 +152,26 @@ for cat in CAT:
         directory = DIRECTORY[cat] + "/" + sub + "/"
 
         #add the processes in the respective lists
-        for s in LIST_S[cat]:
-            check_nonzero(directory, cut, s, sig_procs, VARIABLE)
         for b in backgrounds_all:
-            check_nonzero(directory, cut, b, bkg_procs, VARIABLE)
+            if b not in LIST_S[cat]:
+                check_nonzero(directory, cut[cat], b, bkg_procs, VARIABLE[cat])
+            else:
+                check_nonzero(directory, cut[cat], b, sig_procs, VARIABLE[cat])
 
         procs = sig_procs + bkg_procs
         nprocs = len(procs)
         procs_idx = list(range(-len(sig_procs)+1, len(bkg_procs)+1, 1)) # negative or 0 for signal, positive for bkg
 
         procs_str = " ".join(f"{proc:{' '}{'<'}{lspace}}" for proc in procs)
-        cats_procs_str = " ".join([f"{VARIABLE:{' '}{'<'}{lspace}}"] * nprocs)
+        cats_procs_str = " ".join([f"{VARIABLE[cat]:{' '}{'<'}{lspace}}"] * nprocs)
         proc_ind = " ".join(f"{proc:{' '}{'<'}{lspace}}" for proc in procs_idx)
         rates_procs = " ".join([f"{'-1':{' '}{'<'}{lspace}}"] * nprocs)
         
         for proc in procs:
-            dc += f"shapes {proc} * {directory}{proc}_{cut}_histo.root $CHANNEL\n"
-        dc += f"shapes data_obs * {directory}{procs[0]}_{cut}_histo.root $CHANNEL\n"
+            dc += f"shapes {proc} * {directory}{proc}_{cut[cat]}_histo.root $CHANNEL\n"
+        dc += f"shapes data_obs * {directory}{procs[0]}_{cut[cat]}_histo.root $CHANNEL\n"
         dc += f"--------------------------------------------------------------------------------\n"
-        dc += f"bin                        {VARIABLE}\n"
+        dc += f"bin                        {VARIABLE[cat]}\n"
         dc += f"observation                -1\n"
         dc += f"--------------------------------------------------------------------------------\n"
         dc += f"bin                        {cats_procs_str}\n"
@@ -186,14 +212,13 @@ for cat in CAT:
             f.write(dc)
 
 ## now we can combine the cards made
-## need to work in centos7 : portal1-centos7.etp.kit.edu
 os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
-os.system("cd /work/nfaltermann/cmssw/CMSSW_10_6_0/src/")
+os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
 os.system("cmsenv")
 
 for cat in CAT:
-    string = "".join([f"{cat}{sub}={outputDir}/{cat}/{sub}/datacard.txt" for sub in SUBDIR])
+    string = " ".join([f"{cat}{sub}={outputDir}/{cat}/{sub}/datacard.txt" for sub in SUBDIR])
     os.system(f"combineCards.py {string} > {outputDir}/{cat}/datacard_{cat}.txt")
 
-string = "".join([f"{cat}{sub}={outputDir}/{cat}/{sub}/datacard.txt" for cat in CAT for sub in SUBDIR])
+string = " ".join([f"{cat}{sub}={outputDir}/{cat}/{sub}/datacard.txt" for cat in CAT for sub in SUBDIR])
 os.system(f"combineCards.py {string} > {outputDir}/datacard_combined.txt")

@@ -44,9 +44,9 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    "QQ",
-    "LL",
-    #"NuNu",
+    #"QQ",
+    #"LL",
+    "NuNu",
 ]
 #directory where you want your plots to go
 DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
@@ -56,10 +56,22 @@ CUTS = [
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_10Me",
-    "selReco_100Coll150_115Rec160_10Me_70Z100",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+
+    #"selReco_100Coll150_115Rec160_10Me_80Z95",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+
+    #"selReco_100Me",
+    #"selReco_100Me_TauAc3",
+    #"selReco_100Me_TauAc3_2DR",
+    #"selReco_100Me_TauAc3_2DR_cos0",
+    #"selReco_100Me_TauAc3_2DR_cos0_misscos0.98",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
 
  ] 
 #labels for the cuts in the plots
@@ -68,10 +80,26 @@ LABELS = {
     "selReco_100Coll150": "100<M_{collinear}<150 GeV",
     "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
     "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
+
+    #cuts for LL
     "selReco_100Coll150_115Rec160_10Me_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV",
     "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
+
+    #cuts for QQ
+    "selReco_100Coll150_115Rec160_10Me_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
+
+    #cuts for NuNu
+    "selReco_100Me": "E_{miss}>100 GeV",
+    "selReco_100Me_TauAc3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
+    "selReco_100Me_TauAc3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
+    "selReco_100Me_TauAc3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98}",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98} && |y_{miss}|<1",
 
  }
 
@@ -84,7 +112,7 @@ ana_tex = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = False
+LOGY = True
 
 #now you can list all the histograms that you want to plot
 VARIABLES_ALL = [
@@ -1313,11 +1341,11 @@ for cut in CUTS:
                         hStackBkg.SetMinimum(1e-5) #change the range to be plotted
                         hStackBkg.SetMaximum(1e21) #leave some space on top for the legend
                     else:
-                        h = hStackBkg.GetHists() #list of histograms 
+                        #h = hStackBkg.GetHists() #list of histograms 
                         last = 0
-                        for item in h:
-                            if (last<item.GetMaximum()):
-                                last = item.GetMaximum() 
+                        for i in range(len(histos)):
+                            if (last<histos[i].GetMaximum()):
+                                last = histos[i].GetMaximum() 
                             # Set the y-axis range with additional white space
                         #hStackBkg.SetMinimum(0)
                         hStackBkg.SetMaximum(last*2.5)
