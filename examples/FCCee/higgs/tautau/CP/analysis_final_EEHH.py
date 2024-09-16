@@ -48,7 +48,7 @@ procDictAdd = {
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
+    "selGen": "true",
     #"selReco_Maria": " (Recoil>120 && Recoil<140) && (TauFromJet_type[0]>=0 && TauFromJet_type[1]>=0)",
 }
 

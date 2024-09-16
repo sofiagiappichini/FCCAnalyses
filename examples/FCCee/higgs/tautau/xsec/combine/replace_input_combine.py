@@ -4,7 +4,7 @@ import os
 CAT = [
     "QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 SUBDIR = [
     'LL',
@@ -66,7 +66,7 @@ for cat in CAT:
 
     print("Content from {} has been written to {}".format(cat, output_file))
 
-'''#final fit on everything
+#final fit on everything
 input_file_fin = f"{outputDir}/{input_file}"
 
 os.system(f"text2workspace.py {outputDir}/datacard_combined.txt -o {outputDir}/ws.root")
@@ -85,4 +85,4 @@ with open(input_file_fin, "r") as file:
 with open(output_file, "a") as csv_file:
     csv_file.write(f"combined: {content_of_row} \n")
 
-print("Content from combined has been written to {}".format(output_file))'''
+print("Content from combined has been written to {}".format(output_file))

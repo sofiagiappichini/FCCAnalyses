@@ -21,4 +21,5 @@ process                    wzp6_ee_LLH_Htautau_ecm240          p8_ee_WW_ecm240  
 process                    0                                   1                                   2                                   3                                   4                                   5                                   6                                  
 rate                       -1                                  -1                                  -1                                  -1                                  -1                                  -1                                  -1                                 
 --------------------------------------------------------------------------------
+free rateParam Recoil * 1.0
 * autoMCStats 1 1

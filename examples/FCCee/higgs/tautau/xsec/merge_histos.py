@@ -44,12 +44,12 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    #"QQ",
+    "QQ",
     #"LL",
-    "NuNu",
+    #"NuNu",
 ]
 #list of cuts you want to plot
-CUTS = [
+CUTS_LL = [
     #"selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
@@ -57,21 +57,35 @@ CUTS = [
     #"selReco_100Coll150_115Rec160_10Me_70Z100",
     #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
     #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
-    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+]
 
+CUTS_QQ = [
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_80Z95",
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
-
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+]
+    
+CUTS_NuNu = [
+    #"selReco",
     #"selReco_100Me",
     #"selReco_100Me_TauAc3",
     #"selReco_100Me_TauAc3_2DR",
     #"selReco_100Me_TauAc3_2DR_cos0",
     #"selReco_100Me_TauAc3_2DR_cos0_misscos0.98",
     "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+]
 
- ] 
+CUTS = {
+    'LL':CUTS_LL,
+    'QQ':CUTS_QQ,
+    'NuNu':CUTS_NuNu,
+}
 
 #now you can list all the histograms that you want to plot
 VARIABLES = [
@@ -954,8 +968,8 @@ list = {
     27:backgrounds_27,
 }
 
-for cut in CUTS:
-    for cat in CAT:
+for cat in CAT:
+    for cut in CUTS[cat]:
         variables = VARIABLES + LIST_VAR[cat] 
         directory = DIRECTORY[cat]
         for sub in SUBDIR:
