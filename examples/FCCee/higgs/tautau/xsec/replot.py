@@ -44,14 +44,14 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    #"QQ",
-    #"LL",
+    "QQ",
+    "LL",
     "NuNu",
 ]
 #directory where you want your plots to go
 DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
 #list of cuts you want to plot
-CUTS = [
+CUTS_LL = [
     #"selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
@@ -59,21 +59,36 @@ CUTS = [
     #"selReco_100Coll150_115Rec160_10Me_70Z100",
     #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
     #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
-    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+]
 
+CUTS_QQ = [
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_80Z95",
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
-
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+]
+    
+CUTS_NuNu = [
+    #"selReco",
     #"selReco_100Me",
     #"selReco_100Me_TauAc3",
     #"selReco_100Me_TauAc3_2DR",
     #"selReco_100Me_TauAc3_2DR_cos0",
     #"selReco_100Me_TauAc3_2DR_cos0_misscos0.98",
     "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+]
 
- ] 
+CUTS = {
+    'LL':CUTS_LL,
+    'QQ':CUTS_QQ,
+    'NuNu':CUTS_NuNu,
+}
+
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
@@ -1050,17 +1065,17 @@ backgrounds_all = [
     "wzp6_ee_tautauH_Hgg_ecm240",
     "wzp6_ee_tautauH_HVV_ecm240",
 
-    "wzp6_ee_nunuH_Htautau_ecm240",
+    #"wzp6_ee_nunuH_Htautau_ecm240",
     "wzp6_ee_nunuH_HQQ_ecm240",
     "wzp6_ee_nunuH_Hgg_ecm240",
     "wzp6_ee_nunuH_HVV_ecm240",
 
-    "wzp6_ee_LLH_Htautau_ecm240",
+    #"wzp6_ee_LLH_Htautau_ecm240",
     "wzp6_ee_LLH_HQQ_ecm240",
     "wzp6_ee_LLH_Hgg_ecm240",
     "wzp6_ee_LLH_HVV_ecm240",
 
-    "wzp6_ee_QQH_Htautau_ecm240",
+    #"wzp6_ee_QQH_Htautau_ecm240",
     "wzp6_ee_QQH_HQQ_ecm240",
     "wzp6_ee_QQH_Hgg_ecm240",
     "wzp6_ee_QQH_HVV_ecm240",
@@ -1200,19 +1215,13 @@ legcolors = {
 }
 
 #list of signals, then legend and colors to be assigned to them
-signals_QQ = [
+signals = [
     #'wzp6_ee_ZheavyH_Htautau_ecm240',
     #'wzp6_ee_ZlightH_Htautau_ecm240',
     'wzp6_ee_QQH_Htautau_ecm240',
-]
-
-signals_LL = [
     #'wzp6_ee_eeH_Htautau_ecm240',
     #'wzp6_ee_mumuH_Htautau_ecm240',
     'wzp6_ee_LLH_Htautau_ecm240',
-]
-
-signals_NuNu= [
     'wzp6_ee_nunuH_Htautau_ecm240',
 ]
 
@@ -1222,22 +1231,16 @@ LIST_VAR = {
     "NuNu":VARIABLES_NuNu,
 }
 
-LIST_S = {
-    "QQ": signals_QQ,
-    "LL":signals_LL,
-    "NuNu":signals_NuNu,
-}
-
-for cut in CUTS:
-    for cat in CAT:
-        variables = VARIABLES_RECO + LIST_VAR[cat] 
-        for sub in SUBDIR:
-            directory = DIRECTORY[cat] + "/" + sub + "/"
+for cat in CAT:
+    variables = VARIABLES_RECO + LIST_VAR[cat] 
+    for sub in SUBDIR:
+        directory = DIRECTORY[cat] + "/" + sub + "/"
+        for cut in CUTS[cat]:
             for variable in variables:
 
                 canvas = ROOT.TCanvas("", "", 800, 800)
 
-                nsig = len(LIST_S[cat])
+                nsig = len(signals)
                 nbkg = len(backgrounds_all) #put to zero if you only want to look at signals
 
                 #legend coordinates and style
@@ -1263,11 +1266,12 @@ for cut in CUTS:
                 #global arrays for histos and colors
                 histos = []
                 colors = []
+                leg_bkg = []
 
                 #loop over files for signals and backgrounds and assign corresponding colors and titles
                 #loop to merge different sources into one histograms for easier plotting
 
-                for s in LIST_S[cat]:
+                for s in signals:
                     fin = f"{directory}{s}_{cut}_histo.root"
                     if file_exists(fin): #might be an empty file after stage2 
                         tf = ROOT.TFile.Open(fin, 'READ')
@@ -1277,22 +1281,22 @@ for cut in CUTS:
                         histos.append(hh)
                         colors.append(legcolors[s])
                         leg.AddEntry(histos[-1], legend[s], "l")
+                        leg_bkg.append(0)
                 nsig=len(histos)
 
                 if nbkg!=0:
                     #for the common backgrounds i want to keep them separate into different histograms
                     #no need to have the ones that are empty
                     for b in backgrounds_all:
-                        if b not in LIST_S[cat]:
-                            fin = f"{directory}{b}_{cut}_histo.root"
-                            if file_exists(fin):
-                                tf = ROOT.TFile.Open(fin, 'READ')
-                                h = tf.Get(variable)
-                                hh = copy.deepcopy(h)
-                                hh.SetDirectory(0)
-                                histos.append(hh)
-                                colors.append(legcolors[b])
-                                leg2.AddEntry(histos[-1], legend[b], "f")
+                        fin = f"{directory}{b}_{cut}_histo.root"
+                        if file_exists(fin):
+                            tf = ROOT.TFile.Open(fin, 'READ')
+                            h = tf.Get(variable)
+                            hh = copy.deepcopy(h)
+                            hh.SetDirectory(0)
+                            histos.append(hh)
+                            colors.append(legcolors[b])
+                            leg_bkg.append(b)
 
                     #merge backgrounds in plotting
                     '''i = 0
@@ -1327,8 +1331,10 @@ for cut in CUTS:
                         h.SetLineWidth(1)
                         h.SetLineColor(ROOT.kBlack)
                         h.SetFillColor(colors[i])
+                        #making sure only histograms with integral positive get added to the stack and legend
                         if h.Integral() > 0:
                             BgMCHistYieldsDic[h.Integral()] = h
+                            leg2.AddEntry(h, legend[leg_bkg[i]], "f")
                         else:
                             BgMCHistYieldsDic[-1*nbkg] = h
 
@@ -1339,7 +1345,7 @@ for cut in CUTS:
 
                     if LOGY==True :
                         hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                        hStackBkg.SetMaximum(1e21) #leave some space on top for the legend
+                        hStackBkg.SetMaximum(1e20) #leave some space on top for the legend
                     else:
                         #h = hStackBkg.GetHists() #list of histograms 
                         last = 0
@@ -1418,7 +1424,7 @@ for cut in CUTS:
                 #fix legened height after having the correct number of processes
 
                 legsize = 0.04*nsig
-                legsize2 = 0.04*(len(histos)-nsig)/2
+                legsize2 = 0.03*(len(histos)-nsig)/2
                 leg.SetY1(0.70 - legsize)
 
                 leg2.SetY1(0.70 - legsize2)

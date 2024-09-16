@@ -126,6 +126,7 @@ cutList = {
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98_40Zp55": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98 && RecoZ_p>40 && RecoZ_p<55",
     
 }
 

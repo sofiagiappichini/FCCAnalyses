@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+#### use python3 in cmssw with alma9
+
 import sys
 import os
 import os.path
@@ -41,7 +43,7 @@ SUBDIR = [
 CAT = [
     "QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 cut = {
     'LL':"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
@@ -110,27 +112,15 @@ backgrounds_all = [
     #"wzp6_ee_ZlightH_HVV_ecm240",
 ]
 
-signals_QQ = [
+signals = [
     #'wzp6_ee_ZheavyH_Htautau_ecm240',
     #'wzp6_ee_ZlightH_Htautau_ecm240',
     'wzp6_ee_QQH_Htautau_ecm240',
-]
-
-signals_LL = [
     #'wzp6_ee_eeH_Htautau_ecm240',
     #'wzp6_ee_mumuH_Htautau_ecm240',
     'wzp6_ee_LLH_Htautau_ecm240',
-]
-
-signals_NuNu= [
     'wzp6_ee_nunuH_Htautau_ecm240',
 ]
-
-LIST_S = {
-    "QQ": signals_QQ,
-    "LL":signals_LL,
-    "NuNu":signals_NuNu,
-}
 
 
 lspace = 35
@@ -153,7 +143,7 @@ for cat in CAT:
 
         #add the processes in the respective lists
         for b in backgrounds_all:
-            if b not in LIST_S[cat]:
+            if b not in signals:
                 check_nonzero(directory, cut[cat], b, bkg_procs, VARIABLE[cat])
             else:
                 check_nonzero(directory, cut[cat], b, sig_procs, VARIABLE[cat])
@@ -201,7 +191,8 @@ for cat in CAT:
                     dc_tmp += f"{val:{' '}{'<'}{lspace}}"
             dc += f"{dc_tmp}\n"'''
 
-        ## auto MC stats
+        ## freely floating processes and statistical uncertainty
+        dc += f"free rateParam {VARIABLE[cat]} * 1.0\n"
         dc += "* autoMCStats 1 1"
 
         # write cards
@@ -220,5 +211,5 @@ for cat in CAT:
     string = " ".join([f"{cat}{sub}={outputDir}/{cat}/{sub}/datacard.txt" for sub in SUBDIR])
     os.system(f"combineCards.py {string} > {outputDir}/{cat}/datacard_{cat}.txt")
 
-string = " ".join([f"{cat}{sub}={outputDir}/{cat}/{sub}/datacard.txt" for cat in CAT for sub in SUBDIR])
+string = " ".join([f"{cat}={outputDir}/{cat}/datacard_{cat}.txt" for cat in CAT])
 os.system(f"combineCards.py {string} > {outputDir}/datacard_combined.txt")

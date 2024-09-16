@@ -111,12 +111,12 @@ nCPUS = 10
 
 if EFT :
     processList = processList_EFT
-    inputr = inputr_EFT
-    outputr = outputr_EFT
+    inputDir = inputr_EFT
+    outputDir = outputr_EFT
 else:
     processList = processList_xsec
-    inputr = inputr_xsec
-    outputr = outputr_xsec
+    inputDir = inputDir_xsec
+    outputDir = outputDir_xsec
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -143,6 +143,28 @@ class RDFanalysis():
 
                 ### to find already made functions, this is where they are or where they can be added instead of writing them here
                 ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
+
+                ######################
+                ##### FILTERING ######
+                ######################
+
+                #.Define("OnePair",     "(n_RecoElectrons==2 and n_RecoMuons==0)*1.0")
+
+                #.Filter("OnePair==1 && n_TauFromJet_R5==2 && n_Jets_R5_sel==0")
+
+                #.Filter("(RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0")
+
+                #one prong decay of both taus
+
+                #.Filter("TauFromJet_R5_type.at(0)==2 and TauFromJet_R5_type.at(1)==2 and (TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0")
+
+                .Define("OnePairGen",     "(n_FSGenElectron==2 and n_FSGenMuon==0)*1.0")
+
+                .Filter("OnePairGen==1 && n_FSRGenTau==2")
+
+                .Filter("(FSGenElectron_charge.at(0) + FSGenElectron_charge.at(1))==0")
+
+                .Filter("(FSRGenTau_charge.at(0) + FSRGenTau_charge.at(1))==0")
 
                 #################
                 # Gen particles #
@@ -192,7 +214,22 @@ class RDFanalysis():
                                         else if (HRF_GenTau_y.at(0)<HRF_GenTau_y.at(1)) return (HRF_GenTau_phi.at(1) - HRF_GenTau_phi.at(0)); else return float(-10.);")
 
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                .Define("GenZ_p4",     "FCCAnalyses::ZHfunctions::build_p4_single((FSGenZDaughter_px.at(0)+FSGenZDaughter_px.at(1)), (FSGenZDaughter_py.at(0)+FSGenZDaughter_py.at(1)), (FSGenZDaughter_pz.at(0)+FSGenZDaughter_pz.at(1)), (FSGenZDaughter_e.at(0)+FSGenZDaughter_e.at(1)))")
+                .Define("n_FSGenZDaughter",     "n_FSGenElectron")
+                .Define("FSGenZDaughter_p4",     "FCCAnalyses::ZHfunctions::build_p4(FSGenElectron_px, FSGenElectron_py, FSGenElectron_pz, FSGenElectron_e)")
+                .Define("FSGenZDaughter_px",    "FCCAnalyses::ZHfunctions::get_px_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_py",    "FCCAnalyses::ZHfunctions::get_py_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_pz",    "FCCAnalyses::ZHfunctions::get_px_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_p",    "FCCAnalyses::ZHfunctions::get_p_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_pt",    "FCCAnalyses::ZHfunctions::get_pt_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_e",    "FCCAnalyses::ZHfunctions::get_e_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_eta",    "FCCAnalyses::ZHfunctions::get_eta_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_phi",    "FCCAnalyses::ZHfunctions::get_phi_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_theta",    "FCCAnalyses::ZHfunctions::get_theta_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_y",    "FCCAnalyses::ZHfunctions::get_y_tlv(FSGenZDaughter_p4)")
+                .Define("FSGenZDaughter_charge",    "FSGenElectron_charge")
+                .Define("FSGenZDaughter_mass",    "FSGenElectron_mass")
+
+                .Define("GenZ_p4",     "if (n_FSGenZDaughter>1) return FCCAnalyses::ZHfunctions::build_p4_single((FSGenZDaughter_px.at(0)+FSGenZDaughter_px.at(1)), (FSGenZDaughter_py.at(0)+FSGenZDaughter_py.at(1)), (FSGenZDaughter_pz.at(0)+FSGenZDaughter_pz.at(1)), (FSGenZDaughter_e.at(0)+FSGenZDaughter_e.at(1))); else return FCCAnalyses::ZHfunctions::build_p4_single(0,0,0,0);")
                 .Define("GenZ_px",    "GenZ_p4.Px()")
                 .Define("GenZ_py",    "GenZ_p4.Py()")
                 .Define("GenZ_pz",    "GenZ_p4.Pz()")
@@ -205,7 +242,6 @@ class RDFanalysis():
                 .Define("GenZ_y",     "GenZ_p4.Rapidity()")
                 .Define("GenZ_mass",    "GenZ_p4.M()")
                 
-                .Define("FSGenZDaughter_p4",     "FCCAnalyses::ZHfunctions::build_p4(FSGenElectron_px, FSGenElectron_py, FSGenElectron_pz, FSGenElectron_e)")
                 .Define("ZRF_GenZDaughter_p4",    "return myUtils::boosted_p4(- GenZ_p4, FSGenZDaughter_p4);")
                 .Define("ZRF_GenZDaughter_px",    "FCCAnalyses::ZHfunctions::get_px_tlv(ZRF_GenZDaughter_p4)")
                 .Define("ZRF_GenZDaughter_py",    "FCCAnalyses::ZHfunctions::get_py_tlv(ZRF_GenZDaughter_p4)")
@@ -252,16 +288,6 @@ class RDFanalysis():
                 ##################
                 # Reco particles #
                 ##################
-
-                .Define("OnePair",     "(n_RecoElectrons==2 and n_RecoMuons==0)*1.0")
-
-                .Filter("OnePair==1 && n_TauFromJet_R5==2 && n_Jets_R5_sel==0")
-
-                .Filter("(RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0")
-
-                #one prong decay of both taus
-
-                .Filter("TauFromJet_R5_type.at(0)==2 and TauFromJet_R5_type.at(1)==2 and (TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0")
 
                 .Define("RecoEmiss_p4",  "FCCAnalyses::ZHfunctions::build_p4_single(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
                 .Define("RecoEmiss_eta",    "RecoEmiss_p4.Eta()")
@@ -380,9 +406,9 @@ class RDFanalysis():
                                         else if (TauLead_y<TauSub_y) return (TauSub_phi - TauLead_phi); else return double(-10.);")
 
                 .Define("RecoZDaughter_DEta",    "if (RecoZ1_y>RecoZ2_y) return (RecoZ1_eta - RecoZ2_eta); \
-                                        else if (RecoZ1_y<RecoZ2_y) return (RecoZ2_eta - RecoZ1_eta); else return float(-10.);")
+                                        else if (RecoZ1_y<RecoZ2_y) return (RecoZ2_eta - RecoZ1_eta); else return double(-10.);")
                 .Define("RecoZDaughter_Acoplanarity",    "if (RecoZ1_y>RecoZ2_y) return (RecoZ1_phi - RecoZ2_phi); \
-                                        else if (RecoZ1_y<RecoZ2_y) return (RecoZ2_phi - RecoZ1_phi); else return float(-10.);")
+                                        else if (RecoZ1_y<RecoZ2_y) return (RecoZ2_phi - RecoZ1_phi); else return double(-10.);")
 
 
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
@@ -443,6 +469,7 @@ class RDFanalysis():
                 .Define("RecoPhi_cos",        "(cos(RecoPhi))")
                 .Define("RecoPhi1_cos",        "(cos(RecoPhi1))")
 
+
         )
         return df2
 
@@ -465,10 +492,9 @@ class RDFanalysis():
             "FSGenZDaughter_phi",
             "FSGenZDaughter_charge",
             "FSGenZDaughter_mass",
-            "FSGenZDaughter_parentPDG",
-            "FSGenZDaughter_vertex_x",
-            "FSGenZDaughter_vertex_y",
-            "FSGenZDaughter_vertex_z",
+            #"FSGenZDaughter_vertex_x",
+            #"FSGenZDaughter_vertex_y",
+            #"FSGenZDaughter_vertex_z",
 
             "n_FSGenMuon",
             "FSGenMuon_e",
@@ -483,7 +509,6 @@ class RDFanalysis():
             "FSGenMuon_phi",
             "FSGenMuon_charge",
             "FSGenMuon_mass",
-            "FSGenMuon_parentPDG",
             "FSGenMuon_vertex_x",
             "FSGenMuon_vertex_y",
             "FSGenMuon_vertex_z",
@@ -539,44 +564,43 @@ class RDFanalysis():
             "FSRGenTau_phi",
             "FSRGenTau_charge",
             "FSRGenTau_mass",
-            "FSRGenTau_parentPDG",
             "FSRGenTau_vertex_x",
             "FSRGenTau_vertex_y",
             "FSRGenTau_vertex_z",
 
-            "n_TauNeg_MuNuNu",       
-            "n_TauNeg_MuNuNu_Phot",  
-            "n_TauNeg_ENuNu",        
-            "n_TauNeg_ENuNu_Phot",   
-            "n_TauNeg_PiNu",         
-            "n_TauNeg_PiNu_Phot",    
-            "n_TauNeg_KNu",          
-            "n_TauNeg_KNu_Phot",     
-            "n_TauNeg_PiK0Nu",       
-            "n_TauNeg_PiK0Nu_Phot",  
-            "n_TauNeg_KK0Nu",        
-            "n_TauNeg_KK0Nu_Phot",   
-            "n_TauNeg_3PiNu",        
-            "n_TauNeg_3PiNu_Phot",   
-            "n_TauNeg_PiKKNu",       
-            "n_TauNeg_PiKKNu_Phot",  
+            #"n_TauNeg_MuNuNu",       
+            #"n_TauNeg_MuNuNu_Phot",  
+            #"n_TauNeg_ENuNu",        
+            #"n_TauNeg_ENuNu_Phot",   
+            #"n_TauNeg_PiNu",         
+            #"n_TauNeg_PiNu_Phot",    
+            #"n_TauNeg_KNu",          
+            #"n_TauNeg_KNu_Phot",     
+            #"n_TauNeg_PiK0Nu",       
+            #"n_TauNeg_PiK0Nu_Phot",  
+            #"n_TauNeg_KK0Nu",        
+            #"n_TauNeg_KK0Nu_Phot",   
+            #"n_TauNeg_3PiNu",        
+            #"n_TauNeg_3PiNu_Phot",   
+            #"n_TauNeg_PiKKNu",       
+            #"n_TauNeg_PiKKNu_Phot",  
 
-            "n_TauPos_MuNuNu",       
-            "n_TauPos_MuNuNu_Phot",  
-            "n_TauPos_ENuNu",        
-            "n_TauPos_ENuNu_Phot",   
-            "n_TauPos_PiNu",         
-            "n_TauPos_PiNu_Phot",    
-            "n_TauPos_KNu",          
-            "n_TauPos_KNu_Phot",     
-            "n_TauPos_PiK0Nu",       
-            "n_TauPos_PiK0Nu_Phot",  
-            "n_TauPos_KK0Nu",        
-            "n_TauPos_KK0Nu_Phot",   
-            "n_TauPos_3PiNu",        
-            "n_TauPos_3PiNu_Phot",   
-            "n_TauPos_PiKKNu",       
-            "n_TauPos_PiKKNu_Phot", 
+            #"n_TauPos_MuNuNu",       
+            #"n_TauPos_MuNuNu_Phot",  
+            #"n_TauPos_ENuNu",        
+            #"n_TauPos_ENuNu_Phot",   
+            #"n_TauPos_PiNu",         
+            #"n_TauPos_PiNu_Phot",    
+            #"n_TauPos_KNu",          
+            #"n_TauPos_KNu_Phot",     
+            #"n_TauPos_PiK0Nu",       
+            #"n_TauPos_PiK0Nu_Phot",  
+            #"n_TauPos_KK0Nu",        
+            #"n_TauPos_KK0Nu_Phot",   
+            #"n_TauPos_3PiNu",        
+            #"n_TauPos_3PiNu_Phot",   
+            #"n_TauPos_PiKKNu",       
+            #"n_TauPos_PiKKNu_Phot", 
 
             "n_FSGenNeutrino",
             "FSGenNeutrino_e",
@@ -851,92 +875,6 @@ class RDFanalysis():
         ]
         #complex variables added here at stage2
         branchList += [
-                "RecoEmiss_eta",
-                "RecoEmiss_phi",
-                "RecoEmiss_theta",
-                "RecoEmiss_y",
-                "RecoEmiss_costheta",
-
-                "RecoZ_px",
-                "RecoZ_py",
-                "RecoZ_pz",
-                "RecoZ_p",
-                "RecoZ_pt",
-                "RecoZ_e",
-                "RecoZ_eta",
-                "RecoZ_phi",
-                "RecoZ_theta",
-                "RecoZ_y",
-                "RecoZ_mass",
-
-                "RecoZ1_px", 
-                "RecoZ1_py",   
-                "RecoZ1_pz",   
-                "RecoZ1_p",    
-                "RecoZ1_pt",   
-                "RecoZ1_e",    
-                "RecoZ1_eta",    
-                "RecoZ1_phi",    
-                "RecoZ1_theta",   
-                "RecoZ1_y",     
-                "RecoZ1_mass",   
-
-                "RecoZ2_px",    
-                "RecoZ2_py",   
-                "RecoZ2_pz",   
-                "RecoZ2_p",   
-                "RecoZ2_pt",  
-                "RecoZ2_e",     
-                "RecoZ2_eta",   
-                "RecoZ2_phi",   
-                "RecoZ2_theta",    
-                "RecoZ2_y",    
-                "RecoZ2_mass",   
-
-                "RecoH_px",
-                "RecoH_py",
-                "RecoH_pz",
-                "RecoH_p",
-                "RecoH_pt",
-                "RecoH_e",
-                "RecoH_eta",
-                "RecoH_phi",
-                "RecoH_theta",
-                "RecoH_y",
-                "RecoH_mass",
-
-                "TauLead_px",    
-                "TauLead_py",   
-                "TauLead_pz",   
-                "TauLead_p",   
-                "TauLead_pt",   
-                "TauLead_e",    
-                "TauLead_eta",    
-                "TauLead_phi",    
-                "TauLead_theta",    
-                "TauLead_y",    
-                "TauLead_mass",
-
-                "TauSub_px",    
-                "TauSub_py",   
-                "TauSub_pz",   
-                "TauSub_p",   
-                "TauSub_pt",   
-                "TauSub_e",    
-                "TauSub_eta",    
-                "TauSub_phi",    
-                "TauSub_theta",    
-                "TauSub_y",    
-                "TauSub_mass",
-
-                "Tau_Acoplanarity",
-                "Tau_DR",
-                "Tau_cos",
-
-                "Recoil",
-                "Collinear_mass", 
-        ]
-        branchList += [
             ######## Monte-Carlo particles #######
             "GenZ_e",
             "GenZ_p", 
@@ -998,9 +936,93 @@ class RDFanalysis():
         ]
 
         branchList += [
+            ### Reconstructed particles ###
+            "RecoEmiss_eta",
+            "RecoEmiss_phi",
+            "RecoEmiss_theta",
+            "RecoEmiss_y",
+            "RecoEmiss_costheta",
 
+            "RecoZ_px",
+            "RecoZ_py",
+            "RecoZ_pz",
+            "RecoZ_p",
+            "RecoZ_pt",
+            "RecoZ_e",
+            "RecoZ_eta",
+            "RecoZ_phi",
+            "RecoZ_theta",
+            "RecoZ_y",
+            "RecoZ_mass",
+
+            "RecoZ1_px", 
+            "RecoZ1_py",   
+            "RecoZ1_pz",   
+            "RecoZ1_p",    
+            "RecoZ1_pt",   
+            "RecoZ1_e",    
+            "RecoZ1_eta",    
+            "RecoZ1_phi",    
+            "RecoZ1_theta",   
+            "RecoZ1_y",     
+            "RecoZ1_mass",   
+
+            "RecoZ2_px",    
+            "RecoZ2_py",   
+            "RecoZ2_pz",   
+            "RecoZ2_p",   
+            "RecoZ2_pt",  
+            "RecoZ2_e",     
+            "RecoZ2_eta",   
+            "RecoZ2_phi",   
+            "RecoZ2_theta",    
+            "RecoZ2_y",    
+            "RecoZ2_mass",   
+
+            "RecoH_px",
+            "RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            "RecoH_phi",
+            "RecoH_theta",
+            "RecoH_y",
+            "RecoH_mass",
+
+            "TauLead_px",    
+            "TauLead_py",   
+            "TauLead_pz",   
+            "TauLead_p",   
+            "TauLead_pt",   
+            "TauLead_e",    
+            "TauLead_eta",    
+            "TauLead_phi",    
+            "TauLead_theta",    
+            "TauLead_y",    
+            "TauLead_mass",
+
+            "TauSub_px",    
+            "TauSub_py",   
+            "TauSub_pz",   
+            "TauSub_p",   
+            "TauSub_pt",   
+            "TauSub_e",    
+            "TauSub_eta",    
+            "TauSub_phi",    
+            "TauSub_theta",    
+            "TauSub_y",    
+            "TauSub_mass",
+
+            "Recoil",
+            "Collinear_mass", 
+        
+            "Tau_DR",
+            "Tau_cos",
             "Tau_DEta", 
             "Tau_Acoplanarity", 
+            
             "RecoZDaughter_DEta", 
             "RecoZDaughter_Acoplanarity", 
 
