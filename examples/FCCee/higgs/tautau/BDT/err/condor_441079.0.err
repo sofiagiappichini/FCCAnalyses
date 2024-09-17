@@ -1,0 +1,46 @@
+Matplotlib created a temporary cache directory at /var/lib/condor/execute/dir_3727115/matplotlib-1b2es383 because the default path (/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Traceback (most recent call last):
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/extras.py", line 318, in awkward_pandas
+    import awkward_pandas
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/root/6.28.06-uz62dl/lib/root/ROOT/_facade.py", line 154, in _importhook
+    return _orig_ihook(name, *args, **kwds)
+ModuleNotFoundError: No module named 'awkward_pandas'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/train_bdt_qqhh.py", line 271, in <module>
+    for events in uproot.iterate(path+p+'/chunk_*.root:events',expressions=vars_list, library='pd', how='zip'):
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/behaviors/TBranch.py", line 193, in iterate
+    for item in hasbranches.iterate(
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/behaviors/TBranch.py", line 1080, in iterate
+    _ranges_or_baskets_to_arrays(
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/behaviors/TBranch.py", line 3147, in _ranges_or_baskets_to_arrays
+    uproot.source.futures.delayed_raise(*obj)
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/source/futures.py", line 36, in delayed_raise
+    raise exception_value.with_traceback(traceback)
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/behaviors/TBranch.py", line 3116, in basket_to_array
+    arrays[branch.cache_key] = interpretation.final_array(
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/interpretation/jagged.py", line 337, in final_array
+    output = library.finalize(
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/interpretation/library.py", line 844, in finalize
+    awkward_pandas = uproot.extras.awkward_pandas()
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/py-uproot/5.0.5-mcuzy5/lib/python3.10/site-packages/uproot/extras.py", line 320, in awkward_pandas
+    raise ModuleNotFoundError(
+ModuleNotFoundError: install the 'awkward-pandas' package with:
+    pip install awkward-pandas # not on conda-forge yet

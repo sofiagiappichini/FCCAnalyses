@@ -3,97 +3,100 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    'p8_ee_WW_ecm240':{'chunks':100},
-    'p8_ee_Zqq_ecm240':{'chunks':100},
-    'p8_ee_ZZ_ecm240':{'chunks':100},
+    'p8_ee_WW_ecm240':{},
+    'p8_ee_Zqq_ecm240':{},
+    'p8_ee_ZZ_ecm240':{},
     
-    'wzp6_ee_tautau_ecm240':{'chunks':100},
-    'wzp6_ee_mumu_ecm240':{'chunks':100},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
+    'wzp6_ee_tautau_ecm240':{},
+    'wzp6_ee_mumu_ecm240':{},
+    'wzp6_ee_ee_Mee_30_150_ecm240':{},
 
-    'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Htautau_ecm240': {},
+    'wzp6_ee_tautauH_Hbb_ecm240': {},
+    'wzp6_ee_tautauH_Hcc_ecm240': {},
+    'wzp6_ee_tautauH_Hss_ecm240': {},
+    'wzp6_ee_tautauH_Hgg_ecm240': {},
+    'wzp6_ee_tautauH_HWW_ecm240': {},
+    'wzp6_ee_tautauH_HZZ_ecm240': {},
 
-    'wzp6_egamma_eZ_Zmumu_ecm240': {'chunks':10},
-    'wzp6_egamma_eZ_Zee_ecm240': {'chunks':10},
-    'wzp6_gammae_eZ_Zmumu_ecm240': {'chunks':10},
-    'wzp6_gammae_eZ_Zee_ecm240': {'chunks':10},
+    'wzp6_egamma_eZ_Zmumu_ecm240': {},
+    'wzp6_egamma_eZ_Zee_ecm240': {},
+    'wzp6_gammae_eZ_Zmumu_ecm240': {},
+    'wzp6_gammae_eZ_Zee_ecm240': {},
 
-    'wzp6_gaga_tautau_60_ecm240': {'chunks':100},
-    'wzp6_gaga_mumu_60_ecm240': {'chunks':100},
-    'wzp6_gaga_ee_60_ecm240': {'chunks':100},
+    'wzp6_gaga_tautau_60_ecm240': {},
+    'wzp6_gaga_mumu_60_ecm240': {},
+    'wzp6_gaga_ee_60_ecm240': {},
 
-    'wzp6_ee_nuenueZ_ecm240': {'chunks':10},
+    'wzp6_ee_nuenueZ_ecm240': {},
 
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Htautau_ecm240': {},
+    'wzp6_ee_nunuH_Hbb_ecm240': {},
+    'wzp6_ee_nunuH_Hcc_ecm240': {},
+    'wzp6_ee_nunuH_Hss_ecm240': {},
+    'wzp6_ee_nunuH_Hgg_ecm240': {},
+    'wzp6_ee_nunuH_HWW_ecm240': {},
+    'wzp6_ee_nunuH_HZZ_ecm240': {},
 
-    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Htautau_ecm240': {},
+    'wzp6_ee_eeH_Hbb_ecm240': {},
+    'wzp6_ee_eeH_Hcc_ecm240': {},
+    'wzp6_ee_eeH_Hss_ecm240': {},
+    'wzp6_ee_eeH_Hgg_ecm240': {},
+    'wzp6_ee_eeH_HWW_ecm240': {},
+    'wzp6_ee_eeH_HZZ_ecm240': {},
 
-    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Htautau_ecm240': {},
+    'wzp6_ee_mumuH_Hbb_ecm240': {},
+    'wzp6_ee_mumuH_Hcc_ecm240': {},
+    'wzp6_ee_mumuH_Hss_ecm240': {},
+    'wzp6_ee_mumuH_Hgg_ecm240': {},
+    'wzp6_ee_mumuH_HWW_ecm240': {},
+    'wzp6_ee_mumuH_HZZ_ecm240': {},
 
-    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_Htautau_ecm240': {},
+    'wzp6_ee_bbH_Hbb_ecm240': {},
+    'wzp6_ee_bbH_Hcc_ecm240': {},
+    'wzp6_ee_bbH_Hss_ecm240': {},
+    'wzp6_ee_bbH_Hgg_ecm240': {},
+    'wzp6_ee_bbH_HWW_ecm240': {},
+    'wzp6_ee_bbH_HZZ_ecm240': {},
 
-    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_ccH_Htautau_ecm240': {},
+    'wzp6_ee_ccH_Hbb_ecm240': {},
+    'wzp6_ee_ccH_Hcc_ecm240': {},
+    'wzp6_ee_ccH_Hss_ecm240': {},
+    'wzp6_ee_ccH_Hgg_ecm240': {},
+    'wzp6_ee_ccH_HWW_ecm240': {},
+    'wzp6_ee_ccH_HZZ_ecm240': {},
 
-    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_ssH_Htautau_ecm240': {},
+    'wzp6_ee_ssH_Hbb_ecm240': {},
+    'wzp6_ee_ssH_Hcc_ecm240': {},
+    'wzp6_ee_ssH_Hss_ecm240': {},
+    'wzp6_ee_ssH_Hgg_ecm240': {},
+    'wzp6_ee_ssH_HWW_ecm240': {},
+    'wzp6_ee_ssH_HZZ_ecm240': {},
 
-    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_qqH_Htautau_ecm240': {},
+    'wzp6_ee_qqH_Hbb_ecm240': {},
+    'wzp6_ee_qqH_Hcc_ecm240': {},
+    'wzp6_ee_qqH_Hss_ecm240': {},
+    'wzp6_ee_qqH_Hgg_ecm240': {},
+    'wzp6_ee_qqH_HWW_ecm240': {},
+    'wzp6_ee_qqH_HZZ_ecm240': {},
 }
 
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2/QQ/HH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2/QQ/HH_MV/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
+
+ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/xgb_bdt_stage2_QQHH.root");
+computeModel = TMVA::Experimental::Compute<104, float>(bdt);''')
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -224,6 +227,21 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
+
+                #MVA testing
+                .Define("BDT_pred", ROOT.computeModel, ("n_RecoPhotons", 
+                                                "RecoEmiss_px", "RecoEmiss_py", "RecoEmiss_pz", "RecoEmiss_pt", "RecoEmiss_p", "RecoEmiss_e", "RecoEmiss_eta", "RecoEmiss_phi", "RecoEmiss_theta", "RecoEmiss_y", "RecoEmiss_costheta",
+                                                "Jets_R5_sel_e.at(0)", "Jets_R5_sel_p.at(0)", "Jets_R5_sel_pt.at(0)", "Jets_R5_sel_px.at(0)", "Jets_R5_sel_py.at(0)", "Jets_R5_sel_pz.at(0)", "Jets_R5_sel_eta.at(0)", "Jets_R5_sel_theta.at(0)", "Jets_R5_sel_phi.at(0)", "Jets_R5_sel_mass.at(0)", 
+                                                "Jets_R5_sel_e.at(1)", "Jets_R5_sel_p.at(1)", "Jets_R5_sel_pt.at(1)", "Jets_R5_sel_px.at(1)", "Jets_R5_sel_py.at(1)", "Jets_R5_sel_pz.at(1)", "Jets_R5_sel_eta.at(1)", "Jets_R5_sel_theta.at(1)", "Jets_R5_sel_phi.at(1)", "Jets_R5_sel_mass.at(1)",  
+                                                "n_Jets_R5_sel",
+                                                #"RecoZ_px", "RecoZ_py", "RecoZ_pz", "RecoZ_p", "RecoZ_pt", "RecoZ_e", "RecoZ_eta", "RecoZ_phi", "RecoZ_theta", "RecoZ_y", "RecoZ_mass",
+                                                "RecoZ1_px", "RecoZ1_py", "RecoZ1_pz", "RecoZ1_p", "RecoZ1_pt", "RecoZ1_e", "RecoZ1_eta", "RecoZ1_phi", "RecoZ1_theta", "RecoZ1_y", "RecoZ1_mass",
+                                                "RecoZ2_px", "RecoZ2_py", "RecoZ2_pz", "RecoZ2_p", "RecoZ2_pt", "RecoZ2_e", "RecoZ2_eta", "RecoZ2_phi", "RecoZ2_theta", "RecoZ2_y", "RecoZ2_mass",
+                                                "RecoH_px", "RecoH_py", "RecoH_pz", "RecoH_p", "RecoH_pt", "RecoH_e", "RecoH_eta", "RecoH_phi", "RecoH_theta", "RecoH_y", "RecoH_mass",
+                                                "TauLead_px", "TauLead_py", "TauLead_pz", "TauLead_p", "TauLead_pt", "TauLead_e", "TauLead_eta", "TauLead_phi", "TauLead_theta", "TauLead_y", "TauLead_mass",
+                                                "TauSub_px", "TauSub_py", "TauSub_pz", "TauSub_p", "TauSub_pt", "TauSub_e", "TauSub_eta", "TauSub_phi", "TauSub_theta", "TauSub_y", "TauSub_mass",
+                                                "Tau_Acoplanarity", "Tau_DR", "Tau_cos", "Recoil", "Collinear_mass"))
+                .Filter("BDT_pred == 1")
         )
         return df2
 
