@@ -52,34 +52,34 @@ CAT = [
 DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
 #list of cuts you want to plot
 CUTS_LL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_10Me",
-    #"selReco_100Coll150_115Rec160_10Me_70Z100",
-    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
-    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
+    "selReco",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_10Me",
+    "selReco_100Coll150_115Rec160_10Me_70Z100",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
     "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
 ]
 
 CUTS_QQ = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_10Me",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
+    "selReco",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_10Me",
+    "selReco_100Coll150_115Rec160_10Me_80Z95",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
 ]
     
 CUTS_NuNu = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauAc3",
-    #"selReco_100Me_TauAc3_2DR",
-    #"selReco_100Me_TauAc3_2DR_cos0",
-    #"selReco_100Me_TauAc3_2DR_cos0_misscos0.98",
+    "selReco",
+    "selReco_100Me",
+    "selReco_100Me_TauAc3",
+    "selReco_100Me_TauAc3_2DR",
+    "selReco_100Me_TauAc3_2DR_cos0",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98",
     "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
 ]
 
@@ -112,22 +112,28 @@ LABELS = {
     "selReco_100Me": "E_{miss}>100 GeV",
     "selReco_100Me_TauAc3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
     "selReco_100Me_TauAc3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
-    "selReco_100Me_TauAc3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}",
-    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98}",
-    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98} && |y_{miss}|<1",
+    "selReco_100Me_TauAc3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
 
  }
 
-ana_tex = {
-    'LL':"e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau_{L}#tau_{L}",
-    'LH':"e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau_{L}#tau_{h}",
-    'HH':"e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau_{h}#tau_{h}",
+ana_tex_cat = {
+    'LL':"e^{+}e^{-} #rightarrow Z H, Z #rightarrow LL, ",
+    'QQ':"e^{+}e^{-} #rightarrow Z H, Z #rightarrow qq, ",
+    'NuNu':"e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu#nu, ",
+    }
+
+ana_tex_sub = {
+    'LL':"H #rightarrow #tau_{L}#tau_{L}",
+    'LH':"H #rightarrow #tau_{L}#tau_{h}",
+    'HH':"H #rightarrow #tau_{h}#tau_{h}",
     }
 
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = True
+LOGY = False
 
 #now you can list all the histograms that you want to plot
 VARIABLES_ALL = [
@@ -825,29 +831,53 @@ VARIABLES_LL = [
     "RecoZ_y",
     "RecoZ_mass",
 
-    "RecoZ1_px", 
-    "RecoZ1_py",   
-    "RecoZ1_pz",   
-    "RecoZ1_p",    
-    "RecoZ1_pt",   
-    "RecoZ1_e",    
-    "RecoZ1_eta",    
-    "RecoZ1_phi",    
-    "RecoZ1_theta",   
-    "RecoZ1_y",     
-    "RecoZ1_mass",   
+    "RecoZLead_px", 
+    "RecoZLead_py",   
+    "RecoZLead_pz",   
+    "RecoZLead_p",    
+    "RecoZLead_pt",   
+    "RecoZLead_e",    
+    "RecoZLead_eta",    
+    "RecoZLead_phi",    
+    "RecoZLead_theta",   
+    "RecoZLead_y",     
+    "RecoZLead_mass",   
 
-    "RecoZ2_px",    
-    "RecoZ2_py",   
-    "RecoZ2_pz",   
-    "RecoZ2_p",   
-    "RecoZ2_pt",  
-    "RecoZ2_e",     
-    "RecoZ2_eta",   
-    "RecoZ2_phi",   
-    "RecoZ2_theta",    
-    "RecoZ2_y",    
-    "RecoZ2_mass",   
+    "RecoZSub_px",    
+    "RecoZSub_py",   
+    "RecoZSub_pz",   
+    "RecoZSub_p",   
+    "RecoZSub_pt",  
+    "RecoZSub_e",     
+    "RecoZSub_eta",   
+    "RecoZSub_phi",   
+    "RecoZSub_theta",    
+    "RecoZSub_y",    
+    "RecoZSub_mass",   
+
+    "RecoZP_px", 
+    "RecoZP_py",   
+    "RecoZP_pz",   
+    "RecoZP_p",    
+    "RecoZP_pt",   
+    "RecoZP_e",    
+    "RecoZP_eta",    
+    "RecoZP_phi",    
+    "RecoZP_theta",   
+    "RecoZP_y",     
+    "RecoZP_mass",   
+
+    "RecoZM_px",    
+    "RecoZM_py",   
+    "RecoZM_pz",   
+    "RecoZM_p",   
+    "RecoZM_pt",  
+    "RecoZM_e",     
+    "RecoZM_eta",   
+    "RecoZM_phi",   
+    "RecoZM_theta",    
+    "RecoZM_y",    
+    "RecoZM_mass", 
 
     "RecoH_px",
     "RecoH_py",
@@ -885,12 +915,42 @@ VARIABLES_LL = [
     "TauSub_y",    
     "TauSub_mass",
 
-    "Tau_Acoplanarity",
-    "Tau_DR",
-    "Tau_cos",
+    "TauP_px",    
+    "TauP_py",   
+    "TauP_pz",   
+    "TauP_p",   
+    "TauP_pt",   
+    "TauP_e",    
+    "TauP_eta",    
+    "TauP_phi",    
+    "TauP_theta",    
+    "TauP_y",    
+    "TauP_mass",
+
+    "TauM_px",    
+    "TauM_py",   
+    "TauM_pz",   
+    "TauM_p",   
+    "TauM_pt",   
+    "TauM_e",    
+    "TauM_eta",    
+    "TauM_phi",    
+    "TauM_theta",    
+    "TauM_y",    
+    "TauM_mass",
 
     "Recoil",
-    "Collinear_mass",
+    "Collinear_mass", 
+
+    "Tau_DR",
+    "Tau_cos",
+    "Tau_DEta", 
+    "Tau_DPhi",
+    
+    "RecoZDaughter_DR", 
+    "RecoZDaughter_cos", 
+    "RecoZDaughter_DEta", 
+    "RecoZDaughter_DPhi", 
 ]
 
 VARIABLES_QQ = [
@@ -912,30 +972,30 @@ VARIABLES_QQ = [
     "RecoZ_y",
     "RecoZ_mass",
 
-    "RecoZ1_px", 
-    "RecoZ1_py",   
-    "RecoZ1_pz",   
-    "RecoZ1_p",    
-    "RecoZ1_pt",   
-    "RecoZ1_e",    
-    "RecoZ1_eta",    
-    "RecoZ1_phi",    
-    "RecoZ1_theta",   
-    "RecoZ1_y",     
-    "RecoZ1_mass",   
+    "RecoZLead_px", 
+    "RecoZLead_py",   
+    "RecoZLead_pz",   
+    "RecoZLead_p",    
+    "RecoZLead_pt",   
+    "RecoZLead_e",    
+    "RecoZLead_eta",    
+    "RecoZLead_phi",    
+    "RecoZLead_theta",   
+    "RecoZLead_y",     
+    "RecoZLead_mass",   
 
-    "RecoZ2_px",    
-    "RecoZ2_py",   
-    "RecoZ2_pz",   
-    "RecoZ2_p",   
-    "RecoZ2_pt",  
-    "RecoZ2_e",     
-    "RecoZ2_eta",   
-    "RecoZ2_phi",   
-    "RecoZ2_theta",    
-    "RecoZ2_y",    
-    "RecoZ2_mass",   
-
+    "RecoZSub_px",    
+    "RecoZSub_py",   
+    "RecoZSub_pz",   
+    "RecoZSub_p",   
+    "RecoZSub_pt",  
+    "RecoZSub_e",     
+    "RecoZSub_eta",   
+    "RecoZSub_phi",   
+    "RecoZSub_theta",    
+    "RecoZSub_y",    
+    "RecoZSub_mass",   
+    
     "RecoH_px",
     "RecoH_py",
     "RecoH_pz",
@@ -972,12 +1032,42 @@ VARIABLES_QQ = [
     "TauSub_y",    
     "TauSub_mass",
 
-    "Tau_Acoplanarity",
-    "Tau_DR",
-    "Tau_cos",
+    "TauP_px",    
+    "TauP_py",   
+    "TauP_pz",   
+    "TauP_p",   
+    "TauP_pt",   
+    "TauP_e",    
+    "TauP_eta",    
+    "TauP_phi",    
+    "TauP_theta",    
+    "TauP_y",    
+    "TauP_mass",
+
+    "TauM_px",    
+    "TauM_py",   
+    "TauM_pz",   
+    "TauM_p",   
+    "TauM_pt",   
+    "TauM_e",    
+    "TauM_eta",    
+    "TauM_phi",    
+    "TauM_theta",    
+    "TauM_y",    
+    "TauM_mass",
 
     "Recoil",
-    "Collinear_mass",
+    "Collinear_mass", 
+
+    "Tau_DR",
+    "Tau_cos",
+    "Tau_DEta", 
+    "Tau_DPhi",
+    
+    "RecoZDaughter_DR", 
+    "RecoZDaughter_cos", 
+    "RecoZDaughter_DEta", 
+    "RecoZDaughter_DPhi", 
 ]
 
 VARIABLES_NuNu = [
@@ -1035,9 +1125,34 @@ VARIABLES_NuNu = [
     "TauSub_y",    
     "TauSub_mass",
 
-    "Tau_Acoplanarity",
+    "TauP_px",    
+    "TauP_py",   
+    "TauP_pz",   
+    "TauP_p",   
+    "TauP_pt",   
+    "TauP_e",    
+    "TauP_eta",    
+    "TauP_phi",    
+    "TauP_theta",    
+    "TauP_y",    
+    "TauP_mass",
+
+    "TauM_px",    
+    "TauM_py",   
+    "TauM_pz",   
+    "TauM_p",   
+    "TauM_pt",   
+    "TauM_e",    
+    "TauM_eta",    
+    "TauM_phi",    
+    "TauM_theta",    
+    "TauM_y",    
+    "TauM_mass",
+
     "Tau_DR",
     "Tau_cos",
+    "Tau_DEta", 
+    "Tau_DPhi",
 
     #"Recoil",
     #"Collinear_mass",
@@ -1408,7 +1523,7 @@ for cat in CAT:
                 latex.SetTextSize(0.03)
                 latex.DrawLatex(0.18, 0.84, text)
 
-                text = '#bf{#it{' + ana_tex[sub] + '}}'
+                text = '#bf{#it{' + ana_tex_cat[cat] + ana_tex_sub[sub] + '}}'
                 latex.SetTextSize(0.03)
                 latex.DrawLatex(0.18, 0.80, text)
 

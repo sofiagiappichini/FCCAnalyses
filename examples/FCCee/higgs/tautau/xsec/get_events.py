@@ -134,6 +134,9 @@ DIRECTORY = {
     'QQ':"/ceph/awiedl/FCCee/HiggsCP/stage2/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/stage2/NuNu",
 }
+
+DIRECTORY_STAGE1 = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
+
 SUBDIR = [
     'LL',
     'LH',
@@ -153,18 +156,33 @@ tree_name = "events"
 output_file = "/ceph/awiedl/FCCee/HiggsCP/stage2/nevents_tree.txt"
 
 tab = []
+raw = {}
 
 # Loop through each replacement word
 row = []
-row.append("") #header
+row.append(" & $N_{gen}$ & ") #header
 for replacement_word in replacement_words:
-    row.append(replacement_word)
-tab.append(row) #header
+
+    root_file_path = DIRECTORY_STAGE1 + replacement_word
+    process_events = 0
+    events_ttree = 0
+
+    flist = glob.glob(root_file_path + '/chunk*.root')
+    for filepath in flist:
+        chunk_process_events, chunk_events_ttree = get_entries(filepath)
+        if chunk_process_events is not None and chunk_events_ttree is not None:
+            process_events += chunk_process_events #original number of events
+            events_ttree += chunk_events_ttree
+    row.append(f"{replacement_word} & {process_events} & ")
+    raw[replacement_word] = process_events
+tab.append(row)
+
 for cat in CAT:
     for sub in SUBDIR:
         directory = DIRECTORY[cat] + "/" + sub + "/"
         newrow = []
-        newrow.append(cat+sub) #header
+        newrow.append(f"{cat+sub} & ") #header
+
         for replacement_word in replacement_words:
         
             root_file_path = directory + replacement_word
@@ -176,13 +194,13 @@ for cat in CAT:
                 chunk_process_events, chunk_events_ttree = get_entries(filepath)
                 if chunk_process_events is not None and chunk_events_ttree is not None:
                     process_events += chunk_process_events #original number of events
-                    events_ttree += chunk_events_ttree #number of events after selection
-                #root_file = uproot.open(filepath)
-                #if tree_name in root_file:
-                #    tree = root_file[tree_name]
-                #    x += tree.num_entries 
+                    events_ttree += chunk_events_ttree #number of events after selection=
 
-            newrow.append(events_ttree)
+            if process_events!=0 :
+                newrow.append(f"{events_ttree/process_events:.2e} & ")
+            else:
+                ratio = 1/raw[replacement_word]
+                newrow.append(f"$\leq$ {ratio:.2e} & ") 
 
         tab.append(newrow)
 

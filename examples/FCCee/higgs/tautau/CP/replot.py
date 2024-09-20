@@ -32,13 +32,13 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CP/final_Gen/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/CP/final_id2/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/EEHH_Gen/' 
+DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/EEHH_id2/' 
 #list of cuts you want to plot
 CUTS = [
-    "selGen",
+    "selReco",
  ] 
 #labels for the cuts in the plots
 LABELS = {
@@ -336,29 +336,53 @@ VARIABLES_LL = [
     "RecoZ_y",
     "RecoZ_mass",
 
-    "RecoZ1_px", 
-    "RecoZ1_py",   
-    "RecoZ1_pz",   
-    "RecoZ1_p",    
-    "RecoZ1_pt",   
-    "RecoZ1_e",    
-    "RecoZ1_eta",    
-    "RecoZ1_phi",    
-    "RecoZ1_theta",   
-    "RecoZ1_y",     
-    "RecoZ1_mass",   
+    "RecoZLead_px", 
+    "RecoZLead_py",   
+    "RecoZLead_pz",   
+    "RecoZLead_p",    
+    "RecoZLead_pt",   
+    "RecoZLead_e",    
+    "RecoZLead_eta",    
+    "RecoZLead_phi",    
+    "RecoZLead_theta",   
+    "RecoZLead_y",     
+    "RecoZLead_mass",   
 
-    "RecoZ2_px",    
-    "RecoZ2_py",   
-    "RecoZ2_pz",   
-    "RecoZ2_p",   
-    "RecoZ2_pt",  
-    "RecoZ2_e",     
-    "RecoZ2_eta",   
-    "RecoZ2_phi",   
-    "RecoZ2_theta",    
-    "RecoZ2_y",    
-    "RecoZ2_mass",   
+    "RecoZSub_px",    
+    "RecoZSub_py",   
+    "RecoZSub_pz",   
+    "RecoZSub_p",   
+    "RecoZSub_pt",  
+    "RecoZSub_e",     
+    "RecoZSub_eta",   
+    "RecoZSub_phi",   
+    "RecoZSub_theta",    
+    "RecoZSub_y",    
+    "RecoZSub_mass",   
+
+    "RecoZP_px", 
+    "RecoZP_py",   
+    "RecoZP_pz",   
+    "RecoZP_p",    
+    "RecoZP_pt",   
+    "RecoZP_e",    
+    "RecoZP_eta",    
+    "RecoZP_phi",    
+    "RecoZP_theta",   
+    "RecoZP_y",     
+    "RecoZP_mass",   
+
+    "RecoZM_px",    
+    "RecoZM_py",   
+    "RecoZM_pz",   
+    "RecoZM_p",   
+    "RecoZM_pt",  
+    "RecoZM_e",     
+    "RecoZM_eta",   
+    "RecoZM_phi",   
+    "RecoZM_theta",    
+    "RecoZM_y",    
+    "RecoZM_mass", 
 
     "RecoH_px",
     "RecoH_py",
@@ -396,12 +420,46 @@ VARIABLES_LL = [
     "TauSub_y",    
     "TauSub_mass",
 
-    "Tau_Acoplanarity",
-    "Tau_DR",
-    "Tau_cos",
+    "TauP_px",    
+    "TauP_py",   
+    "TauP_pz",   
+    "TauP_p",   
+    "TauP_pt",   
+    "TauP_e",    
+    "TauP_eta",    
+    "TauP_phi",    
+    "TauP_theta",    
+    "TauP_y",    
+    "TauP_mass",
+
+    "TauM_px",    
+    "TauM_py",   
+    "TauM_pz",   
+    "TauM_p",   
+    "TauM_pt",   
+    "TauM_e",    
+    "TauM_eta",    
+    "TauM_phi",    
+    "TauM_theta",    
+    "TauM_y",    
+    "TauM_mass",
 
     "Recoil",
-    "Collinear_mass",
+    "Collinear_mass", 
+
+    "Tau_DR",
+    "Tau_cos",
+    "Tau_DEta", 
+    "Tau_DPhi",
+    "Tau_DEta_y", 
+    "Tau_DPhi_y", 
+    
+    "RecoZDaughter_DR", 
+    "RecoZDaughter_cos", 
+    "RecoZDaughter_DEta", 
+    "RecoZDaughter_DPhi", 
+    "RecoZDaughter_DEta_y", 
+    "RecoZDaughter_DPhi_y", 
 ]
 
 VARIABLES_CPGEN = [
@@ -429,10 +487,10 @@ VARIABLES_CPGEN = [
     "ZRF_GenZDaughter_y", 
 
     "ZRF_GenZDaughter_DEta", 
-    "ZRF_GenZDaughter_Acoplanarity", 
+    "ZRF_GenZDaughter_DPhi", 
     
     "FSRGenTau_DEta",
-    "FSRGenTau_Acoplanarity",
+    "FSRGenTau_DPhi",
     "FSRGenTau_cos",
     "FSRGenTau_DR",
 
@@ -448,7 +506,7 @@ VARIABLES_CPGEN = [
     "HRF_GenTau_y", 
 
     "HRF_GenTau_DEta", 
-    "HRF_GenTau_Acoplanarity",
+    "HRF_GenTau_DPhi",
 
     "GenThetastar",
     "GenTheta2",
@@ -466,38 +524,103 @@ VARIABLES_CPGEN = [
 ]
 
 VARIABLES_CPRECO = [
-    "Tau_DEta", 
-    "Tau_Acoplanarity", 
-    "RecoZDaughter_DEta", 
-    "RecoZDaughter_Acoplanarity", 
+    "HRF_TauLead_px",  
+    "HRF_TauLead_py",  
+    "HRF_TauLead_pz", 
+    "HRF_TauLead_p", 
+    "HRF_TauLead_pt",  
+    "HRF_TauLead_e",   
+    "HRF_TauLead_eta", 
+    "HRF_TauLead_phi",  
+    "HRF_TauLead_theta",    
+    "HRF_TauLead_y", 
 
-    "HRF_Tau_px",  
-    "HRF_Tau_py",  
-    "HRF_Tau_pz", 
-    "HRF_Tau_p", 
-    "HRF_Tau_pt",  
-    "HRF_Tau_e",   
-    "HRF_Tau_eta", 
-    "HRF_Tau_phi",  
-    "HRF_Tau_theta",    
-    "HRF_Tau_y", 
+    "HRF_TauSub_px",  
+    "HRF_TauSub_py",  
+    "HRF_TauSub_pz", 
+    "HRF_TauSub_p", 
+    "HRF_TauSub_pt",  
+    "HRF_TauSub_e",   
+    "HRF_TauSub_eta", 
+    "HRF_TauSub_phi",  
+    "HRF_TauSub_theta",    
+    "HRF_TauSub_y", 
+
+    "HRF_TauP_px",  
+    "HRF_TauP_py",  
+    "HRF_TauP_pz", 
+    "HRF_TauP_p", 
+    "HRF_TauP_pt",  
+    "HRF_TauP_e",   
+    "HRF_TauP_eta", 
+    "HRF_TauP_phi",  
+    "HRF_TauP_theta",    
+    "HRF_TauP_y", 
+
+    "HRF_TauM_px",  
+    "HRF_TauM_py",  
+    "HRF_TauM_pz", 
+    "HRF_TauM_p", 
+    "HRF_TauM_pt",  
+    "HRF_TauM_e",   
+    "HRF_TauM_eta", 
+    "HRF_TauM_phi",  
+    "HRF_TauM_theta",    
+    "HRF_TauM_y", 
 
     "HRF_Tau_DEta", 
-    "HRF_Tau_Acoplanarity", 
+    "HRF_Tau_DPhi",
+    "HRF_Tau_DEta_y", 
+    "HRF_Tau_DPhi_y", 
 
-    "ZRF_RecoZDaughter_px",  
-    "ZRF_RecoZDaughter_py",  
-    "ZRF_RecoZDaughter_pz", 
-    "ZRF_RecoZDaughter_p", 
-    "ZRF_RecoZDaughter_pt",  
-    "ZRF_RecoZDaughter_e",   
-    "ZRF_RecoZDaughter_eta", 
-    "ZRF_RecoZDaughter_phi",  
-    "ZRF_RecoZDaughter_theta",    
-    "ZRF_RecoZDaughter_y", 
+    "ZRF_RecoZLead_px",  
+    "ZRF_RecoZLead_py",  
+    "ZRF_RecoZLead_pz", 
+    "ZRF_RecoZLead_p", 
+    "ZRF_RecoZLead_pt",  
+    "ZRF_RecoZLead_e",   
+    "ZRF_RecoZLead_eta", 
+    "ZRF_RecoZLead_phi",  
+    "ZRF_RecoZLead_theta",    
+    "ZRF_RecoZLead_y", 
+
+    "ZRF_RecoZSub_px",  
+    "ZRF_RecoZSub_py",  
+    "ZRF_RecoZSub_pz", 
+    "ZRF_RecoZSub_p", 
+    "ZRF_RecoZSub_pt",  
+    "ZRF_RecoZSub_e",   
+    "ZRF_RecoZSub_eta", 
+    "ZRF_RecoZSub_phi",  
+    "ZRF_RecoZSub_theta",    
+    "ZRF_RecoZSub_y", 
+
+    "ZRF_RecoZP_px",  
+    "ZRF_RecoZP_py",  
+    "ZRF_RecoZP_pz", 
+    "ZRF_RecoZP_p", 
+    "ZRF_RecoZP_pt",  
+    "ZRF_RecoZP_e",   
+    "ZRF_RecoZP_eta", 
+    "ZRF_RecoZP_phi",  
+    "ZRF_RecoZP_theta",    
+    "ZRF_RecoZP_y", 
+
+    "ZRF_RecoZM_px",  
+    "ZRF_RecoZM_py",  
+    "ZRF_RecoZM_pz", 
+    "ZRF_RecoZM_p", 
+    "ZRF_RecoZM_pt",  
+    "ZRF_RecoZM_e",   
+    "ZRF_RecoZM_eta", 
+    "ZRF_RecoZM_phi",  
+    "ZRF_RecoZM_theta",    
+    "ZRF_RecoZM_y", 
 
     "ZRF_RecoZDaughter_DEta", 
-    "ZRF_RecoZDaughter_Acoplanarity", 
+    "ZRF_RecoZDaughter_DPhi",
+    "ZRF_RecoZDaughter_DEta_y", 
+    "ZRF_RecoZDaughter_DPhi_y", 
 
     "RecoThetastar",
     "RecoTheta2",
@@ -509,7 +632,7 @@ VARIABLES_CPRECO = [
     "RecoTheta2_cos",
     "RecoPhi1_cos", 
     "RecoPhi_cos", 
-    "RecoTheta1_cos", 
+    "RecoTheta1_cos",
 
 ]
 
@@ -663,7 +786,8 @@ scolors = {
 }
 
 for cut in CUTS:
-    VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
+    #VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
+    VARIABLES = VARIABLES_RECO + VARIABLES_CPRECO + VARIABLES_LL
     for variable in VARIABLES:
 
         canvas = ROOT.TCanvas("", "", 800, 800)
