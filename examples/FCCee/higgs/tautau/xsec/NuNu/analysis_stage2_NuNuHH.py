@@ -91,7 +91,7 @@ processList = {
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2/NuNu/HH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_cut/NuNu/HH/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -182,10 +182,37 @@ class RDFanalysis():
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
 
-                .Define("Tau_Acoplanarity",      "(TauLead_phi-TauSub_phi)")
+                .Define("TauP_p4","if (TauFromJet_R5_charge.at(0)==1) return RecoTau1_p4; else return RecoTau2_p4;")
+                .Define("TauP_px",    "TauP_p4.Px()")
+                .Define("TauP_py",    "TauP_p4.Py()")
+                .Define("TauP_pz",    "TauP_p4.Pz()")
+                .Define("TauP_p",    "TauP_p4.P()")
+                .Define("TauP_pt",    "TauP_p4.Pt()")
+                .Define("TauP_e",     "TauP_p4.E()")
+                .Define("TauP_eta",    "TauP_p4.Eta()")
+                .Define("TauP_phi",    "TauP_p4.Phi()")
+                .Define("TauP_theta",    "TauP_p4.Theta()")
+                .Define("TauP_y",     "TauP_p4.Rapidity()")
+                .Define("TauP_mass",    "TauP_p4.M()")
+
+                .Define("TauM_p4",       "if (TauFromJet_R5_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
+                .Define("TauM_px",    "TauM_p4.Px()")
+                .Define("TauM_py",    "TauM_p4.Py()")
+                .Define("TauM_pz",    "TauM_p4.Pz()")
+                .Define("TauM_p",    "TauM_p4.P()")
+                .Define("TauM_pt",    "TauM_p4.Pt()")
+                .Define("TauM_e",     "TauM_p4.E()")
+                .Define("TauM_eta",    "TauM_p4.Eta()")
+                .Define("TauM_phi",    "TauM_p4.Phi()")
+                .Define("TauM_theta",    "TauM_p4.Theta()")
+                .Define("TauM_y",     "TauM_p4.Rapidity()")
+                .Define("TauM_mass",    "TauM_p4.M()")
+
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
                 .Define("Tau_cos",      "RecoH_p/Tau_scalar")
+                .Define("Tau_DEta",    "(TauLead_eta - TauSub_eta)")
+                .Define("Tau_DPhi",    "(TauLead_phi - TauSub_phi)")
 
                 #.Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
                 #.Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
@@ -198,6 +225,8 @@ class RDFanalysis():
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
 
                 .Define("Visible_mass",     "return RecoH_mass;")
+
+                .Filter("RecoEmiss_e>100")
 
         )
         return df2
@@ -661,12 +690,37 @@ class RDFanalysis():
                 "TauSub_y",    
                 "TauSub_mass",
 
-                "Tau_Acoplanarity",
+                "TauP_px",    
+                "TauP_py",   
+                "TauP_pz",   
+                "TauP_p",   
+                "TauP_pt",   
+                "TauP_e",    
+                "TauP_eta",    
+                "TauP_phi",    
+                "TauP_theta",    
+                "TauP_y",    
+                "TauP_mass",
+
+                "TauM_px",    
+                "TauM_py",   
+                "TauM_pz",   
+                "TauM_p",   
+                "TauM_pt",   
+                "TauM_e",    
+                "TauM_eta",    
+                "TauM_phi",    
+                "TauM_theta",    
+                "TauM_y",    
+                "TauM_mass",
+            
                 "Tau_DR",
                 "Tau_cos",
+                "Tau_DEta", 
+                "Tau_DPhi",
 
                 #"Recoil",
-                "Collinear_mass",
+                #"Collinear_mass",
                 "Visible_mass",
 
             ]

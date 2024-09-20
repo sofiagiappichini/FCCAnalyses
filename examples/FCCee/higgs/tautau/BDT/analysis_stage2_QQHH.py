@@ -3,97 +3,100 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    'p8_ee_WW_ecm240':{'chunks':100},
-    'p8_ee_Zqq_ecm240':{'chunks':100},
-    'p8_ee_ZZ_ecm240':{'chunks':100},
+    'p8_ee_WW_ecm240':{},
+    'p8_ee_Zqq_ecm240':{},
+    'p8_ee_ZZ_ecm240':{},
     
-    'wzp6_ee_tautau_ecm240':{'chunks':100},
-    'wzp6_ee_mumu_ecm240':{'chunks':100},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
+    'wzp6_ee_tautau_ecm240':{},
+    'wzp6_ee_mumu_ecm240':{},
+    'wzp6_ee_ee_Mee_30_150_ecm240':{},
 
-    'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Htautau_ecm240': {},
+    'wzp6_ee_tautauH_Hbb_ecm240': {},
+    'wzp6_ee_tautauH_Hcc_ecm240': {},
+    'wzp6_ee_tautauH_Hss_ecm240': {},
+    'wzp6_ee_tautauH_Hgg_ecm240': {},
+    'wzp6_ee_tautauH_HWW_ecm240': {},
+    'wzp6_ee_tautauH_HZZ_ecm240': {},
 
-    'wzp6_egamma_eZ_Zmumu_ecm240': {'chunks':10},
-    'wzp6_egamma_eZ_Zee_ecm240': {'chunks':10},
-    'wzp6_gammae_eZ_Zmumu_ecm240': {'chunks':10},
-    'wzp6_gammae_eZ_Zee_ecm240': {'chunks':10},
+    'wzp6_egamma_eZ_Zmumu_ecm240': {},
+    'wzp6_egamma_eZ_Zee_ecm240': {},
+    'wzp6_gammae_eZ_Zmumu_ecm240': {},
+    'wzp6_gammae_eZ_Zee_ecm240': {},
 
-    'wzp6_gaga_tautau_60_ecm240': {'chunks':100},
-    'wzp6_gaga_mumu_60_ecm240': {'chunks':100},
-    'wzp6_gaga_ee_60_ecm240': {'chunks':100},
+    'wzp6_gaga_tautau_60_ecm240': {},
+    'wzp6_gaga_mumu_60_ecm240': {},
+    'wzp6_gaga_ee_60_ecm240': {},
 
-    'wzp6_ee_nuenueZ_ecm240': {'chunks':10},
+    'wzp6_ee_nuenueZ_ecm240': {},
 
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Htautau_ecm240': {},
+    'wzp6_ee_nunuH_Hbb_ecm240': {},
+    'wzp6_ee_nunuH_Hcc_ecm240': {},
+    'wzp6_ee_nunuH_Hss_ecm240': {},
+    'wzp6_ee_nunuH_Hgg_ecm240': {},
+    'wzp6_ee_nunuH_HWW_ecm240': {},
+    'wzp6_ee_nunuH_HZZ_ecm240': {},
 
-    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_eeH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_eeH_Htautau_ecm240': {},
+    'wzp6_ee_eeH_Hbb_ecm240': {},
+    'wzp6_ee_eeH_Hcc_ecm240': {},
+    'wzp6_ee_eeH_Hss_ecm240': {},
+    'wzp6_ee_eeH_Hgg_ecm240': {},
+    'wzp6_ee_eeH_HWW_ecm240': {},
+    'wzp6_ee_eeH_HZZ_ecm240': {},
 
-    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_mumuH_Htautau_ecm240': {},
+    'wzp6_ee_mumuH_Hbb_ecm240': {},
+    'wzp6_ee_mumuH_Hcc_ecm240': {},
+    'wzp6_ee_mumuH_Hss_ecm240': {},
+    'wzp6_ee_mumuH_Hgg_ecm240': {},
+    'wzp6_ee_mumuH_HWW_ecm240': {},
+    'wzp6_ee_mumuH_HZZ_ecm240': {},
 
-    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_bbH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_bbH_Htautau_ecm240': {},
+    'wzp6_ee_bbH_Hbb_ecm240': {},
+    'wzp6_ee_bbH_Hcc_ecm240': {},
+    'wzp6_ee_bbH_Hss_ecm240': {},
+    'wzp6_ee_bbH_Hgg_ecm240': {},
+    'wzp6_ee_bbH_HWW_ecm240': {},
+    'wzp6_ee_bbH_HZZ_ecm240': {},
 
-    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_ccH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_ccH_Htautau_ecm240': {},
+    'wzp6_ee_ccH_Hbb_ecm240': {},
+    'wzp6_ee_ccH_Hcc_ecm240': {},
+    'wzp6_ee_ccH_Hss_ecm240': {},
+    'wzp6_ee_ccH_Hgg_ecm240': {},
+    'wzp6_ee_ccH_HWW_ecm240': {},
+    'wzp6_ee_ccH_HZZ_ecm240': {},
 
-    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_ssH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_ssH_Htautau_ecm240': {},
+    'wzp6_ee_ssH_Hbb_ecm240': {},
+    'wzp6_ee_ssH_Hcc_ecm240': {},
+    'wzp6_ee_ssH_Hss_ecm240': {},
+    'wzp6_ee_ssH_Hgg_ecm240': {},
+    'wzp6_ee_ssH_HWW_ecm240': {},
+    'wzp6_ee_ssH_HZZ_ecm240': {},
 
-    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_qqH_Htautau_ecm240': {},
+    'wzp6_ee_qqH_Hbb_ecm240': {},
+    'wzp6_ee_qqH_Hcc_ecm240': {},
+    'wzp6_ee_qqH_Hss_ecm240': {},
+    'wzp6_ee_qqH_Hgg_ecm240': {},
+    'wzp6_ee_qqH_HWW_ecm240': {},
+    'wzp6_ee_qqH_HZZ_ecm240': {},
 }
 
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_cut/QQ/HH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_BDT/QQ/HH/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
+
+ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/xgb_bdt_stage2_QQHH.root");
+                                computeModel = TMVA::Experimental::Compute<23, float>(bdt);''') #needs to be passed the number of variables
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -117,7 +120,7 @@ class RDFanalysis():
                 ##################
 
                 .Define("RecoEmiss_p4",  "FCCAnalyses::ZHfunctions::build_p4_single(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
-                .Define("RecoEmiss_eta",    "RecoEmiss_p4.Eta()")
+                .Define("RecoEmiss_eta",    "static_cast<float>(RecoEmiss_p4.Eta())")
                 .Define("RecoEmiss_phi",    "RecoEmiss_p4.Phi()")
                 .Define("RecoEmiss_theta",    "RecoEmiss_p4.Theta()")
                 .Define("RecoEmiss_y",    "RecoEmiss_p4.Rapidity()")
@@ -159,30 +162,30 @@ class RDFanalysis():
                 .Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
                 .Define("RecoZ_px",    "RecoZ_p4.Px()")
                 .Define("RecoZ_py",    "RecoZ_p4.Py()")
-                .Define("RecoZ_pz",    "RecoZ_p4.Pz()")
-                .Define("RecoZ_p",    "RecoZ_p4.P()")
-                .Define("RecoZ_pt",    "RecoZ_p4.Pt()")
-                .Define("RecoZ_e",     "RecoZ_p4.E()")
-                .Define("RecoZ_eta",    "RecoZ_p4.Eta()")
+                .Define("RecoZ_pz",    "static_cast<float>(RecoZ_p4.Pz())")
+                .Define("RecoZ_p",    "static_cast<float>(RecoZ_p4.P())")
+                .Define("RecoZ_pt",    "static_cast<float>(RecoZ_p4.Pt())")
+                .Define("RecoZ_e",     "static_cast<float>(RecoZ_p4.E())")
+                .Define("RecoZ_eta",    "static_cast<float>(RecoZ_p4.Eta())")
                 .Define("RecoZ_phi",    "RecoZ_p4.Phi()")
                 .Define("RecoZ_theta",    "RecoZ_p4.Theta()")
                 .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
-                .Define("RecoZ_mass",    "RecoZ_p4.M()")
+                .Define("RecoZ_mass",    "static_cast<float>(RecoZ_p4.M())")
 
                 .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
                 .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
                 .Define("RecoH_py",    "RecoH_p4.Py()")
-                .Define("RecoH_pz",    "RecoH_p4.Pz()")
-                .Define("RecoH_p",    "RecoH_p4.P()")
-                .Define("RecoH_pt",    "RecoH_p4.Pt()")
-                .Define("RecoH_e",     "RecoH_p4.E()")
-                .Define("RecoH_eta",    "RecoH_p4.Eta()")
+                .Define("RecoH_pz",    "static_cast<float>(RecoH_p4.Pz())")
+                .Define("RecoH_p",    "static_cast<float>(RecoH_p4.P())")
+                .Define("RecoH_pt",    "static_cast<float>(RecoH_p4.Pt())")
+                .Define("RecoH_e",     "static_cast<float>(RecoH_p4.E())")
+                .Define("RecoH_eta",    "static_cast<float>(RecoH_p4.Eta())")
                 .Define("RecoH_phi",    "RecoH_p4.Phi()")
                 .Define("RecoH_theta",    "RecoH_p4.Theta()")
                 .Define("RecoH_y",     "RecoH_p4.Rapidity()")
-                .Define("RecoH_mass",    "RecoH_p4.M()")
+                .Define("RecoH_mass",    "static_cast<float>(RecoH_p4.M())")
                 
                 .Define("TauLead_p4","if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_p4; else return RecoTau2_p4;")
                 .Define("TauLead_px",    "TauLead_p4.Px()")
@@ -237,10 +240,10 @@ class RDFanalysis():
                 .Define("TauM_mass",    "TauM_p4.M()")
 
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
-                .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
-                .Define("Tau_cos",      "RecoH_p/Tau_scalar")
-                .Define("Tau_DEta",    "(TauLead_eta - TauSub_eta)")
-                .Define("Tau_DPhi",    "(TauLead_phi - TauSub_phi)")
+                .Define("Tau_scalar",      "static_cast<float>(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
+                .Define("Tau_cos",      "static_cast<float>(RecoH_p/Tau_scalar)")
+                .Define("Tau_DEta",    "static_cast<float>(TauLead_eta - TauSub_eta)")
+                .Define("Tau_DPhi",    "static_cast<float>(TauLead_phi - TauSub_phi)")
 
                 .Define("RecoZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(RecoZLead_phi, RecoZSub_phi, RecoZLead_eta, RecoZSub_eta)")
                 .Define("RecoZDaughter_scalar",      "(RecoZLead_px*RecoZSub_px + RecoZLead_py*RecoZSub_py + RecoZLead_pz*RecoZSub_pz)")
@@ -249,16 +252,40 @@ class RDFanalysis():
                 .Define("RecoZDaughter_DPhi",    "(RecoZLead_phi - RecoZSub_phi)")
 
                 .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
-                .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
+                .Define("Recoil",       "static_cast<float>((Total_p4-RecoZ_p4).M())")
 
                 .Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")
                 .Define("r0",       "abs((RecoEmiss_py*TauLead_px-RecoEmiss_px*TauLead_py)/p12)")
                 .Define("f0",       "1./(1.+r0)")
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
-                .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
+                .Define("Collinear_mass",       "static_cast<float>(RecoH_mass/sqrt(f0*f1))")
 
-                .Filter("Collinear_mass>100 && Collinear_mass<150")
+                #MVA testing
+                .Define("BDT_pred", ROOT.computeModel, ["RecoEmiss_pz",
+                                                        "RecoEmiss_pt",
+                                                        "RecoEmiss_p",
+                                                        "RecoEmiss_e",
+                                                        "RecoEmiss_eta",
+                                                        "RecoZ_pz",
+                                                        "RecoZ_p",
+                                                        "RecoZ_pt",
+                                                        "RecoZ_e",
+                                                        "RecoZ_eta",
+                                                        "RecoZ_mass",
+                                                        "RecoH_pz",
+                                                        "RecoH_p",
+                                                        "RecoH_pt",
+                                                        "RecoH_e",
+                                                        "RecoH_eta",
+                                                        "RecoH_mass",
+                                                        "Tau_DPhi",
+                                                        "Tau_DR",
+                                                        "Tau_cos",
+                                                        "Tau_DEta",
+                                                        "Recoil",
+                                                        "Collinear_mass"])
+                .Filter("BDT_pred.at(0) == 1")
         )
         return df2
 
@@ -781,6 +808,7 @@ class RDFanalysis():
             "RecoZDaughter_cos", 
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
+
         ]
 
         return branchList

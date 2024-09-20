@@ -90,7 +90,7 @@ processList = {
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2/LL/LH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_cut/LL/LH/" 
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -135,36 +135,59 @@ class RDFanalysis():
                 .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[0]), RecoLepton_py.at(RecoZH_idx[0]), RecoLepton_pz.at(RecoZH_idx[0]), RecoLepton_e.at(RecoZH_idx[0]))")
                 .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[1]), RecoLepton_py.at(RecoZH_idx[1]), RecoLepton_pz.at(RecoZH_idx[1]), RecoLepton_e.at(RecoZH_idx[1]))")
                 
-                .Define("RecoZ1_px",    "RecoZ1_p4.Px()")
-                .Define("RecoZ1_py",    "RecoZ1_p4.Py()")
-                .Define("RecoZ1_pz",    "RecoZ1_p4.Pz()")
-                .Define("RecoZ1_p",    "RecoZ1_p4.P()")
-                .Define("RecoZ1_pt",    "RecoZ1_p4.Pt()")
-                .Define("RecoZ1_e",     "RecoZ1_p4.E()")
-                .Define("RecoZ1_eta",    "RecoZ1_p4.Eta()")
-                .Define("RecoZ1_phi",    "RecoZ1_p4.Phi()")
-                .Define("RecoZ1_theta",    "RecoZ1_p4.Theta()")
-                .Define("RecoZ1_y",     "RecoZ1_p4.Rapidity()")
-                .Define("RecoZ1_mass",    "RecoZ1_p4.M()")
+                .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
+                .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
+                .Define("RecoZLead_py",    "RecoZLead_p4.Py()")
+                .Define("RecoZLead_pz",    "RecoZLead_p4.Pz()")
+                .Define("RecoZLead_p",    "RecoZLead_p4.P()")
+                .Define("RecoZLead_pt",    "RecoZLead_p4.Pt()")
+                .Define("RecoZLead_e",     "RecoZLead_p4.E()")
+                .Define("RecoZLead_eta",    "RecoZLead_p4.Eta()")
+                .Define("RecoZLead_phi",    "RecoZLead_p4.Phi()")
+                .Define("RecoZLead_theta",    "RecoZLead_p4.Theta()")
+                .Define("RecoZLead_y",     "RecoZLead_p4.Rapidity()")
+                .Define("RecoZLead_mass",    "RecoZLead_p4.M()")
 
-                .Define("RecoZ2_px",    "RecoZ2_p4.Px()")
-                .Define("RecoZ2_py",    "RecoZ2_p4.Py()")
-                .Define("RecoZ2_pz",    "RecoZ2_p4.Pz()")
-                .Define("RecoZ2_p",    "RecoZ2_p4.P()")
-                .Define("RecoZ2_pt",    "RecoZ2_p4.Pt()")
-                .Define("RecoZ2_e",     "RecoZ2_p4.E()")
-                .Define("RecoZ2_eta",    "RecoZ2_p4.Eta()")
-                .Define("RecoZ2_phi",    "RecoZ2_p4.Phi()")
-                .Define("RecoZ2_theta",    "RecoZ2_p4.Theta()")
-                .Define("RecoZ2_y",     "RecoZ2_p4.Rapidity()")
-                .Define("RecoZ2_mass",    "RecoZ2_p4.M()")
+                .Define("RecoZSub_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ2_p4; else return RecoZ1_p4;")
+                .Define("RecoZSub_px",    "RecoZSub_p4.Px()")
+                .Define("RecoZSub_py",    "RecoZSub_p4.Py()")
+                .Define("RecoZSub_pz",    "RecoZSub_p4.Pz()")
+                .Define("RecoZSub_p",    "RecoZSub_p4.P()")
+                .Define("RecoZSub_pt",    "RecoZSub_p4.Pt()")
+                .Define("RecoZSub_e",     "RecoZSub_p4.E()")
+                .Define("RecoZSub_eta",    "RecoZSub_p4.Eta()")
+                .Define("RecoZSub_phi",    "RecoZSub_p4.Phi()")
+                .Define("RecoZSub_theta",    "RecoZSub_p4.Theta()")
+                .Define("RecoZSub_y",     "RecoZSub_p4.Rapidity()")
+                .Define("RecoZSub_mass",    "RecoZSub_p4.M()")
 
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[2]), RecoLepton_py.at(RecoZH_idx[2]), RecoLepton_pz.at(RecoZH_idx[2]), RecoLepton_e.at(RecoZH_idx[2]))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
+                .Define("RecoZP_p4",      "if (RecoLepton_charge.at(RecoZH_idx[0])==1) return RecoZ1_p4; else return RecoZ2_p4;")
+                .Define("RecoZP_px",    "RecoZP_p4.Px()")
+                .Define("RecoZP_py",    "RecoZP_p4.Py()")
+                .Define("RecoZP_pz",    "RecoZP_p4.Pz()")
+                .Define("RecoZP_p",    "RecoZP_p4.P()")
+                .Define("RecoZP_pt",    "RecoZP_p4.Pt()")
+                .Define("RecoZP_e",     "RecoZP_p4.E()")
+                .Define("RecoZP_eta",    "RecoZP_p4.Eta()")
+                .Define("RecoZP_phi",    "RecoZP_p4.Phi()")
+                .Define("RecoZP_theta",    "RecoZP_p4.Theta()")
+                .Define("RecoZP_y",     "RecoZP_p4.Rapidity()")
+                .Define("RecoZP_mass",    "RecoZP_p4.M()")
+
+                .Define("RecoZM_p4",      "if (RecoLepton_charge.at(RecoZH_idx[0])==1) return RecoZ2_p4; else return RecoZ1_p4;")
+                .Define("RecoZM_px",    "RecoZM_p4.Px()")
+                .Define("RecoZM_py",    "RecoZM_p4.Py()")
+                .Define("RecoZM_pz",    "RecoZM_p4.Pz()")
+                .Define("RecoZM_p",    "RecoZM_p4.P()")
+                .Define("RecoZM_pt",    "RecoZM_p4.Pt()")
+                .Define("RecoZM_e",     "RecoZM_p4.E()")
+                .Define("RecoZM_eta",    "RecoZM_p4.Eta()")
+                .Define("RecoZM_phi",    "RecoZM_p4.Phi()")
+                .Define("RecoZM_theta",    "RecoZM_p4.Theta()")
+                .Define("RecoZM_y",     "RecoZM_p4.Rapidity()")
+                .Define("RecoZM_mass",    "RecoZM_p4.M()")
 
                 .Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
-                .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
-
                 .Define("RecoZ_px",    "RecoZ_p4.Px()")
                 .Define("RecoZ_py",    "RecoZ_p4.Py()")
                 .Define("RecoZ_pz",    "RecoZ_p4.Pz()")
@@ -177,6 +200,9 @@ class RDFanalysis():
                 .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
                 .Define("RecoZ_mass",    "RecoZ_p4.M()")
 
+                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[2]), RecoLepton_py.at(RecoZH_idx[2]), RecoLepton_pz.at(RecoZH_idx[2]), RecoLepton_e.at(RecoZH_idx[2]))")
+                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
+                .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
                 .Define("RecoH_py",    "RecoH_p4.Py()")
                 .Define("RecoH_pz",    "RecoH_p4.Pz()")
@@ -215,10 +241,43 @@ class RDFanalysis():
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
 
-                .Define("Tau_Acoplanarity",      "(TauLead_phi-TauSub_phi)")
+                .Define("TauP_p4","if (TauFromJet_R5_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
+                .Define("TauP_px",    "TauP_p4.Px()")
+                .Define("TauP_py",    "TauP_p4.Py()")
+                .Define("TauP_pz",    "TauP_p4.Pz()")
+                .Define("TauP_p",    "TauP_p4.P()")
+                .Define("TauP_pt",    "TauP_p4.Pt()")
+                .Define("TauP_e",     "TauP_p4.E()")
+                .Define("TauP_eta",    "TauP_p4.Eta()")
+                .Define("TauP_phi",    "TauP_p4.Phi()")
+                .Define("TauP_theta",    "TauP_p4.Theta()")
+                .Define("TauP_y",     "TauP_p4.Rapidity()")
+                .Define("TauP_mass",    "TauP_p4.M()")
+
+                .Define("TauM_p4",       "if (TauFromJet_R5_charge.at(0)==1) return RecoTau1_p4; else return RecoTau2_p4;")
+                .Define("TauM_px",    "TauM_p4.Px()")
+                .Define("TauM_py",    "TauM_p4.Py()")
+                .Define("TauM_pz",    "TauM_p4.Pz()")
+                .Define("TauM_p",    "TauM_p4.P()")
+                .Define("TauM_pt",    "TauM_p4.Pt()")
+                .Define("TauM_e",     "TauM_p4.E()")
+                .Define("TauM_eta",    "TauM_p4.Eta()")
+                .Define("TauM_phi",    "TauM_p4.Phi()")
+                .Define("TauM_theta",    "TauM_p4.Theta()")
+                .Define("TauM_y",     "TauM_p4.Rapidity()")
+                .Define("TauM_mass",    "TauM_p4.M()")
+
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
                 .Define("Tau_cos",      "RecoH_p/Tau_scalar")
+                .Define("Tau_DEta",    "(TauLead_eta - TauSub_eta)")
+                .Define("Tau_DPhi",    "(TauLead_phi - TauSub_phi)")
+
+                .Define("RecoZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(RecoZLead_phi, RecoZSub_phi, RecoZLead_eta, RecoZSub_eta)")
+                .Define("RecoZDaughter_scalar",      "(RecoZLead_px*RecoZSub_px + RecoZLead_py*RecoZSub_py + RecoZLead_pz*RecoZSub_pz)")
+                .Define("RecoZDaughter_cos",      "RecoZ_p/RecoZDaughter_scalar")
+                .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
+                .Define("RecoZDaughter_DPhi",    "(RecoZLead_phi - RecoZSub_phi)")
 
                 .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
                 .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
@@ -229,6 +288,8 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
+
+                .Filter("Collinear_mass>100 && Collinear_mass<150")
 
         )
         return df2
@@ -638,90 +699,144 @@ class RDFanalysis():
         ]
         #complex variables added here at stage2
         branchList += [
-                "RecoEmiss_eta",
-                "RecoEmiss_phi",
-                "RecoEmiss_theta",
-                "RecoEmiss_y",
-                "RecoEmiss_costheta",
+            "RecoEmiss_eta",
+            "RecoEmiss_phi",
+            "RecoEmiss_theta",
+            "RecoEmiss_y",
+            "RecoEmiss_costheta",
 
-                "RecoZ_px",
-                "RecoZ_py",
-                "RecoZ_pz",
-                "RecoZ_p",
-                "RecoZ_pt",
-                "RecoZ_e",
-                "RecoZ_eta",
-                "RecoZ_phi",
-                "RecoZ_theta",
-                "RecoZ_y",
-                "RecoZ_mass",
+            "RecoZ_px",
+            "RecoZ_py",
+            "RecoZ_pz",
+            "RecoZ_p",
+            "RecoZ_pt",
+            "RecoZ_e",
+            "RecoZ_eta",
+            "RecoZ_phi",
+            "RecoZ_theta",
+            "RecoZ_y",
+            "RecoZ_mass",
 
-                "RecoZ1_px", 
-                "RecoZ1_py",   
-                "RecoZ1_pz",   
-                "RecoZ1_p",    
-                "RecoZ1_pt",   
-                "RecoZ1_e",    
-                "RecoZ1_eta",    
-                "RecoZ1_phi",    
-                "RecoZ1_theta",   
-                "RecoZ1_y",     
-                "RecoZ1_mass",   
+            "RecoZLead_px", 
+            "RecoZLead_py",   
+            "RecoZLead_pz",   
+            "RecoZLead_p",    
+            "RecoZLead_pt",   
+            "RecoZLead_e",    
+            "RecoZLead_eta",    
+            "RecoZLead_phi",    
+            "RecoZLead_theta",   
+            "RecoZLead_y",     
+            "RecoZLead_mass",   
 
-                "RecoZ2_px",    
-                "RecoZ2_py",   
-                "RecoZ2_pz",   
-                "RecoZ2_p",   
-                "RecoZ2_pt",  
-                "RecoZ2_e",     
-                "RecoZ2_eta",   
-                "RecoZ2_phi",   
-                "RecoZ2_theta",    
-                "RecoZ2_y",    
-                "RecoZ2_mass",   
+            "RecoZSub_px",    
+            "RecoZSub_py",   
+            "RecoZSub_pz",   
+            "RecoZSub_p",   
+            "RecoZSub_pt",  
+            "RecoZSub_e",     
+            "RecoZSub_eta",   
+            "RecoZSub_phi",   
+            "RecoZSub_theta",    
+            "RecoZSub_y",    
+            "RecoZSub_mass",   
 
-                "RecoH_px",
-                "RecoH_py",
-                "RecoH_pz",
-                "RecoH_p",
-                "RecoH_pt",
-                "RecoH_e",
-                "RecoH_eta",
-                "RecoH_phi",
-                "RecoH_theta",
-                "RecoH_y",
-                "RecoH_mass",
+            "RecoZP_px", 
+            "RecoZP_py",   
+            "RecoZP_pz",   
+            "RecoZP_p",    
+            "RecoZP_pt",   
+            "RecoZP_e",    
+            "RecoZP_eta",    
+            "RecoZP_phi",    
+            "RecoZP_theta",   
+            "RecoZP_y",     
+            "RecoZP_mass",   
 
-                "TauLead_px",    
-                "TauLead_py",   
-                "TauLead_pz",   
-                "TauLead_p",   
-                "TauLead_pt",   
-                "TauLead_e",    
-                "TauLead_eta",    
-                "TauLead_phi",    
-                "TauLead_theta",    
-                "TauLead_y",    
-                "TauLead_mass",
+            "RecoZM_px",    
+            "RecoZM_py",   
+            "RecoZM_pz",   
+            "RecoZM_p",   
+            "RecoZM_pt",  
+            "RecoZM_e",     
+            "RecoZM_eta",   
+            "RecoZM_phi",   
+            "RecoZM_theta",    
+            "RecoZM_y",    
+            "RecoZM_mass", 
 
-                "TauSub_px",    
-                "TauSub_py",   
-                "TauSub_pz",   
-                "TauSub_p",   
-                "TauSub_pt",   
-                "TauSub_e",    
-                "TauSub_eta",    
-                "TauSub_phi",    
-                "TauSub_theta",    
-                "TauSub_y",    
-                "TauSub_mass",
+            "RecoH_px",
+            "RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            "RecoH_phi",
+            "RecoH_theta",
+            "RecoH_y",
+            "RecoH_mass",
 
-                "Tau_Acoplanarity",
-                "Tau_DR",
-                "Tau_cos",
+            "TauLead_px",    
+            "TauLead_py",   
+            "TauLead_pz",   
+            "TauLead_p",   
+            "TauLead_pt",   
+            "TauLead_e",    
+            "TauLead_eta",    
+            "TauLead_phi",    
+            "TauLead_theta",    
+            "TauLead_y",    
+            "TauLead_mass",
 
-                "Recoil",
-                "Collinear_mass",
+            "TauSub_px",    
+            "TauSub_py",   
+            "TauSub_pz",   
+            "TauSub_p",   
+            "TauSub_pt",   
+            "TauSub_e",    
+            "TauSub_eta",    
+            "TauSub_phi",    
+            "TauSub_theta",    
+            "TauSub_y",    
+            "TauSub_mass",
+
+            "TauP_px",    
+            "TauP_py",   
+            "TauP_pz",   
+            "TauP_p",   
+            "TauP_pt",   
+            "TauP_e",    
+            "TauP_eta",    
+            "TauP_phi",    
+            "TauP_theta",    
+            "TauP_y",    
+            "TauP_mass",
+
+            "TauM_px",    
+            "TauM_py",   
+            "TauM_pz",   
+            "TauM_p",   
+            "TauM_pt",   
+            "TauM_e",    
+            "TauM_eta",    
+            "TauM_phi",    
+            "TauM_theta",    
+            "TauM_y",    
+            "TauM_mass",
+
+            "Recoil",
+            "Collinear_mass", 
+        
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta", 
+            "Tau_DPhi",
+            
+            "RecoZDaughter_DR", 
+            "RecoZDaughter_cos", 
+            "RecoZDaughter_DEta", 
+            "RecoZDaughter_DPhi", 
 
         ]
 

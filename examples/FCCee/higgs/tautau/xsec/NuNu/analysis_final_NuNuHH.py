@@ -118,12 +118,12 @@ procDictAdd = {}
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    #"selReco": "true",
-    #"selReco_100Me": "RecoEmiss_e>100",
-    #"selReco_100Me_TauAc3": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3",
-    #"selReco_100Me_TauAc3_2DR": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2",
-    #"selReco_100Me_TauAc3_2DR_cos0": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2 && Tau_cos<0",
-    #"selReco_100Me_TauAc3_2DR_cos0_misscos0.98": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
+    "selReco": "true",
+    "selReco_100Me": "RecoEmiss_e>100",
+    "selReco_100Me_TauAc3": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3",
+    "selReco_100Me_TauAc3_2DR": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2",
+    "selReco_100Me_TauAc3_2DR_cos0": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2 && Tau_cos<0",
+    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
     "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1": "RecoEmiss_e>100 && abs(Tau_Acoplanarity)<3 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
 
 }
@@ -532,9 +532,34 @@ histoList = {
     "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{sublead} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "TauSub_mass":              {"name":"TauSub_mass",               "title":"#tau_{sublead} mass",                   "bin":30, "xmin":0., "xmax":3.},
 
-    "Tau_Acoplanarity":         {"name":"Tau_Acoplanarity",           "title":"#Delta#phi(#tau#tau)",                "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauP_px":               {"name":"TauP_px",                 "title":"#tau^{+} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauP_py":               {"name":"TauP_py",                 "title":"#tau^{+} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauP_pz":               {"name":"TauP_pz",                 "title":"#tau^{+} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauP_p":                {"name":"TauP_p",                  "title":"#tau^{+} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "TauP_pt":               {"name":"TauP_pt",                 "title":"#tau^{+} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "TauP_e":                {"name":"TauP_e",                  "title":"#tau^{+} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "TauP_eta":              {"name":"TauP_eta",                "title":"#tau^{+} #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauP_phi":              {"name":"TauP_phi",                "title":"#tau^{+} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauP_theta":            {"name":"TauP_theta",              "title":"#tau^{+} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "TauP_y":                {"name":"TauP_y",                  "title":"#tau^{+} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "TauP_mass":             {"name":"TauP_mass",               "title":"#tau^{+} mass",                   "bin":30, "xmin":0., "xmax":3.},
+
+    "TauM_px":                {"name":"TauM_px",                 "title":"#tau^{-} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauM_py":                {"name":"TauM_py",                 "title":"#tau^{-} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauM_pz":                {"name":"TauM_pz",                 "title":"#tau^{-} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauM_p":                 {"name":"TauM_p",                  "title":"#tau^{-} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "TauM_pt":                {"name":"TauM_pt",                 "title":"#tau^{-} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "TauM_e":                 {"name":"TauM_e",                  "title":"#tau^{-} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "TauM_eta":               {"name":"TauM_eta",                "title":"#tau^{-} #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauM_phi":               {"name":"TauM_phi",                "title":"#tau^{-} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauM_theta":             {"name":"TauM_theta",              "title":"#tau^{-} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "TauM_y":                 {"name":"TauM_y",                  "title":"#tau^{-} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "TauM_mass":              {"name":"TauM_mass",               "title":"#tau^{-} mass",                   "bin":30, "xmin":0., "xmax":3.},
+
+    "Tau_DPhi":         {"name":"Tau_DPhi",           "title":"#Delta#phi(#tau#tau)",                "bin":32, "xmin":-3.2,"xmax":3.2},
     "Tau_DR":                   {"name":"Tau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
     "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
+    "Tau_DEta":                             {"name":"Tau_DEta",           "title":"Reco di-#tau #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
 
     #"Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
     #"Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
