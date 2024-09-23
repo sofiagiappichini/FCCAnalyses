@@ -1,8 +1,20 @@
 import os, copy # tagging
 import ROOT
 
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/QQ/HH/"
+
+#Optional: output directory, default is local running directory
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage3_100Coll150/QQ/HH/" 
+
 #Mandatory: List of processes
-processList = {
+list = {}
+
+for process in os.listdir(inputDir):
+    list[process] = {}
+
+processList = list
+
+processList_all = {
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
     'p8_ee_ZZ_ecm240':{},
@@ -87,205 +99,62 @@ processList = {
     'wzp6_ee_qqH_HZZ_ecm240': {},
 }
 
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
-
-#Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_BDT/QQ/HH/" 
-
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
 
-ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/xgb_bdt_stage2_QQHH.root");
+ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/xgb_bdt_stage2_100Coll150_QQHH.root");
                                 computeModel = TMVA::Experimental::Compute<23, float>(bdt);''') #needs to be passed the number of variables
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
     def analysers(df):
         df2 = (df
+                #recast some of the varibales to be all the same type
+                .Define("fRecoEmiss_costheta",       "static_cast<float>(RecoEmiss_costheta)")
+                .Define("fRecoZ_pz",       "static_cast<float>(RecoZ_pz)")
+                .Define("fRecoZ_pt",       "static_cast<float>(RecoZ_pt)")
+                .Define("fRecoZ_p",       "static_cast<float>(RecoZ_p)")
+                .Define("fRecoZ_e",       "static_cast<float>(RecoZ_e)")
+                .Define("fRecoZ_eta",       "static_cast<float>(RecoZ_eta)")
+                .Define("fRecoZ_mass",       "static_cast<float>(RecoZ_mass)")
+                .Define("fRecoH_pz",       "static_cast<float>(RecoH_pz)")
+                .Define("fRecoH_pt",       "static_cast<float>(RecoH_pt)")
+                .Define("fRecoH_p",       "static_cast<float>(RecoH_p)")
+                .Define("fRecoH_e",       "static_cast<float>(RecoH_e)")
+                .Define("fRecoH_eta",       "static_cast<float>(RecoH_eta)")
+                .Define("fRecoH_mass",       "static_cast<float>(RecoH_mass)")
+                .Define("fTau_DPhi",       "static_cast<float>(Tau_DPhi)")
+                .Define("fTau_DR",       "static_cast<float>(Tau_DR)")
+                .Define("fTau_cos",       "static_cast<float>(Tau_cos)")
+                .Define("fTau_DEta",       "static_cast<float>(Tau_DEta)")
+                .Define("fRecoil",       "static_cast<float>(Recoil)")
+                .Define("fCollinear_mass",       "static_cast<float>(Collinear_mass)")
 
-            ### to find already made functions, this is where they are or where they can be added instead of writing them here
-            ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
-
-            ### defining filters for no sel lepotons, two no tau jets, two tau jets
-
-            ### when working with Z jets, remember to use the Leptons_sel class because they are the ones not in the jets
-            ### when working with tau jets it does not matter since the tau jets don't have any lepton in them so there is no confusion  
-
-                .Filter("n_TauFromJet_R5==2 && n_RecoElectrons_sel==0 && n_RecoMuons_sel==0 && n_Jets_R5_sel==2")
-
-                .Filter("(TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0") 
-
-                ##################
-                # Reco particles #
-                ##################
-
-                .Define("RecoEmiss_p4",  "FCCAnalyses::ZHfunctions::build_p4_single(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
-                .Define("RecoEmiss_eta",    "static_cast<float>(RecoEmiss_p4.Eta())")
-                .Define("RecoEmiss_phi",    "RecoEmiss_p4.Phi()")
-                .Define("RecoEmiss_theta",    "RecoEmiss_p4.Theta()")
-                .Define("RecoEmiss_y",    "RecoEmiss_p4.Rapidity()")
-                .Define("RecoEmiss_costheta",   "abs(std::cos(RecoEmiss_theta))")
-
-                #.Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_px, RecoLepton_py, RecoLepton_pz, RecoLepton_e)")
-
-                #.Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_3(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188)")
-
-                .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(Jets_R5_sel_px.at(0), Jets_R5_sel_py.at(0), Jets_R5_sel_pz.at(0), Jets_R5_sel_e.at(0))")
-                .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(Jets_R5_sel_px.at(1), Jets_R5_sel_py.at(1), Jets_R5_sel_pz.at(1), Jets_R5_sel_e.at(1))")
-                
-                .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
-                .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
-                .Define("RecoZLead_py",    "RecoZLead_p4.Py()")
-                .Define("RecoZLead_pz",    "RecoZLead_p4.Pz()")
-                .Define("RecoZLead_p",    "RecoZLead_p4.P()")
-                .Define("RecoZLead_pt",    "RecoZLead_p4.Pt()")
-                .Define("RecoZLead_e",     "RecoZLead_p4.E()")
-                .Define("RecoZLead_eta",    "RecoZLead_p4.Eta()")
-                .Define("RecoZLead_phi",    "RecoZLead_p4.Phi()")
-                .Define("RecoZLead_theta",    "RecoZLead_p4.Theta()")
-                .Define("RecoZLead_y",     "RecoZLead_p4.Rapidity()")
-                .Define("RecoZLead_mass",    "RecoZLead_p4.M()")
-
-                .Define("RecoZSub_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ2_p4; else return RecoZ1_p4;")
-                .Define("RecoZSub_px",    "RecoZSub_p4.Px()")
-                .Define("RecoZSub_py",    "RecoZSub_p4.Py()")
-                .Define("RecoZSub_pz",    "RecoZSub_p4.Pz()")
-                .Define("RecoZSub_p",    "RecoZSub_p4.P()")
-                .Define("RecoZSub_pt",    "RecoZSub_p4.Pt()")
-                .Define("RecoZSub_e",     "RecoZSub_p4.E()")
-                .Define("RecoZSub_eta",    "RecoZSub_p4.Eta()")
-                .Define("RecoZSub_phi",    "RecoZSub_p4.Phi()")
-                .Define("RecoZSub_theta",    "RecoZSub_p4.Theta()")
-                .Define("RecoZSub_y",     "RecoZSub_p4.Rapidity()")
-                .Define("RecoZSub_mass",    "RecoZSub_p4.M()")
-
-                .Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
-                .Define("RecoZ_px",    "RecoZ_p4.Px()")
-                .Define("RecoZ_py",    "RecoZ_p4.Py()")
-                .Define("RecoZ_pz",    "static_cast<float>(RecoZ_p4.Pz())")
-                .Define("RecoZ_p",    "static_cast<float>(RecoZ_p4.P())")
-                .Define("RecoZ_pt",    "static_cast<float>(RecoZ_p4.Pt())")
-                .Define("RecoZ_e",     "static_cast<float>(RecoZ_p4.E())")
-                .Define("RecoZ_eta",    "static_cast<float>(RecoZ_p4.Eta())")
-                .Define("RecoZ_phi",    "RecoZ_p4.Phi()")
-                .Define("RecoZ_theta",    "RecoZ_p4.Theta()")
-                .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
-                .Define("RecoZ_mass",    "static_cast<float>(RecoZ_p4.M())")
-
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
-                .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
-                .Define("RecoH_px",    "RecoH_p4.Px()")
-                .Define("RecoH_py",    "RecoH_p4.Py()")
-                .Define("RecoH_pz",    "static_cast<float>(RecoH_p4.Pz())")
-                .Define("RecoH_p",    "static_cast<float>(RecoH_p4.P())")
-                .Define("RecoH_pt",    "static_cast<float>(RecoH_p4.Pt())")
-                .Define("RecoH_e",     "static_cast<float>(RecoH_p4.E())")
-                .Define("RecoH_eta",    "static_cast<float>(RecoH_p4.Eta())")
-                .Define("RecoH_phi",    "RecoH_p4.Phi()")
-                .Define("RecoH_theta",    "RecoH_p4.Theta()")
-                .Define("RecoH_y",     "RecoH_p4.Rapidity()")
-                .Define("RecoH_mass",    "static_cast<float>(RecoH_p4.M())")
-                
-                .Define("TauLead_p4","if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_p4; else return RecoTau2_p4;")
-                .Define("TauLead_px",    "TauLead_p4.Px()")
-                .Define("TauLead_py",    "TauLead_p4.Py()")
-                .Define("TauLead_pz",    "TauLead_p4.Pz()")
-                .Define("TauLead_p",    "TauLead_p4.P()")
-                .Define("TauLead_pt",    "TauLead_p4.Pt()")
-                .Define("TauLead_e",     "TauLead_p4.E()")
-                .Define("TauLead_eta",    "TauLead_p4.Eta()")
-                .Define("TauLead_phi",    "TauLead_p4.Phi()")
-                .Define("TauLead_theta",    "TauLead_p4.Theta()")
-                .Define("TauLead_y",     "TauLead_p4.Rapidity()")
-                .Define("TauLead_mass",    "TauLead_p4.M()")
-
-                .Define("TauSub_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_p4; else return RecoTau1_p4;")
-                .Define("TauSub_px",    "TauSub_p4.Px()")
-                .Define("TauSub_py",    "TauSub_p4.Py()")
-                .Define("TauSub_pz",    "TauSub_p4.Pz()")
-                .Define("TauSub_p",    "TauSub_p4.P()")
-                .Define("TauSub_pt",    "TauSub_p4.Pt()")
-                .Define("TauSub_e",     "TauSub_p4.E()")
-                .Define("TauSub_eta",    "TauSub_p4.Eta()")
-                .Define("TauSub_phi",    "TauSub_p4.Phi()")
-                .Define("TauSub_theta",    "TauSub_p4.Theta()")
-                .Define("TauSub_y",     "TauSub_p4.Rapidity()")
-                .Define("TauSub_mass",    "TauSub_p4.M()")
-
-                .Define("TauP_p4","if (TauFromJet_R5_charge.at(0)==1) return RecoTau1_p4; else return RecoTau2_p4;")
-                .Define("TauP_px",    "TauP_p4.Px()")
-                .Define("TauP_py",    "TauP_p4.Py()")
-                .Define("TauP_pz",    "TauP_p4.Pz()")
-                .Define("TauP_p",    "TauP_p4.P()")
-                .Define("TauP_pt",    "TauP_p4.Pt()")
-                .Define("TauP_e",     "TauP_p4.E()")
-                .Define("TauP_eta",    "TauP_p4.Eta()")
-                .Define("TauP_phi",    "TauP_p4.Phi()")
-                .Define("TauP_theta",    "TauP_p4.Theta()")
-                .Define("TauP_y",     "TauP_p4.Rapidity()")
-                .Define("TauP_mass",    "TauP_p4.M()")
-
-                .Define("TauM_p4",       "if (TauFromJet_R5_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
-                .Define("TauM_px",    "TauM_p4.Px()")
-                .Define("TauM_py",    "TauM_p4.Py()")
-                .Define("TauM_pz",    "TauM_p4.Pz()")
-                .Define("TauM_p",    "TauM_p4.P()")
-                .Define("TauM_pt",    "TauM_p4.Pt()")
-                .Define("TauM_e",     "TauM_p4.E()")
-                .Define("TauM_eta",    "TauM_p4.Eta()")
-                .Define("TauM_phi",    "TauM_p4.Phi()")
-                .Define("TauM_theta",    "TauM_p4.Theta()")
-                .Define("TauM_y",     "TauM_p4.Rapidity()")
-                .Define("TauM_mass",    "TauM_p4.M()")
-
-                .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
-                .Define("Tau_scalar",      "static_cast<float>(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
-                .Define("Tau_cos",      "static_cast<float>(RecoH_p/Tau_scalar)")
-                .Define("Tau_DEta",    "static_cast<float>(TauLead_eta - TauSub_eta)")
-                .Define("Tau_DPhi",    "static_cast<float>(TauLead_phi - TauSub_phi)")
-
-                .Define("RecoZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(RecoZLead_phi, RecoZSub_phi, RecoZLead_eta, RecoZSub_eta)")
-                .Define("RecoZDaughter_scalar",      "(RecoZLead_px*RecoZSub_px + RecoZLead_py*RecoZSub_py + RecoZLead_pz*RecoZSub_pz)")
-                .Define("RecoZDaughter_cos",      "RecoZ_p/RecoZDaughter_scalar")
-                .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
-                .Define("RecoZDaughter_DPhi",    "(RecoZLead_phi - RecoZSub_phi)")
-
-                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
-                .Define("Recoil",       "static_cast<float>((Total_p4-RecoZ_p4).M())")
-
-                .Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")
-                .Define("r0",       "abs((RecoEmiss_py*TauLead_px-RecoEmiss_px*TauLead_py)/p12)")
-                .Define("f0",       "1./(1.+r0)")
-                .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
-                .Define("f1",       "1./(1.+r1)")
-                .Define("Collinear_mass",       "static_cast<float>(RecoH_mass/sqrt(f0*f1))")
-
-                #MVA testing
                 .Define("BDT_pred", ROOT.computeModel, ["RecoEmiss_pz",
                                                         "RecoEmiss_pt",
                                                         "RecoEmiss_p",
                                                         "RecoEmiss_e",
-                                                        "RecoEmiss_eta",
-                                                        "RecoZ_pz",
-                                                        "RecoZ_p",
-                                                        "RecoZ_pt",
-                                                        "RecoZ_e",
-                                                        "RecoZ_eta",
-                                                        "RecoZ_mass",
-                                                        "RecoH_pz",
-                                                        "RecoH_p",
-                                                        "RecoH_pt",
-                                                        "RecoH_e",
-                                                        "RecoH_eta",
-                                                        "RecoH_mass",
-                                                        "Tau_DPhi",
-                                                        "Tau_DR",
-                                                        "Tau_cos",
-                                                        "Tau_DEta",
-                                                        "Recoil",
-                                                        "Collinear_mass"])
-                .Filter("BDT_pred.at(0) == 1")
+                                                        "fRecoEmiss_costheta",
+                                                        "fRecoZ_pz",
+                                                        "fRecoZ_p",
+                                                        "fRecoZ_pt",
+                                                        "fRecoZ_e",
+                                                        "fRecoZ_eta",
+                                                        "fRecoZ_mass",
+                                                        "fRecoH_pz",
+                                                        "fRecoH_p",
+                                                        "fRecoH_pt",
+                                                        "fRecoH_e",
+                                                        "fRecoH_eta",
+                                                        "fRecoH_mass",
+                                                        "fTau_DPhi",
+                                                        "fTau_DR",
+                                                        "fTau_cos",
+                                                        "fTau_DEta",
+                                                        "fRecoil",
+                                                        "fCollinear_mass"])
+
+                .Define("BDT_score",        "BDT_pred.at(0)")
         )
         return df2
 
@@ -808,6 +677,8 @@ class RDFanalysis():
             "RecoZDaughter_cos", 
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
+
+            "BDT_score",
 
         ]
 

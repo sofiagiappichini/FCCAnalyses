@@ -1,8 +1,10 @@
+import os
+
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2/NuNu/HH/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage3_100Coll150/QQ/HH/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final/NuNu/HH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ/HH/" 
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -20,7 +22,14 @@ nCPUS = 4
 #produces ROOT TTrees, default is False
 doTree = False
 
-processList = {
+list = {}
+
+for process in os.listdir(inputDir):
+    list[process] = {}
+
+processList = list
+
+processList_all = {
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
     'p8_ee_ZZ_ecm240':{},
@@ -119,25 +128,35 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    "selReco_100Me": "RecoEmiss_e>100",
-    "selReco_100Me_TauDPhi3": "RecoEmiss_e>100 && abs(Tau_DPhi)<3",
-    "selReco_100Me_TauDPhi3_2DR": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2",
-    "selReco_100Me_TauDPhi3_2DR_cos0": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<0",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
-
+    "selReco_0.5BDT":"BDT_score>0.5",
+    "selReco_0.6BDT":"BDT_score>0.6",
+    "selReco_0.7BDT":"BDT_score>0.7",
+    #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
+    #"selReco_100Coll150_115Rec160_10Me": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
+    
 }
 
 # Dictionary for prettier names of cuts (optional)
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
 cutLabels = {
-    "selReco": "No additional selection",
-    "selReco_100Me": "E_{miss}>100 GeV",
-    "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
-    "selReco_100Me_TauDPhi3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
-    "selReco_100Me_TauDPhi3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98}",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98} && |y_{miss}|<1",
+    "selReco": "100<M_{collinear}<150 GeV",
+    "selReco_0.5BDT":"100<M_{collinear}<150 GeV, BDT_{score}>0.5",
+    "selReco_0.6BDT":"100<M_{collinear}<150 GeV, BDT_{score}>0.6",
+    "selReco_0.7BDT":"100<M_{collinear}<150 GeV, BDT_{score}>0.7",
+    #"selReco": "No additional selection",
+    #"selReco_100Coll150": "100<M_{collinear}<150 GeV",
+    #"selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
+    #"selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
+
 }
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
@@ -484,18 +503,42 @@ histoList = {
     "TauFromJet_mass":          {"name":"TauFromJet_mass",                "title":"#tau from jet_{kt} mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "n_TauFromJet":             {"name":"n_TauFromJet",                   "title":"Number of #tau from Jets_{kt}",                     "bin":5, "xmin":-0.5, "xmax":4.5},
 
-    #"RecoZ_px":                 {"name":"RecoZ_px",                 "title":"Reco Z p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    #"RecoZ_py":                 {"name":"RecoZ_py",                 "title":"Reco Z p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    #"RecoZ_pz":                 {"name":"RecoZ_pz",                 "title":"Reco Z p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    #"RecoZ_p":                  {"name":"RecoZ_p",                  "title":"Reco Z p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
-    #"RecoZ_pt":                 {"name":"RecoZ_pt",                 "title":"Reco Z p_{T} [GeV]",            "bin":75, "xmin":0 ,"xmax":150},
-    #"RecoZ_e":                  {"name":"RecoZ_e",                  "title":"Reco Z energy [GeV]",           "bin":75, "xmin":0 ,"xmax":150},
-    #"RecoZ_eta":                {"name":"RecoZ_eta",                "title":"Reco Z #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    #"RecoZ_phi":                {"name":"RecoZ_phi",                "title":"Reco Z #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    #"RecoZ_theta":              {"name":"RecoZ_theta",              "title":"Reco Z #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    #"RecoZ_y":                  {"name":"RecoZ_y",                  "title":"Reco Z rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    #"RecoZ_mass":               {"name":"RecoZ_mass",               "title":"Reco Z mass",                   "bin":100, "xmin":50., "xmax":150},
-                                
+    "RecoZ_px":                 {"name":"RecoZ_px",                 "title":"Reco Z p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoZ_py":                 {"name":"RecoZ_py",                 "title":"Reco Z p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoZ_pz":                 {"name":"RecoZ_pz",                 "title":"Reco Z p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoZ_p":                  {"name":"RecoZ_p",                  "title":"Reco Z p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
+    "RecoZ_pt":                 {"name":"RecoZ_pt",                 "title":"Reco Z p_{T} [GeV]",            "bin":75, "xmin":0 ,"xmax":150},
+    "RecoZ_e":                  {"name":"RecoZ_e",                  "title":"Reco Z energy [GeV]",           "bin":75, "xmin":0 ,"xmax":150},
+    "RecoZ_eta":                {"name":"RecoZ_eta",                "title":"Reco Z #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZ_phi":                {"name":"RecoZ_phi",                "title":"Reco Z #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZ_theta":              {"name":"RecoZ_theta",              "title":"Reco Z #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoZ_y":                  {"name":"RecoZ_y",                  "title":"Reco Z rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    "RecoZ_mass":               {"name":"RecoZ_mass",               "title":"Reco Z mass",                   "bin":100, "xmin":50., "xmax":150},
+
+    "RecoZLead_px":               {"name":"RecoZLead_px",                 "title":"Reco leading Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoZLead_py":               {"name":"RecoZLead_py",                 "title":"Reco leading Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoZLead_pz":               {"name":"RecoZLead_pz",                 "title":"Reco leading Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoZLead_p":                {"name":"RecoZLead_p",                  "title":"Reco leading Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZLead_pt":               {"name":"RecoZLead_pt",                 "title":"Reco leading Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZLead_e":                {"name":"RecoZLead_e",                  "title":"Reco leading Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoZLead_eta":              {"name":"RecoZLead_eta",                "title":"Reco leading Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZLead_phi":              {"name":"RecoZLead_phi",                "title":"Reco leading Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZLead_theta":            {"name":"RecoZLead_theta",              "title":"Reco leading Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoZLead_y":                {"name":"RecoZLead_y",                  "title":"Reco leading Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoZLead_mass":             {"name":"RecoZLead_mass",               "title":"Reco leading Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
+
+    "RecoZSub_px":                {"name":"RecoZSub_px",                 "title":"Reco subleading Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZSub_py":                {"name":"RecoZSub_py",                 "title":"Reco subleading Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZSub_pz":                {"name":"RecoZSub_pz",                 "title":"Reco subleading Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZSub_p":                 {"name":"RecoZSub_p",                  "title":"Reco subleading Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZSub_pt":                {"name":"RecoZSub_pt",                 "title":"Reco subleading Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZSub_e":                 {"name":"RecoZSub_e",                  "title":"Reco subleading Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoZSub_eta":               {"name":"RecoZSub_eta",                "title":"Reco subleading Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZSub_phi":               {"name":"RecoZSub_phi",                "title":"Reco subleading Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZSub_theta":             {"name":"RecoZSub_theta",              "title":"Reco subleading Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoZSub_y":                 {"name":"RecoZSub_y",                  "title":"Reco subleading Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoZSub_mass":              {"name":"RecoZSub_mass",               "title":"Reco subleading Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
+                            
     "RecoH_px":                 {"name":"RecoH_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "RecoH_py":                 {"name":"RecoH_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "RecoH_pz":                 {"name":"RecoH_pz",                 "title":"Reco H p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
@@ -508,29 +551,29 @@ histoList = {
     "RecoH_y":                  {"name":"RecoH_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
     "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
 
-    "TauLead_px":               {"name":"TauLead_px",                 "title":"#tau_{lead} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "TauLead_py":               {"name":"TauLead_py",                 "title":"#tau_{lead} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "TauLead_pz":               {"name":"TauLead_pz",                 "title":"#tau_{lead} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "TauLead_p":                {"name":"TauLead_p",                  "title":"#tau_{lead} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "TauLead_pt":               {"name":"TauLead_pt",                 "title":"#tau_{lead} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "TauLead_e":                {"name":"TauLead_e",                  "title":"#tau_{lead} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "TauLead_eta":              {"name":"TauLead_eta",                "title":"#tau_{lead} #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TauLead_phi":              {"name":"TauLead_phi",                "title":"#tau_{lead} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TauLead_theta":            {"name":"TauLead_theta",              "title":"#tau_{lead} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "TauLead_y":                {"name":"TauLead_y",                  "title":"#tau_{lead} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "TauLead_mass":             {"name":"TauLead_mass",               "title":"#tau_{lead} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    "TauLead_px":               {"name":"TauLead_px",                 "title":"#tau_{leading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauLead_py":               {"name":"TauLead_py",                 "title":"#tau_{leading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauLead_pz":               {"name":"TauLead_pz",                 "title":"#tau_{leading} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauLead_p":                {"name":"TauLead_p",                  "title":"#tau_{leading} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "TauLead_pt":               {"name":"TauLead_pt",                 "title":"#tau_{leading} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "TauLead_e":                {"name":"TauLead_e",                  "title":"#tau_{leading} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "TauLead_eta":              {"name":"TauLead_eta",                "title":"#tau_{leading} #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauLead_phi":              {"name":"TauLead_phi",                "title":"#tau_{leading} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauLead_theta":            {"name":"TauLead_theta",              "title":"#tau_{leading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "TauLead_y":                {"name":"TauLead_y",                  "title":"#tau_{leading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "TauLead_mass":             {"name":"TauLead_mass",               "title":"#tau_{leading} mass",                   "bin":30, "xmin":0., "xmax":3.},
 
-    "TauSub_px":                {"name":"TauSub_px",                 "title":"#tau_{sublead} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "TauSub_py":                {"name":"TauSub_py",                 "title":"#tau_{sublead} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "TauSub_pz":                {"name":"TauSub_pz",                 "title":"#tau_{sublead} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "TauSub_p":                 {"name":"TauSub_p",                  "title":"#tau_{sublead} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "TauSub_pt":                {"name":"TauSub_pt",                 "title":"#tau_{sublead} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "TauSub_e":                 {"name":"TauSub_e",                  "title":"#tau_{sublead} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "TauSub_eta":               {"name":"TauSub_eta",                "title":"#tau_{sublead} #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TauSub_phi":               {"name":"TauSub_phi",                "title":"#tau_{sublead} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TauSub_theta":             {"name":"TauSub_theta",              "title":"#tau_{sublead} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{sublead} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "TauSub_mass":              {"name":"TauSub_mass",               "title":"#tau_{sublead} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    "TauSub_px":                {"name":"TauSub_px",                 "title":"#tau_{subleading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauSub_py":                {"name":"TauSub_py",                 "title":"#tau_{subleading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauSub_pz":                {"name":"TauSub_pz",                 "title":"#tau_{subleading} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauSub_p":                 {"name":"TauSub_p",                  "title":"#tau_{subleading} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "TauSub_pt":                {"name":"TauSub_pt",                 "title":"#tau_{subleading} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "TauSub_e":                 {"name":"TauSub_e",                  "title":"#tau_{subleading} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "TauSub_eta":               {"name":"TauSub_eta",                "title":"#tau_{subleading} #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauSub_phi":               {"name":"TauSub_phi",                "title":"#tau_{subleading} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauSub_theta":             {"name":"TauSub_theta",              "title":"#tau_{subleading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{subleading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "TauSub_mass":              {"name":"TauSub_mass",               "title":"#tau_{subleading} mass",                   "bin":30, "xmin":0., "xmax":3.},
 
     "TauP_px":               {"name":"TauP_px",                 "title":"#tau^{+} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
     "TauP_py":               {"name":"TauP_py",                 "title":"#tau^{+} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
@@ -561,7 +604,14 @@ histoList = {
     "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
     "Tau_DEta":                             {"name":"Tau_DEta",           "title":"Reco di-#tau #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
 
-    #"Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
-    #"Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
-    "Visible_mass":               {"name":"Visible_mass",               "title":"Visible mass",                   "bin":75, "xmin":0 ,"xmax":150},
+    "RecoZDaughter_DPhi":         {"name":"RecoZDaughter_DPhi",           "title":"#Delta#phi(ll)",                "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZDaughter_DR":                   {"name":"RecoZDaughter_DR",                     "title":"#Delta R(ll)",                  "bin":70, "xmin":0,"xmax":7},
+    "RecoZDaughter_cos":                  {"name":"RecoZDaughter_cos",                    "title":"cos#theta(ll)",                 "bin":100, "xmin":-1.,"xmax":1.},
+    "RecoZDaughter_DEta":                   {"name":"RecoZDaughter_DEta",           "title":"Reco Z daughters #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
+
+    "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
+    "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
+
+    "BDT_score":           {"name":"BDT_score",           "title":"BDT score",                  "bin":200, "xmin":0., "xmax":1.},
+
 }

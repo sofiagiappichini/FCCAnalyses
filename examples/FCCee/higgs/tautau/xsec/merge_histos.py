@@ -34,19 +34,19 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
-    'LL',
-    'LH',
+    #'LL',
+    #'LH',
     'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
-    "LL",
-    "NuNu",
+    #"LL",
+    #"NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LL = [
@@ -62,23 +62,27 @@ CUTS_LL = [
 
 CUTS_QQ = [
     "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_10Me",
-    "selReco_100Coll150_115Rec160_10Me_80Z95",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+    "selReco_0.5BDT",
+    "selReco_0.6BDT",
+    "selReco_0.7BDT",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_10Me",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+    #"selReco_BDT",
 ]
     
 CUTS_NuNu = [
     "selReco",
     "selReco_100Me",
-    "selReco_100Me_TauAc3",
-    "selReco_100Me_TauAc3_2DR",
-    "selReco_100Me_TauAc3_2DR_cos0",
-    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98",
-    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+    "selReco_100Me_TauDPhi3",
+    "selReco_100Me_TauDPhi3_2DR",
+    "selReco_100Me_TauDPhi3_2DR_cos0",
+    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
+    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
 ]
 
 CUTS = {
@@ -744,6 +748,8 @@ VARIABLES_QQ = [
     "RecoZDaughter_cos", 
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
+
+    "BDT_score",
 ]
 
 VARIABLES_NuNu = [
@@ -1115,7 +1121,7 @@ for cat in CAT:
                     if check==True:
                         outFile.cd()
                         hh.Write()
-                #print(check)
+                    print(f"{cat}, {sub}, {cut}, {num}, {var}")
                     
                 outFile.Close()
                 if check==False: #if nothing was written i don't want the file saved at all

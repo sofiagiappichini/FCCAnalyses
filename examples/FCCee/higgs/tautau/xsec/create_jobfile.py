@@ -1,5 +1,10 @@
 import os
 
+def make_dir_if_not_exists(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        os.system(f"chmod -R +x {directory}")
+
 def Make_workspace(jobdir):
 
     if not os.path.exists(jobdir):
@@ -59,26 +64,24 @@ def create_subjob_script(local_dir: str,
                          sub_name:str,
                          output_dir: str,
                          output_ana: str,
-                         processList: dict,
                          ananame: str):
     '''
     Creates sub-job script to be run.
     '''
-    submit_list = []
-    if not os.path.exists(output_dir):
-        os.system(f"mkdir -p {output_dir}")            
-    if not os.path.exists(output_dir+'err'):
-        os.system(f"mkdir -p {output_dir+'err'}")            
-    if not os.path.exists(output_dir+'log'):
-        os.system(f"mkdir -p {output_dir+'log'}")            
-    if not os.path.exists(output_dir+'out'):
-        os.system(f"mkdir -p {output_dir+'out'}")     
-    for process in processList:
+
+    make_dir_if_not_exists(output_dir)
+    make_dir_if_not_exists(output_dir+"out")
+    make_dir_if_not_exists(output_dir+"log")
+    make_dir_if_not_exists(output_dir+"err")
+
+    for process in os.listdir(input_dir):
+        print(process)
         i = 0
         j = 0
         num_files = len(os.listdir(input_dir+process))
         g = '' 
-        for file in os.listdir(input_dir+process):            
+        for file in os.listdir(input_dir+process):           
+            print(file) 
             g += input_dir + process + '/' + file + ' '
             i+=1
             if(i%10==0 or i==num_files):
@@ -181,29 +184,36 @@ processList = {
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir = '/ceph/awiedl/FCCee/HiggsCP/stage1/'
-output = '/work/sgiappic/HTCondor/stage2_cut/' ##output directory of submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_cut/' ##output directory of stage2 samples
-localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
+inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/'
+output = '/work/sgiappic/HTCondor/stage3_100Coll150/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage3_100Coll150/' ##output directory of stage2 samples
+localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
-Filename_path = 'analysis_stage2_'
+Filename_path = 'analysis_stage3_'
 SUBDIR = [
-    'LL',
-    'LH',
+    #'LL',
+    #'LH',
     'HH',
 ]
 CAT = [
     "QQ",
-    "LL",
-    "NuNu",
+    #"LL",
+    #"NuNu",
 ]
 nCPUS = 4
 Memory = 10000
 for cat in CAT:
     for sub in SUBDIR:
-        localDir = localDir_path + cat + "/"
+        if "BDT" in localDir_path:
+            localDir = localDir_path
+        else:
+            localDir = localDir_path + cat + "/"
+        if "stage1" in inputDir_path:
+            inputDir = inputDir_path 
+        else:
+            inputDir = inputDir_path + cat + "/" + sub + "/"
         outputDir = outputDir_path + cat + "/" + sub + "/"
         Filename = Filename_path + cat + sub + ".py"
-        create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output, outputDir, processList, Filename)
+        create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output, outputDir, Filename)
 
 create_condor_config(nCPUS, Memory, output)

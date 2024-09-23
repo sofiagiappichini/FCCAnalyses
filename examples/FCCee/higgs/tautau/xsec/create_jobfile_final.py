@@ -82,7 +82,7 @@ def create_subjob_script(local_dir: str,
              
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir = '/ceph/awiedl/FCCee/HiggsCP/stage2/'
+inputDir = '/ceph/awiedl/FCCee/HiggsCP/s/'
 output = '/work/sgiappic/HTCondor/final/' ##output directory of submission files
 outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/final/' ##output directory of stage2 samples
 localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'

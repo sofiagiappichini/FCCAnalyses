@@ -90,7 +90,7 @@ processList = {
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_cut/QQ/LH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/QQ/LH/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
