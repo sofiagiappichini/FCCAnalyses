@@ -87,7 +87,7 @@ processList = {
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_cut/LL/HH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/LL/HH/" 
 
 #Optional: ncpus, default is 4
 nCPUS = 10

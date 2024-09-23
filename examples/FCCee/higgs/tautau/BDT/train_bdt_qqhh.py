@@ -45,7 +45,8 @@ vars_list = ["RecoEmiss_pz",
             "RecoEmiss_pt",
             "RecoEmiss_p",
             "RecoEmiss_e",
-            "RecoEmiss_eta",
+            "RecoEmiss_costheta",
+            #"RecoEmiss_eta",
             #"RecoZ_px",
             #"RecoZ_py",
             "RecoZ_pz",
@@ -253,9 +254,9 @@ xsec = {'p8_ee_WW_ecm240':16.4385,
         "wzp6_ee_nunuH_Htautau_ecm240":0.002897,
 }
 
-path = "/ceph/awiedl/FCCee/HiggsCP/stage2/QQ/HH/"
+path = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/QQ/HH/"
 
-output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_cut.txt"
+output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_100Coll150.txt"
 
 train_tree = True
 full_test = False
@@ -500,10 +501,10 @@ if train_tree == True:
     plt.tight_layout()
 
     # Save the figure
-    fig.savefig("/web/sgiappic/public_html/BDT/QQHH_ROC_stage2_cut.pdf")
+    fig.savefig("/web/sgiappic/public_html/BDT/QQHH_ROC_stage2_100Coll150.pdf")
 
     #Write model to joblib file
-    joblib.dump(bdt, f"{out}/xgb_bdt_stage2_cut_QQHH.joblib")
+    joblib.dump(bdt, f"{out}/xgb_bdt_stage2_100Coll150_QQHH.joblib")
 
     #Also dump as json for ROOT interpretation
     #booster = bdt.get_booster()
@@ -511,9 +512,9 @@ if train_tree == True:
 
     # comment TMVA form output. TMVA Experimental only supports binary at the moment.
     print("Writing xgboost model to ROOT file")
-    ROOT.TMVA.Experimental.SaveXGBoost(bdt, "Htautau", f"{out}/xgb_bdt_stage2_cut_QQHH.root", num_inputs=len(vars_list))
+    ROOT.TMVA.Experimental.SaveXGBoost(bdt, "Htautau", f"{out}/xgb_bdt_stage2_100Coll150_QQHH.root", num_inputs=len(vars_list))
 
-    bdt.save_model(f"{out}/xgb_bdt_stage2_QQHH_cut_model.json")
+    bdt.save_model(f"{out}/xgb_bdt_stage2_100Coll150_QQHH_model.json")
     # ROC curve plotting accomplished in the plotting script and not here.
 
 true_pred = {}

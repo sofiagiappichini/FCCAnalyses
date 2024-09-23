@@ -34,22 +34,22 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
-    'LL',
-    'LH',
+    #'LL',
+    #'LH',
     'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
-    "LL",
-    "NuNu",
+    #"LL",
+    #"NuNu",
 ]
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/BDT_100Coll150/' 
 #list of cuts you want to plot
 CUTS_LL = [
     "selReco",
@@ -64,23 +64,27 @@ CUTS_LL = [
 
 CUTS_QQ = [
     "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_10Me",
-    "selReco_100Coll150_115Rec160_10Me_80Z95",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_10Me",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+
+    "selReco_0.5BDT",
+    "selReco_0.6BDT",
+    "selReco_0.7BDT",
 ]
     
 CUTS_NuNu = [
     "selReco",
     "selReco_100Me",
-    "selReco_100Me_TauAc3",
-    "selReco_100Me_TauAc3_2DR",
-    "selReco_100Me_TauAc3_2DR_cos0",
-    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98",
-    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+    "selReco_100Me_TauDPhi3",
+    "selReco_100Me_TauDPhi3_2DR",
+    "selReco_100Me_TauDPhi3_2DR_cos0",
+    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
+    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
 ]
 
 CUTS = {
@@ -107,14 +111,20 @@ LABELS = {
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
+    "selReco_0.5BDT":"BDT score>0.5",
+    "selReco_0.6BDT":"BDT score>0.6",
+    "selReco_0.7BDT":"BDT score>0.7",
+    "selReco_0.8BDT":"BDT score>0.8",
+    "selReco_0.9BDT":"BDT score>0.9",
+    "selReco_0.96BDT":"BDT score>0.96",
 
     #cuts for NuNu
     "selReco_100Me": "E_{miss}>100 GeV",
-    "selReco_100Me_TauAc3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
-    "selReco_100Me_TauAc3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
-    "selReco_100Me_TauAc3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
-    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
-    "selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
+    "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
+    "selReco_100Me_TauDPhi3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
+    "selReco_100Me_TauDPhi3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
+    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
+    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
 
  }
 
@@ -1068,6 +1078,8 @@ VARIABLES_QQ = [
     "RecoZDaughter_cos", 
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
+
+    "BDT_score",
 ]
 
 VARIABLES_NuNu = [

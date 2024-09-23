@@ -37,4 +37,6 @@ A weight column is added in the DataFrames for all processes to be later used as
 
 ## BDT use
 
-We apply the trained BDT to stage2 by plugging it in as in [this example](https://github.com/zuoxunwu/FCCAnalyses/blob/3d872a8bd6098bb8935fa41c0202b6a7886b06d7/examples/FCCee/flavour/BuBc2TauNu/analysis_stage2.py#L104-L111). The initialization of the BDT requires you to specify the exact number of variables used for trining that will also have to be passed to the function in the code. The BDT output is a vector of float so you need to take the first element
+We apply the trained BDT to stage2 by plugging it in as in [this example](https://github.com/zuoxunwu/FCCAnalyses/blob/3d872a8bd6098bb8935fa41c0202b6a7886b06d7/examples/FCCee/flavour/BuBc2TauNu/analysis_stage2.py#L104-L111) in a stage3 script. 
+
+The initialization of the BDT requires you to specify the exact number of variables used for trining that will also have to be passed to the function in the code. The BDT output is a vector of float so you need to take the first element to get the score value: 0 corresponding to background-like events, 1 for signal-like.
