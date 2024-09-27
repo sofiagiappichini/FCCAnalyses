@@ -22,13 +22,6 @@ nCPUS = 4
 #produces ROOT TTrees, default is False
 doTree = False
 
-list = {}
-
-for process in os.listdir(inputDir):
-    list[process] = {}
-
-processList = list
-
 processList_all = {
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},

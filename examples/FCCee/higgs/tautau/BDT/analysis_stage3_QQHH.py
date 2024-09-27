@@ -1,6 +1,8 @@
 import os, copy # tagging
 import ROOT
 
+### it's best to process stage3 in batch because some files will be empty and it will abort everything but in batch it aborts only the respective jobs
+
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/QQ/HH/"
 
 #Optional: output directory, default is local running directory
@@ -102,7 +104,7 @@ processList_all = {
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
 
-ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/xgb_bdt_stage2_100Coll150_QQHH.root");
+ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/models/xgb_bdt_stage2_100Coll150_QQHH.root");
                                 computeModel = TMVA::Experimental::Compute<23, float>(bdt);''') #needs to be passed the number of variables
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
@@ -130,6 +132,7 @@ class RDFanalysis():
                 .Define("fRecoil",       "static_cast<float>(Recoil)")
                 .Define("fCollinear_mass",       "static_cast<float>(Collinear_mass)")
 
+                ##### variable lists need to have the same order of variables used in the training to work properly, renaming them is ok
                 .Define("BDT_pred", ROOT.computeModel, ["RecoEmiss_pz",
                                                         "RecoEmiss_pt",
                                                         "RecoEmiss_p",

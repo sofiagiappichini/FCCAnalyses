@@ -35,18 +35,18 @@ def file_exists(file_path):
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
     'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_100Me/NuNu",
 }
 SUBDIR = [
     #'LL',
-    #'LH',
+    'LH',
     'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     #"LL",
-    #"NuNu",
+    "NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LL = [
@@ -77,12 +77,15 @@ CUTS_QQ = [
     
 CUTS_NuNu = [
     "selReco",
-    "selReco_100Me",
-    "selReco_100Me_TauDPhi3",
-    "selReco_100Me_TauDPhi3_2DR",
-    "selReco_100Me_TauDPhi3_2DR_cos0",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
+    "selReco_0.5BDT",
+    "selReco_0.6BDT",
+    "selReco_0.7BDT",
+    #"selReco_100Me",
+    #"selReco_100Me_TauDPhi3",
+    #"selReco_100Me_TauDPhi3_2DR",
+    #"selReco_100Me_TauDPhi3_2DR_cos0",
+    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
+    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
 ]
 
 CUTS = {
@@ -794,6 +797,7 @@ VARIABLES_NuNu = [
     "TauLead_theta",    
     "TauLead_y",    
     "TauLead_mass",
+    "TauLead_type",
 
     "TauSub_px",    
     "TauSub_py",   
@@ -806,6 +810,7 @@ VARIABLES_NuNu = [
     "TauSub_theta",    
     "TauSub_y",    
     "TauSub_mass",
+    "TauSub_type",
 
     "TauP_px",    
     "TauP_py",   
@@ -818,6 +823,7 @@ VARIABLES_NuNu = [
     "TauP_theta",    
     "TauP_y",    
     "TauP_mass",
+    "TauP_type",
 
     "TauM_px",    
     "TauM_py",   
@@ -830,6 +836,7 @@ VARIABLES_NuNu = [
     "TauM_theta",    
     "TauM_y",    
     "TauM_mass",
+    "TauM_type",
 
     "Tau_DR",
     "Tau_cos",
@@ -839,6 +846,8 @@ VARIABLES_NuNu = [
     #"Recoil",
     #"Collinear_mass",
     "Visible_mass",
+
+    "BDT_score",
 ]
 
 LIST_VAR = {

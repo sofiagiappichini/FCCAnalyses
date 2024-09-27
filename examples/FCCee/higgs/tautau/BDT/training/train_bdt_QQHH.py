@@ -256,9 +256,9 @@ xsec = {'p8_ee_WW_ecm240':16.4385,
 
 path = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/QQ/HH/"
 
-output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_100Coll150.txt"
+output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_QQHH.txt"
 
-train_tree = True
+train_tree = False
 full_test = False
 
 N = {}
@@ -295,10 +295,14 @@ for i in sigs+bkgs:
         N_bkg += N[i]
         N_bkg_gen += N_gen[i]
         tot_weight_bkg += weight[i]
+    if N_bkg_gen!=0:
+        eff_tot_bkg = N_bkg / N_bkg_gen
     if i in sigs: 
         N_sig += N[i]
         N_sig_gen += N_gen[i]
         tot_weight_sig += weight[i]
+    if N_sig_gen!=0:
+        eff_tot_sig = N_sig / N_sig_gen
 
 pprint.pprint(N)
 pprint.pprint(N_gen)
@@ -307,7 +311,9 @@ with open(output_file, "a") as file:
     file.write(f"Events of backgrounds: {N_bkg}\n")
     file.write(f"Events of signals: {N_sig}\n")
     file.write(f"Weight of backgrounds: {tot_weight_bkg}\n")
-    file.write(f"Weight of signals: {tot_weight_sig}\n\n")
+    file.write(f"Weight of signals: {tot_weight_sig}\n")
+    file.write(f"Efficiency of backgrounds: {eff_tot_bkg}\n")
+    file.write(f"Efficiency of signals: {eff_tot_sig}\n\n")
 
 #minumum number between the events in the samples and the one we expect to have in the signal composition
 N_min = {}
@@ -469,7 +475,7 @@ if train_tree == True:
         file.write(f"{feature_importances.to_string()}\n")
     
     #Write the model to a ROOT file for application elsewhere in FCCAnalyses
-    out = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/' 
+    out = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/models/' 
     
     print("Testing model")
     pred_test = bdt.predict_proba(x_test)

@@ -439,6 +439,16 @@ float deltaR(float phi1, float phi2, float eta1, float eta2) {
     return sqrt(deltaEta(eta1,eta2)*deltaEta(eta1,eta2) + deltaPhi(phi1,phi2)*deltaPhi(phi1,phi2));
   }
 
+ROOT::VecOps::RVec<int> deltaR_sel_idx(ROOT::VecOps::RVec<float> phi1, ROOT::VecOps::RVec<float> phi2, ROOT::VecOps::RVec<float> eta1, ROOT::VecOps::RVec<float> eta2, float min_delta) {
+    ROOT::VecOps::RVec<int> result;
+    for (size_t i = 0; i < phi1.size(); ++i) {  
+        float DR1 = sqrt(deltaEta(eta1[i],eta2[1])*deltaEta(eta1[i],eta2[1]) + deltaPhi(phi1[i],phi2[1])*deltaPhi(phi1[i],phi2[1]));
+        float DR2 = sqrt(deltaEta(eta1[i],eta2[2])*deltaEta(eta1[i],eta2[2]) + deltaPhi(phi1[i],phi2[2])*deltaPhi(phi1[i],phi2[2]));
+        if (DR1>min_delta && DR2>min_delta) result.push_back(i);
+    }
+    return result;
+  }
+
 float get_gamma(float p, float e) {
     float c = 2.998e8;
     float beta = p/e;

@@ -108,6 +108,14 @@ class RDFanalysis():
 
                 .Filter("n_TauFromJet_R5==2 && n_Jets_R5_sel==0 && n_RecoLeptons==0 && (TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0") 
 
+                #.Filter("n_Jets_R5==2") 
+
+                #get the number of leptons that are not in the jets by checking the dr (cone radius)
+                #.Define("Electron_idx",       "FCCAnalyses::ZHfunctions::deltaR_sel_idx(RecoElectron_phi, Jets_R5_phi, RecoElectron_eta, Jets_R5_eta, 0.5)")
+                #.Define("Muon_idx",       "FCCAnalyses::ZHfunctions::deltaR_sel_idx(RecoMuon_phi, Jets_R5_phi, RecoMuon_eta, Jets_R5_eta, 0.5)")
+
+                #.Filter("Electron_idx.size()==0 && Muon_idx.size()==0")
+
                 ##################
                 # Reco particles #
                 ##################
@@ -128,6 +136,8 @@ class RDFanalysis():
                 
                 .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
                 .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
+                .Define("RecoTau1_type",        "TauFromJet_R5_type.at(0)")
+                .Define("RecoTau2_type",        "TauFromJet_R5_type.at(1)")
 
                 #.Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
@@ -168,6 +178,7 @@ class RDFanalysis():
                 .Define("TauLead_theta",    "TauLead_p4.Theta()")
                 .Define("TauLead_y",     "TauLead_p4.Rapidity()")
                 .Define("TauLead_mass",    "TauLead_p4.M()")
+                .Define("TauLead_type",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_type; else return RecoTau2_type;")
 
                 .Define("TauSub_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauSub_px",    "TauSub_p4.Px()")
@@ -181,6 +192,7 @@ class RDFanalysis():
                 .Define("TauSub_theta",    "TauSub_p4.Theta()")
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
+                .Define("TauSub_type",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_type; else return RecoTau1_type;")
 
                 .Define("TauP_p4","if (TauFromJet_R5_charge.at(0)==1) return RecoTau1_p4; else return RecoTau2_p4;")
                 .Define("TauP_px",    "TauP_p4.Px()")
@@ -194,6 +206,7 @@ class RDFanalysis():
                 .Define("TauP_theta",    "TauP_p4.Theta()")
                 .Define("TauP_y",     "TauP_p4.Rapidity()")
                 .Define("TauP_mass",    "TauP_p4.M()")
+                .Define("TauP_type",     "if (TauFromJet_R5_charge.at(0)==1) return RecoTau1_type; else return RecoTau2_type;")
 
                 .Define("TauM_p4",       "if (TauFromJet_R5_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauM_px",    "TauM_p4.Px()")
@@ -207,6 +220,7 @@ class RDFanalysis():
                 .Define("TauM_theta",    "TauM_p4.Theta()")
                 .Define("TauM_y",     "TauM_p4.Rapidity()")
                 .Define("TauM_mass",    "TauM_p4.M()")
+                .Define("TauM_type",     "if (TauFromJet_R5_charge.at(0)==1) return RecoTau2_type; else return RecoTau1_type;")
 
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
@@ -677,6 +691,7 @@ class RDFanalysis():
                 "TauLead_theta",    
                 "TauLead_y",    
                 "TauLead_mass",
+                "TauLead_type",
 
                 "TauSub_px",    
                 "TauSub_py",   
@@ -689,6 +704,7 @@ class RDFanalysis():
                 "TauSub_theta",    
                 "TauSub_y",    
                 "TauSub_mass",
+                "TauSub_type",
 
                 "TauP_px",    
                 "TauP_py",   
@@ -701,6 +717,7 @@ class RDFanalysis():
                 "TauP_theta",    
                 "TauP_y",    
                 "TauP_mass",
+                "TauP_type",
 
                 "TauM_px",    
                 "TauM_py",   
@@ -713,6 +730,7 @@ class RDFanalysis():
                 "TauM_theta",    
                 "TauM_y",    
                 "TauM_mass",
+                "TauM_type",
             
                 "Tau_DR",
                 "Tau_cos",

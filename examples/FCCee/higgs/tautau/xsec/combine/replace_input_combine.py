@@ -4,7 +4,7 @@ import os
 CAT = [
     "QQ",
     "LL",
-    #"NuNu",
+    "NuNu",
 ]
 SUBDIR = [
     'LL',

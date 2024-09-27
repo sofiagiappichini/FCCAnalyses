@@ -3,7 +3,7 @@ import os
 def make_dir_if_not_exists(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
-        os.system(f"chmod -R +x {directory}")
+    os.system(f"chmod -R +x {directory}")
 
 def Make_workspace(jobdir):
 
@@ -75,13 +75,13 @@ def create_subjob_script(local_dir: str,
     make_dir_if_not_exists(output_dir+"err")
 
     for process in os.listdir(input_dir):
-        print(process)
+        #print(process)
         i = 0
         j = 0
         num_files = len(os.listdir(input_dir+process))
         g = '' 
         for file in os.listdir(input_dir+process):           
-            print(file) 
+            #print(file) 
             g += input_dir + process + '/' + file + ' '
             i+=1
             if(i%10==0 or i==num_files):
@@ -184,9 +184,9 @@ processList = {
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/'
-output = '/work/sgiappic/HTCondor/stage3_100Coll150/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage3_100Coll150/' ##output directory of stage2 samples
+inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_100Me/'
+output = '/work/sgiappic/HTCondor/stage3_100Me/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage3_100Me/' ##output directory of stage2 samples
 localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage3_'
@@ -196,9 +196,9 @@ SUBDIR = [
     'HH',
 ]
 CAT = [
-    "QQ",
+    #"QQ",
     #"LL",
-    #"NuNu",
+    "NuNu",
 ]
 nCPUS = 4
 Memory = 10000

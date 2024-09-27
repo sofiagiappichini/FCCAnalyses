@@ -31,30 +31,35 @@ outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine
 
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
+    #'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ",
+    #'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_100Me/NuNu",
 }
 SUBDIR = [
     #'LL',
-    #'LH',
+    'LH',
     'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     #"LL",
-    #"NuNu",
+    "NuNu",
 ]
 cut = {
     'LL':"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
-    #'QQ':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
-    'QQ':"selReco_0.5BDT",
-    'NuNu':"selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+    'QQ':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+    #'QQ':"selReco_0.5BDT",
+    #'NuNu':"selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+    'NuNu':"selReco_0.5BDT",
 }
 VARIABLE = {
     'LL':"Recoil",
-    'QQ':"BDT_score",
-    'NuNu':"Visible_mass",
+    'QQ':"Recoil",
+    #'QQ':"BDT_score",
+    #'NuNu':"Visible_mass",
+    'NuNu':"BDT_score",
     }
 
 backgrounds_all = [
@@ -204,13 +209,13 @@ for cat in CAT:
             f.write(dc)
 
 ## now we can combine the cards made
-#os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
-#os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
-#os.system("cmsenv")
+os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
+os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
+os.system("cmsenv")
 
-#for cat in CAT:
-#    string = " ".join([f"{cat}{sub}={outputDir}/{cat}/{sub}/datacard.txt" for sub in SUBDIR])
-#    os.system(f"combineCards.py {string} > {outputDir}/{cat}/datacard_{cat}.txt")
+for cat in CAT:
+    string = " ".join([f"{cat}{sub}={outputDir}/{cat}/{sub}/datacard.txt" for sub in SUBDIR])
+    os.system(f"combineCards.py {string} > {outputDir}/{cat}/datacard_{cat}.txt")
 
-#string = " ".join([f"{cat}={outputDir}/{cat}/datacard_{cat}.txt" for cat in CAT])
-#os.system(f"combineCards.py {string} > {outputDir}/datacard_combined.txt")
+string = " ".join([f"{cat}={outputDir}/{cat}/datacard_{cat}.txt" for cat in CAT])
+os.system(f"combineCards.py {string} > {outputDir}/datacard_combined.txt")
