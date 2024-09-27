@@ -3,6 +3,15 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
+    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':1},
+}
+processList_all = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -87,7 +96,7 @@ processList = {
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/LL/HH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_eff/LL/HH/" 
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -105,11 +114,23 @@ class RDFanalysis():
 
             ### defining filters for 2 lepton final state based on flavor combination: 2 same flavor plus 2 hadronic taus
 
+                #.Define("OnePair",     "(((n_RecoElectrons==2 and n_RecoMuons==0) or (n_RecoElectrons==0 and n_RecoMuons==2)) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0")
+
+                #.Filter("OnePair==1 && n_TauFromJet_R5==2 && n_Jets_R5_sel==0")
+
+                #.Filter("(TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0") 
+
+                .Filter("n_Jets_R5==2")
+
+                #get the number of leptons that are not in the jets by checking the dr (cone radius)
+                .Define("Electron_idx",       "FCCAnalyses::ZHfunctions::deltaR_sel_idx(RecoElectron_phi, Jets_R5_phi, RecoElectron_eta, Jets_R5_eta, 0.5)")
+                .Define("Muon_idx",       "FCCAnalyses::ZHfunctions::deltaR_sel_idx(RecoMuon_phi, Jets_R5_phi, RecoMuon_eta, Jets_R5_eta, 0.5)")
+
+                #.Filter("(Electron_idx.size()==2 && Muon_idx.size()==0 && (RecoElectron_charge[Electron_idx.at(0)] + RecoElectron_charge[Electron_idx.at(1)])==0) || (Muon_idx.size()==2 && Electron_idx.size()==0 && (RecoMuon_charge[Muon_idx.at(0)] + RecoMuon_charge[Muon_idx.at(1)])==0)")
+
                 .Define("OnePair",     "(((n_RecoElectrons==2 and n_RecoMuons==0) or (n_RecoElectrons==0 and n_RecoMuons==2)) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0")
 
                 .Filter("OnePair==1 && n_TauFromJet_R5==2 && n_Jets_R5_sel==0")
-
-                .Filter("(TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0") 
 
                 ##################
                 # Reco particles #
@@ -283,7 +304,7 @@ class RDFanalysis():
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
 
-                .Filter("Collinear_mass>100 && Collinear_mass<150")
+                #.Filter("Collinear_mass>100 && Collinear_mass<150")
         )
         return df2
 
@@ -691,146 +712,6 @@ class RDFanalysis():
 
         ]
         #complex variables added here at stage2
-        branchList += [
-            "RecoEmiss_eta",
-            "RecoEmiss_phi",
-            "RecoEmiss_theta",
-            "RecoEmiss_y",
-            "RecoEmiss_costheta",
-
-            "RecoZ_px",
-            "RecoZ_py",
-            "RecoZ_pz",
-            "RecoZ_p",
-            "RecoZ_pt",
-            "RecoZ_e",
-            "RecoZ_eta",
-            "RecoZ_phi",
-            "RecoZ_theta",
-            "RecoZ_y",
-            "RecoZ_mass",
-
-            "RecoZLead_px", 
-            "RecoZLead_py",   
-            "RecoZLead_pz",   
-            "RecoZLead_p",    
-            "RecoZLead_pt",   
-            "RecoZLead_e",    
-            "RecoZLead_eta",    
-            "RecoZLead_phi",    
-            "RecoZLead_theta",   
-            "RecoZLead_y",     
-            "RecoZLead_mass",   
-
-            "RecoZSub_px",    
-            "RecoZSub_py",   
-            "RecoZSub_pz",   
-            "RecoZSub_p",   
-            "RecoZSub_pt",  
-            "RecoZSub_e",     
-            "RecoZSub_eta",   
-            "RecoZSub_phi",   
-            "RecoZSub_theta",    
-            "RecoZSub_y",    
-            "RecoZSub_mass",   
-
-            "RecoZP_px", 
-            "RecoZP_py",   
-            "RecoZP_pz",   
-            "RecoZP_p",    
-            "RecoZP_pt",   
-            "RecoZP_e",    
-            "RecoZP_eta",    
-            "RecoZP_phi",    
-            "RecoZP_theta",   
-            "RecoZP_y",     
-            "RecoZP_mass",   
-
-            "RecoZM_px",    
-            "RecoZM_py",   
-            "RecoZM_pz",   
-            "RecoZM_p",   
-            "RecoZM_pt",  
-            "RecoZM_e",     
-            "RecoZM_eta",   
-            "RecoZM_phi",   
-            "RecoZM_theta",    
-            "RecoZM_y",    
-            "RecoZM_mass", 
-
-            "RecoH_px",
-            "RecoH_py",
-            "RecoH_pz",
-            "RecoH_p",
-            "RecoH_pt",
-            "RecoH_e",
-            "RecoH_eta",
-            "RecoH_phi",
-            "RecoH_theta",
-            "RecoH_y",
-            "RecoH_mass",
-
-            "TauLead_px",    
-            "TauLead_py",   
-            "TauLead_pz",   
-            "TauLead_p",   
-            "TauLead_pt",   
-            "TauLead_e",    
-            "TauLead_eta",    
-            "TauLead_phi",    
-            "TauLead_theta",    
-            "TauLead_y",    
-            "TauLead_mass",
-
-            "TauSub_px",    
-            "TauSub_py",   
-            "TauSub_pz",   
-            "TauSub_p",   
-            "TauSub_pt",   
-            "TauSub_e",    
-            "TauSub_eta",    
-            "TauSub_phi",    
-            "TauSub_theta",    
-            "TauSub_y",    
-            "TauSub_mass",
-
-            "TauP_px",    
-            "TauP_py",   
-            "TauP_pz",   
-            "TauP_p",   
-            "TauP_pt",   
-            "TauP_e",    
-            "TauP_eta",    
-            "TauP_phi",    
-            "TauP_theta",    
-            "TauP_y",    
-            "TauP_mass",
-
-            "TauM_px",    
-            "TauM_py",   
-            "TauM_pz",   
-            "TauM_p",   
-            "TauM_pt",   
-            "TauM_e",    
-            "TauM_eta",    
-            "TauM_phi",    
-            "TauM_theta",    
-            "TauM_y",    
-            "TauM_mass",
-
-            "Recoil",
-            "Collinear_mass", 
         
-            "Tau_DR",
-            "Tau_cos",
-            "Tau_DEta", 
-            "Tau_DPhi",
-            
-            "RecoZDaughter_DR", 
-            "RecoZDaughter_cos", 
-            "RecoZDaughter_DEta", 
-            "RecoZDaughter_DPhi", 
-
-        ]
 
         return branchList

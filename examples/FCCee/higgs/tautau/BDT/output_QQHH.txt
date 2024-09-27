@@ -2,6 +2,8 @@ Events of backgrounds: 740121
 Events of signals: 118093
 Weight of backgrounds: 364081.8541062114
 Weight of signals: 7716.085918200001
+Efficiency of backgrounds: 0.0011098855112923066
+Efficiency of signals: 0.03473323529411765
 
 Adjusted size of signal: 42704.86550109585
 
