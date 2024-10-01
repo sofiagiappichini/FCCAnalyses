@@ -401,7 +401,9 @@ if train_tree == True:
     df_sig["label"] = 1
     df_bkg["label"] = 0
     
-    #save some data for testing later
+    #save some data for testing later, randomly shuffled but reproducible
+    df_sig = df_sig.sample(frac=1, random_state=1)
+    df_bkg = df_bkg.sample(frac=1, random_state=1)
     train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
     train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
     
@@ -417,7 +419,7 @@ if train_tree == True:
         file.write(f"Test: {len(df_test)}\n\n")
     
     #Split into class label (y) and training vars (x)
-    y = df_train["label"]
+    '''y = df_train["label"]
     y_test = df_test["label"]
     
     #flattening input
@@ -436,11 +438,24 @@ if train_tree == True:
     y = y.to_numpy()
     y_test = y_test.to_numpy()
     x = x.T
-    x_test = x_test.T
+    x_test = x_test.T'''
+
+    #Split into class label (y) and training vars (x)
+    y = df_train["label"]
+    x = df_train[vars_list]
+
+    y = y.to_numpy()
+    x = x.to_numpy()
+
+    y_test = df_test["label"]
+    x_test = df_test[vars_list]
+
+    y_test = y_test.to_numpy()
+    x_test = x_test.to_numpy()
     with open(output_file, "a") as file:
         file.write("Effective input shape for training \n")
-        file.write(f"Training: {x.shape}\n")
-        file.write(f"Test: {y.shape}\n\n")
+        file.write(f"X: {x.shape}\n")
+        file.write(f"Y: {y.shape}\n\n")
 
     #Sample weights to balance the classes
     weights = compute_sample_weight(class_weight='balanced', y=y)
@@ -507,7 +522,7 @@ if train_tree == True:
     plt.tight_layout()
 
     # Save the figure
-    fig.savefig("/web/sgiappic/public_html/BDT/QQLL_ROC_stage2_100Coll150.pdf")
+    fig.savefig("/web/sgiappic/public_html/Higgs_xsec/BDT/ROC/QQLL_ROC_stage2_100Coll150.pdf")
 
     #Write model to joblib file
     joblib.dump(bdt, f"{out}/xgb_bdt_stage2_100Coll150_QQLL.joblib")

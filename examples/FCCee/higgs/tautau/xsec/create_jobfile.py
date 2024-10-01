@@ -184,21 +184,21 @@ processList = {
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_100Me/'
-output = '/work/sgiappic/HTCondor/stage3_100Me/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage3_100Me/' ##output directory of stage2 samples
+inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/'
+output = '/work/sgiappic/HTCondor/stage3_100Coll150/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage3_100Coll150/' ##output directory of stage2 samples
 localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage3_'
 SUBDIR = [
-    #'LL',
-    #'LH',
+    'LL',
+    'LH',
     'HH',
 ]
 CAT = [
-    #"QQ",
+    "QQ",
     #"LL",
-    "NuNu",
+    #"NuNu",
 ]
 nCPUS = 4
 Memory = 10000

@@ -38,9 +38,9 @@ DIRECTORY = {
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_100Me/NuNu",
 }
 SUBDIR = [
-    #'LL',
-    'LH',
-    'HH',
+    'LL',
+    #'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
@@ -797,7 +797,7 @@ VARIABLES_NuNu = [
     "TauLead_theta",    
     "TauLead_y",    
     "TauLead_mass",
-    "TauLead_type",
+    #"TauLead_type",
 
     "TauSub_px",    
     "TauSub_py",   
@@ -810,7 +810,7 @@ VARIABLES_NuNu = [
     "TauSub_theta",    
     "TauSub_y",    
     "TauSub_mass",
-    "TauSub_type",
+    #"TauSub_type",
 
     "TauP_px",    
     "TauP_py",   
@@ -823,7 +823,7 @@ VARIABLES_NuNu = [
     "TauP_theta",    
     "TauP_y",    
     "TauP_mass",
-    "TauP_type",
+    #"TauP_type",
 
     "TauM_px",    
     "TauM_py",   
@@ -836,7 +836,7 @@ VARIABLES_NuNu = [
     "TauM_theta",    
     "TauM_y",    
     "TauM_mass",
-    "TauM_type",
+    #"TauM_type",
 
     "Tau_DR",
     "Tau_cos",
