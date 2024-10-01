@@ -7,6 +7,15 @@ Efficiency of signals: 0.03473323529411765
 
 Adjusted size of signal: 42704.86550109585
 
+Events of backgrounds: 740121
+Events of signals: 118093
+Weight of backgrounds: 364081.8541062114
+Weight of signals: 7716.085918200001
+Efficiency of backgrounds: 0.0011098855112923066
+Efficiency of signals: 0.03473323529411765
+
+Adjusted size of signal: 42704.86550109585
+
 Weight of wzp6_ee_mumuH_Htautau_ecm240: 0.7102782000000001
 Relative weight of wzp6_ee_mumuH_Htautau_ecm240: 9.205161885570254e-05
 Requested size of wzp6_ee_mumuH_Htautau_ecm240: 10.87065182552648
@@ -219,26 +228,26 @@ Test: (59765,)
 {'n_estimators': 200, 'learning_rate': 0.3, 'max_depth': 2}
 Feature importances 
                     importance
-RecoZ_mass            0.361324
-RecoZ_p               0.212506
-Recoil                0.140825
-RecoEmiss_p           0.046169
-RecoEmiss_pt          0.036015
-RecoEmiss_costheta    0.025964
-Tau_cos               0.024496
-RecoEmiss_e           0.022598
-Collinear_mass        0.020766
-RecoH_mass            0.017431
-RecoZ_pt              0.016193
-RecoH_p               0.013953
-RecoZ_pz              0.008852
-Tau_DEta              0.008493
-RecoEmiss_pz          0.008046
-Tau_DPhi              0.006826
-Tau_DR                0.006635
-RecoZ_e               0.005136
-RecoH_pz              0.004529
-RecoZ_eta             0.003931
-RecoH_e               0.003813
-RecoH_pt              0.003167
-RecoH_eta             0.002334
+RecoZ_mass            0.335823
+RecoZ_p               0.204941
+Recoil                0.159789
+RecoEmiss_pt          0.066559
+RecoEmiss_p           0.043536
+Tau_cos               0.025204
+RecoEmiss_e           0.024296
+Collinear_mass        0.023144
+RecoEmiss_costheta    0.020220
+RecoH_mass            0.016291
+RecoZ_pt              0.013501
+Tau_DEta              0.008969
+RecoZ_pz              0.008355
+RecoH_p               0.007312
+RecoZ_e               0.006702
+Tau_DR                0.006018
+RecoH_e               0.005464
+RecoEmiss_pz          0.005413
+RecoH_pt              0.005283
+RecoZ_eta             0.004794
+Tau_DPhi              0.004131
+RecoH_pz              0.002978
+RecoH_eta             0.001280

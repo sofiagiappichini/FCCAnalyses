@@ -141,32 +141,32 @@ Training: 17043
 Test: 7305
 
 Effective input shape for training 
-Training: (17043, 23)
-Test: (17043,)
+X: (17043, 23)
+Y: (17043,)
 
 {'n_estimators': 200, 'learning_rate': 0.3, 'max_depth': 2}
 Feature importances 
                     importance
-RecoEmiss_pt          0.704130
-RecoH_e               0.160961
-RecoEmiss_costheta    0.027833
-RecoH_p               0.024704
-Recoil                0.018798
-RecoEmiss_p           0.010507
-RecoEmiss_e           0.009518
-RecoZ_mass            0.008714
-RecoZ_p               0.005254
-RecoZ_e               0.004162
-Tau_cos               0.003041
-RecoZ_pt              0.002723
-RecoZ_pz              0.002108
-RecoH_pt              0.002106
-Tau_DR                0.002007
-RecoEmiss_pz          0.001877
-RecoH_mass            0.001864
-RecoZ_eta             0.001809
-Tau_DEta              0.001785
-RecoH_eta             0.001765
-Collinear_mass        0.001645
-Tau_DPhi              0.001534
-RecoH_pz              0.001154
+RecoEmiss_pt          0.723386
+RecoH_e               0.152635
+RecoH_p               0.019628
+Recoil                0.019356
+RecoEmiss_costheta    0.017739
+RecoZ_mass            0.011285
+RecoEmiss_e           0.010764
+RecoEmiss_p           0.010646
+RecoZ_p               0.005103
+Tau_DR                0.003270
+RecoZ_pz              0.002960
+Tau_cos               0.002934
+RecoZ_e               0.002622
+RecoH_pt              0.002339
+RecoZ_eta             0.002188
+RecoH_mass            0.002044
+Collinear_mass        0.002019
+RecoZ_pt              0.001852
+Tau_DPhi              0.001761
+RecoH_eta             0.001698
+RecoH_pz              0.001537
+RecoEmiss_pz          0.001179
+Tau_DEta              0.001054

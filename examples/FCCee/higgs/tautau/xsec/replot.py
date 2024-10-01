@@ -38,9 +38,9 @@ DIRECTORY = {
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_100Me/NuNu",
 }
 SUBDIR = [
-    #'LL',
-    'LH',
-    'HH',
+    'LL',
+    #'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
@@ -49,7 +49,7 @@ CAT = [
     "NuNu",
 ]
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/BDT_100Me/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/BDT/' 
 #list of cuts you want to plot
 CUTS_LL = [
     "selReco",
@@ -114,13 +114,11 @@ LABELS = {
     "selReco_100Coll150_115Rec160_10Me_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
-    "selReco_0.5BDT":"BDT score>0.5",
-    "selReco_0.6BDT":"BDT score>0.6",
-    "selReco_0.7BDT":"BDT score>0.7",
-    "selReco_0.8BDT":"BDT score>0.8",
-    "selReco_0.9BDT":"BDT score>0.9",
-    "selReco_0.96BDT":"BDT score>0.96",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
+    
+    #"selReco_0.5BDT":"100<M_{collinear}<150 GeV, BDT score>0.5",
+    #"selReco_0.6BDT":"100<M_{collinear}<150 GeV, BDT score>0.6",
+    #"selReco_0.7BDT":"100<M_{collinear}<150 GeV, BDT score>0.7",
 
     #cuts for NuNu
     "selReco_100Me": "E_{miss}>100 GeV",
@@ -129,6 +127,10 @@ LABELS = {
     "selReco_100Me_TauDPhi3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
     "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
     "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
+
+    "selReco_0.5BDT":"E_{miss}>100 GeV, BDT score>0.5",
+    "selReco_0.6BDT":"E_{miss}>100 GeV, BDT score>0.6",
+    "selReco_0.7BDT":"E_{miss}>100 GeV, BDT score>0.7",
 
  }
 
@@ -1128,7 +1130,7 @@ VARIABLES_NuNu = [
     "TauLead_theta",    
     "TauLead_y",    
     "TauLead_mass",
-    "TauLead_type",
+    #"TauLead_type",
 
     "TauSub_px",    
     "TauSub_py",   
@@ -1141,7 +1143,7 @@ VARIABLES_NuNu = [
     "TauSub_theta",    
     "TauSub_y",    
     "TauSub_mass",
-    "TauSub_type",
+    #"TauSub_type",
 
     "TauP_px",    
     "TauP_py",   
@@ -1154,7 +1156,7 @@ VARIABLES_NuNu = [
     "TauP_theta",    
     "TauP_y",    
     "TauP_mass",
-    "TauP_type",
+    #"TauP_type",
 
     "TauM_px",    
     "TauM_py",   
@@ -1167,7 +1169,7 @@ VARIABLES_NuNu = [
     "TauM_theta",    
     "TauM_y",    
     "TauM_mass",
-    "TauM_type",
+    #"TauM_type",
 
     "Tau_DR",
     "Tau_cos",
@@ -1550,7 +1552,7 @@ for cat in CAT:
                 latex.DrawLatex(0.18, 0.80, text)
 
                 text = '#bf{#it{' + extralab + '}}'
-                latex.SetTextSize(0.02)
+                latex.SetTextSize(0.025)
                 latex.DrawLatex(0.18, 0.74, text)
 
                 latex.SetTextAlign(31)

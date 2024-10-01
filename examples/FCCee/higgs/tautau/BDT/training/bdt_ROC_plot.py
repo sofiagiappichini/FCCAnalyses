@@ -589,6 +589,8 @@ for cat in CAT:
         df_bkg["label"] = 0
         
         #save some data for testing later
+        df_sig = df_sig.sample(frac=1, random_state=1)
+        df_bkg = df_bkg.sample(frac=1, random_state=1)
         train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
         train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
         
@@ -603,8 +605,7 @@ for cat in CAT:
             file.write(f"Training: {len(df_train)}\n")
             file.write(f"Test: {len(df_test)}\n\n")
         
-        #Split into class label (y) and training vars (x)
-        y = df_train["label"]
+        '''y = df_train["label"]
         y_test = df_test["label"]
         
         #flattening input
@@ -623,11 +624,24 @@ for cat in CAT:
         y = y.to_numpy()
         y_test = y_test.to_numpy()
         x = x.T
-        x_test = x_test.T
+        x_test = x_test.T'''
+
+        #Split into class label (y) and training vars (x)
+        y = df_train["label"]
+        x = df_train[vars_list]
+
+        y = y.to_numpy()
+        x = x.to_numpy()
+
+        y_test = df_test["label"]
+        x_test = df_test[vars_list]
+
+        y_test = y_test.to_numpy()
+        x_test = x_test.to_numpy()
         with open(output_file, "a") as file:
-            file.write("Effective input shape for testing \n")
-            file.write(f"X: {x_test.shape}\n")
-            file.write(f"Y: {y_test.shape}\n\n")
+            file.write("Effective input shape for training \n")
+            file.write(f"X: {x.shape}\n")
+            file.write(f"Y: {y.shape}\n\n")
         
         #import bdt already trained and test it 
         if cat=="NuNu":
@@ -649,7 +663,7 @@ for cat in CAT:
         col += 1
         print(leg_cat[cat], leg_sub[sub])
 
-        label.append(f'{leg_cat[cat]} {leg_sub[sub]} AUC = {roc_auc:.3f}')
+        label.append(f'{leg_cat[cat]} {leg_sub[sub]}, AUC={roc_auc:.3f}')
 
         with open(output_file, "a") as file:
             file.write(f"AUC:{roc_auc} \n\n")
@@ -672,7 +686,7 @@ plt.title('FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
 
 # Adjust ticks and legend
 ax.tick_params(axis='both', which='major', labelsize=15)
-plt.legend(label, loc="upper right", fontsize=17)
+plt.legend(label, loc="lower right", fontsize=15)
 plt.grid()
 '''
 
@@ -705,4 +719,4 @@ ax2.grid(True)'''
 plt.tight_layout()
 
 # Save the figure
-fig.savefig("/web/sgiappic/public_html/BDT/BDT_ROC.pdf")
+fig.savefig("/web/sgiappic/public_html/Higgs_xsec/BDT/ROC/BDT_ROC.pdf")
