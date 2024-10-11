@@ -8,6 +8,7 @@
   - [How to run the CP analysis (specific)](#how-to-run-the-cp-analysis-specific)
     - [Delphes samples](#delphes-samples)
     - [Stage 1 ntuples](#stage-1-ntuples)
+    - [Tau reconstruction](#tau-reconstruction)
     - [Stage2](#stage2)
     - [Final stage](#final-stage)
     - [Plotting](#plotting)
@@ -135,6 +136,10 @@ For the reconstructed particles there are:
 - two jets classes, one with R5 removing the isolated letons and one with exclusive gen kt with 4 jets on all final state particles
 - two reconstructed hadronic tau classes based respectively on the two jet classes 
 - one jet class based on R5 with jets that are not being considered as tau jets (`_sel`)
+
+### Tau reconstruction
+
+The tau reconstruction function is inspired by Maria's and can be found in `functions.h` with the name `findTauInJet`. It runs on the jet class and analyses the jet constituents to find tau candidates. An Id is given to all jets to discriminate between quark jets and specific hadronic tau decays. There is also one version with $\pi^0$ (`findTauInJet_pi0`) reconstruction and the original version (`findTauInJet_OG`).
 
 ### Stage2
 
