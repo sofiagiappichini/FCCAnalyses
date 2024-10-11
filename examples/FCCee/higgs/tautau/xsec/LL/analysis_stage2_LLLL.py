@@ -3,6 +3,15 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
+    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':1},
+}
+processList_ = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -88,10 +97,10 @@ processList = {
 
 }
 
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1_tag/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/LL/LL/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_tag_exp/LL/LL/" 
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -109,11 +118,36 @@ class RDFanalysis():
 
                 ### defining filters for 4 lepton final state based on flavor combination: 4 same flavor, 2 pairs, 1 pair plus one mixed from the taus
 
+                .Define("TauTag_px",      "TagJet_R5_px[TagJet_isTAU>0.5]")
+                .Define("TauTag_py",      "TagJet_R5_py[TagJet_isTAU>0.5]")
+                .Define("TauTag_pz",      "TagJet_R5_pz[TagJet_isTAU>0.5]")
+                .Define("TauTag_pt",      "TagJet_R5_pt[TagJet_isTAU>0.5]")
+                .Define("TauTag_p",      "TagJet_R5_px[TagJet_isTAU>0.5]")
+                .Define("TauTag_e",      "TagJet_R5_e[TagJet_isTAU>0.5]")
+                .Define("TauTag_phi",      "TagJet_R5_phi[TagJet_isTAU>0.5]")
+                .Define("TauTag_eta",      "TagJet_R5_eta[TagJet_isTAU>0.5]")
+                .Define("TauTag_theta",      "TagJet_R5_theta[TagJet_isTAU>0.5]")
+                .Define("TauTag_charge",      "TagJet_R5_charge[TagJet_isTAU>0.5]")
+                .Define("TauTag_mass",      "TagJet_R5_mass[TagJet_isTAU>0.5]")
+                .Define("TauTag_isG",      "TagJet_isG[TagJet_isTAU>0.5]")
+                .Define("TauTag_isU",      "TagJet_isU[TagJet_isTAU>0.5]")
+                .Define("TauTag_isD",      "TagJet_isD[TagJet_isTAU>0.5]")
+                .Define("TauTag_isS",      "TagJet_isS[TagJet_isTAU>0.5]")
+                .Define("TauTag_isC",      "TagJet_isC[TagJet_isTAU>0.5]")
+                .Define("TauTag_isB",      "TagJet_isB[TagJet_isTAU>0.5]")
+                .Define("TauTag_isTAU",      "TagJet_isTAU[TagJet_isTAU>0.5]")
+                .Define("TauTag_flavor",      "TagJet_R5_flavor[TagJet_isTAU>0.5]")
+                .Define("n_TauTag",          "TauTag_px.size()")
+
                 .Define("AllLeptons",    "(((n_RecoElectrons==4 and n_RecoMuons==0) or (n_RecoElectrons==0 and n_RecoMuons==4)) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + RecoLepton_charge.at(3))==0)*1.0")
                 .Define("TwoPairs",     "((n_RecoElectrons==2 and n_RecoMuons==2) and (RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0 and (RecoMuon_charge.at(0) + RecoMuon_charge.at(1))==0)*1.0")
                 .Define("OnePair",     "(((n_RecoElectrons==3 and n_RecoMuons==1) or (n_RecoElectrons==1 and n_RecoMuons==3))  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + RecoLepton_charge.at(3))==0)*1.0")
 
-                .Filter("(AllLeptons==1 || TwoPairs==1 || OnePair==1) && n_Jets_R5_sel==0 && n_TauFromJet_R5==0") 
+                .Filter("(AllLeptons==1 || TwoPairs==1 || OnePair==1) && n_TagJet_R5_sel==0 && n_TauFromJet_R5Tag==0") 
+
+                ###########################
+                
+                #.Filter("(AllLeptons==1 || TwoPairs==1 || OnePair==1) && n_TauTag==0 && n_TagJet[TagJet_isTAU<0.5]==0") 
 
                 ##################
                 # Reco particles #
@@ -286,8 +320,6 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
-
-                .Filter("Collinear_mass>100 && Collinear_mass<150")
 
         )
         return df2
@@ -694,9 +726,80 @@ class RDFanalysis():
             "Jets_R5_sel_mass",      
             "n_Jets_R5_sel", 
 
+            "TagJet_R5_px", 
+            "TagJet_R5_py",    
+            "TagJet_R5_pz",      
+            "TagJet_R5_p",  
+            "TagJet_R5_pt",    
+            "TagJet_R5_phi", 
+            "TagJet_R5_eta",     
+            "TagJet_R5_theta",          
+            "TagJet_R5_e",     
+            "TagJet_R5_mass",        
+            "TagJet_R5_charge",       
+            "TagJet_R5_flavor",       
+            "n_TagJet_R5",          
+
+            "TagJet_isG",  
+            "TagJet_isU",
+            "TagJet_isD",   
+            "TagJet_isS",  
+            "TagJet_isC",
+            "TagJet_isB",  
+            "TagJet_isTAU",
+
+            "TauFromJet_R5Tag_p",
+            "TauFromJet_R5Tag_pt",
+            "TauFromJet_R5Tag_px",
+            "TauFromJet_R5Tag_py",
+            "TauFromJet_R5Tag_pz",
+            "TauFromJet_R5Tag_theta",
+            "TauFromJet_R5Tag_phi",
+            "TauFromJet_R5Tag_e",
+            "TauFromJet_R5Tag_eta",
+            "TauFromJet_R5Tag_y",
+            "TauFromJet_R5Tag_charge",
+            "TauFromJet_R5Tag_type",
+            "TauFromJet_R5Tag_mass",
+            "n_TauFromJet_R5Tag",
+
+            "TagJet_R5_sel_e",     
+            "TagJet_R5_sel_p",     
+            "TagJet_R5_sel_pt",     
+            "TagJet_R5_sel_px",   
+            "TagJet_R5_sel_py",   
+            "TagJet_R5_sel_pz",     
+            "TagJet_R5_sel_eta",    
+            "TagJet_R5_sel_theta",   
+            "TagJet_R5_sel_phi",     
+            "TagJet_R5_sel_mass",      
+            "n_TagJet_R5_sel", 
+
         ]
         #complex variables added here at stage2
         branchList += [
+            "TauTag_px", 
+            "TauTag_py",    
+            "TauTag_pz",      
+            "TauTag_p",  
+            "TauTag_pt",    
+            "TauTag_phi", 
+            "TauTag_eta",     
+            "TauTag_theta",          
+            "TauTag_e",     
+            "TauTag_mass",        
+            "TauTag_charge",       
+            "TauTag_flavor",       
+            "n_TauTag",          
+
+            "TauTag_isG",  
+            "TauTag_isU",
+            "TauTag_isD",   
+            "TauTag_isS",  
+            "TauTag_isC",
+            "TauTag_isB",  
+            "TauTag_isTAU",
+
             "RecoEmiss_eta",
             "RecoEmiss_phi",
             "RecoEmiss_theta",
@@ -836,5 +939,5 @@ class RDFanalysis():
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
 
-            ]
+        ]
         return branchList

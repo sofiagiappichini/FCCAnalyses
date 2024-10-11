@@ -11,6 +11,20 @@
 #include "edm4hep/MCParticleData.h"
 #include "edm4hep/ParticleIDData.h"
 #include "ReconstructedParticle2MC.h"
+#include "FCCAnalyses/JetConstituentsUtils.h"
+#include "FCCAnalyses/ReconstructedParticle.h"
+#include "FCCAnalyses/ReconstructedParticle2Track.h"
+#include "edm4hep/Track.h"
+#include "edm4hep/TrackerHitData.h"
+#include "edm4hep/TrackData.h"
+#include "edm4hep/Cluster.h"
+#include "edm4hep/ClusterData.h"
+#include "edm4hep/CalorimeterHitData.h"
+#include "FCCAnalyses/JetClusteringUtils.h"
+// #include "FCCAnalyses/ExternalRecombiner.h"
+#include "fastjet/JetDefinition.hh"
+#include "fastjet/PseudoJet.hh"
+#include "fastjet/Selector.hh"
 
 
 namespace FCCAnalyses { namespace ZHfunctions {

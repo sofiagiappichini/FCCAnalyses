@@ -3,6 +3,9 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
+    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
+}
+processList_ = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -88,10 +91,10 @@ processList = {
 
 }
 
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1_tag_up/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Me/NuNu/LL/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_tag_weird/NuNu/LL/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -104,11 +107,45 @@ class RDFanalysis():
                 ### to find already made functions, this is where they are or where they can be added instead of writing them here
                 ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
 
+                .Define("TauTag_px",      "TagJet_R5_px[TagJet_isTAU>0.5]")
+                .Define("TauTag_py",      "TagJet_R5_py[TagJet_isTAU>0.5]")
+                .Define("TauTag_pz",      "TagJet_R5_pz[TagJet_isTAU>0.5]")
+                .Define("TauTag_pt",      "TagJet_R5_pt[TagJet_isTAU>0.5]")
+                .Define("TauTag_p",      "TagJet_R5_px[TagJet_isTAU>0.5]")
+                .Define("TauTag_e",      "TagJet_R5_e[TagJet_isTAU>0.5]")
+                .Define("TauTag_phi",      "TagJet_R5_phi[TagJet_isTAU>0.5]")
+                .Define("TauTag_eta",      "TagJet_R5_eta[TagJet_isTAU>0.5]")
+                .Define("TauTag_theta",      "TagJet_R5_theta[TagJet_isTAU>0.5]")
+                .Define("TauTag_charge",      "TagJet_R5_charge[TagJet_isTAU>0.5]")
+                .Define("TauTag_mass",      "TagJet_R5_mass[TagJet_isTAU>0.5]")
+                .Define("TauTag_isG",      "TagJet_isG[TagJet_isTAU>0.5]")
+                .Define("TauTag_isU",      "TagJet_isU[TagJet_isTAU>0.5]")
+                .Define("TauTag_isD",      "TagJet_isD[TagJet_isTAU>0.5]")
+                .Define("TauTag_isS",      "TagJet_isS[TagJet_isTAU>0.5]")
+                .Define("TauTag_isC",      "TagJet_isC[TagJet_isTAU>0.5]")
+                .Define("TauTag_isB",      "TagJet_isB[TagJet_isTAU>0.5]")
+                .Define("TauTag_isTAU",      "TagJet_isTAU[TagJet_isTAU>0.5]")
+                .Define("TauTag_flavor",      "TagJet_R5_flavor[TagJet_isTAU>0.5]")
+                .Define("n_TauTag",          "TauTag_px.size()")
+
+                .Define("TagJet_num",      "TagJet_R5_flavor[TagJet_isTAU<0.5]")
+                .Define("n_TagJets_R5",     "TagJet_num.size()")
+
                 ### defining filters for 2 lepton final state 
 
-                .Define("OnePair",     "(n_RecoLeptons==2  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0")
+                .Define("OnePair",     "(n_RecoLeptons_sel==2  and (RecoLepton_sel_charge.at(0) + RecoLepton_sel_charge.at(1))==0)*1.0")
 
-                .Filter("OnePair==1 && n_Jets_R5_sel==0 && n_TauFromJet_R5==0") 
+                #.Filter("OnePair==1 && n_TagJet_R5_sel==0 && n_TauFromJet_R5Tag==0") 
+
+                
+
+                #######################
+
+                .Define("TagJet_tau",      "TagJet_R5_flavor[TagJet_isTAU>0.894 && TagJet_isTAU<0.903]")
+                .Define("n_Tagweird",     "TagJet_tau.size()")
+
+
+                .Filter("n_Tagweird>0")
 
                 ##################
                 # Reco particles #
@@ -228,7 +265,6 @@ class RDFanalysis():
 
                 .Define("Visible_mass",     "return RecoH_mass;")
 
-                .Filter("RecoEmiss_e>100")
 
         )
         return df2
@@ -545,6 +581,33 @@ class RDFanalysis():
             "RecoPhoton_phi",
             "RecoPhoton_charge",
 
+            "n_NeutralHadrons",
+            "NeutralHadrons_e",
+            "NeutralHadrons_p",
+            "NeutralHadrons_pt",
+            "NeutralHadrons_px",
+            "NeutralHadrons_py",
+            "NeutralHadrons_pz",
+            "NeutralHadrons_eta",
+            "NeutralHadrons_theta",
+            "NeutralHadrons_phi",
+            "NeutralHadrons_charge",
+            "NeutralHadrons_mass",
+
+            "n_NoEfficiency",
+            "NoEfficiency_e",
+            "NoEfficiency_p",
+            "NoEfficiency_pt",
+            "NoEfficiency_px",
+            "NoEfficiency_py",
+            "NoEfficiency_pz",
+            "NoEfficiency_eta",
+            "NoEfficiency_theta",
+            "NoEfficiency_phi",
+            "NoEfficiency_charge",
+            "NoEfficiency_type",
+            "NoEfficiency_mass",
+
             "RecoEmiss_px",
             "RecoEmiss_py",
             "RecoEmiss_pz",
@@ -634,95 +697,58 @@ class RDFanalysis():
             "Jets_R5_sel_phi",     
             "Jets_R5_sel_mass",      
             "n_Jets_R5_sel", 
+
+            "TagJet_R5_px", 
+            "TagJet_R5_py",    
+            "TagJet_R5_pz",      
+            "TagJet_R5_p",  
+            "TagJet_R5_pt",    
+            "TagJet_R5_phi", 
+            "TagJet_R5_eta",     
+            "TagJet_R5_theta",          
+            "TagJet_R5_e",     
+            "TagJet_R5_mass",        
+            "TagJet_R5_charge",       
+            "TagJet_R5_flavor",       
+            "n_TagJet_R5",          
+
+            "TagJet_isG",  
+            "TagJet_isU",
+            "TagJet_isD",   
+            "TagJet_isS",  
+            "TagJet_isC",
+            "TagJet_isB",  
+            "TagJet_isTAU",
+
+            "TauFromJet_R5Tag_p",
+            "TauFromJet_R5Tag_pt",
+            "TauFromJet_R5Tag_px",
+            "TauFromJet_R5Tag_py",
+            "TauFromJet_R5Tag_pz",
+            "TauFromJet_R5Tag_theta",
+            "TauFromJet_R5Tag_phi",
+            "TauFromJet_R5Tag_e",
+            "TauFromJet_R5Tag_eta",
+            "TauFromJet_R5Tag_y",
+            "TauFromJet_R5Tag_charge",
+            "TauFromJet_R5Tag_type",
+            "TauFromJet_R5Tag_mass",
+            "n_TauFromJet_R5Tag",
+
+            "TagJet_R5_sel_e",     
+            "TagJet_R5_sel_p",     
+            "TagJet_R5_sel_pt",     
+            "TagJet_R5_sel_px",   
+            "TagJet_R5_sel_py",   
+            "TagJet_R5_sel_pz",     
+            "TagJet_R5_sel_eta",    
+            "TagJet_R5_sel_theta",   
+            "TagJet_R5_sel_phi",     
+            "TagJet_R5_sel_mass",      
+            "n_TagJet_R5_sel", 
+
         ]
         #complex variables added here at stage2
-        branchList += [
-                "RecoEmiss_eta",
-                "RecoEmiss_phi",
-                "RecoEmiss_theta",
-                "RecoEmiss_y",
-                "RecoEmiss_costheta",
 
-                #"RecoZ_px",
-                #"RecoZ_py",
-                #"RecoZ_pz",
-                #"RecoZ_p",
-                #"RecoZ_pt",
-                #"RecoZ_e",
-                #"RecoZ_eta",
-                #"RecoZ_phi",
-                #"RecoZ_theta",
-                #"RecoZ_y",
-                #"RecoZ_mass",
-
-                "RecoH_px",
-                "RecoH_py",
-                "RecoH_pz",
-                "RecoH_p",
-                "RecoH_pt",
-                "RecoH_e",
-                "RecoH_eta",
-                "RecoH_phi",
-                "RecoH_theta",
-                "RecoH_y",
-                "RecoH_mass",
-
-                "TauLead_px",    
-                "TauLead_py",   
-                "TauLead_pz",   
-                "TauLead_p",   
-                "TauLead_pt",   
-                "TauLead_e",    
-                "TauLead_eta",    
-                "TauLead_phi",    
-                "TauLead_theta",    
-                "TauLead_y",    
-                "TauLead_mass",
-
-                "TauSub_px",    
-                "TauSub_py",   
-                "TauSub_pz",   
-                "TauSub_p",   
-                "TauSub_pt",   
-                "TauSub_e",    
-                "TauSub_eta",    
-                "TauSub_phi",    
-                "TauSub_theta",    
-                "TauSub_y",    
-                "TauSub_mass",
-
-                "TauP_px",    
-                "TauP_py",   
-                "TauP_pz",   
-                "TauP_p",   
-                "TauP_pt",   
-                "TauP_e",    
-                "TauP_eta",    
-                "TauP_phi",    
-                "TauP_theta",    
-                "TauP_y",    
-                "TauP_mass",
-
-                "TauM_px",    
-                "TauM_py",   
-                "TauM_pz",   
-                "TauM_p",   
-                "TauM_pt",   
-                "TauM_e",    
-                "TauM_eta",    
-                "TauM_phi",    
-                "TauM_theta",    
-                "TauM_y",    
-                "TauM_mass",
             
-                "Tau_DR",
-                "Tau_cos",
-                "Tau_DEta", 
-                "Tau_DPhi",
-
-                #"Recoil",
-                #"Collinear_mass",
-                "Visible_mass",
-
-            ]
         return branchList

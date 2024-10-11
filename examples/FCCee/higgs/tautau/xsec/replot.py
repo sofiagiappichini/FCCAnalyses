@@ -35,18 +35,18 @@ def file_exists(file_path):
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
     'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_100Me/NuNu",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
-    'LL',
+    #'LL',
     #'LH',
-    #'HH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
+    "QQ",
     #"LL",
-    "NuNu",
+    #"NuNu",
 ]
 #directory where you want your plots to go
 DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/BDT/' 
@@ -63,7 +63,7 @@ CUTS_LL = [
 ]
 
 CUTS_QQ = [
-    "selReco",
+    #"selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_10Me",
@@ -73,22 +73,22 @@ CUTS_QQ = [
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
 
     "selReco_0.5BDT",
-    "selReco_0.6BDT",
-    "selReco_0.7BDT",
+    #"selReco_0.6BDT",
+    #"selReco_0.7BDT",
 ]
     
 CUTS_NuNu = [
     "selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0",
-    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
+    "selReco_100Me",
+    "selReco_100Me_TauDPhi3",
+    "selReco_100Me_TauDPhi3_2DR",
+    "selReco_100Me_TauDPhi3_2DR_cos0",
+    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
+    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
 
-    "selReco_0.5BDT",
-    "selReco_0.6BDT",
-    "selReco_0.7BDT",
+    #"selReco_0.5BDT",
+    #"selReco_0.6BDT",
+    #"selReco_0.7BDT",
 ]
 
 CUTS = {
@@ -1085,7 +1085,7 @@ VARIABLES_QQ = [
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
 
-    "BDT_score",
+    #"BDT_score",
 ]
 
 VARIABLES_NuNu = [
@@ -1180,7 +1180,7 @@ VARIABLES_NuNu = [
     #"Collinear_mass",
     "Visible_mass",
 
-    "BDT_score",
+    #"BDT_score",
 ]
 
 #list of backgorunds, then legend and colors to be assigned to them
@@ -1375,7 +1375,7 @@ for cat in CAT:
     for sub in SUBDIR:
         directory = DIRECTORY[cat] + "/" + sub + "/"
         for cut in CUTS[cat]:
-            for variable in variables:
+            for variable in ['BDT_score']:
 
                 canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1493,7 +1493,7 @@ for cat in CAT:
                                 last = histos[i].GetMaximum() 
                             # Set the y-axis range with additional white space
                         #hStackBkg.SetMinimum(0)
-                        hStackBkg.SetMaximum(last*2.5)
+                        hStackBkg.SetMaximum(last*1.1)
 
                     #draw the histograms
                     hStackBkg.Draw("HIST")
@@ -1509,7 +1509,7 @@ for cat in CAT:
                     hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
                     #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                     hStackBkg.GetXaxis().SetTitleOffset(1.2)
-                    #hStackBkg.GetXaxis().SetLimits(1, 1000)
+                    hStackBkg.GetXaxis().SetLimits(0.5, 1.)
 
                 else: 
                     # add the signal histograms
