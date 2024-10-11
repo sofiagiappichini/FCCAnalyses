@@ -6,7 +6,7 @@
     - [How to add new functions](#how-to-add-new-functions)
     - [Changes made to the general code](#changes-made-to-the-general-code)
   - [How to run the CP analysis (specific)](#how-to-run-the-cp-analysis-specific)
-    - [Central backgrounds](#central-backgrounds)
+    - [Delphes samples](#delphes-samples)
     - [Stage 1 ntuples](#stage-1-ntuples)
     - [Stage2](#stage2)
     - [Final stage](#final-stage)
@@ -117,7 +117,7 @@ Note: the uncertainty on the number of events that is saved in the tables is the
 
 ## How to run the CP analysis (specific)
 
-### Central backgrounds
+### Delphes samples
 
 The SM LO samples come from the [central winter 23 production](https://fcc-physics-events.web.cern.ch/FCCee/winter2023/Delphesevents_IDEA.php). For ZH at $\sqrt{s}=$240 GeV the samples are produced in [Wizard v. 3.0.3](https://github.com/HEP-FCC/FCC-config/tree/winter2023/FCCee/Generator/Whizard/v3.0.3) and showered with Pythia 6. The file names indicates the other particles besides the H (s channel Z -> ZH or if possible with the same final state WW -> H is also included) and also the decay of the H. The Delphes root files can be also found at ETP under `/ceph/sgiappic/HiggsCP/winter23`.
 
