@@ -11,7 +11,7 @@ import uproot
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.utils.class_weight import compute_sample_weight
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, accuracy_score
 import ROOT
 import joblib
 import glob
@@ -431,9 +431,9 @@ leg_sub = {
     "HH": r"$H \to \tau_h \tau_h$",
 }
 
-output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_plot.txt"
+output_file = "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_plot.txt"
 
-modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/models/"
+modelDir = "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/models/"
 
 # Create the figure and plot
 fig, ax = plt.subplots(figsize=(8, 8))
@@ -443,6 +443,10 @@ colorDict = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
 #index for color list and label list
 col = 0
 label = []
+eff_train = {}
+eff_test = {}
+eff_train_bkg = {}
+eff_test_bkg = {}
 #get gen number of events for each signal and backgorund file
 for cat in CAT:
     for sub in SUBDIR:
@@ -600,6 +604,12 @@ for cat in CAT:
         df_train = df_train.sample(frac=1)
         df_test = pd.concat([test_sig,test_bkg])
         
+        for var in vars_list:
+            plt.hist(df_train[var],density=True)
+            plt.hist(df_test[var],density=True)
+            plt.savefig("/web/awiedl/public_html/ML/BDT/check_"+cat+sub+var+".pdf")
+            plt.clf()
+            plt.close()
         with open(output_file, "a") as file:
             file.write("Normalised sample size \n")
             file.write(f"Training: {len(df_train)}\n")
@@ -650,6 +660,26 @@ for cat in CAT:
             bdt = joblib.load(f"{modelDir}/xgb_bdt_stage2_100Coll150_{cat}{sub}.joblib")
 
         pred_test = bdt.predict_proba(x_test)
+        pred_train = bdt.predict_proba(x)
+        N_train = len(pred_train[:,1])
+        N_test = len(pred_test[:,1])
+        N_train_bkg = len(pred_train[:,0])
+        N_test_bkg = len(pred_test[:,0])
+        
+        eff_train[cat+sub] = []
+        eff_test[cat+sub]  = []
+        eff_train_bkg[cat+sub] = []
+        eff_test_bkg[cat+sub]  = []
+        BDT_cuts = np.linspace(0.,1.,100)
+        cut_vals = []
+        for i in BDT_cuts:
+            cut_val = float(i)
+            cut_vals.append(cut_val)
+            cut_val = 1 - pow(10, -cut_val)
+            eff_train[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train[:,1])))))/ N_train)
+            eff_test[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test[:,1])))))/ N_test)
+            eff_train_bkg[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train[:,0])))))/ N_train_bkg)
+            eff_test_bkg[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test[:,0])))))/ N_test_bkg)
 
         # Calculate FPR, TPR, and AUC
         fpr, tpr, thresholds = roc_curve(y_test, pred_test[:, 1], pos_label=1)
@@ -719,4 +749,23 @@ ax2.grid(True)'''
 plt.tight_layout()
 
 # Save the figure
-fig.savefig("/web/sgiappic/public_html/Higgs_xsec/BDT/ROC/BDT_ROC.pdf")
+fig.savefig("/web/awiedl/public_html/ML/BDT/BDT_ROC.pdf")
+
+plt.clf()
+plt.close()
+
+
+for cat in CAT:
+    for sub in SUBDIR:
+        plt.plot(cut_vals, eff_train[cat+sub], label=f'Train {cat+sub}')
+        plt.plot(cut_vals, eff_test[cat+sub], label=f'Test {cat+sub}', linestyle='dashed')
+        plt.plot(cut_vals, eff_train_bkg[cat+sub], label=f'Train {cat+sub}')
+        plt.plot(cut_vals, eff_test_bkg[cat+sub], label=f'Test {cat+sub}', linestyle='dashed')
+        plt.xlabel("1 - BDT1 score",fontsize=30)
+        plt.ylabel("Efficiency",fontsize=30)   
+        plt.legend(loc="lower left", ncol=2)
+        plt.grid(alpha=0.4,which="both")
+        plt.tight_layout()
+        plt.savefig("/web/awiedl/public_html/ML/BDT/BDT_overtraining"+cat+sub+".pdf")
+        plt.clf()
+        plt.close()
