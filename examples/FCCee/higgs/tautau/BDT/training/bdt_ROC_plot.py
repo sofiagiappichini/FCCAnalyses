@@ -11,7 +11,7 @@ import uproot
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.utils.class_weight import compute_sample_weight
-from sklearn.metrics import roc_curve, auc, accuracy_score
+from sklearn.metrics import roc_curve, auc
 import ROOT
 import joblib
 import glob
@@ -443,10 +443,6 @@ colorDict = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
 #index for color list and label list
 col = 0
 label = []
-eff_train = {}
-eff_test = {}
-eff_train_bkg = {}
-eff_test_bkg = {}
 #get gen number of events for each signal and backgorund file
 for cat in CAT:
     for sub in SUBDIR:
@@ -598,48 +594,129 @@ for cat in CAT:
         train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
         train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
         
+        #Combine the datasets
+        df_train = pd.concat([train_sig,train_bkg])
+        #shuffle the rows so they are mixed between signal and background
+        df_train = df_train.sample(frac=1)
+        df_test = pd.concat([test_sig,test_bkg])
+        
+        with open(output_file, "a") as file:
+            file.write("Normalised sample size \n")
+            file.write(f"Training: {len(df_train)}\n")
+            file.write(f"Test: {len(df_test)}\n\n")
+        
+        '''y = df_train["label"]
+        y_test = df_test["label"]
+        
+        #flattening input
+        x = np.empty([1,len(df_train)])
+        x_test = np.empty([1,len(df_test)])
+        for i in vars_list:
+            j = df_train[i].to_numpy()
+            k = df_test[i].to_numpy()
+            if(j.ndim==1):
+                j = np.expand_dims(j,axis=1) 
+                k = np.expand_dims(k,axis=1) 
+            x = np.append(x,j.T,axis=0) 
+            x_test = np.append(x_test,k.T,axis=0) 
+        x = np.delete(x, 0, 0)
+        x_test = np.delete(x_test, 0, 0)
+        y = y.to_numpy()
+        y_test = y_test.to_numpy()
+        x = x.T
+        x_test = x_test.T'''
+
+        #Split into class label (y) and training vars (x)
+        y = df_train["label"]
+        x = df_train[vars_list]
+
+        y = y.to_numpy()
+        x = x.to_numpy()
+
+        y_test = df_test["label"]
+        x_test = df_test[vars_list]
+
+        y_test = y_test.to_numpy()
+        x_test = x_test.to_numpy()
+        with open(output_file, "a") as file:
+            file.write("Effective input shape for training \n")
+            file.write(f"X: {x.shape}\n")
+            file.write(f"Y: {y.shape}\n\n")
+        
+        #import bdt already trained and test it 
         if cat=="NuNu":
             bdt = joblib.load(f"{modelDir}/xgb_bdt_stage2_100Me_{cat}{sub}.joblib")
         else:
             bdt = joblib.load(f"{modelDir}/xgb_bdt_stage2_100Coll150_{cat}{sub}.joblib")
-
-        pred_test_sig = bdt.predict_proba(test_sig[vars_list])
-        pred_train_sig = bdt.predict_proba(train_sig[vars_list])
-        pred_test_bkg = bdt.predict_proba(test_bkg[vars_list])
-        pred_train_bkg = bdt.predict_proba(train_bkg[vars_list])
-        N_train = len(train_sig)
-        N_test = len(test_sig)
-        N_train_bkg = len(train_bkg)
-        N_test_bkg = len(test_bkg)
         
-        eff_train[cat+sub] = []
-        eff_test[cat+sub]  = []
-        eff_train_bkg[cat+sub] = []
-        eff_test_bkg[cat+sub]  = []
-        BDT_cuts = np.linspace(0.,5.,500)
-        cut_vals = []
-        for i in BDT_cuts:
-            cut_val = float(i)
-            cut_vals.append(cut_val)
-            cut_val = 1 - pow(10, -cut_val)
-            eff_train[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train_sig[:,1])))))/ N_train)
-            eff_test[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test_sig[:,1])))))/ N_test)
-            eff_train_bkg[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train_bkg[:,1])))))/ N_train_bkg)
-            eff_test_bkg[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test_bkg[:,1])))))/ N_test_bkg)
+        pred_test = bdt.predict_proba(x_test)
 
-for cat in CAT:
-    for sub in SUBDIR:
-        plt.title('FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
-        plt.plot(cut_vals, eff_train[cat+sub], label=f'Train {cat+sub} SIG')
-        plt.plot(cut_vals, eff_test[cat+sub], label=f'Test {cat+sub} SIG', linestyle='dashed')
-        plt.plot(cut_vals, eff_train_bkg[cat+sub], label=f'Train {cat+sub} BKG')
-        plt.plot(cut_vals, eff_test_bkg[cat+sub], label=f'Test {cat+sub} BKG', linestyle='dashed')
-        plt.xlabel("1 - BDT1 score",fontsize=30)
-        plt.ylabel("Efficiency",fontsize=30)
-        plt.yscale('log') 
-        plt.legend(loc="lower left", ncol=2)
-        plt.grid(alpha=0.4,which="both")
-        plt.tight_layout()
-        plt.savefig("/web/awiedl/public_html/ML/BDT/BDT_overtraining"+cat+sub+".pdf")
-        plt.clf()
-        plt.close()
+        # Calculate FPR, TPR, and AUC
+        fpr, tpr, thresholds = roc_curve(y_test, pred_test[:, 1], pos_label=1)
+        roc_auc = auc(fpr, tpr)
+
+        # Plot the ROC curve
+        plt.plot(fpr, tpr, lw=1.5, color=colorDict[col])
+        #ax1.plot(fpr, 1-tpr, lw=1.5, color=colorDict[col])  # Log plot (0.8 to 1)
+        #ax2.plot(fpr, 1-tpr, lw=1.5, color=colorDict[col])  # Linear plot (0 to 0.8)
+        
+        col += 1
+        print(leg_cat[cat], leg_sub[sub])
+
+        label.append(f'{leg_cat[cat]} {leg_sub[sub]}, AUC={roc_auc:.3f}')
+
+        with open(output_file, "a") as file:
+            file.write(f"AUC:{roc_auc} \n\n")
+            file.write("-----------------------------------------\n")
+
+        print(f"Done: {cat}{sub}")
+
+# Plot the baseline for random classifier
+plt.plot([0., 1.], [0., 1.], linestyle="--", color="k", label='50/50')
+label.append('50/50')
+
+# Set limits and labels
+#plt.xlim(0., 1.)
+plt.ylim(0., 1.)
+plt.xscale('log')
+
+plt.ylabel('True Positive Rate', fontsize=18)  # 1 - FPR
+plt.xlabel('False Positive Rate', fontsize=18)  # TPR
+plt.title('FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
+
+# Adjust ticks and legend
+ax.tick_params(axis='both', which='major', labelsize=15)
+plt.legend(label, loc="lower right", fontsize=15)
+plt.grid()
+'''
+
+ax1.plot([0., 1.], [0., 1.], linestyle="--", color="k")
+ax2.plot([0., 1.], [0., 1.], linestyle="--", color="k")
+
+
+ax1.set_ylim(0.9, 1)  # Log part
+ax1.set_yscale('log')
+ax1.yaxis.set_major_locator(LogLocator(base=10.0, numticks=10))  # More divisions
+ax1.yaxis.set_minor_locator(LogLocator(base=10.0, subs="auto", numticks=100))
+#ax1.yaxis.set_minor_formatter(NullFormatter())  # Hide minor ticks in log scale
+
+ax2.set_ylim(0, 0.9)  # Linear part
+
+# Set plot labels
+ax2.set_xlabel('False Positive Rate', fontsize=20)
+#ax2.set_ylabel('True Positive Rate (linear)', fontsize=20)
+ax2.set_ylabel('1-True Positive Rate', fontsize=20)
+
+# Adjust ticks and legend
+ax2.tick_params(axis='both', labelsize=15)
+ax1.tick_params(axis='both', labelsize=15)
+ax2.legend(label, loc="lower right", fontsize=15)  # Show the legend
+
+# Add grid
+ax1.grid(True)
+ax2.grid(True)'''
+
+plt.tight_layout()
+
+# Save the figure
+fig.savefig("/web/awiedl/public_html/ML/BDT/BDT_ROC.pdf")

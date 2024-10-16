@@ -260,7 +260,7 @@ xsec = {'p8_ee_WW_ecm240':16.4385,
 
 path = "/ceph/awiedl/FCCee/HiggsCP/stage2_100Me/NuNu/HH/"
 
-output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_NuNuHH.txt"
+output_file = "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_NuNuHH.txt"
 
 train_tree = True
 full_test = False
@@ -493,7 +493,7 @@ if train_tree == True:
         file.write(f"{feature_importances.to_string()}\n")
     
     #Write the model to a ROOT file for application elsewhere in FCCAnalyses
-    out = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/models/' 
+    out = '/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/models/' 
     
     print("Testing model")
     pred_test = bdt.predict_proba(x_test)
@@ -525,7 +525,7 @@ if train_tree == True:
     plt.tight_layout()
 
     # Save the figure
-    fig.savefig("/web/sgiappic/public_html/Higgs_xsec/BDT/ROC/NuNuHH_ROC_stage2_100Me.pdf")
+    fig.savefig("/web/awiedl/public_html/ML/BDT/NuNuHH_ROC_stage2_100Me.pdf")
 
     #Write model to joblib file
     joblib.dump(bdt, f"{out}/xgb_bdt_stage2_100Me_NuNuHH.joblib")
