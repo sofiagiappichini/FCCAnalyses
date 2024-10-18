@@ -443,10 +443,6 @@ colorDict = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
 #index for color list and label list
 col = 0
 label = []
-eff_train = {}
-eff_test = {}
-eff_train_bkg = {}
-eff_test_bkg = {}
 #get gen number of events for each signal and backgorund file
 for cat in CAT:
     for sub in SUBDIR:
@@ -607,37 +603,47 @@ for cat in CAT:
         pred_train_sig = bdt.predict_proba(train_sig[vars_list])
         pred_test_bkg = bdt.predict_proba(test_bkg[vars_list])
         pred_train_bkg = bdt.predict_proba(train_bkg[vars_list])
+        p_test_sig = bdt.predict(test_sig[vars_list])
+        p_train_sig = bdt.predict(train_sig[vars_list])
+        p_test_bkg = bdt.predict(test_bkg[vars_list])
+        p_train_bkg = bdt.predict(train_bkg[vars_list])
+        
+        score_train_sig = accuracy_score(train_sig["label"],p_train_sig,normalize=True)
+        score_test_sig = accuracy_score(test_sig["label"],p_test_sig,normalize=True)
+        score_train_bkg = accuracy_score(train_bkg["label"],p_train_bkg,normalize=True)
+        score_test_bkg = accuracy_score(test_bkg["label"],p_test_bkg,normalize=True)
+        
         N_train = len(train_sig)
         N_test = len(test_sig)
         N_train_bkg = len(train_bkg)
         N_test_bkg = len(test_bkg)
         
-        eff_train[cat+sub] = []
-        eff_test[cat+sub]  = []
-        eff_train_bkg[cat+sub] = []
-        eff_test_bkg[cat+sub]  = []
+        eff_train = []
+        eff_test  = []
+        eff_train_bkg = []
+        eff_test_bkg  = []
         BDT_cuts = np.linspace(0.,5.,500)
         cut_vals = []
         for i in BDT_cuts:
             cut_val = float(i)
             cut_vals.append(cut_val)
             cut_val = 1 - pow(10, -cut_val)
-            eff_train[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train_sig[:,1])))))/ N_train)
-            eff_test[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test_sig[:,1])))))/ N_test)
-            eff_train_bkg[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train_bkg[:,1])))))/ N_train_bkg)
-            eff_test_bkg[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test_bkg[:,1])))))/ N_test_bkg)
+            eff_train.append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train_sig[:,1])))))/ N_train)
+            eff_test.append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test_sig[:,1])))))/ N_test)
+            eff_train_bkg.append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train_bkg[:,1])))))/ N_train_bkg)
+            eff_test_bkg.append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test_bkg[:,1])))))/ N_test_bkg)
 
-for cat in CAT:
-    for sub in SUBDIR:
         plt.title('FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
-        plt.plot(cut_vals, eff_train[cat+sub], label=f'Train {cat+sub} SIG')
-        plt.plot(cut_vals, eff_test[cat+sub], label=f'Test {cat+sub} SIG', linestyle='dashed')
-        plt.plot(cut_vals, eff_train_bkg[cat+sub], label=f'Train {cat+sub} BKG')
-        plt.plot(cut_vals, eff_test_bkg[cat+sub], label=f'Test {cat+sub} BKG', linestyle='dashed')
+        plt.plot(cut_vals, eff_train, label=f'Train {cat+sub} SIG ACC_SCORE:{score_train_sig}')
+        plt.plot(cut_vals, eff_test, label=f'Test {cat+sub} SIG ACC_SCORE:{score_test_sig}', linestyle='dashed')
+        plt.plot(cut_vals, eff_train_bkg, label=f'Train {cat+sub} BKG ACC_SCORE:{score_train_bkg}')
+        plt.plot(cut_vals, eff_test_bkg, label=f'Test {cat+sub} BKG ACC_SCORE:{score_test_bkg}', linestyle='dashed')
         plt.xlabel("1 - BDT1 score",fontsize=30)
+        plt.xlim(0,3.5)
+        plt.ylim(10e-5,1)
         plt.ylabel("Efficiency",fontsize=30)
         plt.yscale('log') 
-        plt.legend(loc="lower left", ncol=2)
+        plt.legend(loc="lower left", fontsize="small")
         plt.grid(alpha=0.4,which="both")
         plt.tight_layout()
         plt.savefig("/web/awiedl/public_html/ML/BDT/BDT_overtraining"+cat+sub+".pdf")
