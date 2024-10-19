@@ -34,31 +34,31 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
     #'LL',
-    #'LH',
-    'HH',
+    'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
-    #"LL",
+    #"QQ",
+    "LL",
     #"NuNu",
 ]
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/BDT/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
 #list of cuts you want to plot
 CUTS_LL = [
-    "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_10Me",
-    "selReco_100Coll150_115Rec160_10Me_70Z100",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #selReco_100Coll150_115Rec160_10Me",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
     "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
 ]
 
@@ -70,9 +70,9 @@ CUTS_QQ = [
     #"selReco_100Coll150_115Rec160_10Me_80Z95",
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
 
-    "selReco_0.5BDT",
+    #"selReco_0.5BDT",
     #"selReco_0.6BDT",
     #"selReco_0.7BDT",
 ]
@@ -108,7 +108,7 @@ LABELS = {
     "selReco_100Coll150_115Rec160_10Me_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV",
     "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2",
     "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
 
     #cuts for QQ
     "selReco_100Coll150_115Rec160_10Me_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV",
@@ -1375,7 +1375,7 @@ for cat in CAT:
     for sub in SUBDIR:
         directory = DIRECTORY[cat] + "/" + sub + "/"
         for cut in CUTS[cat]:
-            for variable in ['BDT_score']:
+            for variable in ['Recoil']:
 
                 canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1493,7 +1493,7 @@ for cat in CAT:
                                 last = histos[i].GetMaximum() 
                             # Set the y-axis range with additional white space
                         #hStackBkg.SetMinimum(0)
-                        hStackBkg.SetMaximum(last*1.1)
+                        hStackBkg.SetMaximum(last*1.5)
 
                     #draw the histograms
                     hStackBkg.Draw("HIST")
@@ -1509,7 +1509,7 @@ for cat in CAT:
                     hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
                     #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                     hStackBkg.GetXaxis().SetTitleOffset(1.2)
-                    hStackBkg.GetXaxis().SetLimits(0.5, 1.)
+                    hStackBkg.GetXaxis().SetLimits(115, 160)
 
                 else: 
                     # add the signal histograms

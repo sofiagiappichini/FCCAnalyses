@@ -125,13 +125,13 @@ processList = {
 
     'wzp6_ee_nuenueZ_ecm240': {'chunks':100},
 
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_nunuH_HZZ_ecm240': {'chunks':10},
+    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_Hgg_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_HZZ_ecm240': {'chunks':1},
 
     'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
     'wzp6_ee_eeH_Hbb_ecm240': {'chunks':1},
@@ -183,8 +183,8 @@ processList = {
 }
 
 inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
-output = '/work/sgiappic/HTCondor/stage1/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = '/ceph/awiedl/FCCee/HiggsCP/stage1_tag/' ##output directory of stage2 samples
+output = '/work/sgiappic/HTCondor/stage1_241019/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = '/ceph/awiedl/FCCee/HiggsCP/stage1_241019/' ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename = 'analysis_stage1.py'
