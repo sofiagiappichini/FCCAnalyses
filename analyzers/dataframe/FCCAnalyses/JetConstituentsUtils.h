@@ -265,6 +265,11 @@ namespace FCCAnalyses {
     rv::RVec<double> compute_residue_py(const rv::RVec<TLorentzVector>& tlv_jet, const rv::RVec<TLorentzVector>& sum_tlv_jcs);
     rv::RVec<double> compute_residue_pz(const rv::RVec<TLorentzVector>& tlv_jet, const rv::RVec<TLorentzVector>& sum_tlv_jcs);
 
+    rv::RVec<float> get_charge_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets);
+    rv::RVec<float> get_n_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets);
+    rv::RVec<float> get_ncharged_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets);
+    rv::RVec<float> get_nneutral_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets);
+
   }  // namespace JetConstituentsUtils
 }  // namespace FCCAnalyses
 

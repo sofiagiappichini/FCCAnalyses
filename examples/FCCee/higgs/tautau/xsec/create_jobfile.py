@@ -34,7 +34,7 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "espresso"\n'
+    cfg += '+JobFlavour      = "longlunch"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -184,12 +184,12 @@ processList = {
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/'
-output = '/work/sgiappic/HTCondor/stage3_100Coll150/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage3_100Coll150/' ##output directory of stage2 samples
-localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/'
+inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage1_tag/'
+output = '/work/sgiappic/HTCondor/stage2_tag/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_tag/' ##output directory of stage2 samples
+localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
-Filename_path = 'analysis_stage3_'
+Filename_path = 'analysis_stage2_'
 SUBDIR = [
     'LL',
     'LH',
@@ -197,8 +197,8 @@ SUBDIR = [
 ]
 CAT = [
     "QQ",
-    #"LL",
-    #"NuNu",
+    "LL",
+    "NuNu",
 ]
 nCPUS = 4
 Memory = 10000

@@ -1373,5 +1373,65 @@ namespace FCCAnalyses
       return out;
     }
 
+    rv::RVec<float> get_charge_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets)
+    {
+        rv::RVec<float> result;
+        for (int i = 0; i < jets.size(); ++i){
+            float charge=0;
+            FCCAnalysesJetConstituents jcs = jets.at(i);
+            for (const auto &jc : jcs)
+            {
+              charge += jc.charge;
+            }
+            result.push_back(charge);
+        }
+        return result;
+    }
+
+    rv::RVec<float> get_n_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets)
+    {
+        rv::RVec<float> result;
+        for (int i = 0; i < jets.size(); ++i){
+            float count=0;
+            FCCAnalysesJetConstituents jcs = jets.at(i);
+            for (const auto &jc : jcs)
+            {
+              count += 1;
+            }
+            result.push_back(count);
+        }
+        return result;
+    }
+
+    rv::RVec<float> get_ncharged_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets)
+    {
+        rv::RVec<float> result;
+        for (int i = 0; i < jets.size(); ++i){
+            float count=0;
+            FCCAnalysesJetConstituents jcs = jets.at(i);
+            for (const auto &jc : jcs)
+            {
+              if (jc.charge!=0) {count += 1;}
+            }
+            result.push_back(count);
+        }
+        return result;
+    }
+
+    rv::RVec<float> get_nneutral_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets)
+    {
+        rv::RVec<float> result;
+        for (int i = 0; i < jets.size(); ++i){
+            float count=0;
+            FCCAnalysesJetConstituents jcs = jets.at(i);
+            for (const auto &jc : jcs)
+            {
+              if (jc.charge==0) {count += 1;}
+            }
+            result.push_back(count);
+        }
+        return result;
+    }
+
   } // namespace JetConstituentsUtils
 } // namespace FCCAnalyses
