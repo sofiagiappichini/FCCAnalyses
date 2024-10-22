@@ -5,5 +5,5 @@
 [WARNING]: Unable to determine uncertainties on all fit parameters in s+b fit. Have a look at https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/part3/nonstandard/#fit-parameter-uncertainties for more information.
 
  --- FitDiagnostics ---
-Best fit r: 0.999996  -0.0566453/+0.0567707  (68% CL)
-Done in 0.06 min (cpu), 0.06 min (real)
+Best fit r: 1.00003  -0.133657/+0.133766  (68% CL)
+Done in 0.02 min (cpu), 0.02 min (real)

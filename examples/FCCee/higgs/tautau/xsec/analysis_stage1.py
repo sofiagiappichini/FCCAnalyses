@@ -808,7 +808,7 @@ class RDFanalysis():
                 .Define("TagJet_R5_charge",         "JetConstituentsUtils::get_charge_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("TagJet_R5_flavor",        "JetTaggingUtils::get_flavour({}, Particle)".format(jetClusteringHelper_R5.jets))
                 .Define("n_TagJet_R5_constituents",        "JetConstituentsUtils::get_n_constituents({})".format(jetClusteringHelper_R5.constituents))
-                .Define("n_TagJet_R5_charge_constituents",        "JetConstituentsUtils::get_ncharged_constituents({})".format(jetClusteringHelper_R5.constituents))
+                .Define("n_TagJet_R5_charged_constituents",        "JetConstituentsUtils::get_ncharged_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("n_TagJet_R5_neutral_constituents",        "JetConstituentsUtils::get_nneutral_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("n_TagJet_R5",           "return int(TagJet_R5_flavor.size())")
 
@@ -849,6 +849,18 @@ class RDFanalysis():
 		        .Define("TagJet_R5_sel_phi",     "TagJet_R5_phi[TauFromJet_R5Tag_type_sel<0]")
                 .Define("TagJet_R5_sel_mass",      "TagJet_R5_mass[TauFromJet_R5Tag_type_sel<0]")
                 .Define("n_TagJet_R5_sel", "TagJet_R5_sel_e.size()")
+
+                ### now i want to study the thadronic tau reconstruction with the function and the jet tagger by comparing it to the gen info for taus decaying not to electrons or muons
+
+                .Define("GenTau_el",       "FCCAnalyses::MCParticle::sel_daughterID(-11, false, true)(FSRGenTau,Particle,Particle1)")
+                .Define("GenTau_had",       "FCCAnalyses::MCParticle::sel_daughterID(-13, false, true)(GenTau_el,Particle,Particle1)")
+                .Define("n_GenTau_had",     "GenTau_had.size()")
+
+                .Define("TauTag_px_sel",      "TagJet_R5_px[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1]")
+                .Define("n_TauTag_R5",          "TauTag_px_sel.size()")
+
+                .Define("n_events_tag",       "if (n_GenTau_had==n_TauTag_R5) return 1; else return 0;")
+                .Define("n_events_func",       "if (n_GenTau_had==n_TauFromJet_R5) return 1; else return 0;")
 
         )
         return df2
@@ -1346,6 +1358,11 @@ class RDFanalysis():
             "TagJet_R5_sel_phi",     
             "TagJet_R5_sel_mass",      
             "n_TagJet_R5_sel", 
+
+            "n_GenTau_had", 
+            "n_TauTag_R5",  
+            "n_events_tag",  
+            "n_events_func",  
             
         ]
 

@@ -31,10 +31,8 @@ outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine
 
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    #'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_100Coll150/QQ",
-    #'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_100Me/NuNu",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
 }
 SUBDIR = [
     'LL',
@@ -49,17 +47,13 @@ CAT = [
 ]
 cut = {
     'LL':"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
-    #'QQ':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
-    'QQ':"selReco_0.5BDT",
-    #'NuNu':"selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
-    'NuNu':"selReco_0.5BDT",
+    'QQ':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+    'NuNu':"selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
 }
 VARIABLE = {
     'LL':"Recoil",
-    #'QQ':"Recoil",
-    'QQ':"BDT_score",
-    #'NuNu':"Visible_mass",
-    'NuNu':"BDT_score",
+    'QQ':"Recoil",
+    'NuNu':"Visible_mass",
     }
 
 backgrounds_all = [
