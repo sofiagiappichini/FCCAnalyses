@@ -1,0 +1,20 @@
+R5_070_Wqq_pair_tightBjet: 
+dilep: 5.83068 
+semilep_cs: 0.870998 
+semilep_ud: 4.79971 
+dihad: 1.10214 
+combination: 7.68177 
+
+R5_070_top_trio_tightBjet: 
+dilep: 5.83068 
+semilep_cs: 1.12838 
+semilep_ud: 4.7851 
+dihad: 1.48865 
+combination: 7.77104 
+
+ktN_070_top_trio_tightBjet: 
+dilep: 1.12123 
+semilep_cs: 1.35114 
+semilep_ud: 12.1349 
+dihad: error 
+combination: 12.2612 
