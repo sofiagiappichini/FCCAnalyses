@@ -29,7 +29,7 @@ def make_dir_if_not_exists(directory):
         print(f"Directory already exists.")
 
 DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_paper/' 
-DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/final/paper/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/FINAL/PLOTS_FOR_PAPER/' 
 
 CUTS = [
     #"selReco",
@@ -66,37 +66,37 @@ scuts = {
 
 LABELS = {
     "selReco":"Two leptons, no photons",
-    "selReco_gen": "Two leptons, no photons, p_{T}>1 GeV, #slash{p}_{T}>5 GeV",
-    "selReco_gen_notracks": "Two leptons, no photons, no tracks, p_{T}>1 GeV, #slash{p}_{T}>5 GeV",
-    "selReco_gen_notracks_2eh": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, #slash{p}_{T}>5 GeV",
-    "selReco_gen_notracks_2eh": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, #slash{p}_{T}>5 GeV",
-    "selReco_gen_notracks_2eh_10MET": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, #slash{p}_{T}>10 GeV",
-    "selReco_gen_notracks_2eh_10MET_0.8cos": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, cos#theta>-0.8",
-    "selReco_gen_notracks_2eh_10MET_0cos": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, cos#theta>0",
-    "selReco_gen_notracks_2eh_10MET_0cos_45ME":"#splitline{Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, #slash{p}_{T}>10 GeV,}{cos#theta>0, #slash{E}>45 Gev}",
-    "selReco_gen_notracks_2eh_10MET_0cos_45ME_e35":"#splitline{Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, #slash{p}_{T}>10 GeV,}{cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV}",
+    "selReco_gen": "Two leptons, no photons, p_{T, L}>1 GeV, #slash{p}_{T}>5 GeV",
+    "selReco_gen_notracks": "Two leptons, no photons, no tracks, p_{T, L}>1 GeV, #slash{p}_{T}>5 GeV",
+    "selReco_gen_notracks_2eh": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T,L}>1 GeV, #slash{p}_{T}>5 GeV",
+    "selReco_gen_notracks_2eh": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T,L}>1 GeV, #slash{p}_{T}>5 GeV",
+    "selReco_gen_notracks_2eh_10MET": "#splitline{Two leptons, no photons, no tracks, no neutral hadrons,}{p_{T,L}>1 GeV, #slash{p}_{T}>10 GeV}",
+    "selReco_gen_notracks_2eh_10MET_0.8cos": "Two leptons, no photons, no tracks, no neutral hadrons, p_{T,L}>1 GeV, #slash{p}_{T}>10 GeV, cos#theta>-0.8",
+    "selReco_gen_notracks_2eh_10MET_0cos": "#splitline{Two leptons, no photons, no tracks, no neutral hadrons,}{p_{T,L}>1 GeV, #slash{p}_{T}>10 GeV, cos#theta>0}",
+    "selReco_gen_notracks_2eh_10MET_0cos_45ME":"#splitline{Two leptons, no photons, no tracks, no neutral hadrons,}{p_{T,L}>1 GeV, #slash{p}_{T}>10 GeV, cos#theta>0, #slash{E}>45 Gev}",
+    "selReco_gen_notracks_2eh_10MET_0cos_45ME_e35":"#splitline{Two leptons, no photons, no tracks, no neutral hadrons,}{p_{T,L}>1 GeV, #slash{p}_{T}>10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{L1}<35 GeV}",
 
-    "selReco_gen_notracks_2eh_10MET_0.8cos_80ME_10chi": "#splitline{Two leptons, no photons, no tracks, no neutral hadrons, p_{T}>1 GeV, #slash{p}_{T}>10 GeV,}{cos#theta>-0.8, M(l,l')<80 GeV, #chi^{2}<10 GeV}",
+    "selReco_gen_notracks_2eh_10MET_0.8cos_80ME_10chi": "#splitline{Two leptons, no photons, no tracks, no neutral hadrons, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV,}{cos#theta>-0.8, M(l,l')<80 GeV, #chi^{2}<10 GeV}",
     
-    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_DF":"DF, p_{T}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<80 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_10gev_DF":"DF, p_{T}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_20gev_DF":"DF, p_{T}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<20 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_30gev_DF":"DF, p_{T}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<30 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_DF":"DF, p_{T, L}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<80 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_10gev_DF":"DF, p_{T, L}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_20gev_DF":"DF, p_{T, L}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<20 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_30gev_DF":"DF, p_{T, L}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<30 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
 
-    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_SF":"SF, p_{T}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<80 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_10gev_SF":"SF, p_{T}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_20gev_SF":"SF, p_{T}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<20 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_30gev_SF":"SF, p_{T}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<30 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_SF":"SF, p_{T, L}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<80 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_10gev_SF":"SF, p_{T, L}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_20gev_SF":"SF, p_{T, L}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<20 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_2eh_M80_15MET_0cos_45ME_e35_30gev_SF":"SF, p_{T, L}>1 GeV, #slash{p}_{T}>15 GeV, M(l,l')<30 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
 
-    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_DF":"DF no jets, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<80 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_10gev_DF":"DF no jets, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_20gev_DF":"DF no jets, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<20 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_30gev_DF":"DF no jets, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<30 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_DF":"DF no jets, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<80 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_10gev_DF":"DF no jets, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_20gev_DF":"DF no jets, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<20 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_30gev_DF":"DF no jets, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<30 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
 
-    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_SF":"SF no jets, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<80 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_10gev_SF":"SF no jets, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_20gev_SF":"SF no jets, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<20 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
-    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_30gev_SF":"SF no jets, p_{T}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<30 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_SF":"SF no jets, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<80 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_10gev_SF":"SF no jets, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<10 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_20gev_SF":"SF no jets, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<20 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
+    "selReco_gen_notracks_nojets_M80_10MET_0cos_45ME_e35_30gev_SF":"SF no jets, p_{T, L}>1 GeV, #slash{p}_{T}>10 GeV, M(l,l')<30 GeV, cos#theta>0, #slash{E}>45 Gev, E_{lead l}<35 GeV",
 
  }
 
@@ -391,7 +391,7 @@ bcolors = {
     'eenunu_m': 30,
     'mumununu_m': 32,
     'tatanunu_m': 33,
-    'llnunu_m': 38,
+    'llnunu_m': 33,
     'emununu':33,
 }
 
@@ -484,27 +484,33 @@ for cut in CUTS:
             canvas = ROOT.TCanvas("", "", 800, 800)
 
             nsig = len(signals)
-            nbkg = 3 # change according to type of plots, #len(backgrounds)
+            nbkg = 5 # change according to type of plots, #len(backgrounds)
 
             #legend coordinates and style
         
             legsize = 0.04*nsig
             legsize2 = 0.04*nbkg
-            leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
+            if "10MET" in cut:
+                leg = ROOT.TLegend(0.16, 0.68 - legsize, 0.43, 0.68)
+            else:
+                leg = ROOT.TLegend(0.16, 0.69 - legsize, 0.43, 0.69)
             leg.SetFillColor(0)
             leg.SetFillStyle(0)
             leg.SetLineColor(0)
             leg.SetShadowColor(0)
-            leg.SetTextSize(0.025)
+            leg.SetTextSize(0.035)
             leg.SetTextFont(42)
 
-            leg2 = ROOT.TLegend(0.55, 0.70 - legsize2, 0.85, 0.70)
-            leg2.SetNColumns(2)
+            if "10MET" in cut:
+                leg2 = ROOT.TLegend(0.70, 0.68 - legsize2, 0.88, 0.68)
+            else:
+                leg2 = ROOT.TLegend(0.70, 0.69 - legsize2, 0.88, 0.69)
+            #leg2.SetNColumns(2)
             leg2.SetFillColor(0)
             leg2.SetFillStyle(0)
             leg2.SetLineColor(0)
             leg2.SetShadowColor(0)
-            leg2.SetTextSize(0.025)
+            leg2.SetTextSize(0.035)
             leg2.SetTextFont(42)
 
             #global arrays for histos and colors
@@ -645,23 +651,23 @@ for cut in CUTS:
             latex.SetNDC()
 
             text = '#bf{#it{'+rightText+'}}'
-            latex.SetTextSize(0.03)
+            latex.SetTextSize(0.035)
             latex.DrawLatex(0.18, 0.84, text)
 
             text = '#bf{#it{' + ana_tex + '}}'
-            latex.SetTextSize(0.03)
-            latex.DrawLatex(0.18, 0.80, text)
+            latex.SetTextSize(0.035)
+            latex.DrawLatex(0.18, 0.79, text)
 
             text = '#bf{#it{' + extralab + '}}'
-            latex.SetTextSize(0.02)
-            latex.DrawLatex(0.18, 0.74, text)
+            latex.SetTextSize(0.03)
+            latex.DrawLatex(0.18, 0.73, text)
 
             leg.Draw()
             leg2.Draw()
 
             latex.SetTextAlign(31)
             text = '#it{' + leftText + '}'
-            latex.SetTextSize(0.03)
+            latex.SetTextSize(0.035)
             latex.DrawLatex(0.92, 0.92, text)
 
             # Set Logarithmic scales for both x and y axes
