@@ -105,7 +105,7 @@ for i, data_file in enumerate(data_files):
             #axs[col].set_xscale('log')
             axs[col].set_ylim([-12, -6])
 
-        axs[col].tick_params(direction='out', top=False, right=False)
+        axs[col].tick_params(direction='out', top=False, right=False, which='major', labelsize=16)
 
 df_FCC_ee = pd.read_csv("/eos/user/s/sgiappic/2HNL_samples/data/FCC_ee_2_data.csv",header=None, sep=",", names = ["X", "Y"])
 x_FCC_ee, y_FCC_ee = [], []
@@ -134,4 +134,4 @@ axs[1].set_title(r'$Displaced\; events - Inverted\; Hierarchy$', fontsize=20, y=
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/paper/nevents_7aug2.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/paper/nevents_final_points.png', format='png', dpi=330)
