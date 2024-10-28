@@ -54,9 +54,9 @@ replacement_words = [
     'wzp6_ee_bbH_Htautau_ecm240',
 ]
 
-DIRECTORY_EFF = "/ceph/awiedl/FCCee/HiggsCP/stage2_eff"
+DIRECTORY_EXC = "/ceph/awiedl/FCCee/HiggsCP/stage2"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/stage2"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/stage2_eff_cat"
 
 SUBDIR = [
     #'LL',
@@ -74,33 +74,51 @@ CAT = [
 tree_name = "events"
 
 # Print the results
-output_file = "/ceph/awiedl/FCCee/HiggsCP/stage2_eff/nevents_tree.txt"
+output_file = "/ceph/awiedl/FCCee/HiggsCP/stage2_eff_cat/nevents_tree.txt"
 
 tab = []
 raw = {}
 
 # Loop through each replacement word
 row = []
-row.append("Signal category & Efficiency of $\tau$ reconstruction \\ \hline") #header
+row.append("Signal category & Efficiency of tagged $\tau$ reconstruction & Efficiency of explicit $\tau$ reconstruction \\ \hline") #header
 for cat in CAT:
     for sub in SUBDIR:
-        events_jets = 0
-        events_tau = 0
+        #events_jets = 0
+        #events_tau = 0
+        process_events = 0
+        events_ttree = 0
+        process_events1 = 0
+        events_ttree1 = 0
         eff = 0
+        eff1 = 0
         for replacement_word in replacement_words:
 
             #run over files with taus from function
-            root_file_path = f"{DIRECTORY_EFF}/{cat}/{sub}/{replacement_word}.root"
-            process_events = 0
-            events_ttree = 0
+            root_file_path = f"{DIRECTORY}/{cat}/{sub}/{replacement_word}.root"
 
-            chunk_process_events, chunk_events_ttree = get_entries(root_file_path)
-            if chunk_process_events is not None and chunk_events_ttree is not None:
-                process_events += chunk_process_events #original number of events
-                events_ttree += chunk_events_ttree
+            if file_exists(root_file_path):
+
+                chunk_process_events, chunk_events_ttree = get_entries(root_file_path)
+                if chunk_process_events is not None and chunk_events_ttree is not None:
+                    process_events += chunk_process_events #original number of events
+                    events_ttree += chunk_events_ttree
+                #print(f"{root_file_path}, {cat+sub}, {process_events}, {events_ttree}")
+
+            #run over files with taus from function
+            root_file_path1 = f"{DIRECTORY_EXC}/{cat}/{sub}/{replacement_word}/chunk_0.root"
+
+            if file_exists(root_file_path1):
+
+                chunk_process_events1, chunk_events_ttree1 = get_entries(root_file_path1)
+                if chunk_process_events1 is not None and chunk_events_ttree1 is not None:
+                    process_events1 += chunk_process_events1 #original number of events
+                    events_ttree1 += chunk_events_ttree1
+                #print(f"{root_file_path1}, {cat+sub}, {process_events1}, {events_ttree1}")
+
             
             #sum all events for signals
-            events_jets += events_ttree
+            '''events_jets += events_ttree
             #print(f"{cat}, {sub}, {replacement_word}, {events_jets}")
             
             #now for jets instead of taus
@@ -121,9 +139,15 @@ for cat in CAT:
 
         #get efficiency as tau events / jets events for each category
         if events_jets!=0:
-            eff = events_tau / events_jets
+            eff = events_tau / events_jets'''
 
-        row.append(f"{cat+sub} & {eff*100:.1f}\%" + " \\ \hline")
+        if events_ttree!=0 :
+            eff = events_ttree/process_events
+        if events_ttree1!=0 :
+            eff1 = events_ttree1/process_events1
+
+        row.append(f"{cat+sub} & {eff*100:.3f}\% & {eff1*100:.3f}\%" + " \\ \hline")
+        #row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}")
 
 tab.append(row)
 

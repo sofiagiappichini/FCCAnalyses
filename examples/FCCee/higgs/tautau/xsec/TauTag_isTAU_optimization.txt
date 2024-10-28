@@ -1,0 +1,823 @@
+significance = 1.277965501889984 for cut at TAU=0.5 
+purity = 0.0011119616856740111 for cut at TAU=0.5 
+significance = 1.278655257365468 for cut at TAU=0.51 
+purity = 0.0011136873260134256 for cut at TAU=0.51 
+significance = 1.279761013600355 for cut at TAU=0.52 
+purity = 0.0011158567235566997 for cut at TAU=0.52 
+significance = 1.2804871864920484 for cut at TAU=0.53 
+purity = 0.001117706345722765 for cut at TAU=0.53 
+significance = 1.2812101435442822 for cut at TAU=0.54 
+purity = 0.0011196266091268337 for cut at TAU=0.54 
+significance = 1.2825868577216943 for cut at TAU=0.55 
+purity = 0.0011221307304530074 for cut at TAU=0.55 
+significance = 1.2838636864271606 for cut at TAU=0.56 
+purity = 0.001124640636555125 for cut at TAU=0.56 
+significance = 1.285065246052026 for cut at TAU=0.5700000000000001 
+purity = 0.0011270697751269002 for cut at TAU=0.5700000000000001 
+significance = 1.2862944842362494 for cut at TAU=0.58 
+purity = 0.0011295640326312464 for cut at TAU=0.58 
+significance = 1.287641829136013 for cut at TAU=0.59 
+purity = 0.0011321774963857422 for cut at TAU=0.59 
+significance = 1.2891399252697755 for cut at TAU=0.6 
+purity = 0.0011348893086894102 for cut at TAU=0.6 
+significance = 1.2903252478284761 for cut at TAU=0.61 
+purity = 0.001137421751634269 for cut at TAU=0.61 
+significance = 1.2916153017622665 for cut at TAU=0.62 
+purity = 0.0011400858251649068 for cut at TAU=0.62 
+significance = 1.2926237362121573 for cut at TAU=0.63 
+purity = 0.0011425389750531452 for cut at TAU=0.63 
+significance = 1.2938952278504812 for cut at TAU=0.64 
+purity = 0.0011452890243614413 for cut at TAU=0.64 
+significance = 1.295571283122421 for cut at TAU=0.65 
+purity = 0.0011484945548444593 for cut at TAU=0.65 
+significance = 1.2970276807343124 for cut at TAU=0.66 
+purity = 0.0011514619996192653 for cut at TAU=0.66 
+significance = 1.2981780211037879 for cut at TAU=0.67 
+purity = 0.0011542520244970335 for cut at TAU=0.67 
+significance = 1.2994261489583467 for cut at TAU=0.6799999999999999 
+purity = 0.0011570289398211582 for cut at TAU=0.6799999999999999 
+significance = 1.3008159005556184 for cut at TAU=0.69 
+purity = 0.0011601177153167514 for cut at TAU=0.69 
+significance = 1.3026207420856797 for cut at TAU=0.7 
+purity = 0.0011635694116713389 for cut at TAU=0.7 
+significance = 1.304101952237047 for cut at TAU=0.71 
+purity = 0.0011667377780863963 for cut at TAU=0.71 
+significance = 1.3059925406830513 for cut at TAU=0.72 
+purity = 0.0011703545943448465 for cut at TAU=0.72 
+significance = 1.3077538937481552 for cut at TAU=0.73 
+purity = 0.0011739553345181336 for cut at TAU=0.73 
+significance = 1.3093596410649715 for cut at TAU=0.74 
+purity = 0.0011774202587391581 for cut at TAU=0.74 
+significance = 1.3109491096257895 for cut at TAU=0.75 
+purity = 0.001180931488053553 for cut at TAU=0.75 
+significance = 1.3126020373244023 for cut at TAU=0.76 
+purity = 0.0011845675768302642 for cut at TAU=0.76 
+significance = 1.3140138599903455 for cut at TAU=0.77 
+purity = 0.0011880732077003482 for cut at TAU=0.77 
+significance = 1.3157090732112502 for cut at TAU=0.78 
+purity = 0.0011919051428891292 for cut at TAU=0.78 
+significance = 1.3179736000727555 for cut at TAU=0.79 
+purity = 0.0011963768233977114 for cut at TAU=0.79 
+significance = 1.3195391965001304 for cut at TAU=0.8 
+purity = 0.0012004308247255885 for cut at TAU=0.8 
+significance = 1.3215519532235596 for cut at TAU=0.81 
+purity = 0.0012050439988955909 for cut at TAU=0.81 
+significance = 1.3242226191232087 for cut at TAU=0.8200000000000001 
+purity = 0.001210568620396383 for cut at TAU=0.8200000000000001 
+significance = 1.3269359785451627 for cut at TAU=0.8300000000000001 
+purity = 0.0012161257392679164 for cut at TAU=0.8300000000000001 
+significance = 1.3299428160788431 for cut at TAU=0.8400000000000001 
+purity = 0.0012221462185309636 for cut at TAU=0.8400000000000001 
+significance = 1.3327169847749714 for cut at TAU=0.8500000000000001 
+purity = 0.0012284558744750402 for cut at TAU=0.8500000000000001 
+significance = 1.3358262792668851 for cut at TAU=0.86 
+purity = 0.001235330464335244 for cut at TAU=0.86 
+significance = 1.3403901505515539 for cut at TAU=0.87 
+purity = 0.0012443747659602066 for cut at TAU=0.87 
+significance = 1.3464033342033737 for cut at TAU=0.88 
+purity = 0.0012562739530856814 for cut at TAU=0.88 
+significance = 1.3518310841703596 for cut at TAU=0.89 
+purity = 0.0012679475600945193 for cut at TAU=0.89 
+significance = 1.3568568234198632 for cut at TAU=0.9 
+purity = 0.0012794849834021575 for cut at TAU=0.9 
+significance = 1.3642851119019719 for cut at TAU=0.91 
+purity = 0.001295206468611685 for cut at TAU=0.91 
+significance = 1.370294253035383 for cut at TAU=0.9199999999999999 
+purity = 0.00130936265616866 for cut at TAU=0.9199999999999999 
+significance = 1.378560780567019 for cut at TAU=0.9299999999999999 
+purity = 0.0013272557373019817 for cut at TAU=0.9299999999999999 
+significance = 1.3861041384374506 for cut at TAU=0.94 
+purity = 0.0013459174990772258 for cut at TAU=0.94 
+significance = 1.3969973112224974 for cut at TAU=0.95 
+purity = 0.0013713486721556064 for cut at TAU=0.95 
+significance = 1.409834540410743 for cut at TAU=0.96 
+purity = 0.0014037483567481644 for cut at TAU=0.96 
+significance = 1.4303750565740339 for cut at TAU=0.97 
+purity = 0.0014543167576893956 for cut at TAU=0.97 
+significance = 1.4523410435600572 for cut at TAU=0.98 
+purity = 0.0015212914255460439 for cut at TAU=0.98 
+significance = 1.5191432292609741 for cut at TAU=0.99 
+purity = 0.0016997166219021678 for cut at TAU=0.99 
+
+TAGGER PERFORMANCE:
+Max significance of QQLH = 1.5191432292609741 for cut at TAU=0.99 
+Max purity of QQLH = 0.0016997166219021678 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of QQLH = 0.04989923541970073
+Purity of QQLH = 2.4139019647700164e-05 
+
+significance = 3.7978716480463697 for cut at TAU=0.5 
+purity = 0.005410582879457155 for cut at TAU=0.5 
+significance = 3.8014527111434706 for cut at TAU=0.51 
+purity = 0.005422371633313977 for cut at TAU=0.51 
+significance = 3.8040409961514583 for cut at TAU=0.52 
+purity = 0.0054320127693187285 for cut at TAU=0.52 
+significance = 3.8074882831541017 for cut at TAU=0.53 
+purity = 0.005443341944098069 for cut at TAU=0.53 
+significance = 3.8107962549484236 for cut at TAU=0.54 
+purity = 0.005454093157512515 for cut at TAU=0.54 
+significance = 3.8137527550593577 for cut at TAU=0.55 
+purity = 0.0054644352717556225 for cut at TAU=0.55 
+significance = 3.817060127056472 for cut at TAU=0.56 
+purity = 0.005475716704640109 for cut at TAU=0.56 
+significance = 3.8194301697889017 for cut at TAU=0.5700000000000001 
+purity = 0.005485413090309137 for cut at TAU=0.5700000000000001 
+significance = 3.8231642524587612 for cut at TAU=0.58 
+purity = 0.005497508185352119 for cut at TAU=0.58 
+significance = 3.827206090972705 for cut at TAU=0.59 
+purity = 0.005510729382621221 for cut at TAU=0.59 
+significance = 3.830861138949918 for cut at TAU=0.6 
+purity = 0.005522561899046218 for cut at TAU=0.6 
+significance = 3.833765469553734 for cut at TAU=0.61 
+purity = 0.005533064319634686 for cut at TAU=0.61 
+significance = 3.8372991827040654 for cut at TAU=0.62 
+purity = 0.005544596345571792 for cut at TAU=0.62 
+significance = 3.84038398400727 for cut at TAU=0.63 
+purity = 0.0055558500786618715 for cut at TAU=0.63 
+significance = 3.8433790454447125 for cut at TAU=0.64 
+purity = 0.005567039622452669 for cut at TAU=0.64 
+significance = 3.8470399075197084 for cut at TAU=0.65 
+purity = 0.00557952477179905 for cut at TAU=0.65 
+significance = 3.850693987409455 for cut at TAU=0.66 
+purity = 0.005591800414737615 for cut at TAU=0.66 
+significance = 3.8537689405718645 for cut at TAU=0.67 
+purity = 0.005603522532565295 for cut at TAU=0.67 
+significance = 3.8570045099385646 for cut at TAU=0.6799999999999999 
+purity = 0.0056155766998388324 for cut at TAU=0.6799999999999999 
+significance = 3.860164881168406 for cut at TAU=0.69 
+purity = 0.005627356584385105 for cut at TAU=0.69 
+significance = 3.863689523720414 for cut at TAU=0.7 
+purity = 0.005640231022892138 for cut at TAU=0.7 
+significance = 3.866776802208369 for cut at TAU=0.71 
+purity = 0.005652457797802136 for cut at TAU=0.71 
+significance = 3.8703255650958543 for cut at TAU=0.72 
+purity = 0.005665221976306889 for cut at TAU=0.72 
+significance = 3.8735957241234593 for cut at TAU=0.73 
+purity = 0.005677981018535274 for cut at TAU=0.73 
+significance = 3.8780870375116336 for cut at TAU=0.74 
+purity = 0.005693062187205018 for cut at TAU=0.74 
+significance = 3.8810505119644967 for cut at TAU=0.75 
+purity = 0.005705616940275039 for cut at TAU=0.75 
+significance = 3.8851882075392035 for cut at TAU=0.76 
+purity = 0.005720372561204599 for cut at TAU=0.76 
+significance = 3.889213085873614 for cut at TAU=0.77 
+purity = 0.005734914641700701 for cut at TAU=0.77 
+significance = 3.89285156705807 for cut at TAU=0.78 
+purity = 0.005749026848172428 for cut at TAU=0.78 
+significance = 3.8971018464458322 for cut at TAU=0.79 
+purity = 0.00576469890998186 for cut at TAU=0.79 
+significance = 3.901554656899635 for cut at TAU=0.8 
+purity = 0.005780549423584149 for cut at TAU=0.8 
+significance = 3.905257168376979 for cut at TAU=0.81 
+purity = 0.005795970820591798 for cut at TAU=0.81 
+significance = 3.910207317265514 for cut at TAU=0.8200000000000001 
+purity = 0.005814341887763302 for cut at TAU=0.8200000000000001 
+significance = 3.914917199689011 for cut at TAU=0.8300000000000001 
+purity = 0.00583257477338402 for cut at TAU=0.8300000000000001 
+significance = 3.9205370680117286 for cut at TAU=0.8400000000000001 
+purity = 0.005853332007364378 for cut at TAU=0.8400000000000001 
+significance = 3.925416224266148 for cut at TAU=0.8500000000000001 
+purity = 0.005872918760919446 for cut at TAU=0.8500000000000001 
+significance = 3.930291677547323 for cut at TAU=0.86 
+purity = 0.005893838551735543 for cut at TAU=0.86 
+significance = 3.936576921621225 for cut at TAU=0.87 
+purity = 0.005917049230234065 for cut at TAU=0.87 
+significance = 3.944108324056502 for cut at TAU=0.88 
+purity = 0.005944543536648041 for cut at TAU=0.88 
+significance = 3.9506576292075737 for cut at TAU=0.89 
+purity = 0.00597099396080579 for cut at TAU=0.89 
+significance = 3.957211463963235 for cut at TAU=0.9 
+purity = 0.005999925029915061 for cut at TAU=0.9 
+significance = 3.9650961439698773 for cut at TAU=0.91 
+purity = 0.006033888543920391 for cut at TAU=0.91 
+significance = 3.971394181265615 for cut at TAU=0.9199999999999999 
+purity = 0.00606837514598008 for cut at TAU=0.9199999999999999 
+significance = 3.983404887673333 for cut at TAU=0.9299999999999999 
+purity = 0.006117014090130952 for cut at TAU=0.9299999999999999 
+significance = 3.993133761717677 for cut at TAU=0.94 
+purity = 0.006168033645020464 for cut at TAU=0.94 
+significance = 4.009793674665558 for cut at TAU=0.95 
+purity = 0.006241833582455378 for cut at TAU=0.95 
+significance = 4.032999045910458 for cut at TAU=0.96 
+purity = 0.0063468430079455275 for cut at TAU=0.96 
+significance = 4.060882066967081 for cut at TAU=0.97 
+purity = 0.006486430682231047 for cut at TAU=0.97 
+significance = 4.096597081943165 for cut at TAU=0.98 
+purity = 0.0066825001667282224 for cut at TAU=0.98 
+significance = 4.19215995527842 for cut at TAU=0.99 
+purity = 0.007144554114365006 for cut at TAU=0.99 
+
+TAGGER PERFORMANCE:
+Max significance of QQHH = 4.19215995527842 for cut at TAU=0.99 
+Max purity of QQHH = 0.007144554114365006 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of QQHH = 0.26462730939385165
+Purity of QQHH = 0.00010764294417121719 
+
+significance = 2.8159796572620652 for cut at TAU=0.5 
+purity = 0.014738668256725438 for cut at TAU=0.5 
+significance = 2.8167626381608453 for cut at TAU=0.51 
+purity = 0.014747077022527632 for cut at TAU=0.51 
+significance = 2.817935493683408 for cut at TAU=0.52 
+purity = 0.014759179185984447 for cut at TAU=0.52 
+significance = 2.8188326932345853 for cut at TAU=0.53 
+purity = 0.014768440180953787 for cut at TAU=0.53 
+significance = 2.819822488171537 for cut at TAU=0.54 
+purity = 0.01477866017407948 for cut at TAU=0.54 
+significance = 2.8207537682994386 for cut at TAU=0.55 
+purity = 0.01478924216263821 for cut at TAU=0.55 
+significance = 2.821838368362174 for cut at TAU=0.56 
+purity = 0.014800764289022316 for cut at TAU=0.56 
+significance = 2.822987565447921 for cut at TAU=0.5700000000000001 
+purity = 0.014812958818385851 for cut at TAU=0.5700000000000001 
+significance = 2.824270531652261 for cut at TAU=0.58 
+purity = 0.014826876230346508 for cut at TAU=0.58 
+significance = 2.8253826087281304 for cut at TAU=0.59 
+purity = 0.014838697600939633 for cut at TAU=0.59 
+significance = 2.8266037684466183 for cut at TAU=0.6 
+purity = 0.014852006224824743 for cut at TAU=0.6 
+significance = 2.8288090289700483 for cut at TAU=0.61 
+purity = 0.014875813765024951 for cut at TAU=0.61 
+significance = 2.8302563720539036 for cut at TAU=0.62 
+purity = 0.014891447435255403 for cut at TAU=0.62 
+significance = 2.8315516172510757 for cut at TAU=0.63 
+purity = 0.01490554926180123 for cut at TAU=0.63 
+significance = 2.8328867238630906 for cut at TAU=0.64 
+purity = 0.014919735390781851 for cut at TAU=0.64 
+significance = 2.834218958571531 for cut at TAU=0.65 
+purity = 0.014934834140347894 for cut at TAU=0.65 
+significance = 2.8359688314291187 for cut at TAU=0.66 
+purity = 0.014953680029560514 for cut at TAU=0.66 
+significance = 2.8375256915633855 for cut at TAU=0.67 
+purity = 0.01497152592144514 for cut at TAU=0.67 
+significance = 2.8391414942213524 for cut at TAU=0.6799999999999999 
+purity = 0.014989640483722812 for cut at TAU=0.6799999999999999 
+significance = 2.8406096953995084 for cut at TAU=0.69 
+purity = 0.015005591657961824 for cut at TAU=0.69 
+significance = 2.842534722572057 for cut at TAU=0.7 
+purity = 0.015026289808649663 for cut at TAU=0.7 
+significance = 2.8440622146454952 for cut at TAU=0.71 
+purity = 0.015042860197903634 for cut at TAU=0.71 
+significance = 2.845583202860767 for cut at TAU=0.72 
+purity = 0.015060070252614159 for cut at TAU=0.72 
+significance = 2.847712645811895 for cut at TAU=0.73 
+purity = 0.01508294000398762 for cut at TAU=0.73 
+significance = 2.8494439191593335 for cut at TAU=0.74 
+purity = 0.015102332724337916 for cut at TAU=0.74 
+significance = 2.851473569095707 for cut at TAU=0.75 
+purity = 0.015124534094804083 for cut at TAU=0.75 
+significance = 2.8530593328357736 for cut at TAU=0.76 
+purity = 0.015143744359363878 for cut at TAU=0.76 
+significance = 2.855359259330261 for cut at TAU=0.77 
+purity = 0.015168788023743636 for cut at TAU=0.77 
+significance = 2.857210383002414 for cut at TAU=0.78 
+purity = 0.015190143764422109 for cut at TAU=0.78 
+significance = 2.8596717803211833 for cut at TAU=0.79 
+purity = 0.01521758810554098 for cut at TAU=0.79 
+significance = 2.8621981851454095 for cut at TAU=0.8 
+purity = 0.015246123216221647 for cut at TAU=0.8 
+significance = 2.8652016258524404 for cut at TAU=0.81 
+purity = 0.015279659549861987 for cut at TAU=0.81 
+significance = 2.867929476945675 for cut at TAU=0.8200000000000001 
+purity = 0.01531135580835849 for cut at TAU=0.8200000000000001 
+significance = 2.8710698876562635 for cut at TAU=0.8300000000000001 
+purity = 0.015347086313037283 for cut at TAU=0.8300000000000001 
+significance = 2.874362096602411 for cut at TAU=0.8400000000000001 
+purity = 0.015386779862177104 for cut at TAU=0.8400000000000001 
+significance = 2.8785880688066476 for cut at TAU=0.8500000000000001 
+purity = 0.015433411190209951 for cut at TAU=0.8500000000000001 
+significance = 2.8828230102468804 for cut at TAU=0.86 
+purity = 0.015481513178706337 for cut at TAU=0.86 
+significance = 2.8876523856626 for cut at TAU=0.87 
+purity = 0.01553824427283984 for cut at TAU=0.87 
+significance = 2.8929667314473946 for cut at TAU=0.88 
+purity = 0.015601504716525364 for cut at TAU=0.88 
+significance = 2.899825534404331 for cut at TAU=0.89 
+purity = 0.015679568644223228 for cut at TAU=0.89 
+significance = 2.9064483222363156 for cut at TAU=0.9 
+purity = 0.01576088634623726 for cut at TAU=0.9 
+significance = 2.913664044345 for cut at TAU=0.91 
+purity = 0.015851230508040954 for cut at TAU=0.91 
+significance = 2.9217245013969064 for cut at TAU=0.9199999999999999 
+purity = 0.015952424007369882 for cut at TAU=0.9199999999999999 
+significance = 2.930026497802336 for cut at TAU=0.9299999999999999 
+purity = 0.01606649144078182 for cut at TAU=0.9299999999999999 
+significance = 2.9381901002784954 for cut at TAU=0.94 
+purity = 0.016188149259373893 for cut at TAU=0.94 
+significance = 2.947752656316262 for cut at TAU=0.95 
+purity = 0.01634037897858589 for cut at TAU=0.95 
+significance = 2.9587521043299914 for cut at TAU=0.96 
+purity = 0.016518652325308084 for cut at TAU=0.96 
+significance = 2.9685325950781496 for cut at TAU=0.97 
+purity = 0.016738809338532872 for cut at TAU=0.97 
+significance = 2.977984717115525 for cut at TAU=0.98 
+purity = 0.017038740810882563 for cut at TAU=0.98 
+significance = 2.98682046868028 for cut at TAU=0.99 
+purity = 0.017510559181176454 for cut at TAU=0.99 
+
+TAGGER PERFORMANCE:
+Max significance of LLLH = 2.98682046868028 for cut at TAU=0.99 
+Max purity of LLLH = 0.017510559181176454 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of LLLH = 0.03419909470714516
+Purity of LLLH = 0.0004165624010912305 
+
+significance = 2.067853577061751 for cut at TAU=0.5 
+purity = 0.002100800715534631 for cut at TAU=0.5 
+significance = 2.068417080348394 for cut at TAU=0.51 
+purity = 0.002101973695882929 for cut at TAU=0.51 
+significance = 2.0691192342781006 for cut at TAU=0.52 
+purity = 0.0021034342353437505 for cut at TAU=0.52 
+significance = 2.069767640462149 for cut at TAU=0.53 
+purity = 0.002104816529293052 for cut at TAU=0.53 
+significance = 2.0703499684241713 for cut at TAU=0.54 
+purity = 0.0021060710914431453 for cut at TAU=0.54 
+significance = 2.0710331767171604 for cut at TAU=0.55 
+purity = 0.0021074946650860987 for cut at TAU=0.55 
+significance = 2.0718363799943607 for cut at TAU=0.56 
+purity = 0.0021091684691703955 for cut at TAU=0.56 
+significance = 2.072580265074563 for cut at TAU=0.5700000000000001 
+purity = 0.0021107472063967127 for cut at TAU=0.5700000000000001 
+significance = 2.07334821661651 for cut at TAU=0.58 
+purity = 0.0021124016356711775 for cut at TAU=0.58 
+significance = 2.0743314211751294 for cut at TAU=0.59 
+purity = 0.0021144503262969226 for cut at TAU=0.59 
+significance = 2.0752541795336925 for cut at TAU=0.6 
+purity = 0.00211640785453453 for cut at TAU=0.6 
+significance = 2.0760073684938734 for cut at TAU=0.61 
+purity = 0.00211803369651469 for cut at TAU=0.61 
+significance = 2.076890343263113 for cut at TAU=0.62 
+purity = 0.0021199116301197423 for cut at TAU=0.62 
+significance = 2.077813427398439 for cut at TAU=0.63 
+purity = 0.00212191472193728 for cut at TAU=0.63 
+significance = 2.0787576300205477 for cut at TAU=0.64 
+purity = 0.0021239852732627897 for cut at TAU=0.64 
+significance = 2.079657818726614 for cut at TAU=0.65 
+purity = 0.0021259445173282474 for cut at TAU=0.65 
+significance = 2.080693637814739 for cut at TAU=0.66 
+purity = 0.0021281513163600475 for cut at TAU=0.66 
+significance = 2.0817072459493082 for cut at TAU=0.67 
+purity = 0.0021303376334105124 for cut at TAU=0.67 
+significance = 2.0827055394764056 for cut at TAU=0.6799999999999999 
+purity = 0.002132526279774136 for cut at TAU=0.6799999999999999 
+significance = 2.083759836039095 for cut at TAU=0.69 
+purity = 0.0021348360157281915 for cut at TAU=0.69 
+significance = 2.0849421649875857 for cut at TAU=0.7 
+purity = 0.0021373967151751116 for cut at TAU=0.7 
+significance = 2.0860090297247567 for cut at TAU=0.71 
+purity = 0.0021397154039626194 for cut at TAU=0.71 
+significance = 2.0870478517679736 for cut at TAU=0.72 
+purity = 0.0021420716369659693 for cut at TAU=0.72 
+significance = 2.0881226521961165 for cut at TAU=0.73 
+purity = 0.002144508597924653 for cut at TAU=0.73 
+significance = 2.0893339097249917 for cut at TAU=0.74 
+purity = 0.00214721095432748 for cut at TAU=0.74 
+significance = 2.0906312813409205 for cut at TAU=0.75 
+purity = 0.0021501001155011423 for cut at TAU=0.75 
+significance = 2.092066268972831 for cut at TAU=0.76 
+purity = 0.0021532407575412613 for cut at TAU=0.76 
+significance = 2.0936551583481893 for cut at TAU=0.77 
+purity = 0.002156669601039272 for cut at TAU=0.77 
+significance = 2.095119363501096 for cut at TAU=0.78 
+purity = 0.0021599560001719807 for cut at TAU=0.78 
+significance = 2.09663077064131 for cut at TAU=0.79 
+purity = 0.002163337489994527 for cut at TAU=0.79 
+significance = 2.098287239900001 for cut at TAU=0.8 
+purity = 0.002166950601800481 for cut at TAU=0.8 
+significance = 2.100087048304803 for cut at TAU=0.81 
+purity = 0.0021710141971070076 for cut at TAU=0.81 
+significance = 2.101706818774626 for cut at TAU=0.8200000000000001 
+purity = 0.002174717426767933 for cut at TAU=0.8200000000000001 
+significance = 2.1036460465639464 for cut at TAU=0.8300000000000001 
+purity = 0.0021791715413813444 for cut at TAU=0.8300000000000001 
+significance = 2.105750213517228 for cut at TAU=0.8400000000000001 
+purity = 0.002183979920524655 for cut at TAU=0.8400000000000001 
+significance = 2.1085507078531616 for cut at TAU=0.8500000000000001 
+purity = 0.0021903073565878294 for cut at TAU=0.8500000000000001 
+significance = 2.1114439614106226 for cut at TAU=0.86 
+purity = 0.002196847433516108 for cut at TAU=0.86 
+significance = 2.1146782724275432 for cut at TAU=0.87 
+purity = 0.0022042249542037146 for cut at TAU=0.87 
+significance = 2.1186914009337388 for cut at TAU=0.88 
+purity = 0.0022132677566259274 for cut at TAU=0.88 
+significance = 2.123116998924595 for cut at TAU=0.89 
+purity = 0.002223366494216845 for cut at TAU=0.89 
+significance = 2.128054643644946 for cut at TAU=0.9 
+purity = 0.002234818272398752 for cut at TAU=0.9 
+significance = 2.133355796908254 for cut at TAU=0.91 
+purity = 0.0022475915226048394 for cut at TAU=0.91 
+significance = 2.139125261471344 for cut at TAU=0.9199999999999999 
+purity = 0.002261966377313048 for cut at TAU=0.9199999999999999 
+significance = 2.144492101990004 for cut at TAU=0.9299999999999999 
+purity = 0.002276658970915304 for cut at TAU=0.9299999999999999 
+significance = 2.15064716536267 for cut at TAU=0.94 
+purity = 0.002294283254208615 for cut at TAU=0.94 
+significance = 2.157175292744915 for cut at TAU=0.95 
+purity = 0.0023143839437897097 for cut at TAU=0.95 
+significance = 2.163828357595188 for cut at TAU=0.96 
+purity = 0.002337808731602149 for cut at TAU=0.96 
+significance = 2.171395055798165 for cut at TAU=0.97 
+purity = 0.0023694707031994768 for cut at TAU=0.97 
+significance = 2.1825098107131304 for cut at TAU=0.98 
+purity = 0.0024203015558964397 for cut at TAU=0.98 
+significance = 2.2041018484281305 for cut at TAU=0.99 
+purity = 0.0025203658340615226 for cut at TAU=0.99 
+
+TAGGER PERFORMANCE:
+Max significance of LLHH = 2.2041018484281305 for cut at TAU=0.99 
+Max purity of LLHH = 0.0025203658340615226 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of LLHH = 0.02880628706633025
+Purity of LLHH = 0.00019471401732269966 
+
+significance = 1.3367892254818508 for cut at TAU=0.5 
+purity = 0.00035795528921450746 for cut at TAU=0.5 
+significance = 1.3368735931218456 for cut at TAU=0.51 
+purity = 0.0003580098059826316 for cut at TAU=0.51 
+significance = 1.3369895091374777 for cut at TAU=0.52 
+purity = 0.0003580737403590251 for cut at TAU=0.52 
+significance = 1.337075600206858 for cut at TAU=0.53 
+purity = 0.00035813106209153523 for cut at TAU=0.53 
+significance = 1.337176541345552 for cut at TAU=0.54 
+purity = 0.00035819447250199965 for cut at TAU=0.54 
+significance = 1.3372702875508482 for cut at TAU=0.55 
+purity = 0.00035825777919617265 for cut at TAU=0.55 
+significance = 1.337400409268095 for cut at TAU=0.56 
+purity = 0.00035833309250348037 for cut at TAU=0.56 
+significance = 1.3374858150002193 for cut at TAU=0.5700000000000001 
+purity = 0.00035839756412492797 for cut at TAU=0.5700000000000001 
+significance = 1.3375880292543199 for cut at TAU=0.58 
+purity = 0.0003584710514161251 for cut at TAU=0.58 
+significance = 1.337707585255346 for cut at TAU=0.59 
+purity = 0.0003585500972932663 for cut at TAU=0.59 
+significance = 1.3378393041387164 for cut at TAU=0.6 
+purity = 0.00035863192687849284 for cut at TAU=0.6 
+significance = 1.3380026333812505 for cut at TAU=0.61 
+purity = 0.00035872883812132684 for cut at TAU=0.61 
+significance = 1.3381440206581743 for cut at TAU=0.62 
+purity = 0.00035882150087630506 for cut at TAU=0.62 
+significance = 1.3383172255066063 for cut at TAU=0.63 
+purity = 0.0003589237392310068 for cut at TAU=0.63 
+significance = 1.3385093648739728 for cut at TAU=0.64 
+purity = 0.00035903614904170484 for cut at TAU=0.64 
+significance = 1.3387034743835813 for cut at TAU=0.65 
+purity = 0.00035915338947118785 for cut at TAU=0.65 
+significance = 1.3388896150104146 for cut at TAU=0.66 
+purity = 0.0003592720104682839 for cut at TAU=0.66 
+significance = 1.3391109640482932 for cut at TAU=0.67 
+purity = 0.0003594039156955753 for cut at TAU=0.67 
+significance = 1.3393275238750966 for cut at TAU=0.6799999999999999 
+purity = 0.0003595426744047028 for cut at TAU=0.6799999999999999 
+significance = 1.3395505362434121 for cut at TAU=0.69 
+purity = 0.0003596849331914046 for cut at TAU=0.69 
+significance = 1.3398156277368931 for cut at TAU=0.7 
+purity = 0.00035984418226756124 for cut at TAU=0.7 
+significance = 1.34002320254389 for cut at TAU=0.71 
+purity = 0.00035999139933465366 for cut at TAU=0.71 
+significance = 1.3402607938660902 for cut at TAU=0.72 
+purity = 0.00036014725815670755 for cut at TAU=0.72 
+significance = 1.3405385213959435 for cut at TAU=0.73 
+purity = 0.0003603190812948785 for cut at TAU=0.73 
+significance = 1.3408247753090805 for cut at TAU=0.74 
+purity = 0.00036049930949900826 for cut at TAU=0.74 
+significance = 1.3411770973965094 for cut at TAU=0.75 
+purity = 0.0003607094638231369 for cut at TAU=0.75 
+significance = 1.3414565800940543 for cut at TAU=0.76 
+purity = 0.0003608993850559035 for cut at TAU=0.76 
+significance = 1.3417090661739561 for cut at TAU=0.77 
+purity = 0.00036109184936144204 for cut at TAU=0.77 
+significance = 1.342080177136743 for cut at TAU=0.78 
+purity = 0.00036132179244161206 for cut at TAU=0.78 
+significance = 1.3424240332591053 for cut at TAU=0.79 
+purity = 0.0003615560660698257 for cut at TAU=0.79 
+significance = 1.3428475558420503 for cut at TAU=0.8 
+purity = 0.0003618201159529164 for cut at TAU=0.8 
+significance = 1.3431502988097324 for cut at TAU=0.81 
+purity = 0.00036206087858013886 for cut at TAU=0.81 
+significance = 1.343585960569239 for cut at TAU=0.8200000000000001 
+purity = 0.00036235448488009436 for cut at TAU=0.8200000000000001 
+significance = 1.3439824128745073 for cut at TAU=0.8300000000000001 
+purity = 0.0003626574837580304 for cut at TAU=0.8300000000000001 
+significance = 1.3444602523039748 for cut at TAU=0.8400000000000001 
+purity = 0.0003629989244682148 for cut at TAU=0.8400000000000001 
+significance = 1.3449866722872983 for cut at TAU=0.8500000000000001 
+purity = 0.00036338398154994 for cut at TAU=0.8500000000000001 
+significance = 1.345509252430944 for cut at TAU=0.86 
+purity = 0.000363786346522186 for cut at TAU=0.86 
+significance = 1.3462827333272773 for cut at TAU=0.87 
+purity = 0.00036429427204960385 for cut at TAU=0.87 
+significance = 1.3484999665839164 for cut at TAU=0.88 
+purity = 0.0003656499658683358 for cut at TAU=0.88 
+significance = 1.350879290935856 for cut at TAU=0.89 
+purity = 0.0003670987686780567 for cut at TAU=0.89 
+significance = 1.3523015081178615 for cut at TAU=0.9 
+purity = 0.00036808808765209677 for cut at TAU=0.9 
+significance = 1.355495022342693 for cut at TAU=0.91 
+purity = 0.00037013491701724116 for cut at TAU=0.91 
+significance = 1.3565283870550382 for cut at TAU=0.9199999999999999 
+purity = 0.00037110274688532334 for cut at TAU=0.9199999999999999 
+significance = 1.3574526024846552 for cut at TAU=0.9299999999999999 
+purity = 0.0003721326121361818 for cut at TAU=0.9299999999999999 
+significance = 1.3583265215511546 for cut at TAU=0.94 
+purity = 0.00037334370899660784 for cut at TAU=0.94 
+significance = 1.360041188425573 for cut at TAU=0.95 
+purity = 0.0003753122064940068 for cut at TAU=0.95 
+significance = 1.3609313997925396 for cut at TAU=0.96 
+purity = 0.00037746981404069256 for cut at TAU=0.96 
+significance = 1.366315858616351 for cut at TAU=0.97 
+purity = 0.00038293555565455394 for cut at TAU=0.97 
+significance = 1.380095722871755 for cut at TAU=0.98 
+purity = 0.0003949955878262602 for cut at TAU=0.98 
+significance = 1.4466926390395496 for cut at TAU=0.99 
+purity = 0.0004435051853649831 for cut at TAU=0.99 
+
+TAGGER PERFORMANCE:
+Max significance of NuNuLH = 1.4466926390395496 for cut at TAU=0.99 
+Max purity of NuNuLH = 0.0004435051853649831 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of NuNuLH = 0.0001714409271296059
+Purity of NuNuLH = 4.3461507451771243e-08 
+
+significance = 2.377555120267147 for cut at TAU=0.5 
+purity = 0.0006387571402782746 for cut at TAU=0.5 
+significance = 2.3777055676367627 for cut at TAU=0.51 
+purity = 0.0006388520464770095 for cut at TAU=0.51 
+significance = 2.3778464755440174 for cut at TAU=0.52 
+purity = 0.0006389446624434558 for cut at TAU=0.52 
+significance = 2.3780177031127243 for cut at TAU=0.53 
+purity = 0.0006390479243509844 for cut at TAU=0.53 
+significance = 2.378140720421776 for cut at TAU=0.54 
+purity = 0.000639137540593255 for cut at TAU=0.54 
+significance = 2.378265571359485 for cut at TAU=0.55 
+purity = 0.0006392319190605358 for cut at TAU=0.55 
+significance = 2.3784597900025752 for cut at TAU=0.56 
+purity = 0.0006393447386889527 for cut at TAU=0.56 
+significance = 2.3786555542734353 for cut at TAU=0.5700000000000001 
+purity = 0.0006394602846191268 for cut at TAU=0.5700000000000001 
+significance = 2.3788004382534234 for cut at TAU=0.58 
+purity = 0.0006395664057736958 for cut at TAU=0.58 
+significance = 2.378961681871052 for cut at TAU=0.59 
+purity = 0.0006396794481621987 for cut at TAU=0.59 
+significance = 2.3791097528641645 for cut at TAU=0.6 
+purity = 0.0006397901393649823 for cut at TAU=0.6 
+significance = 2.379254007337042 for cut at TAU=0.61 
+purity = 0.0006399015725253515 for cut at TAU=0.61 
+significance = 2.3794305854007636 for cut at TAU=0.62 
+purity = 0.000640025735048468 for cut at TAU=0.62 
+significance = 2.3796115846846777 for cut at TAU=0.63 
+purity = 0.000640151349725477 for cut at TAU=0.63 
+significance = 2.379803883627039 for cut at TAU=0.64 
+purity = 0.0006402830592975141 for cut at TAU=0.64 
+significance = 2.379999137442059 for cut at TAU=0.65 
+purity = 0.0006404182658694428 for cut at TAU=0.65 
+significance = 2.3801976419452653 for cut at TAU=0.66 
+purity = 0.0006405590189863779 for cut at TAU=0.66 
+significance = 2.3803601981535913 for cut at TAU=0.67 
+purity = 0.0006406927345150213 for cut at TAU=0.67 
+significance = 2.380562986136822 for cut at TAU=0.6799999999999999 
+purity = 0.0006408396195148194 for cut at TAU=0.6799999999999999 
+significance = 2.3807647154715714 for cut at TAU=0.69 
+purity = 0.0006409916313779966 for cut at TAU=0.69 
+significance = 2.381002623301111 for cut at TAU=0.7 
+purity = 0.0006411565277173733 for cut at TAU=0.7 
+significance = 2.381197235123545 for cut at TAU=0.71 
+purity = 0.0006413142247363671 for cut at TAU=0.71 
+significance = 2.381396425316528 for cut at TAU=0.72 
+purity = 0.0006414791509428255 for cut at TAU=0.72 
+significance = 2.3816630131574295 for cut at TAU=0.73 
+purity = 0.0006416662147293763 for cut at TAU=0.73 
+significance = 2.3819272111773033 for cut at TAU=0.74 
+purity = 0.0006418567658964487 for cut at TAU=0.74 
+significance = 2.382124548410581 for cut at TAU=0.75 
+purity = 0.0006420369126201301 for cut at TAU=0.75 
+significance = 2.38237551291391 for cut at TAU=0.76 
+purity = 0.0006422384253034961 for cut at TAU=0.76 
+significance = 2.382604598489282 for cut at TAU=0.77 
+purity = 0.0006424424197471192 for cut at TAU=0.77 
+significance = 2.382825012632562 for cut at TAU=0.78 
+purity = 0.0006426512853144622 for cut at TAU=0.78 
+significance = 2.3830520229144185 for cut at TAU=0.79 
+purity = 0.0006428742128499675 for cut at TAU=0.79 
+significance = 2.3833383755578357 for cut at TAU=0.8 
+purity = 0.0006431244808240786 for cut at TAU=0.8 
+significance = 2.3836384393474743 for cut at TAU=0.81 
+purity = 0.0006433955358939432 for cut at TAU=0.81 
+significance = 2.3839602734410974 for cut at TAU=0.8200000000000001 
+purity = 0.0006436879558376462 for cut at TAU=0.8200000000000001 
+significance = 2.384317748691174 for cut at TAU=0.8300000000000001 
+purity = 0.0006440140138602668 for cut at TAU=0.8300000000000001 
+significance = 2.3847232486029433 for cut at TAU=0.8400000000000001 
+purity = 0.0006443775935871039 for cut at TAU=0.8400000000000001 
+significance = 2.385246230206518 for cut at TAU=0.8500000000000001 
+purity = 0.0006448029435905019 for cut at TAU=0.8500000000000001 
+significance = 2.3857572378993828 for cut at TAU=0.86 
+purity = 0.0006452621214942772 for cut at TAU=0.86 
+significance = 2.386343267788764 for cut at TAU=0.87 
+purity = 0.0006457860621875347 for cut at TAU=0.87 
+significance = 2.3870480393945868 for cut at TAU=0.88 
+purity = 0.0006464081381087064 for cut at TAU=0.88 
+significance = 2.3878076601186704 for cut at TAU=0.89 
+purity = 0.0006471020846795717 for cut at TAU=0.89 
+significance = 2.388564458358694 for cut at TAU=0.9 
+purity = 0.0006478734545925186 for cut at TAU=0.9 
+significance = 2.38914793067989 for cut at TAU=0.91 
+purity = 0.00064871608427786 for cut at TAU=0.91 
+significance = 2.389559969262753 for cut at TAU=0.9199999999999999 
+purity = 0.0006496384926519448 for cut at TAU=0.9199999999999999 
+significance = 2.389922862770873 for cut at TAU=0.9299999999999999 
+purity = 0.0006507313626124649 for cut at TAU=0.9299999999999999 
+significance = 2.3897238630637077 for cut at TAU=0.94 
+purity = 0.0006519190172501434 for cut at TAU=0.94 
+significance = 2.389299827880704 for cut at TAU=0.95 
+purity = 0.00065342750489207 for cut at TAU=0.95 
+significance = 2.3877314693098315 for cut at TAU=0.96 
+purity = 0.0006551989361580225 for cut at TAU=0.96 
+significance = 2.3839470137352476 for cut at TAU=0.97 
+purity = 0.0006575283372925128 for cut at TAU=0.97 
+significance = 2.3784946695808014 for cut at TAU=0.98 
+purity = 0.0006621233971356996 for cut at TAU=0.98 
+significance = 2.3753227695171555 for cut at TAU=0.99 
+purity = 0.0006746663440254684 for cut at TAU=0.99 
+
+TAGGER PERFORMANCE:
+Max significance of NuNuHH = 2.389922862770873 for cut at TAU=0.9299999999999999 
+Max purity of NuNuHH = 0.0006746663440254684 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of NuNuHH = 0.004002764244902001
+Purity of NuNuHH = 1.0322494373910145e-06 
+
+
+
+
+-----------------------------
+
+
+TAGGER PERFORMANCE:
+Max significance of QQLH = 1.5191432292609741 for cut at TAU=0.99 
+Max purity of QQLH = 0.0016997166219021678 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of QQLH = 0.04989923541970073
+Purity of QQLH = 2.4139019647700164e-05 
+
+
+TAGGER PERFORMANCE:
+Max significance of QQHH = 4.19215995527842 for cut at TAU=0.99 
+Max purity of QQHH = 0.007144554114365006 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of QQHH = 0.26462730939385165
+Purity of QQHH = 0.00010764294417121719 
+
+
+TAGGER PERFORMANCE:
+Max significance of LLLH = 2.98682046868028 for cut at TAU=0.99 
+Max purity of LLLH = 0.017510559181176454 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of LLLH = 0.03419909470714516
+Purity of LLLH = 0.0004165624010912305 
+
+
+TAGGER PERFORMANCE:
+Max significance of LLHH = 2.2041018484281305 for cut at TAU=0.99 
+Max purity of LLHH = 0.0025203658340615226 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of LLHH = 0.02880628706633025
+Purity of LLHH = 0.00019471401732269966 
+
+
+TAGGER PERFORMANCE:
+Max significance of NuNuLH = 1.4466926390395496 for cut at TAU=0.99 
+Max purity of NuNuLH = 0.0004435051853649831 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of NuNuLH = 0.0001714409271296059
+Purity of NuNuLH = 4.3461507451771243e-08 
+
+
+TAGGER PERFORMANCE:
+Max significance of NuNuHH = 2.389922862770873 for cut at TAU=0.9299999999999999 
+Max purity of NuNuHH = 0.0006746663440254684 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of NuNuHH = 0.004002764244902001
+Purity of NuNuHH = 1.0322494373910145e-06 
+
+
+TAGGER PERFORMANCE:
+Max significance of QQLH = 1.5191432292609741 for cut at TAU=0.99 
+Max purity of QQLH = 0.0016997166219021678 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of QQLH = 0.04989923541970073
+Purity of QQLH = 2.4139019647700164e-05 
+
+
+TAGGER PERFORMANCE:
+Max significance of QQHH = 4.19215995527842 for cut at TAU=0.99 
+Max purity of QQHH = 0.007144554114365006 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of QQHH = 0.26462730939385165
+Purity of QQHH = 0.00010764294417121719 
+
+
+TAGGER PERFORMANCE:
+Max significance of LLLH = 2.98682046868028 for cut at TAU=0.99 
+Max purity of LLLH = 0.017510559181176454 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of LLLH = 0.03419909470714516
+Purity of LLLH = 0.0004165624010912305 
+
+
+TAGGER PERFORMANCE:
+Max significance of LLHH = 2.2041018484281305 for cut at TAU=0.99 
+Max purity of LLHH = 0.0025203658340615226 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of LLHH = 0.02880628706633025
+Purity of LLHH = 0.00019471401732269966 
+
+
+TAGGER PERFORMANCE:
+Max significance of NuNuLH = 1.4466926390395496 for cut at TAU=0.99 
+Max purity of NuNuLH = 0.0004435051853649831 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of NuNuLH = 0.0001714409271296059
+Purity of NuNuLH = 4.3461507451771243e-08 
+
+
+TAGGER PERFORMANCE:
+Max significance of NuNuHH = 2.389922862770873 for cut at TAU=0.9299999999999999 
+Max purity of NuNuHH = 0.0006746663440254684 for cut at TAU=0.99 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of NuNuHH = 0.004002764244902001
+Purity of NuNuHH = 1.0322494373910145e-06 
+
+-----------------------------------
+
+
+TAGGER PERFORMANCE:
+Significance of QQLH = 1.277965501889984 for cut at TAU=0.5 
+Purity of QQLH = 0.0011119616856740111 for cut at TAU=0.5 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of QQLH = 0.04989923541970073
+Purity of QQLH = 2.4139019647700164e-05 
+
+
+TAGGER PERFORMANCE:
+Significance of QQHH = 3.7978716480463697 for cut at TAU=0.5 
+Purity of QQHH = 0.005410582879457155 for cut at TAU=0.5 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of QQHH = 0.26462730939385165
+Purity of QQHH = 0.00010764294417121719 
+
+
+TAGGER PERFORMANCE:
+Significance of LLLH = 2.8159796572620652 for cut at TAU=0.5 
+Purity of LLLH = 0.014738668256725438 for cut at TAU=0.5 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of LLLH = 0.03419909470714516
+Purity of LLLH = 0.0004165624010912305 
+
+
+TAGGER PERFORMANCE:
+Significance of LLHH = 2.067853577061751 for cut at TAU=0.5 
+Purity of LLHH = 0.002100800715534631 for cut at TAU=0.5 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of LLHH = 0.02880628706633025
+Purity of LLHH = 0.00019471401732269966 
+
+
+TAGGER PERFORMANCE:
+Significance of NuNuLH = 1.3367892254818508 for cut at TAU=0.5 
+Purity of NuNuLH = 0.00035795528921450746 for cut at TAU=0.5 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of NuNuLH = 0.0001714409271296059
+Purity of NuNuLH = 4.3461507451771243e-08 
+
+
+TAGGER PERFORMANCE:
+Significance of NuNuHH = 2.377555120267147 for cut at TAU=0.5 
+Purity of NuNuHH = 0.0006387571402782746 for cut at TAU=0.5 
+
+EXPLICIT RECO PERFORMANCE:
+Significance of NuNuHH = 0.004002764244902001
+Purity of NuNuHH = 1.0322494373910145e-06 
+

@@ -34,7 +34,7 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "workday"\n'
+    cfg += '+JobFlavour      = "longlunch"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -196,7 +196,7 @@ output = '/work/sgiappic/HTCondor/stage1_eff/' ##output directory of submission 
 outputDir = '/ceph/awiedl/FCCee/HiggsCP/stage1_eff/' ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
-Filename = 'analysis_stage1.py'
+Filename = 'analysis_stage1_eff.py'
 
 nCPUS = 4
 Memory = 10000
