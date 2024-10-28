@@ -33,62 +33,59 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_tag/LL",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_tag/QQ",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_tag/NuNu",
 }
 SUBDIR = [
-    #'LL',
+    'LL',
     'LH',
-    #'HH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
+    "QQ",
     "LL",
-    #"NuNu",
+    "NuNu",
 ]
-#directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
 #list of cuts you want to plot
 CUTS_LL = [
-    #"selReco",
+    "selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
-    #selReco_100Coll150_115Rec160_10Me",
+    #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_70Z100",
     #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR",
     #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
+    #"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
 ]
 
 CUTS_QQ = [
-    #"selReco",
+    "selReco",
+    #"selReco_0.5BDT",
+    #"selReco_0.6BDT",
+    #"selReco_0.7BDT",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_80Z95",
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR",
     #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
-
-    #"selReco_0.5BDT",
-    #"selReco_0.6BDT",
-    #"selReco_0.7BDT",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
+    #"selReco_BDT",
 ]
     
 CUTS_NuNu = [
     "selReco",
-    "selReco_100Me",
-    "selReco_100Me_TauDPhi3",
-    "selReco_100Me_TauDPhi3_2DR",
-    "selReco_100Me_TauDPhi3_2DR_cos0",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
-
     #"selReco_0.5BDT",
     #"selReco_0.6BDT",
     #"selReco_0.7BDT",
+    #"selReco_100Me",
+    #"selReco_100Me_TauDPhi3",
+    #"selReco_100Me_TauDPhi3_2DR",
+    #"selReco_100Me_TauDPhi3_2DR_cos0",
+    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
+    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
 ]
 
 CUTS = {
@@ -96,6 +93,8 @@ CUTS = {
     'QQ':CUTS_QQ,
     'NuNu':CUTS_NuNu,
 }
+#directory where you want your plots to go
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -149,7 +148,7 @@ ana_tex_sub = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = False
+LOGY = True
 
 #now you can list all the histograms that you want to plot
 VARIABLES_ALL = [
@@ -459,6 +458,20 @@ VARIABLES_ALL = [
     "RecoPhoton_theta",
     "RecoPhoton_phi",
     "RecoPhoton_charge",
+    #"RecoPhoton_mass",
+
+    #"n_NeutralHadrons",
+    #"NeutralHadrons_e",
+    #"NeutralHadrons_p",
+    #"NeutralHadrons_pt",
+    #"NeutralHadrons_px",
+    #"NeutralHadrons_py",
+    #"NeutralHadrons_pz",
+    #"NeutralHadrons_eta",
+    #"NeutralHadrons_theta",
+    #"NeutralHadrons_phi",
+    #"NeutralHadrons_charge",
+    #"NeutralHadrons_mass",
 
     "RecoEmiss_px",
     "RecoEmiss_py",
@@ -496,17 +509,17 @@ VARIABLES_ALL = [
     "Jets_R5_mass",        
     "n_Jets_R5", 
 
-    "Jets_excl4_e",     
-    "Jets_excl4_p",     
-    "Jets_excl4_pt",     
-    "Jets_excl4_px",   
-    "Jets_excl4_py",   
-    "Jets_excl4_pz",     
-    "Jets_excl4_eta",    
-    "Jets_excl4_theta",   
-    "Jets_excl4_phi",     
-    "Jets_excl4_mass",        
-    "n_Jets_excl4", 
+    #"Jets_excl4_e",     
+    #"Jets_excl4_p",     
+    #"Jets_excl4_pt",     
+    #"Jets_excl4_px",   
+    #"Jets_excl4_py",   
+    #"Jets_excl4_pz",     
+    #"Jets_excl4_eta",    
+    #"Jets_excl4_theta",   
+    #"Jets_excl4_phi",     
+    #"Jets_excl4_mass",        
+    #"n_Jets_excl4", 
 
     "TauFromJet_R5_p",
     "TauFromJet_R5_pt",
@@ -516,23 +529,27 @@ VARIABLES_ALL = [
     "TauFromJet_R5_theta",
     "TauFromJet_R5_phi",
     "TauFromJet_R5_e",
+    "TauFromJet_R5_eta",
+    "TauFromJet_R5_y",
     "TauFromJet_R5_charge",
     "TauFromJet_R5_type",
     "TauFromJet_R5_mass",
     "n_TauFromJet_R5",
 
-    "TauFromJet_p",
-    "TauFromJet_pt",
-    "TauFromJet_px",
-    "TauFromJet_py",
-    "TauFromJet_pz",
-    "TauFromJet_theta",
-    "TauFromJet_phi",
-    "TauFromJet_e",
-    "TauFromJet_charge",
-    "TauFromJet_type",
-    "TauFromJet_mass",
-    "n_TauFromJet",
+    #"TauFromJet_p",
+    #"TauFromJet_pt",
+    #"TauFromJet_px",
+    #"TauFromJet_py",
+    #"TauFromJet_pz",
+    #"TauFromJet_theta",
+    #"TauFromJet_phi",
+    #"TauFromJet_eta",
+    #"TauFromJet_y",
+    #"TauFromJet_e",
+    #"TauFromJet_charge",
+    #"TauFromJet_type",
+    #"TauFromJet_mass",
+    #"n_TauFromJet",
 
     "Jets_R5_sel_e",     
     "Jets_R5_sel_p",     
@@ -545,6 +562,31 @@ VARIABLES_ALL = [
     "Jets_R5_sel_phi",     
     "Jets_R5_sel_mass",      
     "n_Jets_R5_sel", 
+
+    "TagJet_R5_px", 
+    "TagJet_R5_py",    
+    "TagJet_R5_pz",      
+    "TagJet_R5_p",  
+    "TagJet_R5_pt",    
+    "TagJet_R5_phi", 
+    "TagJet_R5_eta",     
+    "TagJet_R5_theta",          
+    "TagJet_R5_e",     
+    "TagJet_R5_mass",        
+    "TagJet_R5_charge", 
+    #"n_TagJet_R5_constituents",   
+    #"n_TagJet_R5_charged_constituents",   
+    #"n_TagJet_R5_neutral_constituents",   
+    "n_TagJet_R5",          
+
+    "TagJet_isG",  
+    "TagJet_isU",
+    "TagJet_isD",   
+    "TagJet_isS",  
+    "TagJet_isC",
+    "TagJet_isB",  
+    "TagJet_isTAU",
+
 ]
 
 VARIABLES_GEN = [
@@ -717,13 +759,93 @@ VARIABLES_GEN = [
     "GenHiggs_eta", 
     "GenHiggs_theta", 
     "GenHiggs_phi", 
-    "GenHiggs_charge",
+    "GenHiggs_charge", 
 ]
 
 VARIABLES_RECO = [
 
     ######## Reconstructed particles #######
     #"RecoMC_PID",
+
+    "n_RecoElectrons",
+    "RecoElectron_e",
+    "RecoElectron_p",
+    "RecoElectron_pt",
+    "RecoElectron_px",
+    "RecoElectron_py",
+    "RecoElectron_pz",
+    "RecoElectron_y",
+    "RecoElectron_eta",
+    "RecoElectron_theta",
+    "RecoElectron_phi",
+    "RecoElectron_charge",
+    "RecoElectron_mass",
+    "RecoElectronTrack_absD0",
+    "RecoElectronTrack_absZ0",
+    "RecoElectronTrack_absD0sig",
+    "RecoElectronTrack_absZ0sig",
+    "RecoElectronTrack_D0cov",
+    "RecoElectronTrack_Z0cov",
+
+    "n_RecoElectrons_sel",
+    "RecoElectron_sel_e",
+    "RecoElectron_sel_p",
+    "RecoElectron_sel_pt",
+    "RecoElectron_sel_px",
+    "RecoElectron_sel_py",
+    "RecoElectron_sel_pz",
+    "RecoElectron_sel_y",
+    "RecoElectron_sel_eta",
+    "RecoElectron_sel_theta",
+    "RecoElectron_sel_phi",
+    "RecoElectron_sel_charge",
+    "RecoElectron_sel_mass",
+    "RecoElectronTrack_sel_absD0",
+    "RecoElectronTrack_sel_absZ0",
+    "RecoElectronTrack_sel_absD0sig",
+    "RecoElectronTrack_sel_absZ0sig",
+    "RecoElectronTrack_sel_D0cov",
+    "RecoElectronTrack_sel_Z0cov",
+
+    "n_RecoMuons",
+    "RecoMuon_e",
+    "RecoMuon_p",
+    "RecoMuon_pt",
+    "RecoMuon_px",
+    "RecoMuon_py",
+    "RecoMuon_pz",
+    "RecoMuon_y",
+    "RecoMuon_eta",
+    "RecoMuon_theta",
+    "RecoMuon_phi",
+    "RecoMuon_charge",
+    "RecoMuon_mass",
+    "RecoMuonTrack_absD0",
+    "RecoMuonTrack_absZ0",
+    "RecoMuonTrack_absD0sig",
+    "RecoMuonTrack_absZ0sig",
+    "RecoMuonTrack_D0cov",
+    "RecoMuonTrack_Z0cov",
+
+    "n_RecoMuons_sel",
+    "RecoMuon_sel_e",
+    "RecoMuon_sel_p",
+    "RecoMuon_sel_pt",
+    "RecoMuon_sel_px",
+    "RecoMuon_sel_py",
+    "RecoMuon_sel_pz",
+    "RecoMuon_sel_y",
+    "RecoMuon_sel_eta",
+    "RecoMuon_sel_theta",
+    "RecoMuon_sel_phi",
+    "RecoMuon_sel_charge",
+    "RecoMuon_sel_mass",
+    "RecoMuonTrack_sel_absD0",
+    "RecoMuonTrack_sel_absZ0",
+    "RecoMuonTrack_sel_absD0sig",
+    "RecoMuonTrack_sel_absZ0sig",
+    "RecoMuonTrack_sel_D0cov",
+    "RecoMuonTrack_sel_Z0cov",
 
     "n_RecoLeptons",
     "RecoLepton_e",
@@ -777,6 +899,20 @@ VARIABLES_RECO = [
     "RecoPhoton_theta",
     "RecoPhoton_phi",
     "RecoPhoton_charge",
+    #"RecoPhoton_mass",
+
+    #"n_NeutralHadrons",
+    #"NeutralHadrons_e",
+    #"NeutralHadrons_p",
+    #"NeutralHadrons_pt",
+    #"NeutralHadrons_px",
+    #"NeutralHadrons_py",
+    #"NeutralHadrons_pz",
+    #"NeutralHadrons_eta",
+    #"NeutralHadrons_theta",
+    #"NeutralHadrons_phi",
+    #"NeutralHadrons_charge",
+    #"NeutralHadrons_mass",
 
     "RecoEmiss_px",
     "RecoEmiss_py",
@@ -802,6 +938,30 @@ VARIABLES_RECO = [
     #"RecoPartPID" ,
     #"RecoPartPIDAtVertex",
 
+    "Jets_R5_e",     
+    "Jets_R5_p",     
+    "Jets_R5_pt",     
+    "Jets_R5_px",   
+    "Jets_R5_py",   
+    "Jets_R5_pz",     
+    "Jets_R5_eta",    
+    "Jets_R5_theta",   
+    "Jets_R5_phi",     
+    "Jets_R5_mass",        
+    "n_Jets_R5", 
+
+    #"Jets_excl4_e",     
+    #"Jets_excl4_p",     
+    #"Jets_excl4_pt",     
+    #"Jets_excl4_px",   
+    #"Jets_excl4_py",   
+    #"Jets_excl4_pz",     
+    #"Jets_excl4_eta",    
+    #"Jets_excl4_theta",   
+    #"Jets_excl4_phi",     
+    #"Jets_excl4_mass",        
+    #"n_Jets_excl4", 
+
     "TauFromJet_R5_p",
     "TauFromJet_R5_pt",
     "TauFromJet_R5_px",
@@ -810,10 +970,27 @@ VARIABLES_RECO = [
     "TauFromJet_R5_theta",
     "TauFromJet_R5_phi",
     "TauFromJet_R5_e",
+    "TauFromJet_R5_eta",
+    "TauFromJet_R5_y",
     "TauFromJet_R5_charge",
     "TauFromJet_R5_type",
     "TauFromJet_R5_mass",
     "n_TauFromJet_R5",
+
+    #"TauFromJet_p",
+    #"TauFromJet_pt",
+    #"TauFromJet_px",
+    #"TauFromJet_py",
+    #"TauFromJet_pz",
+    #"TauFromJet_theta",
+    #"TauFromJet_phi",
+    #"TauFromJet_eta",
+    #"TauFromJet_y",
+    #"TauFromJet_e",
+    #"TauFromJet_charge",
+    #"TauFromJet_type",
+    #"TauFromJet_mass",
+    #"n_TauFromJet",
 
     "Jets_R5_sel_e",     
     "Jets_R5_sel_p",     
@@ -826,6 +1003,31 @@ VARIABLES_RECO = [
     "Jets_R5_sel_phi",     
     "Jets_R5_sel_mass",      
     "n_Jets_R5_sel", 
+
+    "TagJet_R5_px", 
+    "TagJet_R5_py",    
+    "TagJet_R5_pz",      
+    "TagJet_R5_p",  
+    "TagJet_R5_pt",    
+    "TagJet_R5_phi", 
+    "TagJet_R5_eta",     
+    "TagJet_R5_theta",          
+    "TagJet_R5_e",     
+    "TagJet_R5_mass",        
+    "TagJet_R5_charge", 
+    #"n_TagJet_R5_constituents",   
+    #"n_TagJet_R5_charged_constituents",   
+    #"n_TagJet_R5_neutral_constituents",   
+    "n_TagJet_R5",          
+
+    "TagJet_isG",  
+    "TagJet_isU",
+    "TagJet_isD",   
+    "TagJet_isS",  
+    "TagJet_isC",
+    "TagJet_isB",  
+    "TagJet_isTAU",
+ 
 ]
 
 VARIABLES_LL = [
@@ -834,6 +1036,48 @@ VARIABLES_LL = [
     "RecoEmiss_theta",
     "RecoEmiss_y",
     "RecoEmiss_costheta",
+
+    "TauTag_px", 
+    "TauTag_py",    
+    "TauTag_pz",      
+    "TauTag_p",  
+    "TauTag_pt",    
+    "TauTag_phi", 
+    "TauTag_eta",     
+    "TauTag_theta",          
+    "TauTag_e",     
+    "TauTag_mass",        
+    #"TauTag_charge",       
+    #"TauTag_flavor",       
+    "n_TauTag",          
+    "TauTag_isG",  
+    "TauTag_isU",
+    "TauTag_isD",   
+    "TauTag_isS",  
+    "TauTag_isC",
+    "TauTag_isB",  
+    "TauTag_isTAU",
+
+    "QuarkTag_px", 
+    "QuarkTag_py",    
+    "QuarkTag_pz",      
+    "QuarkTag_p",  
+    "QuarkTag_pt",    
+    "QuarkTag_phi", 
+    "QuarkTag_eta",     
+    "QuarkTag_theta",          
+    "QuarkTag_e",     
+    "QuarkTag_mass",        
+    #"QuarkTag_charge",       
+    #"QuarkTag_flavor",       
+    "n_QuarkTag",          
+    "QuarkTag_isG",  
+    "QuarkTag_isU",
+    "QuarkTag_isD",   
+    "QuarkTag_isS",  
+    "QuarkTag_isC",
+    "QuarkTag_isB",  
+    "QuarkTag_isTAU",
 
     "RecoZ_px",
     "RecoZ_py",
@@ -918,6 +1162,7 @@ VARIABLES_LL = [
     "TauLead_theta",    
     "TauLead_y",    
     "TauLead_mass",
+    "TauLead_type",
 
     "TauSub_px",    
     "TauSub_py",   
@@ -930,6 +1175,7 @@ VARIABLES_LL = [
     "TauSub_theta",    
     "TauSub_y",    
     "TauSub_mass",
+    "TauSub_type",
 
     "TauP_px",    
     "TauP_py",   
@@ -942,6 +1188,7 @@ VARIABLES_LL = [
     "TauP_theta",    
     "TauP_y",    
     "TauP_mass",
+    "TauP_type",
 
     "TauM_px",    
     "TauM_py",   
@@ -954,6 +1201,7 @@ VARIABLES_LL = [
     "TauM_theta",    
     "TauM_y",    
     "TauM_mass",
+    "TauM_type",
 
     "Recoil",
     "Collinear_mass", 
@@ -975,6 +1223,48 @@ VARIABLES_QQ = [
     "RecoEmiss_theta",
     "RecoEmiss_y",
     "RecoEmiss_costheta",
+
+    "TauTag_px", 
+    "TauTag_py",    
+    "TauTag_pz",      
+    "TauTag_p",  
+    "TauTag_pt",    
+    "TauTag_phi", 
+    "TauTag_eta",     
+    "TauTag_theta",          
+    "TauTag_e",     
+    "TauTag_mass",        
+    #"TauTag_charge",       
+    #"TauTag_flavor",       
+    "n_TauTag",          
+    "TauTag_isG",  
+    "TauTag_isU",
+    "TauTag_isD",   
+    "TauTag_isS",  
+    "TauTag_isC",
+    "TauTag_isB",  
+    "TauTag_isTAU",
+
+    "QuarkTag_px", 
+    "QuarkTag_py",    
+    "QuarkTag_pz",      
+    "QuarkTag_p",  
+    "QuarkTag_pt",    
+    "QuarkTag_phi", 
+    "QuarkTag_eta",     
+    "QuarkTag_theta",          
+    "QuarkTag_e",     
+    "QuarkTag_mass",        
+    #"QuarkTag_charge",       
+    #"QuarkTag_flavor",       
+    "n_QuarkTag",          
+    "QuarkTag_isG",  
+    "QuarkTag_isU",
+    "QuarkTag_isD",   
+    "QuarkTag_isS",  
+    "QuarkTag_isC",
+    "QuarkTag_isB",  
+    "QuarkTag_isTAU",
 
     "RecoZ_px",
     "RecoZ_py",
@@ -1085,7 +1375,7 @@ VARIABLES_QQ = [
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
 
-    #"BDT_score",
+    "BDT_score",
 ]
 
 VARIABLES_NuNu = [
@@ -1094,18 +1384,6 @@ VARIABLES_NuNu = [
     "RecoEmiss_theta",
     "RecoEmiss_y",
     "RecoEmiss_costheta",
-
-    #"RecoZ_px",
-    #"RecoZ_py",
-    #"RecoZ_pz",
-    #"RecoZ_p",
-    #"RecoZ_pt",
-    #"RecoZ_e",
-    #"RecoZ_eta",
-    #"RecoZ_phi",
-    #"RecoZ_theta",
-    #"RecoZ_y",
-    #"RecoZ_mass",
 
     "RecoH_px",
     "RecoH_py",
@@ -1130,7 +1408,7 @@ VARIABLES_NuNu = [
     "TauLead_theta",    
     "TauLead_y",    
     "TauLead_mass",
-    #"TauLead_type",
+    "TauLead_type",
 
     "TauSub_px",    
     "TauSub_py",   
@@ -1143,7 +1421,7 @@ VARIABLES_NuNu = [
     "TauSub_theta",    
     "TauSub_y",    
     "TauSub_mass",
-    #"TauSub_type",
+    "TauSub_type",
 
     "TauP_px",    
     "TauP_py",   
@@ -1156,7 +1434,7 @@ VARIABLES_NuNu = [
     "TauP_theta",    
     "TauP_y",    
     "TauP_mass",
-    #"TauP_type",
+    "TauP_type",
 
     "TauM_px",    
     "TauM_py",   
@@ -1169,15 +1447,13 @@ VARIABLES_NuNu = [
     "TauM_theta",    
     "TauM_y",    
     "TauM_mass",
-    #"TauM_type",
+    "TauM_type",
 
     "Tau_DR",
     "Tau_cos",
     "Tau_DEta", 
     "Tau_DPhi",
 
-    #"Recoil",
-    #"Collinear_mass",
     "Visible_mass",
 
     #"BDT_score",
@@ -1365,7 +1641,7 @@ signals = [
 ]
 
 LIST_VAR = {
-    "QQ": VARIABLES_QQ,
+    "QQ": VARIABLES_LL,
     "LL":VARIABLES_LL,
     "NuNu":VARIABLES_NuNu,
 }
@@ -1375,7 +1651,7 @@ for cat in CAT:
     for sub in SUBDIR:
         directory = DIRECTORY[cat] + "/" + sub + "/"
         for cut in CUTS[cat]:
-            for variable in ['Recoil']:
+            for variable in variables:
 
                 canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1493,7 +1769,7 @@ for cat in CAT:
                                 last = histos[i].GetMaximum() 
                             # Set the y-axis range with additional white space
                         #hStackBkg.SetMinimum(0)
-                        hStackBkg.SetMaximum(last*1.5)
+                        hStackBkg.SetMaximum(last*2.5)
 
                     #draw the histograms
                     hStackBkg.Draw("HIST")
@@ -1509,7 +1785,7 @@ for cat in CAT:
                     hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
                     #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                     hStackBkg.GetXaxis().SetTitleOffset(1.2)
-                    hStackBkg.GetXaxis().SetLimits(115, 160)
+                    #hStackBkg.GetXaxis().SetLimits(115, 160)
 
                 else: 
                     # add the signal histograms

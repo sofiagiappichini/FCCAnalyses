@@ -2,6 +2,9 @@ import os, copy # tagging
 import ROOT
 import urllib.request
 processList = {
+    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
+}
+processList_ = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -93,7 +96,7 @@ processList = {
 inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_241025/"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_eff2/"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -381,9 +384,6 @@ class RDFanalysis():
                 ##################
                 # Reco particles #
                 ##################
-
-                #simple mc to reco association to get pid, only work on the whole classes, not subsets
-                .Define("RecoMC_PID", "ReconstructedParticle2MC::getRP2MC_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle)")
                 
                 #ELECTRONS 
                 .Alias("Electron0", "Electron#0.index")
@@ -755,6 +755,8 @@ class RDFanalysis():
 
                 ### now i want to study the thadronic tau reconstruction with the function and the jet tagger by comparing it to the gen info for taus decaying not to electrons or muons
 
+                .Filter("n_TagJet_R5==2")
+
                 .Define("GenTau_el",       "FCCAnalyses::MCParticle::sel_daughterID(-11, false, true)(HiggsGenTau,Particle,Particle1)")
                 .Define("GenTau_had",       "FCCAnalyses::MCParticle::sel_daughterID(-13, false, true)(GenTau_el,Particle,Particle1)")
                 .Define("HadGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(GenTau_had)")
@@ -1082,32 +1084,18 @@ class RDFanalysis():
             "RecoPhoton_charge",
             "RecoPhoton_mass",
 
-            "n_NeutralHadrons",
-            "NeutralHadrons_e",
-            "NeutralHadrons_p",
-            "NeutralHadrons_pt",
-            "NeutralHadrons_px",
-            "NeutralHadrons_py",
-            "NeutralHadrons_pz",
-            "NeutralHadrons_eta",
-            "NeutralHadrons_theta",
-            "NeutralHadrons_phi",
-            "NeutralHadrons_charge",
-            "NeutralHadrons_mass",
-
-            #"n_NoEfficiency",
-            #"NoEfficiency_e",
-            #"NoEfficiency_p",
-            #"NoEfficiency_pt",
-            #"NoEfficiency_px",
-            #"NoEfficiency_py",
-            #"NoEfficiency_pz",
-            #"NoEfficiency_eta",
-            #"NoEfficiency_theta",
-            #"NoEfficiency_phi",
-            #"NoEfficiency_charge",
-            #"NoEfficiency_type",
-            #"NoEfficiency_mass",
+            #"n_NeutralHadrons",
+            #"NeutralHadrons_e",
+            #"NeutralHadrons_p",
+            #"NeutralHadrons_pt",
+            #"NeutralHadrons_px",
+            #"NeutralHadrons_py",
+            #"NeutralHadrons_pz",
+            #"NeutralHadrons_eta",
+            #"NeutralHadrons_theta",
+            #"NeutralHadrons_phi",
+            #"NeutralHadrons_charge",
+            #"NeutralHadrons_mass",
 
             "RecoEmiss_px",
             "RecoEmiss_py",

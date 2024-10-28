@@ -441,10 +441,21 @@ float deltaR(float phi1, float phi2, float eta1, float eta2) {
 
 ROOT::VecOps::RVec<int> deltaR_sel_idx(ROOT::VecOps::RVec<float> phi1, ROOT::VecOps::RVec<float> phi2, ROOT::VecOps::RVec<float> eta1, ROOT::VecOps::RVec<float> eta2, float min_delta) {
     ROOT::VecOps::RVec<int> result;
-    for (size_t i = 0; i < phi1.size(); ++i) {  
-        float DR1 = sqrt(deltaEta(eta1[i],eta2[1])*deltaEta(eta1[i],eta2[1]) + deltaPhi(phi1[i],phi2[1])*deltaPhi(phi1[i],phi2[1]));
-        float DR2 = sqrt(deltaEta(eta1[i],eta2[2])*deltaEta(eta1[i],eta2[2]) + deltaPhi(phi1[i],phi2[2])*deltaPhi(phi1[i],phi2[2]));
-        if (DR1>min_delta && DR2>min_delta) result.push_back(i);
+    size_t check = -1;
+
+    for (size_t i = 0; i < phi1.size(); ++i) { //run over first vector of particles
+        for (size_t j = 0; j < phi2.size(); ++j) {  //run over second vector of particles
+
+            float DR = sqrt(deltaEta(eta1[i],eta2[j])*deltaEta(eta1[i],eta2[j]) + deltaPhi(phi1[i],phi2[j])*deltaPhi(phi1[i],phi2[j]));
+            
+            if (DR<min_delta) {
+                if (check!=j) { //make sure two first particles are not matched to the same second particle
+                    result.push_back(i);
+                    check = j;
+                    continue; //found one match, no need to run on the other second particles
+                }
+            }   
+        }
     }
     return result;
   }

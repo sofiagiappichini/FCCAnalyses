@@ -191,13 +191,13 @@ localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage2_'
 SUBDIR = [
-    'LL',
-    'LH',
+    #'LL',
+    #'LH',
     'HH',
 ]
 CAT = [
-    "QQ",
-    "LL",
+    #"QQ",
+    #"LL",
     "NuNu",
 ]
 nCPUS = 4
