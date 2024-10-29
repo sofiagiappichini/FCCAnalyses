@@ -108,52 +108,52 @@ class RDFanalysis():
             ### when working with Z jets, remember to use the Leptons_sel class because they are the ones not in the jets
             ### when working with tau jets it does not matter since the tau jets don't have any lepton in them so there is no confusion
 
-                .Define("TauTag_px",      "TagJet_R5_px[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_py",      "TagJet_R5_py[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_pz",      "TagJet_R5_pz[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_pt",      "TagJet_R5_pt[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_p",      "TagJet_R5_px[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_e",      "TagJet_R5_e[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_phi",      "TagJet_R5_phi[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_eta",      "TagJet_R5_eta[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_theta",      "TagJet_R5_theta[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_charge",      "TagJet_R5_charge[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_mass",      "TagJet_R5_mass[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_isG",      "TagJet_R5_isG[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_isU",      "TagJet_R5_isU[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_isD",      "TagJet_R5_isD[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_isS",      "TagJet_R5_isS[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_isC",      "TagJet_R5_isC[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_isB",      "TagJet_R5_isB[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_isTAU",      "TagJet_R5_isTAU[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_flavor",      "TagJet_R5_flavor[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("n_TauTag_constituents",        "n_TagJet_R5_constituents[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("n_TauTag_charged_constituents",        "n_TagJet_R5_charged_constituents[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("n_TauTag_neutral_constituents",        "n_TagJet_R5_neutral_constituents[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
+                .Define("TauTag_px",      "TagJet_R5_px[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_py",      "TagJet_R5_py[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_pz",      "TagJet_R5_pz[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_pt",      "TagJet_R5_pt[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_p",      "TagJet_R5_p[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_e",      "TagJet_R5_e[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_phi",      "TagJet_R5_phi[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_eta",      "TagJet_R5_eta[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_theta",      "TagJet_R5_theta[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_charge",      "TagJet_R5_charge[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_mass",      "TagJet_R5_mass[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_isG",      "TagJet_R5_isG[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_isU",      "TagJet_R5_isU[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_isD",      "TagJet_R5_isD[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_isS",      "TagJet_R5_isS[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_isC",      "TagJet_R5_isC[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_isB",      "TagJet_R5_isB[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_isTAU",      "TagJet_R5_isTAU[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_flavor",      "TagJet_R5_flavor[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("n_TauTag_constituents",        "n_TagJet_R5_constituents[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("n_TauTag_charged_constituents",        "n_TagJet_R5_charged_constituents[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("n_TauTag_neutral_constituents",        "n_TagJet_R5_neutral_constituents[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
                 .Define("n_TauTag",          "TauTag_px.size()")
 
-                .Define("QuarkTag_px",      "TagJet_R5_px[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_py",      "TagJet_R5_py[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_pz",      "TagJet_R5_pz[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_pt",      "TagJet_R5_pt[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_p",      "TagJet_R5_px[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_e",      "TagJet_R5_e[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_phi",      "TagJet_R5_phi[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_eta",      "TagJet_R5_eta[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_theta",      "TagJet_R5_theta[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_charge",      "TagJet_R5_charge[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_mass",      "TagJet_R5_mass[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_isG",      "TagJet_R5_isG[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_isU",      "TagJet_R5_isU[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_isD",      "TagJet_R5_isD[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_isS",      "TagJet_R5_isS[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_isC",      "TagJet_R5_isC[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_isB",      "TagJet_R5_isB[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_isTAU",      "TagJet_R5_isTAU[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("QuarkTag_flavor",      "TagJet_R5_flavor[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("n_QuarkTag_constituents",        "n_TagJet_R5_constituents[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("n_QuarkTag_charged_constituents",        "n_TagJet_R5_charged_constituents[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
-                .Define("n_QuarkTag_neutral_constituents",        "n_TagJet_R5_neutral_constituents[TagJet_R5_isTAU<=0.9 || abs(TagJet_R5_charge)!=1]")
+                .Define("QuarkTag_px",      "TagJet_R5_px[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_py",      "TagJet_R5_py[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_pz",      "TagJet_R5_pz[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_pt",      "TagJet_R5_pt[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_p",      "TagJet_R5_p[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_e",      "TagJet_R5_e[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_phi",      "TagJet_R5_phi[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_eta",      "TagJet_R5_eta[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_theta",      "TagJet_R5_theta[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_charge",      "TagJet_R5_charge[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_mass",      "TagJet_R5_mass[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_isG",      "TagJet_R5_isG[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_isU",      "TagJet_R5_isU[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_isD",      "TagJet_R5_isD[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_isS",      "TagJet_R5_isS[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_isC",      "TagJet_R5_isC[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_isB",      "TagJet_R5_isB[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_isTAU",      "TagJet_R5_isTAU[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("QuarkTag_flavor",      "TagJet_R5_flavor[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("n_QuarkTag_constituents",        "n_TagJet_R5_constituents[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("n_QuarkTag_charged_constituents",        "n_TagJet_R5_charged_constituents[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
+                .Define("n_QuarkTag_neutral_constituents",        "n_TagJet_R5_neutral_constituents[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
                 .Define("n_QuarkTag",     "QuarkTag_charge.size()")
 
                 .Define("OnePair",     "(n_RecoLeptons_sel==2  and (RecoLepton_sel_charge.at(0) + RecoLepton_sel_charge.at(1))==0)*1.0")
@@ -347,13 +347,13 @@ class RDFanalysis():
 
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
-                .Define("Tau_cos",      "RecoH_p/Tau_scalar")
+                .Define("Tau_cos",      "Tau_scalar/(TauLead_p*TauSub_p)")
                 .Define("Tau_DEta",    "(TauLead_eta - TauSub_eta)")
                 .Define("Tau_DPhi",    "(TauLead_phi - TauSub_phi)")
 
                 .Define("RecoZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(RecoZLead_phi, RecoZSub_phi, RecoZLead_eta, RecoZSub_eta)")
                 .Define("RecoZDaughter_scalar",      "(RecoZLead_px*RecoZSub_px + RecoZLead_py*RecoZSub_py + RecoZLead_pz*RecoZSub_pz)")
-                .Define("RecoZDaughter_cos",      "RecoZ_p/RecoZDaughter_scalar")
+                .Define("RecoZDaughter_cos",      "RecoZDaughter_scalar/(RecoZLead_p*RecoZSub_p)")
                 .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
                 .Define("RecoZDaughter_DPhi",    "(RecoZLead_phi - RecoZSub_phi)")
 
@@ -797,6 +797,17 @@ class RDFanalysis():
             "TagJet_R5_isC",
             "TagJet_R5_isB",  
             "TagJet_R5_isTAU",
+
+            "n_GenTau_had", 
+            "n_TauTag_R5_match",  
+            "n_TauTag_R5_mass_match",
+            "n_events_tag",  
+            "n_events_tag_mass",
+            "n_TauTag_R5_match5",  
+            "n_TauTag_R5_mass_match5",
+            "n_events_tag5",  
+            "n_events_tag5_mass",
+            "n_events_func",  
 
         ]
         #complex variables added here at stage2
