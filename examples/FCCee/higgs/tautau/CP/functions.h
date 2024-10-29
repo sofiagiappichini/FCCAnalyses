@@ -447,9 +447,27 @@ float get_gamma(float p, float e) {
   }
 
 //supports vectors of _tlv of different sizes, if one of them is size one then it's used recursively otherwise the smaller size of the vectors is used to get the value
-float get_scalar( TLorentzVector v1, TLorentzVector v2) {
-    float result;
-    return (v1.Px()*v2.Px() + v1.Py()*v2.Py() + v1.Pz()*v2.Pz());
+ROOT::VecOps::RVec<float> get_scalar( ROOT::VecOps::RVec<TLorentzVector> v1,  ROOT::VecOps::RVec<TLorentzVector> v2) {
+    ROOT::VecOps::RVec<float> result;
+    if (v2.size()==1 && v1.size()>1) {
+    TLorentzVector v = v2[0];
+        for (size_t i = 0; i < v1.size(); ++i) {  
+        result.push_back(v1[i].Px()*v[0] + v1[i].Py()*v[1] + v1[i].Pz()*v[2]);
+        }
+    }
+    else if (v1.size()==1 && v2.size()>1) {
+        TLorentzVector v = v1[0];
+        for (size_t i = 0; i < v2.size(); ++i) {  
+        result.push_back(v2[i].Px()*v[0] + v2[i].Py()*v[1] + v2[i].Pz()*v[2]);
+        }
+    }
+    else {
+        float size = std::min(v1.size(), v2.size());
+        for (size_t i = 0; i < size; ++i) {  
+        result.push_back(v1[i].Px()*v2[i].Px() + v1[i].Py()*v2[i].Py() + v1[i].Pz()*v2[i].Pz());
+        }
+    }
+    return result;
 }
 
 ROOT::VecOps::RVec<TLorentzVector> build_p4(ROOT::VecOps::RVec<float> px, ROOT::VecOps::RVec<float> py, ROOT::VecOps::RVec<float> pz, ROOT::VecOps::RVec<float> e) {
@@ -593,6 +611,77 @@ std::vector<std::vector<int>> sel_dilep_mass_idx(ROOT::VecOps::RVec<edm4hep::Rec
   }
   return result;
 }
+
+ROOT::VecOps::RVec<int> deltaR_sel_idx_v2(ROOT::VecOps::RVec<float> phi1, ROOT::VecOps::RVec<float> phi2, ROOT::VecOps::RVec<float> eta1, ROOT::VecOps::RVec<float> eta2, float min_delta) {
+    ROOT::VecOps::RVec<int> result;
+    std::vector<bool> matches(phi2.size(), false);
+
+    for (size_t i = 0; i < phi1.size(); ++i) { //run over first vector of particles
+        size_t check = -1;
+        float DR_min = min_delta; //value to start with comparing the matches with the second particles, reset for next first particle
+
+        for (size_t j = 0; j < phi2.size(); ++j) {  //run over second vector of particles
+            if (matches[j]) continue; //skip if the second particle has already a match
+
+            float DR = sqrt(deltaEta(eta1[i],eta2[j])*deltaEta(eta1[i],eta2[j]) + deltaPhi(phi1[i],phi2[j])*deltaPhi(phi1[i],phi2[j]));
+            
+            if (DR<DR_min) { //fisr iteration is min_delta, then new minumum to match
+                DR_min = DR; 
+                check = j;
+            }   
+        }
+
+        if (check!=-1) { //make sure two first particles are not matched to the same second particle
+            result.push_back(i);
+            matches[check] = true; //second particle matched now
+        }
+    }
+    return result;
+  }
+
+ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> get_chargedleading_fromjet (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
+
+    // similar to the findTauInJet function but I only want the leading charged particle in the jet
+
+    ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> out;
+
+    // Loop over jets:
+
+    for (int i = 0; i < jets.size(); ++i) {
+
+        TLorentzVector sum_tau; // initialized by (0., 0., 0., 0.)
+        edm4hep::ReconstructedParticleData partMod;
+        FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
+
+        // Find Lead (This needs to change to first sort the jcs by p or pt, it is very messy right now)
+
+        TLorentzVector lead;
+        lead.SetPxPyPzE(0,0,0,0);
+        int chargeLead=0;
+
+        // First loop just to find the lead (not very efficient). 
+        for (const auto& jc : jcs) {
+
+            // Anything else lets: find the highest pt one, charged particle as lead only
+            if ((jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
+                lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
+                chargeLead=jc.charge;
+            }
+        }
+        // save the leading particle, one per jet, if only neutral particles are present thenn it return a null particle
+        partMod.momentum.x = lead.Px();
+        partMod.momentum.y = lead.Py();
+        partMod.momentum.z = lead.Pz();
+        partMod.mass = lead.M();
+        partMod.energy= lead.E();
+        partMod.charge = chargeLead; 
+        out.push_back(partMod);
+        
+    }
+    return out;
+
+}
+
 
 ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
 

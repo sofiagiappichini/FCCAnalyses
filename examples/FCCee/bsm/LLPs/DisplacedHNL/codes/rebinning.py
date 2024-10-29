@@ -527,7 +527,7 @@ asym_bins = [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8
 nbins = len(asym_bins)-1
 ### note: The bin edges specified in xbins should correspond to bin edges in the original histogram. ###
 
-'''for CUT in CUTS:
+for CUT in CUTS:
     NEWFILE='/eos/user/s/sgiappic/combine/' + VARIABLE + '_norebin_' + CUT + '.root' # name of the rebinned file
     nf= ROOT.TFile.Open(NEWFILE, "UPDATE") 
 
