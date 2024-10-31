@@ -32,10 +32,10 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CP/final_tag_one/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/CP/final_tag_EEHH_rho/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Oneprong_tag/' 
+DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/EEHH_rho_tag/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
@@ -47,7 +47,7 @@ LABELS = {
     "selGen": "No additional selection",
  }
 
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (one prong)"# (#pi#pi^{0}#nu)"
+ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (#pi#pi^{0}#nu)"# (#pi#pi^{0}#nu)"
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
@@ -495,17 +495,17 @@ VARIABLES_LL = [
             "TauTag_isB",  
             "TauTag_isTAU",
 
-            "n_TauDaughter",
-            "TauDaughter_e",
-            "TauDaughter_p",
-            "TauDaughter_pt",
-            "TauDaughter_px",
-            "TauDaughter_py",
-            "TauDaughter_pz",
-            "TauDaughter_eta",
-            "TauDaughter_theta",
-            "TauDaughter_phi",
-            "TauDaughter_mass",
+            #"n_TauDaughter",
+            #"TauDaughter_e",
+            #"TauDaughter_p",
+            #"TauDaughter_pt",
+            #"TauDaughter_px",
+            #"TauDaughter_py",
+            #"TauDaughter_pz",
+            #"TauDaughter_eta",
+            #"TauDaughter_theta",
+            #"TauDaughter_phi",
+            #"TauDaughter_mass",
 
             "QuarkTag_px", 
             "QuarkTag_py",    
@@ -662,6 +662,25 @@ VARIABLES_LL = [
             "n_TauM_charged_constituents",
             "n_TauM_neutral_constituents",
 
+            "Recoil",
+            "Collinear_mass", 
+        
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta", 
+            "Tau_DPhi",
+            "Tau_DEta_y", 
+            "Tau_DPhi_y", 
+            
+            "RecoZDaughter_DR", 
+            "RecoZDaughter_cos", 
+            "RecoZDaughter_DEta", 
+            "RecoZDaughter_DPhi", 
+            "RecoZDaughter_DEta_y", 
+            "RecoZDaughter_DPhi_y", 
+]
+
+VARIABLES_PI = [
             "PiLead_px",    
             "PiLead_py",   
             "PiLead_pz",   
@@ -710,16 +729,6 @@ VARIABLES_LL = [
             "PiM_y",    
             "PiM_mass",
 
-            "Recoil",
-            "Collinear_mass", 
-        
-            "Tau_DR",
-            "Tau_cos",
-            "Tau_DEta", 
-            "Tau_DPhi",
-            "Tau_DEta_y", 
-            "Tau_DPhi_y", 
-
             "Pi_DR",
             "Pi_cos",
             "Pi_DEta", 
@@ -754,13 +763,171 @@ VARIABLES_LL = [
             "TauPiM_DPhi",
             "TauPiM_DEta_y", 
             "TauPiM_DPhi_y", 
-            
-            "RecoZDaughter_DR", 
-            "RecoZDaughter_cos", 
-            "RecoZDaughter_DEta", 
-            "RecoZDaughter_DPhi", 
-            "RecoZDaughter_DEta_y", 
-            "RecoZDaughter_DPhi_y", 
+
+            "HRF_PiLead_px",  
+            "HRF_PiLead_py",  
+            "HRF_PiLead_pz", 
+            "HRF_PiLead_p", 
+            "HRF_PiLead_pt",  
+            "HRF_PiLead_e",   
+            "HRF_PiLead_eta", 
+            "HRF_PiLead_phi",  
+            "HRF_PiLead_theta",    
+            "HRF_PiLead_y", 
+
+            "HRF_PiSub_px",  
+            "HRF_PiSub_py",  
+            "HRF_PiSub_pz", 
+            "HRF_PiSub_p", 
+            "HRF_PiSub_pt",  
+            "HRF_PiSub_e",   
+            "HRF_PiSub_eta", 
+            "HRF_PiSub_phi",  
+            "HRF_PiSub_theta",    
+            "HRF_PiSub_y", 
+
+            "HRF_PiP_px",  
+            "HRF_PiP_py",  
+            "HRF_PiP_pz", 
+            "HRF_PiP_p", 
+            "HRF_PiP_pt",  
+            "HRF_PiP_e",   
+            "HRF_PiP_eta", 
+            "HRF_PiP_phi",  
+            "HRF_PiP_theta",    
+            "HRF_PiP_y", 
+
+            "HRF_PiM_px",  
+            "HRF_PiM_py",  
+            "HRF_PiM_pz", 
+            "HRF_PiM_p", 
+            "HRF_PiM_pt",  
+            "HRF_PiM_e",   
+            "HRF_PiM_eta", 
+            "HRF_PiM_phi",  
+            "HRF_PiM_theta",    
+            "HRF_PiM_y", 
+
+            "HRF_Pi_DEta", 
+            "HRF_Pi_DPhi",
+            "HRF_Pi_DEta_y", 
+            "HRF_Pi_DPhi_y", 
+
+            "HRF_TauPiLead_DEta", 
+            "HRF_TauPiLead_DPhi",
+            "HRF_TauPiLead_DEta_y", 
+            "HRF_TauPiLead_DPhi_y",
+
+            "HRF_TauPiSub_DEta", 
+            "HRF_TauPiSub_DPhi",
+            "HRF_TauPiSub_DEta_y", 
+            "HRF_TauPiSub_DPhi_y",
+
+            "HRF_TauPiP_DEta", 
+            "HRF_TauPiP_DPhi",
+            "HRF_TauPiP_DEta_y", 
+            "HRF_TauPiP_DPhi_y",
+
+            "HRF_TauPiM_DEta", 
+            "HRF_TauPiM_DPhi",
+            "HRF_TauPiM_DEta_y", 
+            "HRF_TauPiM_DPhi_y",
+
+            "TauLeadRF_PiLead_px",    
+            "TauLeadRF_PiLead_py",   
+            "TauLeadRF_PiLead_pz",   
+            "TauLeadRF_PiLead_p",   
+            "TauLeadRF_PiLead_pt",   
+            "TauLeadRF_PiLead_e",    
+            "TauLeadRF_PiLead_eta",    
+            "TauLeadRF_PiLead_phi",    
+            "TauLeadRF_PiLead_theta",    
+            "TauLeadRF_PiLead_y",    
+
+            "TauSubRF_PiSub_px",    
+            "TauSubRF_PiSub_py",   
+            "TauSubRF_PiSub_pz",   
+            "TauSubRF_PiSub_p",   
+            "TauSubRF_PiSub_pt",   
+            "TauSubRF_PiSub_e",    
+            "TauSubRF_PiSub_eta",    
+            "TauSubRF_PiSub_phi",    
+            "TauSubRF_PiSub_theta",    
+            "TauSubRF_PiSub_y",    
+
+            "TauPRF_PiP_px",    
+            "TauPRF_PiP_py",   
+            "TauPRF_PiP_pz",   
+            "TauPRF_PiP_p",   
+            "TauPRF_PiP_pt",   
+            "TauPRF_PiP_e",    
+            "TauPRF_PiP_eta",    
+            "TauPRF_PiP_phi",    
+            "TauPRF_PiP_theta",    
+            "TauPRF_PiP_y",    
+
+            "TauMRF_PiM_px",    
+            "TauMRF_PiM_py",   
+            "TauMRF_PiM_pz",   
+            "TauMRF_PiM_p",   
+            "TauMRF_PiM_pt",   
+            "TauMRF_PiM_e",    
+            "TauMRF_PiM_eta",    
+            "TauMRF_PiM_phi",    
+            "TauMRF_PiM_theta",    
+            "TauMRF_PiM_y",   
+
+            "TauRF_Pi_DEta", 
+            "TauRF_Pi_DPhi",
+            "TauRF_Pi_DEta_y", 
+            "TauRF_Pi_DPhi_y",  
+
+            "Boosted_PiP_px",    
+            "Boosted_PiP_py",   
+            "Boosted_PiP_pz",   
+            "Boosted_PiP_p",   
+            "Boosted_PiP_pt",   
+            "Boosted_PiP_e",    
+            "Boosted_PiP_eta",    
+            "Boosted_PiP_phi",    
+            "Boosted_PiP_theta",    
+            "Boosted_PiP_y",    
+
+            "Boosted_PiM_px",    
+            "Boosted_PiM_py",   
+            "Boosted_PiM_pz",   
+            "Boosted_PiM_p",   
+            "Boosted_PiM_pt",   
+            "Boosted_PiM_e",    
+            "Boosted_PiM_eta",    
+            "Boosted_PiM_phi",    
+            "Boosted_PiM_theta",    
+            "Boosted_PiM_y",    
+
+            "Boosted_Pi0P_px",    
+            "Boosted_Pi0P_py",   
+            "Boosted_Pi0P_pz",   
+            "Boosted_Pi0P_p",   
+            "Boosted_Pi0P_pt",   
+            "Boosted_Pi0P_e",    
+            "Boosted_Pi0P_eta",    
+            "Boosted_Pi0P_phi",    
+            "Boosted_Pi0P_theta",    
+            "Boosted_Pi0P_y",    
+
+            "Boosted_Pi0M_px",    
+            "Boosted_Pi0M_py",   
+            "Boosted_Pi0M_pz",   
+            "Boosted_Pi0M_p",   
+            "Boosted_Pi0M_pt",   
+            "Boosted_Pi0M_e",    
+            "Boosted_Pi0M_eta",    
+            "Boosted_Pi0M_phi",    
+            "Boosted_Pi0M_theta",    
+            "Boosted_Pi0M_y",    
+
+            "RecoPhiCP",
+            "RecoPhiCP_cos",
 ]
 
 VARIABLES_CPGEN = [
@@ -1051,75 +1218,6 @@ VARIABLES_CPRECO = [
             "HRF_Tau_DEta_y", 
             "HRF_Tau_DPhi_y", 
 
-            "HRF_PiLead_px",  
-            "HRF_PiLead_py",  
-            "HRF_PiLead_pz", 
-            "HRF_PiLead_p", 
-            "HRF_PiLead_pt",  
-            "HRF_PiLead_e",   
-            "HRF_PiLead_eta", 
-            "HRF_PiLead_phi",  
-            "HRF_PiLead_theta",    
-            "HRF_PiLead_y", 
-
-            "HRF_PiSub_px",  
-            "HRF_PiSub_py",  
-            "HRF_PiSub_pz", 
-            "HRF_PiSub_p", 
-            "HRF_PiSub_pt",  
-            "HRF_PiSub_e",   
-            "HRF_PiSub_eta", 
-            "HRF_PiSub_phi",  
-            "HRF_PiSub_theta",    
-            "HRF_PiSub_y", 
-
-            "HRF_PiP_px",  
-            "HRF_PiP_py",  
-            "HRF_PiP_pz", 
-            "HRF_PiP_p", 
-            "HRF_PiP_pt",  
-            "HRF_PiP_e",   
-            "HRF_PiP_eta", 
-            "HRF_PiP_phi",  
-            "HRF_PiP_theta",    
-            "HRF_PiP_y", 
-
-            "HRF_PiM_px",  
-            "HRF_PiM_py",  
-            "HRF_PiM_pz", 
-            "HRF_PiM_p", 
-            "HRF_PiM_pt",  
-            "HRF_PiM_e",   
-            "HRF_PiM_eta", 
-            "HRF_PiM_phi",  
-            "HRF_PiM_theta",    
-            "HRF_PiM_y", 
-
-            "HRF_Pi_DEta", 
-            "HRF_Pi_DPhi",
-            "HRF_Pi_DEta_y", 
-            "HRF_Pi_DPhi_y", 
-
-            "HRF_TauPiLead_DEta", 
-            "HRF_TauPiLead_DPhi",
-            "HRF_TauPiLead_DEta_y", 
-            "HRF_TauPiLead_DPhi_y",
-
-            "HRF_TauPiSub_DEta", 
-            "HRF_TauPiSub_DPhi",
-            "HRF_TauPiSub_DEta_y", 
-            "HRF_TauPiSub_DPhi_y",
-
-            "HRF_TauPiP_DEta", 
-            "HRF_TauPiP_DPhi",
-            "HRF_TauPiP_DEta_y", 
-            "HRF_TauPiP_DPhi_y",
-
-            "HRF_TauPiM_DEta", 
-            "HRF_TauPiM_DPhi",
-            "HRF_TauPiM_DEta_y", 
-            "HRF_TauPiM_DPhi_y",
-
             "ZRF_RecoZLead_px",  
             "ZRF_RecoZLead_py",  
             "ZRF_RecoZLead_pz", 
@@ -1169,55 +1267,6 @@ VARIABLES_CPRECO = [
             "ZRF_RecoZDaughter_DEta_y", 
             "ZRF_RecoZDaughter_DPhi_y", 
 
-            "TauLeadRF_PiLead_px",    
-            "TauLeadRF_PiLead_py",   
-            "TauLeadRF_PiLead_pz",   
-            "TauLeadRF_PiLead_p",   
-            "TauLeadRF_PiLead_pt",   
-            "TauLeadRF_PiLead_e",    
-            "TauLeadRF_PiLead_eta",    
-            "TauLeadRF_PiLead_phi",    
-            "TauLeadRF_PiLead_theta",    
-            "TauLeadRF_PiLead_y",    
-
-            "TauSubRF_PiSub_px",    
-            "TauSubRF_PiSub_py",   
-            "TauSubRF_PiSub_pz",   
-            "TauSubRF_PiSub_p",   
-            "TauSubRF_PiSub_pt",   
-            "TauSubRF_PiSub_e",    
-            "TauSubRF_PiSub_eta",    
-            "TauSubRF_PiSub_phi",    
-            "TauSubRF_PiSub_theta",    
-            "TauSubRF_PiSub_y",    
-
-            "TauPRF_PiP_px",    
-            "TauPRF_PiP_py",   
-            "TauPRF_PiP_pz",   
-            "TauPRF_PiP_p",   
-            "TauPRF_PiP_pt",   
-            "TauPRF_PiP_e",    
-            "TauPRF_PiP_eta",    
-            "TauPRF_PiP_phi",    
-            "TauPRF_PiP_theta",    
-            "TauPRF_PiP_y",    
-
-            "TauMRF_PiM_px",    
-            "TauMRF_PiM_py",   
-            "TauMRF_PiM_pz",   
-            "TauMRF_PiM_p",   
-            "TauMRF_PiM_pt",   
-            "TauMRF_PiM_e",    
-            "TauMRF_PiM_eta",    
-            "TauMRF_PiM_phi",    
-            "TauMRF_PiM_theta",    
-            "TauMRF_PiM_y",   
-
-            "TauRF_Pi_DEta", 
-            "TauRF_Pi_DPhi",
-            "TauRF_Pi_DEta_y", 
-            "TauRF_Pi_DPhi_y",  
-
             "RecoThetastar",
             "RecoTheta2",
             "RecoPhi1", 
@@ -1229,13 +1278,6 @@ VARIABLES_CPRECO = [
             "RecoPhi1_cos", 
             "RecoPhi_cos", 
             "RecoTheta1_cos", 
-
-            "RecoGamma1",
-            "RecoGamma2",
-            "RecoPhiCP",
-            "RecoGamma1_cos",
-            "RecoGamma2_cos",
-            "RecoPhiCP_cos",
 
 ]
 
@@ -1366,9 +1408,9 @@ bcolors = {
 #list of signals, then legend and colors to be assigned to them
 signals = [
     'noISR_e+e-_noCuts_EWonly',
-    'noISR_e+e-_noCuts_cehre_m1',
+    #'noISR_e+e-_noCuts_cehre_m1',
     'noISR_e+e-_noCuts_cehre_p1',
-    'noISR_e+e-_noCuts_cehim_m1',
+    #'noISR_e+e-_noCuts_cehim_m1',
     'noISR_e+e-_noCuts_cehim_p1',
 ]
 
@@ -1390,7 +1432,7 @@ scolors = {
 
 for cut in CUTS:
     #VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
-    VARIABLES = VARIABLES_RECO + VARIABLES_LL + VARIABLES_CPRECO
+    VARIABLES = VARIABLES_RECO + VARIABLES_LL + VARIABLES_CPRECO + VARIABLES_PI
     for variable in VARIABLES:
 
         canvas = ROOT.TCanvas("", "", 1000, 1000)
@@ -1533,7 +1575,7 @@ for cut in CUTS:
         dummy.Draw("e2")
             
         ratio_list = []
-        for i in range(3,nsig):  
+        for i in range(1,nsig):  
             ratio = histos[i].Clone("")
             ratio.Divide(histos[0])
             ratio.SetLineWidth(3)

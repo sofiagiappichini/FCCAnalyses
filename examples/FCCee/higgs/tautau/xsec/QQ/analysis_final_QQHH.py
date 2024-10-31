@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2_tag/QQ/HH/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/QQ/HH/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final_tag/QQ/HH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/QQ/HH/" 
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -119,13 +119,13 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    #"selReco_100Coll150_115Rec160_10Me": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2",
-    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0",
-    #selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && RecoEmiss_e>10 && RecoZ_mass>80 &&RecoZ_mass<95 && Tau_DR>2 && Tau_cos<0 && RecoEmiss_costheta<0.98",
+    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
+    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && QuarkTag_isTAU<0.5",
     
 }
 
@@ -135,11 +135,12 @@ cutLabels = {
     "selReco": "No additional selection",
     "selReco_100Coll150": "100<M_{collinear}<150 GeV",
     "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
-    "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
-    "selReco_100Coll150_115Rec160_10Me_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
+    "selReco_100Coll150_115Rec160_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5",
+
 
 }
 
@@ -410,19 +411,19 @@ histoList = {
     "RecoPhoton_charge":        {"name":"RecoPhoton_charge",              "title":"Reco photon charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     #"RecoPhoton_mass":          {"name":"RecoPhoton_mass",                 "title":"Reco photon mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
 
-    "n_NeutralHadrons":            {"name":"n_NeutralHadrons",                  "title":"Number of reco neutral hadrons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "NeutralHadron_e":             {"name":"NeutralHadron_e",                   "title":"Neutral hadron energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadron_p":             {"name":"NeutralHadron_p",                   "title":"Neutral hadron p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadron_pt":            {"name":"NeutralHadron_pt",                  "title":"Neutral hadron p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadron_px":            {"name":"NeutralHadron_px",                  "title":"Neutral hadron p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadron_py":            {"name":"NeutralHadron_py",                  "title":"Neutral hadron p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadron_pz":            {"name":"NeutralHadron_pz",                  "title":"Neutral hadron p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadron_y":             {"name":"NeutralHadron_y",                   "title":"Neutral hadron rapidity",                       "bin":40, "xmin":-4., "xmax":4.},
-    "NeutralHadron_eta":           {"name":"NeutralHadron_eta",                 "title":"Neutral hadron #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "NeutralHadron_theta":         {"name":"NeutralHadron_theta",               "title":"Neutral hadron #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "NeutralHadron_phi":           {"name":"NeutralHadron_phi",                 "title":"Neutral hadron #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "NeutralHadron_charge":        {"name":"NeutralHadron_charge",              "title":"Neutral hadron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    "NeutralHadron_mass":          {"name":"NeutralHadron_mass",                 "title":"Neutral hadron mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+    #"n_NeutralHadrons":            {"name":"n_NeutralHadrons",                  "title":"Number of reco neutral hadrons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    #"NeutralHadron_e":             {"name":"NeutralHadron_e",                   "title":"Neutral hadron energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    #"NeutralHadron_p":             {"name":"NeutralHadron_p",                   "title":"Neutral hadron p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    #"NeutralHadron_pt":            {"name":"NeutralHadron_pt",                  "title":"Neutral hadron p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    #"NeutralHadron_px":            {"name":"NeutralHadron_px",                  "title":"Neutral hadron p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"NeutralHadron_py":            {"name":"NeutralHadron_py",                  "title":"Neutral hadron p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"NeutralHadron_pz":            {"name":"NeutralHadron_pz",                  "title":"Neutral hadron p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"NeutralHadron_y":             {"name":"NeutralHadron_y",                   "title":"Neutral hadron rapidity",                       "bin":40, "xmin":-4., "xmax":4.},
+    #"NeutralHadron_eta":           {"name":"NeutralHadron_eta",                 "title":"Neutral hadron #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    #"NeutralHadron_theta":         {"name":"NeutralHadron_theta",               "title":"Neutral hadron #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    #"NeutralHadron_phi":           {"name":"NeutralHadron_phi",                 "title":"Neutral hadron #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    #"NeutralHadron_charge":        {"name":"NeutralHadron_charge",              "title":"Neutral hadron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    #"NeutralHadron_mass":          {"name":"NeutralHadron_mass",                 "title":"Neutral hadron mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
 
 
     "RecoEmiss_px":             {"name":"RecoEmiss_px",                  "title":"Reco missing energy p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},

@@ -87,10 +87,10 @@ processList = {
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
 }
 
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1_241019/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1_241025/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_tag_241025/QQ/LL/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025_cut/QQ/LL/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -366,6 +366,8 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
+
+                .Filter("Collinear_mass>100 && Collinear_mass<150")
 
         )
         return df2

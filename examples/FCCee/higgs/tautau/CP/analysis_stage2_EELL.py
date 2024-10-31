@@ -153,19 +153,6 @@ class RDFanalysis():
                 .Define("n_TauTag_neutral_constituents",        "n_TagJet_R5_neutral_constituents[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
                 .Define("n_TauTag",          "TauTag_px.size()")
 
-                .Define("TauDaughter_px",      "LeadingPi_px[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_py",      "LeadingPi_py[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_pz",      "LeadingPi_pz[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_pt",      "LeadingPi_pt[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_p",      "LeadingPi_px[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_e",      "LeadingPi_e[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_phi",      "LeadingPi_phi[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_eta",      "LeadingPi_eta[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_theta",      "LeadingPi_theta[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_charge",      "LeadingPi_charge[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauDaughter_mass",      "LeadingPi_mass[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("n_TauDaughter",          "TauDaughter_px.size()")
-
                 .Define("QuarkTag_px",      "TagJet_R5_px[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
                 .Define("QuarkTag_py",      "TagJet_R5_py[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
                 .Define("QuarkTag_pz",      "TagJet_R5_pz[TagJet_R5_isTAU<=0.5 || abs(TagJet_R5_charge)!=1 || TagJet_R5_mass>=3]")
@@ -194,13 +181,19 @@ class RDFanalysis():
                 ##### FILTERING ######
                 ######################
 
-                .Define("OnePair",     "(n_RecoElectrons_sel==2 and n_RecoMuons_sel==0)*1.0")
+                .Define("AllLeptons",    "((n_RecoElectrons==4 and n_RecoMuons==0) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + RecoLepton_charge.at(3))==0)*1.0")
+                .Define("TwoPairs",     "((n_RecoElectrons==2 and n_RecoMuons==2) and (RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0 and (RecoMuon_charge.at(0) + RecoMuon_charge.at(1))==0)*1.0")
+                .Define("OnePair",     "((n_RecoElectrons==3 and n_RecoMuons==1)  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + RecoLepton_charge.at(3))==0)*1.0")
 
-                .Filter("OnePair==1 && n_TauTag==2 && n_QuarkTag==0")
+                #.Filter("(AllLeptons==1 || TwoPairs==1 || OnePair==1) && n_TagJet_R5_sel==0 && n_TauFromJet_R5Tag==0") 
 
-                .Filter("(RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0")
+                ###########################
+                
+                .Filter("(AllLeptons==1 || TwoPairs==1 || OnePair==1) && n_TauTag==0 && n_QuarkTag==0") 
 
-                .Filter("(TauTag_charge.at(0) + TauTag_charge.at(1))==0")
+                #.Filter("(RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0")
+
+                #.Filter("(TauTag_charge.at(0) + TauTag_charge.at(1))==0")
 
                 #select one prong decay >> leading pi is the constituent individuated here
 
@@ -220,9 +213,14 @@ class RDFanalysis():
                 # Reco particles #
                 ##################
 
-                .Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_sel_px, RecoLepton_sel_py, RecoLepton_sel_pz, RecoLepton_sel_e)")
+                .Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_px, RecoLepton_py, RecoLepton_pz, RecoLepton_e)")
 
-                .Define("RecoZLead_p4",      "if (RecoLepton_sel_pt.at(0)>RecoLepton_sel_pt.at(1)) return RecoLepton_p4.at(0); else return RecoLepton_p4.at(1)")
+                .Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_4(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188, 125.25)")
+
+                .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[0]), RecoLepton_py.at(RecoZH_idx[0]), RecoLepton_pz.at(RecoZH_idx[0]), RecoLepton_e.at(RecoZH_idx[0]))")
+                .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[1]), RecoLepton_py.at(RecoZH_idx[1]), RecoLepton_pz.at(RecoZH_idx[1]), RecoLepton_e.at(RecoZH_idx[1]))")
+
+                .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
                 .Define("RecoZLead_py",    "RecoZLead_p4.Py()")
                 .Define("RecoZLead_pz",    "RecoZLead_p4.Pz()")
@@ -235,7 +233,7 @@ class RDFanalysis():
                 .Define("RecoZLead_y",     "RecoZLead_p4.Rapidity()")
                 .Define("RecoZLead_mass",    "RecoZLead_p4.M()")
 
-                .Define("RecoZSub_p4",      "if (RecoLepton_sel_pt.at(0)>RecoLepton_sel_pt.at(1)) return RecoLepton_p4.at(1); else return RecoLepton_p4.at(0)")
+                .Define("RecoZSub_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ2_p4; else return RecoZ1_p4;")
                 .Define("RecoZSub_px",    "RecoZSub_p4.Px()")
                 .Define("RecoZSub_py",    "RecoZSub_p4.Py()")
                 .Define("RecoZSub_pz",    "RecoZSub_p4.Pz()")
@@ -248,7 +246,7 @@ class RDFanalysis():
                 .Define("RecoZSub_y",     "RecoZSub_p4.Rapidity()")
                 .Define("RecoZSub_mass",    "RecoZSub_p4.M()")
 
-                .Define("RecoZP_p4",      "if (RecoLepton_sel_charge.at(0)==1) return RecoLepton_p4.at(0); else return RecoLepton_p4.at(1)")
+                .Define("RecoZP_p4",      "if (RecoLepton_charge.at(RecoZH_idx[0])==1) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZP_px",    "RecoZP_p4.Px()")
                 .Define("RecoZP_py",    "RecoZP_p4.Py()")
                 .Define("RecoZP_pz",    "RecoZP_p4.Pz()")
@@ -261,7 +259,7 @@ class RDFanalysis():
                 .Define("RecoZP_y",     "RecoZP_p4.Rapidity()")
                 .Define("RecoZP_mass",    "RecoZP_p4.M()")
 
-                .Define("RecoZM_p4",      "if (RecoLepton_sel_charge.at(0)==1) return RecoLepton_p4.at(1); else return RecoLepton_p4.at(0)")
+                .Define("RecoZM_p4",      "if (RecoLepton_charge.at(RecoZH_idx[0])==1) return RecoZ2_p4; else return RecoZ1_p4;")
                 .Define("RecoZM_px",    "RecoZM_p4.Px()")
                 .Define("RecoZM_py",    "RecoZM_p4.Py()")
                 .Define("RecoZM_pz",    "RecoZM_p4.Pz()")
@@ -287,20 +285,19 @@ class RDFanalysis():
                 .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
                 .Define("RecoZ_mass",    "RecoZ_p4.M()")
                 
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauTag_px.at(0), TauTag_py.at(0), TauTag_pz.at(0), TauTag_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauTag_px.at(1), TauTag_py.at(1), TauTag_pz.at(1), TauTag_e.at(1))")
-                .Define("RecoTau1_type",        "TauTag_isTAU.at(0)")
-                .Define("RecoTau2_type",        "TauTag_isTAU.at(1)")
+                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[2]), RecoLepton_py.at(RecoZH_idx[2]), RecoLepton_pz.at(RecoZH_idx[2]), RecoLepton_e.at(RecoZH_idx[2]))")
+                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(RecoZH_idx[3]), RecoLepton_py.at(RecoZH_idx[3]), RecoLepton_pz.at(RecoZH_idx[3]), RecoLepton_e.at(RecoZH_idx[3]))")
+                .Define("RecoTau1_type",        "if (RecoLepton_mass.at(RecoZH_idx[2])<0.05) return float(-0.11); else return float(-0.13);")
+                .Define("RecoTau2_type",        "if (RecoLepton_mass.at(RecoZH_idx[2])<0.05) return float(-0.13); else return float(-0.11);")
+                .Define("n_RecoTau1_constituents",        "return float(1);")
+                .Define("n_RecoTau2_constituents",        "return float(1);")
+                .Define("n_RecoTau1_charged_constituents",        "return float(1);")
+                .Define("n_RecoTau2_charged_constituents",        "return float(1);")
+                .Define("n_RecoTau1_neutral_constituents",        "return float(0);")
+                .Define("n_RecoTau2_neutral_constituents",        "return float(0);")
 
-                .Define("n_RecoTau1_constituents",        "n_TauTag_constituents.at(0)")
-                .Define("n_RecoTau2_constituents",        "n_TauTag_constituents.at(1)")
-                .Define("n_RecoTau1_charged_constituents",        "n_TauTag_charged_constituents.at(0)")
-                .Define("n_RecoTau2_charged_constituents",        "n_TauTag_charged_constituents.at(1)")
-                .Define("n_RecoTau1_neutral_constituents",        "n_TauTag_charged_constituents.at(0)")
-                .Define("n_RecoTau2_neutral_constituents",        "n_TauTag_neutral_constituents.at(1)")
-
-                .Define("TauDaughter1_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(TauDaughter_px.at(0), TauDaughter_py.at(0), TauDaughter_pz.at(0), TauDaughter_e.at(0))")
-                .Define("TauDaughter2_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(TauDaughter_px.at(1), TauDaughter_py.at(1), TauDaughter_pz.at(1), TauDaughter_e.at(1))")
+                #.Define("TauDaughter1_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(TauDaughter_px.at(0), TauDaughter_py.at(0), TauDaughter_pz.at(0), TauDaughter_e.at(0))")
+                #.Define("TauDaughter2_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(TauDaughter_px.at(1), TauDaughter_py.at(1), TauDaughter_pz.at(1), TauDaughter_e.at(1))")
 
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
@@ -332,19 +329,6 @@ class RDFanalysis():
                 .Define("n_TauLead_charged_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau1_charged_constituents; else return n_RecoTau2_charged_constituents;")
                 .Define("n_TauLead_neutral_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau1_neutral_constituents; else return n_RecoTau2_neutral_constituents;")
 
-                .Define("PiLead_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return TauDaughter1_p4; else return TauDaughter2_p4;")
-                .Define("PiLead_px",    "PiLead_p4.Px()")
-                .Define("PiLead_py",    "PiLead_p4.Py()")
-                .Define("PiLead_pz",    "PiLead_p4.Pz()")
-                .Define("PiLead_p",    "PiLead_p4.P()")
-                .Define("PiLead_pt",    "PiLead_p4.Pt()")
-                .Define("PiLead_e",     "PiLead_p4.E()")
-                .Define("PiLead_eta",    "PiLead_p4.Eta()")
-                .Define("PiLead_phi",    "PiLead_p4.Phi()")
-                .Define("PiLead_theta",    "PiLead_p4.Theta()")
-                .Define("PiLead_y",     "PiLead_p4.Rapidity()")
-                .Define("PiLead_mass",    "PiLead_p4.M()")
-
                 .Define("TauSub_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauSub_px",    "TauSub_p4.Px()")
                 .Define("TauSub_py",    "TauSub_p4.Py()")
@@ -362,20 +346,7 @@ class RDFanalysis():
                 .Define("n_TauSub_charged_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau2_charged_constituents; else return n_RecoTau1_charged_constituents;")
                 .Define("n_TauSub_neutral_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau2_neutral_constituents; else return n_RecoTau1_neutral_constituents;")
 
-                .Define("PiSub_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return TauDaughter2_p4; else return TauDaughter1_p4;")
-                .Define("PiSub_px",    "PiSub_p4.Px()")
-                .Define("PiSub_py",    "PiSub_p4.Py()")
-                .Define("PiSub_pz",    "PiSub_p4.Pz()")
-                .Define("PiSub_p",    "PiSub_p4.P()")
-                .Define("PiSub_pt",    "PiSub_p4.Pt()")
-                .Define("PiSub_e",     "PiSub_p4.E()")
-                .Define("PiSub_eta",    "PiSub_p4.Eta()")
-                .Define("PiSub_phi",    "PiSub_p4.Phi()")
-                .Define("PiSub_theta",    "PiSub_p4.Theta()")
-                .Define("PiSub_y",     "PiSub_p4.Rapidity()")
-                .Define("PiSub_mass",    "PiSub_p4.M()")
-
-                .Define("TauP_p4","if (TauTag_charge.at(0)==1) return RecoTau1_p4; else return RecoTau2_p4;")
+                .Define("TauP_p4","if (RecoLepton_charge.at(RecoZH_idx[2])==1) return RecoTau1_p4; else return RecoTau2_p4;")
                 .Define("TauP_px",    "TauP_p4.Px()")
                 .Define("TauP_py",    "TauP_p4.Py()")
                 .Define("TauP_pz",    "TauP_p4.Pz()")
@@ -387,25 +358,12 @@ class RDFanalysis():
                 .Define("TauP_theta",    "TauP_p4.Theta()")
                 .Define("TauP_y",     "TauP_p4.Rapidity()")
                 .Define("TauP_mass",    "TauP_p4.M()")
-                .Define("TauP_type",     "if (TauTag_charge.at(0)==1) return RecoTau1_type; else return RecoTau2_type;")
-                .Define("n_TauP_constituents",     "if (TauTag_charge.at(0)==1) return n_RecoTau1_constituents; else return n_RecoTau2_constituents;")
-                .Define("n_TauP_charged_constituents",     "if (TauTag_charge.at(0)==1) return n_RecoTau1_charged_constituents; else return n_RecoTau2_charged_constituents;")
-                .Define("n_TauP_neutral_constituents",     "if (TauTag_charge.at(0)==1) return n_RecoTau1_neutral_constituents; else return n_RecoTau2_neutral_constituents;")
+                .Define("TauP_type",     "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return RecoTau1_type; else return RecoTau2_type;")
+                .Define("n_TauP_constituents",     "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return n_RecoTau1_constituents; else return n_RecoTau2_constituents;")
+                .Define("n_TauP_charged_constituents",     "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return n_RecoTau1_charged_constituents; else return n_RecoTau2_charged_constituents;")
+                .Define("n_TauP_neutral_constituents",     "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return n_RecoTau1_neutral_constituents; else return n_RecoTau2_neutral_constituents;")
 
-                .Define("PiP_p4",       "if (TauTag_charge.at(0)==1) return TauDaughter1_p4; else return TauDaughter2_p4;")
-                .Define("PiP_px",    "PiP_p4.Px()")
-                .Define("PiP_py",    "PiP_p4.Py()")
-                .Define("PiP_pz",    "PiP_p4.Pz()")
-                .Define("PiP_p",    "PiP_p4.P()")
-                .Define("PiP_pt",    "PiP_p4.Pt()")
-                .Define("PiP_e",     "PiP_p4.E()")
-                .Define("PiP_eta",    "PiP_p4.Eta()")
-                .Define("PiP_phi",    "PiP_p4.Phi()")
-                .Define("PiP_theta",    "PiP_p4.Theta()")
-                .Define("PiP_y",     "PiP_p4.Rapidity()")
-                .Define("PiP_mass",    "PiP_p4.M()")
-
-                .Define("TauM_p4",       "if (TauTag_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
+                .Define("TauM_p4",       "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauM_px",    "TauM_p4.Px()")
                 .Define("TauM_py",    "TauM_p4.Py()")
                 .Define("TauM_pz",    "TauM_p4.Pz()")
@@ -417,59 +375,16 @@ class RDFanalysis():
                 .Define("TauM_theta",    "TauM_p4.Theta()")
                 .Define("TauM_y",     "TauM_p4.Rapidity()")
                 .Define("TauM_mass",    "TauM_p4.M()")
-                .Define("TauM_type",     "if (TauTag_charge.at(0)==1) return RecoTau2_type; else return RecoTau1_type;")
-                .Define("n_TauM_constituents",     "if (TauTag_charge.at(0)==1) return n_RecoTau2_constituents; else return n_RecoTau1_constituents;")
-                .Define("n_TauM_charged_constituents",     "if (TauTag_charge.at(0)==1) return n_RecoTau2_charged_constituents; else return n_RecoTau1_charged_constituents;")
-                .Define("n_TauM_neutral_constituents",     "if (TauTag_charge.at(0)==1) return n_RecoTau2_neutral_constituents; else return n_RecoTau1_neutral_constituents;")
-
-                .Define("PiM_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return TauDaughter1_p4; else return TauDaughter2_p4;")
-                .Define("PiM_px",    "PiM_p4.Px()")
-                .Define("PiM_py",    "PiM_p4.Py()")
-                .Define("PiM_pz",    "PiM_p4.Pz()")
-                .Define("PiM_p",    "PiM_p4.P()")
-                .Define("PiM_pt",    "PiM_p4.Pt()")
-                .Define("PiM_e",     "PiM_p4.E()")
-                .Define("PiM_eta",    "PiM_p4.Eta()")
-                .Define("PiM_phi",    "PiM_p4.Phi()")
-                .Define("PiM_theta",    "PiM_p4.Theta()")
-                .Define("PiM_y",     "PiM_p4.Rapidity()")
-                .Define("PiM_mass",    "PiM_p4.M()")
+                .Define("TauM_type",     "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return RecoTau2_type; else return RecoTau1_type;")
+                .Define("n_TauM_constituents",     "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return n_RecoTau2_constituents; else return n_RecoTau1_constituents;")
+                .Define("n_TauM_charged_constituents",     "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return n_RecoTau2_charged_constituents; else return n_RecoTau1_charged_constituents;")
+                .Define("n_TauM_neutral_constituents",     "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return n_RecoTau2_neutral_constituents; else return n_RecoTau1_neutral_constituents;")
 
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
                 .Define("Tau_cos",      "Tau_scalar/(TauLead_p*TauSub_p)")
                 .Define("Tau_DEta",    "(TauLead_eta - TauSub_eta)")
                 .Define("Tau_DPhi",    "(TauLead_phi - TauSub_phi)")
-
-                .Define("Pi_DR",       "FCCAnalyses::ZHfunctions::deltaR(PiLead_phi, PiSub_phi, PiLead_eta, PiSub_eta)")
-                .Define("Pi_scalar",      "(PiLead_px*PiSub_px + PiLead_py*PiSub_py + PiLead_pz*PiSub_pz)")
-                .Define("Pi_cos",      "Pi_scalar/(PiLead_p*PiSub_p)")
-                .Define("Pi_DEta",    "(PiLead_eta - PiSub_eta)")
-                .Define("Pi_DPhi",    "(PiLead_phi - PiSub_phi)")
-
-                .Define("TauPiLead_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, PiLead_phi, TauLead_eta, PiLead_eta)")
-                .Define("TauPiLead_scalar",      "(TauLead_px*PiLead_px + TauLead_py*PiLead_py + TauLead_pz*PiLead_pz)")
-                .Define("TauPiLead_cos",      "TauPiLead_scalar/(TauLead_p*PiLead_p)")
-                .Define("TauPiLead_DEta",    "(TauLead_eta - PiLead_eta)")
-                .Define("TauPiLead_DPhi",    "(TauLead_phi - PiLead_phi)")
-
-                .Define("TauPiSub_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauSub_phi, PiSub_phi, TauSub_eta, PiSub_eta)")
-                .Define("TauPiSub_scalar",      "(TauSub_px*PiSub_px + TauSub_py*PiSub_py + TauSub_pz*PiSub_pz)")
-                .Define("TauPiSub_cos",      "TauPiSub_scalar/(TauSub_p*PiSub_p)")
-                .Define("TauPiSub_DEta",    "(TauSub_eta - PiSub_eta)")
-                .Define("TauPiSub_DPhi",    "(TauSub_phi - PiSub_phi)")
-
-                .Define("TauPiP_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauP_phi, PiP_phi, TauP_eta, PiP_eta)")
-                .Define("TauPiP_scalar",      "(TauP_px*PiP_px + TauP_py*PiP_py + TauP_pz*PiP_pz)")
-                .Define("TauPiP_cos",      "TauPiP_scalar/(TauP_p*PiP_p)")
-                .Define("TauPiP_DEta",    "(TauP_eta - PiP_eta)")
-                .Define("TauPiP_DPhi",    "(TauP_phi - PiP_phi)")
-
-                .Define("TauPiM_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauM_phi, PiM_phi, TauM_eta, PiM_eta)")
-                .Define("TauPiM_scalar",      "(TauM_px*PiM_px + TauM_py*PiM_py + TauM_pz*PiM_pz)")
-                .Define("TauPiM_cos",      "TauPiM_scalar/(TauM_p*PiM_p)")
-                .Define("TauPiM_DEta",    "(TauM_eta - PiM_eta)")
-                .Define("TauPiM_DPhi",    "(TauM_phi - PiM_phi)")
 
                 .Define("RecoZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(RecoZLead_phi, RecoZSub_phi, RecoZLead_eta, RecoZSub_eta)")
                 .Define("RecoZDaughter_scalar",      "(RecoZLead_px*RecoZSub_px + RecoZLead_py*RecoZSub_py + RecoZLead_pz*RecoZSub_pz)")
@@ -494,42 +409,15 @@ class RDFanalysis():
                 .Define("Tau_DPhi_y",    "if (TauLead_y>TauSub_y) return (TauLead_phi - TauSub_phi); \
                                         else if (TauLead_y<TauSub_y) return (TauSub_phi - TauLead_phi); else return double(-10.);")
 
-                .Define("Pi_DEta_y",    "if (PiLead_y>PiSub_y) return (PiLead_eta - PiSub_eta); \
-                                        else if (PiLead_y<PiSub_y) return (PiSub_eta - PiLead_eta); else return double(-10.);")
-                .Define("Pi_DPhi_y",    "if (PiLead_y>PiSub_y) return (PiLead_phi - PiSub_phi); \
-                                        else if (PiLead_y<PiSub_y) return (PiSub_phi - PiLead_phi); else return double(-10.);")
-
-                .Define("TauPiLead_DEta_y",    "if (TauLead_y>PiLead_y) return (TauLead_eta - PiLead_eta); \
-                                        else if (TauLead_y<PiLead_y) return (PiLead_eta - TauLead_eta); else return double(-10.);")
-                .Define("TauPiLead_DPhi_y",    "if (TauLead_y>PiLead_y) return (TauLead_phi - PiLead_phi); \
-                                        else if (TauLead_y<PiLead_y) return (PiLead_phi - TauLead_phi); else return double(-10.);")
-
-                .Define("TauPiSub_DEta_y",    "if (TauSub_y>PiSub_y) return (TauSub_eta - PiSub_eta); \
-                                        else if (TauSub_y<PiSub_y) return (PiSub_eta - TauSub_eta); else return double(-10.);")
-                .Define("TauPiSub_DPhi_y",    "if (TauSub_y>PiSub_y) return (TauSub_phi - PiSub_phi); \
-                                        else if (TauSub_y<PiSub_y) return (PiSub_phi - TauSub_phi); else return double(-10.);")
-
-                .Define("TauPiP_DEta_y",    "if (TauP_y>PiP_y) return (TauP_eta - PiP_eta); \
-                                        else if (TauP_y<PiP_y) return (PiP_eta - TauP_eta); else return double(-10.);")
-                .Define("TauPiP_DPhi_y",    "if (TauP_y>PiP_y) return (TauP_phi - PiP_phi); \
-                                        else if (TauP_y<PiP_y) return (PiP_phi - TauP_phi); else return double(-10.);")
-
-                .Define("TauPiM_DEta_y",    "if (TauM_y>PiM_y) return (TauM_eta - PiM_eta); \
-                                        else if (TauM_y<PiM_y) return (PiM_eta - TauM_eta); else return double(-10.);")
-                .Define("TauPiM_DPhi_y",    "if (TauM_y>PiM_y) return (TauM_phi - PiM_phi); \
-                                        else if (TauM_y<PiM_y) return (PiM_phi - TauM_phi); else return double(-10.);")
-
                 .Define("RecoZDaughter_DEta_y",    "if (RecoZLead_y>RecoZSub_y) return (RecoZLead_eta - RecoZSub_eta); \
                                         else if (RecoZLead_y<RecoZSub_y) return (RecoZSub_eta - RecoZLead_eta); else return double(-10.);")
                 .Define("RecoZDaughter_DPhi_y",    "if (RecoZLead_y>RecoZSub_y) return (RecoZLead_phi - RecoZSub_phi); \
                                         else if (RecoZLead_y<RecoZSub_y) return (RecoZSub_phi - RecoZLead_phi); else return double(-10.);")
 
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                .Define("Tau_p4",       "FCCAnalyses::ZHfunctions::build_p4(TauTag_px, TauTag_py, TauTag_pz, TauTag_e)")
+                .Define("Tau_p4",       "ROOT::VecOps::RVec<TLorentzVector>{RecoTau1_p4, RecoTau2_p4}")
                 .Define("HRF_Tau_p4",    "myUtils::boosted_p4(- RecoH_p4, Tau_p4)")
-                .Define("TauDaughter_p4",        "FCCAnalyses::ZHfunctions::build_p4(TauDaughter_px, TauDaughter_py, TauDaughter_pz, TauDaughter_e)")
-                .Define("HRF_Pi_p4",    "myUtils::boosted_p4(- RecoH_p4, TauDaughter_p4)")
-
+                
                 .Define("HRF_TauLead_p4",       "if (HRF_Tau_p4.at(0).Pt()>HRF_Tau_p4.at(1).Pt()) return HRF_Tau_p4.at(0); else return HRF_Tau_p4.at(1);")
                 .Define("HRF_TauLead_px",    "HRF_TauLead_p4.Px()")
                 .Define("HRF_TauLead_py",    "HRF_TauLead_p4.Py()")
@@ -556,7 +444,7 @@ class RDFanalysis():
                 .Define("HRF_TauSub_y",     "HRF_TauSub_p4.Rapidity()")
                 .Define("HRF_TauSub_mass",    "HRF_TauSub_p4.M()")
 
-                .Define("HRF_TauP_p4",       "if (TauTag_charge.at(0)==1) return HRF_Tau_p4.at(0); else return HRF_Tau_p4.at(1);")
+                .Define("HRF_TauP_p4",       "if(RecoLepton_charge.at(RecoZH_idx[2])==1) return HRF_Tau_p4.at(0); else return HRF_Tau_p4.at(1);")
                 .Define("HRF_TauP_px",    "HRF_TauP_p4.Px()")
                 .Define("HRF_TauP_py",    "HRF_TauP_p4.Py()")
                 .Define("HRF_TauP_pz",    "HRF_TauP_p4.Pz()")
@@ -569,7 +457,7 @@ class RDFanalysis():
                 .Define("HRF_TauP_y",     "HRF_TauP_p4.Rapidity()")
                 .Define("HRF_TauP_mass",    "HRF_TauP_p4.M()")
 
-                .Define("HRF_TauM_p4",       "if (TauTag_charge.at(0)==1) return HRF_Tau_p4.at(1); else return HRF_Tau_p4.at(0);")
+                .Define("HRF_TauM_p4",       "if (RecoLepton_charge.at(RecoZH_idx[2])==1) return HRF_Tau_p4.at(1); else return HRF_Tau_p4.at(0);")
                 .Define("HRF_TauM_px",    "HRF_TauM_p4.Px()")
                 .Define("HRF_TauM_py",    "HRF_TauM_p4.Py()")
                 .Define("HRF_TauM_pz",    "HRF_TauM_p4.Pz()")
@@ -590,100 +478,8 @@ class RDFanalysis():
                 .Define("HRF_Tau_DEta",    "(HRF_TauLead_eta - HRF_TauSub_eta)")
                 .Define("HRF_Tau_DPhi",    "(HRF_TauLead_phi - HRF_TauSub_phi)")
 
-                .Define("HRF_PiLead_p4",       "if (HRF_Pi_p4.at(0).Pt()>HRF_Pi_p4.at(1).Pt()) return HRF_Pi_p4.at(0); else return HRF_Pi_p4.at(1);")
-                .Define("HRF_PiLead_px",    "HRF_PiLead_p4.Px()")
-                .Define("HRF_PiLead_py",    "HRF_PiLead_p4.Py()")
-                .Define("HRF_PiLead_pz",    "HRF_PiLead_p4.Pz()")
-                .Define("HRF_PiLead_p",    "HRF_PiLead_p4.P()")
-                .Define("HRF_PiLead_pt",    "HRF_PiLead_p4.Pt()")
-                .Define("HRF_PiLead_e",     "HRF_PiLead_p4.E()")
-                .Define("HRF_PiLead_eta",    "HRF_PiLead_p4.Eta()")
-                .Define("HRF_PiLead_phi",    "HRF_PiLead_p4.Phi()")
-                .Define("HRF_PiLead_theta",    "HRF_PiLead_p4.Theta()")
-                .Define("HRF_PiLead_y",     "HRF_PiLead_p4.Rapidity()")
-                .Define("HRF_PiLead_mass",    "HRF_PiLead_p4.M()")
-
-                .Define("HRF_PiSub_p4",       "if (HRF_Pi_p4.at(0).Pt()>HRF_Pi_p4.at(1).Pt()) return HRF_Pi_p4.at(1); else return HRF_Pi_p4.at(0);")
-                .Define("HRF_PiSub_px",    "HRF_PiSub_p4.Px()")
-                .Define("HRF_PiSub_py",    "HRF_PiSub_p4.Py()")
-                .Define("HRF_PiSub_pz",    "HRF_PiSub_p4.Pz()")
-                .Define("HRF_PiSub_p",    "HRF_PiSub_p4.P()")
-                .Define("HRF_PiSub_pt",    "HRF_PiSub_p4.Pt()")
-                .Define("HRF_PiSub_e",     "HRF_PiSub_p4.E()")
-                .Define("HRF_PiSub_eta",    "HRF_PiSub_p4.Eta()")
-                .Define("HRF_PiSub_phi",    "HRF_PiSub_p4.Phi()")
-                .Define("HRF_PiSub_theta",    "HRF_PiSub_p4.Theta()")
-                .Define("HRF_PiSub_y",     "HRF_PiSub_p4.Rapidity()")
-                .Define("HRF_PiSub_mass",    "HRF_PiSub_p4.M()")
-
-                .Define("HRF_PiP_p4",       "if (TauTag_charge.at(0)==1) return HRF_Pi_p4.at(0); else return HRF_Pi_p4.at(1);")
-                .Define("HRF_PiP_px",    "HRF_PiP_p4.Px()")
-                .Define("HRF_PiP_py",    "HRF_PiP_p4.Py()")
-                .Define("HRF_PiP_pz",    "HRF_PiP_p4.Pz()")
-                .Define("HRF_PiP_p",    "HRF_PiP_p4.P()")
-                .Define("HRF_PiP_pt",    "HRF_PiP_p4.Pt()")
-                .Define("HRF_PiP_e",     "HRF_PiP_p4.E()")
-                .Define("HRF_PiP_eta",    "HRF_PiP_p4.Eta()")
-                .Define("HRF_PiP_phi",    "HRF_PiP_p4.Phi()")
-                .Define("HRF_PiP_theta",    "HRF_PiP_p4.Theta()")
-                .Define("HRF_PiP_y",     "HRF_PiP_p4.Rapidity()")
-                .Define("HRF_PiP_mass",    "HRF_PiP_p4.M()")
-
-                .Define("HRF_PiM_p4",       "if (TauTag_charge.at(0)==1) return HRF_Pi_p4.at(1); else return HRF_Pi_p4.at(0);")
-                .Define("HRF_PiM_px",    "HRF_PiM_p4.Px()")
-                .Define("HRF_PiM_py",    "HRF_PiM_p4.Py()")
-                .Define("HRF_PiM_pz",    "HRF_PiM_p4.Pz()")
-                .Define("HRF_PiM_p",    "HRF_PiM_p4.P()")
-                .Define("HRF_PiM_pt",    "HRF_PiM_p4.Pt()")
-                .Define("HRF_PiM_e",     "HRF_PiM_p4.E()")
-                .Define("HRF_PiM_eta",    "HRF_PiM_p4.Eta()")
-                .Define("HRF_PiM_phi",    "HRF_PiM_p4.Phi()")
-                .Define("HRF_PiM_theta",    "HRF_PiM_p4.Theta()")
-                .Define("HRF_PiM_y",     "HRF_PiM_p4.Rapidity()")
-                .Define("HRF_PiM_mass",    "HRF_PiM_p4.M()")
-
-                .Define("HRF_Pi_DEta_y",    "if (HRF_PiLead_y>HRF_PiSub_y) return (HRF_PiLead_eta - HRF_PiSub_eta); \
-                                        else if (HRF_PiLead_y<HRF_PiSub_y) return (HRF_PiSub_eta - HRF_PiLead_eta); else return double(-10.);")
-                .Define("HRF_Pi_DPhi_y",    "if (HRF_PiLead_y>HRF_PiSub_y) return (HRF_PiLead_phi - HRF_PiSub_phi); \
-                                        else if (HRF_PiLead_y<HRF_PiSub_y) return (HRF_PiSub_phi - HRF_PiLead_phi); else return double(-10.);")
-
-                .Define("HRF_Pi_DEta",    "(HRF_PiLead_eta - HRF_PiSub_eta)")
-                .Define("HRF_Pi_DPhi",    "(HRF_PiLead_phi - HRF_PiSub_phi)")
-
-                .Define("HRF_TauPiLead_DEta_y",    "if (HRF_TauLead_y>HRF_PiLead_y) return (HRF_TauLead_eta - HRF_PiLead_eta); \
-                                        else if (HRF_TauLead_y<HRF_PiLead_y) return (HRF_PiLead_eta - HRF_TauLead_eta); else return double(-10.);")
-                .Define("HRF_TauPiLead_DPhi_y",    "if (HRF_TauLead_y>HRF_PiLead_y) return (HRF_TauLead_phi - HRF_PiLead_phi); \
-                                        else if (HRF_TauLead_y<HRF_PiLead_y) return (HRF_PiLead_phi - HRF_TauLead_phi); else return double(-10.);")
-
-                .Define("HRF_TauPiLead_DEta",    "(HRF_TauLead_eta - HRF_PiLead_eta)")
-                .Define("HRF_TauPiLead_DPhi",    "(HRF_TauLead_phi - HRF_PiLead_phi)")
-
-                .Define("HRF_TauPiSub_DEta_y",    "if (HRF_TauSub_y>HRF_PiSub_y) return (HRF_TauSub_eta - HRF_PiSub_eta); \
-                                        else if (HRF_TauSub_y<HRF_PiSub_y) return (HRF_PiSub_eta - HRF_TauSub_eta); else return double(-10.);")
-                .Define("HRF_TauPiSub_DPhi_y",    "if (HRF_TauSub_y>HRF_PiSub_y) return (HRF_TauSub_phi - HRF_PiSub_phi); \
-                                        else if (HRF_TauSub_y<HRF_PiSub_y) return (HRF_PiSub_phi - HRF_TauSub_phi); else return double(-10.);")
-
-                .Define("HRF_TauPiSub_DEta",    "(HRF_TauSub_eta - HRF_PiSub_eta)")
-                .Define("HRF_TauPiSub_DPhi",    "(HRF_TauSub_phi - HRF_PiSub_phi)")
-
-                .Define("HRF_TauPiP_DEta_y",    "if (HRF_TauP_y>HRF_PiP_y) return (HRF_TauP_eta - HRF_PiP_eta); \
-                                        else if (HRF_TauP_y<HRF_PiP_y) return (HRF_PiP_eta - HRF_TauP_eta); else return double(-10.);")
-                .Define("HRF_TauPiP_DPhi_y",    "if (HRF_TauP_y>HRF_PiP_y) return (HRF_TauP_phi - HRF_PiP_phi); \
-                                        else if (HRF_TauP_y<HRF_PiP_y) return (HRF_PiP_phi - HRF_TauP_phi); else return double(-10.);")
-
-                .Define("HRF_TauPiP_DEta",    "(HRF_TauP_eta - HRF_PiP_eta)")
-                .Define("HRF_TauPiP_DPhi",    "(HRF_TauP_phi - HRF_PiP_phi)")
-
-                .Define("HRF_TauPiM_DEta_y",    "if (HRF_TauM_y>HRF_PiM_y) return (HRF_TauM_eta - HRF_PiM_eta); \
-                                        else if (HRF_TauM_y<HRF_PiM_y) return (HRF_PiM_eta - HRF_TauM_eta); else return double(-10.);")
-                .Define("HRF_TauPiM_DPhi_y",    "if (HRF_TauM_y>HRF_PiM_y) return (HRF_TauM_phi - HRF_PiM_phi); \
-                                        else if (HRF_TauM_y<HRF_PiM_y) return (HRF_PiM_phi - HRF_TauM_phi); else return double(-10.);")
-
-                .Define("HRF_TauPiM_DEta",    "(HRF_TauM_eta - HRF_PiM_eta)")
-                .Define("HRF_TauPiM_DPhi",    "(HRF_TauM_phi - HRF_PiM_phi)")
-
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                .Define("RecoZDaughter_p4",     "FCCAnalyses::ZHfunctions::build_p4(RecoElectron_px, RecoElectron_py, RecoElectron_pz, RecoElectron_e)")
+                .Define("RecoZDaughter_p4",     "ROOT::VecOps::RVec<TLorentzVector>{RecoZ1_p4, RecoZ2_p4}")
                 .Define("ZRF_RecoZDaughter_p4",    "return myUtils::boosted_p4(- RecoZ_p4, RecoZDaughter_p4);")
 
                 .Define("ZRF_RecoZLead_p4",       "if (ZRF_RecoZDaughter_p4.at(0).Pt()>ZRF_RecoZDaughter_p4.at(1).Pt()) return ZRF_RecoZDaughter_p4.at(0); else return ZRF_RecoZDaughter_p4.at(1);")
@@ -712,7 +508,7 @@ class RDFanalysis():
                 .Define("ZRF_RecoZSub_y",     "ZRF_RecoZSub_p4.Rapidity()")
                 .Define("ZRF_RecoZSub_mass",    "ZRF_RecoZSub_p4.M()")
 
-                .Define("ZRF_RecoZP_p4",       "if (RecoLepton_sel_charge.at(0)==1) return ZRF_RecoZDaughter_p4.at(0); else return ZRF_RecoZDaughter_p4.at(1);")
+                .Define("ZRF_RecoZP_p4",       "if (RecoLepton_charge.at(RecoZH_idx[0])==1) return ZRF_RecoZDaughter_p4.at(0); else return ZRF_RecoZDaughter_p4.at(1);")
                 .Define("ZRF_RecoZP_px",    "ZRF_RecoZP_p4.Px()")
                 .Define("ZRF_RecoZP_py",    "ZRF_RecoZP_p4.Py()")
                 .Define("ZRF_RecoZP_pz",    "ZRF_RecoZP_p4.Pz()")
@@ -725,7 +521,7 @@ class RDFanalysis():
                 .Define("ZRF_RecoZP_y",     "ZRF_RecoZP_p4.Rapidity()")
                 .Define("ZRF_RecoZP_mass",    "ZRF_RecoZP_p4.M()")
 
-                .Define("ZRF_RecoZM_p4",       "if (RecoLepton_sel_charge.at(0)==1) return ZRF_RecoZDaughter_p4.at(1); else return ZRF_RecoZDaughter_p4.at(0);")
+                .Define("ZRF_RecoZM_p4",       "if (RecoLepton_charge.at(RecoZH_idx[0])==1) return ZRF_RecoZDaughter_p4.at(1); else return ZRF_RecoZDaughter_p4.at(0);")
                 .Define("ZRF_RecoZM_px",    "ZRF_RecoZM_p4.Px()")
                 .Define("ZRF_RecoZM_py",    "ZRF_RecoZM_p4.Py()")
                 .Define("ZRF_RecoZM_pz",    "ZRF_RecoZM_p4.Pz()")
@@ -745,67 +541,6 @@ class RDFanalysis():
 
                 .Define("ZRF_RecoZDaughter_DEta",    "(ZRF_RecoZLead_eta - ZRF_RecoZSub_eta)")
                 .Define("ZRF_RecoZDaughter_DPhi",    "(ZRF_RecoZLead_phi - ZRF_RecoZSub_phi)")
-
-                #tau rest frame for the products, needs to be done separately for the leading and sub
-                .Define("TauLeadRF_PiLead_p4",    "myUtils::boosted_p4(- TauLead_p4, ROOT::VecOps::RVec<TLorentzVector>{PiLead_p4})")
-                .Define("TauLeadRF_PiLead_px",    "TauLeadRF_PiLead_p4.at(0).Px()")
-                .Define("TauLeadRF_PiLead_py",    "TauLeadRF_PiLead_p4.at(0).Py()")
-                .Define("TauLeadRF_PiLead_pz",    "TauLeadRF_PiLead_p4.at(0).Pz()")
-                .Define("TauLeadRF_PiLead_p",    "TauLeadRF_PiLead_p4.at(0).P()")
-                .Define("TauLeadRF_PiLead_pt",    "TauLeadRF_PiLead_p4.at(0).Pt()")
-                .Define("TauLeadRF_PiLead_e",     "TauLeadRF_PiLead_p4.at(0).E()")
-                .Define("TauLeadRF_PiLead_eta",    "TauLeadRF_PiLead_p4.at(0).Eta()")
-                .Define("TauLeadRF_PiLead_phi",    "TauLeadRF_PiLead_p4.at(0).Phi()")
-                .Define("TauLeadRF_PiLead_theta",    "TauLeadRF_PiLead_p4.at(0).Theta()")
-                .Define("TauLeadRF_PiLead_y",     "TauLeadRF_PiLead_p4.at(0).Rapidity()")
-                .Define("TauLeadRF_PiLead_mass",    "TauLeadRF_PiLead_p4.at(0).M()")
-
-                .Define("TauSubRF_PiSub_p4",    "myUtils::boosted_p4(- TauSub_p4, ROOT::VecOps::RVec<TLorentzVector>{PiSub_p4})")
-                .Define("TauSubRF_PiSub_px",    "TauSubRF_PiSub_p4.at(0).Px()")
-                .Define("TauSubRF_PiSub_py",    "TauSubRF_PiSub_p4.at(0).Py()")
-                .Define("TauSubRF_PiSub_pz",    "TauSubRF_PiSub_p4.at(0).Pz()")
-                .Define("TauSubRF_PiSub_p",    "TauSubRF_PiSub_p4.at(0).P()")
-                .Define("TauSubRF_PiSub_pt",    "TauSubRF_PiSub_p4.at(0).Pt()")
-                .Define("TauSubRF_PiSub_e",     "TauSubRF_PiSub_p4.at(0).E()")
-                .Define("TauSubRF_PiSub_eta",    "TauSubRF_PiSub_p4.at(0).Eta()")
-                .Define("TauSubRF_PiSub_phi",    "TauSubRF_PiSub_p4.at(0).Phi()")
-                .Define("TauSubRF_PiSub_theta",    "TauSubRF_PiSub_p4.at(0).Theta()")
-                .Define("TauSubRF_PiSub_y",     "TauSubRF_PiSub_p4.at(0).Rapidity()")
-                .Define("TauSubRF_PiSub_mass",    "TauSubRF_PiSub_p4.at(0).M()")
-
-                .Define("TauPRF_PiP_p4",    "myUtils::boosted_p4(- TauP_p4, ROOT::VecOps::RVec<TLorentzVector>{PiP_p4})")
-                .Define("TauPRF_PiP_px",    "TauPRF_PiP_p4.at(0).Px()")
-                .Define("TauPRF_PiP_py",    "TauPRF_PiP_p4.at(0).Py()")
-                .Define("TauPRF_PiP_pz",    "TauPRF_PiP_p4.at(0).Pz()")
-                .Define("TauPRF_PiP_p",    "TauPRF_PiP_p4.at(0).P()")
-                .Define("TauPRF_PiP_pt",    "TauPRF_PiP_p4.at(0).Pt()")
-                .Define("TauPRF_PiP_e",     "TauPRF_PiP_p4.at(0).E()")
-                .Define("TauPRF_PiP_eta",    "TauPRF_PiP_p4.at(0).Eta()")
-                .Define("TauPRF_PiP_phi",    "TauPRF_PiP_p4.at(0).Phi()")
-                .Define("TauPRF_PiP_theta",    "TauPRF_PiP_p4.at(0).Theta()")
-                .Define("TauPRF_PiP_y",     "TauPRF_PiP_p4.at(0).Rapidity()")
-                .Define("TauPRF_PiP_mass",    "TauPRF_PiP_p4.at(0).M()")
-
-                .Define("TauMRF_PiM_p4",    "myUtils::boosted_p4(- TauM_p4, ROOT::VecOps::RVec<TLorentzVector>{PiM_p4})")
-                .Define("TauMRF_PiM_px",    "TauMRF_PiM_p4.at(0).Px()")
-                .Define("TauMRF_PiM_py",    "TauMRF_PiM_p4.at(0).Py()")
-                .Define("TauMRF_PiM_pz",    "TauMRF_PiM_p4.at(0).Pz()")
-                .Define("TauMRF_PiM_p",    "TauMRF_PiM_p4.at(0).P()")
-                .Define("TauMRF_PiM_pt",    "TauMRF_PiM_p4.at(0).Pt()")
-                .Define("TauMRF_PiM_e",     "TauMRF_PiM_p4.at(0).E()")
-                .Define("TauMRF_PiM_eta",    "TauMRF_PiM_p4.at(0).Eta()")
-                .Define("TauMRF_PiM_phi",    "TauMRF_PiM_p4.at(0).Phi()")
-                .Define("TauMRF_PiM_theta",    "TauMRF_PiM_p4.at(0).Theta()")
-                .Define("TauMRF_PiM_y",     "TauMRF_PiM_p4.at(0).Rapidity()")
-                .Define("TauMRF_PiM_mass",    "TauMRF_PiM_p4.at(0).M()")
-
-                .Define("TauRF_Pi_DEta_y",    "if (TauLeadRF_PiLead_y>TauSubRF_PiSub_y) return (TauLeadRF_PiLead_eta - TauSubRF_PiSub_eta); \
-                                        else if (TauLeadRF_PiLead_y<TauSubRF_PiSub_y) return (TauSubRF_PiSub_eta - TauLeadRF_PiLead_eta); else return double(-10.);")
-                .Define("TauRF_Pi_DPhi_y",    "if (TauLeadRF_PiLead_y>TauSubRF_PiSub_y) return (TauLeadRF_PiLead_phi - TauSubRF_PiSub_phi); \
-                                        else if (TauLeadRF_PiLead_y<TauSubRF_PiSub_y) return (TauSubRF_PiSub_phi - TauLeadRF_PiLead_phi); else return double(-10.);")
-
-                .Define("TauRF_Pi_DEta",    "(TauLeadRF_PiLead_eta - TauSubRF_PiSub_eta)")
-                .Define("TauRF_Pi_DPhi",    "(TauLeadRF_PiLead_phi - TauSubRF_PiSub_phi)")
 
                 ### angles visualisation in figure 1 (2) at pag 8 of https://arxiv.org/pdf/2205.07715
                 #may be interesting to simnply keep the cosine of thetas (John Hopkins)
@@ -828,22 +563,6 @@ class RDFanalysis():
                 .Define("RecoPhi",        "(acos(RecoPhi_cos))")
                 .Define("RecoPhi1",        "(acos(RecoPhi1_cos))")
 
-                #angle between TauM vector in lab frame and daughter in tau rest frame
-                .Define("RecoGamma1_cos",      "(TauM_px*TauMRF_PiM_px + TauM_py*TauMRF_PiM_py + TauM_pz*TauMRF_PiM_pz)/(TauM_p*TauMRF_PiM_p)")
-                #angle between HRF_TauM vector in higgs frame and daughter in tau rest frame
-                .Define("RecoGamma2_cos",      "(HRF_TauM_px*TauMRF_PiM_px + HRF_TauM_py*TauMRF_PiM_py + HRF_TauM_pz*TauMRF_PiM_pz)/(HRF_TauM_p*TauMRF_PiM_p)")
-                #angle between tau decay planes in higgs rest frame (https://arxiv.org/pdf/2110.04836)
-                .Define("HRF_PiM_p3",        "HRF_PiM_p4.Vect()")
-                .Define("HRF_PiP_p3",        "HRF_PiP_p4.Vect()")
-                .Define("HRF_TauM_p3",        "HRF_TauM_p4.Vect()")
-                .Define("HRF_TauP_p3",        "HRF_TauP_p4.Vect()")
-                .Define("HRF_M_cross",        "HRF_TauM_p3.Cross(HRF_PiM_p3)")
-                .Define("HRF_P_cross",        "HRF_TauP_p3.Cross(HRF_PiP_p3)")
-                .Define("RecoPhiCP_cos",      "(HRF_P_cross.Px()*HRF_M_cross.Px() + HRF_P_cross.Py()*HRF_M_cross.Py() + HRF_P_cross.Pz()*HRF_M_cross.Pz())/(HRF_P_cross.Mag()*HRF_M_cross.Mag())")
-
-                .Define("RecoGamma1",        "(acos(RecoGamma1_cos))")
-                .Define("RecoGamma2",        "(acos(RecoGamma2_cos))")
-                .Define("RecoPhiCP",        "(acos(RecoPhiCP_cos))")
 
         )
         return df2
@@ -1147,19 +866,6 @@ class RDFanalysis():
             "TauTag_isB",  
             "TauTag_isTAU",
 
-            "n_TauDaughter",
-            "TauDaughter_e",
-            "TauDaughter_p",
-            "TauDaughter_pt",
-            "TauDaughter_px",
-            "TauDaughter_py",
-            "TauDaughter_pz",
-            "TauDaughter_eta",
-            "TauDaughter_theta",
-            "TauDaughter_phi",
-            "TauDaughter_charge",
-            "TauDaughter_mass",
-
             "QuarkTag_px", 
             "QuarkTag_py",    
             "QuarkTag_pz",      
@@ -1320,54 +1026,6 @@ class RDFanalysis():
             "n_TauM_charged_constituents",
             "n_TauM_neutral_constituents",
 
-            "PiLead_px",    
-            "PiLead_py",   
-            "PiLead_pz",   
-            "PiLead_p",   
-            "PiLead_pt",   
-            "PiLead_e",    
-            "PiLead_eta",    
-            "PiLead_phi",    
-            "PiLead_theta",    
-            "PiLead_y",    
-            "PiLead_mass",
-
-            "PiSub_px",    
-            "PiSub_py",   
-            "PiSub_pz",   
-            "PiSub_p",   
-            "PiSub_pt",   
-            "PiSub_e",    
-            "PiSub_eta",    
-            "PiSub_phi",    
-            "PiSub_theta",    
-            "PiSub_y",    
-            "PiSub_mass",
-
-            "PiP_px",    
-            "PiP_py",   
-            "PiP_pz",   
-            "PiP_p",   
-            "PiP_pt",   
-            "PiP_e",    
-            "PiP_eta",    
-            "PiP_phi",    
-            "PiP_theta",    
-            "PiP_y",    
-            "PiP_mass",
-
-            "PiM_px",    
-            "PiM_py",   
-            "PiM_pz",   
-            "PiM_p",   
-            "PiM_pt",   
-            "PiM_e",    
-            "PiM_eta",    
-            "PiM_phi",    
-            "PiM_theta",    
-            "PiM_y",    
-            "PiM_mass",
-
             "Recoil",
             "Collinear_mass", 
         
@@ -1377,41 +1035,6 @@ class RDFanalysis():
             "Tau_DPhi",
             "Tau_DEta_y", 
             "Tau_DPhi_y", 
-
-            "Pi_DR",
-            "Pi_cos",
-            "Pi_DEta", 
-            "Pi_DPhi",
-            "Pi_DEta_y", 
-            "Pi_DPhi_y", 
-
-            "TauPiLead_DR",
-            "TauPiLead_cos",
-            "TauPiLead_DEta", 
-            "TauPiLead_DPhi",
-            "TauPiLead_DEta_y", 
-            "TauPiLead_DPhi_y", 
-
-            "TauPiSub_DR",
-            "TauPiSub_cos",
-            "TauPiSub_DEta", 
-            "TauPiSub_DPhi",
-            "TauPiSub_DEta_y", 
-            "TauPiSub_DPhi_y", 
-
-            "TauPiP_DR",
-            "TauPiP_cos",
-            "TauPiP_DEta", 
-            "TauPiP_DPhi",
-            "TauPiP_DEta_y", 
-            "TauPiP_DPhi_y", 
-
-            "TauPiM_DR",
-            "TauPiM_cos",
-            "TauPiM_DEta", 
-            "TauPiM_DPhi",
-            "TauPiM_DEta_y", 
-            "TauPiM_DPhi_y", 
             
             "RecoZDaughter_DR", 
             "RecoZDaughter_cos", 
@@ -1469,75 +1092,6 @@ class RDFanalysis():
             "HRF_Tau_DEta_y", 
             "HRF_Tau_DPhi_y", 
 
-            "HRF_PiLead_px",  
-            "HRF_PiLead_py",  
-            "HRF_PiLead_pz", 
-            "HRF_PiLead_p", 
-            "HRF_PiLead_pt",  
-            "HRF_PiLead_e",   
-            "HRF_PiLead_eta", 
-            "HRF_PiLead_phi",  
-            "HRF_PiLead_theta",    
-            "HRF_PiLead_y", 
-
-            "HRF_PiSub_px",  
-            "HRF_PiSub_py",  
-            "HRF_PiSub_pz", 
-            "HRF_PiSub_p", 
-            "HRF_PiSub_pt",  
-            "HRF_PiSub_e",   
-            "HRF_PiSub_eta", 
-            "HRF_PiSub_phi",  
-            "HRF_PiSub_theta",    
-            "HRF_PiSub_y", 
-
-            "HRF_PiP_px",  
-            "HRF_PiP_py",  
-            "HRF_PiP_pz", 
-            "HRF_PiP_p", 
-            "HRF_PiP_pt",  
-            "HRF_PiP_e",   
-            "HRF_PiP_eta", 
-            "HRF_PiP_phi",  
-            "HRF_PiP_theta",    
-            "HRF_PiP_y", 
-
-            "HRF_PiM_px",  
-            "HRF_PiM_py",  
-            "HRF_PiM_pz", 
-            "HRF_PiM_p", 
-            "HRF_PiM_pt",  
-            "HRF_PiM_e",   
-            "HRF_PiM_eta", 
-            "HRF_PiM_phi",  
-            "HRF_PiM_theta",    
-            "HRF_PiM_y", 
-
-            "HRF_Pi_DEta", 
-            "HRF_Pi_DPhi",
-            "HRF_Pi_DEta_y", 
-            "HRF_Pi_DPhi_y", 
-
-            "HRF_TauPiLead_DEta", 
-            "HRF_TauPiLead_DPhi",
-            "HRF_TauPiLead_DEta_y", 
-            "HRF_TauPiLead_DPhi_y",
-
-            "HRF_TauPiSub_DEta", 
-            "HRF_TauPiSub_DPhi",
-            "HRF_TauPiSub_DEta_y", 
-            "HRF_TauPiSub_DPhi_y",
-
-            "HRF_TauPiP_DEta", 
-            "HRF_TauPiP_DPhi",
-            "HRF_TauPiP_DEta_y", 
-            "HRF_TauPiP_DPhi_y",
-
-            "HRF_TauPiM_DEta", 
-            "HRF_TauPiM_DPhi",
-            "HRF_TauPiM_DEta_y", 
-            "HRF_TauPiM_DPhi_y",
-
             "ZRF_RecoZLead_px",  
             "ZRF_RecoZLead_py",  
             "ZRF_RecoZLead_pz", 
@@ -1587,55 +1141,6 @@ class RDFanalysis():
             "ZRF_RecoZDaughter_DEta_y", 
             "ZRF_RecoZDaughter_DPhi_y", 
 
-            "TauLeadRF_PiLead_px",    
-            "TauLeadRF_PiLead_py",   
-            "TauLeadRF_PiLead_pz",   
-            "TauLeadRF_PiLead_p",   
-            "TauLeadRF_PiLead_pt",   
-            "TauLeadRF_PiLead_e",    
-            "TauLeadRF_PiLead_eta",    
-            "TauLeadRF_PiLead_phi",    
-            "TauLeadRF_PiLead_theta",    
-            "TauLeadRF_PiLead_y",    
-
-            "TauSubRF_PiSub_px",    
-            "TauSubRF_PiSub_py",   
-            "TauSubRF_PiSub_pz",   
-            "TauSubRF_PiSub_p",   
-            "TauSubRF_PiSub_pt",   
-            "TauSubRF_PiSub_e",    
-            "TauSubRF_PiSub_eta",    
-            "TauSubRF_PiSub_phi",    
-            "TauSubRF_PiSub_theta",    
-            "TauSubRF_PiSub_y",    
-
-            "TauPRF_PiP_px",    
-            "TauPRF_PiP_py",   
-            "TauPRF_PiP_pz",   
-            "TauPRF_PiP_p",   
-            "TauPRF_PiP_pt",   
-            "TauPRF_PiP_e",    
-            "TauPRF_PiP_eta",    
-            "TauPRF_PiP_phi",    
-            "TauPRF_PiP_theta",    
-            "TauPRF_PiP_y",    
-
-            "TauMRF_PiM_px",    
-            "TauMRF_PiM_py",   
-            "TauMRF_PiM_pz",   
-            "TauMRF_PiM_p",   
-            "TauMRF_PiM_pt",   
-            "TauMRF_PiM_e",    
-            "TauMRF_PiM_eta",    
-            "TauMRF_PiM_phi",    
-            "TauMRF_PiM_theta",    
-            "TauMRF_PiM_y",   
-
-            "TauRF_Pi_DEta", 
-            "TauRF_Pi_DPhi",
-            "TauRF_Pi_DEta_y", 
-            "TauRF_Pi_DPhi_y",  
-
             "RecoThetastar",
             "RecoTheta2",
             "RecoPhi1", 
@@ -1647,13 +1152,6 @@ class RDFanalysis():
             "RecoPhi1_cos", 
             "RecoPhi_cos", 
             "RecoTheta1_cos", 
-
-            "RecoGamma1",
-            "RecoGamma2",
-            "RecoPhiCP",
-            "RecoGamma1_cos",
-            "RecoGamma2_cos",
-            "RecoPhiCP_cos",
 
         ]
 
