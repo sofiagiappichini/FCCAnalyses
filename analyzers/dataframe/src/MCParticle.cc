@@ -833,6 +833,41 @@ ROOT::VecOps::RVec<edm4hep::MCParticleData>  sel_daughterID::operator() (ROOT::V
   return result;
 }
 
+sel_HTauTau::sel_HTauTau() {};
+ROOT::VecOps::RVec<edm4hep::MCParticleData>  sel_HTauTau::operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> par, ROOT::VecOps::RVec<edm4hep::MCParticleData> in, ROOT::VecOps::RVec<int> ind_p, ROOT::VecOps::RVec<int> ind_d) {
+  ROOT::VecOps::RVec<edm4hep::MCParticleData> result;
+  result.reserve(par.size());
+  // need to pass Particle0 indices for the parents and Particle1 indices for the daughter
+
+  for (size_t i = 0; i < par.size(); ++i) {
+    auto & p = par[i];
+    
+    for (unsigned j = p.parents_begin; j != p.parents_end; ++j) {
+      int index_p = ind_p.at(j);
+      int pdg_parent = in.at(index_p).PDG ;
+
+      if ( std::abs(pdg_parent) == 25 ) { //check that parent is the higgs
+        bool check = false;
+
+        for (unsigned k = p.daughters_begin; k != p.daughters_end; ++k) {
+          int index_d = ind_d.at(k);
+          int pdg_daughter = in.at(index_d).PDG ;
+
+          if ( std::abs(pdg_daughter) == 15 ) { //check if the daughters are also taus (FSR)
+            result.emplace_back(in.at(index_d)); //if yes then pick the post FSR tau
+            check = true;
+            break; //got the particle I want, no need to keep looking through the daughters
+            }
+        }
+
+        if (check==true) break; //already got the particle I want, no need to keep looking through the parents
+        else result.emplace_back(p); //if no FSR where found, then take the tau with higgs parent
+      }
+    }
+  }
+  return result;
+}
+
 }//end NS MCParticle
 
 }//end NS FCCAnalyses

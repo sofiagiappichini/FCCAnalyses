@@ -56,7 +56,7 @@ replacement_words = [
 
 DIRECTORY_EXC = "/ceph/awiedl/FCCee/HiggsCP/stage2"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/stage2_eff_cat"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/"
 
 SUBDIR = [
     #'LL',
@@ -74,7 +74,7 @@ CAT = [
 tree_name = "events"
 
 # Print the results
-output_file = "/ceph/awiedl/FCCee/HiggsCP/stage2_eff_cat/nevents_tree.txt"
+output_file = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/nevents_tree.txt"
 
 tab = []
 raw = {}
@@ -95,11 +95,10 @@ for cat in CAT:
         for replacement_word in replacement_words:
 
             #run over files with taus from function
-            root_file_path = f"{DIRECTORY}/{cat}/{sub}/{replacement_word}.root"
-
-            if file_exists(root_file_path):
-
-                chunk_process_events, chunk_events_ttree = get_entries(root_file_path)
+            root_file_path = f"{DIRECTORY}/{cat}/{sub}/{replacement_word}"
+            flist = glob.glob(root_file_path + '/chunk*.root')
+            for filepath in flist:
+                chunk_process_events, chunk_events_ttree = get_entries(filepath)
                 if chunk_process_events is not None and chunk_events_ttree is not None:
                     process_events += chunk_process_events #original number of events
                     events_ttree += chunk_events_ttree
@@ -146,7 +145,7 @@ for cat in CAT:
         if events_ttree1!=0 :
             eff1 = events_ttree1/process_events1
 
-        row.append(f"{cat+sub} & {eff*100:.3f}\% & {eff1*100:.3f}\%" + " \\ \hline")
+        row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}" + " \\ \hline")
         #row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}")
 
 tab.append(row)

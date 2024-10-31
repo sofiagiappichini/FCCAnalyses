@@ -91,7 +91,7 @@ processList = {
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1_241025/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/NuNu/LL/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025_cut/NuNu/LL/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -281,7 +281,7 @@ class RDFanalysis():
                 .Define("TauM_theta",    "TauM_p4.Theta()")
                 .Define("TauM_y",     "TauM_p4.Rapidity()")
                 .Define("TauM_mass",    "TauM_p4.M()")
-                .Define("TauM_type",     "if (RecoLepton_charge.at(0)==1 return RecoTau2_type; else return RecoTau1_type;")
+                .Define("TauM_type",     "if (RecoLepton_charge.at(0)==1) return RecoTau2_type; else return RecoTau1_type;")
                 .Define("n_TauM_constituents",     "if (RecoLepton_charge.at(0)==1) return n_RecoTau2_constituents; else return n_RecoTau1_constituents;")
                 .Define("n_TauM_charged_constituents",     "if (RecoLepton_charge.at(0)==1) return n_RecoTau2_charged_constituents; else return n_RecoTau1_charged_constituents;")
                 .Define("n_TauM_neutral_constituents",     "if (RecoLepton_charge.at(0)==1) return n_RecoTau2_neutral_constituents; else return n_RecoTau1_neutral_constituents;")
@@ -304,7 +304,7 @@ class RDFanalysis():
 
                 .Define("Visible_mass",     "return RecoH_mass;")
 
-
+                .Filter("RecoEmiss_e>100")
         )
         return df2
 

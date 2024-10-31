@@ -100,7 +100,7 @@ processList = {
 inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1_241025/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/NuNu/LH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025_cut/NuNu/LH/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -322,6 +322,8 @@ class RDFanalysis():
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
 
                 .Define("Visible_mass",     "return RecoH_mass;")
+
+                .Filter("RecoEmiss_e>100")
 
         )
         return df2

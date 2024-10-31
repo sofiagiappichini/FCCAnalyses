@@ -3,11 +3,12 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    'noISR_e+e-_noCuts_EWonly':{},
-    'noISR_e+e-_noCuts_cehim_m1':{},
-    'noISR_e+e-_noCuts_cehim_p1':{},
-    'noISR_e+e-_noCuts_cehre_m1':{},
-    'noISR_e+e-_noCuts_cehre_p1':{},
+    #'noISR_e+e-_noCuts_EWonly':{},
+    #'noISR_e+e-_noCuts_cehim_m1':{},
+    #'noISR_e+e-_noCuts_cehim_p1':{},
+    #'noISR_e+e-_noCuts_cehre_m1':{},
+    #'noISR_e+e-_noCuts_cehre_p1':{},
+    "zh_taudecay_smeft_cehre_p1":{},
 }
 
 processList_xsec = {
@@ -99,7 +100,9 @@ processList_xsec = {
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/winter2023/IDEA/"
 
-inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
+#inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
+
+inputDir = '/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/'
 
 outputDir = "/ceph/sgiappic/HiggsCP/CP/stage1"
 
@@ -1158,20 +1161,20 @@ class RDFanalysis():
             "RecoEmiss_y",
             "RecoEmiss_costheta",
 
-            #"n_RecoTracks",
-            #"RecoVertexObject",
-            #"RecoVertex",
-            #"n_PrimaryTracks",
-            #"PrimaryVertexObject",
-            #"PrimaryVertex", 
-            #"PrimaryVertex_xyz",
-            #"PrimaryVertes_xy",
-            #"n_SecondaryTracks",
-            #"SecondaryVertexObject",
-            #"SecondaryVertex",
-            #"SecondaryVertex_xyz",
-            #"SecondaryVertes_xy",
-            #"VertexObject", 
+            "n_RecoTracks",
+            "RecoVertexObject",
+            "RecoVertex",
+            "n_PrimaryTracks",
+            "PrimaryVertexObject",
+            "PrimaryVertex", 
+            "PrimaryVertex_xyz",
+            "PrimaryVertes_xy",
+            "n_SecondaryTracks",
+            "SecondaryVertexObject",
+            "SecondaryVertex",
+            "SecondaryVertex_xyz",
+            "SecondaryVertes_xy",
+            "VertexObject", 
             #"RecoPartPID" ,
             #"RecoPartPIDAtVertex",
 

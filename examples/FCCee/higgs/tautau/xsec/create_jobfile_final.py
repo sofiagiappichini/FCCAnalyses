@@ -29,7 +29,7 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "longlunch"\n'
+    cfg += '+JobFlavour      = "espresso"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -82,9 +82,9 @@ def create_subjob_script(local_dir: str,
              
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir = '/ceph/awiedl/FCCee/HiggsCP/s/'
-output = '/work/sgiappic/HTCondor/final/' ##output directory of submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/final/' ##output directory of stage2 samples
+inputDir = '/ceph/awiedl/FCCee/HiggsCP/stage2_241025/'
+output = '/work/sgiappic/HTCondor/final_241025/' ##output directory of submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/' ##output directory of stage2 samples
 localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_final_'

@@ -105,14 +105,14 @@ tree_name = "events"
 
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
-leaf_name = "TauTag_mass"
+leaf_name = "TauTag_isTAU"
 
 leaf_name_all = "RecoEmiss_costheta"
 
 DIRECTORY_TAG = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_tag/LL/",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_tag/QQ/",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_tag/NuNu/",
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_241025/LL/",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025/QQ/",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025/NuNu/",
 }
 
 DIRECTORY_EXC = {
@@ -177,9 +177,9 @@ for cut in CUT:
                     temp_bkg = []
 
                     # get associated value of variable from the bin and store the high edge (low edge of successive bin)
-                    for i in range(0, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
+                    for i in range(50, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
                     #for i in range(len(bin_edges), len(bin_edges)-50, -1):
-                        temp_bkg.append(sum(y_values[:i]))
+                        temp_bkg.append(sum(y_values[i:]))
 
                     #add the entries for each background into the same array
                     for i in range(len(temp_bkg)):
@@ -223,9 +223,9 @@ for cut in CUT:
                     temp_sig = []
 
                     # get associated value of variable from the bin and store the high edge (low edge of successive bin)
-                    for i in range(0, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
+                    for i in range(50, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
                     #for i in range(len(bin_edges), len(bin_edges)-50, -1):
-                        temp_sig.append(sum(y_values_signal[:i]))
+                        temp_sig.append(sum(y_values_signal[i:]))
 
                     #add the entries for each signal into the same array
                     for i in range(len(temp_sig)):
@@ -263,36 +263,36 @@ for cut in CUT:
                         p.append(entries_sig_tag[i] / (entries_sig_tag[i] + entries_bkg_tag[i]))
                     
                     #with open(output_file, "a") as file:
-                    #    file.write("significance = {} for cut at TAU={} \n".format(s[i], i*(0.5)))
-                    #    file.write("purity = {} for cut at TAU={} \n".format(p[i], i*(0.5)))
+                    #    file.write("significance = {} for cut at TAU={} \n".format(s[i], i*(0.01)+0.5))
+                    #    file.write("purity = {} for cut at TAU={} \n".format(p[i], i*(0.01)+0.5))
                     
                 else:
                     s.append(0)
                     p.append(0)
                 
             s_max = np.max(s)
-            index = s.index(s_max)*(0.5)
+            index = s.index(s_max)*(0.01)+0.5
 
             p_max = np.max(p)
-            indexp = p.index(p_max)*(0.5)
+            indexp = p.index(p_max)*(0.01)+0.5
 
             significance = (entries_sig_exc / np.sqrt(entries_bkg_exc))
             purity = ((entries_sig_exc / (entries_bkg_exc + entries_sig_exc)))
 
-            #with open(output_file, "a") as file:
+            with open(output_file, "a") as file:
                 #file.write("\nTAGGER PERFORMANCE:\n")
-                #file.write("Max significance of {} = {} for cut at mass={} \n".format(cat+sub, s_max, index))
-                #file.write("Max purity of {} = {} for cut at mass={} \n".format(cat+sub, p_max, indexp))
+                #file.write("Max significance of {} = {} for cut at TAU={} \n".format(cat+sub, s_max, index))
+                #file.write("Max purity of {} = {} for cut at TAU={} \n".format(cat+sub, p_max, indexp))
                 #file.write("\nEXPLICIT RECO PERFORMANCE:\n")
                 #file.write("Significance of {} = {}\n".format(cat+sub, significance))
                 #file.write("Purity of {} = {} \n\n".format(cat+sub, purity))
 
-                #file.write("Significance of {} = {} for cut at mass={} \n".format(cat+sub, s[6], 6*0.5))
-                #file.write("Purity of {} = {} for cut at mass={} \n".format(cat+sub, p[6], 6*0.5))
+                file.write("{} = {}\n".format(cat+sub, s[0]))
+                file.write("{} = {}\n\n".format(cat+sub, p[0]))
 
             #print("File written at {}".format(output_file))
 
-            s_sum = sum(s)
+            '''s_sum = sum(s)
             p_sum = sum(p)
             #normalise to 1 significance and purity for plotting
             for i in range(len(s)):
@@ -303,7 +303,7 @@ for cut in CUT:
             col = j % 3
             print(row, col)
 
-            x = np.arange(0, 30, 0.5).tolist()
+            x = np.arange(0.5, 1, 0.01).tolist()
 
             axs[row][col].plot(x, s, linestyle='-', color=color[j+3*k], label="significance")
             axs[row][col].plot(x, p, linestyle='--', color=color[j+3*k], label="purity")
@@ -321,4 +321,4 @@ for cut in CUT:
             #axs[row][col].set_yscale('log')
 
 plt.tight_layout()
-plt.savefig(f'/web/sgiappic/public_html/Higgs_xsec/cut_optimizer_{leaf_name}.png', format='png', dpi=330)
+plt.savefig(f'/web/sgiappic/public_html/Higgs_xsec/cut_optimizer_{leaf_name}_v2.png', format='png', dpi=330)'''

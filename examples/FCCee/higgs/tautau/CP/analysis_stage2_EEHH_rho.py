@@ -98,7 +98,7 @@ processList_xsec = {
 
 inputDir = "/ceph/sgiappic/HiggsCP/CP/stage1_tag"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CP/stage2_tag_EELL"
+outputDir = "/ceph/sgiappic/HiggsCP/CP/stage2_tag_EEHH_rho"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -202,9 +202,11 @@ class RDFanalysis():
 
                 .Filter("(TauTag_charge.at(0) + TauTag_charge.at(1))==0")
 
-                #select one prong decay >> leading pi is the constituent individuated here
+                #select one prong decay with one pi0 >> leading pi is the constituent individuated here
 
-                #.Filter("n_TauTag_charged_constituents.at(0)==1 && n_TauTag_charged_constituents.at(1)==1")
+                .Filter("n_TauTag_charged_constituents.at(0)==1 && n_TauTag_charged_constituents.at(1)==1")
+
+                .Filter("n_TauTag_neutral_constituents.at(0)==2 && n_TauTag_neutral_constituents.at(1)==2")
 
                 ##############################
 
@@ -405,6 +407,19 @@ class RDFanalysis():
                 .Define("PiP_y",     "PiP_p4.Rapidity()")
                 .Define("PiP_mass",    "PiP_p4.M()")
 
+                .Define("TauPPi0_p4",       "if (TauTag_charge.at(0)==1) return RecoTau1_p4-TauDaughter1_p4; else return RecoTau2_p4-TauDaughter2_p4;")
+                .Define("TauPPi0_px",    "TauPPi0_p4.Px()")
+                .Define("TauPPi0_py",    "TauPPi0_p4.Py()")
+                .Define("TauPPi0_pz",    "TauPPi0_p4.Pz()")
+                .Define("TauPPi0_p",    "TauPPi0_p4.P()")
+                .Define("TauPPi0_pt",    "TauPPi0_p4.Pt()")
+                .Define("TauPPi0_e",     "TauPPi0_p4.E()")
+                .Define("TauPPi0_eta",    "TauPPi0_p4.Eta()")
+                .Define("TauPPi0_phi",    "TauPPi0_p4.Phi()")
+                .Define("TauPPi0_theta",    "TauPPi0_p4.Theta()")
+                .Define("TauPPi0_y",     "TauPPi0_p4.Rapidity()")
+                .Define("TauPPi0_mass",    "TauPPi0_p4.M()")
+
                 .Define("TauM_p4",       "if (TauTag_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauM_px",    "TauM_p4.Px()")
                 .Define("TauM_py",    "TauM_p4.Py()")
@@ -434,6 +449,19 @@ class RDFanalysis():
                 .Define("PiM_theta",    "PiM_p4.Theta()")
                 .Define("PiM_y",     "PiM_p4.Rapidity()")
                 .Define("PiM_mass",    "PiM_p4.M()")
+
+                .Define("TauMPi0_p4",       "if (TauTag_charge.at(0)==1) return RecoTau2_p4-TauDaughter2_p4; else return RecoTau1_p4-TauDaughter1_p4;")
+                .Define("TauMPi0_px",    "TauMPi0_p4.Px()")
+                .Define("TauMPi0_py",    "TauMPi0_p4.Py()")
+                .Define("TauMPi0_pz",    "TauMPi0_p4.Pz()")
+                .Define("TauMPi0_p",    "TauMPi0_p4.P()")
+                .Define("TauMPi0_pt",    "TauMPi0_p4.Pt()")
+                .Define("TauMPi0_e",     "TauMPi0_p4.E()")
+                .Define("TauMPi0_eta",    "TauMPi0_p4.Eta()")
+                .Define("TauMPi0_phi",    "TauMPi0_p4.Phi()")
+                .Define("TauMPi0_theta",    "TauMPi0_p4.Theta()")
+                .Define("TauMPi0_y",     "TauMPi0_p4.Rapidity()")
+                .Define("TauMPi0_mass",    "TauMPi0_p4.M()")
 
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
@@ -828,22 +856,78 @@ class RDFanalysis():
                 .Define("RecoPhi",        "(acos(RecoPhi_cos))")
                 .Define("RecoPhi1",        "(acos(RecoPhi1_cos))")
 
-                #angle between TauM vector in lab frame and daughter in tau rest frame
-                .Define("RecoGamma1_cos",      "(TauM_px*TauMRF_PiM_px + TauM_py*TauMRF_PiM_py + TauM_pz*TauMRF_PiM_pz)/(TauM_p*TauMRF_PiM_p)")
-                #angle between HRF_TauM vector in higgs frame and daughter in tau rest frame
-                .Define("RecoGamma2_cos",      "(HRF_TauM_px*TauMRF_PiM_px + HRF_TauM_py*TauMRF_PiM_py + HRF_TauM_pz*TauMRF_PiM_pz)/(HRF_TauM_p*TauMRF_PiM_p)")
                 #angle between tau decay planes in higgs rest frame (https://arxiv.org/pdf/2110.04836)
-                .Define("HRF_PiM_p3",        "HRF_PiM_p4.Vect()")
-                .Define("HRF_PiP_p3",        "HRF_PiP_p4.Vect()")
-                .Define("HRF_TauM_p3",        "HRF_TauM_p4.Vect()")
-                .Define("HRF_TauP_p3",        "HRF_TauP_p4.Vect()")
-                .Define("HRF_M_cross",        "HRF_TauM_p3.Cross(HRF_PiM_p3)")
-                .Define("HRF_P_cross",        "HRF_TauP_p3.Cross(HRF_PiP_p3)")
-                .Define("RecoPhiCP_cos",      "(HRF_P_cross.Px()*HRF_M_cross.Px() + HRF_P_cross.Py()*HRF_M_cross.Py() + HRF_P_cross.Pz()*HRF_M_cross.Pz())/(HRF_P_cross.Mag()*HRF_M_cross.Mag())")
+                .Define("Pi0_p4",       "ROOT::VecOps::RVec<TLorentzVector>{TauPPi0_p4, TauMPi0_p4}")
+                .Define("Boost_vec",    "PiP_p4+PiM_p4")
+                .Define("Boosted_Pi0_p4",       "myUtils::boosted_p4(- Boost_vec, Pi0_p4)")
+                .Define("Boosted_Pi_p4",       "myUtils::boosted_p4(- Boost_vec, TauDaughter_p4)")
 
-                .Define("RecoGamma1",        "(acos(RecoGamma1_cos))")
-                .Define("RecoGamma2",        "(acos(RecoGamma2_cos))")
-                .Define("RecoPhiCP",        "(acos(RecoPhiCP_cos))")
+                .Define("Boosted_PiP_p4",       "if (TauTag_charge.at(0)==1) return Boosted_Pi_p4.at(0); else return Boosted_Pi_p4.at(1);")
+                .Define("Boosted_PiP_px",    "Boosted_PiP_p4.Px()")
+                .Define("Boosted_PiP_py",    "Boosted_PiP_p4.Py()")
+                .Define("Boosted_PiP_pz",    "Boosted_PiP_p4.Pz()")
+                .Define("Boosted_PiP_p",    "Boosted_PiP_p4.P()")
+                .Define("Boosted_PiP_pt",    "Boosted_PiP_p4.Pt()")
+                .Define("Boosted_PiP_e",     "Boosted_PiP_p4.E()")
+                .Define("Boosted_PiP_eta",    "Boosted_PiP_p4.Eta()")
+                .Define("Boosted_PiP_phi",    "Boosted_PiP_p4.Phi()")
+                .Define("Boosted_PiP_theta",    "Boosted_PiP_p4.Theta()")
+                .Define("Boosted_PiP_y",     "Boosted_PiP_p4.Rapidity()")
+                .Define("Boosted_PiP_mass",    "Boosted_PiP_p4.M()")
+
+                .Define("Boosted_PiM_p4",       "if (TauTag_charge.at(0)==1) return Boosted_Pi_p4.at(1); else return Boosted_Pi_p4.at(0);")
+                .Define("Boosted_PiM_px",    "Boosted_PiM_p4.Px()")
+                .Define("Boosted_PiM_py",    "Boosted_PiM_p4.Py()")
+                .Define("Boosted_PiM_pz",    "Boosted_PiM_p4.Pz()")
+                .Define("Boosted_PiM_p",    "Boosted_PiM_p4.P()")
+                .Define("Boosted_PiM_pt",    "Boosted_PiM_p4.Pt()")
+                .Define("Boosted_PiM_e",     "Boosted_PiM_p4.E()")
+                .Define("Boosted_PiM_eta",    "Boosted_PiM_p4.Eta()")
+                .Define("Boosted_PiM_phi",    "Boosted_PiM_p4.Phi()")
+                .Define("Boosted_PiM_theta",    "Boosted_PiM_p4.Theta()")
+                .Define("Boosted_PiM_y",     "Boosted_PiM_p4.Rapidity()")
+                .Define("Boosted_PiM_mass",    "Boosted_PiM_p4.M()")
+
+                .Define("Boosted_Pi0P_p4",       "if (TauTag_charge.at(0)==1) return Boosted_Pi0_p4.at(0); else return Boosted_Pi0_p4.at(1);")
+                .Define("Boosted_Pi0P_px",    "Boosted_Pi0P_p4.Px()")
+                .Define("Boosted_Pi0P_py",    "Boosted_Pi0P_p4.Py()")
+                .Define("Boosted_Pi0P_pz",    "Boosted_Pi0P_p4.Pz()")
+                .Define("Boosted_Pi0P_p",    "Boosted_Pi0P_p4.P()")
+                .Define("Boosted_Pi0P_pt",    "Boosted_Pi0P_p4.Pt()")
+                .Define("Boosted_Pi0P_e",     "Boosted_Pi0P_p4.E()")
+                .Define("Boosted_Pi0P_eta",    "Boosted_Pi0P_p4.Eta()")
+                .Define("Boosted_Pi0P_phi",    "Boosted_Pi0P_p4.Phi()")
+                .Define("Boosted_Pi0P_theta",    "Boosted_Pi0P_p4.Theta()")
+                .Define("Boosted_Pi0P_y",     "Boosted_Pi0P_p4.Rapidity()")
+                .Define("Boosted_Pi0P_mass",    "Boosted_Pi0P_p4.M()")
+
+                .Define("Boosted_Pi0M_p4",       "if (TauTag_charge.at(0)==1) return Boosted_Pi0_p4.at(1); else return Boosted_Pi0_p4.at(0);")
+                .Define("Boosted_Pi0M_px",    "Boosted_Pi0M_p4.Px()")
+                .Define("Boosted_Pi0M_py",    "Boosted_Pi0M_p4.Py()")
+                .Define("Boosted_Pi0M_pz",    "Boosted_Pi0M_p4.Pz()")
+                .Define("Boosted_Pi0M_p",    "Boosted_Pi0M_p4.P()")
+                .Define("Boosted_Pi0M_pt",    "Boosted_Pi0M_p4.Pt()")
+                .Define("Boosted_Pi0M_e",     "Boosted_Pi0M_p4.E()")
+                .Define("Boosted_Pi0M_eta",    "Boosted_Pi0M_p4.Eta()")
+                .Define("Boosted_Pi0M_phi",    "Boosted_Pi0M_p4.Phi()")
+                .Define("Boosted_Pi0M_theta",    "Boosted_Pi0M_p4.Theta()")
+                .Define("Boosted_Pi0M_y",     "Boosted_Pi0M_p4.Rapidity()")
+                .Define("Boosted_Pi0M_mass",    "Boosted_Pi0M_p4.M()")
+
+                .Define("Boosted_PiM_p3",        "Boosted_PiM_p4.Vect()")
+                .Define("Boosted_PiP_p3",        "Boosted_PiP_p4.Vect()")
+                .Define("Boosted_Pi0M_p3",        "Boosted_Pi0M_p4.Vect()")
+                .Define("Boosted_Pi0P_p3",        "Boosted_Pi0P_p4.Vect()")
+                .Define("Boosted_M_cross",        "Boosted_Pi0M_p3.Cross(Boosted_PiM_p3)")
+                .Define("Boosted_P_cross",        "Boosted_Pi0P_p3.Cross(Boosted_PiP_p3)")
+
+                .Define("yplus",        "(2*PiP_e - TauP_e)/(TauP_e)")
+                .Define("yminus",        "(2*PiM_e - TauM_e)/(TauM_e)")
+                .Define("ytau",            "yplus * yminus")
+                .Define("PhiCP",      "acos((Boosted_P_cross.Px()*Boosted_M_cross.Px() + Boosted_P_cross.Py()*Boosted_M_cross.Py() + Boosted_P_cross.Pz()*Boosted_M_cross.Pz())/(Boosted_P_cross.Mag()*Boosted_M_cross.Mag()))")
+                .Define("RecoPhiCP",        "if (ytau>0) return PhiCP; else return (2*3.1415 - PhiCP);")
+
+                .Define("RecoPhiCP_cos",        "(cos(RecoPhiCP))")
 
         )
         return df2
@@ -1648,11 +1732,57 @@ class RDFanalysis():
             "RecoPhi_cos", 
             "RecoTheta1_cos", 
 
-            "RecoGamma1",
-            "RecoGamma2",
+            "Boosted_PiP_px",    
+            "Boosted_PiP_py",   
+            "Boosted_PiP_pz",   
+            "Boosted_PiP_p",   
+            "Boosted_PiP_pt",   
+            "Boosted_PiP_e",    
+            "Boosted_PiP_eta",    
+            "Boosted_PiP_phi",    
+            "Boosted_PiP_theta",    
+            "Boosted_PiP_y",    
+            "Boosted_PiP_mass",
+
+            "Boosted_PiM_px",    
+            "Boosted_PiM_py",   
+            "Boosted_PiM_pz",   
+            "Boosted_PiM_p",   
+            "Boosted_PiM_pt",   
+            "Boosted_PiM_e",    
+            "Boosted_PiM_eta",    
+            "Boosted_PiM_phi",    
+            "Boosted_PiM_theta",    
+            "Boosted_PiM_y",    
+            "Boosted_PiM_mass",
+
+            "Boosted_Pi0P_px",    
+            "Boosted_Pi0P_py",   
+            "Boosted_Pi0P_pz",   
+            "Boosted_Pi0P_p",   
+            "Boosted_Pi0P_pt",   
+            "Boosted_Pi0P_e",    
+            "Boosted_Pi0P_eta",    
+            "Boosted_Pi0P_phi",    
+            "Boosted_Pi0P_theta",    
+            "Boosted_Pi0P_y",    
+            "Boosted_Pi0P_mass",
+
+            "Boosted_Pi0M_px",    
+            "Boosted_Pi0M_py",   
+            "Boosted_Pi0M_pz",   
+            "Boosted_Pi0M_p",   
+            "Boosted_Pi0M_pt",   
+            "Boosted_Pi0M_e",    
+            "Boosted_Pi0M_eta",    
+            "Boosted_Pi0M_phi",    
+            "Boosted_Pi0M_theta",    
+            "Boosted_Pi0M_y",    
+            "Boosted_Pi0M_mass",
+
+            "ytau",
+            "PhiCP",
             "RecoPhiCP",
-            "RecoGamma1_cos",
-            "RecoGamma2_cos",
             "RecoPhiCP_cos",
 
         ]

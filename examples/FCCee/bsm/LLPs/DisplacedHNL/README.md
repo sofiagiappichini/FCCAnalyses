@@ -103,7 +103,7 @@ The command to produce root files in Delphes with Pythia hadronization and EDM4H
 DelphesPythia8_EDM4HEP config_file output_config_file pythia_card output_file
 ```
 
-The `DelphesPythia8config_file` is the detector card, it can be found [here](https://github.com/HEP-FCC/FCC-config/blob/winter2023/FCCee/Delphes/card_IDEA.tcl) for the IDEA detector for winter 2023 production. The `output_config_file` is found [here](https://github.com/HEP-FCC/FCC-config/blob/winter2023/FCCee/Delphes/edm4hep_IDEA.tcl). Both can be obtained by cloning the winter 2023 branch of [HEP-FCC/FCC-config](https://github.com/HEP-FCC/FCC-config/tree/winter2023).
+The `config_file` is the detector card, it can be found [here](https://github.com/HEP-FCC/FCC-config/blob/winter2023/FCCee/Delphes/card_IDEA.tcl) for the IDEA detector for winter 2023 production. The `output_config_file` is found [here](https://github.com/HEP-FCC/FCC-config/blob/winter2023/FCCee/Delphes/edm4hep_IDEA.tcl). Both can be obtained by cloning the winter 2023 branch of [HEP-FCC/FCC-config](https://github.com/HEP-FCC/FCC-config/tree/winter2023).
 
 In the Pythia card `pythia_card` the path to the unzipped LHE file must be given correctly, alongside the other commands.
 
