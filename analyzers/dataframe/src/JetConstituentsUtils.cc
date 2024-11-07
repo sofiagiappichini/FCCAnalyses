@@ -1433,5 +1433,24 @@ namespace FCCAnalyses
         return result;
     }
 
+    rv::RVec<int> cleanup_taggedjet(const rv::RVec<FCCAnalysesJetConstituents> &jets)
+    //reutnrs true i fthe jet is ok, flase if the jet is one single photon
+    {
+        rv::RVec<int> result;
+        for (int i = 0; i < jets.size(); ++i){
+            int count=0;
+            int constituents=0;
+            FCCAnalysesJetConstituents jcs = jets.at(i);
+            for (const auto &jc : jcs)
+            {
+              if (jc.charge==0 && jc.mass<0.1) {count += 1;} //only photons here
+              constituents+=1;
+            }
+            if (count==1 && constituents==1) {result.push_back(0);}
+            else {result.push_back(1);}
+        }
+        return result;
+    }
+
   } // namespace JetConstituentsUtils
 } // namespace FCCAnalyses

@@ -56,10 +56,10 @@ replacement_words = [
 
 DIRECTORY_EXC = "/ceph/awiedl/FCCee/HiggsCP/stage2"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/stage2_cat_eff_nocharge_clean/"
 
 SUBDIR = [
-    #'LL',
+    'LL',
     'LH',
     'HH',
 ]
@@ -74,7 +74,7 @@ CAT = [
 tree_name = "events"
 
 # Print the results
-output_file = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/nevents_tree.txt"
+output_file = "/ceph/sgiappic/stage2_eff_nocharge_clean_nevents.txt"
 
 tab = []
 raw = {}
@@ -145,7 +145,7 @@ for cat in CAT:
         if events_ttree1!=0 :
             eff1 = events_ttree1/process_events1
 
-        row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}" + " \\ \hline")
+        row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}")
         #row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}")
 
 tab.append(row)

@@ -30,9 +30,9 @@ def check_nonzero(directory, cut, process, list, VARIABLE):
 outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/"
 
 DIRECTORY = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu",
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/LL",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2qq/QQ",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/NuNu",
 }
 SUBDIR = [
     'LL',
@@ -46,9 +46,15 @@ CAT = [
     "NuNu",
 ]
 cut = {
-    'LL':"selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98",
-    'QQ':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98",
-    'NuNu':"selReco_100Me_TauAc3_2DR_cos0_misscos0.98_missy1",
+    'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME",
+    'QQ/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5",
+    'QQ/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5",
+    'QQ/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME",
+    'NuNu/HH':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    'NuNu/LH':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    'NuNu/LL':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
 }
 VARIABLE = {
     'LL':"Recoil",
@@ -141,15 +147,20 @@ for cat in CAT:
         
         directory = DIRECTORY[cat] + "/" + sub + "/"
 
+        index = f"{cat}/{sub}"
+
+        print(cut[index], cat, sub)
+
         #add the processes in the respective lists
         for b in backgrounds_all:
             if b not in signals:
-                check_nonzero(directory, cut[cat], b, bkg_procs, VARIABLE[cat])
+                check_nonzero(directory, cut[index], b, bkg_procs, VARIABLE[cat])
             else:
-                check_nonzero(directory, cut[cat], b, sig_procs, VARIABLE[cat])
+                check_nonzero(directory, cut[index], b, sig_procs, VARIABLE[cat])
 
         procs = sig_procs + bkg_procs
         nprocs = len(procs)
+        print(nprocs)
         procs_idx = list(range(-len(sig_procs)+1, len(bkg_procs)+1, 1)) # negative or 0 for signal, positive for bkg
 
         procs_str = " ".join(f"{proc:{' '}{'<'}{lspace}}" for proc in procs)
@@ -158,8 +169,8 @@ for cat in CAT:
         rates_procs = " ".join([f"{'-1':{' '}{'<'}{lspace}}"] * nprocs)
         
         for proc in procs:
-            dc += f"shapes {proc} * {directory}{proc}_{cut[cat]}_histo.root $CHANNEL\n"
-        dc += f"shapes data_obs * {directory}{procs[0]}_{cut[cat]}_histo.root $CHANNEL\n"
+            dc += f"shapes {proc} * {directory}{proc}_{cut[index]}_histo.root $CHANNEL\n"
+        dc += f"shapes data_obs * {directory}{procs[0]}_{cut[index]}_histo.root $CHANNEL\n"
         dc += f"--------------------------------------------------------------------------------\n"
         dc += f"bin                        {VARIABLE[cat]}\n"
         dc += f"observation                -1\n"

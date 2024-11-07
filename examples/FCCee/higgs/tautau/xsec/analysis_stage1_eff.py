@@ -96,7 +96,7 @@ processList_ = {
 inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_eff2/"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_eff2_nocharge_cleanup/"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -744,6 +744,7 @@ class RDFanalysis():
                 .Define("n_TagJet_R5_charged_constituents",        "JetConstituentsUtils::get_ncharged_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("n_TagJet_R5_neutral_constituents",        "JetConstituentsUtils::get_nneutral_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("n_TagJet_R5",           "return TagJet_R5_e.size()")
+                .Define("TagJet_R5_cleanup",       "JetConstituentsUtils::cleanup_taggedjet({})".format(jetClusteringHelper_R5.constituents))
 
                 .Define("TagJet_R5_isG",    "recojet_isG_R5")
                 .Define("TagJet_R5_isU",    "recojet_isU_R5")
@@ -763,23 +764,23 @@ class RDFanalysis():
                 .Define("HadGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(GenTau_had)")
                 .Define("n_GenTau_had",     "HadGenTau_eta.size()")
 
-                .Define("TauTag_eta_sel",      "TagJet_R5_eta[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_phi_sel",      "TagJet_R5_phi[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1]")
+                .Define("TauTag_eta_sel",      "TagJet_R5_eta[TagJet_R5_isTAU>0.9 && TagJet_R5_cleanup==1]")
+                .Define("TauTag_phi_sel",      "TagJet_R5_phi[TagJet_R5_isTAU>0.9 && TagJet_R5_cleanup==1]")
                 .Define("TauTag_sel_idx",       "FCCAnalyses::ZHfunctions::deltaR_sel_idx_v2(TauTag_phi_sel, HadGenTau_phi, TauTag_eta_sel, HadGenTau_eta, 0.2)")
                 .Define("n_TauTag_R5_match",          "if (n_GenTau_had>0) return TauTag_sel_idx.size(); else return TauTag_eta_sel.size();")
 
-                .Define("TauTag_eta_selmass",      "TagJet_R5_eta[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauTag_phi_selmass",      "TagJet_R5_phi[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_eta_selmass",      "TagJet_R5_eta[TagJet_R5_isTAU>0.9 && TagJet_R5_mass<3 && TagJet_R5_cleanup==1]")
+                .Define("TauTag_phi_selmass",      "TagJet_R5_phi[TagJet_R5_isTAU>0.9 && TagJet_R5_mass<3 && TagJet_R5_cleanup==1]")
                 .Define("TauTag_selmass_idx",       "FCCAnalyses::ZHfunctions::deltaR_sel_idx_v2(TauTag_phi_selmass, HadGenTau_phi, TauTag_eta_selmass, HadGenTau_eta, 0.2)")
                 .Define("n_TauTag_R5_mass_match",          "if (n_GenTau_had>0) return TauTag_selmass_idx.size(); else return TauTag_eta_selmass.size();")
 
-                .Define("TauTag_eta_sel5",      "TagJet_R5_eta[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1]")
-                .Define("TauTag_phi_sel5",      "TagJet_R5_phi[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1]")
+                .Define("TauTag_eta_sel5",      "TagJet_R5_eta[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
+                .Define("TauTag_phi_sel5",      "TagJet_R5_phi[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
                 .Define("TauTag_sel5_idx",       "FCCAnalyses::ZHfunctions::deltaR_sel_idx_v2(TauTag_phi_sel5, HadGenTau_phi, TauTag_eta_sel5, HadGenTau_eta, 0.2)")
                 .Define("n_TauTag_R5_match5",          "if (n_GenTau_had>0) return TauTag_sel5_idx.size(); else return TauTag_eta_sel5.size();")
 
-                .Define("TauTag_eta_selmass5",      "TagJet_R5_eta[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
-                .Define("TauTag_phi_selmass5",      "TagJet_R5_phi[TagJet_R5_isTAU>0.5 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
+                .Define("TauTag_eta_selmass5",      "TagJet_R5_eta[TagJet_R5_isTAU>0.5 && TagJet_R5_mass<3 && TagJet_R5_cleanup==1]")
+                .Define("TauTag_phi_selmass5",      "TagJet_R5_phi[TagJet_R5_isTAU>0.5 && TagJet_R5_mass<3 && TagJet_R5_cleanup==1]")
                 .Define("TauTag_selmass5_idx",       "FCCAnalyses::ZHfunctions::deltaR_sel_idx_v2(TauTag_phi_selmass5, HadGenTau_phi, TauTag_eta_selmass5, HadGenTau_eta, 0.2)")
                 .Define("n_TauTag_R5_mass_match5",          "if (n_GenTau_had>0) return TauTag_selmass5_idx.size(); else return TauTag_eta_selmass5.size();")
 
@@ -1202,7 +1203,8 @@ class RDFanalysis():
             "n_TagJet_R5_constituents",   
             "n_TagJet_R5_charged_constituents",   
             "n_TagJet_R5_neutral_constituents",   
-            "n_TagJet_R5",          
+            "n_TagJet_R5",        
+            "TagJet_R5_cleanup",  
 
             "TagJet_R5_isG",  
             "TagJet_R5_isU",
