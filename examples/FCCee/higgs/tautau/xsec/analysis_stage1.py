@@ -93,7 +93,7 @@ processList = {
 inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_241025/"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_241105/"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -744,6 +744,7 @@ class RDFanalysis():
                 .Define("n_TagJet_R5_charged_constituents",        "JetConstituentsUtils::get_ncharged_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("n_TagJet_R5_neutral_constituents",        "JetConstituentsUtils::get_nneutral_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("n_TagJet_R5",           "return TagJet_R5_e.size()")
+                .Define("TagJet_cleanup",       "JetConstituentsUtils::cleanup_taggedjet({})".format(jetClusteringHelper_R5.constituents))
 
                 .Define("TagJet_R5_isG",    "recojet_isG_R5")
                 .Define("TagJet_R5_isU",    "recojet_isU_R5")
@@ -1214,7 +1215,8 @@ class RDFanalysis():
             "n_TagJet_R5_constituents",   
             "n_TagJet_R5_charged_constituents",   
             "n_TagJet_R5_neutral_constituents",   
-            "n_TagJet_R5",          
+            "n_TagJet_R5",    
+            "TagJet_cleanup",        
 
             "TagJet_R5_isG",  
             "TagJet_R5_isU",

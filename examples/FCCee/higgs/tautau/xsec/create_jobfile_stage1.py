@@ -97,7 +97,7 @@ def create_subjob_script(local_dir: str,
     print("done")
              
 
-processList_ = {
+processList = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -181,22 +181,13 @@ processList_ = {
     'wzp6_ee_qqH_HWW_ecm240': {'chunks':1},
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':1},
 }
-processList = {
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':1},
-}
 
 inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
-output = '/work/sgiappic/HTCondor/stage1_eff/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = '/ceph/awiedl/FCCee/HiggsCP/stage1_eff/' ##output directory of stage2 samples
+output = '/work/sgiappic/HTCondor/stage1_241107/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = '/ceph/awiedl/FCCee/HiggsCP/stage1_241107/' ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
-Filename = 'analysis_stage1_eff.py'
+Filename = 'analysis_stage1.py'
 
 nCPUS = 4
 Memory = 10000

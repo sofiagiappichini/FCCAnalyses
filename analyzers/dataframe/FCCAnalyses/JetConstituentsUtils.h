@@ -269,6 +269,7 @@ namespace FCCAnalyses {
     rv::RVec<float> get_n_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets);
     rv::RVec<float> get_ncharged_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets);
     rv::RVec<float> get_nneutral_constituents(const rv::RVec<FCCAnalysesJetConstituents> &jets);
+    rv::RVec<int> cleanup_taggedjet(const rv::RVec<FCCAnalysesJetConstituents> &jets);
 
   }  // namespace JetConstituentsUtils
 }  // namespace FCCAnalyses

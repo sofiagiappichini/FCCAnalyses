@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/QQ/LH/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025_qq/QQ/LH/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/QQ/LH/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final_241025_v2qq/QQ/LH/" 
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -125,9 +125,7 @@ cutList = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && QuarkTag_isTAU<0.5",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5",
-
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && QuarkTag_isTAU.at(0)<0.5 && QuarkTag_isTAU.at(1)<0.5",
     
 }
 

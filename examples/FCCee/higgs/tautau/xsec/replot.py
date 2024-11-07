@@ -33,61 +33,73 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_241025/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025/NuNu",
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/LL",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2qq/QQ",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/NuNu",
 }
 SUBDIR = [
     'LL',
-    'LH',
-    'HH',
+    #'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
-    "LL",
-    "NuNu",
+    #"LL",
+    #"NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LL = [
-    "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_70Z100",
-    "selReco_100Coll150_115Rec160_2DR",
-    "selReco_100Coll150_115Rec160_2DR_cos0",
-    "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR",
+    #"selReco_100Coll150_115Rec160_2DR_cos0",
+    #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME",
 ]
 
 CUTS_QQ = [
-    "selReco",
+    #"selReco",
     #"selReco_0.5BDT",
     #"selReco_0.6BDT",
     #"selReco_0.7BDT",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_80Z95",
-    "selReco_100Coll150_115Rec160_2DR",
-    "selReco_100Coll150_115Rec160_2DR_cos0",
-    "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_80Z95",
+    #"selReco_100Coll150_115Rec160_2DR",
+    #"selReco_100Coll150_115Rec160_2DR_cos0",
+    #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_80Z95",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME",
     #"selReco_BDT",
 ]
     
 CUTS_NuNu = [
-    "selReco",
+    #"selReco",
     #"selReco_0.5BDT",
     #"selReco_0.6BDT",
     #"selReco_0.7BDT",
-    "selReco_100Me",
-    "selReco_100Me_TauDPhi3",
-    "selReco_100Me_TauDPhi3_2DR",
-    "selReco_100Me_TauDPhi3_2DR_cos0",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
+    #"selReco_100Me",
+    #"selReco_100Me_TauDPhi3",
+    #"selReco_100Me_TauDPhi3_2DR",
+    #"selReco_100Me_TauDPhi3_2DR_cos0",
+    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
+    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
 ]
 
 CUTS = {
@@ -97,7 +109,7 @@ CUTS = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/nocharge/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -106,12 +118,20 @@ LABELS = {
     "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
     "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
 
+    "selReco_100Coll150_115Rec160_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5, E_{miss}>10 GeV}",
+
     #cuts for LL
     "selReco_100Coll150_115Rec160_10Me_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV",
     "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2",
     "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
     "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
-    "selReco_100Coll150_115Rec160_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2",
+   
     "selReco_100Coll150_115Rec160_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
     "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV",
@@ -121,7 +141,6 @@ LABELS = {
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
-    "selReco_100Coll150_115Rec160_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2",
     "selReco_100Coll150_115Rec160_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
     "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, 80<M_{Z}<95 GeV",
@@ -137,6 +156,10 @@ LABELS = {
     "selReco_100Me_TauDPhi3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
     "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
     "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
+
+    "selReco_100Me_TauDPhi3_2DR_cos0.4": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
 
     "selReco_0.5BDT":"E_{miss}>100 GeV, BDT score>0.5",
     "selReco_0.6BDT":"E_{miss}>100 GeV, BDT score>0.6",
@@ -575,9 +598,9 @@ VARIABLES_RECO = [
     "TagJet_R5_e",     
     "TagJet_R5_mass",        
     "TagJet_R5_charge",    
-    #"n_TagJet_R5_constituents",   
-    #"n_TagJet_R5_charged_constituents",   
-    #"n_TagJet_R5_neutral_constituents",        
+    "n_TagJet_R5_constituents",   
+    "n_TagJet_R5_charged_constituents",   
+    "n_TagJet_R5_neutral_constituents",        
     "n_TagJet_R5",          
 
     "TagJet_R5_isG",  
@@ -1332,7 +1355,7 @@ signals = [
 ]
 
 LIST_VAR = {
-    "QQ": VARIABLES_LL,
+    "QQ": VARIABLES_QQ,
     "LL":VARIABLES_LL,
     "NuNu":VARIABLES_NuNu,
 }
