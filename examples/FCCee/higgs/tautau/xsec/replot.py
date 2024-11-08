@@ -50,19 +50,19 @@ CAT = [
 ]
 #list of cuts you want to plot
 CUTS_LL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
+    "selReco",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_70Z100",
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0",
     #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME",
 ]
 
 CUTS_QQ = [
@@ -87,13 +87,13 @@ CUTS_QQ = [
 ]
     
 CUTS_NuNu = [
-    #"selReco",
+    "selReco",
     #"selReco_0.5BDT",
     #"selReco_0.6BDT",
     #"selReco_0.7BDT",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
+    "selReco_100Me",
+    "selReco_100Me_TauDPhi3",
+    "selReco_100Me_TauDPhi3_2DR",
     #"selReco_100Me_TauDPhi3_2DR_cos0",
     #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
     #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
@@ -109,7 +109,7 @@ CUTS = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/nocharge/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -182,7 +182,7 @@ ana_tex_sub = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = False
+LOGY = True
 
 #now you can list all the histograms that you want to plot
 VARIABLES_GEN = [

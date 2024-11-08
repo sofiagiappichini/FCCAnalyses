@@ -1169,6 +1169,30 @@ std::vector<int> FindBest_3(ROOT::VecOps::RVec<TLorentzVector> P4vector, ROOT::V
     return idx;
 } 
 
+std::vector<int> FindBest_2(ROOT::VecOps::RVec<TLorentzVector> P4vector, double mass){ 
+
+    double minDistance=10000;
+    int dau1=-1;
+    int dau2=-1;
+
+    for (int i=0; i<P4vector.size(); i++){
+        for (int j=i+1; j<P4vector.size(); j++){
+            TLorentzVector DiObj=P4vector[i]+P4vector[j];
+            if (fabs(DiObj.M()-mass)<minDistance) {
+                minDistance=fabs(DiObj.M()-mass);
+                dau1=i;
+                dau2=j; 
+            }
+        }
+    }
+
+    std::vector<int> idx;
+    idx.push_back(dau1);
+    idx.push_back(dau2); 
+
+    return idx;
+} 
+
 std::vector<int> FindBest_4(ROOT::VecOps::RVec<TLorentzVector> P4vector, ROOT::VecOps::RVec<float> vec_charge, ROOT::VecOps::RVec<float> vec_mass, double mass1, double mass2){ 
 
     double minDistance=10000;

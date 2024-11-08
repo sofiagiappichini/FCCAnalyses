@@ -98,7 +98,7 @@ def create_subjob_script(local_dir: str,
     print("done")
              
 
-processList_ = {
+processList = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -183,7 +183,7 @@ processList_ = {
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
 }
 
-processList = {
+processList_ = {
     'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
     'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
     'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
@@ -194,21 +194,21 @@ processList = {
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage1_eff_nocharge_clean/'
-output = '/work/sgiappic/HTCondor/stage2_cat_eff_nocharge_clean_qq/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_cat_eff_nocharge_clean_qq/' ##output directory of stage2 samples
+inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage1_241025/'
+output = '/work/sgiappic/HTCondor/stage2_/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_241025_cut/' ##output directory of stage2 samples
 localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage2_'
 SUBDIR = [
-    'LL',
+    #'LL',
     'LH',
-    'HH',
+    #'HH',
 ]
 CAT = [
     "QQ",
     #"LL",
-    #"NuNu",
+    "NuNu",
 ]
 nCPUS = 4
 Memory = 10000
