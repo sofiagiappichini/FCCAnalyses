@@ -287,6 +287,15 @@ class RDFanalysis():
                 .Define("n_RecoTau1_neutral_constituents",        "return float(0);")
                 .Define("n_RecoTau2_neutral_constituents",        "n_TauTag_neutral_constituents.at(0)")
 
+                .Define("TauLepton_type",        "if (RecoLepton_sel_mass.at(0)<0.05) return float(-0.11); else return float(-0.13);")
+                .Define("TauHadron_type",        "TauTag_isTAU.at(0)")
+                .Define("n_TauLepton_constituents",        "return float(1);")
+                .Define("n_TauHadron_constituents",        "n_TauTag_constituents.at(0)")
+                .Define("n_TauLepton_charged_constituents",        "return float(1);")
+                .Define("n_TauHadron_charged_constituents",        "n_TauTag_charged_constituents.at(0)")
+                .Define("n_TauLepton_neutral_constituents",        "return float(0);")
+                .Define("n_TauHadron_neutral_constituents",        "n_TauTag_neutral_constituents.at(0)")
+
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
                 .Define("RecoH_py",    "RecoH_p4.Py()")
@@ -389,6 +398,8 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
+
+                .Filter("Collinear_mass>100 && Collinera_mass<150")
 
         )
         return df2
@@ -1031,6 +1042,15 @@ class RDFanalysis():
             "RecoZDaughter_cos", 
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
+
+            "TauLepton_type", 
+            "TauHadron_type",      
+            "n_TauLepton_constituents",       
+            "n_TauHadron_constituents",  
+            "n_TauLepton_charged_constituents", 
+            "n_TauHadron_charged_constituents",      
+            "n_TauLepton_neutral_constituents",  
+            "n_TauHadron_neutral_constituents",
 
         ]
 

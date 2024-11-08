@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1_eff2_nocharge_cleanup/" 
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025/QQ/LH" 
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final_eff2_nocharge_clean/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/final_241025_eff/QQ/LH" 
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -22,12 +22,12 @@ doTree = False
 
 processList = {
     'wzp6_ee_nunuH_Htautau_ecm240': {},
-    #'wzp6_ee_eeH_Htautau_ecm240': {},
-    #'wzp6_ee_mumuH_Htautau_ecm240': {},
-    #'wzp6_ee_bbH_Htautau_ecm240': {},
-    #'wzp6_ee_ccH_Htautau_ecm240': {},
-    #'wzp6_ee_ssH_Htautau_ecm240': {},
-    #'wzp6_ee_qqH_Htautau_ecm240': {},
+    'wzp6_ee_eeH_Htautau_ecm240': {},
+    'wzp6_ee_mumuH_Htautau_ecm240': {},
+    'wzp6_ee_bbH_Htautau_ecm240': {},
+    'wzp6_ee_ccH_Htautau_ecm240': {},
+    'wzp6_ee_ssH_Htautau_ecm240': {},
+    'wzp6_ee_qqH_Htautau_ecm240': {},
 }
 
 ###Dictionary for prettier names of processes (optional)
