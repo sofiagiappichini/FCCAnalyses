@@ -5,13 +5,6 @@ processList = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
-
-}
-
-processList_ = {
-    'p8_ee_WW_ecm240':{'chunks':100},
-    'p8_ee_Zqq_ecm240':{'chunks':100},
-    'p8_ee_ZZ_ecm240':{'chunks':100},
     
     'wzp6_ee_tautau_ecm240':{'chunks':100},
     'wzp6_ee_mumu_ecm240':{'chunks':100},
@@ -102,7 +95,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_241105/"
 
-outputDir = "/eos/user/s/sgiappic/HiggsCP/stage1_241110/"
+outputDir = "/eos/user/s/sgiappic/HiggsCP/stage1_241111/"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
