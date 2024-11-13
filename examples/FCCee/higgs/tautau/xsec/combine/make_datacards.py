@@ -31,7 +31,7 @@ outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine
 
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2qq/QQ",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_v2/QQ",
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/NuNu",
 }
 SUBDIR = [
@@ -49,9 +49,9 @@ cut = {
     'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
     'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
     'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME",
-    'QQ/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5",
-    'QQ/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5",
-    'QQ/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME",
+    'QQ/HH':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98",
+    'QQ/LH':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98",
+    'QQ/LL':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98",
     'NuNu/HH':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
     'NuNu/LH':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
     'NuNu/LL':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
