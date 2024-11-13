@@ -93,9 +93,9 @@ prodTag     = "FCCee/winter2023/IDEA/"
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
 #Optional: output directory, default is local running directory
-#outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_241105/"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_241111/"
 
-outputDir = "/eos/user/s/sgiappic/HiggsCP/stage1_241111/"
+#outputDir = "/eos/user/s/sgiappic/HiggsCP/stage1_241111/"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
@@ -104,19 +104,19 @@ nCPUS = 10
 includePaths = ["functions.h"]
 
 ### necessary to run on HTCondor ###
-eosType = "eosuser"
+#eosType = "eosuser"
 
 #Optional: ncpus, default is 4
 nCPUS = 10
 
 #Optional running on HTCondor, default is False
-runBatch = True
+#runBatch = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "workday"
+#batchQueue = "workday"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-compGroup = "group_u_FCC.local_gen"
+#compGroup = "group_u_FCC.local_gen"
 
 ## tagging -------------------------------
 ## latest particle transformer model, trained on 9M jets in winter2023 samples
@@ -128,8 +128,8 @@ url_preproc = "{}/{}.json".format(url_model_dir, model_name)
 url_model = "{}/{}.onnx".format(url_model_dir, model_name)
 
 ## model files locally stored on /eos
-#model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
-model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
+model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
+#model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
 
 local_preproc = "{}/{}.json".format(model_dir, model_name)
 local_model = "{}/{}.onnx".format(model_dir, model_name)

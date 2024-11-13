@@ -34,19 +34,19 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = {
     'LL':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2qq/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/NuNu",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025_cut_bdt/QQ",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025_cut_bdt/NuNu",
 }
 SUBDIR = [
     'LL',
-    #'LH',
-    #'HH',
+    'LH',
+    'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
     #"LL",
-    #"NuNu",
+    "NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LL = [
@@ -66,10 +66,10 @@ CUTS_LL = [
 ]
 
 CUTS_QQ = [
-    #"selReco",
-    #"selReco_0.5BDT",
-    #"selReco_0.6BDT",
-    #"selReco_0.7BDT",
+    "selReco",
+    "selReco_0.5BDT",
+    "selReco_0.6BDT",
+    "selReco_0.7BDT",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_10Me",
@@ -82,24 +82,24 @@ CUTS_QQ = [
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME",
     #"selReco_BDT",
 ]
     
 CUTS_NuNu = [
     "selReco",
-    #"selReco_0.5BDT",
-    #"selReco_0.6BDT",
-    #"selReco_0.7BDT",
-    "selReco_100Me",
-    "selReco_100Me_TauDPhi3",
-    "selReco_100Me_TauDPhi3_2DR",
+    "selReco_0.5BDT",
+    "selReco_0.6BDT",
+    "selReco_0.7BDT",
+    #"selReco_100Me",
+    #"selReco_100Me_TauDPhi3",
+    #"selReco_100Me_TauDPhi3_2DR",
     #"selReco_100Me_TauDPhi3_2DR_cos0",
     #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
     #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
+    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
+    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
 ]
 
 CUTS = {
@@ -109,7 +109,7 @@ CUTS = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/BDT/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -596,8 +596,8 @@ VARIABLES_RECO = [
     "TagJet_R5_eta",     
     "TagJet_R5_theta",          
     "TagJet_R5_e",     
-    "TagJet_R5_mass",        
-    "TagJet_R5_charge",    
+    #"TagJet_R5_mass",        
+    #"TagJet_R5_charge",    
     "n_TagJet_R5_constituents",   
     "n_TagJet_R5_charged_constituents",   
     "n_TagJet_R5_neutral_constituents",        
@@ -908,30 +908,6 @@ VARIABLES_QQ = [
     "RecoZSub_y",    
     "RecoZSub_mass",  
 
-    "RecoZP_px", 
-    "RecoZP_py",   
-    "RecoZP_pz",   
-    "RecoZP_p",    
-    "RecoZP_pt",   
-    "RecoZP_e",    
-    "RecoZP_eta",    
-    "RecoZP_phi",    
-    "RecoZP_theta",   
-    "RecoZP_y",     
-    "RecoZP_mass",   
-
-    "RecoZM_px",    
-    "RecoZM_py",   
-    "RecoZM_pz",   
-    "RecoZM_p",   
-    "RecoZM_pt",  
-    "RecoZM_e",     
-    "RecoZM_eta",   
-    "RecoZM_phi",   
-    "RecoZM_theta",    
-    "RecoZM_y",    
-    "RecoZM_mass",  
-
     "RecoH_px",
     "RecoH_py",
     "RecoH_pz",
@@ -1021,7 +997,7 @@ VARIABLES_QQ = [
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
 
-    #"BDT_score",
+    "BDT_score",
 ]
 
 VARIABLES_NuNu = [
@@ -1170,7 +1146,7 @@ VARIABLES_NuNu = [
     #"Collinear_mass",
     "Visible_mass",
 
-    #"BDT_score",
+    "BDT_score",
 ]
 
 #list of backgorunds, then legend and colors to be assigned to them
