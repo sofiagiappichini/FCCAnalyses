@@ -616,7 +616,7 @@ class RDFanalysis():
                                         else if (HRF_TauLead_y<HRF_TauSub_y) return (HRF_TauSub_phi - HRF_TauLead_phi); else return double(-10.);")
 
                 .Define("HRF_Tau_DEta",    "(HRF_TauLead_eta - HRF_TauSub_eta)")
-                .Define("HRF_Tau_DPhi",    "(HRF_TauLead_phi - HRF_TauSub_phi)")
+                .Define("HRF_Tau_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(HRF_TauLead_phi, HRF_TauSub_phi)")
 
                 .Define("HRF_PiLead_p4",       "if (HRF_Pi_p4.at(0).Pt()>HRF_Pi_p4.at(1).Pt()) return HRF_Pi_p4.at(0); else return HRF_Pi_p4.at(1);")
                 .Define("HRF_PiLead_px",    "HRF_PiLead_p4.Px()")
@@ -676,7 +676,7 @@ class RDFanalysis():
                                         else if (HRF_PiLead_y<HRF_PiSub_y) return (HRF_PiSub_phi - HRF_PiLead_phi); else return double(-10.);")
 
                 .Define("HRF_Pi_DEta",    "(HRF_PiLead_eta - HRF_PiSub_eta)")
-                .Define("HRF_Pi_DPhi",    "(HRF_PiLead_phi - HRF_PiSub_phi)")
+                .Define("HRF_Pi_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(HRF_PiLead_phi, HRF_PiSub_phi)")
 
                 .Define("HRF_TauPiLead_DEta_y",    "if (HRF_TauLead_y>HRF_PiLead_y) return (HRF_TauLead_eta - HRF_PiLead_eta); \
                                         else if (HRF_TauLead_y<HRF_PiLead_y) return (HRF_PiLead_eta - HRF_TauLead_eta); else return double(-10.);")
@@ -684,7 +684,7 @@ class RDFanalysis():
                                         else if (HRF_TauLead_y<HRF_PiLead_y) return (HRF_PiLead_phi - HRF_TauLead_phi); else return double(-10.);")
 
                 .Define("HRF_TauPiLead_DEta",    "(HRF_TauLead_eta - HRF_PiLead_eta)")
-                .Define("HRF_TauPiLead_DPhi",    "(HRF_TauLead_phi - HRF_PiLead_phi)")
+                .Define("HRF_TauPiLead_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(HRF_TauLead_phi, HRF_PiLead_phi)")
 
                 .Define("HRF_TauPiSub_DEta_y",    "if (HRF_TauSub_y>HRF_PiSub_y) return (HRF_TauSub_eta - HRF_PiSub_eta); \
                                         else if (HRF_TauSub_y<HRF_PiSub_y) return (HRF_PiSub_eta - HRF_TauSub_eta); else return double(-10.);")
@@ -692,7 +692,7 @@ class RDFanalysis():
                                         else if (HRF_TauSub_y<HRF_PiSub_y) return (HRF_PiSub_phi - HRF_TauSub_phi); else return double(-10.);")
 
                 .Define("HRF_TauPiSub_DEta",    "(HRF_TauSub_eta - HRF_PiSub_eta)")
-                .Define("HRF_TauPiSub_DPhi",    "(HRF_TauSub_phi - HRF_PiSub_phi)")
+                .Define("HRF_TauPiSub_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(HRF_TauSub_phi, HRF_PiSub_phi)")
 
                 .Define("HRF_TauPiP_DEta_y",    "if (HRF_TauP_y>HRF_PiP_y) return (HRF_TauP_eta - HRF_PiP_eta); \
                                         else if (HRF_TauP_y<HRF_PiP_y) return (HRF_PiP_eta - HRF_TauP_eta); else return double(-10.);")
@@ -700,7 +700,7 @@ class RDFanalysis():
                                         else if (HRF_TauP_y<HRF_PiP_y) return (HRF_PiP_phi - HRF_TauP_phi); else return double(-10.);")
 
                 .Define("HRF_TauPiP_DEta",    "(HRF_TauP_eta - HRF_PiP_eta)")
-                .Define("HRF_TauPiP_DPhi",    "(HRF_TauP_phi - HRF_PiP_phi)")
+                .Define("HRF_TauPiP_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(HRF_TauP_phi, HRF_PiP_phi)")
 
                 .Define("HRF_TauPiM_DEta_y",    "if (HRF_TauM_y>HRF_PiM_y) return (HRF_TauM_eta - HRF_PiM_eta); \
                                         else if (HRF_TauM_y<HRF_PiM_y) return (HRF_PiM_eta - HRF_TauM_eta); else return double(-10.);")
@@ -772,7 +772,7 @@ class RDFanalysis():
                                         else if (ZRF_RecoZLead_y<ZRF_RecoZSub_y) return (ZRF_RecoZSub_phi - ZRF_RecoZLead_phi); else return double(-10.);")
 
                 .Define("ZRF_RecoZDaughter_DEta",    "(ZRF_RecoZLead_eta - ZRF_RecoZSub_eta)")
-                .Define("ZRF_RecoZDaughter_DPhi",    "(ZRF_RecoZLead_phi - ZRF_RecoZSub_phi)")
+                .Define("ZRF_RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(ZRF_RecoZLead_phi, ZRF_RecoZSub_phi)")
 
                 #tau rest frame for the products, needs to be done separately for the leading and sub
                 .Define("TauLeadRF_PiLead_p4",    "myUtils::boosted_p4(- TauLead_p4, ROOT::VecOps::RVec<TLorentzVector>{PiLead_p4})")
@@ -833,7 +833,7 @@ class RDFanalysis():
                                         else if (TauLeadRF_PiLead_y<TauSubRF_PiSub_y) return (TauSubRF_PiSub_phi - TauLeadRF_PiLead_phi); else return double(-10.);")
 
                 .Define("TauRF_Pi_DEta",    "(TauLeadRF_PiLead_eta - TauSubRF_PiSub_eta)")
-                .Define("TauRF_Pi_DPhi",    "(TauLeadRF_PiLead_phi - TauSubRF_PiSub_phi)")
+                .Define("TauRF_Pi_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(TauLeadRF_PiLead_phi, TauSubRF_PiSub_phi)")
 
                 ### angles visualisation in figure 1 (2) at pag 8 of https://arxiv.org/pdf/2205.07715
                 #may be interesting to simnply keep the cosine of thetas (John Hopkins)
@@ -847,8 +847,8 @@ class RDFanalysis():
                 #angle between decay planes of H and Z
                 .Define("RecoPhi_cos",      "(HRF_TauM_px*ZRF_RecoZM_px + HRF_TauM_py*ZRF_RecoZM_py + HRF_TauM_pz*ZRF_RecoZM_pz)/(HRF_TauM_p*ZRF_RecoZM_p)")
                 #angle between beam line and Z decay plane
-                .Define("RecoPhi1_cos",      "(RecoZM_pz)/(Beam_p*ZRF_RecoZM_p)")
-                .Define("RecoThetastar_cos",      "(RecoZ_pz)/(Beam_p*RecoZ_p)")
+                .Define("RecoPhi1_cos",      "(RecoZM_pz*Beam_vec.Pz())/(Beam_p*ZRF_RecoZM_p)")
+                .Define("RecoThetastar_cos",      "(RecoZ_pz*Beam_vec.Pz())/(Beam_p*RecoZ_p)")
 
                 .Define("RecoThetastar",        "(acos(RecoThetastar_cos))")
                 .Define("RecoTheta1",        "(acos(RecoTheta1_cos))")

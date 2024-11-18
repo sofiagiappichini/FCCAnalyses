@@ -8,7 +8,8 @@ processList = {
     #'noISR_e+e-_noCuts_cehim_p1':{},
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
-    "zh_taudecay_smeft_cehre_p1":{},
+    'noISR':{},
+    'taudecay':{},
 }
 
 processList_xsec = {
@@ -102,12 +103,9 @@ processList_xsec = {
 
 #inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
 
-inputDir = '/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/'
+inputDir = '/ceph/sgiappic/'
 
 outputDir = "/ceph/sgiappic/HiggsCP/CP/stage1"
-
-#Optional: ncpus, default is 4
-nCPUS = 10
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]

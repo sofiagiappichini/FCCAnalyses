@@ -424,15 +424,12 @@ std::vector<float> get_trijet_energy(std::vector<std::vector<int>> dijets_idx, i
 
   // --- functions Helper
 float deltaEta(float eta1, float eta2) {
-    return std::abs(eta1 - eta2);
+    return eta1 - eta2;
   }
 
 float deltaPhi(float phi1, float phi2){
-    float PHI = std::abs(phi1-phi2);
-    if (PHI<=3.14159265)
-      return PHI;
-    else
-      return 2*3.14159265-PHI;
+    float PHI = 3.14159265;
+    return PHI - std::abs(std::abs(phi1-phi2) - PHI);
   }
 
 float deltaR(float phi1, float phi2, float eta1, float eta2) {

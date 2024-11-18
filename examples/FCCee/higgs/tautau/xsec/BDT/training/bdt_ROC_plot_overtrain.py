@@ -18,6 +18,7 @@ import glob
 from matplotlib import rc
 import pprint
 from matplotlib.ticker import LogLocator, NullFormatter
+import math
 
 
 def get_entries(infilepath: str) -> tuple[int, int]:
@@ -253,9 +254,447 @@ vars_list_QQ = [
             "Recoil",
             "Collinear_mass"]
 
+vars_list_NuNuHH_tag = ["RecoEmiss_pz",
+            "RecoEmiss_pt",
+            "RecoEmiss_p",
+            "RecoEmiss_e",
+            "RecoEmiss_costheta",
+            #"RecoEmiss_eta",
+            #"RecoZ_px",
+            #"RecoZ_py",
+            #"RecoZ_pz",
+            #"RecoZ_p",
+            #"RecoZ_pt",
+            #"RecoZ_e",
+            #"RecoZ_eta",
+            #"RecoZ_phi",
+            #"RecoZ_mass",
+            #"RecoZLead_px", 
+            #"RecoZLead_py",   
+            #"RecoZLead_pz",   
+            #"RecoZLead_p",    
+            #"RecoZLead_pt",   
+            #"RecoZLead_e",    
+            #"RecoZLead_eta",    
+            #"RecoZLead_phi",   
+            #"RecoZLead_mass",   
+            #"RecoZSub_px",    
+            #"RecoZSub_py",   
+            #"RecoZSub_pz",   
+            #"RecoZSub_p",   
+            #"RecoZSub_pt",  
+            #"RecoZSub_e",     
+            #"RecoZSub_eta",   
+            #"RecoZSub_phi", 
+            #"RecoZSub_mass",   
+            #"RecoH_px",
+            #"RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            #"RecoH_phi",
+            #"RecoH_mass",
+            #"TauLead_px",    
+            #"TauLead_py",   
+            "TauLead_pz",   
+            "TauLead_p",   
+            "TauLead_pt",   
+            "TauLead_e",    
+            "TauLead_eta",    
+            #"TauLead_phi",  
+            "TauLead_mass",
+            "TauLead_type",
+            "n_TauLead_charged_constituents",
+            "n_TauLead_neutral_constituents",
+            #"TauSub_px",    
+            #"TauSub_py",   
+            "TauSub_pz",   
+            "TauSub_p",   
+            "TauSub_pt",   
+            "TauSub_e",    
+            "TauSub_eta",    
+            #"TauSub_phi", 
+            "TauSub_mass",
+            "TauSub_type",
+            "n_TauSub_charged_constituents",
+            "n_TauSub_neutral_constituents",
+            "Tau_DPhi",
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta",
+            #"Recoil",
+            #"Collinear_mass",
+            "Visible_mass", 
+            ]
+
+vars_list_NuNuLL_tag = ["RecoEmiss_pz",
+            "RecoEmiss_pt",
+            "RecoEmiss_p",
+            "RecoEmiss_e",
+            "RecoEmiss_costheta",
+            #"RecoEmiss_eta",
+            #"RecoZ_px",
+            #"RecoZ_py",
+            #"RecoZ_pz",
+            #"RecoZ_p",
+            #"RecoZ_pt",
+            #"RecoZ_e",
+            #"RecoZ_eta",
+            #"RecoZ_phi",
+            #"RecoZ_mass",
+            #"RecoZLead_px", 
+            #"RecoZLead_py",   
+            #"RecoZLead_pz",   
+            #"RecoZLead_p",    
+            #"RecoZLead_pt",   
+            #"RecoZLead_e",    
+            #"RecoZLead_eta",    
+            #"RecoZLead_phi",   
+            #"RecoZLead_mass",   
+            #"RecoZSub_px",    
+            #"RecoZSub_py",   
+            #"RecoZSub_pz",   
+            #"RecoZSub_p",   
+            #"RecoZSub_pt",  
+            #"RecoZSub_e",     
+            #"RecoZSub_eta",   
+            #"RecoZSub_phi", 
+            #"RecoZSub_mass",   
+            #"RecoH_px",
+            #"RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            #"RecoH_phi",
+            #"RecoH_mass",
+            #"TauLead_px",    
+            #"TauLead_py",   
+            "TauLead_pz",   
+            "TauLead_p",   
+            "TauLead_pt",   
+            "TauLead_e",    
+            "TauLead_eta",    
+            #"TauLead_phi",  
+            "TauLead_mass",
+            #"TauSub_px",    
+            #"TauSub_py",   
+            "TauSub_pz",   
+            "TauSub_p",   
+            "TauSub_pt",   
+            "TauSub_e",    
+            "TauSub_eta",    
+            #"TauSub_phi", 
+            "TauSub_mass",
+            "Tau_DPhi",
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta",
+            #"Recoil",
+            #"Collinear_mass",
+            "Visible_mass",
+            ]
+
+vars_list_NuNuLH_tag = ["RecoEmiss_pz",
+            "RecoEmiss_pt",
+            "RecoEmiss_p",
+            "RecoEmiss_e",
+            "RecoEmiss_costheta",
+            #"RecoEmiss_eta",
+            #"RecoZ_px",
+            #"RecoZ_py",
+            #"RecoZ_pz",
+            #"RecoZ_p",
+            #"RecoZ_pt",
+            #"RecoZ_e",
+            #"RecoZ_eta",
+            #"RecoZ_phi",
+            #"RecoZ_mass",
+            #"RecoZLead_px", 
+            #"RecoZLead_py",   
+            #"RecoZLead_pz",   
+            #"RecoZLead_p",    
+            #"RecoZLead_pt",   
+            #"RecoZLead_e",    
+            #"RecoZLead_eta",    
+            #"RecoZLead_phi",   
+            #"RecoZLead_mass",   
+            #"RecoZSub_px",    
+            #"RecoZSub_py",   
+            #"RecoZSub_pz",   
+            #"RecoZSub_p",   
+            #"RecoZSub_pt",  
+            #"RecoZSub_e",     
+            #"RecoZSub_eta",   
+            #"RecoZSub_phi", 
+            #"RecoZSub_mass",   
+            #"RecoH_px",
+            #"RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            #"RecoH_phi",
+            #"RecoH_mass",
+            #"TauLead_px",    
+            #"TauLead_py",   
+            "TauLead_pz",   
+            "TauLead_p",   
+            "TauLead_pt",   
+            "TauLead_e",    
+            "TauLead_eta",    
+            #"TauLead_phi",  
+            "TauLead_mass",
+            #"TauSub_px",    
+            #"TauSub_py",   
+            "TauSub_pz",   
+            "TauSub_p",   
+            "TauSub_pt",   
+            "TauSub_e",    
+            "TauSub_eta",    
+            #"TauSub_phi", 
+            "TauSub_mass",
+            "Tau_DPhi",
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta",
+            #"Recoil",
+            #"Collinear_mass",
+            "Visible_mass",
+            "TauLepton_type", 
+            "TauHadron_type",        
+            "n_TauLepton_charged_constituents", 
+            "n_TauHadron_charged_constituents",      
+            "n_TauLepton_neutral_constituents",  
+            "n_TauHadron_neutral_constituents",
+            ]
+
+vars_list_QQLL_tag = ["RecoEmiss_pz",
+            "RecoEmiss_pt",
+            "RecoEmiss_p",
+            "RecoEmiss_e",
+            "RecoEmiss_costheta",
+            #"RecoEmiss_eta",
+            #"RecoZ_px",
+            #"RecoZ_py",
+            "RecoZ_pz",
+            "RecoZ_p",
+            "RecoZ_pt",
+            "RecoZ_e",
+            "RecoZ_eta",
+            #"RecoZ_phi",
+            "RecoZ_mass",
+            #"RecoZLead_px", 
+            #"RecoZLead_py",   
+            #"RecoZLead_pz",   
+            #"RecoZLead_p",    
+            #"RecoZLead_pt",   
+            #"RecoZLead_e",    
+            #"RecoZLead_eta",    
+            #"RecoZLead_phi",   
+            #"RecoZLead_mass",   
+            #"RecoZSub_px",    
+            #"RecoZSub_py",   
+            #"RecoZSub_pz",   
+            #"RecoZSub_p",   
+            #"RecoZSub_pt",  
+            #"RecoZSub_e",     
+            #"RecoZSub_eta",   
+            #"RecoZSub_phi", 
+            #"RecoZSub_mass",   
+            #"RecoH_px",
+            #"RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            #"RecoH_phi",
+            "RecoH_mass",
+            #"TauLead_px",    
+            #"TauLead_py",   
+            #"TauLead_pz",   
+            #"TauLead_p",   
+            #"TauLead_pt",   
+            #"TauLead_e",    
+            #"TauLead_eta",    
+            #"TauLead_phi",  
+            #"TauLead_mass",
+            #"TauSub_px",    
+            #"TauSub_py",   
+            #"TauSub_pz",   
+            #"TauSub_p",   
+            #"TauSub_pt",   
+            #"TauSub_e",    
+            #"TauSub_eta",    
+            #"TauSub_phi", 
+            #"TauSub_mass",
+            "Tau_DPhi",
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta",
+            "Recoil",
+            "Collinear_mass"]
+
+vars_list_QQHH_tag = ["RecoEmiss_pz",
+            "RecoEmiss_pt",
+            "RecoEmiss_p",
+            "RecoEmiss_e",
+            "RecoEmiss_costheta",
+            #"RecoEmiss_eta",
+            #"RecoZ_px",
+            #"RecoZ_py",
+            "RecoZ_pz",
+            "RecoZ_p",
+            "RecoZ_pt",
+            "RecoZ_e",
+            "RecoZ_eta",
+            #"RecoZ_phi",
+            "RecoZ_mass",
+            #"RecoZLead_px", 
+            #"RecoZLead_py",   
+            #"RecoZLead_pz",   
+            #"RecoZLead_p",    
+            #"RecoZLead_pt",   
+            #"RecoZLead_e",    
+            #"RecoZLead_eta",    
+            #"RecoZLead_phi",   
+            #"RecoZLead_mass",   
+            #"RecoZSub_px",    
+            #"RecoZSub_py",   
+            #"RecoZSub_pz",   
+            #"RecoZSub_p",   
+            #"RecoZSub_pt",  
+            #"RecoZSub_e",     
+            #"RecoZSub_eta",   
+            #"RecoZSub_phi", 
+            #"RecoZSub_mass",   
+            #"RecoH_px",
+            #"RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            #"RecoH_phi",
+            "RecoH_mass",
+            #"TauLead_px",    
+            #"TauLead_py",   
+            #"TauLead_pz",   
+            #"TauLead_p",   
+            #"TauLead_pt",   
+            #"TauLead_e",    
+            #"TauLead_eta",    
+            #"TauLead_phi",  
+            #"TauLead_mass",
+            "TauLead_type",
+            "n_TauLead_charged_constituents",
+            "n_TauLead_neutral_constituents",            
+            #"TauSub_px",    
+            #"TauSub_py",   
+            #"TauSub_pz",   
+            #"TauSub_p",   
+            #"TauSub_pt",   
+            #"TauSub_e",    
+            #"TauSub_eta",    
+            #"TauSub_phi", 
+            #"TauSub_mass",
+            "TauSub_type",
+            "n_TauSub_charged_constituents",
+            "n_TauSub_neutral_constituents",
+            "Tau_DPhi",
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta",
+            "Recoil",
+            "Collinear_mass"]
+
+vars_list_QQLH_tag = ["RecoEmiss_pz",
+            "RecoEmiss_pt",
+            "RecoEmiss_p",
+            "RecoEmiss_e",
+            "RecoEmiss_costheta",
+            #"RecoEmiss_eta",
+            #"RecoZ_px",
+            #"RecoZ_py",
+            "RecoZ_pz",
+            "RecoZ_p",
+            "RecoZ_pt",
+            "RecoZ_e",
+            "RecoZ_eta",
+            #"RecoZ_phi",
+            "RecoZ_mass",
+            #"RecoZLead_px", 
+            #"RecoZLead_py",   
+            #"RecoZLead_pz",   
+            #"RecoZLead_p",    
+            #"RecoZLead_pt",   
+            #"RecoZLead_e",    
+            #"RecoZLead_eta",    
+            #"RecoZLead_phi",   
+            #"RecoZLead_mass",   
+            #"RecoZSub_px",    
+            #"RecoZSub_py",   
+            #"RecoZSub_pz",   
+            #"RecoZSub_p",   
+            #"RecoZSub_pt",  
+            #"RecoZSub_e",     
+            #"RecoZSub_eta",   
+            #"RecoZSub_phi", 
+            #"RecoZSub_mass",   
+            #"RecoH_px",
+            #"RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            #"RecoH_phi",
+            "RecoH_mass",
+            #"TauLead_px",    
+            #"TauLead_py",   
+            #"TauLead_pz",   
+            #"TauLead_p",   
+            #"TauLead_pt",   
+            #"TauLead_e",    
+            #"TauLead_eta",    
+            #"TauLead_phi",  
+            #"TauLead_mass",
+            "TauLepton_type",
+            "TauHadron_type",
+            #"TauSub_px",    
+            #"TauSub_py",   
+            #"TauSub_pz",   
+            #"TauSub_p",   
+            #"TauSub_pt",   
+            #"TauSub_e",    
+            #"TauSub_eta",    
+            #"TauSub_phi", 
+            #"TauSub_mass",
+            "n_TauLepton_charged_constituents",
+            "n_TauLepton_neutral_constituents",
+            "n_TauHadron_charged_constituents",
+            "n_TauHadron_neutral_constituents",
+            "Tau_DPhi",
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta",
+            "Recoil",
+            "Collinear_mass"]
+
 VARIABLES = {
     'NuNu':vars_list_NuNu,
     'QQ':vars_list_QQ,
+    'NuNuLL_tag':vars_list_NuNuLL_tag,
+    'NuNuLH_tag':vars_list_NuNuLH_tag,
+    'NuNuHH_tag':vars_list_NuNuHH_tag,
+    'QQLL_tag':vars_list_QQLL_tag,
+    'QQLH_tag':vars_list_QQLH_tag,
+    'QQHH_tag':vars_list_QQHH_tag,
 }
 sigs = ['wzp6_ee_mumuH_Htautau_ecm240',
         'wzp6_ee_qqH_Htautau_ecm240',
@@ -404,8 +843,8 @@ xsec = {'p8_ee_WW_ecm240':16.4385,
 }
 
 DIRECTORY = {
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/stage2_100Me/",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/stage2_100Coll150/",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/stage2_241025_cut/",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/stage2_241025_cut/",
     }
 
 SUBDIR = [
@@ -431,30 +870,27 @@ leg_sub = {
     "HH": r"$H \to \tau_h \tau_h$",
 }
 
-output_file = "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/output_plot.txt"
+output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/outputs_tag_1000/output_overtraining.txt"
 
-modelDir = "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/BDT/models/"
+modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_tag_1000/"
 
-# Create the figure and plot
-fig, ax = plt.subplots(figsize=(8, 8))
 #fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, gridspec_kw={'height_ratios': [1, 1], 'hspace':0})
 colorDict = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
 
 #index for color list and label list
 col = 0
 label = []
-eff_train = {}
-eff_test = {}
-eff_train_bkg = {}
-eff_test_bkg = {}
 #get gen number of events for each signal and backgorund file
 for cat in CAT:
     for sub in SUBDIR:
+        # Create the figure and plot
+        fig, ax = plt.subplots(figsize=(8, 8))
+
         path = DIRECTORY[cat] + cat + "/" + sub + "/"
-        if "NuNu" in cat and "LL" in sub:
-            vars_list = vars_list_NuNuLL
-        else:
-            vars_list = VARIABLES[cat]
+        #if "NuNu" in cat and "LL" in sub:
+        #    vars_list = vars_list_NuNuLL
+        #else:
+        vars_list = VARIABLES[cat+sub+"_tag"]
 
         N = {}
         N_gen = {}
@@ -498,15 +934,6 @@ for cat in CAT:
             if N_sig_gen!=0:
                 eff_tot_sig = N_sig / N_sig_gen
 
-        with open(output_file, "a") as file:
-            file.write(f"Category {cat}{sub}:\n")
-            file.write(f"Events of backgrounds: {N_bkg}\n")
-            file.write(f"Events of signals: {N_sig}\n")
-            file.write(f"Weight of backgrounds: {tot_weight_bkg}\n")
-            file.write(f"Weight of signals: {tot_weight_sig}\n")
-            file.write(f"Efficiency of backgrounds: {eff_tot_bkg}\n")
-            file.write(f"Efficiency of signals: {eff_tot_sig}\n\n")
-
         #minumum number between the events in the samples and the one we expect to have in the signal composition
         N_min = {}
         N_sig_new = N_sig
@@ -541,17 +968,6 @@ for cat in CAT:
 
                 df = df.head(target_events)
                 df_sig = pd.concat([df_sig, df])
-
-                with open(output_file, "a") as file:
-                    file.write(f"Weight of {q}: {weight[q]}\n")
-                    file.write(f"Relative weight of {q}: {weight[q] / tot_weight_sig}\n")
-                    file.write(f"Requested size of {q}: {N_sig * weight[q] / tot_weight_sig}\n")
-                    file.write(f"Events after stage2 of {q}: {N[q]}\n")
-                    file.write(f"Number of events in the dataframe of {q}: {len(df_sig) - prev}\n\n")
-                
-        with open(output_file, "a") as file:
-            file.write(f"Total size of signal sample: {len(df_sig)}\n")
-        #print(f"Total size of signal sample: {len(df_sig)}\n")
         
         #now for backgrounds
         df_bkg = pd.DataFrame()
@@ -576,17 +992,6 @@ for cat in CAT:
 
                 df = df.head(target_events)
                 df_bkg = pd.concat([df_bkg, df])
-
-                with open(output_file, "a") as file:
-                    file.write(f"Weight of {q}: {weight[q]}\n")
-                    file.write(f"Relative weight of {q}: {weight[q] / tot_weight_bkg}\n")
-                    file.write(f"Requested size of {q}: {len(df_sig) * weight[q] / tot_weight_bkg}\n")
-                    file.write(f"Events after stage2 of {q}: {N[q]}\n")
-                    file.write(f"Number of events in the dataframe of {q}: {len(df_bkg) - prev}\n\n")
-
-        with open(output_file, "a") as file:
-            file.write(f"Total size of bkg sample: {len(df_bkg)}\n\n")
-        #print(f"Total size of bkg sample: {len(df_bkg)}\n")
         
         #set Signal and background labels
         df_sig["label"] = 1
@@ -598,174 +1003,66 @@ for cat in CAT:
         train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
         train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
         
-        #Combine the datasets
-        df_train = pd.concat([train_sig,train_bkg])
-        #shuffle the rows so they are mixed between signal and background
-        df_train = df_train.sample(frac=1)
-        df_test = pd.concat([test_sig,test_bkg])
-        
-        for var in vars_list:
-            plt.hist(df_train[var],density=True)
-            plt.hist(df_test[var],density=True)
-            plt.savefig("/web/awiedl/public_html/ML/BDT/check_"+cat+sub+var+".pdf")
-            plt.clf()
-            plt.close()
-        with open(output_file, "a") as file:
-            file.write("Normalised sample size \n")
-            file.write(f"Training: {len(df_train)}\n")
-            file.write(f"Test: {len(df_test)}\n\n")
-        
-        '''y = df_train["label"]
-        y_test = df_test["label"]
-        
-        #flattening input
-        x = np.empty([1,len(df_train)])
-        x_test = np.empty([1,len(df_test)])
-        for i in vars_list:
-            j = df_train[i].to_numpy()
-            k = df_test[i].to_numpy()
-            if(j.ndim==1):
-                j = np.expand_dims(j,axis=1) 
-                k = np.expand_dims(k,axis=1) 
-            x = np.append(x,j.T,axis=0) 
-            x_test = np.append(x_test,k.T,axis=0) 
-        x = np.delete(x, 0, 0)
-        x_test = np.delete(x_test, 0, 0)
-        y = y.to_numpy()
-        y_test = y_test.to_numpy()
-        x = x.T
-        x_test = x_test.T'''
+        bdt = joblib.load(f"{modelDir}/xgb_bdt_stage2_241025_cut_{cat}{sub}.joblib")
 
-        #Split into class label (y) and training vars (x)
-        y = df_train["label"]
-        x = df_train[vars_list]
-
-        y = y.to_numpy()
-        x = x.to_numpy()
-
-        y_test = df_test["label"]
-        x_test = df_test[vars_list]
-
-        y_test = y_test.to_numpy()
-        x_test = x_test.to_numpy()
-        with open(output_file, "a") as file:
-            file.write("Effective input shape for training \n")
-            file.write(f"X: {x.shape}\n")
-            file.write(f"Y: {y.shape}\n\n")
+        pred_test_sig = bdt.predict_proba(test_sig[vars_list])
+        pred_train_sig = bdt.predict_proba(train_sig[vars_list])
+        pred_test_bkg = bdt.predict_proba(test_bkg[vars_list])
+        pred_train_bkg = bdt.predict_proba(train_bkg[vars_list])
+        p_test_sig = bdt.predict(test_sig[vars_list])
+        p_train_sig = bdt.predict(train_sig[vars_list])
+        p_test_bkg = bdt.predict(test_bkg[vars_list])
+        p_train_bkg = bdt.predict(train_bkg[vars_list])
         
-        #import bdt already trained and test it 
-        if cat=="NuNu":
-            bdt = joblib.load(f"{modelDir}/xgb_bdt_stage2_100Me_{cat}{sub}.joblib")
-        else:
-            bdt = joblib.load(f"{modelDir}/xgb_bdt_stage2_100Coll150_{cat}{sub}.joblib")
-
-        pred_test = bdt.predict_proba(x_test)
-        pred_train = bdt.predict_proba(x)
-        N_train = len(pred_train[:,1])
-        N_test = len(pred_test[:,1])
-        N_train_bkg = len(pred_train[:,0])
-        N_test_bkg = len(pred_test[:,0])
+        #score 0 to 1 to how good signal/backgrounds are classified as respectively signal/background
+        score_train_sig = accuracy_score(train_sig["label"],p_train_sig,normalize=True)
+        score_test_sig = accuracy_score(test_sig["label"],p_test_sig,normalize=True)
+        score_train_bkg = accuracy_score(train_bkg["label"],p_train_bkg,normalize=True)
+        score_test_bkg = accuracy_score(test_bkg["label"],p_test_bkg,normalize=True)
         
-        eff_train[cat+sub] = []
-        eff_test[cat+sub]  = []
-        eff_train_bkg[cat+sub] = []
-        eff_test_bkg[cat+sub]  = []
-        BDT_cuts = np.linspace(0.,1.,100)
+        N_train = len(train_sig)
+        N_test = len(test_sig)
+        N_train_bkg = len(train_bkg)
+        N_test_bkg = len(test_bkg)
+        
+        eff_train = []
+        eff_test  = []
+        eff_train_bkg = []
+        eff_test_bkg  = []
+        BDT_cuts = np.linspace(0.,5.,500)
         cut_vals = []
         for i in BDT_cuts:
             cut_val = float(i)
             cut_vals.append(cut_val)
+            #cuts on the bdt 1-score in scale between 0 and 1-10^-5= 0.99999. so the x is 0 (cut at 1-10^0=0, takes everything) to 5 (cut at 1-10^-5=0.99999 takes nothing), log scale for 1-score
+            #in the plotting/combine histos we have 200 bins betwen 0 and 1 so one bin is 1/200=0.005 and the last bin corresponds to 0.995 or cut_val=0.00217
             cut_val = 1 - pow(10, -cut_val)
-            eff_train[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train[:,1])))))/ N_train)
-            eff_test[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test[:,1])))))/ N_test)
-            eff_train_bkg[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train[:,0])))))/ N_train_bkg)
-            eff_test_bkg[cat+sub].append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test[:,0])))))/ N_test_bkg)
+            #efficiency for signal events considered as signal with various cuts on the 1-score in log scale
+            eff_train.append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train_sig[:,1])))))/ N_train)
+            eff_test.append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test_sig[:,1])))))/ N_test)
+            #efficiency for background events considered as signal
+            eff_train_bkg.append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_train_bkg[:,1])))))/ N_train_bkg)
+            eff_test_bkg.append( max( 1e-3, float(len(list(filter(lambda j: j>cut_val,pred_test_bkg[:,1])))))/ N_test_bkg)
 
-        # Calculate FPR, TPR, and AUC
-        fpr, tpr, thresholds = roc_curve(y_test, pred_test[:, 1], pos_label=1)
-        roc_auc = auc(fpr, tpr)
-
-        # Plot the ROC curve
-        plt.plot(fpr, tpr, lw=1.5, color=colorDict[col])
-        #ax1.plot(fpr, 1-tpr, lw=1.5, color=colorDict[col])  # Log plot (0.8 to 1)
-        #ax2.plot(fpr, 1-tpr, lw=1.5, color=colorDict[col])  # Linear plot (0 to 0.8)
-        
-        col += 1
-        print(leg_cat[cat], leg_sub[sub])
-
-        label.append(f'{leg_cat[cat]} {leg_sub[sub]}, AUC={roc_auc:.3f}')
-
-        with open(output_file, "a") as file:
-            file.write(f"AUC:{roc_auc} \n\n")
-            file.write("-----------------------------------------\n")
+        plt.title(f'{leg_cat[cat]} {leg_sub[sub]}: FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
+        plt.plot(cut_vals, eff_train, color=colorDict[0], label=f'Trained signal, accuracy:'+str(round(score_train_sig,3)))
+        plt.plot(cut_vals, eff_test, color=colorDict[1], label=f'Tested signal, accuracy:'+str(round(score_test_sig,3)), linestyle='dashed', linewidth='1.5')
+        plt.plot(cut_vals, eff_train_bkg, color=colorDict[3], label=f'Trained background, accuracy:'+str(round(score_train_bkg,3)))
+        plt.plot(cut_vals, eff_test_bkg, color=colorDict[4], label=f'Tested background, accuracy:'+str(round(score_test_bkg,3)), linestyle='dashed', linewidth='1.5')
+        #draw vertical line corresponsing to last bin of the bdt score to visualise where most signal will be
+        #if "QQ" in cat and "LL" in sub:
+        #    plt.axvline(x =-math.log10(1./10), color = 'k', label = 'Last bin in BDT score', linewidth='1.5', linestyle='-.')
+        #else:
+        plt.axvline(x =-math.log10(1./200), color = 'k', label = 'Last bin in BDT score', linewidth='1.5', linestyle='-.')
+        plt.xlabel("1 - BDT score",fontsize=18)
+        plt.xticks([0, 1, 2, 3, 3.5], ["$10^0$", "$10^{-1}$", "$10^{-2}$", "$10^{-3}$", " "])
+        plt.xlim(0,3.5)
+        plt.ylim(10e-6,1)
+        plt.ylabel("Efficiency",fontsize=18)
+        plt.yscale('log') 
+        plt.legend(loc="lower left", fontsize=15)
+        plt.grid()
+        plt.tight_layout()
+        plt.savefig("/web/sgiappic/public_html/Higgs_xsec/JetTagger/BDT_1000/ROC/"+cat+sub+"_overtrainv2.pdf")
 
         print(f"Done: {cat}{sub}")
-
-# Plot the baseline for random classifier
-plt.plot([0., 1.], [0., 1.], linestyle="--", color="k", label='50/50')
-label.append('50/50')
-
-# Set limits and labels
-#plt.xlim(0., 1.)
-plt.ylim(0., 1.)
-plt.xscale('log')
-
-plt.ylabel('True Positive Rate', fontsize=18)  # 1 - FPR
-plt.xlabel('False Positive Rate', fontsize=18)  # TPR
-plt.title('FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
-
-# Adjust ticks and legend
-ax.tick_params(axis='both', which='major', labelsize=15)
-plt.legend(label, loc="lower right", fontsize=15)
-plt.grid()
-'''
-
-ax1.plot([0., 1.], [0., 1.], linestyle="--", color="k")
-ax2.plot([0., 1.], [0., 1.], linestyle="--", color="k")
-
-
-ax1.set_ylim(0.9, 1)  # Log part
-ax1.set_yscale('log')
-ax1.yaxis.set_major_locator(LogLocator(base=10.0, numticks=10))  # More divisions
-ax1.yaxis.set_minor_locator(LogLocator(base=10.0, subs="auto", numticks=100))
-#ax1.yaxis.set_minor_formatter(NullFormatter())  # Hide minor ticks in log scale
-
-ax2.set_ylim(0, 0.9)  # Linear part
-
-# Set plot labels
-ax2.set_xlabel('False Positive Rate', fontsize=20)
-#ax2.set_ylabel('True Positive Rate (linear)', fontsize=20)
-ax2.set_ylabel('1-True Positive Rate', fontsize=20)
-
-# Adjust ticks and legend
-ax2.tick_params(axis='both', labelsize=15)
-ax1.tick_params(axis='both', labelsize=15)
-ax2.legend(label, loc="lower right", fontsize=15)  # Show the legend
-
-# Add grid
-ax1.grid(True)
-ax2.grid(True)'''
-
-plt.tight_layout()
-
-# Save the figure
-fig.savefig("/web/awiedl/public_html/ML/BDT/BDT_ROC.pdf")
-
-plt.clf()
-plt.close()
-
-
-for cat in CAT:
-    for sub in SUBDIR:
-        plt.plot(cut_vals, eff_train[cat+sub], label=f'Train {cat+sub}')
-        plt.plot(cut_vals, eff_test[cat+sub], label=f'Test {cat+sub}', linestyle='dashed')
-        plt.plot(cut_vals, eff_train_bkg[cat+sub], label=f'Train {cat+sub}')
-        plt.plot(cut_vals, eff_test_bkg[cat+sub], label=f'Test {cat+sub}', linestyle='dashed')
-        plt.xlabel("1 - BDT1 score",fontsize=30)
-        plt.ylabel("Efficiency",fontsize=30)   
-        plt.legend(loc="lower left", ncol=2)
-        plt.grid(alpha=0.4,which="both")
-        plt.tight_layout()
-        plt.savefig("/web/awiedl/public_html/ML/BDT/BDT_overtraining"+cat+sub+".pdf")
-        plt.clf()
-        plt.close()
