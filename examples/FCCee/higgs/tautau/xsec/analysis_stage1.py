@@ -106,9 +106,6 @@ includePaths = ["functions.h"]
 ### necessary to run on HTCondor ###
 #eosType = "eosuser"
 
-#Optional: ncpus, default is 4
-nCPUS = 10
-
 #Optional running on HTCondor, default is False
 #runBatch = False
 

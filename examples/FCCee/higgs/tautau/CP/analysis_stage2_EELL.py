@@ -384,13 +384,13 @@ class RDFanalysis():
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
                 .Define("Tau_cos",      "Tau_scalar/(TauLead_p*TauSub_p)")
                 .Define("Tau_DEta",    "(TauLead_eta - TauSub_eta)")
-                .Define("Tau_DPhi",    "(TauLead_phi - TauSub_phi)")
+                .Define("Tau_DPhi",     "FCCAnalyses::ZHfunctions::deltaPhi(TauLead_phi, TauSub_phi)")
 
                 .Define("RecoZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(RecoZLead_phi, RecoZSub_phi, RecoZLead_eta, RecoZSub_eta)")
                 .Define("RecoZDaughter_scalar",      "(RecoZLead_px*RecoZSub_px + RecoZLead_py*RecoZSub_py + RecoZLead_pz*RecoZSub_pz)")
                 .Define("RecoZDaughter_cos",      "RecoZDaughter_scalar/(RecoZLead_p*RecoZSub_p)")
                 .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
-                .Define("RecoZDaughter_DPhi",    "(RecoZLead_phi - RecoZSub_phi)")
+                .Define("RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(RecoZLead_phi, RecoZSub_phi)")
 
                 .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
                 .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
@@ -476,7 +476,7 @@ class RDFanalysis():
                                         else if (HRF_TauLead_y<HRF_TauSub_y) return (HRF_TauSub_phi - HRF_TauLead_phi); else return double(-10.);")
 
                 .Define("HRF_Tau_DEta",    "(HRF_TauLead_eta - HRF_TauSub_eta)")
-                .Define("HRF_Tau_DPhi",    "(HRF_TauLead_phi - HRF_TauSub_phi)")
+                .Define("HRF_Tau_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(HRF_TauLead_phi, HRF_TauSub_phi)")
 
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
                 .Define("RecoZDaughter_p4",     "ROOT::VecOps::RVec<TLorentzVector>{RecoZ1_p4, RecoZ2_p4}")
@@ -540,7 +540,7 @@ class RDFanalysis():
                                         else if (ZRF_RecoZLead_y<ZRF_RecoZSub_y) return (ZRF_RecoZSub_phi - ZRF_RecoZLead_phi); else return double(-10.);")
 
                 .Define("ZRF_RecoZDaughter_DEta",    "(ZRF_RecoZLead_eta - ZRF_RecoZSub_eta)")
-                .Define("ZRF_RecoZDaughter_DPhi",    "(ZRF_RecoZLead_phi - ZRF_RecoZSub_phi)")
+                .Define("ZRF_RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(ZRF_RecoZLead_phi, ZRF_RecoZSub_phi)")
 
                 ### angles visualisation in figure 1 (2) at pag 8 of https://arxiv.org/pdf/2205.07715
                 #may be interesting to simnply keep the cosine of thetas (John Hopkins)

@@ -210,8 +210,8 @@ CAT = [
     #"LL",
     "NuNu",
 ]
-nCPUS = 4
-Memory = 10000
+nCPUS = 10
+Memory = 20000
 for cat in CAT:
     for sub in SUBDIR:
         if "BDT" in localDir_path:

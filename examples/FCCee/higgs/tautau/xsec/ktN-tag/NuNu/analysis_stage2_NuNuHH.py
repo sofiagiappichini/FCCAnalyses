@@ -308,7 +308,7 @@ class RDFanalysis():
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
                 .Define("Tau_cos",      "Tau_scalar/(TauLead_p*TauSub_p)")
                 .Define("Tau_DEta",    "(TauLead_eta - TauSub_eta)")
-                .Define("Tau_DPhi",    "(TauLead_phi - TauSub_phi)")
+                .Define("Tau_DPhi",     "FCCAnalyses::ZHfunctions::deltaPhi(TauLead_phi, TauSub_phi)")
 
                 #.Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
                 #.Define("Recoil",       "(Total_p4-RecoZ_p4).M()")

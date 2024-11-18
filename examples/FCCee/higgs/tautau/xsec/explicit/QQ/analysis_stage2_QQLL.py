@@ -240,13 +240,13 @@ class RDFanalysis():
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
                 .Define("Tau_cos",      "Tau_scalar/(TauLead_p*TauSub_p)")
                 .Define("Tau_DEta",    "(TauLead_eta - TauSub_eta)")
-                .Define("Tau_DPhi",    "(TauLead_phi - TauSub_phi)")
+                .Define("Tau_DPhi",     "FCCAnalyses::ZHfunctions::deltaPhi(TauLead_phi, TauSub_phi)")
 
                 .Define("RecoZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(RecoZLead_phi, RecoZSub_phi, RecoZLead_eta, RecoZSub_eta)")
                 .Define("RecoZDaughter_scalar",      "(RecoZLead_px*RecoZSub_px + RecoZLead_py*RecoZSub_py + RecoZLead_pz*RecoZSub_pz)")
                 .Define("RecoZDaughter_cos",      "RecoZDaughter_scalar/(RecoZLead_p*RecoZSub_p)")
                 .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
-                .Define("RecoZDaughter_DPhi",    "(RecoZLead_phi - RecoZSub_phi)")
+                .Define("RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(RecoZLead_phi, RecoZSub_phi)")
 
                 .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
                 .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")

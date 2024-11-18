@@ -33,9 +33,9 @@ def file_exists(file_path):
 
 # directory with final stage files
 DIRECTORY = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/LL",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025_cut_bdt/QQ",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025_cut_bdt/NuNu",
+    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_v2/LL",
+    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025_cut_bdt1000/QQ",
+    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025_cut_bdt1000/NuNu",
 }
 SUBDIR = [
     'LL',
@@ -50,19 +50,17 @@ CAT = [
 ]
 #list of cuts you want to plot
 CUTS_LL = [
-    "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_70Z100",
     #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0",
-    #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0.6_misscos0.98",
 ]
 
 CUTS_QQ = [
@@ -75,15 +73,12 @@ CUTS_QQ = [
     #"selReco_100Coll150_115Rec160_10Me",
     #"selReco_100Coll150_115Rec160_10Me_80Z95",
     #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0",
-    #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_80Z95",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME",
-    #"selReco_BDT",
+    #"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98",
 ]
     
 CUTS_NuNu = [
@@ -94,9 +89,6 @@ CUTS_NuNu = [
     #"selReco_100Me",
     #"selReco_100Me_TauDPhi3",
     #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0",
-    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1",
     #"selReco_100Me_TauDPhi3_2DR_cos0.4",
     #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
     #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
@@ -109,7 +101,7 @@ CUTS = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/BDT/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/JetTagger/BDT_1000/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -123,28 +115,21 @@ LABELS = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98}",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV}",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>10 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5, E_{miss}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>10 GeV}",
 
     #cuts for LL
-    "selReco_100Coll150_115Rec160_10Me_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV, #Delta R_{#tau}>2",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 70<M_{Z}<110 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
-   
-    "selReco_100Coll150_115Rec160_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
-    "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV",
+    "selReco_100Coll150_115Rec160_10Me_70Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV}",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2}",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0.6": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6}",
+    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98}",
 
     #cuts for QQ
-    "selReco_100Coll150_115Rec160_10Me_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV, #Delta R_{#tau}>2",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV, 80<M_{Z}<95 GeV,}{#Delta R_{#tau}>2, cos#theta_{#tau}<0}",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98}",
-    "selReco_100Coll150_115Rec160_2DR_cos0": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
-    "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0_misscos0.98_80Z95": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, 80<M_{Z}<95 GeV",
-
+    "selReco_100Coll150_115Rec160_10Me_80Z95": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV}",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2}",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6}",
+    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98}",
+    
     #"selReco_0.5BDT":"100<M_{collinear}<150 GeV, BDT score>0.5",
     #"selReco_0.6BDT":"100<M_{collinear}<150 GeV, BDT score>0.6",
     #"selReco_0.7BDT":"100<M_{collinear}<150 GeV, BDT score>0.7",
@@ -153,10 +138,6 @@ LABELS = {
     "selReco_100Me": "E_{miss}>100 GeV",
     "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
     "selReco_100Me_TauDPhi3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
-    "selReco_100Me_TauDPhi3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-
     "selReco_100Me_TauDPhi3_2DR_cos0.4": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
@@ -1341,7 +1322,7 @@ for cat in CAT:
     for sub in SUBDIR:
         directory = DIRECTORY[cat] + "/" + sub + "/"
         for cut in CUTS[cat]:
-            for variable in variables:
+            for variable in ["BDT_score"]:
 
                 canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1459,7 +1440,7 @@ for cat in CAT:
                                 last = histos[i].GetMaximum() 
                             # Set the y-axis range with additional white space
                         #hStackBkg.SetMinimum(0)
-                        hStackBkg.SetMaximum(last*2.5)
+                        hStackBkg.SetMaximum(last*2)
 
                     #draw the histograms
                     hStackBkg.Draw("HIST")
@@ -1473,9 +1454,10 @@ for cat in CAT:
 
                     hStackBkg.GetYaxis().SetTitle("Events")
                     hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
+                    #hStackBkg.GetXaxis().SetTitle("Reco visible mass [GeV]")
                     #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                     hStackBkg.GetXaxis().SetTitleOffset(1.2)
-                    #hStackBkg.GetXaxis().SetLimits(115, 160)
+                    #hStackBkg.GetXaxis().SetLimits(100, 150)
 
                 else: 
                     # add the signal histograms
@@ -1495,7 +1477,7 @@ for cat in CAT:
                                 h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
                             else:
                                 max_y = h.GetMaximum() 
-                                h.GetYaxis().SetRangeUser(0, max_y*2.5 )
+                                h.GetYaxis().SetRangeUser(0, max_y*1.5 )
                         else: 
                             h.Draw("HIST SAME")
 
@@ -1552,8 +1534,8 @@ for cat in CAT:
                     dir = DIR_PLOTS + "/" + cat + "/" + sub + "/log/" + cut + "/"
                     make_dir_if_not_exists(dir)
 
-                    canvas.SaveAs(dir + variable + ".png")
-                    canvas.SaveAs(dir + variable + ".pdf")
+                    canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
+                    canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")
                 else:
                     canvas.SetTicks(1, 1)
                     canvas.SetLeftMargin(0.14)
@@ -1567,5 +1549,5 @@ for cat in CAT:
                     dir = DIR_PLOTS + "/" + cat + "/" + sub + "/lin/" + cut + "/"
                     make_dir_if_not_exists(dir)
 
-                    canvas.SaveAs(dir + variable + ".png")
-                    canvas.SaveAs(dir + variable + ".pdf")
+                    canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
+                    canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")
