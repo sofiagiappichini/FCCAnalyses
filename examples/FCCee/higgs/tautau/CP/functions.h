@@ -581,6 +581,11 @@ ROOT::VecOps::RVec<TLorentzVector> boosted_p4(TLorentzVector boost, ROOT::VecOps
     return result;
 }
 
+TLorentzVector boosted_p4_single(TLorentzVector boost, TLorentzVector vec) {
+    vec.Boost( - boost.BoostVector());
+    return vec;
+}
+
 std::vector<std::vector<int>> sel_dilep_mass_idx(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in, float min_dimass, float max_dimass) {
     std::vector<std::vector<int>> result;
     result.reserve(in.size());

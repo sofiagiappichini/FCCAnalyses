@@ -1,15 +1,16 @@
 import os, copy # tagging
 import ROOT
 
-EFT = True
-
 #Mandatory: List of processes
-processList_EFT = {
+processList = {
     'noISR_e+e-_noCuts_EWonly':{},
     'noISR_e+e-_noCuts_cehim_m1':{},
     'noISR_e+e-_noCuts_cehim_p1':{},
     'noISR_e+e-_noCuts_cehre_m1':{},
     'noISR_e+e-_noCuts_cehre_p1':{},
+    'noISR':{},
+    'taudecay':{},
+    'wzp6_ee_eeH_Htautau_ecm240': {},
 }
 
 processList_xsec = {
@@ -98,40 +99,9 @@ processList_xsec = {
 
 }
 
-inputr_xsec = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage1"
 
-outputr_xsec   = "/ceph/awiedl/FCCee/HiggsCP/stage2/"
-
-inputr_EFT = "/ceph/sgiappic/HiggsCP/CP/stage1"
-
-outputr_EFT = "/ceph/sgiappic/HiggsCP/CP/stage2_Gen"
-
-#Optional: ncpus, default is 4
-nCPUS = 10
-
-if EFT :
-    processList = processList_EFT
-    inputDir = inputr_EFT
-    outputDir = outputr_EFT
-else:
-    processList = processList_xsec
-    inputDir = inputDir_xsec
-    outputDir = outputDir_xsec
-
-#Optional: ncpus, default is 4
-nCPUS = 10
-
-### necessary to run on HTCondor ###
-eosType = "eosuser"
-
-#Optional running on HTCondor, default is False
-runBatch = False
-
-#Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "microcentury"
-
-#Optional computing account when running on HTCondor, default is group_u_FCC.local_Gen
-compGroup = "group_u_FCC.local_Gen"
+outputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage2"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -151,17 +121,14 @@ class RDFanalysis():
                 .Define("FSGenMuon_size",   "FSGenMuon_vertex_z[abs(FSGenMuon_parentPDG)!=15]")
                 .Define("n_FSGenMuon_sel",     "FSGenMuon_size.size()")
                 
-
                 ######################
                 ##### FILTERING ######
                 ######################
                 .Define("OnePairGen",     "(n_FSGenZDaughter==2 and n_FSGenMuon_sel==0)*1.0")
 
-                .Filter("OnePairGen==1 && n_FSRGenTau==2")
+                .Filter("OnePairGen==1")
 
                 .Filter("(FSGenZDaughter_charge.at(0) + FSGenZDaughter_charge.at(1))==0")
-
-                .Filter("(FSRGenTau_charge.at(0) + FSRGenTau_charge.at(1))==0")
 
                 #################
                 # Gen particles #
@@ -234,88 +201,111 @@ class RDFanalysis():
 
                 .Define("FSGenZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(FSGenZLead_phi, FSGenZSub_phi, FSGenZLead_eta, FSGenZSub_eta)")
                 .Define("FSGenZDaughter_scalar",      "(FSGenZLead_px*FSGenZSub_px + FSGenZLead_py*FSGenZSub_py + FSGenZLead_pz*FSGenZSub_pz)")
-                .Define("FSGenZDaughter_cos",      "GenZ_p/FSGenZDaughter_scalar")
+                .Define("FSGenZDaughter_cos",      "FSGenZDaughter_scalar/(FSGenZLead_p*FSGenZSub_p)")
                 .Define("FSGenZDaughter_DEta",    "(FSGenZLead_eta - FSGenZSub_eta)")
-                .Define("FSGenZDaughter_DPhi",    "(FSGenZLead_phi - FSGenZSub_phi)")
+                .Define("FSGenZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(FSGenZLead_phi, FSGenZSub_phi)")
                 .Define("FSGenZDaughter_DEta_y",    "if (FSGenZLead_y>FSGenZSub_y) return (FSGenZLead_eta - FSGenZSub_eta); \
                                         else if (FSGenZLead_y<FSGenZSub_y) return (FSGenZSub_eta - FSGenZLead_eta); else return double(-10.);")
                 .Define("FSGenZDaughter_DPhi_y",    "if (FSGenZLead_y>FSGenZSub_y) return (FSGenZLead_phi - FSGenZSub_phi); \
                                         else if (FSGenZLead_y<FSGenZSub_y) return (FSGenZSub_phi - FSGenZLead_phi); else return double(-10.);")
 
-                .Define("FSRGenTau_p4",     "FCCAnalyses::ZHfunctions::build_p4(FSRGenTau_px, FSRGenTau_py, FSRGenTau_pz, FSRGenTau_e)")
-                .Define("FSRGenTauLead_p4",     "if (FSRGenTau_p4.at(0).Pt()>FSRGenTau_p4.at(1).Pt()) return FSRGenTau_p4.at(0); else return FSRGenTau_p4.at(1);")
-                .Define("FSRGenTauLead_px",    "FSRGenTauLead_p4.Px()")
-                .Define("FSRGenTauLead_py",    "FSRGenTauLead_p4.Py()")
-                .Define("FSRGenTauLead_pz",    "FSRGenTauLead_p4.Pz()")
-                .Define("FSRGenTauLead_p",    "FSRGenTauLead_p4.P()")
-                .Define("FSRGenTauLead_pt",    "FSRGenTauLead_p4.Pt()")
-                .Define("FSRGenTauLead_e",     "FSRGenTauLead_p4.E()")
-                .Define("FSRGenTauLead_eta",    "FSRGenTauLead_p4.Eta()")
-                .Define("FSRGenTauLead_phi",    "FSRGenTauLead_p4.Phi()")
-                .Define("FSRGenTauLead_theta",    "FSRGenTauLead_p4.Theta()")
-                .Define("FSRGenTauLead_y",     "FSRGenTauLead_p4.Rapidity()")
-                .Define("FSRGenTauLead_mass",    "FSRGenTauLead_p4.M()")
+                .Define("HiggsGenTau_p4",     "FCCAnalyses::ZHfunctions::build_p4(HiggsGenTau_px, HiggsGenTau_py, HiggsGenTau_pz, HiggsGenTau_e)")
+                .Define("GenTauLead_p4",     "if (HiggsGenTau_p4.at(0).Pt()>HiggsGenTau_p4.at(1).Pt()) return HiggsGenTau_p4.at(0); else return HiggsGenTau_p4.at(1);")
+                .Define("GenTauLead_px",    "GenTauLead_p4.Px()")
+                .Define("GenTauLead_py",    "GenTauLead_p4.Py()")
+                .Define("GenTauLead_pz",    "GenTauLead_p4.Pz()")
+                .Define("GenTauLead_p",    "GenTauLead_p4.P()")
+                .Define("GenTauLead_pt",    "GenTauLead_p4.Pt()")
+                .Define("GenTauLead_e",     "GenTauLead_p4.E()")
+                .Define("GenTauLead_eta",    "GenTauLead_p4.Eta()")
+                .Define("GenTauLead_phi",    "GenTauLead_p4.Phi()")
+                .Define("GenTauLead_theta",    "GenTauLead_p4.Theta()")
+                .Define("GenTauLead_y",     "GenTauLead_p4.Rapidity()")
+                .Define("GenTauLead_mass",    "GenTauLead_p4.M()")
                 
-                .Define("FSRGenTauSub_p4",     "if (FSRGenTau_p4.at(0).Pt()>FSRGenTau_p4.at(1).Pt()) return FSRGenTau_p4.at(1); else return FSRGenTau_p4.at(0);")
-                .Define("FSRGenTauSub_px",    "FSRGenTauSub_p4.Px()")
-                .Define("FSRGenTauSub_py",    "FSRGenTauSub_p4.Py()")
-                .Define("FSRGenTauSub_pz",    "FSRGenTauSub_p4.Pz()")
-                .Define("FSRGenTauSub_p",    "FSRGenTauSub_p4.P()")
-                .Define("FSRGenTauSub_pt",    "FSRGenTauSub_p4.Pt()")
-                .Define("FSRGenTauSub_e",     "FSRGenTauSub_p4.E()")
-                .Define("FSRGenTauSub_eta",    "FSRGenTauSub_p4.Eta()")
-                .Define("FSRGenTauSub_phi",    "FSRGenTauSub_p4.Phi()")
-                .Define("FSRGenTauSub_theta",    "FSRGenTauSub_p4.Theta()")
-                .Define("FSRGenTauSub_y",     "FSRGenTauSub_p4.Rapidity()")
-                .Define("FSRGenTauSub_mass",    "FSRGenTauSub_p4.M()")
+                .Define("GenTauSub_p4",     "if (HiggsGenTau_p4.at(0).Pt()>HiggsGenTau_p4.at(1).Pt()) return HiggsGenTau_p4.at(1); else return HiggsGenTau_p4.at(0);")
+                .Define("GenTauSub_px",    "GenTauSub_p4.Px()")
+                .Define("GenTauSub_py",    "GenTauSub_p4.Py()")
+                .Define("GenTauSub_pz",    "GenTauSub_p4.Pz()")
+                .Define("GenTauSub_p",    "GenTauSub_p4.P()")
+                .Define("GenTauSub_pt",    "GenTauSub_p4.Pt()")
+                .Define("GenTauSub_e",     "GenTauSub_p4.E()")
+                .Define("GenTauSub_eta",    "GenTauSub_p4.Eta()")
+                .Define("GenTauSub_phi",    "GenTauSub_p4.Phi()")
+                .Define("GenTauSub_theta",    "GenTauSub_p4.Theta()")
+                .Define("GenTauSub_y",     "GenTauSub_p4.Rapidity()")
+                .Define("GenTauSub_mass",    "GenTauSub_p4.M()")
 
-                .Define("FSRGenTauP_p4",     "if (FSRGenTau_charge.at(0)==1) return FSRGenTau_p4.at(0); else return FSRGenTau_p4.at(1);")
-                .Define("FSRGenTauP_px",    "FSRGenTauP_p4.Px()")
-                .Define("FSRGenTauP_py",    "FSRGenTauP_p4.Py()")
-                .Define("FSRGenTauP_pz",    "FSRGenTauP_p4.Pz()")
-                .Define("FSRGenTauP_p",    "FSRGenTauP_p4.P()")
-                .Define("FSRGenTauP_pt",    "FSRGenTauP_p4.Pt()")
-                .Define("FSRGenTauP_e",     "FSRGenTauP_p4.E()")
-                .Define("FSRGenTauP_eta",    "FSRGenTauP_p4.Eta()")
-                .Define("FSRGenTauP_phi",    "FSRGenTauP_p4.Phi()")
-                .Define("FSRGenTauP_theta",    "FSRGenTauP_p4.Theta()")
-                .Define("FSRGenTauP_y",     "FSRGenTauP_p4.Rapidity()")
-                .Define("FSRGenTauP_mass",    "FSRGenTauP_p4.M()")
+                .Define("GenTauP_p4",     "if (HiggsGenTau_charge.at(0)==1) return HiggsGenTau_p4.at(0); else return HiggsGenTau_p4.at(1);")
+                .Define("GenTauP_px",    "GenTauP_p4.Px()")
+                .Define("GenTauP_py",    "GenTauP_p4.Py()")
+                .Define("GenTauP_pz",    "GenTauP_p4.Pz()")
+                .Define("GenTauP_p",    "GenTauP_p4.P()")
+                .Define("GenTauP_pt",    "GenTauP_p4.Pt()")
+                .Define("GenTauP_e",     "GenTauP_p4.E()")
+                .Define("GenTauP_eta",    "GenTauP_p4.Eta()")
+                .Define("GenTauP_phi",    "GenTauP_p4.Phi()")
+                .Define("GenTauP_theta",    "GenTauP_p4.Theta()")
+                .Define("GenTauP_y",     "GenTauP_p4.Rapidity()")
+                .Define("GenTauP_mass",    "GenTauP_p4.M()")
                 
-                .Define("FSRGenTauM_p4",     "if (FSRGenTau_charge.at(0)==1) return FSRGenTau_p4.at(1); else return FSRGenTau_p4.at(0);")
-                .Define("FSRGenTauM_px",    "FSRGenTauM_p4.Px()")
-                .Define("FSRGenTauM_py",    "FSRGenTauM_p4.Py()")
-                .Define("FSRGenTauM_pz",    "FSRGenTauM_p4.Pz()")
-                .Define("FSRGenTauM_p",    "FSRGenTauM_p4.P()")
-                .Define("FSRGenTauM_pt",    "FSRGenTauM_p4.Pt()")
-                .Define("FSRGenTauM_e",     "FSRGenTauM_p4.E()")
-                .Define("FSRGenTauM_eta",    "FSRGenTauM_p4.Eta()")
-                .Define("FSRGenTauM_phi",    "FSRGenTauM_p4.Phi()")
-                .Define("FSRGenTauM_theta",    "FSRGenTauM_p4.Theta()")
-                .Define("FSRGenTauM_y",     "FSRGenTauM_p4.Rapidity()")
-                .Define("FSRGenTauM_mass",    "FSRGenTauM_p4.M()")
+                .Define("GenTauM_p4",     "if (HiggsGenTau_charge.at(0)==1) return HiggsGenTau_p4.at(1); else return HiggsGenTau_p4.at(0);")
+                .Define("GenTauM_px",    "GenTauM_p4.Px()")
+                .Define("GenTauM_py",    "GenTauM_p4.Py()")
+                .Define("GenTauM_pz",    "GenTauM_p4.Pz()")
+                .Define("GenTauM_p",    "GenTauM_p4.P()")
+                .Define("GenTauM_pt",    "GenTauM_p4.Pt()")
+                .Define("GenTauM_e",     "GenTauM_p4.E()")
+                .Define("GenTauM_eta",    "GenTauM_p4.Eta()")
+                .Define("GenTauM_phi",    "GenTauM_p4.Phi()")
+                .Define("GenTauM_theta",    "GenTauM_p4.Theta()")
+                .Define("GenTauM_y",     "GenTauM_p4.Rapidity()")
+                .Define("GenTauM_mass",    "GenTauM_p4.M()")
 
-                .Define("GenTau_e", "if (n_FSRGenTau>1) return (FSRGenTau_e.at(0) + FSRGenTau_e.at(1)); else return float(-1000.);")
-                .Define("GenTau_px", "if (n_FSRGenTau>1) return (FSRGenTau_px.at(0) + FSRGenTau_px.at(1)); else return float(-1000.);")
-                .Define("GenTau_py", "if (n_FSRGenTau>1) return (FSRGenTau_py.at(0) + FSRGenTau_py.at(1)); else return float(-1000.);")
-                .Define("GenTau_pz", "if (n_FSRGenTau>1) return (FSRGenTau_pz.at(0) + FSRGenTau_pz.at(1)); else return float(-1000.);")
-                .Define("FSRGenTau_invMass", "if (n_FSRGenTau>1) return sqrt(GenTau_e*GenTau_e - GenTau_px*GenTau_px - GenTau_py*GenTau_py - GenTau_pz*GenTau_pz ); else return float(-1000.);")
+                .Define("GenTau_scalar", "(HiggsGenTau_px.at(0)*HiggsGenTau_px.at(1) + HiggsGenTau_py.at(0)*HiggsGenTau_py.at(1) + HiggsGenTau_pz.at(0)*HiggsGenTau_pz.at(1))")
+                .Define("HiggsGenTau_cos", "GenTau_scalar/(HiggsGenTau_p.at(0)*HiggsGenTau_p.at(1))")
                 
-                .Define("GenTau_p", "if (n_FSRGenTau>1) return sqrt(GenTau_px*GenTau_px + GenTau_py*GenTau_py + GenTau_pz*GenTau_pz); else return float(-1.);")
-                .Define("GenTau_scalar", "if (n_FSRGenTau>1) return (FSRGenTau_px.at(0)*FSRGenTau_px.at(1) + FSRGenTau_py.at(0)*FSRGenTau_py.at(1) + FSRGenTau_pz.at(0)*FSRGenTau_pz.at(1)); else return float(-1000.);")
-                .Define("FSRGenTau_cos", "if (n_FSRGenTau>1) return (GenTau_scalar/(FSRGenTau_p.at(0)*FSRGenTau_p.at(1))); else return float(-2.);")
-                
-                .Define("FSRGenTau_DEta","FSRGenTauLead_eta - FSRGenTauSub_eta")
-                .Define("FSRGenTau_DPhi","FSRGenTauLead_phi - FSRGenTauSub_phi")
-                .Define("FSRGenTau_DEta_y",    "if (FSRGenTauLead_y>FSRGenTauSub_y) return (FSRGenTauLead_eta - FSRGenTauSub_eta); \
-                                        else if (FSRGenTauLead_y<FSRGenTauSub_y) return (FSRGenTauSub_eta - FSRGenTauLead_eta); else return double(-10.);")
-                .Define("FSRGenTau_DPhi_y",    "if (FSRGenTauLead_y>FSRGenTauSub_y) return (FSRGenTauLead_phi - FSRGenTauSub_phi); \
-                                        else if (FSRGenTauLead_y<FSRGenTauSub_y) return (FSRGenTauSub_phi - FSRGenTauLead_phi); else return double(-10.);")
-                .Define("FSRGenTau_DR","myUtils::deltaR(FSRGenTau_phi.at(0), FSRGenTau_phi.at(1), FSRGenTau_eta.at(0), FSRGenTau_eta.at(1))")
+                .Define("HiggsGenTau_DEta","GenTauLead_eta - GenTauSub_eta")
+                .Define("HiggsGenTau_DPhi","FCCAnalyses::ZHfunctions::deltaPhi(GenTauLead_phi, GenTauSub_phi)")
+                .Define("HiggsGenTau_DEta_y",    "if (GenTauLead_y>GenTauSub_y) return (GenTauLead_eta - GenTauSub_eta); \
+                                        else if (GenTauLead_y<GenTauSub_y) return (GenTauSub_eta - GenTauLead_eta); else return double(-10.);")
+                .Define("HiggsGenTau_DPhi_y",    "if (GenTauLead_y>GenTauSub_y) return (GenTauLead_phi - GenTauSub_phi); \
+                                        else if (GenTauLead_y<GenTauSub_y) return (GenTauSub_phi - GenTauLead_phi); else return double(-10.);")
+                .Define("HiggsGenTau_DR","FCCAnalyses::ZHfunctions::deltaR(HiggsGenTau_phi.at(0), HiggsGenTau_phi.at(1), HiggsGenTau_eta.at(0), HiggsGenTau_eta.at(1))")
+
+                #####################
+                ######## CP #########
+                #####################
 
                 .Define("GenHiggs_p4",      "FCCAnalyses::ZHfunctions::build_p4(GenHiggs_px, GenHiggs_py, GenHiggs_pz, GenHiggs_e)")
+
+                #following CMS paper
+                .Define("ZMF_p4",     "GenTauP_p4+GenTauM_p4")#"GenRhoP_p4+GenRhoM_p4")
+                .Define("ZMF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPiP_p4)")
+                .Define("ZMF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPiM_p4)")
+                .Define("ZMF_GenPi0P_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPi0P_p4)")
+                .Define("ZMF_GenPi0M_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPi0M_p4)")
+
+                .Define("yplus",        "(GenPiP_e.at(0) - GenPi0P_e)/(GenPiP_e.at(0) + GenPi0P_e)")
+                .Define("yminus",        "(GenPiM_e.at(0) - GenPi0M_e)/(GenPiM_e.at(0) + GenPi0M_e)")
+                .Define("ytau",            "yplus * yminus")
+
+                .Define("ZMF_LambdaP",      "ZMF_GenPi0P_p4.Vect()")
+                .Define("ZMF_LambdaM",      "ZMF_GenPi0M_p4.Vect()")
+                .Define("ZMF_qP",      "(ZMF_GenPiP_p4.Vect()).Unit()")
+                .Define("ZMF_qM",      "(ZMF_GenPiM_p4.Vect()).Unit()")
+
+                .Define("ZMF_HatLambdaP",       "(ZMF_LambdaP - (ZMF_LambdaP.Dot(ZMF_qP) * ZMF_qP)).Unit()") #transverse component with respect to q normalised 
+                .Define("ZMF_HatLambdaM",       "(ZMF_LambdaM - (ZMF_LambdaM.Dot(ZMF_qM) * ZMF_qM)).Unit()")
+
+                .Define("GenPhiCP_pre",     "acos(ZMF_HatLambdaP.Dot(ZMF_HatLambdaM))")
+
+                .Define("GenPhiCP",     "if (ytau>0) return GenPhiCP_pre; else return (2*3.1415 - GenPhiCP_pre);")
+
+                #########
+
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                .Define("HRF_GenTau_p4",    "myUtils::boosted_p4(- GenHiggs_p4.at(0), FSRGenTau_p4)")
+                .Define("HRF_GenTau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- GenHiggs_p4.at(0), HiggsGenTau_p4)")
                 .Define("HRF_GenTauLead_p4",     "if (HRF_GenTau_p4.at(0).Pt()>HRF_GenTau_p4.at(1).Pt()) return HRF_GenTau_p4.at(0); else return HRF_GenTau_p4.at(1);")
                 .Define("HRF_GenTauLead_px",    "HRF_GenTauLead_p4.Px()")
                 .Define("HRF_GenTauLead_py",    "HRF_GenTauLead_p4.Py()")
@@ -342,7 +332,7 @@ class RDFanalysis():
                 .Define("HRF_GenTauSub_y",     "HRF_GenTauSub_p4.Rapidity()")
                 .Define("HRF_GenTauSub_mass",    "HRF_GenTauSub_p4.M()")
 
-                .Define("HRF_GenTauP_p4",     "if (FSRGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(0); else return HRF_GenTau_p4.at(1);")
+                .Define("HRF_GenTauP_p4",     "if (HiggsGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(0); else return HRF_GenTau_p4.at(1);")
                 .Define("HRF_GenTauP_px",    "HRF_GenTauP_p4.Px()")
                 .Define("HRF_GenTauP_py",    "HRF_GenTauP_p4.Py()")
                 .Define("HRF_GenTauP_pz",    "HRF_GenTauP_p4.Pz()")
@@ -355,7 +345,7 @@ class RDFanalysis():
                 .Define("HRF_GenTauP_y",     "HRF_GenTauP_p4.Rapidity()")
                 .Define("HRF_GenTauP_mass",    "HRF_GenTauP_p4.M()")
                 
-                .Define("HRF_GenTauM_p4",     "if (FSRGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(1); else return HRF_GenTau_p4.at(0);")
+                .Define("HRF_GenTauM_p4",     "if (HiggsGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(1); else return HRF_GenTau_p4.at(0);")
                 .Define("HRF_GenTauM_px",    "HRF_GenTauM_p4.Px()")
                 .Define("HRF_GenTauM_py",    "HRF_GenTauM_p4.Py()")
                 .Define("HRF_GenTauM_pz",    "HRF_GenTauM_p4.Pz()")
@@ -375,94 +365,53 @@ class RDFanalysis():
                 .Define("HRF_GenTau_DEta","HRF_GenTauLead_eta - HRF_GenTauSub_eta")
                 .Define("HRF_GenTau_DPhi","HRF_GenTauLead_phi - HRF_GenTauSub_phi")
 
-                #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-
-                .Define("ZRF_GenZDaughter_p4",    "return myUtils::boosted_p4(- GenZ_p4, FSGenZDaughter_p4);")
-                .Define("ZRF_GenZLead_p4",     "if (ZRF_GenZDaughter_p4.at(0).Pt()>ZRF_GenZDaughter_p4.at(1).Pt()) return ZRF_GenZDaughter_p4.at(0); else return ZRF_GenZDaughter_p4.at(1);")
-                .Define("ZRF_GenZLead_px",    "ZRF_GenZLead_p4.Px()")
-                .Define("ZRF_GenZLead_py",    "ZRF_GenZLead_p4.Py()")
-                .Define("ZRF_GenZLead_pz",    "ZRF_GenZLead_p4.Pz()")
-                .Define("ZRF_GenZLead_p",    "ZRF_GenZLead_p4.P()")
-                .Define("ZRF_GenZLead_pt",    "ZRF_GenZLead_p4.Pt()")
-                .Define("ZRF_GenZLead_e",     "ZRF_GenZLead_p4.E()")
-                .Define("ZRF_GenZLead_eta",    "ZRF_GenZLead_p4.Eta()")
-                .Define("ZRF_GenZLead_phi",    "ZRF_GenZLead_p4.Phi()")
-                .Define("ZRF_GenZLead_theta",    "ZRF_GenZLead_p4.Theta()")
-                .Define("ZRF_GenZLead_y",     "ZRF_GenZLead_p4.Rapidity()")
-                .Define("ZRF_GenZLead_mass",    "ZRF_GenZLead_p4.M()")
-                
-                .Define("ZRF_GenZSub_p4",     "if (ZRF_GenZDaughter_p4.at(0).Pt()>ZRF_GenZDaughter_p4.at(1).Pt()) return ZRF_GenZDaughter_p4.at(1); else return ZRF_GenZDaughter_p4.at(0);")
-                .Define("ZRF_GenZSub_px",    "ZRF_GenZSub_p4.Px()")
-                .Define("ZRF_GenZSub_py",    "ZRF_GenZSub_p4.Py()")
-                .Define("ZRF_GenZSub_pz",    "ZRF_GenZSub_p4.Pz()")
-                .Define("ZRF_GenZSub_p",    "ZRF_GenZSub_p4.P()")
-                .Define("ZRF_GenZSub_pt",    "ZRF_GenZSub_p4.Pt()")
-                .Define("ZRF_GenZSub_e",     "ZRF_GenZSub_p4.E()")
-                .Define("ZRF_GenZSub_eta",    "ZRF_GenZSub_p4.Eta()")
-                .Define("ZRF_GenZSub_phi",    "ZRF_GenZSub_p4.Phi()")
-                .Define("ZRF_GenZSub_theta",    "ZRF_GenZSub_p4.Theta()")
-                .Define("ZRF_GenZSub_y",     "ZRF_GenZSub_p4.Rapidity()")
-                .Define("ZRF_GenZSub_mass",    "ZRF_GenZSub_p4.M()")
-
-                .Define("ZRF_GenZP_p4",     "if (FSGenZDaughter_charge.at(0)==1) return ZRF_GenZDaughter_p4.at(0); else return ZRF_GenZDaughter_p4.at(1);")
-                .Define("ZRF_GenZP_px",    "ZRF_GenZP_p4.Px()")
-                .Define("ZRF_GenZP_py",    "ZRF_GenZP_p4.Py()")
-                .Define("ZRF_GenZP_pz",    "ZRF_GenZP_p4.Pz()")
-                .Define("ZRF_GenZP_p",    "ZRF_GenZP_p4.P()")
-                .Define("ZRF_GenZP_pt",    "ZRF_GenZP_p4.Pt()")
-                .Define("ZRF_GenZP_e",     "ZRF_GenZP_p4.E()")
-                .Define("ZRF_GenZP_eta",    "ZRF_GenZP_p4.Eta()")
-                .Define("ZRF_GenZP_phi",    "ZRF_GenZP_p4.Phi()")
-                .Define("ZRF_GenZP_theta",    "ZRF_GenZP_p4.Theta()")
-                .Define("ZRF_GenZP_y",     "ZRF_GenZP_p4.Rapidity()")
-                .Define("ZRF_GenZP_mass",    "ZRF_GenZP_p4.M()")
-                
-                .Define("ZRF_GenZM_p4",     "if (FSGenZDaughter_charge.at(0)==1) return ZRF_GenZDaughter_p4.at(1); else return ZRF_GenZDaughter_p4.at(0);")
-                .Define("ZRF_GenZM_px",    "ZRF_GenZM_p4.Px()")
-                .Define("ZRF_GenZM_py",    "ZRF_GenZM_p4.Py()")
-                .Define("ZRF_GenZM_pz",    "ZRF_GenZM_p4.Pz()")
-                .Define("ZRF_GenZM_p",    "ZRF_GenZM_p4.P()")
-                .Define("ZRF_GenZM_pt",    "ZRF_GenZM_p4.Pt()")
-                .Define("ZRF_GenZM_e",     "ZRF_GenZM_p4.E()")
-                .Define("ZRF_GenZM_eta",    "ZRF_GenZM_p4.Eta()")
-                .Define("ZRF_GenZM_phi",    "ZRF_GenZM_p4.Phi()")
-                .Define("ZRF_GenZM_theta",    "ZRF_GenZM_p4.Theta()")
-                .Define("ZRF_GenZM_y",     "ZRF_GenZM_p4.Rapidity()")
-                .Define("ZRF_GenZM_mass",    "ZRF_GenZM_p4.M()")
-
-                .Define("ZRF_GenZDaughter_DR",       "FCCAnalyses::ZHfunctions::deltaR(ZRF_GenZLead_phi, ZRF_GenZSub_phi, ZRF_GenZLead_eta, ZRF_GenZSub_eta)")
-                .Define("ZRF_GenZDaughter_scalar",      "(ZRF_GenZLead_px*ZRF_GenZSub_px + ZRF_GenZLead_py*ZRF_GenZSub_py + ZRF_GenZLead_pz*ZRF_GenZSub_pz)")
-                .Define("ZRF_GenZDaughter_cos",      "GenZ_p/ZRF_GenZDaughter_scalar")
-                .Define("ZRF_GenZDaughter_DEta",    "(ZRF_GenZLead_eta - ZRF_GenZSub_eta)")
-                .Define("ZRF_GenZDaughter_DPhi",    "(ZRF_GenZLead_phi - ZRF_GenZSub_phi)")
-                .Define("ZRF_GenZDaughter_DEta_y",    "if (ZRF_GenZLead_y>ZRF_GenZSub_y) return (ZRF_GenZLead_eta - ZRF_GenZSub_eta); \
-                                        else if (ZRF_GenZLead_y<ZRF_GenZSub_y) return (ZRF_GenZSub_eta - ZRF_GenZLead_eta); else return double(-10.);")
-                .Define("ZRF_GenZDaughter_DPhi_y",    "if (ZRF_GenZLead_y>ZRF_GenZSub_y) return (ZRF_GenZLead_phi - ZRF_GenZSub_phi); \
-                                        else if (ZRF_GenZLead_y<ZRF_GenZSub_y) return (ZRF_GenZSub_phi - ZRF_GenZLead_phi); else return double(-10.);")
-
                 ### angles visualisation in figure 1 (2) at pag 8 of https://arxiv.org/pdf/2205.07715, changed some of the names around
                 #may be interesting to simnply keep the cosine of thetas (John Hopkins)
                 #angle between H vector in lab frame and tau in H rest frame
-                .Define("GenTheta2",      "acos(FCCAnalyses::ZHfunctions::get_scalar(GenHiggs_p4.at(0), HRF_GenTauM_p4)/(GenHiggs_p.at(0)*HRF_GenTauM_p))")
-                #angle between Z vector in lab frame and Muon in Z rest frame
-                .Define("GenTheta1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(GenZ_p4, ZRF_GenZM_p4)/(GenZ_p*ZRF_GenZM_p))")
-                #angle between decay planes of H and Z
-                .Define("GenPhi",      "acos(FCCAnalyses::ZHfunctions::get_scalar(HRF_GenTauM_p4, ZRF_GenZM_p4)/(HRF_GenTauM_p*ZRF_GenZM_p))")
-                #angle between beam line and Z decay plane
-                .Define("Beam_vec",     "FCCAnalyses::ZHfunctions::build_p4_single(0, 0, 1, 0)") #unitary vector of beam axis along z
-                .Define("Beam_p",       "float(1.)") #magnitude
-
-                .Define("GenPhi1",      "acos(FCCAnalyses::ZHfunctions::get_scalar(Beam_vec, ZRF_GenZM_p4)/(Beam_p*ZRF_GenZM_p))")
-                .Define("GenThetastar",      "acos(FCCAnalyses::ZHfunctions::get_scalar(Beam_vec, GenZ_p4)/(Beam_p*GenZ_p))")
-
-                .Define("GenThetastar_cos",        "(cos(GenThetastar))")
-                .Define("GenTheta1_cos",        "(cos(GenTheta1))")
-                .Define("GenTheta2_cos",        "(cos(GenTheta2))")
-                .Define("GenPhi_cos",        "(cos(GenPhi))")
-                .Define("GenPhi1_cos",        "(cos(GenPhi1))")
-
-                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
+                .Define("GenTheta2_cos",      "(GenHiggs_px.at(0)*HRF_GenTauM_px + GenHiggs_py.at(0)*HRF_GenTauM_py + GenHiggs_pz.at(0)*HRF_GenTauM_pz)/(GenHiggs_p.at(0)*HRF_GenTauM_p)")
+                .Define("GenTheta2",        "acos(GenTheta2_cos)")
+                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,1.,240.)")
                 .Define("GenRecoil",       "(Total_p4-GenZ_p4).M()")
+
+                #########
+                # polarimetric vector from ILC paper
+
+                .Define("TauPRF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauP_p4, GenPiP_p4)")
+                .Define("TauPRF_GenPi0P_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauP_p4, GenPi0P_p4)")
+                .Define("TauPRF_GenNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauP_p4, GenNuP_p4)")
+
+                .Define("TauMRF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauM_p4, GenPiM_p4)")
+                .Define("TauMRF_GenPi0M_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauM_p4, GenPi0M_p4)")
+                .Define("TauMRF_GenNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauM_p4, GenNuM_p4)")
+
+
+                .Define("hP_p3",       "(1.777 * (TauPRF_GenPiP_p4.E() - TauPRF_GenPi0P_p4.E()) * (TauPRF_GenPiP_p4.Vect() - TauPRF_GenPi0P_p4.Vect()) + 0.5 * (TauPRF_GenPiP_p4.P() - TauPRF_GenPi0P_p4.P()) * (TauPRF_GenPiP_p4.P() - TauPRF_GenPi0P_p4.P()) * TauPRF_GenNuP_p4.Vect())")
+                .Define("hM_p3",       "(1.777 * (TauMRF_GenPiM_p4.E() - TauMRF_GenPi0M_p4.E()) * (TauMRF_GenPiM_p4.Vect() - TauMRF_GenPi0M_p4.Vect()) + 0.5 * (TauMRF_GenPiM_p4.P() - TauMRF_GenPi0M_p4.P()) * (TauMRF_GenPiM_p4.P() - TauMRF_GenPi0M_p4.P()) * TauMRF_GenNuM_p4.Vect())")
+
+                .Define("hPnorm",       "(( HRF_GenTauM_p4.Vect() ).Cross( hP_p3 )).Unit()")
+                .Define("hMnorm",       "(( HRF_GenTauM_p4.Vect() ).Cross( hM_p3 )).Unit()")
+
+                .Define("hh_norm",       "hPnorm.Cross(hMnorm)")
+                .Define("CosDeltaPhi",        "hPnorm.Dot(hMnorm)")
+                .Define("SinDeltaPhi",       "hh_norm.Dot( (HRF_GenTauM_p4.Vect()).Unit() )")
+                .Define("GenDeltaPhi",     "atan2(SinDeltaPhi, CosDeltaPhi)")
+
+                #########
+                # gen reconstruction of the angle between decay planes
+
+                .Define("HRF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), GenPiP_p4)")
+                .Define("HRF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), GenPiM_p4)")
+
+                .Define("ZMF_GenTauM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenTauM_p4)")
+
+                .Define("HRF_Pnorm",        "(( ZMF_GenTauM_p4.Vect() ).Cross( ZMF_GenPiP_p4.Vect() )).Unit()")
+                .Define("HRF_Mnorm",        "(( ZMF_GenTauM_p4.Vect() ).Cross( ZMF_GenPiM_p4.Vect() )).Unit()")
+
+                .Define("Cross_norm",       "(HRF_Pnorm.Cross(HRF_Mnorm)).Unit()")
+                .Define("CosPhi",        "HRF_Pnorm.Dot(HRF_Mnorm)")
+                .Define("SinPhi",       "Cross_norm.Dot( (ZMF_GenTauM_p4.Vect()).Unit() )")
+                .Define("GenPhi_decay",     "atan2(SinPhi, CosPhi)")
+
         )
         return df2
 
@@ -485,9 +434,28 @@ class RDFanalysis():
             "FSGenElectron_phi",
             "FSGenElectron_charge",
             "FSGenElectron_mass",
+            "FSGenElectron_parentPDG",
             "FSGenElectron_vertex_x",
             "FSGenElectron_vertex_y",
             "FSGenElectron_vertex_z",
+
+            "n_FSGenMuon",
+            "FSGenMuon_e",
+            "FSGenMuon_p",
+            "FSGenMuon_pt",
+            "FSGenMuon_px",
+            "FSGenMuon_py",
+            "FSGenMuon_pz",
+            "FSGenMuon_y",
+            "FSGenMuon_eta",
+            "FSGenMuon_theta",
+            "FSGenMuon_phi",
+            "FSGenMuon_charge",
+            "FSGenMuon_mass",
+            "FSGenMuon_parentPDG",
+            "FSGenMuon_vertex_x",
+            "FSGenMuon_vertex_y",
+            "FSGenMuon_vertex_z",
 
             #"n_ZFSGenMuon",
             #"ZFSGenMuon_e",
@@ -527,56 +495,103 @@ class RDFanalysis():
 
             #"noFSRGenTau_parentPDG",
 
-            "n_FSRGenTau",
-            "FSRGenTau_e",
-            "FSRGenTau_p",
-            "FSRGenTau_pt",
-            "FSRGenTau_px",
-            "FSRGenTau_py",
-            "FSRGenTau_pz",
-            "FSRGenTau_y",
-            "FSRGenTau_eta",
-            "FSRGenTau_theta",
-            "FSRGenTau_phi",
-            "FSRGenTau_charge",
-            "FSRGenTau_mass",
-            "FSRGenTau_vertex_x",
-            "FSRGenTau_vertex_y",
-            "FSRGenTau_vertex_z",
+            "n_HiggsGenTau",
+            "HiggsGenTau_e",
+            "HiggsGenTau_p",
+            "HiggsGenTau_pt",
+            "HiggsGenTau_px",
+            "HiggsGenTau_py",
+            "HiggsGenTau_pz",
+            "HiggsGenTau_y",
+            "HiggsGenTau_eta",
+            "HiggsGenTau_theta",
+            "HiggsGenTau_phi",
+            "HiggsGenTau_charge",
+            "HiggsGenTau_mass",
+            "HiggsGenTau_parentPDG",
+            "HiggsGenTau_vertex_x",
+            "HiggsGenTau_vertex_y",
+            "HiggsGenTau_vertex_z",
+  
+            "GenPiP_e",
+            "GenPiP_p",
+            "GenPiP_pt",
+            "GenPiP_px",
+            "GenPiP_py",
+            "GenPiP_pz",
+            "GenPiP_y",
+            "GenPiP_eta",
+            "GenPiP_theta",
+            "GenPiP_phi",
+            "GenPiP_charge",
+            "GenPiP_mass",
+            "GenPiP_p4",
 
-            #"n_TauNeg_MuNuNu",       
-            #"n_TauNeg_MuNuNu_Phot",  
-            #"n_TauNeg_ENuNu",        
-            #"n_TauNeg_ENuNu_Phot",   
-            #"n_TauNeg_PiNu",         
-            #"n_TauNeg_PiNu_Phot",    
-            #"n_TauNeg_KNu",          
-            #"n_TauNeg_KNu_Phot",     
-            #"n_TauNeg_PiK0Nu",       
-            #"n_TauNeg_PiK0Nu_Phot",  
-            #"n_TauNeg_KK0Nu",        
-            #"n_TauNeg_KK0Nu_Phot",   
-            #"n_TauNeg_3PiNu",        
-            #"n_TauNeg_3PiNu_Phot",   
-            #"n_TauNeg_PiKKNu",       
-            #"n_TauNeg_PiKKNu_Phot",  
+            "GenPi0P_e",
+            "GenPi0P_p",
+            "GenPi0P_pt",
+            "GenPi0P_px",
+            "GenPi0P_py",
+            "GenPi0P_pz",
+            "GenPi0P_y",
+            "GenPi0P_eta",
+            "GenPi0P_theta",
+            "GenPi0P_phi",
+            "GenPi0P_mass",
+            "GenPi0P_p4",
 
-            #"n_TauPos_MuNuNu",       
-            #"n_TauPos_MuNuNu_Phot",  
-            #"n_TauPos_ENuNu",        
-            #"n_TauPos_ENuNu_Phot",   
-            #"n_TauPos_PiNu",         
-            #"n_TauPos_PiNu_Phot",    
-            #"n_TauPos_KNu",          
-            #"n_TauPos_KNu_Phot",     
-            #"n_TauPos_PiK0Nu",       
-            #"n_TauPos_PiK0Nu_Phot",  
-            #"n_TauPos_KK0Nu",        
-            #"n_TauPos_KK0Nu_Phot",   
-            #"n_TauPos_3PiNu",        
-            #"n_TauPos_3PiNu_Phot",   
-            #"n_TauPos_PiKKNu",       
-            #"n_TauPos_PiKKNu_Phot", 
+            "GenRhoP_e",
+            "GenRhoP_p",
+            "GenRhoP_pt",
+            "GenRhoP_px",
+            "GenRhoP_py",
+            "GenRhoP_pz",
+            "GenRhoP_y",
+            "GenRhoP_eta",
+            "GenRhoP_theta",
+            "GenRhoP_phi",
+            "GenRhoP_mass",
+            "GenRhoP_p4",
+
+            "GenPiM_e",
+            "GenPiM_p",
+            "GenPiM_pt",
+            "GenPiM_px",
+            "GenPiM_py",
+            "GenPiM_pz",
+            "GenPiM_y",
+            "GenPiM_eta",
+            "GenPiM_theta",
+            "GenPiM_phi",
+            "GenPiM_charge",
+            "GenPiM_mass",
+            "GenPiM_p4",
+
+            "GenPi0M_e",
+            "GenPi0M_p",
+            "GenPi0M_pt",
+            "GenPi0M_px",
+            "GenPi0M_py",
+            "GenPi0M_pz",
+            "GenPi0M_y",
+            "GenPi0M_eta",
+            "GenPi0M_theta",
+            "GenPi0M_phi",
+            "GenPi0M_mass",
+            "GenPi0M_p4",
+
+            "GenRhoM_e",
+            "GenRhoM_p",
+            "GenRhoM_pt",
+            "GenRhoM_px",
+            "GenRhoM_py",
+            "GenRhoM_pz",
+            "GenRhoM_y",
+            "GenRhoM_eta",
+            "GenRhoM_theta",
+            "GenRhoM_phi",
+            "GenRhoM_mass",
+            "GenRhoM_p4",
 
             "n_FSGenNeutrino",
             "FSGenNeutrino_e",
@@ -605,9 +620,6 @@ class RDFanalysis():
             "FSGenPhoton_phi",
             "FSGenPhoton_charge",
             #"FSGenPhoton_parentPDG",
-
-            #"n_GenZ",
-            #"n_GenW",
             
             "n_GenHiggs",
             "GenHiggs_e",
@@ -687,69 +699,73 @@ class RDFanalysis():
             "FSGenZM_y",    
             "FSGenZM_mass", 
 
-            "FSRGenTauLead_px",    
-            "FSRGenTauLead_py",   
-            "FSRGenTauLead_pz",   
-            "FSRGenTauLead_p",   
-            "FSRGenTauLead_pt",   
-            "FSRGenTauLead_e",    
-            "FSRGenTauLead_eta",    
-            "FSRGenTauLead_phi",    
-            "FSRGenTauLead_theta",    
-            "FSRGenTauLead_y",    
-            "FSRGenTauLead_mass",
+            "GenTauLead_px",    
+            "GenTauLead_py",   
+            "GenTauLead_pz",   
+            "GenTauLead_p",   
+            "GenTauLead_pt",   
+            "GenTauLead_e",    
+            "GenTauLead_eta",    
+            "GenTauLead_phi",    
+            "GenTauLead_theta",    
+            "GenTauLead_y",    
+            "GenTauLead_mass",
 
-            "FSRGenTauSub_px",    
-            "FSRGenTauSub_py",   
-            "FSRGenTauSub_pz",   
-            "FSRGenTauSub_p",   
-            "FSRGenTauSub_pt",   
-            "FSRGenTauSub_e",    
-            "FSRGenTauSub_eta",    
-            "FSRGenTauSub_phi",    
-            "FSRGenTauSub_theta",    
-            "FSRGenTauSub_y",    
-            "FSRGenTauSub_mass",
+            "GenTauSub_px",    
+            "GenTauSub_py",   
+            "GenTauSub_pz",   
+            "GenTauSub_p",   
+            "GenTauSub_pt",   
+            "GenTauSub_e",    
+            "GenTauSub_eta",    
+            "GenTauSub_phi",    
+            "GenTauSub_theta",    
+            "GenTauSub_y",    
+            "GenTauSub_mass",
 
-            "FSRGenTauP_px",    
-            "FSRGenTauP_py",   
-            "FSRGenTauP_pz",   
-            "FSRGenTauP_p",   
-            "FSRGenTauP_pt",   
-            "FSRGenTauP_e",    
-            "FSRGenTauP_eta",    
-            "FSRGenTauP_phi",    
-            "FSRGenTauP_theta",    
-            "FSRGenTauP_y",    
-            "FSRGenTauP_mass",
+            "GenTauP_px",    
+            "GenTauP_py",   
+            "GenTauP_pz",   
+            "GenTauP_p",   
+            "GenTauP_pt",   
+            "GenTauP_e",    
+            "GenTauP_eta",    
+            "GenTauP_phi",    
+            "GenTauP_theta",    
+            "GenTauP_y",    
+            "GenTauP_mass",
 
-            "FSRGenTauM_px",    
-            "FSRGenTauM_py",   
-            "FSRGenTauM_pz",   
-            "FSRGenTauM_p",   
-            "FSRGenTauM_pt",   
-            "FSRGenTauM_e",    
-            "FSRGenTauM_eta",    
-            "FSRGenTauM_phi",    
-            "FSRGenTauM_theta",    
-            "FSRGenTauM_y",    
-            "FSRGenTauM_mass",
+            "GenTauM_px",    
+            "GenTauM_py",   
+            "GenTauM_pz",   
+            "GenTauM_p",   
+            "GenTauM_pt",   
+            "GenTauM_e",    
+            "GenTauM_eta",    
+            "GenTauM_phi",    
+            "GenTauM_theta",    
+            "GenTauM_y",    
+            "GenTauM_mass",
         
-            "FSRGenTau_DR",
-            "FSRGenTau_cos",
-            "FSRGenTau_DEta", 
-            "FSRGenTau_DPhi",
+            "HiggsGenTau_DR",
+            "HiggsGenTau_cos",
+            "HiggsGenTau_DEta", 
+            "HiggsGenTau_DPhi",
             
             "FSGenZDaughter_DR", 
             "FSGenZDaughter_cos", 
             "FSGenZDaughter_DEta", 
             "FSGenZDaughter_DPhi", 
 
-            "FSRGenTau_DEta_y", 
-            "FSRGenTau_DPhi_y", 
+            "HiggsGenTau_DEta_y", 
+            "HiggsGenTau_DPhi_y", 
             
             "FSGenZDaughter_DEta_y", 
             "FSGenZDaughter_DPhi_y", 
+
+            "ytau", 
+            "GenPhiCP_pre",   
+            "GenPhiCP",   
 
             "HRF_GenTauLead_px",  
             "HRF_GenTauLead_py",  
@@ -800,68 +816,22 @@ class RDFanalysis():
             "HRF_GenTau_DEta_y", 
             "HRF_GenTau_DPhi_y", 
 
-            "ZRF_GenZLead_px",  
-            "ZRF_GenZLead_py",  
-            "ZRF_GenZLead_pz", 
-            "ZRF_GenZLead_p", 
-            "ZRF_GenZLead_pt",  
-            "ZRF_GenZLead_e",   
-            "ZRF_GenZLead_eta", 
-            "ZRF_GenZLead_phi",  
-            "ZRF_GenZLead_theta",    
-            "ZRF_GenZLead_y", 
-
-            "ZRF_GenZSub_px",  
-            "ZRF_GenZSub_py",  
-            "ZRF_GenZSub_pz", 
-            "ZRF_GenZSub_p", 
-            "ZRF_GenZSub_pt",  
-            "ZRF_GenZSub_e",   
-            "ZRF_GenZSub_eta", 
-            "ZRF_GenZSub_phi",  
-            "ZRF_GenZSub_theta",    
-            "ZRF_GenZSub_y", 
-
-            "ZRF_GenZP_px",  
-            "ZRF_GenZP_py",  
-            "ZRF_GenZP_pz", 
-            "ZRF_GenZP_p", 
-            "ZRF_GenZP_pt",  
-            "ZRF_GenZP_e",   
-            "ZRF_GenZP_eta", 
-            "ZRF_GenZP_phi",  
-            "ZRF_GenZP_theta",    
-            "ZRF_GenZP_y", 
-
-            "ZRF_GenZM_px",  
-            "ZRF_GenZM_py",  
-            "ZRF_GenZM_pz", 
-            "ZRF_GenZM_p", 
-            "ZRF_GenZM_pt",  
-            "ZRF_GenZM_e",   
-            "ZRF_GenZM_eta", 
-            "ZRF_GenZM_phi",  
-            "ZRF_GenZM_theta",    
-            "ZRF_GenZM_y", 
-
-            "ZRF_GenZDaughter_DEta", 
-            "ZRF_GenZDaughter_DPhi",
-            "ZRF_GenZDaughter_DEta_y", 
-            "ZRF_GenZDaughter_DPhi_y", 
-
-            "GenThetastar",
             "GenTheta2",
-            "GenPhi1", 
-            "GenPhi", 
-            "GenTheta1", 
-
-            "GenThetastar_cos",
             "GenTheta2_cos",
-            "GenPhi1_cos", 
-            "GenPhi_cos", 
-            "GenTheta1_cos",
 
             "GenRecoil",
+
+            "hh_norm",
+            "CosDeltaPhi",  
+            "SinDeltaPhi",    
+            "GenDeltaPhi",
+
+            "Cross_norm",
+            "CosPhi",  
+            "SinPhi",    
+            "GenPhi_decay",
+
+            "Total_p4",
 
         ]
 
