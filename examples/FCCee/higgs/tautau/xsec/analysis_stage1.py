@@ -97,9 +97,6 @@ outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage1_241111/"
 
 #outputDir = "/eos/user/s/sgiappic/HiggsCP/stage1_241111/"
 
-#Optional: ncpus, default is 4
-nCPUS = 10
-
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
 

@@ -8,8 +8,9 @@ processList = {
     #'noISR_e+e-_noCuts_cehim_p1':{},
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
-    'noISR':{},
-    'taudecay':{},
+    #'noISR':{},
+    #'taudecay':{},
+    'wzp6_ee_eeH_Htautau_ecm240': {},
 }
 
 processList_xsec = {
@@ -102,10 +103,10 @@ processList_xsec = {
 #prodTag     = "FCCee/winter2023/IDEA/"
 
 #inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
+#inputDir = '/ceph/sgiappic/'
+inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
-inputDir = '/ceph/sgiappic/'
-
-outputDir = "/ceph/sgiappic/HiggsCP/CP/stage1"
+outputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage1"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -266,6 +267,147 @@ class RDFanalysis():
                 .Define("HiggsGenTau_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( HiggsGenTau )")
                 .Define("HiggsGenTau_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( HiggsGenTau )")
 
+                .Define("TauPtoPiGammaGammaNu_idx",  "FCCAnalyses::MCParticle::get_indices( -15, {211, 22, 22, -16},  true, false, false, false)  ( Particle, Particle1)" ) #size is the size of the vector (mother+daughters) because it only saves the first matching decay in the event, not all the decays
+                .Define("TauMtoPiGammaGammaNu_idx",  "FCCAnalyses::MCParticle::get_indices( 15, {-211, 22, 22, 16},  true, false, false, false)  ( Particle, Particle1)" )
+
+                #select the right decay for both taus
+                .Filter("n_HiggsGenTau==2 && TauPtoPiGammaGammaNu_idx.size()>0 && TauMtoPiGammaGammaNu_idx.size()>0")
+                .Filter("(HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
+
+                .Define("GenPiP_e",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_px",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_py",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_pz",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_p",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_pt",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pt(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_pt(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_y",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_y(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_y(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_eta",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_theta",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_theta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_theta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_phi",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_charge",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_charge(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_charge(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiP_mass",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_mass(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_mass(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+
+                .Define("GammaP1_e",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[2])}); else return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaP2_e",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[3])}); else return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaP1_px",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[2])}); else return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaP2_px",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[3])}); else return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaP1_py",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[2])}); else return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaP2_py",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[3])}); else return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaP1_pz",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[2])}); else return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaP2_pz",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[3])}); else return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaP1_p4",       "FCCAnalyses::ZHfunctions::build_p4_single(GammaP1_px.at(0), GammaP1_py.at(0), GammaP1_pz.at(0), GammaP1_e.at(0))")
+                .Define("GammaP2_p4",       "FCCAnalyses::ZHfunctions::build_p4_single(GammaP2_px.at(0), GammaP2_py.at(0), GammaP2_pz.at(0), GammaP2_e.at(0))")
+                
+                .Define("GenPi0P_p4",       "GammaP1_p4+GammaP2_p4")
+                .Define("GenPi0P_px",    "GenPi0P_p4.Px()")
+                .Define("GenPi0P_py",    "GenPi0P_p4.Py()")
+                .Define("GenPi0P_pz",    "GenPi0P_p4.Pz()")
+                .Define("GenPi0P_p",    "GenPi0P_p4.P()")
+                .Define("GenPi0P_pt",    "GenPi0P_p4.Pt()")
+                .Define("GenPi0P_e",     "GenPi0P_p4.E()")
+                .Define("GenPi0P_eta",    "GenPi0P_p4.Eta()")
+                .Define("GenPi0P_phi",    "GenPi0P_p4.Phi()")
+                .Define("GenPi0P_theta",    "GenPi0P_p4.Theta()")
+                .Define("GenPi0P_y",     "GenPi0P_p4.Rapidity()")
+                .Define("GenPi0P_mass",    "GenPi0P_p4.M()")
+
+                .Define("GenNuP_e",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_px",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_py",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_pz",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_p",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_pt",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pt(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_pt(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_y",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_y(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_y(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_eta",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_theta",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_theta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_theta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_phi",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_charge",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_charge(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_charge(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_mass",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_mass(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_mass(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuP_p4",       "FCCAnalyses::ZHfunctions::build_p4_single(GenNuP_px.at(0), GenNuP_py.at(0), GenNuP_pz.at(0), GenNuP_e.at(0))")
+
+                .Define("GenPiM_e",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_px",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_py",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_pz",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_p",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_pt",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pt(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_pt(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_y",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_y(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_y(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_eta",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_theta",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_theta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_theta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_phi",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_charge",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_charge(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_charge(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenPiM_mass",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_mass(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[1])}); else return FCCAnalyses::MCParticle::get_mass(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+
+                .Define("GammaM1_e",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[2])}); else return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaM2_e",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[3])}); else return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaM1_px",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[2])}); else return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaM2_px",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[3])}); else return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaM1_py",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[2])}); else return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaM2_py",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[3])}); else return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaM1_pz",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[2])}); else return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaM2_pz",     "if (TauMtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauMtoPiGammaGammaNu_idx[3])}); else return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GammaM1_p4",       "FCCAnalyses::ZHfunctions::build_p4_single(GammaM1_px.at(0), GammaM1_py.at(0), GammaM1_pz.at(0), GammaM1_e.at(0))")
+                .Define("GammaM2_p4",       "FCCAnalyses::ZHfunctions::build_p4_single(GammaM2_px.at(0), GammaM2_py.at(0), GammaM2_pz.at(0), GammaM2_e.at(0))")
+                
+                .Define("GenPi0M_p4",       "GammaM1_p4+GammaM2_p4")
+                .Define("GenPi0M_px",    "GenPi0M_p4.Px()")
+                .Define("GenPi0M_py",    "GenPi0M_p4.Py()")
+                .Define("GenPi0M_pz",    "GenPi0M_p4.Pz()")
+                .Define("GenPi0M_p",    "GenPi0M_p4.P()")
+                .Define("GenPi0M_pt",    "GenPi0M_p4.Pt()")
+                .Define("GenPi0M_e",     "GenPi0M_p4.E()")
+                .Define("GenPi0M_eta",    "GenPi0M_p4.Eta()")
+                .Define("GenPi0M_phi",    "GenPi0M_p4.Phi()")
+                .Define("GenPi0M_theta",    "GenPi0M_p4.Theta()")
+                .Define("GenPi0M_y",     "GenPi0M_p4.Rapidity()")
+                .Define("GenPi0M_mass",    "GenPi0M_p4.M()")
+
+                .Define("GenNuM_e",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_px",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_px(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_py",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_py(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_pz",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_pz(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_p",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_pt",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_pt(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_pt(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_y",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_y(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_y(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_eta",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_theta",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_theta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_theta(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_phi",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_charge",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_charge(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_charge(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_mass",     "if (TauPtoPiGammaGammaNu_idx.size()>0) return FCCAnalyses::MCParticle::get_mass(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiGammaGammaNu_idx[4])}); else return FCCAnalyses::MCParticle::get_mass(ROOT::VecOps::RVec<edm4hep::MCParticleData>{});")
+                .Define("GenNuM_p4",       "FCCAnalyses::ZHfunctions::build_p4_single(GenNuM_px.at(0), GenNuM_py.at(0), GenNuM_pz.at(0), GenNuM_e.at(0))")
+
+                # filter on the pi0 reconstructed mass and rho too 
+                .Filter("GenPi0M_p4.M()>0.13 && GenPi0M_p4.M()<0.14 && GenPi0P_p4.M()>0.13 && GenPi0P_p4.M()<0.14")
+
+                .Define("GenPiP_p4",       "FCCAnalyses::ZHfunctions::build_p4_single(GenPiP_px.at(0), GenPiP_py.at(0), GenPiP_pz.at(0), GenPiP_e.at(0))")
+                .Define("GenPiM_p4",       "FCCAnalyses::ZHfunctions::build_p4_single(GenPiM_px.at(0), GenPiM_py.at(0), GenPiM_pz.at(0), GenPiM_e.at(0))")
+
+                .Define("GenRhoP_p4",       "GenPi0P_p4+GenPiP_p4")
+                .Define("GenRhoP_px",    "GenRhoP_p4.Px()")
+                .Define("GenRhoP_py",    "GenRhoP_p4.Py()")
+                .Define("GenRhoP_pz",    "GenRhoP_p4.Pz()")
+                .Define("GenRhoP_p",    "GenRhoP_p4.P()")
+                .Define("GenRhoP_pt",    "GenRhoP_p4.Pt()")
+                .Define("GenRhoP_e",     "GenRhoP_p4.E()")
+                .Define("GenRhoP_eta",    "GenRhoP_p4.Eta()")
+                .Define("GenRhoP_phi",    "GenRhoP_p4.Phi()")
+                .Define("GenRhoP_theta",    "GenRhoP_p4.Theta()")
+                .Define("GenRhoP_y",     "GenRhoP_p4.Rapidity()")
+                .Define("GenRhoP_mass",    "GenRhoP_p4.M()")
+
+                .Define("GenRhoM_p4",       "GenPi0M_p4+GenPiM_p4")
+                .Define("GenRhoM_px",    "GenRhoM_p4.Px()")
+                .Define("GenRhoM_py",    "GenRhoM_p4.Py()")
+                .Define("GenRhoM_pz",    "GenRhoM_p4.Pz()")
+                .Define("GenRhoM_p",    "GenRhoM_p4.P()")
+                .Define("GenRhoM_pt",    "GenRhoM_p4.Pt()")
+                .Define("GenRhoM_e",     "GenRhoM_p4.E()")
+                .Define("GenRhoM_eta",    "GenRhoM_p4.Eta()")
+                .Define("GenRhoM_phi",    "GenRhoM_p4.Phi()")
+                .Define("GenRhoM_theta",    "GenRhoM_p4.Theta()")
+                .Define("GenRhoM_y",     "GenRhoM_p4.Rapidity()")
+                .Define("GenRhoM_mass",    "GenRhoM_p4.M()")
+
                 .Define("ind_tauneg_MuNuNu",       "FCCAnalyses::MCParticle::get_indices(  15, {13,-14,16},            true, false, false, false) ( Particle, Particle1)" )
                 .Define("ind_tauneg_MuNuNu_Phot",  "FCCAnalyses::MCParticle::get_indices(  15, {13,-14,16,22},         true, false, false, true)  ( Particle, Particle1)" )
                 .Define("ind_tauneg_ENuNu",        "FCCAnalyses::MCParticle::get_indices(  15, {11,-12,16},            true, false, false, false) ( Particle, Particle1)" )
@@ -299,40 +441,6 @@ class RDFanalysis():
                 .Define("ind_taupos_3PiNu_Phot",   "FCCAnalyses::MCParticle::get_indices( -15, {211,211,-211,-16,22},  true, false, false, true)  ( Particle, Particle1)" )
                 .Define("ind_taupos_PiKKNu",       "FCCAnalyses::MCParticle::get_indices( -15, {211,321,-321,-16},     true, false, false, false) ( Particle, Particle1)" )
                 .Define("ind_taupos_PiKKNu_Phot",  "FCCAnalyses::MCParticle::get_indices( -15, {211,321,-321,-16,22},  true, false, false, true)  ( Particle, Particle1)" )
-
-                .Define("n_TauNeg_MuNuNu",       "return int(ind_tauneg_MuNuNu.size() )"     )
-                .Define("n_TauNeg_MuNuNu_Phot",  "return int(ind_tauneg_MuNuNu_Phot.size() )")
-                .Define("n_TauNeg_ENuNu",        "return int(ind_tauneg_ENuNu.size() )"      )
-                .Define("n_TauNeg_ENuNu_Phot",   "return int(ind_tauneg_ENuNu_Phot.size() )" )
-                .Define("n_TauNeg_PiNu",         "return int(ind_tauneg_PiNu.size() )"       )
-                .Define("n_TauNeg_PiNu_Phot",    "return int(ind_tauneg_PiNu_Phot.size() )"  )
-                .Define("n_TauNeg_KNu",          "return int(ind_tauneg_KNu.size() )"        )
-                .Define("n_TauNeg_KNu_Phot",     "return int(ind_tauneg_KNu_Phot.size() )"   )
-                .Define("n_TauNeg_PiK0Nu",       "return int(ind_tauneg_PiK0Nu.size() )"     )
-                .Define("n_TauNeg_PiK0Nu_Phot",  "return int(ind_tauneg_PiK0Nu_Phot.size() )")
-                .Define("n_TauNeg_KK0Nu",        "return int(ind_tauneg_KK0Nu.size() )"      )
-                .Define("n_TauNeg_KK0Nu_Phot",   "return int(ind_tauneg_KK0Nu_Phot.size() )" )
-                .Define("n_TauNeg_3PiNu",        "return int(ind_tauneg_3PiNu.size() )"      )
-                .Define("n_TauNeg_3PiNu_Phot",   "return int(ind_tauneg_3PiNu_Phot.size() )" )
-                .Define("n_TauNeg_PiKKNu",       "return int(ind_tauneg_PiKKNu.size() )"     )
-                .Define("n_TauNeg_PiKKNu_Phot",  "return int(ind_tauneg_PiKKNu_Phot.size() )")
-                                                    
-                .Define("n_TauPos_MuNuNu",       "return int(ind_taupos_MuNuNu.size() )"     )
-                .Define("n_TauPos_MuNuNu_Phot",  "return int(ind_taupos_MuNuNu_Phot.size() )")
-                .Define("n_TauPos_ENuNu",        "return int(ind_taupos_ENuNu.size() )"      )
-                .Define("n_TauPos_ENuNu_Phot",   "return int(ind_taupos_ENuNu_Phot.size() )" )
-                .Define("n_TauPos_PiNu",         "return int(ind_taupos_PiNu.size() )"       )
-                .Define("n_TauPos_PiNu_Phot",    "return int(ind_taupos_PiNu_Phot.size() )"  )
-                .Define("n_TauPos_KNu",          "return int(ind_taupos_KNu.size() )"        )
-                .Define("n_TauPos_KNu_Phot",     "return int(ind_taupos_KNu_Phot.size() )"   )
-                .Define("n_TauPos_PiK0Nu",       "return int(ind_taupos_PiK0Nu.size() )"     )
-                .Define("n_TauPos_PiK0Nu_Phot",  "return int(ind_taupos_PiK0Nu_Phot.size() )")
-                .Define("n_TauPos_KK0Nu",        "return int(ind_taupos_KK0Nu.size() )"      )
-                .Define("n_TauPos_KK0Nu_Phot",   "return int(ind_taupos_KK0Nu_Phot.size() )" )
-                .Define("n_TauPos_3PiNu",        "return int(ind_taupos_3PiNu.size() )"      )
-                .Define("n_TauPos_3PiNu_Phot",   "return int(ind_taupos_3PiNu_Phot.size() )" )
-                .Define("n_TauPos_PiKKNu",       "return int(ind_taupos_PiKKNu.size() )"     )
-                .Define("n_TauPos_PiKKNu_Phot",  "return int(ind_taupos_PiKKNu_Phot.size() )")
 
                 #all final state gen neutrinos and anti-neutrinos
                 .Define("GenElectronNeutrino_PID", "FCCAnalyses::MCParticle::sel_pdgID(12, true)(Particle)")
@@ -920,40 +1028,114 @@ class RDFanalysis():
             "HiggsGenTau_vertex_x",
             "HiggsGenTau_vertex_y",
             "HiggsGenTau_vertex_z",
+  
+            "GenPiP_e",
+            "GenPiP_p",
+            "GenPiP_pt",
+            "GenPiP_px",
+            "GenPiP_py",
+            "GenPiP_pz",
+            "GenPiP_y",
+            "GenPiP_eta",
+            "GenPiP_theta",
+            "GenPiP_phi",
+            "GenPiP_charge",
+            "GenPiP_mass",
+            "GenPiP_p4",
 
-            "n_TauNeg_MuNuNu",       
-            "n_TauNeg_MuNuNu_Phot",  
-            "n_TauNeg_ENuNu",        
-            "n_TauNeg_ENuNu_Phot",   
-            "n_TauNeg_PiNu",         
-            "n_TauNeg_PiNu_Phot",    
-            "n_TauNeg_KNu",          
-            "n_TauNeg_KNu_Phot",     
-            "n_TauNeg_PiK0Nu",       
-            "n_TauNeg_PiK0Nu_Phot",  
-            "n_TauNeg_KK0Nu",        
-            "n_TauNeg_KK0Nu_Phot",   
-            "n_TauNeg_3PiNu",        
-            "n_TauNeg_3PiNu_Phot",   
-            "n_TauNeg_PiKKNu",       
-            "n_TauNeg_PiKKNu_Phot",  
+            "GenPi0P_e",
+            "GenPi0P_p",
+            "GenPi0P_pt",
+            "GenPi0P_px",
+            "GenPi0P_py",
+            "GenPi0P_pz",
+            "GenPi0P_y",
+            "GenPi0P_eta",
+            "GenPi0P_theta",
+            "GenPi0P_phi",
+            "GenPi0P_mass",
+            "GenPi0P_p4",
 
-            "n_TauPos_MuNuNu",       
-            "n_TauPos_MuNuNu_Phot",  
-            "n_TauPos_ENuNu",        
-            "n_TauPos_ENuNu_Phot",   
-            "n_TauPos_PiNu",         
-            "n_TauPos_PiNu_Phot",    
-            "n_TauPos_KNu",          
-            "n_TauPos_KNu_Phot",     
-            "n_TauPos_PiK0Nu",       
-            "n_TauPos_PiK0Nu_Phot",  
-            "n_TauPos_KK0Nu",        
-            "n_TauPos_KK0Nu_Phot",   
-            "n_TauPos_3PiNu",        
-            "n_TauPos_3PiNu_Phot",   
-            "n_TauPos_PiKKNu",       
-            "n_TauPos_PiKKNu_Phot", 
+            "GenRhoP_e",
+            "GenRhoP_p",
+            "GenRhoP_pt",
+            "GenRhoP_px",
+            "GenRhoP_py",
+            "GenRhoP_pz",
+            "GenRhoP_y",
+            "GenRhoP_eta",
+            "GenRhoP_theta",
+            "GenRhoP_phi",
+            "GenRhoP_mass",
+            "GenRhoP_p4",
+
+            "GenNuP_e",
+            "GenNuP_p",
+            "GenNuP_pt",
+            "GenNuP_px",
+            "GenNuP_py",
+            "GenNuP_pz",
+            "GenNuP_y",
+            "GenNuP_eta",
+            "GenNuP_theta",
+            "GenNuP_phi",
+            "GenNuP_charge",
+            "GenNuP_mass",
+            "GenNuP_p4",
+
+            "GenPiM_e",
+            "GenPiM_p",
+            "GenPiM_pt",
+            "GenPiM_px",
+            "GenPiM_py",
+            "GenPiM_pz",
+            "GenPiM_y",
+            "GenPiM_eta",
+            "GenPiM_theta",
+            "GenPiM_phi",
+            "GenPiM_charge",
+            "GenPiM_mass",
+            "GenPiM_p4",
+
+            "GenPi0M_e",
+            "GenPi0M_p",
+            "GenPi0M_pt",
+            "GenPi0M_px",
+            "GenPi0M_py",
+            "GenPi0M_pz",
+            "GenPi0M_y",
+            "GenPi0M_eta",
+            "GenPi0M_theta",
+            "GenPi0M_phi",
+            "GenPi0M_mass",
+            "GenPi0M_p4",
+
+            "GenRhoM_e",
+            "GenRhoM_p",
+            "GenRhoM_pt",
+            "GenRhoM_px",
+            "GenRhoM_py",
+            "GenRhoM_pz",
+            "GenRhoM_y",
+            "GenRhoM_eta",
+            "GenRhoM_theta",
+            "GenRhoM_phi",
+            "GenRhoM_mass",
+            "GenRhoM_p4",
+
+            "GenNuM_e",
+            "GenNuM_p",
+            "GenNuM_pt",
+            "GenNuM_px",
+            "GenNuM_py",
+            "GenNuM_pz",
+            "GenNuM_y",
+            "GenNuM_eta",
+            "GenNuM_theta",
+            "GenNuM_phi",
+            "GenNuM_charge",
+            "GenNuM_mass",
+            "GenNuM_p4",
 
             "n_FSGenNeutrino",
             "FSGenNeutrino_e",
@@ -996,6 +1178,10 @@ class RDFanalysis():
             "GenHiggs_theta", 
             "GenHiggs_phi", 
             "GenHiggs_charge", 
+
+        ]
+
+        '''
 
             ######## Reconstructed particles #######
             #"RecoMC_PID",
@@ -1267,6 +1453,6 @@ class RDFanalysis():
             "LeadingPar_charge",
             "LeadingPar_mass",
 
-        ]
+        ]'''
 
         return branchList

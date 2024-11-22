@@ -189,7 +189,7 @@ localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename = 'analysis_stage1.py'
 
-nCPUS = 4
+nCPUS = 2
 Memory = 10000
 
 create_subjob_script(localDir, sourceDir, inputDir, output, outputDir, Filename)
