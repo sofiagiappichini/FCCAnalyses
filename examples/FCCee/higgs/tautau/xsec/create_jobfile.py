@@ -194,24 +194,24 @@ processList_ = {
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage1_241025/'
-output = '/work/sgiappic/HTCondor/stage2_/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_241025_cut/' ##output directory of stage2 samples
+inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage1_241125/'
+output = '/work/sgiappic/HTCondor/stage2_R5tag/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/R5-tag/stage2_241125/' ##output directory of stage2 samples
 localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage2_'
 SUBDIR = [
-    #'LL',
+    'LL',
     'LH',
-    #'HH',
+    'HH',
 ]
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
-nCPUS = 10
-Memory = 20000
+nCPUS = 4
+Memory = 10000
 for cat in CAT:
     for sub in SUBDIR:
         if "BDT" in localDir_path:

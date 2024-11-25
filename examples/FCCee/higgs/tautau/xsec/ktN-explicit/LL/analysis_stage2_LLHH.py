@@ -3,32 +3,19 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
+    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':1},
+    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':1},
+}
+processList_all = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
-    
     'wzp6_ee_tautau_ecm240':{'chunks':100},
-    'wzp6_ee_mumu_ecm240':{'chunks':100},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
-
-    'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
-    'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
-
-    'wzp6_egamma_eZ_Zmumu_ecm240': {'chunks':10},
-    'wzp6_egamma_eZ_Zee_ecm240': {'chunks':10},
-    'wzp6_gammae_eZ_Zmumu_ecm240': {'chunks':10},
-    'wzp6_gammae_eZ_Zee_ecm240': {'chunks':10},
-
-    'wzp6_gaga_tautau_60_ecm240': {'chunks':100},
-    'wzp6_gaga_mumu_60_ecm240': {'chunks':100},
-    'wzp6_gaga_ee_60_ecm240': {'chunks':100},
-
-    'wzp6_ee_nuenueZ_ecm240': {'chunks':10},
 
     'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
     'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':10},
@@ -85,12 +72,34 @@ processList = {
     'wzp6_ee_qqH_Hgg_ecm240': {'chunks':10},
     'wzp6_ee_qqH_HWW_ecm240': {'chunks':10},
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hss_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_HWW_ecm240': {'chunks':10},
+    'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':10},
+
+    'wzp6_egamma_eZ_Zmumu_ecm240': {'chunks':10},
+    'wzp6_egamma_eZ_Zee_ecm240': {'chunks':10},
+    'wzp6_gammae_eZ_Zmumu_ecm240': {'chunks':10},
+    'wzp6_gammae_eZ_Zee_ecm240': {'chunks':10},
+
+    'wzp6_gaga_tautau_60_ecm240': {'chunks':100},
+    'wzp6_gaga_mumu_60_ecm240': {'chunks':100},
+    'wzp6_gaga_ee_60_ecm240': {'chunks':100},
+
+    'wzp6_ee_nuenueZ_ecm240': {'chunks':10},
 }
 
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1_241025/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_241025_cut/QQ/LL/" 
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/stage2_eff/LL/HH/" 
+
+#Optional: ncpus, default is 4
+nCPUS = 10
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -103,64 +112,13 @@ class RDFanalysis():
             ### to find already made functions, this is where they are or where they can be added instead of writing them here
             ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
 
-            ### defining filters for two sel lepotons, two no tau jets
+            ### defining filters for 2 lepton final state based on flavor combination: 2 same flavor plus 2 hadronic taus
 
-            ### when working with Z jets, remember to use the Leptons_sel class because they are the ones not in the jets
-            ### when working with tau jets it does not matter since the tau jets don't have any lepton in them so there is no confusion
+                .Define("OnePair",     "(((n_RecoElectrons==2 and n_RecoMuons==0) or (n_RecoElectrons==0 and n_RecoMuons==2)) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0")
 
-                .Define("TauTag_px",      "TagJet_kt2_px[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_py",      "TagJet_kt2_py[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_pz",      "TagJet_kt2_pz[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_pt",      "TagJet_kt2_pt[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_p",      "TagJet_kt2_p[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_e",      "TagJet_kt2_e[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_phi",      "TagJet_kt2_phi[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_eta",      "TagJet_kt2_eta[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_theta",      "TagJet_kt2_theta[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_charge",      "TagJet_kt2_charge[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_mass",      "TagJet_kt2_mass[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_isG",      "TagJet_kt2_isG[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_isU",      "TagJet_kt2_isU[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_isD",      "TagJet_kt2_isD[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_isS",      "TagJet_kt2_isS[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_isC",      "TagJet_kt2_isC[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_isB",      "TagJet_kt2_isB[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_isTAU",      "TagJet_kt2_isTAU[TagJet_kt2_isTAU>0.5]")
-                .Define("TauTag_flavor",      "TagJet_kt2_flavor[TagJet_kt2_isTAU>0.5]")
-                .Define("n_TauTag_constituents",        "n_TagJet_kt2_constituents[TagJet_kt2_isTAU>0.5]")
-                .Define("n_TauTag_charged_constituents",        "n_TagJet_kt2_charged_constituents[TagJet_kt2_isTAU>0.5]")
-                .Define("n_TauTag_neutral_constituents",        "n_TagJet_kt2_neutral_constituents[TagJet_kt2_isTAU>0.5]")
-                .Define("n_TauTag",          "TauTag_px.size()")
+                .Filter("OnePair==1 && n_TauFromJet_kt2==2 && n_TagJet_kt2_sel==0")
 
-                .Define("QuarkTag_px",      "TagJet_kt2_px[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_py",      "TagJet_kt2_py[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_pz",      "TagJet_kt2_pz[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_pt",      "TagJet_kt2_pt[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_p",      "TagJet_kt2_p[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_e",      "TagJet_kt2_e[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_phi",      "TagJet_kt2_phi[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_eta",      "TagJet_kt2_eta[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_theta",      "TagJet_kt2_theta[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_charge",      "TagJet_kt2_charge[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_mass",      "TagJet_kt2_mass[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_isG",      "TagJet_kt2_isG[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_isU",      "TagJet_kt2_isU[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_isD",      "TagJet_kt2_isD[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_isS",      "TagJet_kt2_isS[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_isC",      "TagJet_kt2_isC[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_isB",      "TagJet_kt2_isB[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_isTAU",      "TagJet_kt2_isTAU[TagJet_kt2_isTAU<=0.5]")
-                .Define("QuarkTag_flavor",      "TagJet_kt2_flavor[TagJet_kt2_isTAU<=0.5]")
-                .Define("n_QuarkTag_constituents",        "n_TagJet_kt2_constituents[TagJet_kt2_isTAU<=0.5]")
-                .Define("n_QuarkTag_charged_constituents",        "n_TagJet_kt2_charged_constituents[TagJet_kt2_isTAU<=0.5]")
-                .Define("n_QuarkTag_neutral_constituents",        "n_TagJet_kt2_neutral_constituents[TagJet_kt2_isTAU<=0.5]")
-                .Define("n_QuarkTag",     "QuarkTag_charge.size()")
-
-                ##########################
-
-                .Define("OnePair",     "(n_RecoLeptons_sel==2  and (RecoLepton_sel_charge.at(0) + RecoLepton_sel_charge.at(1))==0)*1.0")
-
-                .Filter("OnePair==1 && n_TauTag==0 && n_QuarkTag==2")
+                .Filter("(TauFromJet_kt2_charge.at(0) + TauFromJet_kt2_charge.at(1))==0") 
 
                 ##################
                 # Reco particles #
@@ -173,9 +131,13 @@ class RDFanalysis():
                 .Define("RecoEmiss_y",    "RecoEmiss_p4.Rapidity()")
                 .Define("RecoEmiss_costheta",   "abs(std::cos(RecoEmiss_theta))")
 
-                .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(QuarkTag_px.at(0), QuarkTag_py.at(0), QuarkTag_pz.at(0), QuarkTag_e.at(0))")
-                .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(QuarkTag_px.at(1), QuarkTag_py.at(1), QuarkTag_pz.at(1), QuarkTag_e.at(1))")
-                
+                .Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_px, RecoLepton_py, RecoLepton_pz, RecoLepton_e)")
+
+                .Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_3(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188)")
+
+                .Define("RecoZ1_p4",      "RecoLepton_p4.at(RecoZH_idx[0])")
+                .Define("RecoZ2_p4",      "Rec0Lepton_p4.at(RecoZH_idx[1])")
+
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
                 .Define("RecoZLead_py",    "RecoZLead_p4.Py()")
@@ -202,7 +164,33 @@ class RDFanalysis():
                 .Define("RecoZSub_y",     "RecoZSub_p4.Rapidity()")
                 .Define("RecoZSub_mass",    "RecoZSub_p4.M()")
 
-                .Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
+                .Define("RecoZP_p4",      "if (RecoLepton_charge.at(0)==1) return RecoZ1_p4; else return RecoZ2_p4;")
+                .Define("RecoZP_px",    "RecoZP_p4.Px()")
+                .Define("RecoZP_py",    "RecoZP_p4.Py()")
+                .Define("RecoZP_pz",    "RecoZP_p4.Pz()")
+                .Define("RecoZP_p",    "RecoZP_p4.P()")
+                .Define("RecoZP_pt",    "RecoZP_p4.Pt()")
+                .Define("RecoZP_e",     "RecoZP_p4.E()")
+                .Define("RecoZP_eta",    "RecoZP_p4.Eta()")
+                .Define("RecoZP_phi",    "RecoZP_p4.Phi()")
+                .Define("RecoZP_theta",    "RecoZP_p4.Theta()")
+                .Define("RecoZP_y",     "RecoZP_p4.Rapidity()")
+                .Define("RecoZP_mass",    "RecoZP_p4.M()")
+
+                .Define("RecoZM_p4",      "if (RecoLepton_charge.at(0)==1) return RecoZ2_p4; else return RecoZ1_p4;")
+                .Define("RecoZM_px",    "RecoZM_p4.Px()")
+                .Define("RecoZM_py",    "RecoZM_p4.Py()")
+                .Define("RecoZM_pz",    "RecoZM_p4.Pz()")
+                .Define("RecoZM_p",    "RecoZM_p4.P()")
+                .Define("RecoZM_pt",    "RecoZM_p4.Pt()")
+                .Define("RecoZM_e",     "RecoZM_p4.E()")
+                .Define("RecoZM_eta",    "RecoZM_p4.Eta()")
+                .Define("RecoZM_phi",    "RecoZM_p4.Phi()")
+                .Define("RecoZM_theta",    "RecoZM_p4.Theta()")
+                .Define("RecoZM_y",     "RecoZM_p4.Rapidity()")
+                .Define("RecoZM_mass",    "RecoZM_p4.M()")
+
+                .Define("RecoZ_p4",          "RecoZLead_p4+RecoZ2_p4")
                 .Define("RecoZ_px",    "RecoZ_p4.Px()")
                 .Define("RecoZ_py",    "RecoZ_p4.Py()")
                 .Define("RecoZ_pz",    "RecoZ_p4.Pz()")
@@ -214,19 +202,9 @@ class RDFanalysis():
                 .Define("RecoZ_theta",    "RecoZ_p4.Theta()")
                 .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
                 .Define("RecoZ_mass",    "RecoZ_p4.M()")
-
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_sel_px.at(0), RecoLepton_sel_py.at(0), RecoLepton_sel_pz.at(0), RecoLepton_sel_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_sel_px.at(1), RecoLepton_sel_py.at(1), RecoLepton_sel_pz.at(1), RecoLepton_sel_e.at(1))")
-                .Define("RecoTau1_type",        "if (RecoLepton_sel_mass.at(0)<0.05) return float(-0.11); else return float(-0.13);")
-                .Define("RecoTau2_type",        "if (RecoLepton_sel_mass.at(0)<0.05) return float(-0.13); else return float(-0.11);")
-                .Define("n_RecoTau1_constituents",        "return float(1);")
-                .Define("n_RecoTau2_constituents",        "return float(1);")
-                .Define("n_RecoTau1_charged_constituents",        "return float(1);")
-                .Define("n_RecoTau2_charged_constituents",        "return float(1);")
-                .Define("n_RecoTau1_neutral_constituents",        "return float(0);")
-                .Define("n_RecoTau2_neutral_constituents",        "return float(0);")
-
-
+                
+                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_kt2_px.at(0), TauFromJet_kt2_py.at(0), TauFromJet_kt2_pz.at(0), TauFromJet_kt2_e.at(0))")
+                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_kt2_px.at(1), TauFromJet_kt2_py.at(1), TauFromJet_kt2_pz.at(1), TauFromJet_kt2_e.at(1))")
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
                 .Define("RecoH_py",    "RecoH_p4.Py()")
@@ -240,7 +218,7 @@ class RDFanalysis():
                 .Define("RecoH_y",     "RecoH_p4.Rapidity()")
                 .Define("RecoH_mass",    "RecoH_p4.M()")
                 
-                .Define("TauLead_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_p4; else return RecoTau2_p4;")
+                .Define("TauLead_p4","if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_p4; else return RecoTau2_p4;")
                 .Define("TauLead_px",    "TauLead_p4.Px()")
                 .Define("TauLead_py",    "TauLead_p4.Py()")
                 .Define("TauLead_pz",    "TauLead_p4.Pz()")
@@ -252,10 +230,6 @@ class RDFanalysis():
                 .Define("TauLead_theta",    "TauLead_p4.Theta()")
                 .Define("TauLead_y",     "TauLead_p4.Rapidity()")
                 .Define("TauLead_mass",    "TauLead_p4.M()")
-                .Define("TauLead_type",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_type; else return RecoTau2_type;")
-                .Define("n_TauLead_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau1_constituents; else return n_RecoTau2_constituents;")
-                .Define("n_TauLead_charged_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau1_charged_constituents; else return n_RecoTau2_charged_constituents;")
-                .Define("n_TauLead_neutral_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau1_neutral_constituents; else return n_RecoTau2_neutral_constituents;")
 
                 .Define("TauSub_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauSub_px",    "TauSub_p4.Px()")
@@ -269,10 +243,32 @@ class RDFanalysis():
                 .Define("TauSub_theta",    "TauSub_p4.Theta()")
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
-                .Define("TauSub_type",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_type; else return RecoTau1_type;")
-                .Define("n_TauSub_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau2_constituents; else return n_RecoTau1_constituents;")
-                .Define("n_TauSub_charged_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau2_charged_constituents; else return n_RecoTau1_charged_constituents;")
-                .Define("n_TauSub_neutral_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau2_neutral_constituents; else return n_RecoTau1_neutral_constituents;")
+
+                .Define("TauP_p4","if (TauFromJet_kt2_charge.at(0)==1) return RecoTau1_p4; else return RecoTau2_p4;")
+                .Define("TauP_px",    "TauP_p4.Px()")
+                .Define("TauP_py",    "TauP_p4.Py()")
+                .Define("TauP_pz",    "TauP_p4.Pz()")
+                .Define("TauP_p",    "TauP_p4.P()")
+                .Define("TauP_pt",    "TauP_p4.Pt()")
+                .Define("TauP_e",     "TauP_p4.E()")
+                .Define("TauP_eta",    "TauP_p4.Eta()")
+                .Define("TauP_phi",    "TauP_p4.Phi()")
+                .Define("TauP_theta",    "TauP_p4.Theta()")
+                .Define("TauP_y",     "TauP_p4.Rapidity()")
+                .Define("TauP_mass",    "TauP_p4.M()")
+
+                .Define("TauM_p4",       "if (TauFromJet_kt2_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
+                .Define("TauM_px",    "TauM_p4.Px()")
+                .Define("TauM_py",    "TauM_p4.Py()")
+                .Define("TauM_pz",    "TauM_p4.Pz()")
+                .Define("TauM_p",    "TauM_p4.P()")
+                .Define("TauM_pt",    "TauM_p4.Pt()")
+                .Define("TauM_e",     "TauM_p4.E()")
+                .Define("TauM_eta",    "TauM_p4.Eta()")
+                .Define("TauM_phi",    "TauM_p4.Phi()")
+                .Define("TauM_theta",    "TauM_p4.Theta()")
+                .Define("TauM_y",     "TauM_p4.Rapidity()")
+                .Define("TauM_mass",    "TauM_p4.M()")
 
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
@@ -297,7 +293,6 @@ class RDFanalysis():
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
 
                 #.Filter("Collinear_mass>100 && Collinear_mass<150")
-
         )
         return df2
 
@@ -1004,48 +999,6 @@ class RDFanalysis():
         ]
         #complex variables added here at stage2
         branchList += [
-            "TauTag_px", 
-            "TauTag_py",    
-            "TauTag_pz",      
-            "TauTag_p",  
-            "TauTag_pt",    
-            "TauTag_phi", 
-            "TauTag_eta",     
-            "TauTag_theta",          
-            "TauTag_e",     
-            "TauTag_mass",        
-            "TauTag_charge",       
-            "TauTag_flavor",       
-            "n_TauTag",          
-            "TauTag_isG",  
-            "TauTag_isU",
-            "TauTag_isD",   
-            "TauTag_isS",  
-            "TauTag_isC",
-            "TauTag_isB",  
-            "TauTag_isTAU",
-
-            "QuarkTag_px", 
-            "QuarkTag_py",    
-            "QuarkTag_pz",      
-            "QuarkTag_p",  
-            "QuarkTag_pt",    
-            "QuarkTag_phi", 
-            "QuarkTag_eta",     
-            "QuarkTag_theta",          
-            "QuarkTag_e",     
-            "QuarkTag_mass",        
-            "QuarkTag_charge",       
-            "QuarkTag_flavor",       
-            "n_QuarkTag",          
-            "QuarkTag_isG",  
-            "QuarkTag_isU",
-            "QuarkTag_isD",   
-            "QuarkTag_isS",  
-            "QuarkTag_isC",
-            "QuarkTag_isB",  
-            "QuarkTag_isTAU",
-
             "RecoEmiss_eta",
             "RecoEmiss_phi",
             "RecoEmiss_theta",
@@ -1086,7 +1039,31 @@ class RDFanalysis():
             "RecoZSub_phi",   
             "RecoZSub_theta",    
             "RecoZSub_y",    
-            "RecoZSub_mass",  
+            "RecoZSub_mass",   
+
+            "RecoZP_px", 
+            "RecoZP_py",   
+            "RecoZP_pz",   
+            "RecoZP_p",    
+            "RecoZP_pt",   
+            "RecoZP_e",    
+            "RecoZP_eta",    
+            "RecoZP_phi",    
+            "RecoZP_theta",   
+            "RecoZP_y",     
+            "RecoZP_mass",   
+
+            "RecoZM_px",    
+            "RecoZM_py",   
+            "RecoZM_pz",   
+            "RecoZM_p",   
+            "RecoZM_pt",  
+            "RecoZM_e",     
+            "RecoZM_eta",   
+            "RecoZM_phi",   
+            "RecoZM_theta",    
+            "RecoZM_y",    
+            "RecoZM_mass", 
 
             "RecoH_px",
             "RecoH_py",
@@ -1111,10 +1088,6 @@ class RDFanalysis():
             "TauLead_theta",    
             "TauLead_y",    
             "TauLead_mass",
-            "TauLead_type",
-            "n_TauLead_constituents",
-            "n_TauLead_charged_constituents",
-            "n_TauLead_neutral_constituents",
 
             "TauSub_px",    
             "TauSub_py",   
@@ -1127,10 +1100,30 @@ class RDFanalysis():
             "TauSub_theta",    
             "TauSub_y",    
             "TauSub_mass",
-            "TauSub_type",
-            "n_TauSub_constituents",
-            "n_TauSub_charged_constituents",
-            "n_TauSub_neutral_constituents",
+
+            "TauP_px",    
+            "TauP_py",   
+            "TauP_pz",   
+            "TauP_p",   
+            "TauP_pt",   
+            "TauP_e",    
+            "TauP_eta",    
+            "TauP_phi",    
+            "TauP_theta",    
+            "TauP_y",    
+            "TauP_mass",
+
+            "TauM_px",    
+            "TauM_py",   
+            "TauM_pz",   
+            "TauM_p",   
+            "TauM_pt",   
+            "TauM_e",    
+            "TauM_eta",    
+            "TauM_phi",    
+            "TauM_theta",    
+            "TauM_y",    
+            "TauM_mass",
 
             "Recoil",
             "Collinear_mass", 
@@ -1145,6 +1138,6 @@ class RDFanalysis():
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
 
-        ]
+            ]
 
         return branchList
