@@ -1,13 +1,10 @@
 import os, copy # tagging
 import ROOT
 import urllib.request
-processList_test = {
-    'wzp6_ee_eeH_Htautau_ecm240': {'fraction':0.1},
-}
-
 processList = {
-    'p8_ee_WW_ecm240':{'chunks':1000},
-    'p8_ee_Zqq_ecm240':{'chunks':1000},
+
+    'p8_ee_WW_ecm240':{'chunks':3740},
+    'p8_ee_Zqq_ecm240':{'chunks':1007},
     'p8_ee_ZZ_ecm240':{'chunks':1000},
     
     'wzp6_ee_tautau_ecm240':{'chunks':1000},
@@ -32,7 +29,6 @@ processList = {
     'wzp6_gaga_ee_60_ecm240': {'chunks':1000},
 
     'wzp6_ee_nuenueZ_ecm240': {'chunks':1000},
-
     'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':100},
     'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':100},
     'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':100},
@@ -88,7 +84,6 @@ processList = {
     'wzp6_ee_qqH_Hgg_ecm240': {'chunks':100},
     'wzp6_ee_qqH_HWW_ecm240': {'chunks':100},
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':100},
-
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -98,7 +93,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 #inputDir = "root://eospublic.cern.ch//eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-#outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/"
+#outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
 outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
 
 # additional/costom C++ functions, defined in header files (optional)
@@ -110,10 +105,10 @@ eosType = "eosuser"
 #Optional running on HTCondor, default is False
 runBatch = True
 
-nCPUS = 6
+nCPUS = 8
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "tomorrow"
+batchQueue = "longlunch"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
