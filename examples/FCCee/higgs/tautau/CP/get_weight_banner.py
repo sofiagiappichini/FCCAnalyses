@@ -4,11 +4,27 @@ import shutil
 # Define the original sample name and the replacement sample names
 
 replacement_words = [
-    'noISR_e+e-_noCuts_EWonly',
-    'noISR_e+e-_noCuts_cehim_m1',
-    'noISR_e+e-_noCuts_cehim_p1',
-    'noISR_e+e-_noCuts_cehre_m1',
-    'noISR_e+e-_noCuts_cehre_p1',
+    #'noISR_e+e-_noCuts_EWonly',
+    #'noISR_e+e-_noCuts_cehim_m1',
+    #'noISR_e+e-_noCuts_cehim_p1',
+    #'noISR_e+e-_noCuts_cehre_m1',
+    #'noISR_e+e-_noCuts_cehre_p1',
+
+    #'noISR_e+e-_noCuts_EWonly_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehim_m1_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehim_p1_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehre_m1_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehre_p1_taudecay_2Pi2Nu',
+
+    #'noISR_e+e-_noCuts_cehim_m5_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehim_p5_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehre_m5_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehre_p5_taudecay_2Pi2Nu',
+
+    'noISR_e+e-_noCuts_cehim_m2_taudecay_2Pi2Nu',
+    'noISR_e+e-_noCuts_cehim_p2_taudecay_2Pi2Nu',
+    'noISR_e+e-_noCuts_cehre_m2_taudecay_2Pi2Nu',
+    'noISR_e+e-_noCuts_cehre_p2_taudecay_2Pi2Nu',
 ]
 
 # Loop through each replacement word
