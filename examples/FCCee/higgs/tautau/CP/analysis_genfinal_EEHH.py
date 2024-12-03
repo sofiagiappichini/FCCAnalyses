@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage2"
+inputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage2_pi+rho"
 
 #Optional: output directory, default is local running directory
-outputDir = "/ceph/sgiappic/HiggsCP/CPGen/final"
+outputDir = "/ceph/sgiappic/HiggsCP/CPGen/final_pi+rho"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -27,8 +27,24 @@ processList = {
     'noISR_e+e-_noCuts_cehim_p1':{},
     'noISR_e+e-_noCuts_cehre_m1':{},
     'noISR_e+e-_noCuts_cehre_p1':{},
-    'noISR':{},
-    'taudecay':{},
+    
+    #'EWonly_taudecay_2Pi2Nu':{},
+    #'cehim_m1_taudecay_2Pi2Nu':{},
+    #'cehim_p1_taudecay_2Pi2Nu':{},
+    #'cehre_m1_taudecay_2Pi2Nu':{},
+    #'cehre_p1_taudecay_2Pi2Nu':{},
+
+    #'cehim_m5_taudecay_2Pi2Nu':{},
+    #'cehim_p5_taudecay_2Pi2Nu':{},
+    #'cehre_m5_taudecay_2Pi2Nu':{},
+    #'cehre_p5_taudecay_2Pi2Nu':{},
+
+    #'cehim_m2_taudecay_2Pi2Nu':{},
+    #'cehim_p2_taudecay_2Pi2Nu':{},
+    #'cehre_m2_taudecay_2Pi2Nu':{},
+    #'cehre_p2_taudecay_2Pi2Nu':{},
+
+    #'wzp6_ee_eeH_Htautau_ecm240': {},
 }
 ###Dictionary for prettier names of processes (optional)
 #change them if you want but they don't do anything
@@ -46,6 +62,20 @@ procDictAdd = {
     'noISR_e+e-_noCuts_cehre_p1':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.00045498699833000005, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'noISR':{"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 0.00051559935862, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'taudecay':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 0.00051559935862, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "wzp6_ee_eeH_Htautau_ecm240": {"numberOfEvents": 400000, "sumOfWeights": 400000.0, "crossSection": 0.0004491, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'EWonly_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.778120325123597e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_m1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.8024289951161206e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.797985627446233e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_m1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 6.499955724499168e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.098765393810636e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_m5_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 6.310726805739835e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_p5_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 6.302421755280696e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_m5_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 9.812070492389316e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_p5_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.8061186713438668e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_m2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.8623334845172226e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_p2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.8639785901564145e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_m2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 7.264271533677142e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_p2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 4.461910656050512e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
 }
 
@@ -53,7 +83,6 @@ procDictAdd = {
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selGen": "true",
-    #"selReco_Maria": " (Recoil>120 && Recoil<140} && (TauFromJet_type[0]>=0 && TauFromJet_type[1]>=0}",
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -109,7 +138,7 @@ histoList = {
     "GenPiP_charge":                 {"name":"GenPiP_charge",             "title":"Final state gen #pi^{+} charge",                 "bin":3, "xmin":-1.5,"xmax":1.5},
     "GenPiP_mass":                   {"name":"GenPiP_mass",               "title":"Final state gen #pi^{+} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
    
-   "GenPiM_e":                      {"name":"GenPiM_e",                  "title":"Final state gen #pi^{-} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "GenPiM_e":                      {"name":"GenPiM_e",                  "title":"Final state gen #pi^{-} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
     "GenPiM_p":                      {"name":"GenPiM_p",                  "title":"Final state gen #pi^{-} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
     "GenPiM_pt":                     {"name":"GenPiM_pt",                 "title":"Final state gen #pi^{-} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
     "GenPiM_px":                     {"name":"GenPiM_px",                 "title":"Final state gen #pi^{-} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
@@ -122,53 +151,53 @@ histoList = {
     "GenPiM_charge":                 {"name":"GenPiM_charge",             "title":"Final state gen #pi^{-} charge",                 "bin":3, "xmin":-1.5,"xmax":1.5},
     "GenPiM_mass":                   {"name":"GenPiM_mass",               "title":"Final state gen #pi^{-} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
 
-    "GenPi0M_e":                      {"name":"GenPi0M_e",                  "title":"Final state gen #pi^{0} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "GenPi0M_p":                      {"name":"GenPi0M_p",                  "title":"Final state gen #pi^{0} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
-    "GenPi0M_pt":                     {"name":"GenPi0M_pt",                 "title":"Final state gen #pi^{0} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
-    "GenPi0M_px":                     {"name":"GenPi0M_px",                 "title":"Final state gen #pi^{0} p_{x} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenPi0M_py":                     {"name":"GenPi0M_py",                 "title":"Final state gen #pi^{0} p_{y} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenPi0M_pz":                     {"name":"GenPi0M_pz",                 "title":"Final state gen #pi^{0} p_{z} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenPi0M_y":                      {"name":"GenPi0M_y",                  "title":"Final state gen #pi^{0} rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "GenPi0M_eta":                    {"name":"GenPi0M_eta",                "title":"Final state gen #pi^{0} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "GenPi0M_theta":                  {"name":"GenPi0M_theta",              "title":"Final state gen #pi^{0} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "GenPi0M_phi":                    {"name":"GenPi0M_phi",                "title":"Final state gen #pi^{0} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "GenPi0M_mass":                   {"name":"GenPi0M_mass",               "title":"Final state gen #pi^{0} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
+    #"GenPi0M_e":                      {"name":"GenPi0M_e",                  "title":"Final state gen #pi^{0} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    #"GenPi0M_p":                      {"name":"GenPi0M_p",                  "title":"Final state gen #pi^{0} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
+    #"GenPi0M_pt":                     {"name":"GenPi0M_pt",                 "title":"Final state gen #pi^{0} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
+    #"GenPi0M_px":                     {"name":"GenPi0M_px",                 "title":"Final state gen #pi^{0} p_{x} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenPi0M_py":                     {"name":"GenPi0M_py",                 "title":"Final state gen #pi^{0} p_{y} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenPi0M_pz":                     {"name":"GenPi0M_pz",                 "title":"Final state gen #pi^{0} p_{z} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenPi0M_y":                      {"name":"GenPi0M_y",                  "title":"Final state gen #pi^{0} rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    #"GenPi0M_eta":                    {"name":"GenPi0M_eta",                "title":"Final state gen #pi^{0} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"GenPi0M_theta":                  {"name":"GenPi0M_theta",              "title":"Final state gen #pi^{0} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    #"GenPi0M_phi":                    {"name":"GenPi0M_phi",                "title":"Final state gen #pi^{0} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"GenPi0M_mass":                   {"name":"GenPi0M_mass",               "title":"Final state gen #pi^{0} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
 
-    "GenPi0P_e":                      {"name":"GenPi0P_e",                  "title":"Final state gen #pi^{0} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "GenPi0P_p":                      {"name":"GenPi0P_p",                  "title":"Final state gen #pi^{0} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
-    "GenPi0P_pt":                     {"name":"GenPi0P_pt",                 "title":"Final state gen #pi^{0} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
-    "GenPi0P_px":                     {"name":"GenPi0P_px",                 "title":"Final state gen #pi^{0} p_{x} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenPi0P_py":                     {"name":"GenPi0P_py",                 "title":"Final state gen #pi^{0} p_{y} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenPi0P_pz":                     {"name":"GenPi0P_pz",                 "title":"Final state gen #pi^{0} p_{z} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenPi0P_y":                      {"name":"GenPi0P_y",                  "title":"Final state gen #pi^{0} rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "GenPi0P_eta":                    {"name":"GenPi0P_eta",                "title":"Final state gen #pi^{0} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "GenPi0P_theta":                  {"name":"GenPi0P_theta",              "title":"Final state gen #pi^{0} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "GenPi0P_phi":                    {"name":"GenPi0P_phi",                "title":"Final state gen #pi^{0} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "GenPi0P_mass":                   {"name":"GenPi0P_mass",               "title":"Final state gen #pi^{0} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
+    #"GenPi0P_e":                      {"name":"GenPi0P_e",                  "title":"Final state gen #pi^{0} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    #"GenPi0P_p":                      {"name":"GenPi0P_p",                  "title":"Final state gen #pi^{0} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
+    #"GenPi0P_pt":                     {"name":"GenPi0P_pt",                 "title":"Final state gen #pi^{0} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
+    #"GenPi0P_px":                     {"name":"GenPi0P_px",                 "title":"Final state gen #pi^{0} p_{x} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenPi0P_py":                     {"name":"GenPi0P_py",                 "title":"Final state gen #pi^{0} p_{y} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenPi0P_pz":                     {"name":"GenPi0P_pz",                 "title":"Final state gen #pi^{0} p_{z} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenPi0P_y":                      {"name":"GenPi0P_y",                  "title":"Final state gen #pi^{0} rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    #"GenPi0P_eta":                    {"name":"GenPi0P_eta",                "title":"Final state gen #pi^{0} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"GenPi0P_theta":                  {"name":"GenPi0P_theta",              "title":"Final state gen #pi^{0} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    #"GenPi0P_phi":                    {"name":"GenPi0P_phi",                "title":"Final state gen #pi^{0} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"GenPi0P_mass":                   {"name":"GenPi0P_mass",               "title":"Final state gen #pi^{0} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
    
-   "GenRhoP_e":                      {"name":"GenRhoP_e",                  "title":"Final state gen #rho^{+} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "GenRhoP_p":                      {"name":"GenRhoP_p",                  "title":"Final state gen #rho^{+} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
-    "GenRhoP_pt":                     {"name":"GenRhoP_pt",                 "title":"Final state gen #rho^{+} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
-    "GenRhoP_px":                     {"name":"GenRhoP_px",                 "title":"Final state gen #rho^{+} p_{x} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenRhoP_py":                     {"name":"GenRhoP_py",                 "title":"Final state gen #rho^{+} p_{y} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenRhoP_pz":                     {"name":"GenRhoP_pz",                 "title":"Final state gen #rho^{+} p_{z} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenRhoP_y":                      {"name":"GenRhoP_y",                  "title":"Final state gen #rho^{+} rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "GenRhoP_eta":                    {"name":"GenRhoP_eta",                "title":"Final state gen #rho^{+} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "GenRhoP_theta":                  {"name":"GenRhoP_theta",              "title":"Final state gen #rho^{+} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "GenRhoP_phi":                    {"name":"GenRhoP_phi",                "title":"Final state gen #rho^{+} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "GenRhoP_mass":                   {"name":"GenRhoP_mass",               "title":"Final state gen #rho^{+} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
+    #"GenRhoP_e":                      {"name":"GenRhoP_e",                  "title":"Final state gen #rho^{+} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    #"GenRhoP_p":                      {"name":"GenRhoP_p",                  "title":"Final state gen #rho^{+} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
+    #"GenRhoP_pt":                     {"name":"GenRhoP_pt",                 "title":"Final state gen #rho^{+} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
+    #"GenRhoP_px":                     {"name":"GenRhoP_px",                 "title":"Final state gen #rho^{+} p_{x} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenRhoP_py":                     {"name":"GenRhoP_py",                 "title":"Final state gen #rho^{+} p_{y} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenRhoP_pz":                     {"name":"GenRhoP_pz",                 "title":"Final state gen #rho^{+} p_{z} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenRhoP_y":                      {"name":"GenRhoP_y",                  "title":"Final state gen #rho^{+} rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    #"GenRhoP_eta":                    {"name":"GenRhoP_eta",                "title":"Final state gen #rho^{+} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"GenRhoP_theta":                  {"name":"GenRhoP_theta",              "title":"Final state gen #rho^{+} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    #"GenRhoP_phi":                    {"name":"GenRhoP_phi",                "title":"Final state gen #rho^{+} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"GenRhoP_mass":                   {"name":"GenRhoP_mass",               "title":"Final state gen #rho^{+} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
    
-   "GenRhoM_e":                      {"name":"GenRhoM_e",                  "title":"Final state gen #rho^{-} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "GenRhoM_p":                      {"name":"GenRhoM_p",                  "title":"Final state gen #rho^{-} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
-    "GenRhoM_pt":                     {"name":"GenRhoM_pt",                 "title":"Final state gen #rho^{-} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
-    "GenRhoM_px":                     {"name":"GenRhoM_px",                 "title":"Final state gen #rho^{-} p_{x} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenRhoM_py":                     {"name":"GenRhoM_py",                 "title":"Final state gen #rho^{-} p_{y} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenRhoM_pz":                     {"name":"GenRhoM_pz",                 "title":"Final state gen #rho^{-} p_{z} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
-    "GenRhoM_y":                      {"name":"GenRhoM_y",                  "title":"Final state gen #rho^{-} rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "GenRhoM_eta":                    {"name":"GenRhoM_eta",                "title":"Final state gen #rho^{-} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "GenRhoM_theta":                  {"name":"GenRhoM_theta",              "title":"Final state gen #rho^{-} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "GenRhoM_phi":                    {"name":"GenRhoM_phi",                "title":"Final state gen #rho^{-} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "GenRhoM_mass":                   {"name":"GenRhoM_mass",               "title":"Final state gen #rho^{-} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
+    #"GenRhoM_e":                      {"name":"GenRhoM_e",                  "title":"Final state gen #rho^{-} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    #"GenRhoM_p":                      {"name":"GenRhoM_p",                  "title":"Final state gen #rho^{-} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
+    #"GenRhoM_pt":                     {"name":"GenRhoM_pt",                 "title":"Final state gen #rho^{-} p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
+    #"GenRhoM_px":                     {"name":"GenRhoM_px",                 "title":"Final state gen #rho^{-} p_{x} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenRhoM_py":                     {"name":"GenRhoM_py",                 "title":"Final state gen #rho^{-} p_{y} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenRhoM_pz":                     {"name":"GenRhoM_pz",                 "title":"Final state gen #rho^{-} p_{z} [GeV]",            "bin":50,"xmin":100 ,"xmax":100},
+    #"GenRhoM_y":                      {"name":"GenRhoM_y",                  "title":"Final state gen #rho^{-} rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    #"GenRhoM_eta":                    {"name":"GenRhoM_eta",                "title":"Final state gen #rho^{-} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"GenRhoM_theta":                  {"name":"GenRhoM_theta",              "title":"Final state gen #rho^{-} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    #"GenRhoM_phi":                    {"name":"GenRhoM_phi",                "title":"Final state gen #rho^{-} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"GenRhoM_mass":                   {"name":"GenRhoM_mass",               "title":"Final state gen #rho^{-} mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
 
     #"n_TauNeg_MuNuNu":                  {"name":"n_TauNeg_MuNuNu",          "title":"Number of #tau^{-} decays into #mu #nu #nu per events",            "bin":2, "xmin":-0.5, "xmax":1.5}, 
     #"n_TauNeg_MuNuNu_Phot":             {"name":"n_TauNeg_MuNuNu_Phot",     "title":"Number of #tau^{-} decays into #mu #nu #nu #gamma per events",     "bin":2, "xmin":-0.5, "xmax":1.5}, 
@@ -413,14 +442,19 @@ histoList = {
     "HRF_GenTauM_theta":              {"name":"HRF_GenTauM_theta",              "title":"Gen #tau^{-} #theta in H rest frame",                 "bin":16, "xmin":0,"xmax":3.2},
     "HRF_GenTauM_y":                  {"name":"HRF_GenTauM_y",                  "title":"Gen #tau^{-} rapidity in H rest frame",               "bin":40, "xmin":-4., "xmax":4.},
 
-    "HRF_GenTau_DEta":                   {"name":"HRF_GenTau_DEta",           "title":"Gen di-#tau #Delta#eta in H rest frame",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
-    "HRF_GenTau_DPhi":           {"name":"HRF_GenTau_DPhi",           "title":"Gen di-#tau #Delta#phi in H rest frame",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
-    "HRF_GenTau_DEta_y":                   {"name":"HRF_GenTau_DEta_y",           "title":"Gen di-#tau #Delta#eta in H rest frame",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
-    "HRF_GenTau_DPhi_y":           {"name":"HRF_GenTau_DPhi_y",           "title":"Gen di-#tau #Delta#phi in H rest frame",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"HRF_GenTau_DEta":                   {"name":"HRF_GenTau_DEta",           "title":"Gen di-#tau #Delta#eta in H rest frame",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"HRF_GenTau_DPhi":           {"name":"HRF_GenTau_DPhi",           "title":"Gen di-#tau #Delta#phi in H rest frame",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"HRF_GenTau_DEta_y":                   {"name":"HRF_GenTau_DEta_y",           "title":"Gen di-#tau #Delta#eta in H rest frame",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
+    #"HRF_GenTau_DPhi_y":           {"name":"HRF_GenTau_DPhi_y",           "title":"Gen di-#tau #Delta#phi in H rest frame",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
 
-    "ytau":              {"name":"ytau",            "title":"Gen y^{#tau}",                  "bin":100, "xmin":-1,"xmax":1},
-    "GenPhiCP_pre":              {"name":"GenPhiCP_pre",            "title":"Gen #Phi_{CP} not asymmetric",                  "bin":128, "xmin":0,"xmax":6.4},
-    "GenPhiCP":              {"name":"GenPhiCP",            "title":"Gen #Phi_{CP}",                  "bin":128, "xmin":0,"xmax":6.4},
+    "CosDeltaPhi":              {"name":"CosDeltaPhi",            "title":"cos#Delta#phi (ILC)",                  "bin":50, "xmin":-1.,"xmax":1.},
+    "SinDeltaPhi":              {"name":"SinDeltaPhi",            "title":"sin#Delta#phi (ILC)",                  "bin":50, "xmin":-1.,"xmax":1.},
+    "GenDeltaPhi":              {"name":"GenDeltaPhi",            "title":"#Delta#phi (ILC)",                  "bin":63, "xmin":-3.14,"xmax":3.14},
+
+    "CosPhi":              {"name":"CosPhi",            "title":"cos#phi (angle of decay)",                  "bin":50, "xmin":-1.,"xmax":1.},
+    "SinPhi":              {"name":"SinPhi",            "title":"sin#phi (angle of decay)",                  "bin":50, "xmin":-1.,"xmax":1.},
+    "GenPhi_decay":              {"name":"GenPhi_decay",            "title":"#Delta#phi (angle of decay)",                  "bin":63, "xmin":-3.14,"xmax":3.14},
+    
     "GenTheta2":              {"name":"GenTheta2",            "title":"Gen #theta_{2}",                  "bin":32, "xmin":0,"xmax":3.2},
     "GenTheta2_cos":              {"name":"GenTheta2_cos",            "title":"Gen cos#theta_{2}",                  "bin":50, "xmin":-1.,"xmax":1.},
     "GenRecoil":                   {"name":"GenRecoil",                   "title":"Gen M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},

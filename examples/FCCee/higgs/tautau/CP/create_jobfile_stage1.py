@@ -34,7 +34,9 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+RequestWalltime = 180\n'
+    #cfg += '+RequestWalltime = 180\n'
+
+    cfg += '+JobFlavor = "longlunch"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 

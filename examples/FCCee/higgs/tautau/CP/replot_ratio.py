@@ -32,10 +32,10 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CPGen/final/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/CPGen/final_pi+rho/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Gen/' 
+DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Gen/Pi+Rho/' 
 #list of cuts you want to plot
 CUTS = [
     #"selReco",
@@ -47,7 +47,7 @@ LABELS = {
     "selGen": "No additional selection",
  }
 
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (#pi#pi^{0}#nu)"# (#pi#pi^{0}#nu)"
+ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (#pi#nu + #pi#pi^{0}#nu)"
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
@@ -55,7 +55,8 @@ LOGY = False
 
 #now you can list all the histograms that you want to plot
 VARIABLES_GEN = [
-    "n_FSGenElectron",
+    ######## Monte-Carlo particles #######
+            "n_FSGenElectron",
             "FSGenElectron_e",
             "FSGenElectron_p",
             "FSGenElectron_pt",
@@ -126,7 +127,7 @@ VARIABLES_GEN = [
             "HiggsGenTau_vertex_x",
             "HiggsGenTau_vertex_y",
             "HiggsGenTau_vertex_z",
-  
+
             "GenPiP_e",
             "GenPiP_p",
             "GenPiP_pt",
@@ -140,30 +141,6 @@ VARIABLES_GEN = [
             "GenPiP_charge",
             "GenPiP_mass",
 
-            "GenPi0P_e",
-            "GenPi0P_p",
-            "GenPi0P_pt",
-            "GenPi0P_px",
-            "GenPi0P_py",
-            "GenPi0P_pz",
-            "GenPi0P_y",
-            "GenPi0P_eta",
-            "GenPi0P_theta",
-            "GenPi0P_phi",
-            "GenPi0P_mass",
-
-            "GenRhoP_e",
-            "GenRhoP_p",
-            "GenRhoP_pt",
-            "GenRhoP_px",
-            "GenRhoP_py",
-            "GenRhoP_pz",
-            "GenRhoP_y",
-            "GenRhoP_eta",
-            "GenRhoP_theta",
-            "GenRhoP_phi",
-            "GenRhoP_mass",
-
             "GenPiM_e",
             "GenPiM_p",
             "GenPiM_pt",
@@ -176,58 +153,6 @@ VARIABLES_GEN = [
             "GenPiM_phi",
             "GenPiM_charge",
             "GenPiM_mass",
-
-            "GenPi0M_e",
-            "GenPi0M_p",
-            "GenPi0M_pt",
-            "GenPi0M_px",
-            "GenPi0M_py",
-            "GenPi0M_pz",
-            "GenPi0M_y",
-            "GenPi0M_eta",
-            "GenPi0M_theta",
-            "GenPi0M_phi",
-            "GenPi0M_mass",
-
-            "GenRhoM_e",
-            "GenRhoM_p",
-            "GenRhoM_pt",
-            "GenRhoM_px",
-            "GenRhoM_py",
-            "GenRhoM_pz",
-            "GenRhoM_y",
-            "GenRhoM_eta",
-            "GenRhoM_theta",
-            "GenRhoM_phi",
-            "GenRhoM_mass",
-
-            "n_FSGenNeutrino",
-            "FSGenNeutrino_e",
-            "FSGenNeutrino_p",
-            "FSGenNeutrino_pt",
-            "FSGenNeutrino_px",
-            "FSGenNeutrino_py",
-            "FSGenNeutrino_pz",
-            "FSGenNeutrino_y",
-            "FSGenNeutrino_eta",
-            "FSGenNeutrino_theta",
-            "FSGenNeutrino_phi",
-            "FSGenNeutrino_charge",
-            #"FSGenNeutrino_parentPDG",
-
-            "n_FSGenPhoton",
-            "FSGenPhoton_e",
-            "FSGenPhoton_p",
-            "FSGenPhoton_pt",
-            "FSGenPhoton_px",
-            "FSGenPhoton_py",
-            "FSGenPhoton_pz",
-            "FSGenPhoton_y",
-            "FSGenPhoton_eta",
-            "FSGenPhoton_theta",
-            "FSGenPhoton_phi",
-            "FSGenPhoton_charge",
-            #"FSGenPhoton_parentPDG",
             
             "n_GenHiggs",
             "GenHiggs_e",
@@ -1091,9 +1016,9 @@ VARIABLES_CPGEN = [
             "FSGenZDaughter_DEta_y", 
             "FSGenZDaughter_DPhi_y", 
 
-            "ytau", 
-            "GenPhiCP_pre",   
-            "GenPhiCP",   
+            #"ytau", 
+            #"GenPhiCP_pre",   
+            #"GenPhiCP",   
 
             "HRF_GenTauLead_px",  
             "HRF_GenTauLead_py",  
@@ -1139,15 +1064,23 @@ VARIABLES_CPGEN = [
             "HRF_GenTauM_theta",    
             "HRF_GenTauM_y", 
 
-            "HRF_GenTau_DEta", 
-            "HRF_GenTau_DPhi",
-            "HRF_GenTau_DEta_y", 
-            "HRF_GenTau_DPhi_y", 
+            #"HRF_GenTau_DEta", 
+            #"HRF_GenTau_DPhi",
+            #"HRF_GenTau_DEta_y", 
+            #"HRF_GenTau_DPhi_y", 
 
             "GenTheta2",
             "GenTheta2_cos",
 
             "GenRecoil",
+
+            "CosDeltaPhi",  
+            "SinDeltaPhi",    
+            "GenDeltaPhi",
+
+            "CosPhi",  
+            "SinPhi",    
+            "GenPhi_decay",
 ]
 
 VARIABLES_CPRECO = [
@@ -1390,10 +1323,28 @@ bcolors = {
 #list of signals, then legend and colors to be assigned to them
 signals = [
     'noISR_e+e-_noCuts_EWonly',
-    #'noISR_e+e-_noCuts_cehre_m1',
+    'noISR_e+e-_noCuts_cehre_m1',
     'noISR_e+e-_noCuts_cehre_p1',
-    #'noISR_e+e-_noCuts_cehim_m1',
+    'noISR_e+e-_noCuts_cehim_m1',
     'noISR_e+e-_noCuts_cehim_p1',
+
+    #'EWonly_taudecay_2Pi2Nu',
+    #'cehim_m1_taudecay_2Pi2Nu',
+    #'cehim_p1_taudecay_2Pi2Nu',
+    #'cehre_m1_taudecay_2Pi2Nu',
+    #'cehre_p1_taudecay_2Pi2Nu',
+
+    #'cehim_m5_taudecay_2Pi2Nu',
+    #'cehim_p5_taudecay_2Pi2Nu',
+    #'cehre_m5_taudecay_2Pi2Nu',
+    #'cehre_p5_taudecay_2Pi2Nu',
+
+    #'cehim_m2_taudecay_2Pi2Nu',
+    #'cehim_p2_taudecay_2Pi2Nu',
+    #'cehre_m2_taudecay_2Pi2Nu',
+    #'cehre_p2_taudecay_2Pi2Nu',
+
+    #'wzp6_ee_eeH_Htautau_ecm240',
 ]
 
 slegend = {
@@ -1402,6 +1353,25 @@ slegend = {
     'noISR_e+e-_noCuts_cehim_p1':"Z(ee)H(#tau#tau), CPV +1",
     'noISR_e+e-_noCuts_cehre_m1':"Z(ee)H(#tau#tau), CPC -1",
     'noISR_e+e-_noCuts_cehre_p1':"Z(ee)H(#tau#tau), CPC +1",
+    'noISR':"Z(ee)H(#tau#tau), CPV +1, v.2",
+    'taudecay':"Z(ee)H(#tau#tau), CPV +1, with #tau decay",
+    'wzp6_ee_eeH_Htautau_ecm240':"Z(ee)H(#tau#tau), SM Whizard",
+
+    'EWonly_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), SM",
+    'cehim_m1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV -1",
+    'cehim_p1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV +1",
+    'cehre_m1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC -1",
+    'cehre_p1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC +1",
+
+    'cehim_m5_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV -5",
+    'cehim_p5_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV +5",
+    'cehre_m5_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC -5",
+    'cehre_p5_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC +5",
+
+    'cehim_m2_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV -2",
+    'cehim_p2_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV +2",
+    'cehre_m2_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC -2",
+    'cehre_p2_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC +2",
 }
 
 scolors = {
@@ -1410,6 +1380,25 @@ scolors = {
     'noISR_e+e-_noCuts_cehim_p1':ROOT.kBlue-7,
     'noISR_e+e-_noCuts_cehre_m1':ROOT.kGreen-8,
     'noISR_e+e-_noCuts_cehre_p1':ROOT.kGreen-6,
+    'noISR':ROOT.kCyan-6,
+    'taudecay':ROOT.kMagenta-6,
+    'wzp6_ee_eeH_Htautau_ecm240':ROOT.kGray+2,
+
+    'EWonly_taudecay_2Pi2Nu':ROOT.kRed-9,
+    'cehim_m1_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_p1_taudecay_2Pi2Nu':ROOT.kBlue-7,
+    'cehre_m1_taudecay_2Pi2Nu':ROOT.kGreen-8,
+    'cehre_p1_taudecay_2Pi2Nu':ROOT.kGreen-6,
+
+    'cehim_m5_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_p5_taudecay_2Pi2Nu':ROOT.kBlue-7,
+    'cehre_m5_taudecay_2Pi2Nu':ROOT.kGreen-8,
+    'cehre_p5_taudecay_2Pi2Nu':ROOT.kGreen-6,
+
+    'cehim_m2_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_p2_taudecay_2Pi2Nu':ROOT.kBlue-7,
+    'cehre_m2_taudecay_2Pi2Nu':ROOT.kGreen-8,
+    'cehre_p2_taudecay_2Pi2Nu':ROOT.kGreen-6,
 }
 
 for cut in CUTS:
@@ -1471,7 +1460,7 @@ for cut in CUTS:
                 #if h.Integral()>0:
                     #h.Scale(1./(h.Integral()))
                 max_y = h.GetMaximum() 
-                h.GetYaxis().SetRangeUser(0, max_y*2.5)
+                h.GetYaxis().SetRangeUser(0, max_y*2)
             else: 
                 #if h.Integral()>0:
                     #h.Scale(1./(h.Integral()))
