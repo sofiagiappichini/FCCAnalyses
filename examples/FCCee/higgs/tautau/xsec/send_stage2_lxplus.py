@@ -3,7 +3,7 @@ import os
 
 DIRECTORIES = [
     #"/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/R5-tag/",
-    "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ktN-explicit/",
+    #"/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ktN-explicit/",
     "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ktN-tag/",
 ]
 SUBDIR = [
@@ -24,9 +24,7 @@ for dir in DIRECTORIES:
         directory = dir + cat
         print(f"Directory {directory}")
 
-        if "explicit/QQ" not in directory:
+        for sub in SUBDIR:
 
-            for sub in SUBDIR:
-
-                os.system(f"fccanalysis run {directory}/analysis_stage2_{cat}{sub}.py")
-                print(f"Executed {cat}{sub}")        
+            os.system(f"fccanalysis run {directory}/analysis_stage2_{cat}{sub}.py")
+            print(f"Executed {cat}{sub}")        
