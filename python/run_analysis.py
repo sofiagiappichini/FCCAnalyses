@@ -80,7 +80,7 @@ def create_condor_config(log_dir: str,
 
     cfg += 'on_exit_remove   = (ExitBySignal == False) && (ExitCode == 0)\n'
 
-    cfg += 'max_retries      = 3\n'
+    cfg += 'max_retries      = 10\n'
 
     cfg += '+JobFlavour      = "%s"\n' % get_element(rdf_module, 'batchQueue')
 
