@@ -54,9 +54,9 @@ replacement_words = [
     'wzp6_ee_bbH_Htautau_ecm240',
 ]
 
-DIRECTORY_EXC = "/ceph/awiedl/FCCee/HiggsCP/stage2"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ktN-explicit/stage2_241202"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/stage2_cat_eff_nocharge_clean/"
+DIRECTORY_EXC = "/ceph/awiedl/FCCee/HiggsCP/stage2_cat_eff_nocharge_clean/"
 
 SUBDIR = [
     'LL',
@@ -105,14 +105,14 @@ for cat in CAT:
                 #print(f"{root_file_path}, {cat+sub}, {process_events}, {events_ttree}")
 
             #run over files with taus from function
-            root_file_path1 = f"{DIRECTORY_EXC}/{cat}/{sub}/{replacement_word}/chunk_0.root"
+            #root_file_path1 = f"{DIRECTORY_EXC}/{cat}/{sub}/{replacement_word}/chunk*.root"
 
-            if file_exists(root_file_path1):
+            #if file_exists(root_file_path1):
 
-                chunk_process_events1, chunk_events_ttree1 = get_entries(root_file_path1)
-                if chunk_process_events1 is not None and chunk_events_ttree1 is not None:
-                    process_events1 += chunk_process_events1 #original number of events
-                    events_ttree1 += chunk_events_ttree1
+            #    chunk_process_events1, chunk_events_ttree1 = get_entries(root_file_path1)
+            #    if chunk_process_events1 is not None and chunk_events_ttree1 is not None:
+            #        process_events1 += chunk_process_events1 #original number of events
+            #       events_ttree1 += chunk_events_ttree1
                 #print(f"{root_file_path1}, {cat+sub}, {process_events1}, {events_ttree1}")
 
             
@@ -147,13 +147,14 @@ for cat in CAT:
 
         row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}")
         #row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}")
+        print(f"{cat+sub} & {eff*100:.3f} & {eff1*100:.3f}")
 
 tab.append(row)
 
 # Write the content of the selected row to the output CSV file
 transposed_tab = list(zip(*tab))
  
-with open(output_file, "w", newline="") as file:
-    writer = csv.writer(file)
+#with open(output_file, "w", newline="") as file:
+#    writer = csv.writer(file)
     # Write each row of the matrix
-    writer.writerows(transposed_tab)
+#    writer.writerows(transposed_tab)

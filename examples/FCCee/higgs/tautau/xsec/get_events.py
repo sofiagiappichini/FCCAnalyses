@@ -137,6 +137,8 @@ DIRECTORY = {
 
 DIRECTORY_STAGE1 = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
+DIRECTORY_EOS = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
+
 SUBDIR = [
     'LL',
     'LH',
@@ -162,6 +164,15 @@ raw = {}
 row = []
 row.append(" & $N_{gen}$ & ") #header
 for replacement_word in replacement_words:
+
+    root_file_path = DIRECTORY_EOS + replacement_word
+    process_events = 0
+    events_ttree = 0
+
+    flist = glob.glob(root_file_path + '/*.root')
+    print(f"{replacement_word} & {len(flist)}")
+
+'''for replacement_word in replacement_words:
 
     root_file_path = DIRECTORY_STAGE1 + replacement_word
     process_events = 0
@@ -210,4 +221,4 @@ transposed_tab = list(zip(*tab))
 with open(output_file, "w", newline="") as file:
     writer = csv.writer(file)
     # Write each row of the matrix
-    writer.writerows(transposed_tab)
+    writer.writerows(transposed_tab)'''
