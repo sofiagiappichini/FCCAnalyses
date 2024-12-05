@@ -159,7 +159,7 @@ processList = {
     'wzp6_ee_qqH_HZZ_ecm240',
 }
 
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
+inputDir = "c"
 output = '/afs/cern.ch/user/s/sgiappic/HTCondor/' ##output directory of submission files, needs to be different to have unique submission files
 
 nCPUS = 2
