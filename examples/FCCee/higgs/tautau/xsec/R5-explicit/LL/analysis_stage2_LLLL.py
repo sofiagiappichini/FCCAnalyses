@@ -123,7 +123,7 @@ class RDFanalysis():
                 .Define("TwoPairs",     "((n_RecoElectrons==2 and n_RecoMuons==2) and (RecoElectron_charge.at(0) + RecoElectron_charge.at(1))==0 and (RecoMuon_charge.at(0) + RecoMuon_charge.at(1))==0)*1.0")
                 .Define("OnePair",     "(((n_RecoElectrons==3 and n_RecoMuons==1) or (n_RecoElectrons==1 and n_RecoMuons==3))  and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1) + RecoLepton_charge.at(2) + RecoLepton_charge.at(3))==0)*1.0")
 
-                .Filter("(AllLeptons==1 || TwoPairs==1 || OnePair==1) && n_Jets_R5_sel==0 && n_TauFromJet_R5==0") 
+                .Filter("(AllLeptons==1 || TwoPairs==1 || OnePair==1) && n_TagJet_R5_sel==0 && n_TauFromJet_R5==0") 
 
                 ##################
                 # Reco particles #
@@ -644,17 +644,17 @@ class RDFanalysis():
             #"RecoPartPID" ,
             #"RecoPartPIDAtVertex",
 
-            #"Jets_R5_e",     
-            #"Jets_R5_p",     
-            #"Jets_R5_pt",     
-            #"Jets_R5_px",   
-            #"Jets_R5_py",   
-            #"Jets_R5_pz",     
-            #"Jets_R5_eta",    
-            #"Jets_R5_theta",   
-            #"Jets_R5_phi",     
-            #"Jets_R5_mass",        
-            #"n_Jets_R5", 
+            #"TagJet_R5_e",     
+            #"TagJet_R5_p",     
+            #"TagJet_R5_pt",     
+            #"TagJet_R5_px",   
+            #"TagJet_R5_py",   
+            #"TagJet_R5_pz",     
+            #"TagJet_R5_eta",    
+            #"TagJet_R5_theta",   
+            #"TagJet_R5_phi",     
+            #"TagJet_R5_mass",        
+            #"n_TagJet_R5", 
 
             #"Jets_excl4_e",     
             #"Jets_excl4_p",     
@@ -698,17 +698,17 @@ class RDFanalysis():
             #"TauFromJet_mass",
             #"n_TauFromJet",
 
-            #"Jets_R5_sel_e",     
-            #"Jets_R5_sel_p",     
-            #"Jets_R5_sel_pt",     
-            #"Jets_R5_sel_px",   
-            #"Jets_R5_sel_py",   
-            #"Jets_R5_sel_pz",     
-            #"Jets_R5_sel_eta",    
-            #"Jets_R5_sel_theta",   
-            #"Jets_R5_sel_phi",     
-            #"Jets_R5_sel_mass",      
-            #"n_Jets_R5_sel", 
+            #"TagJet_R5_sel_e",     
+            #"TagJet_R5_sel_p",     
+            #"TagJet_R5_sel_pt",     
+            #"TagJet_R5_sel_px",   
+            #"TagJet_R5_sel_py",   
+            #"TagJet_R5_sel_pz",     
+            #"TagJet_R5_sel_eta",    
+            #"TagJet_R5_sel_theta",   
+            #"TagJet_R5_sel_phi",     
+            #"TagJet_R5_sel_mass",      
+            #"n_TagJet_R5_sel", 
 
             "TagJet_R5_px", 
             "TagJet_R5_py",    

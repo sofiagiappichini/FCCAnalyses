@@ -90,7 +90,7 @@ processList = {
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/R5-tag/stage2_241201/QQ/LL"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/R5-tag/stage2_241202/QQ/LL"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
