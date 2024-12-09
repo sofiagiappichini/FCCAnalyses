@@ -15,7 +15,7 @@ SUBDIR = [
 #category to plot
 CAT = [
     "QQ",
-    "LL",
+    #"LL",
     "NuNu",
 ]
 

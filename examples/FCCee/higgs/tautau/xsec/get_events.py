@@ -36,6 +36,7 @@ def get_entries(infilepath: str) -> tuple[int, int]:
             if events_ttree:
                 events_in_ttree = events_ttree.GetEntries()
             else:
+                #print(f"Faulty {infilepath}")
                 return None, None
 
         except AttributeError:
@@ -137,7 +138,14 @@ DIRECTORY = {
 
 DIRECTORY_STAGE1 = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 
-DIRECTORY_EOS = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
+DIRECTORY_EOS = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
+
+TAG = [
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
+]
 
 SUBDIR = [
     'LL',
@@ -154,16 +162,13 @@ CAT = [
 # Define the tree name
 tree_name = "events"
 
-# Print the results
-output_file = "/ceph/awiedl/FCCee/HiggsCP/stage2/nevents_tree.txt"
-
 tab = []
 raw = {}
 
 # Loop through each replacement word
 row = []
-row.append(" & $N_{gen}$ & ") #header
-for replacement_word in replacement_words:
+#row.append(" & $N_{gen}$ & ") #header
+'''for replacement_word in replacement_words:
 
     root_file_path = DIRECTORY_EOS + replacement_word
     process_events = 0
@@ -172,9 +177,9 @@ for replacement_word in replacement_words:
     flist = glob.glob(root_file_path + '/*.root')
     print(f"{replacement_word} & {len(flist)}")
 
-'''for replacement_word in replacement_words:
+for replacement_word in replacement_words:
 
-    root_file_path = DIRECTORY_STAGE1 + replacement_word
+    root_file_path = DIRECTORY_EOS + replacement_word
     process_events = 0
     events_ttree = 0
 
@@ -184,41 +189,50 @@ for replacement_word in replacement_words:
         if chunk_process_events is not None and chunk_events_ttree is not None:
             process_events += chunk_process_events #original number of events
             events_ttree += chunk_events_ttree
+    print((f"{replacement_word} & {process_events} & "))
     row.append(f"{replacement_word} & {process_events} & ")
     raw[replacement_word] = process_events
 tab.append(row)
 
-for cat in CAT:
-    for sub in SUBDIR:
-        directory = DIRECTORY[cat] + "/" + sub + "/"
-        newrow = []
-        newrow.append(f"{cat+sub} & ") #header
+'''
+for tag in TAG:
+    tab = []
+    for cat in CAT:
+        for sub in SUBDIR:
+            directory = DIRECTORY_EOS + tag + "/stage2_241202/" + cat + "/" + sub + "/"
+            print(directory)
+            newrow = []
+            newrow.append(f"{cat+sub} & ") #header
 
-        for replacement_word in replacement_words:
-        
-            root_file_path = directory + replacement_word
-            process_events = 0
-            events_ttree = 0
+            for replacement_word in replacement_words:
+            
+                root_file_path = directory + replacement_word
+                process_events = 0
+                events_ttree = 0
 
-            flist = glob.glob(root_file_path + '/chunk*.root')
-            for filepath in flist:
-                chunk_process_events, chunk_events_ttree = get_entries(filepath)
-                if chunk_process_events is not None and chunk_events_ttree is not None:
-                    process_events += chunk_process_events #original number of events
-                    events_ttree += chunk_events_ttree #number of events after selection=
+                flist = glob.glob(root_file_path + '/*.root')
+                for filepath in flist:
+                    chunk_process_events, chunk_events_ttree = get_entries(filepath)
+                    if chunk_process_events is not None and chunk_events_ttree is not None:
+                        process_events += chunk_process_events #original number of events
+                        events_ttree += chunk_events_ttree #number of events after selection=
 
-            if process_events!=0 :
-                newrow.append(f"{events_ttree/process_events:.2e} & ")
-            else:
-                ratio = 1/raw[replacement_word]
-                newrow.append(f"$\leq$ {ratio:.2e} & ") 
+                newrow.append(f"{events_ttree} & ")
 
-        tab.append(newrow)
+                #if process_events!=0 :
+                #    newrow.append(f"{events_ttree/process_events:.2e} & ")
+                #else:
+                #    ratio = 1/raw[replacement_word]
+                #    newrow.append(f"$\leq$ {ratio:.2e} & ") 
 
-# Write the content of the selected row to the output CSV file
-transposed_tab = list(zip(*tab))
- 
-with open(output_file, "w", newline="") as file:
-    writer = csv.writer(file)
-    # Write each row of the matrix
-    writer.writerows(transposed_tab)'''
+            tab.append(newrow)
+
+    # Write the content of the selected row to the output CSV file
+    transposed_tab = list(zip(*tab))
+
+    output_file = DIRECTORY_EOS + tag + "/nevents.txt"
+    
+    with open(output_file, "w", newline="") as file:
+        writer = csv.writer(file)
+        # Write each row of the matrix
+        writer.writerows(transposed_tab)
