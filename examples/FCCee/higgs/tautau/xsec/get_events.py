@@ -141,8 +141,8 @@ DIRECTORY_STAGE1 = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
 DIRECTORY_EOS = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
 
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
@@ -155,7 +155,7 @@ SUBDIR = [
 #category to plot
 CAT = [
     "QQ",
-    "LL",
+    #"LL",
     "NuNu",
 ]
 
@@ -199,7 +199,7 @@ for tag in TAG:
     tab = []
     for cat in CAT:
         for sub in SUBDIR:
-            directory = DIRECTORY_EOS + tag + "/stage2_241202/" + cat + "/" + sub + "/"
+            directory = DIRECTORY_EOS + tag + "/stage2_241202_cut/" + cat + "/" + sub + "/"
             print(directory)
             newrow = []
             newrow.append(f"{cat+sub} & ") #header
@@ -230,7 +230,7 @@ for tag in TAG:
     # Write the content of the selected row to the output CSV file
     transposed_tab = list(zip(*tab))
 
-    output_file = DIRECTORY_EOS + tag + "/nevents.txt"
+    output_file = DIRECTORY_EOS + tag + "/nevents_cut.txt"
     
     with open(output_file, "w", newline="") as file:
         writer = csv.writer(file)

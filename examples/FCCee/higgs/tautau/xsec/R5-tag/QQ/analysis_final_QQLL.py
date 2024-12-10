@@ -1,8 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/stage2_241125/QQ/LL/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/stage2_241202/QQ/LL"
 
-#Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/final_241125/QQ/LL/" 
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/final_241202/QQ/LL"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -15,7 +14,7 @@ doScale = True
 saveTabular = True
 
 #Number of CPUs to use
-nCPUS = 4
+nCPUS = 6
 
 #produces ROOT TTrees, default is False
 doTree = False
@@ -125,8 +124,8 @@ cutList = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && QuarkTag_isTAU.at(0)<0.5 && QuarkTag_isTAU.at(1)<0.5",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && QuarkTag_isTAU.at(0)<0.5 && QuarkTag_isTAU.at(1)<0.5 && RecoEmiss_e>10",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && QuarkTag_isTAU.at(0)<0.5 && QuarkTag_isTAU.at(1)<0.5",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && QuarkTag_isTAU.at(0)<0.5 && QuarkTag_isTAU.at(1)<0.5 && RecoEmiss_e>10",
     
 }
 
@@ -140,8 +139,8 @@ cutLabels = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5, E_{miss}>10 GeV",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5, E_{miss}>10 GeV",
 
 }
 
@@ -725,17 +724,17 @@ histoList = {
     "RecoZLead_y":                {"name":"RecoZLead_y",                  "title":"Reco leading Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "RecoZLead_mass":             {"name":"RecoZLead_mass",               "title":"Reco leading Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
 
-    "RecoZM_px":                {"name":"RecoZM_px",                 "title":"Reco negative Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_py":                {"name":"RecoZM_py",                 "title":"Reco negative Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_pz":                {"name":"RecoZM_pz",                 "title":"Reco negative Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_p":                 {"name":"RecoZM_p",                  "title":"Reco negative Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZM_pt":                {"name":"RecoZM_pt",                 "title":"Reco negative Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZM_e":                 {"name":"RecoZM_e",                  "title":"Reco negative Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "RecoZM_eta":               {"name":"RecoZM_eta",                "title":"Reco negative Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZM_phi":               {"name":"RecoZM_phi",                "title":"Reco negative Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZM_theta":             {"name":"RecoZM_theta",              "title":"Reco negative Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoZM_y":                 {"name":"RecoZM_y",                  "title":"Reco negative Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "RecoZM_mass":              {"name":"RecoZM_mass",               "title":"Reco negative Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
+    "RecoZSub_px":                {"name":"RecoZSub_px",                 "title":"Reco subleading Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZSub_py":                {"name":"RecoZSub_py",                 "title":"Reco subleading Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZSub_pz":                {"name":"RecoZSub_pz",                 "title":"Reco subleading Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoZSub_p":                 {"name":"RecoZSub_p",                  "title":"Reco subleading Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZSub_pt":                {"name":"RecoZSub_pt",                 "title":"Reco subleading Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoZSub_e":                 {"name":"RecoZSub_e",                  "title":"Reco subleading Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoZSub_eta":               {"name":"RecoZSub_eta",                "title":"Reco subleading Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZSub_phi":               {"name":"RecoZSub_phi",                "title":"Reco subleading Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoZSub_theta":             {"name":"RecoZSub_theta",              "title":"Reco subleading Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoZSub_y":                 {"name":"RecoZSub_y",                  "title":"Reco subleading Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoZSub_mass":              {"name":"RecoZSub_mass",               "title":"Reco subleading Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
                             
     "RecoH_px":                 {"name":"RecoH_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "RecoH_py":                 {"name":"RecoH_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},

@@ -2,9 +2,6 @@ import os, copy # tagging
 import ROOT
 import urllib.request
 processList = {
-    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':1000},
-}
-processList_ = {
 
     'p8_ee_WW_ecm240':{'chunks':3740},
     'p8_ee_Zqq_ecm240':{'chunks':1007},
