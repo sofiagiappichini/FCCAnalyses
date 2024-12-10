@@ -54,105 +54,188 @@ replacement_words = [
     'wzp6_ee_bbH_Htautau_ecm240',
 ]
 
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ktN-explicit/stage2_241202"
+replacement_bkgs = [
+    'p8_ee_WW_ecm240',
+    'p8_ee_Zqq_ecm240',
+    'p8_ee_ZZ_ecm240',
+    
+    'wzp6_ee_tautau_ecm240',
+    'wzp6_ee_mumu_ecm240',
+    'wzp6_ee_ee_Mee_30_150_ecm240',
 
-DIRECTORY_EXC = "/ceph/awiedl/FCCee/HiggsCP/stage2_cat_eff_nocharge_clean/"
+    'wzp6_ee_tautauH_Htautau_ecm240',
+    'wzp6_ee_tautauH_Hbb_ecm240',
+    'wzp6_ee_tautauH_Hcc_ecm240',
+    'wzp6_ee_tautauH_Hss_ecm240',
+    'wzp6_ee_tautauH_Hgg_ecm240',
+    'wzp6_ee_tautauH_HWW_ecm240',
+    'wzp6_ee_tautauH_HZZ_ecm240',
+
+    'wzp6_egamma_eZ_Zmumu_ecm240',
+    'wzp6_egamma_eZ_Zee_ecm240',
+    'wzp6_gammae_eZ_Zmumu_ecm240',
+    'wzp6_gammae_eZ_Zee_ecm240',
+
+    'wzp6_gaga_tautau_60_ecm240',
+    'wzp6_gaga_mumu_60_ecm240',
+    'wzp6_gaga_ee_60_ecm240',
+
+    'wzp6_ee_nuenueZ_ecm240',
+
+    'wzp6_ee_nunuH_Hbb_ecm240',
+    'wzp6_ee_nunuH_Hcc_ecm240',
+    'wzp6_ee_nunuH_Hss_ecm240',
+    'wzp6_ee_nunuH_Hgg_ecm240',
+    'wzp6_ee_nunuH_HWW_ecm240',
+    'wzp6_ee_nunuH_HZZ_ecm240',
+
+    'wzp6_ee_eeH_Hbb_ecm240',
+    'wzp6_ee_eeH_Hcc_ecm240',
+    'wzp6_ee_eeH_Hss_ecm240',
+    'wzp6_ee_eeH_Hgg_ecm240',
+    'wzp6_ee_eeH_HWW_ecm240',
+    'wzp6_ee_eeH_HZZ_ecm240',
+
+    'wzp6_ee_mumuH_Hbb_ecm240',
+    'wzp6_ee_mumuH_Hcc_ecm240',
+    'wzp6_ee_mumuH_Hss_ecm240',
+    'wzp6_ee_mumuH_Hgg_ecm240',
+    'wzp6_ee_mumuH_HWW_ecm240',
+    'wzp6_ee_mumuH_HZZ_ecm240',
+
+    'wzp6_ee_bbH_Hbb_ecm240',
+    'wzp6_ee_bbH_Hcc_ecm240',
+    'wzp6_ee_bbH_Hss_ecm240',
+    'wzp6_ee_bbH_Hgg_ecm240',
+    'wzp6_ee_bbH_HWW_ecm240',
+    'wzp6_ee_bbH_HZZ_ecm240',
+
+    'wzp6_ee_ccH_Hbb_ecm240',
+    'wzp6_ee_ccH_Hcc_ecm240',
+    'wzp6_ee_ccH_Hss_ecm240',
+    'wzp6_ee_ccH_Hgg_ecm240',
+    'wzp6_ee_ccH_HWW_ecm240',
+    'wzp6_ee_ccH_HZZ_ecm240',
+
+    'wzp6_ee_ssH_Hbb_ecm240',
+    'wzp6_ee_ssH_Hcc_ecm240',
+    'wzp6_ee_ssH_Hss_ecm240',
+    'wzp6_ee_ssH_Hgg_ecm240',
+    'wzp6_ee_ssH_HWW_ecm240',
+    'wzp6_ee_ssH_HZZ_ecm240',
+
+    'wzp6_ee_qqH_Hbb_ecm240',
+    'wzp6_ee_qqH_Hcc_ecm240',
+    'wzp6_ee_qqH_Hss_ecm240',
+    'wzp6_ee_qqH_Hgg_ecm240',
+    'wzp6_ee_qqH_HWW_ecm240',
+    'wzp6_ee_qqH_HZZ_ecm240',
+
+]
+
+DIRECTORY_EOS = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
+
+TAG = [
+    #"R5-explicit",
+    #"R5-tag",
+    "ktN-explicit",
+    #"ktN-tag",
+]
 
 SUBDIR = [
-    'LL',
+    #'LL',
     'LH',
-    'HH',
+    #'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
-    "LL",
-    "NuNu",
+    #"LL",
+    #"NuNu",
 ]
 
 # Define the tree name
 tree_name = "events"
-
-# Print the results
-output_file = "/ceph/sgiappic/stage2_eff_nocharge_clean_nevents.txt"
 
 tab = []
 raw = {}
 
 # Loop through each replacement word
 row = []
-row.append("Signal category & Efficiency of tagged $\tau$ reconstruction & Efficiency of explicit $\tau$ reconstruction \\ \hline") #header
+row.append("Signal category & R5 explciit & & R5 PNet & & ktN explicit & & ktN PNet & ") #header
+row.append(" & Signal & Background & Signal & Background & Signal & Background & Signal & Background ")
 for cat in CAT:
     for sub in SUBDIR:
-        #events_jets = 0
-        #events_tau = 0
-        process_events = 0
-        events_ttree = 0
-        process_events1 = 0
-        events_ttree1 = 0
-        eff = 0
-        eff1 = 0
-        for replacement_word in replacement_words:
 
-            #run over files with taus from function
-            root_file_path = f"{DIRECTORY}/{cat}/{sub}/{replacement_word}"
-            flist = glob.glob(root_file_path + '/chunk*.root')
-            for filepath in flist:
-                chunk_process_events, chunk_events_ttree = get_entries(filepath)
-                if chunk_process_events is not None and chunk_events_ttree is not None:
-                    process_events += chunk_process_events #original number of events
-                    events_ttree += chunk_events_ttree
-                #print(f"{root_file_path}, {cat+sub}, {process_events}, {events_ttree}")
+        row.append(f"{cat+sub} & ")
+        
+        for tag in TAG:
 
-            #run over files with taus from function
-            #root_file_path1 = f"{DIRECTORY_EXC}/{cat}/{sub}/{replacement_word}/chunk*.root"
+            process_events = 0
+            events_ttree = 0
+            eff = 0
 
-            #if file_exists(root_file_path1):
+            for replacement_word in replacement_words:
 
-            #    chunk_process_events1, chunk_events_ttree1 = get_entries(root_file_path1)
-            #    if chunk_process_events1 is not None and chunk_events_ttree1 is not None:
-            #        process_events1 += chunk_process_events1 #original number of events
-            #       events_ttree1 += chunk_events_ttree1
-                #print(f"{root_file_path1}, {cat+sub}, {process_events1}, {events_ttree1}")
+                #run over files with taus from function
+                root_file_path = f"{DIRECTORY_EOS}/{tag}/stage2_241202/{cat}/{sub}/{replacement_word}"
+                root_file_path_og = f"{DIRECTORY_EOS}/{replacement_word}"
+                flist = glob.glob(root_file_path + '/*.root')
+                flist_og = glob.glob(root_file_path_og + '/*.root')
 
-            
-            #sum all events for signals
-            '''events_jets += events_ttree
-            #print(f"{cat}, {sub}, {replacement_word}, {events_jets}")
-            
-            #now for jets instead of taus
-            root_file_path1 = f"{DIRECTORY}/{cat}/{sub}/{replacement_word}"
-            process_events1 = 0
-            events_ttree1 = 0
+                for filepath in flist:
+                    chunk_process_events, chunk_events_ttree = get_entries(filepath)
+                    if chunk_process_events is not None and chunk_events_ttree is not None:
+                        #process_events += chunk_process_events #original number of events
+                        events_ttree += chunk_events_ttree
 
-            flist1 = glob.glob(root_file_path1 + '/chunk*.root')
-            for filepath1 in flist1:
-                chunk_process_events1, chunk_events_ttree1 = get_entries(filepath1)
-                if chunk_process_events1 is not None and chunk_events_ttree1 is not None:
-                    process_events1 += chunk_process_events1 #original number of events
-                    events_ttree1 += chunk_events_ttree1
-            
-            #sum all events for signals
-            events_tau += events_ttree1
-            #print(f"{events_tau}")
+                for filepath in flist_og:
+                    chunk_process_events, chunk_events_ttree = get_entries(filepath)
+                    if chunk_process_events is not None and chunk_events_ttree is not None:
+                        process_events += chunk_process_events #original number of events
+                        #events_ttree += chunk_events_ttree
+                        
+            process_events_b = 0
+            events_ttree_b = 0
+            eff_b = 0
+                        
+            for replacement_word in replacement_bkgs:
 
-        #get efficiency as tau events / jets events for each category
-        if events_jets!=0:
-            eff = events_tau / events_jets'''
+                #run over files with taus from function
+                root_file_path = f"{DIRECTORY_EOS}/{tag}/stage2_241202/{cat}/{sub}/{replacement_word}"
+                root_file_path_og = f"{DIRECTORY_EOS}/{replacement_word}"
+                flist = glob.glob(root_file_path + '/*.root')
+                flist_og = glob.glob(root_file_path_og + '/*.root')
 
-        if events_ttree!=0 :
-            eff = events_ttree/process_events
-        if events_ttree1!=0 :
-            eff1 = events_ttree1/process_events1
+                for filepath in flist:
+                    chunk_process_events, chunk_events_ttree = get_entries(filepath)
+                    if chunk_process_events is not None and chunk_events_ttree is not None:
+                        #process_events += chunk_process_events #original number of events
+                        events_ttree_b += chunk_events_ttree
 
-        row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}")
-        #row.append(f"{cat+sub} & {eff:.3f} & {eff1:.3f}")
-        print(f"{cat+sub} & {eff*100:.3f} & {eff1*100:.3f}")
+                for filepath in flist_og:
+                    chunk_process_events, chunk_events_ttree = get_entries(filepath)
+                    if chunk_process_events is not None and chunk_events_ttree is not None:
+                        process_events_b += chunk_process_events #original number of events
+                        #events_ttree += chunk_events_ttree
+                        
+                    #print(f"{root_file_path}, {cat+sub}, {process_events}, {events_ttree}")
+                
+            if events_ttree!=0 :
+                eff = events_ttree/process_events
+            if events_ttree_b!=0 :
+                eff_b = events_ttree_b/process_events_b
+
+            row[-1] += f"{eff:.3f} & {eff_b:.3f} &"
+
+            print(f"{eff:.3f} & {eff_b:.3f} &")
 
 tab.append(row)
 
 # Write the content of the selected row to the output CSV file
 transposed_tab = list(zip(*tab))
+
+output_file = DIRECTORY_EOS + "efficiency/cat_eff.txt"
  
 #with open(output_file, "w", newline="") as file:
 #    writer = csv.writer(file)

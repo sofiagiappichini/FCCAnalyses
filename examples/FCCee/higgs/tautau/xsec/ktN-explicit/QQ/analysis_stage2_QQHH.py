@@ -90,7 +90,7 @@ processList = {
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ktN-explicit/stage2_241202/QQ/HH"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ktN-explicit/stage2_241202_cut/QQ/HH"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -268,7 +268,7 @@ class RDFanalysis():
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
 
-                #.Filter("Collinear_mass>100 && Collinear_mass<150")
+                .Filter("Collinear_mass>100 && Collinear_mass<150")
         )
         return df2
 
