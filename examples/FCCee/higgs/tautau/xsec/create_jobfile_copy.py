@@ -5,7 +5,7 @@ def make_dir_if_not_exists(directory):
         os.makedirs(directory)
     os.system(f"chmod -R +x {directory}")
      
-def create_condor_config(nCPUs: int,
+def create_condor_config_lxplus(nCPUs: int,
                          output_dir: str):
     '''
     Creates contents of condor configuration file.
@@ -45,6 +45,51 @@ def create_condor_config(nCPUs: int,
                 if filename.endswith('.sh'):
                     sub.write(f' ' + output_dir + process + '/' + filename)
 
+def create_condor_config_KIT(nCPUs: int,
+                         memory: int,
+                         output_dir: str):
+    '''
+    Creates contents of condor configuration file.
+    '''
+    cfg = 'Universe          = docker\n'
+
+    cfg += 'docker_image     = cverstege/alma9-base\n'
+
+    cfg += 'accounting_group = cms.higgs \n'
+
+    cfg += 'output_dir       = '+output_dir+'\n'
+
+    cfg += 'executable       = $(filename)\n'
+
+    cfg += 'log              = $(output_dir)log/condor_$(ClusterId).$(ProcId).log\n'
+
+    cfg += 'output           = $(output_dir)out/condor_$(ClusterId).$(ProcId).out\n'
+
+    cfg += 'error            = $(output_dir)err/condor_$(ClusterId).$(ProcId).err\n'
+
+    cfg += 'max_retries      = 3\n'
+
+    cfg += '+JobFlavour      = "longlunch"\n'
+
+    cfg += 'request_memory   = '+str(memory)+' MB\n'
+
+    cfg += 'request_cpus     = '+str(nCPUs)+'\n'
+
+    cfg += 'requirements     = (TARGET.ProvidesCPU && TARGET.ProvidesEKPResources)\n'
+
+    cfg += 'should_transfer_files   = IF_NEEDED\n'
+
+    cfg += 'when_to_transfer_output  = ON_EXIT\n'
+
+    cfg += 'queue filename matching files'
+ 
+    with open(output_dir + '/job_submit.cfg', 'w') as sub:
+        sub.write(cfg)
+        for file in os.listdir(output_dir):
+            filename = os.fsdecode(file)
+            if filename.endswith('.sh'):
+                sub.write(f' ' + output_dir + filename)
+
 # _____________________________________________________________________________
 def create_subjob_script(
                          input_dir: str,
@@ -53,24 +98,31 @@ def create_subjob_script(
     Creates sub-job script to be run.
     '''
 
-    for process in processList:
-        j = 0
-        for file in os.listdir(input_dir+process):   
-            scr  = '#!/bin/bash\n\n'
-            scr += 'scp -r ' + input_dir + process + ' sgiappic@portal1.etp.kit.edu:/ceph/awiedl/FCCee/HiggsCP/stage1_241202/'
-            scr += '\n\n'     
-            with open(output_dir + process + '.sh', 'w') as sh:
-                sh.write(scr)
-            j+=1
-            print(f"SUBMISSION FIlE CREATED: {process}")
+    make_dir_if_not_exists(output_dir+"/err")
+    make_dir_if_not_exists(output_dir+"/log")
+    make_dir_if_not_exists(output_dir+"/out")
+
+    for tag in TAG:
+        make_dir_if_not_exists("/ceph/awiedl/FCCee/HiggsCP/"+tag+"/stage2_241202")
+
+        #for process in processList:
+        scr  = '#!/bin/bash\n\n'
+        scr += "source /ceph/sgiappic/FCCAnalyses/setup.sh\n\n"
+        #scr += 'scp -r ' + input_dir + ' sgiappic@portal1.etp.kit.edu:/ceph/awiedl/FCCee/HiggsCP/stage1_241202/'
+        #scr += 'xrdcp -r root://eospublic.cern.ch//eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/' + process + '/ /ceph/awiedl/FCCee/HiggsCP/stage1_241202/'
+        scr += 'xrdcp -r root://eospublic.cern.ch//eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/' + tag + '/stage2_241202_cut/ /ceph/awiedl/FCCee/HiggsCP/' + tag + '/'
+        scr += '\n\n'     
+        with open(output_dir + tag + '.sh', 'w') as sh:
+            sh.write(scr)
+        print(f"SUBMISSION FIlE CREATED: {tag}")
 
 def submit_jobs(output_dir: str):
-    for process in processList:
-        dir = output_dir + process 
+    #for process in processList:
+        dir = output_dir #+ process 
         num_files = len(os.listdir(dir))-1
-        #os.system(f"chmod -R +x {dir}")
+        os.system(f"chmod -R +x {dir}")
         os.system(f"condor_submit {dir}/job_submit.cfg")
-        print(f"GOOD SUBMISSION: {process}")
+        #print(f"GOOD SUBMISSION: {process}")
 
              
 
@@ -159,13 +211,21 @@ processList = {
     'wzp6_ee_qqH_HZZ_ecm240',
 }
 
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
-output = '/afs/cern.ch/user/s/sgiappic/HTCondor/' ##output directory of submission files, needs to be different to have unique submission files
+TAG = [
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
+]
 
-nCPUS = 2
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
+output = '/work/sgiappic/HTCondor/copy_st2/' ##output directory of submission files, needs to be different to have unique submission files
+
+nCPUS = 1
+memory = 10000
 
 create_subjob_script(inputDir, output)
 
-create_condor_config(nCPUS, output)
+create_condor_config_KIT(nCPUS, memory, output)
 
 submit_jobs(output)
