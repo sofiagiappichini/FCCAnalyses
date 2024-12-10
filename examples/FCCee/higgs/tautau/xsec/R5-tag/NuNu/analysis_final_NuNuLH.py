@@ -1,8 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/stage2_241125/NuNu/LH/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/stage2_241202/NuNu/LH"
 
-#Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/final_241125/NuNu/LH/" 
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/final_241202/NuNu/LH"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -15,7 +14,7 @@ doScale = True
 saveTabular = True
 
 #Number of CPUs to use
-nCPUS = 4
+nCPUS = 6
 
 #produces ROOT TTrees, default is False
 doTree = False
@@ -695,67 +694,7 @@ histoList = {
     "QuarkTag_isS":             {"name":"QuarkTag_isS",                "title":"Quark jet from tagged jet S score",                     "bin":100, "xmin":0., "xmax":1.},
     "QuarkTag_isB":             {"name":"QuarkTag_isB",                "title":"Quark jet from tagged jet B score",                     "bin":100, "xmin":0., "xmax":1.},
     "QuarkTag_isTAU":             {"name":"QuarkTag_isTAU",                "title":"Quark jet from tagged jet TAU score",                     "bin":100, "xmin":0., "xmax":1.},
-
-    "RecoZ_px":                 {"name":"RecoZ_px",                 "title":"Reco Z p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoZ_py":                 {"name":"RecoZ_py",                 "title":"Reco Z p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoZ_pz":                 {"name":"RecoZ_pz",                 "title":"Reco Z p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoZ_p":                  {"name":"RecoZ_p",                  "title":"Reco Z p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
-    "RecoZ_pt":                 {"name":"RecoZ_pt",                 "title":"Reco Z p_{T} [GeV]",            "bin":75, "xmin":0 ,"xmax":150},
-    "RecoZ_e":                  {"name":"RecoZ_e",                  "title":"Reco Z energy [GeV]",           "bin":75, "xmin":0 ,"xmax":150},
-    "RecoZ_eta":                {"name":"RecoZ_eta",                "title":"Reco Z #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZ_phi":                {"name":"RecoZ_phi",                "title":"Reco Z #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZ_theta":              {"name":"RecoZ_theta",              "title":"Reco Z #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoZ_y":                  {"name":"RecoZ_y",                  "title":"Reco Z rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "RecoZ_mass":               {"name":"RecoZ_mass",               "title":"Reco Z mass",                   "bin":100, "xmin":50., "xmax":150},
-
-    "RecoZLead_px":               {"name":"RecoZLead_px",                 "title":"Reco leading Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZLead_py":               {"name":"RecoZLead_py",                 "title":"Reco leading Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZLead_pz":               {"name":"RecoZLead_pz",                 "title":"Reco leading Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZLead_p":                {"name":"RecoZLead_p",                  "title":"Reco leading Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZLead_pt":               {"name":"RecoZLead_pt",                 "title":"Reco leading Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZLead_e":                {"name":"RecoZLead_e",                  "title":"Reco leading Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "RecoZLead_eta":              {"name":"RecoZLead_eta",                "title":"Reco leading Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZLead_phi":              {"name":"RecoZLead_phi",                "title":"Reco leading Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZLead_theta":            {"name":"RecoZLead_theta",              "title":"Reco leading Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoZLead_y":                {"name":"RecoZLead_y",                  "title":"Reco leading Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "RecoZLead_mass":             {"name":"RecoZLead_mass",               "title":"Reco leading Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
-
-    "RecoZSub_px":                {"name":"RecoZSub_px",                 "title":"Reco subleading Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZSub_py":                {"name":"RecoZSub_py",                 "title":"Reco subleading Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZSub_pz":                {"name":"RecoZSub_pz",                 "title":"Reco subleading Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZSub_p":                 {"name":"RecoZSub_p",                  "title":"Reco subleading Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZSub_pt":                {"name":"RecoZSub_pt",                 "title":"Reco subleading Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZSub_e":                 {"name":"RecoZSub_e",                  "title":"Reco subleading Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "RecoZSub_eta":               {"name":"RecoZSub_eta",                "title":"Reco subleading Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZSub_phi":               {"name":"RecoZSub_phi",                "title":"Reco subleading Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZSub_theta":             {"name":"RecoZSub_theta",              "title":"Reco subleading Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoZSub_y":                 {"name":"RecoZSub_y",                  "title":"Reco subleading Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "RecoZSub_mass":              {"name":"RecoZSub_mass",               "title":"Reco subleading Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
-
-    "RecoZP_px":               {"name":"RecoZP_px",                 "title":"Reco positive Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZP_py":               {"name":"RecoZP_py",                 "title":"Reco positive Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZP_pz":               {"name":"RecoZP_pz",                 "title":"Reco positive Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZP_p":                {"name":"RecoZP_p",                  "title":"Reco positive Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZP_pt":               {"name":"RecoZP_pt",                 "title":"Reco positive Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZP_e":                {"name":"RecoZP_e",                  "title":"Reco positive Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "RecoZP_eta":              {"name":"RecoZP_eta",                "title":"Reco positive Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZP_phi":              {"name":"RecoZP_phi",                "title":"Reco positive Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZP_theta":            {"name":"RecoZP_theta",              "title":"Reco positive Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoZP_y":                {"name":"RecoZP_y",                  "title":"Reco positive Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "RecoZP_mass":             {"name":"RecoZP_mass",               "title":"Reco positive Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
-
-    "RecoZM_px":                {"name":"RecoZM_px",                 "title":"Reco negative Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_py":                {"name":"RecoZM_py",                 "title":"Reco negative Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_pz":                {"name":"RecoZM_pz",                 "title":"Reco negative Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_p":                 {"name":"RecoZM_p",                  "title":"Reco negative Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZM_pt":                {"name":"RecoZM_pt",                 "title":"Reco negative Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZM_e":                 {"name":"RecoZM_e",                  "title":"Reco negative Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "RecoZM_eta":               {"name":"RecoZM_eta",                "title":"Reco negative Z daughter #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZM_phi":               {"name":"RecoZM_phi",                "title":"Reco negative Z daughter #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZM_theta":             {"name":"RecoZM_theta",              "title":"Reco negative Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoZM_y":                 {"name":"RecoZM_y",                  "title":"Reco negative Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "RecoZM_mass":              {"name":"RecoZM_mass",               "title":"Reco negative Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
-                            
+                    
     "RecoH_px":                 {"name":"RecoH_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "RecoH_py":                 {"name":"RecoH_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "RecoH_pz":                 {"name":"RecoH_pz",                 "title":"Reco H p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},

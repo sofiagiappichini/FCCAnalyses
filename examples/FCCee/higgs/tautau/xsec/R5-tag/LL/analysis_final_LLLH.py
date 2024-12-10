@@ -1,8 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/stage2_241125/LL/LH/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/stage2_241202/LL/LH"
 
-#Optional: output directory, default is local running directory
-outputDir   = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/final_241125/LL/LH/" 
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/R5-tag/final_241202/LL/LH"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -15,7 +14,7 @@ doScale = True
 saveTabular = True
 
 #Number of CPUs to use
-nCPUS = 4
+nCPUS = 6
 
 #produces ROOT TTrees, default is False
 doTree = False

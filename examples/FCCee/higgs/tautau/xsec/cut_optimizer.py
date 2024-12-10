@@ -105,7 +105,7 @@ tree_name = "events"
 
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
-leaf_name = "TauTag_isTAU"
+leaf_name = "TauTag_R5_isTAU"
 
 leaf_name_all = "RecoEmiss_costheta"
 
