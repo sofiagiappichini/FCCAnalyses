@@ -113,4 +113,145 @@ NuNu/HH:  1.00002  -0.296557/+0.298062  (68% CL)
 NuNu:  1.00001  -0.118264/+0.118376  (68% CL)
  
 combined:  1.00001  -0.0108489/+0.0108823  (68% CL)
+
+###################
+
+#now with proper jet cleanup
  
+R5-explicit/QQ/LL:  1.00003  -0.271193/+0.275731  (68% CL)
+ 
+R5-explicit/QQ/LH:  1  -0.0357748/+0.036406  (68% CL)
+ 
+R5-explicit/QQ/HH:  1  -0.04392/+0.0448585  (68% CL)
+ 
+R5-explicit/QQ:  1.00005  -0.0214572/+0.0215576  (68% CL)
+ 
+R5-explicit/LL/LL:  1.00006  -0.191044/+0.199876  (68% CL)
+ 
+R5-explicit/LL/LH:  1.00001  -0.108536/+0.123353  (68% CL)
+ 
+R5-explicit/LL/HH:  1.00001  -0.0780323/+0.0859589  (68% CL)
+ 
+R5-explicit/LL:  1  -0.031668/+0.0326064  (68% CL)
+ 
+R5-explicit/NuNu/LL:  1.00041  -1.7596/+1.76061  (68% CL)
+ 
+R5-explicit/NuNu/LH:  0.999285  -0.52741/+0.529645  (68% CL)
+ 
+R5-explicit/NuNu/HH:  1.00001  -0.221327/+0.222214  (68% CL)
+ 
+R5-explicit/NuNu:  1.00001  -0.102151/+0.102218  (68% CL)
+ 
+R5-explicit combined:  1  -0.0123532/+0.0124082  (68% CL)
+ 
+
+R5-tag/QQ/LL:  1.0002  -0.235499/+0.238797  (68% CL)
+ 
+R5-tag/QQ/LH:  1.00005  -0.0300918/+0.0303627  (68% CL)
+ 
+R5-tag/QQ/HH:  1.00004  -0.0238685/+0.0241727  (68% CL)
+ 
+R5-tag/QQ:  1.00004  -0.0142878/+0.0143111  (68% CL)
+ 
+R5-tag/LL/LL:  1.00007  -0.195543/+0.20437  (68% CL)
+ 
+R5-tag/LL/LH:  1  -0.088149/+0.0968953  (68% CL)
+ 
+R5-tag/LL/HH:  1  -0.056679/+0.0606318  (68% CL)
+ 
+R5-tag/LL:  1  -0.028121/+0.0288838  (68% CL)
+ 
+R5-tag/NuNu/LL:  1.00041  -1.7596/+1.76061  (68% CL)
+ 
+R5-tag/NuNu/LH:  1.00009  -0.609855/+0.610557  (68% CL)
+ 
+R5-tag/NuNu/HH:  1.00002  -0.196007/+0.196508  (68% CL)
+ 
+R5-tag/NuNu:  1.00003  -0.0978158/+0.0978247  (68% CL)
+ 
+R5-tag combined:  1  -0.00889589/+0.00892449  (68% CL)
+ 
+
+ktN-explicit/QQ/LL:  1.00003  -0.199886/+0.202269  (68% CL)
+ 
+ktN-explicit/QQ/LH:  1.00001  -0.0343291/+0.0346596  (68% CL)
+ 
+ktN-explicit/QQ/HH:  0.999997  -0.0788575/+0.0792335  (68% CL)
+ 
+ktN-explicit/QQ:  0.999977  -0.0263406/+0.0265415  (68% CL)
+ 
+ktN-explicit/LL/LL:  1.00007  -0.195543/+0.20437  (68% CL)
+ 
+ktN-explicit/LL/LH:  1.00001  -0.131791/+0.153796  (68% CL)
+ 
+ktN-explicit/LL/HH:  1  -0.0805838/+0.0891198  (68% CL)
+ 
+ktN-explicit/LL:  1  -0.0327937/+0.0337847  (68% CL)
+ 
+ktN-explicit/NuNu/LL:  1.00041  -1.7596/+1.76061  (68% CL)
+ 
+ktN-explicit/NuNu/LH:  1.00009  -0.535125/+0.535808  (68% CL)
+ 
+ktN-explicit/NuNu/HH:  0.999763  -0.215442/+0.21675  (68% CL)
+ 
+ktN-explicit/NuNu:  1.00003  -0.103893/+0.103931  (68% CL)
+ 
+ktN-explicit combined:  1  -0.0146383/+0.0147016  (68% CL)
+ 
+
+ktN-tag/QQ/LL:  1.0002  -0.170268/+0.171855  (68% CL)
+ 
+ktN-tag/QQ/LH:  1.00006  -0.0270735/+0.0272146  (68% CL)
+ 
+ktN-tag/QQ/HH:  1.00008  -0.0297285/+0.0298425  (68% CL)
+ 
+ktN-tag/QQ:  1.00001  -0.0153912/+0.0154473  (68% CL)
+ 
+ktN-tag/LL/LL:  1.00002  -0.183272/+0.19259  (68% CL)
+ 
+ktN-tag/LL/LH:  1.00002  -0.0928553/+0.101058  (68% CL)
+ 
+ktN-tag/LL/HH:  1.00002  -0.0435485/+0.0453123  (68% CL)
+ 
+ktN-tag/LL:  1  -0.0314269/+0.0322801  (68% CL)
+ 
+ktN-tag/NuNu/LL:  1.00034  -1.69789/+1.69928  (68% CL)
+ 
+ktN-tag/NuNu/LH:  0.999051  -0.530272/+0.532915  (68% CL)
+ 
+ktN-tag/NuNu/HH:  1.00002  -0.282801/+0.283639  (68% CL)
+ 
+ktN-tag/NuNu:  0.999512  -0.114816/+0.115866  (68% CL)
+ 
+ktN-tag combined:  1  -0.00994602/+0.00996354  (68% CL)
+ 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ & R5-explicit & R5-tag & ktN-explicit & ktN-tag \\
+\hline
+QQ/LL & $\substack{+27.6 \\ -27.1}$ & $\substack{+23.9 \\ -23.5}$ & $\substack{+20.2 \\ -20.0}$ & $\substack{+17.2 \\ -17.0}$ \\
+\hline
+QQ/LH & $\substack{+3.6 \\ -3.6}$ & $\substack{+3.0 \\ -3.0}$ & $\substack{+3.5 \\ -3.4}$ & $\substack{+2.7 \\ -2.7}$ \\
+\hline
+QQ/HH & $\substack{+4.5 \\ -4.4}$ & $\substack{+2.4 \\ -2.4}$ & $\substack{+7.9 \\ -7.9}$ & $\substack{+2.9 \\ -2.9}$ \\
+\hline
+LL/LL & $\substack{+19.9 \\ -19.1}$ & $\substack{+20.4 \\ -19.5}$ & $\substack{+20.4 \\ -19.5}$ & $\substack{+18.3 \\ -18.3}$ \\
+\hline
+LL/LH & $\substack{+12.3 \\ -10.8}$ & $\substack{+9.7 \\ -8.8}$ & $\substack{+13.5 \\ -13.2}$ & $\substack{+9.3 \\ -9.3}$ \\
+\hline
+LL/HH & $\substack{+8.6 \\ -7.8}$ & $\substack{+5.7 \\ -5.7}$ & $\substack{+8.1 \\ -8.0}$ & $\substack{+4.3 \\ -4.3}$ \\
+\hline
+NuNu/LL & $\substack{+176.1 \\ -175.9}$ & $\substack{+176.1 \\ -175.9}$ & $\substack{+176.1 \\ -175.9}$ & $\substack{+169.7 \\ -169.7}$ \\
+\hline
+NuNu/LH & $\substack{+52.9 \\ -52.7}$ & $\substack{+61.1 \\ -60.9}$ & $\substack{+53.5 \\ -53.6}$ & $\substack{+53.0 \\ -53.2}$ \\
+\hline
+NuNu/HH & $\substack{+22.1 \\ -22.1}$ & $\substack{+19.6 \\ -19.6}$ & $\substack{+21.5 \\ -21.7}$ & $\substack{+28.3 \\ -28.3}$ \\
+\hline
+\end{tabular}
+\caption{Formatted Data Table}
+\end{table}
+
+

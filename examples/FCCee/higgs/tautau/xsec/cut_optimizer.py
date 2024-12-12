@@ -8,8 +8,9 @@ import uproot
 def file_exists(file_path):
     return os.path.isfile(file_path)
 
-color = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
-fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(24, 12))
+color_6 = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
+color = ['#8C0303', '#D04747', '#03028D', '#4E6BD3']
+fig, axs = plt.subplots(nrows=3, ncols=3, figsize=(25, 25))
 
 replacement_sig = [
     'wzp6_ee_mumuH_Htautau_ecm240',
@@ -105,24 +106,21 @@ tree_name = "events"
 
 # Select the leaf you want to analyze
 # automatic checks also prompt variable to get more accurate values
-leaf_name = "TauTag_R5_isTAU"
+#leaf_name = "TauTag_R5_isTAU"
 
-leaf_name_all = "RecoEmiss_costheta"
+leaf_name = "RecoEmiss_costheta"
 
-DIRECTORY_TAG = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final_241025/LL/",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final_241025/QQ/",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final_241025/NuNu/",
-}
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 
-DIRECTORY_EXC = {
-    'LL':"/ceph/awiedl/FCCee/HiggsCP/final/LL/",
-    'QQ':"/ceph/awiedl/FCCee/HiggsCP/final/QQ/",
-    'NuNu':"/ceph/awiedl/FCCee/HiggsCP/final/NuNu/",
-}
+TAG = [
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
+]
 
 SUBDIR = [
-    #'LL',
+    'LL',
     'LH',
     'HH',
 ]
@@ -133,18 +131,19 @@ CAT = [
     "NuNu",
 ]
 
-CUT = [
-    "selReco",
-]
+CUTS = {
+    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+}
 
 output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/" +leaf_name+ "_optimization.txt"
 
-for cut in CUT:
+for a, tag in enumerate(TAG):
     for j, cat in enumerate(CAT):
         for k, sub in enumerate(SUBDIR):
 
-            dir_tag = DIRECTORY_TAG[cat] + sub + "/"
-            dir_exc = DIRECTORY_EXC[cat] + sub + "/"
+            dir = DIRECTORY + tag + "/final_241202/" + cat + "/" + sub + "/"
 
             # book array for background entries
             entries_bkg_tag = []
@@ -159,7 +158,7 @@ for cut in CUT:
             for replacement_word in replacement_bkgs:
             
                 # Define the ROOT file path
-                histo_file_path = dir_tag + "{}_".format(replacement_word) + cut + "_histo.root"
+                histo_file_path = dir + "{}_".format(replacement_word) + CUTS[cat] + "_histo.root"
 
                 if file_exists(histo_file_path):
 
@@ -177,9 +176,9 @@ for cut in CUT:
                     temp_bkg = []
 
                     # get associated value of variable from the bin and store the high edge (low edge of successive bin)
-                    for i in range(50, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
+                    for i in range(0, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
                     #for i in range(len(bin_edges), len(bin_edges)-50, -1):
-                        temp_bkg.append(sum(y_values[i:]))
+                        temp_bkg.append(sum(y_values[:i]))
 
                     #add the entries for each background into the same array
                     for i in range(len(temp_bkg)):
@@ -188,7 +187,7 @@ for cut in CUT:
                         else:
                             entries_bkg_tag[i] += temp_bkg[i]
 
-                histo_path_excl= dir_exc + "{}_".format(replacement_word) + cut + "_histo.root"
+                '''histo_path_excl= dir_exc + "{}_".format(replacement_word) + CUTS[cat] + "_histo.root"
 
                 if file_exists(histo_path_excl):
 
@@ -200,12 +199,12 @@ for cut in CUT:
                     # Get scaled number of events from histograms, array
                     y_values_exc = selected_leaf_exc.values()
 
-                    entries_bkg_exc += sum(y_values_exc)
+                    entries_bkg_exc += sum(y_values_exc)'''
 
             for replacement_word in replacement_sig:
 
                 # Define the ROOT file path
-                signal_file_path = dir_tag + "{}_".format(replacement_word)+ cut + "_histo.root"
+                signal_file_path = dir + "{}_".format(replacement_word)+ CUTS[cat] + "_histo.root"
 
                 if file_exists(signal_file_path):
 
@@ -223,9 +222,9 @@ for cut in CUT:
                     temp_sig = []
 
                     # get associated value of variable from the bin and store the high edge (low edge of successive bin)
-                    for i in range(50, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
+                    for i in range(0, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
                     #for i in range(len(bin_edges), len(bin_edges)-50, -1):
-                        temp_sig.append(sum(y_values_signal[i:]))
+                        temp_sig.append(sum(y_values_signal[:i]))
 
                     #add the entries for each signal into the same array
                     for i in range(len(temp_sig)):
@@ -234,31 +233,31 @@ for cut in CUT:
                         else:
                             entries_sig_tag[i] += temp_sig[i]
 
-                signal_path_excl= dir_exc + "{}_".format(replacement_word) + cut + "_histo.root"
+                '''signal_path_excl= dir_exc + "{}_".format(replacement_word) + cut + "_histo.root"
 
                 if file_exists(signal_path_excl):
 
                     # Get the selected leaf from the tree
-                    signal_exc = uproot.open(signal_path_excl)
+                    histo_exc = uproot.open(signal_path_excl)
 
                     selected_leaf_exc = histo_exc[leaf_name_all]
 
                     # Get scaled number of events from histograms, array
                     y_values_exc = selected_leaf_exc.values()
 
-                    entries_sig_exc += sum(y_values_exc)
+                    entries_sig_exc += sum(y_values_exc)'''
 
             # calculate significance for each bin 
             s = []
             p = []
 
             for i in range(len(entries_bkg_tag)):
-                if entries_sig_tag[i]>0:
-                    if "HH" in sub:
+                if (entries_bkg_tag[i]>0):
+                    #if "HH" in sub:
                         #need to account for the fact that I have two jets in the same histogram so the number of event is half of that, approximately
-                        s.append(entries_sig_tag[i] / (2 * np.sqrt(entries_bkg_tag[i] / 2))) 
-                        p.append(entries_sig_tag[i] / (2 * (entries_sig_tag[i]/2 + entries_bkg_tag[i]/2)))
-                    else:
+                    #    s.append(entries_sig_tag[i] / (2 * np.sqrt(entries_bkg_tag[i] / 2))) 
+                    #    p.append(entries_sig_tag[i] / (2 * (entries_sig_tag[i]/2 + entries_bkg_tag[i]/2)))
+                    #else:
                         s.append(entries_sig_tag[i] / np.sqrt(entries_bkg_tag[i]))
                         p.append(entries_sig_tag[i] / (entries_sig_tag[i] + entries_bkg_tag[i]))
                     
@@ -271,49 +270,49 @@ for cut in CUT:
                     p.append(0)
                 
             s_max = np.max(s)
-            index = s.index(s_max)*(0.01)+0.5
+            index = s.index(s_max)*(0.02)
 
             p_max = np.max(p)
-            indexp = p.index(p_max)*(0.01)+0.5
+            indexp = p.index(p_max)*(0.02)
 
-            significance = (entries_sig_exc / np.sqrt(entries_bkg_exc))
-            purity = ((entries_sig_exc / (entries_bkg_exc + entries_sig_exc)))
+            #significance = (entries_sig_exc / np.sqrt(entries_bkg_exc))
+            #purity = ((entries_sig_exc / (entries_bkg_exc + entries_sig_exc)))
 
             with open(output_file, "a") as file:
                 #file.write("\nTAGGER PERFORMANCE:\n")
-                #file.write("Max significance of {} = {} for cut at TAU={} \n".format(cat+sub, s_max, index))
-                #file.write("Max purity of {} = {} for cut at TAU={} \n".format(cat+sub, p_max, indexp))
+                file.write(f"Class {tag}:\n\n")
+                file.write("Max significance of {} = {} for cut at {}={} \n".format(cat+sub, s_max, leaf_name, index))
+                file.write("Max purity of {} = {} for cut at {}={} \n\n".format(cat+sub, p_max, leaf_name, indexp))
                 #file.write("\nEXPLICIT RECO PERFORMANCE:\n")
                 #file.write("Significance of {} = {}\n".format(cat+sub, significance))
                 #file.write("Purity of {} = {} \n\n".format(cat+sub, purity))
 
-                file.write("{} = {}\n".format(cat+sub, s[0]))
-                file.write("{} = {}\n\n".format(cat+sub, p[0]))
+                #file.write("{} = {}\n".format(cat+sub, s[0]))
+                #file.write("{} = {}\n\n".format(cat+sub, p[0]))
 
             #print("File written at {}".format(output_file))
 
-            '''s_sum = sum(s)
+            s_sum = sum(s)
             p_sum = sum(p)
             #normalise to 1 significance and purity for plotting
-            for i in range(len(s)):
-                s[i] = s[i]/s_sum
-                p[i] = p[i]/p_sum
+            #for i in range(len(s)):
+            #    s[i] = s[i]/s_sum
+            #    p[i] = p[i]/p_sum
 
-            row = k % 2
+            row = k % 3
             col = j % 3
-            print(row, col)
 
-            x = np.arange(0.5, 1, 0.01).tolist()
+            x = np.arange(0, 1, 0.02).tolist()
 
-            axs[row][col].plot(x, s, linestyle='-', color=color[j+3*k], label="significance")
-            axs[row][col].plot(x, p, linestyle='--', color=color[j+3*k], label="purity")
+            axs[row][col].plot(x, s, linestyle='-', color=color[a], label=f"{tag} significance")
+            #axs[row][col].plot(x, p, linestyle='--', color=color[a], label=f"{tag} purity")
 
             #axs[row][col].plot(x, [significance] * len(x), linestyle='-.', color=color[j+3*k], label="explicit significance")
             #axs[row][col].plot(x, [purity] * len(x), linestyle=':', color=color[j+3*k], label="explicit purity")
 
             axs[row][col].set_title(f"{cat}{sub}", fontsize=22)
-            axs[row][col].set_xlabel(r'score', fontsize=18)
-            axs[row][col].set_ylabel(r'values normalised to 1', fontsize=18)
+            axs[row][col].set_xlabel(f'{leaf_name}', fontsize=18)
+            axs[row][col].set_ylabel(r'values', fontsize=18)
             axs[row][col].legend(loc='lower right', fontsize=18)
 
             axs[row][col].grid(True, which='both', linestyle='--', linewidth=0.5)
@@ -321,4 +320,4 @@ for cut in CUT:
             #axs[row][col].set_yscale('log')
 
 plt.tight_layout()
-plt.savefig(f'/web/sgiappic/public_html/Higgs_xsec/cut_optimizer_{leaf_name}_v2.png', format='png', dpi=330)'''
+plt.savefig(f'/web/sgiappic/public_html/Higgs_xsec/cut_optimizer_{leaf_name}.png', format='png', dpi=330)
