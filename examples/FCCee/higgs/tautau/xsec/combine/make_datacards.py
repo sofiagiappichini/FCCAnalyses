@@ -210,7 +210,9 @@ for tag in TAG:
                 dc += f"{dc_tmp}\n"'''
 
             ## freely floating processes and statistical uncertainty
-            dc += f"free rateParam {VARIABLE[cat]} * 1.0\n"
+            for proc in bkg_procs:
+                dc += f"unc_{proc} rateParam {VARIABLE[cat]} * 1.0\n"
+            dc += f"unc_signal rateParam {VARIABLE[cat]} * 1.0\n"
             dc += "* autoMCStats 1 1"
 
             # write cards
