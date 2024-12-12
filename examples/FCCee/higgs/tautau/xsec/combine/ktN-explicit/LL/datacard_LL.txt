@@ -1,0 +1,72 @@
+Combination of LLLL=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine//ktN-explicit/LL/LL/datacard.txt  LLLH=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine//ktN-explicit/LL/LH/datacard.txt  LLHH=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine//ktN-explicit/LL/HH/datacard.txt
+imax 3 number of bins
+jmax 11 number of processes minus 1
+kmax 0 number of nuisance parameters
+----------------------------------------------------------------------------------------------------------------------------------
+shapes data_obs                        LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes p8_ee_WW_ecm240                 LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/p8_ee_WW_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes p8_ee_ZZ_ecm240                 LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/p8_ee_ZZ_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_HQQ_ecm240          LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_LLH_HQQ_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_HVV_ecm240          LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_LLH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_Hgg_ecm240          LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_LLH_Hgg_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_Htautau_ecm240      LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_QQH_HVV_ecm240          LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_QQH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_QQH_Htautau_ecm240      LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_QQH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_nunuH_HVV_ecm240        LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_nunuH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_tautauH_HQQ_ecm240      LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_tautauH_HQQ_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_tautauH_HVV_ecm240      LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_tautauH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_tautauH_Htautau_ecm240  LLHH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/HH/wzp6_ee_tautauH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes data_obs                        LLLH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LH/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes p8_ee_ZZ_ecm240                 LLLH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LH/p8_ee_ZZ_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_HQQ_ecm240          LLLH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LH/wzp6_ee_LLH_HQQ_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_HVV_ecm240          LLLH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LH/wzp6_ee_LLH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_Htautau_ecm240      LLLH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LH/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_nunuH_HVV_ecm240        LLLH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LH/wzp6_ee_nunuH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_tautauH_HVV_ecm240      LLLH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LH/wzp6_ee_tautauH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_tautauH_Htautau_ecm240  LLLH                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LH/wzp6_ee_tautauH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes data_obs                        LLLL                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes p8_ee_WW_ecm240                 LLLL                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/p8_ee_WW_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes p8_ee_ZZ_ecm240                 LLLL                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/p8_ee_ZZ_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_HVV_ecm240          LLLL                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_LLH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_LLH_Htautau_ecm240      LLLL                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_nunuH_HVV_ecm240        LLLL                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_nunuH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_tautauH_HVV_ecm240      LLLL                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_tautauH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+shapes wzp6_ee_tautauH_Htautau_ecm240  LLLL                            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_tautauH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_histo.root Recoil
+----------------------------------------------------------------------------------------------------------------------------------
+bin          LLLL   LLLH   LLHH 
+observation  -1     -1     -1   
+----------------------------------------------------------------------------------------------------------------------------------
+bin          LLLL                            LLLL                            LLLL                            LLLL                            LLLL                            LLLL                            LLLL                            LLLH                            LLLH                            LLLH                            LLLH                            LLLH                            LLLH                            LLLH                            LLHH                            LLHH                            LLHH                            LLHH                            LLHH                            LLHH                            LLHH                            LLHH                            LLHH                            LLHH                            LLHH                            LLHH                          
+process      wzp6_ee_LLH_Htautau_ecm240      p8_ee_WW_ecm240                 p8_ee_ZZ_ecm240                 wzp6_ee_tautauH_Htautau_ecm240  wzp6_ee_tautauH_HVV_ecm240      wzp6_ee_nunuH_HVV_ecm240        wzp6_ee_LLH_HVV_ecm240          wzp6_ee_LLH_Htautau_ecm240      p8_ee_ZZ_ecm240                 wzp6_ee_tautauH_Htautau_ecm240  wzp6_ee_tautauH_HVV_ecm240      wzp6_ee_nunuH_HVV_ecm240        wzp6_ee_LLH_HQQ_ecm240          wzp6_ee_LLH_HVV_ecm240          wzp6_ee_LLH_Htautau_ecm240      wzp6_ee_QQH_Htautau_ecm240      p8_ee_WW_ecm240                 p8_ee_ZZ_ecm240                 wzp6_ee_tautauH_Htautau_ecm240  wzp6_ee_tautauH_HQQ_ecm240      wzp6_ee_tautauH_HVV_ecm240      wzp6_ee_nunuH_HVV_ecm240        wzp6_ee_LLH_HQQ_ecm240          wzp6_ee_LLH_Hgg_ecm240          wzp6_ee_LLH_HVV_ecm240          wzp6_ee_QQH_HVV_ecm240        
+process      -1                              1                               2                               3                               4                               5                               6                               -1                              2                               3                               4                               5                               7                               6                               -1                              0                               1                               2                               3                               8                               4                               5                               7                               9                               6                               10                            
+rate         -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                              -1                            
+----------------------------------------------------------------------------------------------------------------------------------
+free          rateParam LLLL p8_ee_WW_ecm240 1.0 
+free          rateParam LLLL p8_ee_ZZ_ecm240 1.0 
+free          rateParam LLLL wzp6_ee_LLH_HVV_ecm240 1.0 
+free          rateParam LLLL wzp6_ee_LLH_Htautau_ecm240 1.0 
+free          rateParam LLLL wzp6_ee_nunuH_HVV_ecm240 1.0 
+free          rateParam LLLL wzp6_ee_tautauH_HVV_ecm240 1.0 
+free          rateParam LLLL wzp6_ee_tautauH_Htautau_ecm240 1.0 
+free          rateParam LLLH p8_ee_ZZ_ecm240 1.0 
+free          rateParam LLLH wzp6_ee_LLH_HQQ_ecm240 1.0 
+free          rateParam LLLH wzp6_ee_LLH_HVV_ecm240 1.0 
+free          rateParam LLLH wzp6_ee_LLH_Htautau_ecm240 1.0 
+free          rateParam LLLH wzp6_ee_nunuH_HVV_ecm240 1.0 
+free          rateParam LLLH wzp6_ee_tautauH_HVV_ecm240 1.0 
+free          rateParam LLLH wzp6_ee_tautauH_Htautau_ecm240 1.0 
+free          rateParam LLHH p8_ee_WW_ecm240 1.0 
+free          rateParam LLHH p8_ee_ZZ_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_LLH_HQQ_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_LLH_HVV_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_LLH_Hgg_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_LLH_Htautau_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_QQH_HVV_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_QQH_Htautau_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_nunuH_HVV_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_tautauH_HQQ_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_tautauH_HVV_ecm240 1.0 
+free          rateParam LLHH wzp6_ee_tautauH_Htautau_ecm240 1.0 
+LLLL autoMCStats 1 1 1
+LLLH autoMCStats 1 1 1
+LLHH autoMCStats 1 1 1

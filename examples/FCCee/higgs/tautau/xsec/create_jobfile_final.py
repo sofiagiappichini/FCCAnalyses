@@ -1,9 +1,9 @@
 import os
 
-def Make_workspace(jobdir):
-
-    if not os.path.exists(jobdir):
-            os.system(f"mkdir -p {jobdir}")
+def make_dir_if_not_exists(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    os.system(f"chmod -R +x {directory}")
      
 def create_condor_config(nCPUs: int,
                          memory: int,
@@ -29,7 +29,7 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "espresso"\n'
+    cfg += '+JobFlavour      = "longlunch"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -53,58 +53,60 @@ def create_condor_config(nCPUs: int,
 
 # _____________________________________________________________________________
 def create_subjob_script(local_dir: str,
-                         source_dir: str,
-                         input_dir: str,
-                         cat_name: str,
-                         sub_name:str,
-                         output_dir: str,
-                         output_ana: str,
-                         ananame: str):
+                         output_dir: str):
     '''
     Creates sub-job script to be run.
     '''
-    submit_list = []
-    if not os.path.exists(output_dir):
-        os.system(f"mkdir -p {output_dir}")            
-    if not os.path.exists(output_dir+'err'):
-        os.system(f"mkdir -p {output_dir+'err'}")            
-    if not os.path.exists(output_dir+'log'):
-        os.system(f"mkdir -p {output_dir+'log'}")            
-    if not os.path.exists(output_dir+'out'):
-        os.system(f"mkdir -p {output_dir+'out'}")     
-    scr  = '#!/bin/bash\n\n'
-    scr += 'source ' + source_dir + 'setup.sh\n\n'
-    scr += 'cd ' + local_dir + '\n\n'
-    scr += 'fccanalysis final ' + ananame 
-    with open(output_dir+'submit_'+cat_name+sub_name+'.sh', 'w') as sh:
-        sh.write(scr)
-    print("done")
-             
 
-#inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir = '/ceph/awiedl/FCCee/HiggsCP/stage2_241025/'
-output = '/work/sgiappic/HTCondor/final_241025/' ##output directory of submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/final_241025_v2/' ##output directory of stage2 samples
-localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
-sourceDir = '/ceph/sgiappic/FCCAnalyses/'
-Filename_path = 'analysis_final_'
+    make_dir_if_not_exists(output_dir+"/err")
+    make_dir_if_not_exists(output_dir+"/log")
+    make_dir_if_not_exists(output_dir+"/out")
+
+    for tag in TAG:
+        for cat in CAT:
+            for sub in SUBDIR:
+
+                scr  = '#!/bin/bash\n\n'
+                scr += 'source /ceph/sgiappic/FCCAnalyses/setup.sh\n\n'
+                scr += '/ceph/sgiappic/FCCAnalyses/bin/fccanalysis final ' + local_dir + tag + '/' + cat + '/analysis_final_' + cat + sub + '.py' 
+                with open(output_dir+'submit_'+tag+'_'+cat+sub+'.sh', 'w') as sh:
+                    sh.write(scr)
+                print(f"done {tag} {cat+sub}")
+
+def submit_jobs(output_dir: str):
+    #for process in processList:
+        dir = output_dir #+ process 
+        num_files = len(os.listdir(dir))-1
+        os.system(f"chmod -R +x {dir}")
+        os.system(f"condor_submit {dir}/job_submit.cfg")
+             
+output = '/work/sgiappic/HTCondor/final_v2/' ##output directory of submission files
+localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
+
 SUBDIR = [
     'LL',
     'LH',
     'HH',
 ]
+
 CAT = [
     "QQ",
-    "LL",
+    #"LL",
     "NuNu",
 ]
-nCPUS = 4
+
+TAG = [
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
+]
+
+nCPUS = 2
 Memory = 10000
-for cat in CAT:
-    for sub in SUBDIR:
-        localDir = localDir_path + cat + "/"
-        outputDir = outputDir_path + cat + "/" + sub + "/"
-        Filename = Filename_path + cat + sub + ".py"
-        create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output, outputDir, Filename)
+
+create_subjob_script(localDir, output)
 
 create_condor_config(nCPUS, Memory, output)
+
+submit_jobs(output)
