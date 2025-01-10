@@ -40,7 +40,15 @@ def get_procs(directory, cut, variable):
         #print(histo_list)
         return histo_list
 
-
+def get_combined_unc(name, procs, bkg_procs):
+    line = f"unc_{name}      lnN     "
+    for p in procs:
+        if name in p and p in bkg_procs:
+            line += f"{'1.20':{' '}{'<'}{lspace}}"
+        else:
+            line += f"{'-':{' '}{'<'}{lspace}}"
+    line += "\n"
+    return line
 
 os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
 os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
@@ -270,7 +278,7 @@ if make_card:
                 dc += f"unc rateParam {VARIABLE[cat]} * 1.0\n"
                 '''
                 ## log normal uncertainties
-                for proc in bkg_procs:
+                '''for proc in bkg_procs:
                     dc += f"unc_{proc}      lnN     "
                     for p in procs:
                         if p == proc:
@@ -278,7 +286,18 @@ if make_card:
                         else:
                             dc += f"{'-':{' '}{'<'}{lspace}}"
                     dc += "\n"
-                dc += "\n\n"
+                dc += "\n\n"'''
+
+
+                if any("nunuH" in proc for proc in bkg_procs):
+                    dc += get_combined_unc("nunuH", procs, bkg_procs)
+                if any("LLH" in proc for proc in bkg_procs):
+                    dc += get_combined_unc("LLH", procs, bkg_procs)
+                if any("QQH" in proc for proc in bkg_procs):
+                    dc += get_combined_unc("QQH", procs, bkg_procs)
+                if any("tautauH" in proc for proc in bkg_procs):
+                    dc += get_combined_unc("tautauH", procs, bkg_procs)
+
                 dc += "* autoMCStats 1 1"
 
                 # write cards

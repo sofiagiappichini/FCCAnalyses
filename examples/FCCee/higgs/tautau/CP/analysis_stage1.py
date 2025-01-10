@@ -121,7 +121,7 @@ inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
 #inputDir = '/ceph/sgiappic/HiggsCP'
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage1"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage1"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -305,9 +305,9 @@ class RDFanalysis():
                 #select the right decay for both taus
 
                 ###############################
-                .Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
-                .Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPtoENuNu_idx.size()>0 || TauPtoMuNuNu_idx.size()>0 || TauPtoA1Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
-                .Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMtoA1Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
+                #.Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
+                #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPtoENuNu_idx.size()>0 || TauPtoMuNuNu_idx.size()>0 || TauPtoA1Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
+                #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMtoA1Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
                 ###############################
 
                 .Define("GenPiP_e",     "if (TauPtoPiNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiNu_idx[1])}); \
@@ -845,33 +845,6 @@ class RDFanalysis():
                 .Define("Jets_R5_mass",      "JetClusteringUtils::get_m(Jets_R5)")
                 .Define("n_Jets_R5", "Jets_R5_e.size()")
 
-                .Define("RP_px",          "ReconstructedParticle::get_px(ReconstructedParticles)")
-                .Define("RP_py",          "ReconstructedParticle::get_py(ReconstructedParticles)")
-                .Define("RP_pz",          "ReconstructedParticle::get_pz(ReconstructedParticles)")
-                .Define("RP_e",           "ReconstructedParticle::get_e(ReconstructedParticles)")
-                .Define("RP_m",           "ReconstructedParticle::get_mass(ReconstructedParticles)")
-                .Define("RP_q",           "ReconstructedParticle::get_charge(ReconstructedParticles)")
-                #.Define("pseudo_jets",    "JetClusteringUtils::set_pseudoJets_xyzm(RP_px, RP_py, RP_pz, RP_m)")
-                # build pseudo jets with the RP, using the interface that takes px,py,pz,E
-                .Define("pseudo_jets",  "JetClusteringUtils::set_pseudoJets(RP_px, RP_py, RP_pz, RP_e)" )
-
-                .Define("FCCAnalysesJets_excl4", "JetClustering::clustering_ee_kt(2, 4, 1, 0)(pseudo_jets)")
-                .Define("Jets_excl4",           "JetClusteringUtils::get_pseudoJets(FCCAnalysesJets_excl4)")
-                .Define("Jet_Constituents_recluster","JetClusteringUtils::get_constituents(FCCAnalysesJets_excl4)")
-                .Define("Jets_Constituents", "JetConstituentsUtils::build_constituents_cluster(ReconstructedParticles, Jet_Constituents_recluster)") #build jet constituents lists
-
-                .Define("Jets_excl4_e",      "JetClusteringUtils::get_e(Jets_excl4)")
-                .Define("Jets_excl4_p",      "JetClusteringUtils::get_p(Jets_excl4)") #momentum p
-                .Define("Jets_excl4_pt",      "JetClusteringUtils::get_pt(Jets_excl4)") #transverse momentum pt
-                .Define("Jets_excl4_px",      "JetClusteringUtils::get_px(Jets_excl4)")
-                .Define("Jets_excl4_py",      "JetClusteringUtils::get_py(Jets_excl4)")
-                .Define("Jets_excl4_pz",      "JetClusteringUtils::get_pz(Jets_excl4)")
-		        .Define("Jets_excl4_eta",     "JetClusteringUtils::get_eta(Jets_excl4)") #pseudorapidity eta
-                .Define("Jets_excl4_theta",   "JetClusteringUtils::get_theta(Jets_excl4)")
-		        .Define("Jets_excl4_phi",     "JetClusteringUtils::get_phi(Jets_excl4)") #polar angle in the transverse plane phi
-                .Define("Jets_excl4_mass",      "JetClusteringUtils::get_m(Jets_excl4)")
-                .Define("n_Jets_excl4", "Jets_excl4_e.size()")
-
                 ### reconstruction of hadronic taus from jets
                 .Define("TauFromJet_R5", "FCCAnalyses::ZHfunctions::findTauInJet(Jets_Constituents_R5)") 
                 .Define("TauFromJet_R5_type_sel","ReconstructedParticle::get_type(TauFromJet_R5)")
@@ -1030,7 +1003,7 @@ class RDFanalysis():
     #__________________________________________________________
     #Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
-        branchList = [
+        '''branchList = [
             ######## Monte-Carlo particles #######
             "n_FSGenElectron",
             "FSGenElectron_e",
@@ -1273,12 +1246,10 @@ class RDFanalysis():
             "GenHiggs_theta", 
             "GenHiggs_phi", 
             "GenHiggs_charge", 
+            '''
+        branchList = [
 
-        ]
-
-        '''
-
-            ######## Reconstructed particles #######
+        ######## Reconstructed particles #######
             #"RecoMC_PID",
 
             "n_RecoElectrons",
@@ -1440,20 +1411,20 @@ class RDFanalysis():
             "RecoEmiss_y",
             "RecoEmiss_costheta",
 
-            "n_RecoTracks",
-            "RecoVertexObject",
-            "RecoVertex",
-            "n_PrimaryTracks",
-            "PrimaryVertexObject",
-            "PrimaryVertex", 
-            "PrimaryVertex_xyz",
-            "PrimaryVertes_xy",
-            "n_SecondaryTracks",
-            "SecondaryVertexObject",
-            "SecondaryVertex",
-            "SecondaryVertex_xyz",
-            "SecondaryVertes_xy",
-            "VertexObject", 
+            #"n_RecoTracks",
+            #"RecoVertexObject",
+            #"RecoVertex",
+            #"n_PrimaryTracks",
+            #"PrimaryVertexObject",
+            #"PrimaryVertex", 
+            #"PrimaryVertex_xyz",
+            #"PrimaryVertes_xy",
+            #"n_SecondaryTracks",
+            #"SecondaryVertexObject",
+            #"SecondaryVertex",
+            #"SecondaryVertex_xyz",
+            #"SecondaryVertes_xy",
+            #"VertexObject", 
             #"RecoPartPID" ,
             #"RecoPartPIDAtVertex",
 
@@ -1548,6 +1519,6 @@ class RDFanalysis():
             "LeadingPar_charge",
             "LeadingPar_mass",
 
-        ]'''
+        ]
 
         return branchList
