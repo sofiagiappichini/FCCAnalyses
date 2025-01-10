@@ -27,14 +27,33 @@ def check_nonzero(directory, CUTS, process, list, VARIABLE):
             list.append(process)
     return list
 
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/"
+def get_procs(directory, cut, variable):
+    path = f"{directory}Combine_{variable}_{cut}_histo.root"
+
+    if file_exists(path):
+        histo_file = uproot.open(path)
+        all_keys = histo_file.keys()
+        #print(all_keys)
+        histo_list = [
+            key.split(f"_{variable}")[0] for key in all_keys
+        ]
+        #print(histo_list)
+        return histo_list
+
+
+
+os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
+os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
+os.system("cmsenv")
+
+outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/test"
 
 DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 TAG = [
     "R5-explicit",
-    "R5-tag",
-    "ktN-explicit",
-    "ktN-tag",
+    #"R5-tag",
+    #"ktN-explicit",
+    #"ktN-tag",
 ]
 SUBDIR = [
     'LL',
@@ -48,18 +67,18 @@ CAT = [
     "NuNu",
 ]
 CUTS = {
-    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME",
-    #'QQ/HH':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98",
-    #'QQ/LH':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98",
-    #'QQ/LL':"selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98",
-    #'NuNu/HH':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #'NuNu/LH':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #'NuNu/LL':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    #'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
+    'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
+    'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
+    'QQ/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
+    'QQ/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
+    'QQ/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
+    'NuNu/HH':"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
+    'NuNu/LH':"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
+    'NuNu/LL':"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
 }
 VARIABLE = {
     'LL':"Recoil",
@@ -133,99 +152,143 @@ signals = [
     'wzp6_ee_nunuH_Htautau_ecm240',
 ]
 
-
+make_card = True
+rebinned = False
 lspace = 35
 # here i want to make separeate datacard for each final state so we can check each values independently, then combine them with combineCards.py
-for tag in TAG:
-    for cat in CAT:
-        for sub in SUBDIR:
+if make_card:
+    for tag in TAG:
+        for cat in CAT:
+            for sub in SUBDIR:
 
-            sig_procs = []
-            bkg_procs = []
+                sig_procs = []
+                bkg_procs = []
 
-            ## datacard header, common
-            dc = ""
-            dc += f"# text2workspace.py datacard.txt -o ws.root\n"
-            dc += f"# combine -M FitDiagnostics -t -1 --expectSignal=1 ws.root --rMin -2 \n"
-            dc += f"imax    1 number of bins\n"
-            dc += f"jmax    * number of processes minus 1\n"
-            dc += f"kmax    * number of nuisance parameters\n"
-            dc += f"--------------------------------------------------------------------------------\n"
-            
-            directory = DIRECTORY + tag + "/final_241202/" + cat  + "/" + sub + "/"
+                ## datacard header, common
+                dc = ""
+                dc += f"# text2workspace.py datacard.txt -o ws.root\n"
+                dc += f"# combine -M FitDiagnostics -t -1 --expectSignal=1 ws.root --rMin -2 \n"
+                dc += f"imax    1 number of bins\n"
+                dc += f"jmax    * number of processes minus 1\n"
+                dc += f"kmax    * number of nuisance parameters\n"
+                dc += f"--------------------------------------------------------------------------------\n"
+                
+                directory = DIRECTORY + tag + "/final_241202/" + cat  + "/" + sub + "/"
 
-            index = f"{cat}/{sub}"
+                if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
+                    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54"
+                if "tag" in tag and "QQ" in cat and "HH" in sub:
+                    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52"
 
-            print(CUTS[cat], tag, cat, sub)
+                index = f"{cat}/{sub}"
+                cut = CUTS[index]
+                # cut = CUTS[cat]
+                print(cut, tag, cat, sub)
 
-            #add the processes in the respective lists
-            for b in backgrounds_all:
-                if b not in signals:
-                    check_nonzero(directory, CUTS[cat], b, bkg_procs, VARIABLE[cat])
-                else:
-                    check_nonzero(directory, CUTS[cat], b, sig_procs, VARIABLE[cat])
 
-            procs = sig_procs + bkg_procs
-            nprocs = len(procs)
-            #print(nprocs)
-            procs_idx = list(range(-len(sig_procs)+1, len(bkg_procs)+1, 1)) # negative or 0 for signal, positive for bkg
-
-            procs_str = " ".join(f"{proc:{' '}{'<'}{lspace}}" for proc in procs)
-            cats_procs_str = " ".join([f"{VARIABLE[cat]:{' '}{'<'}{lspace}}"] * nprocs)
-            proc_ind = " ".join(f"{proc:{' '}{'<'}{lspace}}" for proc in procs_idx)
-            rates_procs = " ".join([f"{'-1':{' '}{'<'}{lspace}}"] * nprocs)
-            
-            for proc in procs:
-                dc += f"shapes {proc} * {directory}{proc}_{CUTS[cat]}_histo.root $CHANNEL\n"
-            dc += f"shapes data_obs * {directory}{procs[0]}_{CUTS[cat]}_histo.root $CHANNEL\n"
-            dc += f"--------------------------------------------------------------------------------\n"
-            dc += f"bin                        {VARIABLE[cat]}\n"
-            dc += f"observation                -1\n"
-            dc += f"--------------------------------------------------------------------------------\n"
-            dc += f"bin                        {cats_procs_str}\n"
-            dc += f"process                    {procs_str}\n"
-            dc += f"process                    {proc_ind}\n"
-            dc += f"rate                       {rates_procs}\n"
-            dc += f"--------------------------------------------------------------------------------\n"
-
-            ## systematic uncertainties
-            '''systs = get_param(param, "systs")
-            for systName, syst in systs.items():
-                syst_type = syst['type']
-                syst_val = str(syst['value'])
-                procs_to_apply = syst['procs']
-                dc_tmp = f"{systName:{' '}{'<'}{15}} {syst_type:{' '}{'<'}{10}} "
-                for cat in categories:
-                    for proc in procs:
-                        apply_proc = (isinstance(procs_to_apply, list) and proc in procs_to_apply) or (isinstance(procs_to_apply, str) and re.search(procs_to_apply, proc))
-                        if apply_proc:
-                            if syst_type == "shape":
-                                LOGGER.warning('Shape uncertainties not yet supported! Skipping')
-                                val = "-"
-                            else:
-                                val = str(syst_val)
+                #add the processes in the respective lists
+                if rebinned:
+                    procs = get_procs(directory, cut, VARIABLE[cat])
+                    for p in procs:
+                        if p in signals:
+                            sig_procs.append(p)
                         else:
-                            val = "-"
-                        dc_tmp += f"{val:{' '}{'<'}{lspace}}"
-                dc += f"{dc_tmp}\n"'''
+                            bkg_procs.append(p)
 
-            ## freely floating processes and statistical uncertainty
-            for proc in bkg_procs:
-                dc += f"unc_{proc} rateParam {VARIABLE[cat]} * 1.0\n"
-            dc += f"unc_signal rateParam {VARIABLE[cat]} * 1.0\n"
-            dc += "* autoMCStats 1 1"
+                else:
+                    for b in backgrounds_all:
+                        if b not in signals:
+                            check_nonzero(directory, cut, b, bkg_procs, VARIABLE[cat])
+                        else:
+                            check_nonzero(directory, cut, b, sig_procs, VARIABLE[cat])
 
-            # write cards
-            if not os.path.exists(f"{outputDir}/{tag}/{cat}/{sub}"):
-                os.system(f"mkdir -p {outputDir}/{tag}/{cat}/{sub}")
+                procs = sig_procs + bkg_procs
+                #print(procs)
+                nprocs = len(procs)
+                #print(nprocs)
 
-            with open(f"{outputDir}/{tag}/{cat}/{sub}/datacard.txt", 'w') as f:
-                f.write(dc)
+                procs_idx = list(range(-len(sig_procs)+1, len(bkg_procs)+1, 1)) # negative or 0 for signal, positive for bkg
+
+                procs_str = " ".join(f"{proc:{' '}{'<'}{lspace}}" for proc in procs)
+                cats_procs_str = " ".join([f"{VARIABLE[cat]:{' '}{'<'}{lspace}}"] * nprocs)
+                proc_ind = " ".join(f"{proc:{' '}{'<'}{lspace}}" for proc in procs_idx)
+                rates_procs = " ".join([f"{'-1':{' '}{'<'}{lspace}}"] * nprocs)
+                
+                if rebinned:
+                    dc += f"shapes * * {directory}Combine_{VARIABLE[cat]}_{cut}_histo.root $PROCESS_$CHANNEL\n"
+                    dc += f"shapes data_obs * {directory}Combine_{VARIABLE[cat]}_{cut}_histo.root {sig_procs[0]}_$CHANNEL\n"
+
+                else:
+                    for proc in procs:
+                        dc += f"shapes {proc} * {directory}{proc}_{cut}_histo.root $CHANNEL\n"
+                    dc += f"shapes data_obs * {directory}{procs[0]}_{cut}_histo.root $CHANNEL\n"
+
+                dc += f"--------------------------------------------------------------------------------\n"
+                dc += f"bin                        {VARIABLE[cat]}\n"
+                dc += f"observation                -1\n"
+                dc += f"--------------------------------------------------------------------------------\n"
+                dc += f"bin                        {cats_procs_str}\n"
+                dc += f"process                    {procs_str}\n"
+                dc += f"process                    {proc_ind}\n"
+                dc += f"rate                       {rates_procs}\n"
+                dc += f"--------------------------------------------------------------------------------\n"
+
+                ## systematic uncertainties
+                '''systs = get_param(param, "systs")
+                for systName, syst in systs.items():
+                    syst_type = syst['type']
+                    syst_val = str(syst['value'])
+                    procs_to_apply = syst['procs']
+                    dc_tmp = f"{systName:{' '}{'<'}{15}} {syst_type:{' '}{'<'}{10}} "
+                    for cat in categories:
+                        for proc in procs:
+                            apply_proc = (isinstance(procs_to_apply, list) and proc in procs_to_apply) or (isinstance(procs_to_apply, str) and re.search(procs_to_apply, proc))
+                            if apply_proc:
+                                if syst_type == "shape":
+                                    LOGGER.warning('Shape uncertainties not yet supported! Skipping')
+                                    val = "-"
+                                else:
+                                    val = str(syst_val)
+                            else:
+                                val = "-"
+                            dc_tmp += f"{val:{' '}{'<'}{lspace}}"
+                    dc += f"{dc_tmp}\n"'''
+
+                ## freely floating processes and statistical uncertainty
+                '''for proc in bkg_procs:
+                    if "nunuH" in proc:
+                        dc += f"unc_nunuH rateParam {VARIABLE[cat]} {proc} 1.0 [0,2]\n"
+                    elif "LLH" in proc:
+                        dc += f"unc_LLH rateParam {VARIABLE[cat]} {proc} 1.0 [0,2]\n"
+                    elif "tautauH" in proc:
+                        dc += f"unc_tautauH rateParam {VARIABLE[cat]} {proc} 1.0 [0,2]\n"
+                    elif "QQH" in proc:
+                        dc += f"unc_QQH rateParam {VARIABLE[cat]} {proc} 1.0 [0,2]\n"
+                    else:
+                        dc += f"unc_{proc} rateParam {VARIABLE[cat]} {proc} 1.0 [0,2]\n"
+                    
+                dc += f"unc rateParam {VARIABLE[cat]} * 1.0\n"
+                '''
+                ## log normal uncertainties
+                for proc in bkg_procs:
+                    dc += f"unc_{proc}      lnN     "
+                    for p in procs:
+                        if p == proc:
+                            dc += f"{'1.20':{' '}{'<'}{lspace}}"
+                        else:
+                            dc += f"{'-':{' '}{'<'}{lspace}}"
+                    dc += "\n"
+                dc += "\n\n"
+                dc += "* autoMCStats 1 1"
+
+                # write cards
+                if not os.path.exists(f"{outputDir}/{tag}/{cat}/{sub}"):
+                    os.system(f"mkdir -p {outputDir}/{tag}/{cat}/{sub}")
+
+                with open(f"{outputDir}/{tag}/{cat}/{sub}/datacard.txt", 'w') as f:
+                    f.write(dc)
 
 ## now we can combine the cards made
-os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
-os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
-os.system("cmsenv")
 
 for tag in TAG:
     for cat in CAT:

@@ -1,0 +1,150 @@
+Class R5-explicit:
+
+Max significance of QQLL = 4.681706193698931 for cut at RecoZ_p=34 
+Max purity of QQLL = 0.03525561924530378 for cut at RecoZ_p=38 
+
+Class R5-explicit:
+
+Max significance of QQLH = 39.261664413904526 for cut at RecoZ_p=12 
+Max purity of QQLH = 0.26745929444317623 for cut at RecoZ_p=16 
+
+Class R5-explicit:
+
+Max significance of QQHH = 64.58200500459063 for cut at RecoZ_p=34 
+Max purity of QQHH = 0.395737352680834 for cut at RecoZ_p=38 
+
+Class R5-explicit:
+
+Max significance of LLLL = 3.8667601262681583 for cut at RecoZ_p=42 
+Max purity of LLLL = 0.08722927974537607 for cut at RecoZ_p=48 
+
+Class R5-explicit:
+
+Max significance of LLLH = 40.73572494048944 for cut at RecoZ_p=42 
+Max purity of LLLH = 0.7546389094883234 for cut at RecoZ_p=46 
+
+Class R5-explicit:
+
+Max significance of LLHH = 98.97848044589884 for cut at RecoZ_p=42 
+Max purity of LLHH = 0.8412693719278861 for cut at RecoZ_p=46 
+
+Class R5-explicit:
+
+Max significance of QQLL = 4.681706193698931 for cut at RecoZ_p=34 
+Max purity of QQLL = 0.03525561924530378 for cut at RecoZ_p=38 
+
+Class R5-explicit:
+
+Max significance of QQLH = 39.261664413904526 for cut at RecoZ_p=12 
+Max purity of QQLH = 0.26745929444317623 for cut at RecoZ_p=16 
+
+Class R5-explicit:
+
+Max significance of QQHH = 64.58200500459063 for cut at RecoZ_p=34 
+Max purity of QQHH = 0.395737352680834 for cut at RecoZ_p=38 
+
+Class R5-explicit:
+
+Max significance of LLLL = 3.8667601262681583 for cut at RecoZ_p=42 
+Max purity of LLLL = 0.08722927974537607 for cut at RecoZ_p=48 
+
+Class R5-explicit:
+
+Max significance of LLLH = 40.73572494048944 for cut at RecoZ_p=42 
+Max purity of LLLH = 0.7546389094883234 for cut at RecoZ_p=46 
+
+Class R5-explicit:
+
+Max significance of LLHH = 98.97848044589884 for cut at RecoZ_p=42 
+Max purity of LLHH = 0.8412693719278861 for cut at RecoZ_p=46 
+
+Class R5-tag:
+
+Max significance of QQLL = 5.4221763389405355 for cut at RecoZ_p=32 
+Max purity of QQLL = 0.03763632170428142 for cut at RecoZ_p=38 
+
+Class R5-tag:
+
+Max significance of QQLH = 41.22784174251028 for cut at RecoZ_p=0 
+Max purity of QQLH = 0.20601323310554243 for cut at RecoZ_p=6 
+
+Class R5-tag:
+
+Max significance of QQHH = 105.7767753162633 for cut at RecoZ_p=10 
+Max purity of QQHH = 0.4610271512610543 for cut at RecoZ_p=32 
+
+Class R5-tag:
+
+Max significance of LLLL = 3.8643549494653713 for cut at RecoZ_p=42 
+Max purity of LLLL = 0.08709852251164661 for cut at RecoZ_p=48 
+
+Class R5-tag:
+
+Max significance of LLLH = 37.99696709786071 for cut at RecoZ_p=42 
+Max purity of LLLH = 0.675932010624323 for cut at RecoZ_p=46 
+
+Class R5-tag:
+
+Max significance of LLHH = 117.97507408881822 for cut at RecoZ_p=42 
+Max purity of LLHH = 0.8111727244884533 for cut at RecoZ_p=46 
+
+Class ktN-explicit:
+
+Max significance of QQLL = 7.008594181173506 for cut at RecoZ_p=12 
+Max purity of QQLL = 0.03549838919898717 for cut at RecoZ_p=34 
+
+Class ktN-explicit:
+
+Max significance of QQLH = 43.62979296431021 for cut at RecoZ_p=14 
+Max purity of QQLH = 0.1842934897785794 for cut at RecoZ_p=26 
+
+Class ktN-explicit:
+
+Max significance of QQHH = 43.7961273544394 for cut at RecoZ_p=36 
+Max purity of QQHH = 0.13982540625337742 for cut at RecoZ_p=40 
+
+Class ktN-explicit:
+
+Max significance of LLLL = 3.8667601262681583 for cut at RecoZ_p=42 
+Max purity of LLLL = 0.08722927974537607 for cut at RecoZ_p=48 
+
+Class ktN-explicit:
+
+Max significance of LLLH = 35.79669191973044 for cut at RecoZ_p=42 
+Max purity of LLLH = 0.7507299314774477 for cut at RecoZ_p=46 
+
+Class ktN-explicit:
+
+Max significance of LLHH = 95.19584377967738 for cut at RecoZ_p=42 
+Max purity of LLHH = 0.8399527339246012 for cut at RecoZ_p=46 
+
+Class ktN-tag:
+
+Max significance of QQLL = 8.338864222049423 for cut at RecoZ_p=20 
+Max purity of QQLL = 0.039382868077911706 for cut at RecoZ_p=34 
+
+Class ktN-tag:
+
+Max significance of QQLH = 53.429062207780426 for cut at RecoZ_p=0 
+Max purity of QQLH = 0.20311663559879176 for cut at RecoZ_p=18 
+
+Class ktN-tag:
+
+Max significance of QQHH = 102.6869304658326 for cut at RecoZ_p=28 
+Max purity of QQHH = 0.3651981936143224 for cut at RecoZ_p=34 
+
+Class ktN-tag:
+
+Max significance of LLLL = 3.8643549494653713 for cut at RecoZ_p=42 
+Max purity of LLLL = 0.08709852251164661 for cut at RecoZ_p=48 
+
+Class ktN-tag:
+
+Max significance of LLLH = 23.66198747328632 for cut at RecoZ_p=42 
+Max purity of LLLH = 0.5382057505474681 for cut at RecoZ_p=46 
+
+Class ktN-tag:
+
+Max significance of LLHH = 68.02602765814932 for cut at RecoZ_p=42 
+Max purity of LLHH = 0.6182710663317241 for cut at RecoZ_p=46 
+

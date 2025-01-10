@@ -10,7 +10,7 @@ def file_exists(file_path):
 
 color_6 = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
 color = ['#8C0303', '#D04747', '#03028D', '#4E6BD3']
-fig, axs = plt.subplots(nrows=3, ncols=3, figsize=(25, 25))
+fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(25, 25))
 
 replacement_sig = [
     'wzp6_ee_mumuH_Htautau_ecm240',
@@ -108,7 +108,7 @@ tree_name = "events"
 # automatic checks also prompt variable to get more accurate values
 #leaf_name = "TauTag_R5_isTAU"
 
-leaf_name = "RecoEmiss_costheta"
+leaf_name = "RecoZ_p"
 
 DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 
@@ -128,7 +128,7 @@ SUBDIR = [
 CAT = [
     "QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 
 CUTS = {
@@ -137,7 +137,7 @@ CUTS = {
     'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
 }
 
-output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/" +leaf_name+ "_optimization.txt"
+output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/" +leaf_name+ "_optimization_lower.txt"
 
 for a, tag in enumerate(TAG):
     for j, cat in enumerate(CAT):
@@ -178,7 +178,7 @@ for a, tag in enumerate(TAG):
                     # get associated value of variable from the bin and store the high edge (low edge of successive bin)
                     for i in range(0, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
                     #for i in range(len(bin_edges), len(bin_edges)-50, -1):
-                        temp_bkg.append(sum(y_values[:i]))
+                        temp_bkg.append(sum(y_values[i:]))
 
                     #add the entries for each background into the same array
                     for i in range(len(temp_bkg)):
@@ -224,7 +224,7 @@ for a, tag in enumerate(TAG):
                     # get associated value of variable from the bin and store the high edge (low edge of successive bin)
                     for i in range(0, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
                     #for i in range(len(bin_edges), len(bin_edges)-50, -1):
-                        temp_sig.append(sum(y_values_signal[:i]))
+                        temp_sig.append(sum(y_values_signal[i:]))
 
                     #add the entries for each signal into the same array
                     for i in range(len(temp_sig)):
@@ -270,10 +270,10 @@ for a, tag in enumerate(TAG):
                     p.append(0)
                 
             s_max = np.max(s)
-            index = s.index(s_max)*(0.02)
+            index = s.index(s_max)*(2)
 
             p_max = np.max(p)
-            indexp = p.index(p_max)*(0.02)
+            indexp = p.index(p_max)*(2)
 
             #significance = (entries_sig_exc / np.sqrt(entries_bkg_exc))
             #purity = ((entries_sig_exc / (entries_bkg_exc + entries_sig_exc)))
@@ -300,9 +300,9 @@ for a, tag in enumerate(TAG):
             #    p[i] = p[i]/p_sum
 
             row = k % 3
-            col = j % 3
+            col = j % 2
 
-            x = np.arange(0, 1, 0.02).tolist()
+            x = np.arange(0, 150, 2).tolist()
 
             axs[row][col].plot(x, s, linestyle='-', color=color[a], label=f"{tag} significance")
             #axs[row][col].plot(x, p, linestyle='--', color=color[a], label=f"{tag} purity")
@@ -320,4 +320,4 @@ for a, tag in enumerate(TAG):
             #axs[row][col].set_yscale('log')
 
 plt.tight_layout()
-plt.savefig(f'/web/sgiappic/public_html/Higgs_xsec/cut_optimizer_{leaf_name}.png', format='png', dpi=330)
+plt.savefig(f'/web/sgiappic/public_html/Higgs_xsec/cut_optimizer_{leaf_name}_lower.png', format='png', dpi=330)

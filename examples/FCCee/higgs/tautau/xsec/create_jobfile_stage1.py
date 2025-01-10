@@ -179,11 +179,11 @@ processList = {
 }
 
 inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
-output = '/work/sgiappic/HTCondor/stage1_241129/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = '/ceph/awiedl/FCCee/HiggsCP/stage1_241129/' ##output directory of stage2 samples
+output = '/work/sgiappic/HTCondor/stage1_nojets/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = '/ceph/sgiappic/HiggsCP/stage1_241202_nojets/' ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
-Filename = 'analysis_stage1.py'
+Filename = 'analysis_stage1_nojets.py'
 
 nCPUS = 2
 Memory = 10000
