@@ -194,19 +194,19 @@ processList_ = {
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage1_241125/'
-output = '/work/sgiappic/HTCondor/stage2_R5tag/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/R5-tag/stage2_241125/' ##output directory of stage2 samples
-localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
+inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage1_241202_nojets/'
+output = '/work/sgiappic/HTCondor/stage2_nojets/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_241202_nojets/' ##output directory of stage2 samples
+localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ktN-explicit/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage2_'
 SUBDIR = [
     'LL',
-    'LH',
-    'HH',
+    #'LH',
+    #'HH',
 ]
 CAT = [
-    "QQ",
+    #"QQ",
     "LL",
     "NuNu",
 ]
@@ -223,7 +223,7 @@ for cat in CAT:
         else:
             inputDir = inputDir_path + cat + "/" + sub + "/"
         outputDir = outputDir_path + cat + "/" + sub + "/"
-        Filename = Filename_path + cat + sub + ".py"
+        Filename = Filename_path + cat + sub + "_nojets.py"
         create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output, outputDir, Filename)
 
 create_condor_config(nCPUS, Memory, output)

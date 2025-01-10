@@ -134,110 +134,77 @@ replacement_bkgs = [
 ]
 
 DIRECTORY_EOS = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 
 TAG = [
-    #"R5-explicit",
-    #"R5-tag",
+    "R5-explicit",
+    "R5-tag",
     "ktN-explicit",
-    #"ktN-tag",
+    "ktN-tag",
 ]
 
 SUBDIR = [
-    #'LL',
+    'LL',
     'LH',
-    #'HH',
+    'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
-    #"LL",
-    #"NuNu",
+    "LL",
+    "NuNu",
 ]
 
 # Define the tree name
 tree_name = "events"
 
-tab = []
-raw = {}
-
 # Loop through each replacement word
-row = []
-row.append("Signal category & R5 explciit & & R5 PNet & & ktN explicit & & ktN PNet & ") #header
-row.append(" & Signal & Background & Signal & Background & Signal & Background & Signal & Background ")
-for cat in CAT:
-    for sub in SUBDIR:
+for tag in TAG:
+    tab = []
 
-        row.append(f"{cat+sub} & ")
-        
-        for tag in TAG:
+    out_file = f"{DIRECTORY}/efficiency/stage2_{tag}_efficiency_table.txt"
+    i = 0
+
+    for cat in CAT:
+        for sub in SUBDIR:
+            row = []
+            if i==0:
+                row.append(f" & {cat+sub} ")
+            else:
+                row.append(f" {cat+sub} ") #header
 
             process_events = 0
             events_ttree = 0
             eff = 0
 
-            for replacement_word in replacement_words:
+            for replacement_word in replacement_words+replacement_bkgs:
 
                 #run over files with taus from function
-                root_file_path = f"{DIRECTORY_EOS}/{tag}/stage2_241202/{cat}/{sub}/{replacement_word}"
-                root_file_path_og = f"{DIRECTORY_EOS}/{replacement_word}"
+                root_file_path = f"{DIRECTORY}/{tag}/stage2_241202/{cat}/{sub}/{replacement_word}"
                 flist = glob.glob(root_file_path + '/*.root')
-                flist_og = glob.glob(root_file_path_og + '/*.root')
 
                 for filepath in flist:
-                    chunk_process_events, chunk_events_ttree = get_entries(filepath)
-                    if chunk_process_events is not None and chunk_events_ttree is not None:
-                        #process_events += chunk_process_events #original number of events
-                        events_ttree += chunk_events_ttree
-
-                for filepath in flist_og:
                     chunk_process_events, chunk_events_ttree = get_entries(filepath)
                     if chunk_process_events is not None and chunk_events_ttree is not None:
                         process_events += chunk_process_events #original number of events
-                        #events_ttree += chunk_events_ttree
-                        
-            process_events_b = 0
-            events_ttree_b = 0
-            eff_b = 0
-                        
-            for replacement_word in replacement_bkgs:
+                        events_ttree += chunk_events_ttree
 
-                #run over files with taus from function
-                root_file_path = f"{DIRECTORY_EOS}/{tag}/stage2_241202/{cat}/{sub}/{replacement_word}"
-                root_file_path_og = f"{DIRECTORY_EOS}/{replacement_word}"
-                flist = glob.glob(root_file_path + '/*.root')
-                flist_og = glob.glob(root_file_path_og + '/*.root')
+                if process_events!=0 :
+                    eff = events_ttree/process_events
 
-                for filepath in flist:
-                    chunk_process_events, chunk_events_ttree = get_entries(filepath)
-                    if chunk_process_events is not None and chunk_events_ttree is not None:
-                        #process_events += chunk_process_events #original number of events
-                        events_ttree_b += chunk_events_ttree
+                if i==0:
+                    row.append(f"{replacement_word} & {eff*100:.3f} ")
+                    print(f"{replacement_word} & {eff*100:.3f} & /// {i}, {cat}, {sub}" )
+                else:
+                    row.append(f" {eff*100:.3f} ")
+                    print(f"{replacement_word} & {eff*100:.3f} & /// {i}, {cat}, {sub}" )
+            i+=1
+            tab.append(row)
+    tab.append([" \\\\ \hline"]*(len(replacement_words+replacement_bkgs)+1))
 
-                for filepath in flist_og:
-                    chunk_process_events, chunk_events_ttree = get_entries(filepath)
-                    if chunk_process_events is not None and chunk_events_ttree is not None:
-                        process_events_b += chunk_process_events #original number of events
-                        #events_ttree += chunk_events_ttree
-                        
-                    #print(f"{root_file_path}, {cat+sub}, {process_events}, {events_ttree}")
-                
-            if events_ttree!=0 :
-                eff = events_ttree/process_events
-            if events_ttree_b!=0 :
-                eff_b = events_ttree_b/process_events_b
-
-            row[-1] += f"{eff:.3f} & {eff_b:.3f} &"
-
-            print(f"{eff:.3f} & {eff_b:.3f} &")
-
-tab.append(row)
-
-# Write the content of the selected row to the output CSV file
-transposed_tab = list(zip(*tab))
-
-output_file = DIRECTORY_EOS + "efficiency/cat_eff.txt"
- 
-#with open(output_file, "w", newline="") as file:
-#    writer = csv.writer(file)
-    # Write each row of the matrix
-#    writer.writerows(transposed_tab)
+    # Write the content of the selected row to the output CSV file
+    transposed_tab = list(zip(*tab))
+    
+    with open(out_file, "w") as file:
+        writer = csv.writer(file, delimiter="&")
+        writer.writerows(transposed_tab)

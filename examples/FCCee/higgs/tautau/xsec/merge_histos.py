@@ -34,19 +34,20 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 TAG = [
-    "R5-explicit",
-    "R5-tag",
-    "ktN-explicit",
-    "ktN-tag",
+    #"R5-explicit",
+    #"R5-tag",
+    #"ktN-explicit",
+    #"ktN-tag",
+    "",
 ]
 SUBDIR = [
     'LL',
-    'LH',
-    'HH',
+    #'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     "LL",
     "NuNu",
 ]
@@ -80,13 +81,13 @@ CUTS_LLLH = [
 ]
 
 CUTS_LLLL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    "selReco",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_2DR",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_40Emiss",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss", 
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss_Zp54",
@@ -157,13 +158,13 @@ CUTS_NuNuLH = [
 ]
 
 CUTS_NuNuLL = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    "selReco",
+    "selReco_100Me",
+    "selReco_100Me_TauDPhi3",
+    "selReco_100Me_TauDPhi3_2DR",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
     "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
     "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
 ]
@@ -467,6 +468,11 @@ VARIABLES = [
     "RecoEmiss_pt",
     "RecoEmiss_p",
     "RecoEmiss_e",
+    "RecoEmiss_eta",
+    "RecoEmiss_phi",
+    "RecoEmiss_theta",
+    "RecoEmiss_y",
+    "RecoEmiss_costheta",
 
     #"n_RecoTracks",
     #"RecoVertexObject",
@@ -550,6 +556,9 @@ VARIABLES = [
     #"Jets_R5_sel_phi",     
     #"Jets_R5_sel_mass",      
     #"n_Jets_R5_sel", 
+]
+
+VAR_JET = [
 
     "TagJet_R5_px", 
     "TagJet_R5_py",    
@@ -805,12 +814,6 @@ VARIABLES = [
     "TagJet_kt1_sel_phi",     
     "TagJet_kt1_sel_mass",      
     "n_TagJet_kt1_sel",
-
-    "RecoEmiss_eta",
-    "RecoEmiss_phi",
-    "RecoEmiss_theta",
-    "RecoEmiss_y",
-    "RecoEmiss_costheta",
 
 ]
 
@@ -1497,14 +1500,14 @@ for tag in TAG:
                     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
                 ]
 
-            for cut in CUTS:
+            for cut in CUT:
 
                 if "tag" in tag:
                     variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat]
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/final_241202/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final_241202_nojets/" + cat + "/" + sub + "/"
             
                 for num in range(1,28):
                     output = f"{directory}{legend[num]}_{cut}_histo.root"
