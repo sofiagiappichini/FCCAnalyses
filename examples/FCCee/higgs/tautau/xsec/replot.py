@@ -34,21 +34,20 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 TAG = [
-    #"R5-explicit",
-    #"R5-tag",
-    #"ktN-explicit",
-    #"ktN-tag",
-    "",
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
 ]
 SUBDIR = [
     'LL',
-    #'LH',
-    #'HH',
+    'LH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
-    "LL",
+    "QQ",
+    #"LL",
     "NuNu",
 ]
 
@@ -1244,7 +1243,7 @@ ana_tex_sub = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = False
+LOGY = True
 
 #list of backgorunds, then legend and colors to be assigned to them
 backgrounds_all = [
@@ -1429,17 +1428,21 @@ signals = [
 
 for tag in TAG:
     for cat in CAT:
-        if "tag" in tag:
-                variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat]
-        else: 
-            variables = VARIABLES + LIST_VAR[cat] 
+        #if "tag" in tag:
+                #variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] + ["BDT_score"]
+        #else: 
+        #    variables = VARIABLES + LIST_VAR[cat] +["BDT_score"]
+        variables = ["BDT_score"]
 
         for sub in SUBDIR:
-            directory = DIRECTORY + tag + "/final_241202_nojets/" + cat + "/" + sub + "/"
+            directory = DIRECTORY + tag + "/final_241202_BDT/" + cat + "/" + sub + "/"
 
-            CUT = CUTS[cat+sub]
+            CUT = [
+                "selReco",
+                #"selReco_0.5BDT",
+            ]
 
-            if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
+            '''if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
                 CUT = [
                     #"selReco",
                     #"selReco_100Coll150",
@@ -1467,10 +1470,12 @@ for tag in TAG:
                     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
                     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
                     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
-                ]
+                ]'''
 
             for cut in CUT:
                 for variable in variables:
+
+                    #print(directory, cut, variable)
 
                     canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1507,6 +1512,7 @@ for tag in TAG:
 
                     for s in signals:
                         fin = f"{directory}{s}_{cut}_histo.root"
+                        #print(fin)
                         if file_exists(fin): #might be an empty file after stage2 
                             tf = ROOT.TFile.Open(fin, 'READ')
                             h = tf.Get(variable)

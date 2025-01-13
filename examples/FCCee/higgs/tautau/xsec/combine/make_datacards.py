@@ -54,14 +54,14 @@ os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
 os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
 os.system("cmsenv")
 
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/test"
+outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_v2/"
 
 DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 TAG = [
     "R5-explicit",
-    #"R5-tag",
-    #"ktN-explicit",
-    #"ktN-tag",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
 ]
 SUBDIR = [
     'LL',
@@ -75,18 +75,18 @@ CAT = [
     "NuNu",
 ]
 CUTS = {
-    #'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
-    'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
-    'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
-    'QQ/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
-    'QQ/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
-    'QQ/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
-    'NuNu/HH':"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
-    'NuNu/LH':"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
-    'NuNu/LL':"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
+    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    #'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
+    #'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
+    #'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
+    #'QQ/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
+    #'QQ/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
+    #'QQ/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
+    #'NuNu/HH':"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
+    #'NuNu/LH':"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
+    #'NuNu/LL':"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
 }
 VARIABLE = {
     'LL':"Recoil",
@@ -183,14 +183,14 @@ if make_card:
                 
                 directory = DIRECTORY + tag + "/final_241202/" + cat  + "/" + sub + "/"
 
-                if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
-                    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54"
-                if "tag" in tag and "QQ" in cat and "HH" in sub:
-                    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52"
+                #if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
+                #    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54"
+                #if "tag" in tag and "QQ" in cat and "HH" in sub:
+                #    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52"
 
-                index = f"{cat}/{sub}"
-                cut = CUTS[index]
-                # cut = CUTS[cat]
+                #index = f"{cat}/{sub}"
+                #cut = CUTS[index]
+                cut = CUTS[cat]
                 print(cut, tag, cat, sub)
 
 
@@ -297,6 +297,16 @@ if make_card:
                     dc += get_combined_unc("QQH", procs, bkg_procs)
                 if any("tautauH" in proc for proc in bkg_procs):
                     dc += get_combined_unc("tautauH", procs, bkg_procs)
+                for proc in bkg_procs:
+                    if all(substring not in proc for substring in ["nunuH", "LLH", "QQH", "tautauH"]):
+                        dc += f"unc_{proc}      lnN     "
+                        for p in procs:
+                            if p == proc:
+                                dc += f"{'1.20':{' '}{'<'}{lspace}}"
+                            else:
+                                dc += f"{'-':{' '}{'<'}{lspace}}"
+                        dc += "\n"
+                    dc += "\n\n"
 
                 dc += "* autoMCStats 1 1"
 
