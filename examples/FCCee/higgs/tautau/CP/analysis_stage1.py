@@ -165,8 +165,8 @@ class RDFanalysis():
 
     #__________________________________________________________
     #Mandatory: analysers funtion to define the analysers to process, please make sure you return the last dataframe, in this example it is df2
-    def analysers(df):
-        df2 = (df
+    def analysers(df2):
+        df2 = (df2
 
                 #################
                 # Gen particles #
@@ -827,55 +827,6 @@ class RDFanalysis():
                 # build pseudo jets with the RP, using the interface that takes px,py,pz,E
                 .Define("pseudo_jets_sel",  "JetClusteringUtils::set_pseudoJets(RP_px_sel, RP_py_sel, RP_pz_sel, RP_e_sel)" )
 
-                #R5 inclusive
-                .Define("FCCAnalysesJets_R5", "JetClustering::clustering_ee_genkt(0.5, 0, 2., 0, 1, -1)(pseudo_jets_sel)")
-                .Define("Jets_R5",  "JetClusteringUtils::get_pseudoJets( FCCAnalysesJets_R5 )") 
-                .Define("Jet_GetConstituents_R5","JetClusteringUtils::get_constituents(FCCAnalysesJets_R5)")
-                .Define("Jets_Constituents_R5", "JetConstituentsUtils::build_constituents_cluster(ReconstructedParticlesJET, Jet_GetConstituents_R5)") #build jet constituents lists for tau reconstruction
-
-		        .Define("Jets_R5_e",      "JetClusteringUtils::get_e(Jets_R5)")
-                .Define("Jets_R5_p",      "JetClusteringUtils::get_p(Jets_R5)") #momentum p
-                .Define("Jets_R5_pt",      "JetClusteringUtils::get_pt(Jets_R5)") #transverse momentum pt
-                .Define("Jets_R5_px",      "JetClusteringUtils::get_px(Jets_R5)")
-                .Define("Jets_R5_py",      "JetClusteringUtils::get_py(Jets_R5)")
-                .Define("Jets_R5_pz",      "JetClusteringUtils::get_pz(Jets_R5)")
-		        .Define("Jets_R5_eta",     "JetClusteringUtils::get_eta(Jets_R5)") #pseudorapidity eta
-                .Define("Jets_R5_theta",   "JetClusteringUtils::get_theta(Jets_R5)")
-		        .Define("Jets_R5_phi",     "JetClusteringUtils::get_phi(Jets_R5)") #polar angle in the transverse plane phi
-                .Define("Jets_R5_mass",      "JetClusteringUtils::get_m(Jets_R5)")
-                .Define("n_Jets_R5", "Jets_R5_e.size()")
-
-                ### reconstruction of hadronic taus from jets
-                .Define("TauFromJet_R5", "FCCAnalyses::ZHfunctions::findTauInJet(Jets_Constituents_R5)") 
-                .Define("TauFromJet_R5_type_sel","ReconstructedParticle::get_type(TauFromJet_R5)")
-                .Define("TauFromJet_R5_tau", "TauFromJet_R5[TauFromJet_R5_type_sel>=0]") 
-                .Define("TauFromJet_R5_p","ReconstructedParticle::get_p(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_pt","ReconstructedParticle::get_pt(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_px","ReconstructedParticle::get_px(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_py","ReconstructedParticle::get_py(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_pz","ReconstructedParticle::get_pz(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_theta","ReconstructedParticle::get_theta(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_phi","ReconstructedParticle::get_phi(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_eta","ReconstructedParticle::get_eta(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_y","ReconstructedParticle::get_y(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_e","ReconstructedParticle::get_e(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_charge","ReconstructedParticle::get_charge(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_type","ReconstructedParticle::get_type(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_mass","ReconstructedParticle::get_mass(TauFromJet_R5_tau)")
-                .Define("n_TauFromJet_R5","TauFromJet_R5_pt.size()")
-
-                .Define("Jets_R5_sel_e",      "Jets_R5_e[TauFromJet_R5_type_sel<0]")
-                .Define("Jets_R5_sel_p",      "Jets_R5_p[TauFromJet_R5_type_sel<0]")
-                .Define("Jets_R5_sel_pt",      "Jets_R5_pt[TauFromJet_R5_type_sel<0]")
-                .Define("Jets_R5_sel_px",      "Jets_R5_px[TauFromJet_R5_type_sel<0]")
-                .Define("Jets_R5_sel_py",      "Jets_R5_py[TauFromJet_R5_type_sel<0]")
-                .Define("Jets_R5_sel_pz",      "Jets_R5_pz[TauFromJet_R5_type_sel<0]")
-		        .Define("Jets_R5_sel_eta",     "Jets_R5_eta[TauFromJet_R5_type_sel<0]")
-                .Define("Jets_R5_sel_theta",   "Jets_R5_theta[TauFromJet_R5_type_sel<0]")
-		        .Define("Jets_R5_sel_phi",     "Jets_R5_phi[TauFromJet_R5_type_sel<0]")
-                .Define("Jets_R5_sel_mass",      "Jets_R5_mass[TauFromJet_R5_type_sel<0]")
-                .Define("n_Jets_R5_sel", "Jets_R5_sel_e.size()")
-               
         )
         #### tagging
         
@@ -919,8 +870,6 @@ class RDFanalysis():
         df2 = jetFlavourHelper_R5.inference(weaver_preproc, weaver_model, df2)
 
         df2 = (df2
-                #.Define("TagJet_R5_jet",            "return jetClusteringHelper_R5.jets")
-                #.Define("TagJet_R5_constituents",            "return jetClusteringHelper_R5.constituents")
                 .Define("TagJet_R5_px",           "JetClusteringUtils::get_px({})".format(jetClusteringHelper_R5.jets))
                 .Define("TagJet_R5_py",           "JetClusteringUtils::get_py({})".format(jetClusteringHelper_R5.jets))
                 .Define("TagJet_R5_pz",           "JetClusteringUtils::get_pz({})".format(jetClusteringHelper_R5.jets))
@@ -937,6 +886,7 @@ class RDFanalysis():
                 .Define("n_TagJet_R5_charged_constituents",        "JetConstituentsUtils::get_ncharged_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("n_TagJet_R5_neutral_constituents",        "JetConstituentsUtils::get_nneutral_constituents({})".format(jetClusteringHelper_R5.constituents))
                 .Define("n_TagJet_R5",           "return TagJet_R5_e.size()")
+                .Define("TagJet_R5_cleanup",       "JetConstituentsUtils::cleanup_taggedjet({})".format(jetClusteringHelper_R5.constituents))
 
                 .Define("TagJet_R5_isG",    "recojet_isG_R5")
                 .Define("TagJet_R5_isU",    "recojet_isU_R5")
@@ -946,27 +896,83 @@ class RDFanalysis():
                 .Define("TagJet_R5_isB",    "recojet_isB_R5")
                 .Define("TagJet_R5_isTAU",    "recojet_isTAU_R5")
 
+                .Define("TauFromJet_R5", "FCCAnalyses::ZHfunctions::findTauInJet({})".format(jetClusteringHelper_R5.constituents)) 
+                .Define("TauFromJet_R5_type_sel","ReconstructedParticle::get_type(TauFromJet_R5)")
+                .Define("TauFromJet_R5_tau", "TauFromJet_R5[TauFromJet_R5_type_sel>=0]") 
+                .Define("TauFromJet_R5_p","ReconstructedParticle::get_p(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_pt","ReconstructedParticle::get_pt(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_px","ReconstructedParticle::get_px(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_py","ReconstructedParticle::get_py(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_pz","ReconstructedParticle::get_pz(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_theta","ReconstructedParticle::get_theta(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_phi","ReconstructedParticle::get_phi(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_eta","ReconstructedParticle::get_eta(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_y","ReconstructedParticle::get_y(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_e","ReconstructedParticle::get_e(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_charge","ReconstructedParticle::get_charge(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_type","ReconstructedParticle::get_type(TauFromJet_R5_tau)")
+                .Define("TauFromJet_R5_mass","ReconstructedParticle::get_mass(TauFromJet_R5_tau)")
+                .Define("n_TauFromJet_R5","TauFromJet_R5_pt.size()")
+
+                .Define("TagJet_R5_sel_e",      "TagJet_R5_e[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+                .Define("TagJet_R5_sel_p",      "TagJet_R5_p[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+                .Define("TagJet_R5_sel_pt",      "TagJet_R5_pt[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+                .Define("TagJet_R5_sel_px",      "TagJet_R5_px[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+                .Define("TagJet_R5_sel_py",      "TagJet_R5_py[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+                .Define("TagJet_R5_sel_pz",      "TagJet_R5_pz[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+		        .Define("TagJet_R5_sel_eta",     "TagJet_R5_eta[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+                .Define("TagJet_R5_sel_theta",   "TagJet_R5_theta[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+		        .Define("TagJet_R5_sel_phi",     "TagJet_R5_phi[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+                .Define("TagJet_R5_sel_mass",      "TagJet_R5_mass[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
+                .Define("n_TagJet_R5_sel", "TagJet_R5_sel_e.size()")
+
                 #get the leading charged particle in the jet, if only neutral particles are present then the particle is null
-                .Define("LeadingPar",      "FCCAnalyses::ZHfunctions::get_chargedleading_fromjet({})".format(jetClusteringHelper_R5.constituents))
-                .Define("n_LeadingPar",      "ReconstructedParticle::get_n(LeadingPar)") #count how many photons are in the event in total
-                .Define("LeadingPar_e",      "ReconstructedParticle::get_e(LeadingPar)")
-                .Define("LeadingPar_p",      "ReconstructedParticle::get_p(LeadingPar)")
-                .Define("LeadingPar_pt",      "ReconstructedParticle::get_pt(LeadingPar)")
-                .Define("LeadingPar_px",      "ReconstructedParticle::get_px(LeadingPar)")
-                .Define("LeadingPar_py",      "ReconstructedParticle::get_py(LeadingPar)")
-                .Define("LeadingPar_pz",      "ReconstructedParticle::get_pz(LeadingPar)")
-		        .Define("LeadingPar_eta",     "ReconstructedParticle::get_eta(LeadingPar)") #pseudorapidity eta
-                .Define("LeadingPar_theta",   "ReconstructedParticle::get_theta(LeadingPar)")
-		        .Define("LeadingPar_phi",     "ReconstructedParticle::get_phi(LeadingPar)") #polar angle in the transverse plane phi
-                .Define("LeadingPar_charge",  "ReconstructedParticle::get_charge(LeadingPar)")
-                .Define("LeadingPar_mass",  "ReconstructedParticle::get_mass(LeadingPar)")
+                .Define("ChargedPar",      "FCCAnalyses::ZHfunctions::get_chargedleading_fromjet({})".format(jetClusteringHelper_R5.constituents))
+                .Define("n_ChargedPar",      "ReconstructedParticle::get_n(ChargedPar)") 
+                .Define("ChargedPar_e",      "ReconstructedParticle::get_e(ChargedPar)")
+                .Define("ChargedPar_p",      "ReconstructedParticle::get_p(ChargedPar)")
+                .Define("ChargedPar_pt",      "ReconstructedParticle::get_pt(ChargedPar)")
+                .Define("ChargedPar_px",      "ReconstructedParticle::get_px(ChargedPar)")
+                .Define("ChargedPar_py",      "ReconstructedParticle::get_py(ChargedPar)")
+                .Define("ChargedPar_pz",      "ReconstructedParticle::get_pz(ChargedPar)")
+		        .Define("ChargedPar_eta",     "ReconstructedParticle::get_eta(ChargedPar)") #pseudorapidity eta
+                .Define("ChargedPar_theta",   "ReconstructedParticle::get_theta(ChargedPar)")
+		        .Define("ChargedPar_phi",     "ReconstructedParticle::get_phi(ChargedPar)") #polar angle in the transverse plane phi
+                .Define("ChargedPar_charge",  "ReconstructedParticle::get_charge(ChargedPar)")
+                .Define("ChargedPar_mass",  "ReconstructedParticle::get_mass(ChargedPar)")
+
+                #get the neutral hadronic system for the jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralSyst",      "FCCAnalyses::ZHfunctions::get_neutral_fromjet({})".format(jetClusteringHelper_R5.constituents))
+                .Define("n_NeutralSyst",      "ReconstructedParticle::get_n(NeutralSyst)") 
+                .Define("NeutralSyst_e",      "ReconstructedParticle::get_e(NeutralSyst)")
+                .Define("NeutralSyst_p",      "ReconstructedParticle::get_p(NeutralSyst)")
+                .Define("NeutralSyst_pt",      "ReconstructedParticle::get_pt(NeutralSyst)")
+                .Define("NeutralSyst_px",      "ReconstructedParticle::get_px(NeutralSyst)")
+                .Define("NeutralSyst_py",      "ReconstructedParticle::get_py(NeutralSyst)")
+                .Define("NeutralSyst_pz",      "ReconstructedParticle::get_pz(NeutralSyst)")
+		        .Define("NeutralSyst_eta",     "ReconstructedParticle::get_eta(NeutralSyst)") #pseudorapidity eta
+                .Define("NeutralSyst_theta",   "ReconstructedParticle::get_theta(NeutralSyst)")
+		        .Define("NeutralSyst_phi",     "ReconstructedParticle::get_phi(NeutralSyst)") #polar angle in the transverse plane phi
+                .Define("NeutralSyst_charge",  "ReconstructedParticle::get_charge(NeutralSyst)")
+                .Define("NeutralSyst_mass",  "ReconstructedParticle::get_mass(NeutralSyst)")
 
                 ### now i want to study the thadronic tau reconstruction with the function and the jet tagger by comparing it to the gen info for taus decaying not to electrons or muons
 
                 .Define("GenTau_el",       "FCCAnalyses::MCParticle::sel_daughterID(-11, false, true)(HiggsGenTau,Particle,Particle1)")
-                .Define("GenTau_had",       "FCCAnalyses::MCParticle::sel_daughterID(-13, false, true)(GenTau_el,Particle,Particle1)")
-                .Define("HadGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(GenTau_had)")
-                .Define("HadGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(GenTau_had)")
+                .Define("HadGenTau",       "FCCAnalyses::MCParticle::sel_daughterID(-13, false, true)(GenTau_el,Particle,Particle1)")
+                .Define("HadGenTau_e",     "FCCAnalyses::MCParticle::get_e(HadGenTau)")
+                .Define("HadGenTau_p",     "FCCAnalyses::MCParticle::get_p(HadGenTau)")
+                .Define("HadGenTau_pt",     "FCCAnalyses::MCParticle::get_pt(HadGenTau)")
+                .Define("HadGenTau_px",     "FCCAnalyses::MCParticle::get_px(HadGenTau)")
+                .Define("HadGenTau_py",     "FCCAnalyses::MCParticle::get_py(HadGenTau)")
+                .Define("HadGenTau_pz",     "FCCAnalyses::MCParticle::get_pz(HadGenTau)")
+                .Define("HadGenTau_y",    "FCCAnalyses::MCParticle::get_y(HadGenTau)")
+                .Define("HadGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(HadGenTau)")
+                .Define("HadGenTau_theta",     "FCCAnalyses::MCParticle::get_theta(HadGenTau)")
+                .Define("HadGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(HadGenTau)")
+                .Define("HadGenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(HadGenTau,Particle,Particle0)")
+                .Define("HadGenTau_charge", "FCCAnalyses::MCParticle::get_charge(HadGenTau)")
+                .Define("HadGenTau_mass",   "FCCAnalyses::MCParticle::get_mass(HadGenTau)")
                 .Define("n_GenTau_had",     "HadGenTau_eta.size()")
 
                 .Define("TauTag_eta_sel",      "TagJet_R5_eta[TagJet_R5_isTAU>0.9 && abs(TagJet_R5_charge)==1 && TagJet_R5_mass<3]")
@@ -997,6 +1003,32 @@ class RDFanalysis():
                 .Define("n_events_tag5",       "if (n_GenTau_had==n_TauTag_R5_match5 && n_GenTau_had==1) return 1; else if (n_GenTau_had==n_TauTag_R5_match5 && n_GenTau_had==2) return 2; else if (n_GenTau_had==n_TauTag_R5_match5 && n_GenTau_had==0) return 0; else return -1;")
                 .Define("n_events_tag5_mass",       "if (n_GenTau_had==n_TauTag_R5_mass_match5 && n_GenTau_had==1) return 1; else if (n_GenTau_had==n_TauTag_R5_mass_match5 && n_GenTau_had==2) return 2;  else if (n_GenTau_had==n_TauTag_R5_mass_match5 && n_GenTau_had==0) return 0; else return -1;")
                 .Define("n_events_func",       "if (n_GenTau_had==n_TauFromJet_R5_match && n_GenTau_had==1) return 1; else if (n_GenTau_had==n_TauFromJet_R5_match && n_GenTau_had==2) return 2; else if (n_GenTau_had==n_TauFromJet_R5_match && n_GenTau_had==0) return 0; else return -1;")
+
+                # varibales for the CP to save here in stage1
+
+                #first of all get the IP from the Z daughters
+
+                .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack_1)") ### EFlowTrack_1 contains all tracks, selecting a subset associated with certain particles ###
+                .Define("RecoMuonTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoMuons, EFlowTrack_1)")
+                .Define("RecoLeptonTracks",   "ReconstructedTrack::Merge( RecoElectronTracks, RecoMuonTracks)")
+
+                .Define("RecoDecayVertexObjectZ",   "VertexFitterSimple::VertexFitter_Tk( 0, RecoElectronTracks)" ) ### reconstructing a vertex withour any request n=0 ###
+                .Define("RecoDecayVertexZ",  "VertexingUtils::get_VertexData( RecoDecayVertexObjectZ )")
+                .Define("RecoIP_v3",     "FCCAnalyses::ZHfunctions::build_p4_single(RecoDecayVertexZ.position.x, RecoDecayVertexZ.position.y, RecoDecayVertexZ.position.z, float(0.))")
+
+                #hen get the impact vector from the new IP to the charged hadron track
+                #for now we use the collision point and the phi and vector of the particle at the origin as proxi for the IP, phi at d0 and vector at d0
+                
+                .Define("RecoChargedParTrack",   "ReconstructedParticle2Track::getRP2TRK( ChargedPar, EFlowTrack_1)")
+                .Define("RecoChargedParTrack_D0", "ReconstructedParticle2Track::getRP2TRK_D0(ChargedPar,EFlowTrack_1)")
+                .Define("RecoChargedParTrack_Z0", "ReconstructedParticle2Track::getRP2TRK_Z0(ChargedPar,EFlowTrack_1)")
+                .Define("RecoChargedParTrack_phi", "ReconstructedParticle2Track::getRP2TRK_phi(ChargedPar,EFlowTrack_1)")
+
+                .Define("RecoChargedParTrack_x0",       "RecoChargedParTrack_D0 * cos(RecoChargedParTrack_phi)")
+                .Define("RecoChargedParTrack_y0",       "RecoChargedParTrack_D0 * sin(RecoChargedParTrack_phi)")
+                .Define("Impact_p4",        "FCCAnalyses::ZHfunctions::build_p4(RecoChargedParTrack_x0, RecoChargedParTrack_y0, RecoChargedParTrack_Z0, ROOT::VecOps::RVec<float>{})")
+                .Define("ChargedPar_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedPar_px, ChargedPar_py, ChargedPar_pz, ChargedPar_e)")
+                .Define("NeutralSyst_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralSyst_px, NeutralSyst_py, NeutralSyst_pz, NeutralSyst_e)") 
 
         )
         return df2
@@ -1246,8 +1278,23 @@ class RDFanalysis():
             "GenHiggs_theta", 
             "GenHiggs_phi", 
             "GenHiggs_charge", 
-            '''
-        branchList = [
+
+        ]'''
+        branchList =[
+
+            "HadGenTau_e",
+            "HadGenTau_p",
+            "HadGenTau_pt",
+            "HadGenTau_px",
+            "HadGenTau_py",
+            "HadGenTau_pz",
+            "HadGenTau_y",
+            "HadGenTau_eta",
+            "HadGenTau_theta",
+            "HadGenTau_phi",
+            "HadGenTau_charge",
+            "HadGenTau_mass",
+            "n_GenTau_had",
 
         ######## Reconstructed particles #######
             #"RecoMC_PID",
@@ -1428,48 +1475,6 @@ class RDFanalysis():
             #"RecoPartPID" ,
             #"RecoPartPIDAtVertex",
 
-            "Jets_R5_e",     
-            "Jets_R5_p",     
-            "Jets_R5_pt",     
-            "Jets_R5_px",   
-            "Jets_R5_py",   
-            "Jets_R5_pz",     
-            "Jets_R5_eta",    
-            "Jets_R5_theta",   
-            "Jets_R5_phi",     
-            "Jets_R5_mass",        
-            "n_Jets_R5", 
- 
-            "TauFromJet_R5_p",
-            "TauFromJet_R5_pt",
-            "TauFromJet_R5_px",
-            "TauFromJet_R5_py",
-            "TauFromJet_R5_pz",
-            "TauFromJet_R5_theta",
-            "TauFromJet_R5_phi",
-            "TauFromJet_R5_e",
-            "TauFromJet_R5_eta",
-            "TauFromJet_R5_y",
-            "TauFromJet_R5_charge",
-            "TauFromJet_R5_type",
-            "TauFromJet_R5_mass",
-            "n_TauFromJet_R5",
-
-            "Jets_R5_sel_e",     
-            "Jets_R5_sel_p",     
-            "Jets_R5_sel_pt",     
-            "Jets_R5_sel_px",   
-            "Jets_R5_sel_py",   
-            "Jets_R5_sel_pz",     
-            "Jets_R5_sel_eta",    
-            "Jets_R5_sel_theta",   
-            "Jets_R5_sel_phi",     
-            "Jets_R5_sel_mass",      
-            "n_Jets_R5_sel", 
-
-            #"TagJet_R5_jet", 
-            #"TagJet_R5_constituents",
-
             "TagJet_R5_px", 
             "TagJet_R5_py",    
             "TagJet_R5_pz",      
@@ -1485,7 +1490,8 @@ class RDFanalysis():
             "n_TagJet_R5_constituents",   
             "n_TagJet_R5_charged_constituents",   
             "n_TagJet_R5_neutral_constituents",   
-            "n_TagJet_R5",          
+            "n_TagJet_R5",    
+            "TagJet_R5_cleanup",        
 
             "TagJet_R5_isG",  
             "TagJet_R5_isU",
@@ -1495,29 +1501,62 @@ class RDFanalysis():
             "TagJet_R5_isB",  
             "TagJet_R5_isTAU",
 
-            "n_GenTau_had", 
-            "n_TauTag_R5_match",  
-            "n_TauTag_R5_mass_match",
-            "n_events_tag",  
-            "n_events_tag_mass",
-            "n_TauTag_R5_match5",  
-            "n_TauTag_R5_mass_match5",
-            "n_events_tag5",  
-            "n_events_tag5_mass",
-            "n_events_func",  
+            "TauFromJet_R5_p",
+            "TauFromJet_R5_pt",
+            "TauFromJet_R5_px",
+            "TauFromJet_R5_py",
+            "TauFromJet_R5_pz",
+            "TauFromJet_R5_theta",
+            "TauFromJet_R5_phi",
+            "TauFromJet_R5_e",
+            "TauFromJet_R5_eta",
+            "TauFromJet_R5_y",
+            "TauFromJet_R5_charge",
+            "TauFromJet_R5_type",
+            "TauFromJet_R5_mass",
+            "n_TauFromJet_R5",
 
-            "n_LeadingPar",
-            "LeadingPar_e",
-            "LeadingPar_p",
-            "LeadingPar_pt",
-            "LeadingPar_px",
-            "LeadingPar_py",
-            "LeadingPar_pz",
-            "LeadingPar_eta",
-            "LeadingPar_theta",
-            "LeadingPar_phi",
-            "LeadingPar_charge",
-            "LeadingPar_mass",
+            "TagJet_R5_sel_e",     
+            "TagJet_R5_sel_p",     
+            "TagJet_R5_sel_pt",     
+            "TagJet_R5_sel_px",   
+            "TagJet_R5_sel_py",   
+            "TagJet_R5_sel_pz",     
+            "TagJet_R5_sel_eta",    
+            "TagJet_R5_sel_theta",   
+            "TagJet_R5_sel_phi",     
+            "TagJet_R5_sel_mass",      
+            "n_TagJet_R5_sel", 
+
+            "n_ChargedPar",
+            "ChargedPar_e",
+            "ChargedPar_p",
+            "ChargedPar_pt",
+            "ChargedPar_px",
+            "ChargedPar_py",
+            "ChargedPar_pz",
+            "ChargedPar_eta",
+            "ChargedPar_theta",
+            "ChargedPar_phi",
+            "ChargedPar_charge",
+            "ChargedPar_mass",
+
+            "n_NeutralSyst",
+            "NeutralSyst_e",
+            "NeutralSyst_p",
+            "NeutralSyst_pt",
+            "NeutralSyst_px",
+            "NeutralSyst_py",
+            "NeutralSyst_pz",
+            "NeutralSyst_eta",
+            "NeutralSyst_theta",
+            "NeutralSyst_phi",
+            "NeutralSyst_charge",
+            "NeutralSyst_mass",
+
+            "Impact_p4", 
+            "ChargedPar_p4", 
+            "NeutralSyst_p4",
 
         ]
 

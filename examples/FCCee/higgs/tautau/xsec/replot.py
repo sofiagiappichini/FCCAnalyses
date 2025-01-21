@@ -59,11 +59,11 @@ CUTS_LLHH = [
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss", 
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss_Zp54",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss", 
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss_Zp54",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
 ]
 
 CUTS_LLLH = [
@@ -81,30 +81,30 @@ CUTS_LLLH = [
 ]
 
 CUTS_LLLL = [
-    "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_2DR",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_40Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss", 
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss_Zp54",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
-]
-
-CUTS_QQHH = [
     #"selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_40Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss", 
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss_Zp54",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
+]
+
+CUTS_QQHH = [
+    "selReco_0.5BDT",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_2DR",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
 ]
 
 CUTS_QQLH = [
@@ -179,6 +179,18 @@ CUTS = {
     'NuNuLL':CUTS_NuNuLL,
     'NuNuLH':CUTS_NuNuLH,
     'NuNuHH':CUTS_NuNuHH,
+}
+
+CUTS_simple = {
+    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+}
+
+VARIABLES_simple = {
+    'LL':"Collinear_mass",
+    'QQ':"Collinear_mass",
+    #'NuNu':"Visible_mass",
 }
 
 #now you can list all the histograms that you want to plot
@@ -1201,9 +1213,9 @@ LABELS = {
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6}",
     "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98}",
     
-    #"selReco_0.5BDT":"100<M_{collinear}<150 GeV, BDT score>0.5",
-    #"selReco_0.6BDT":"100<M_{collinear}<150 GeV, BDT score>0.6",
-    #"selReco_0.7BDT":"100<M_{collinear}<150 GeV, BDT score>0.7",
+    "selReco_0.5BDT":"100<M_{collinear}<150 GeV, BDT score>0.5",
+    "selReco_0.6BDT":"100<M_{collinear}<150 GeV, BDT score>0.6",
+    "selReco_0.7BDT":"100<M_{collinear}<150 GeV, BDT score>0.7",
 
     #cuts for NuNu
     "selReco_100Me": "E_{miss}>100 GeV",
@@ -1222,9 +1234,9 @@ LABELS = {
     "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
     "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.92, |y_{miss}|<1",
 
-    "selReco_0.5BDT":"E_{miss}>100 GeV, BDT score>0.5",
-    "selReco_0.6BDT":"E_{miss}>100 GeV, BDT score>0.6",
-    "selReco_0.7BDT":"E_{miss}>100 GeV, BDT score>0.7",
+    #"selReco_0.5BDT":"E_{miss}>100 GeV, BDT score>0.5",
+    #"selReco_0.6BDT":"E_{miss}>100 GeV, BDT score>0.6",
+    #"selReco_0.7BDT":"E_{miss}>100 GeV, BDT score>0.7",
 
  }
 
@@ -1428,280 +1440,276 @@ signals = [
 
 for tag in TAG:
     for cat in CAT:
-        #if "tag" in tag:
-                #variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] + ["BDT_score"]
-        #else: 
-        #    variables = VARIABLES + LIST_VAR[cat] +["BDT_score"]
+        if "tag" in tag:
+                variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] #+ ["BDT_score"]
+        else: 
+            variables = VARIABLES + LIST_VAR[cat] #+["BDT_score"]
         variables = ["BDT_score"]
 
         for sub in SUBDIR:
-            directory = DIRECTORY + tag + "/final_241202_BDT/" + cat + "/" + sub + "/"
+                    directory = DIRECTORY + tag + "/final_241202_BDT/" + cat + "/" + sub + "/"
 
-            CUT = [
-                "selReco",
-                #"selReco_0.5BDT",
-            ]
+                    #CUT = CUTS[cat+sub]
 
-            '''if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
-                CUT = [
-                    #"selReco",
-                    #"selReco_100Coll150",
-                    #"selReco_100Coll150_115Rec160",
-                    #"selReco_100Coll150_115Rec160_2DR",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
-                ]
+                    if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
+                        CUT = [
+                            #"selReco",
+                            #"selReco_100Coll150",
+                            #"selReco_100Coll150_115Rec160",
+                            #"selReco_100Coll150_115Rec160_2DR",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
+                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
+                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
+                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
+                        ]
 
-            if "tag" in tag and "QQ" in cat and "HH" in sub:
-                CUT = [
-                    #"selReco",
-                    #"selReco_100Coll150",
-                    #"selReco_100Coll150_115Rec160",
-                    #"selReco_100Coll150_115Rec160_2DR",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
-                ]'''
+                    #if "tag" in tag and "QQ" in cat and "HH" in sub:
+                    CUT = [
+                        "selReco",
+                        #"selReco_100Coll150",
+                        #"selReco_100Coll150_115Rec160",
+                        #"selReco_100Coll150_115Rec160_2DR",
+                        #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
+                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
+                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
+                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
+                    ]
 
-            for cut in CUT:
-                for variable in variables:
+                    for cut in CUT:
+                        for variable in variables:
 
-                    #print(directory, cut, variable)
+                            canvas = ROOT.TCanvas("", "", 800, 800)
 
-                    canvas = ROOT.TCanvas("", "", 800, 800)
+                            nsig = len(signals)
+                            nbkg = len(backgrounds_all) #put to zero if you only want to look at signals
 
-                    nsig = len(signals)
-                    nbkg = len(backgrounds_all) #put to zero if you only want to look at signals
+                            #legend coordinates and style
+                            legsize = 0.04*nsig
+                            legsize2 = 0.04*nbkg
+                            leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
+                            leg.SetFillColor(0)
+                            leg.SetFillStyle(0)
+                            leg.SetLineColor(0)
+                            leg.SetShadowColor(0)
+                            leg.SetTextSize(0.025)
+                            leg.SetTextFont(42)
 
-                    #legend coordinates and style
-                    legsize = 0.04*nsig
-                    legsize2 = 0.04*nbkg
-                    leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
-                    leg.SetFillColor(0)
-                    leg.SetFillStyle(0)
-                    leg.SetLineColor(0)
-                    leg.SetShadowColor(0)
-                    leg.SetTextSize(0.025)
-                    leg.SetTextFont(42)
+                            leg2 = ROOT.TLegend(0.45, 0.70 - legsize2, 0.90, 0.70)
+                            leg2.SetNColumns(2)
+                            leg2.SetFillColor(0)
+                            leg2.SetFillStyle(0)
+                            leg2.SetLineColor(0)
+                            leg2.SetShadowColor(0)
+                            leg2.SetTextSize(0.025)
+                            leg2.SetTextFont(42)
 
-                    leg2 = ROOT.TLegend(0.45, 0.70 - legsize2, 0.90, 0.70)
-                    leg2.SetNColumns(2)
-                    leg2.SetFillColor(0)
-                    leg2.SetFillStyle(0)
-                    leg2.SetLineColor(0)
-                    leg2.SetShadowColor(0)
-                    leg2.SetTextSize(0.025)
-                    leg2.SetTextFont(42)
+                            #global arrays for histos and colors
+                            histos = []
+                            colors = []
+                            leg_bkg = []
 
-                    #global arrays for histos and colors
-                    histos = []
-                    colors = []
-                    leg_bkg = []
+                            #loop over files for signals and backgrounds and assign corresponding colors and titles
+                            #loop to merge different sources into one histograms for easier plotting
 
-                    #loop over files for signals and backgrounds and assign corresponding colors and titles
-                    #loop to merge different sources into one histograms for easier plotting
+                            for s in signals:
+                                fin = f"{directory}{s}_{cut}_histo.root"
+                                #print(fin)
+                                if file_exists(fin): #might be an empty file after stage2 
+                                    tf = ROOT.TFile.Open(fin, 'READ')
+                                    h = tf.Get(variable)
+                                    hh = copy.deepcopy(h)
+                                    hh.SetDirectory(0)
+                                    histos.append(hh)
+                                    colors.append(legcolors[s])
+                                    leg.AddEntry(histos[-1], legend[s], "l")
+                                    leg_bkg.append(0)
+                            nsig=len(histos)
 
-                    for s in signals:
-                        fin = f"{directory}{s}_{cut}_histo.root"
-                        #print(fin)
-                        if file_exists(fin): #might be an empty file after stage2 
-                            tf = ROOT.TFile.Open(fin, 'READ')
-                            h = tf.Get(variable)
-                            hh = copy.deepcopy(h)
-                            hh.SetDirectory(0)
-                            histos.append(hh)
-                            colors.append(legcolors[s])
-                            leg.AddEntry(histos[-1], legend[s], "l")
-                            leg_bkg.append(0)
-                    nsig=len(histos)
-
-                    if nbkg!=0:
-                        #for the common backgrounds i want to keep them separate into different histograms
-                        #no need to have the ones that are empty
-                        for b in backgrounds_all:
-                            fin = f"{directory}{b}_{cut}_histo.root"
-                            if file_exists(fin):
-                                tf = ROOT.TFile.Open(fin, 'READ')
-                                h = tf.Get(variable)
-                                hh = copy.deepcopy(h)
-                                hh.SetDirectory(0)
-                                histos.append(hh)
-                                colors.append(legcolors[b])
-                                leg_bkg.append(b)
-
-                        #merge backgrounds in plotting
-                        '''i = 0
-                        hh = None
-                        for b in LIST_B[cat]:
-                            j = 0
-                            for sub in SUBDIR:
-                                fin = f"{directory}{sub}{b}_{cut}_histo.root"
-                                if (i==0 and j==0):
-                                    with ROOT.TFile(fin) as tf:
+                            if nbkg!=0:
+                                #for the common backgrounds i want to keep them separate into different histograms
+                                #no need to have the ones that are empty
+                                for b in backgrounds_all:
+                                    fin = f"{directory}{b}_{cut}_histo.root"
+                                    if file_exists(fin):
+                                        tf = ROOT.TFile.Open(fin, 'READ')
                                         h = tf.Get(variable)
                                         hh = copy.deepcopy(h)
                                         hh.SetDirectory(0)
-                                else:
-                                    with ROOT.TFile(fin) as tf:
-                                        h = tf.Get(variable)
-                                        hh1 = copy.deepcopy(h)
-                                        hh1.SetDirectory(0)
-                                    hh.Add(hh1)
-                                j += 1
-                            i += 1
-                        histos.append(hh)
-                        colors.append(bcolors[cat])
-                        leg2.AddEntry(histos[-1], blegend[cat], "f")'''
-                        
-                        #drawing stack for backgrounds
-                        hStackBkg = ROOT.THStack("hStackBkg", "")
+                                        histos.append(hh)
+                                        colors.append(legcolors[b])
+                                        leg_bkg.append(b)
 
-                        BgMCHistYieldsDic = {}
-                        for i in range(nsig, len(histos)):
-                            h = histos[i]
-                            h.SetLineWidth(1)
-                            h.SetLineColor(ROOT.kBlack)
-                            h.SetFillColor(colors[i])
-                            #making sure only histograms with integral positive get added to the stack and legend
-                            if h.Integral() > 0:
-                                BgMCHistYieldsDic[h.Integral()] = h
-                                leg2.AddEntry(h, legend[leg_bkg[i]], "f")
-                            else:
-                                BgMCHistYieldsDic[-1*nbkg] = h
+                                #merge backgrounds in plotting
+                                '''i = 0
+                                hh = None
+                                for b in LIST_B[cat]:
+                                    j = 0
+                                    for sub in SUBDIR:
+                                        fin = f"{directory}{sub}{b}_{cut}_histo.root"
+                                        if (i==0 and j==0):
+                                            with ROOT.TFile(fin) as tf:
+                                                h = tf.Get(variable)
+                                                hh = copy.deepcopy(h)
+                                                hh.SetDirectory(0)
+                                        else:
+                                            with ROOT.TFile(fin) as tf:
+                                                h = tf.Get(variable)
+                                                hh1 = copy.deepcopy(h)
+                                                hh1.SetDirectory(0)
+                                            hh.Add(hh1)
+                                        j += 1
+                                    i += 1
+                                histos.append(hh)
+                                colors.append(bcolors[cat])
+                                leg2.AddEntry(histos[-1], blegend[cat], "f")'''
+                                
+                                #drawing stack for backgrounds
+                                hStackBkg = ROOT.THStack("hStackBkg", "")
 
-                        # sort stack by yields (smallest to largest)
-                        BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
-                        for h in BgMCHistYieldsDic:
-                            hStackBkg.Add(h)
+                                BgMCHistYieldsDic = {}
+                                for i in range(nsig, len(histos)):
+                                    h = histos[i]
+                                    h.SetLineWidth(1)
+                                    h.SetLineColor(ROOT.kBlack)
+                                    h.SetFillColor(colors[i])
+                                    #making sure only histograms with integral positive get added to the stack and legend
+                                    if h.Integral() > 0:
+                                        BgMCHistYieldsDic[h.Integral()] = h
+                                        leg2.AddEntry(h, legend[leg_bkg[i]], "f")
+                                    else:
+                                        BgMCHistYieldsDic[-1*nbkg] = h
 
-                        if LOGY==True :
-                            hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                            hStackBkg.SetMaximum(1e20) #leave some space on top for the legend
-                        else:
-                            #h = hStackBkg.GetHists() #list of histograms 
-                            last = 0
-                            for i in range(len(histos)):
-                                if (last<histos[i].GetMaximum()):
-                                    last = histos[i].GetMaximum() 
-                                # Set the y-axis range with additional white space
-                            #hStackBkg.SetMinimum(0)
-                            hStackBkg.SetMaximum(last*2.5)
+                                # sort stack by yields (smallest to largest)
+                                BgMCHistYieldsDic = sorted_dict_values(BgMCHistYieldsDic)
+                                for h in BgMCHistYieldsDic:
+                                    hStackBkg.Add(h)
 
-                        #draw the histograms
-                        hStackBkg.Draw("HIST")
-
-                        # add the signal histograms
-                        for i in range(nsig):
-                            h = histos[i]
-                            h.SetLineWidth(3)
-                            h.SetLineColor(colors[i])
-                            h.Draw("HIST SAME")
-
-                        hStackBkg.GetYaxis().SetTitle("Events")
-                        hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
-                        #hStackBkg.GetXaxis().SetTitle("Reco visible mass [GeV]")
-                        #hStackBkg.GetYaxis().SetTitleOffset(1.5)
-                        hStackBkg.GetXaxis().SetTitleOffset(1.2)
-                        #hStackBkg.GetXaxis().SetLimits(100, 150)
-
-                    else: 
-                        # add the signal histograms
-                        for i in range(nsig):
-                            h = histos[i]
-                            h.SetLineWidth(3)
-                            h.SetLineColor(colors[i])
-                            if i == 0:
-                                h.Draw("HIST")
-                                h.GetYaxis().SetTitle("Events")
-                                h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
-                                #h.GetXaxis().SetTitle("{}".format(variable))
-                                #h.GetYaxis().SetTitleOffset(1.5)
-                                h.GetXaxis().SetTitleOffset(1.2)
-                                #h.GetXaxis().SetLimits(1, 1000)
                                 if LOGY==True :
-                                    h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
+                                    hStackBkg.SetMinimum(1e-5) #change the range to be plotted
+                                    hStackBkg.SetMaximum(1e20) #leave some space on top for the legend
                                 else:
-                                    max_y = h.GetMaximum() 
-                                    h.GetYaxis().SetRangeUser(0, max_y*1.5 )
+                                    #h = hStackBkg.GetHists() #list of histograms 
+                                    last = 0
+                                    for i in range(len(histos)):
+                                        if (last<histos[i].GetMaximum()):
+                                            last = histos[i].GetMaximum() 
+                                        # Set the y-axis range with additional white space
+                                    #hStackBkg.SetMinimum(0)
+                                    hStackBkg.SetMaximum(last*1.2)
+
+                                #draw the histograms
+                                hStackBkg.Draw("HIST")
+
+                                # add the signal histograms
+                                for i in range(nsig):
+                                    h = histos[i]
+                                    h.SetLineWidth(3)
+                                    h.SetLineColor(colors[i])
+                                    h.Draw("HIST SAME")
+
+                                hStackBkg.GetYaxis().SetTitle("Events")
+                                hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
+                                #hStackBkg.GetXaxis().SetTitle("Reco visible mass [GeV]")
+                                #hStackBkg.GetYaxis().SetTitleOffset(1.5)
+                                hStackBkg.GetXaxis().SetTitleOffset(1.2)
+                                
+                                #hStackBkg.GetXaxis().SetLimits(0.5, 1.)
+
                             else: 
-                                h.Draw("HIST SAME")
+                                # add the signal histograms
+                                for i in range(nsig):
+                                    h = histos[i]
+                                    h.SetLineWidth(3)
+                                    h.SetLineColor(colors[i])
+                                    if i == 0:
+                                        h.Draw("HIST")
+                                        h.GetYaxis().SetTitle("Events")
+                                        h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
+                                        #h.GetXaxis().SetTitle("{}".format(variable))
+                                        #h.GetYaxis().SetTitleOffset(1.5)
+                                        h.GetXaxis().SetTitleOffset(1.2)
+                                        #h.GetXaxis().SetLimits(1, 1000)
+                                        if LOGY==True :
+                                            h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
+                                        else:
+                                            max_y = h.GetMaximum() 
+                                            h.GetYaxis().SetRangeUser(0, max_y*1.5 )
+                                    else: 
+                                        h.Draw("HIST SAME")
 
-                    #labels around the plot
-                    extralab = LABELS[cut]
+                            #labels around the plot
+                            extralab = LABELS[cut]
 
-                    if 'ee' in collider:
-                        leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
-                    rightText = f'#sqrt{{s}} = {energy} GeV, L={intLumi} ab^{{-1}}'
+                            if 'ee' in collider:
+                                leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
+                            rightText = f'#sqrt{{s}} = {energy} GeV, L={intLumi} ab^{{-1}}'
 
-                    latex = ROOT.TLatex()
-                    latex.SetNDC()
+                            latex = ROOT.TLatex()
+                            latex.SetNDC()
 
-                    text = '#bf{#it{'+rightText+'}}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.18, 0.84, text)
+                            text = '#bf{#it{'+rightText+'}}'
+                            latex.SetTextSize(0.03)
+                            latex.DrawLatex(0.18, 0.84, text)
 
-                    text = '#bf{#it{' + ana_tex_cat[cat] + ana_tex_sub[sub] + '}}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.18, 0.80, text)
+                            text = '#bf{#it{' + ana_tex_cat[cat] + ana_tex_sub[sub] + '}}'
+                            latex.SetTextSize(0.03)
+                            latex.DrawLatex(0.18, 0.80, text)
 
-                    text = '#bf{#it{' + extralab + '}}'
-                    latex.SetTextSize(0.025)
-                    latex.DrawLatex(0.18, 0.74, text)
+                            text = '#bf{#it{' + extralab + '}}'
+                            latex.SetTextSize(0.025)
+                            latex.DrawLatex(0.18, 0.74, text)
 
-                    latex.SetTextAlign(31)
-                    text = '#it{' + leftText + '}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.92, 0.92, text)
+                            latex.SetTextAlign(31)
+                            text = '#it{' + leftText + '}'
+                            latex.SetTextSize(0.03)
+                            latex.DrawLatex(0.92, 0.92, text)
 
-                    #fix legened height after having the correct number of processes
+                            #fix legened height after having the correct number of processes
 
-                    legsize = 0.04*nsig
-                    legsize2 = 0.03*(len(histos)-nsig)/2
-                    leg.SetY1(0.70 - legsize)
+                            legsize = 0.04*nsig
+                            legsize2 = 0.03*(len(histos)-nsig)/2
+                            leg.SetY1(0.70 - legsize)
 
-                    leg2.SetY1(0.70 - legsize2)
+                            leg2.SetY1(0.70 - legsize2)
 
-                    leg.Draw()
-                    leg2.Draw()
+                            leg.Draw()
+                            leg2.Draw()
 
-                    # Set Logarithmic scales for both x and y axes
-                    if LOGY == True:
-                        canvas.SetLogy()
-                        canvas.SetTicks(1, 1)
-                        canvas.SetLeftMargin(0.14)
-                        canvas.SetRightMargin(0.08)
-                        canvas.GetFrame().SetBorderSize(12)
+                            # Set Logarithmic scales for both x and y axes
+                            if LOGY == True:
+                                canvas.SetLogy()
+                                canvas.SetTicks(1, 1)
+                                canvas.SetLeftMargin(0.14)
+                                canvas.SetRightMargin(0.08)
+                                canvas.GetFrame().SetBorderSize(12)
 
-                        canvas.RedrawAxis()
-                        canvas.Modified()
-                        canvas.Update()
+                                canvas.RedrawAxis()
+                                canvas.Modified()
+                                canvas.Update()
 
-                        dir = DIR_PLOTS + tag + "/" + cat + "/" + sub + "/log/" + cut + "/"
-                        make_dir_if_not_exists(dir)
+                                dir = DIR_PLOTS + tag + "/BDT/" 
+                                make_dir_if_not_exists(dir)
 
-                        canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
-                        canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")
-                    else:
-                        canvas.SetTicks(1, 1)
-                        canvas.SetLeftMargin(0.14)
-                        canvas.SetRightMargin(0.08)
-                        canvas.GetFrame().SetBorderSize(12)
+                                canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
+                                canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")
+                            else:
+                                canvas.SetTicks(1, 1)
+                                canvas.SetLeftMargin(0.14)
+                                canvas.SetRightMargin(0.08)
+                                canvas.GetFrame().SetBorderSize(12)
 
-                        canvas.RedrawAxis()
-                        canvas.Modified()
-                        canvas.Update()
+                                canvas.RedrawAxis()
+                                canvas.Modified()
+                                canvas.Update()
 
-                        dir = DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut + "/"
-                        make_dir_if_not_exists(dir)
+                                dir = DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut + "/"
+                                make_dir_if_not_exists(dir)
 
-                        canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
-                        canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")
+                                canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
+                                canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")

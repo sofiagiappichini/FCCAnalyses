@@ -54,7 +54,7 @@ os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
 os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
 os.system("cmsenv")
 
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_v2/"
+outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_011325/"
 
 DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 TAG = [
@@ -190,6 +190,7 @@ if make_card:
 
                 #index = f"{cat}/{sub}"
                 #cut = CUTS[index]
+
                 cut = CUTS[cat]
                 print(cut, tag, cat, sub)
 
