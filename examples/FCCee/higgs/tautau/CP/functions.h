@@ -684,6 +684,130 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> get_chargedleading_fromj
 
 }
 
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> get_neutral_fromjet(const ROOT::VecOps::RVec<FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents>& jets) {
+    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> out;
+    // Loop over jets
+    for (const auto& jet : jets) {
+        TLorentzVector totalNeutralMomentum; 
+        edm4hep::ReconstructedParticleData combinedNeutral;
+
+        // Loop over jet constituents to find neutral particles
+        for (const auto& jc : jet) {
+            if (jc.charge == 0) { 
+                TLorentzVector neutralMomentum;
+                neutralMomentum.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
+                totalNeutralMomentum += neutralMomentum;
+            }
+        }
+
+        combinedNeutral.momentum.x = totalNeutralMomentum.Px();
+        combinedNeutral.momentum.y = totalNeutralMomentum.Py();
+        combinedNeutral.momentum.z = totalNeutralMomentum.Pz();
+        combinedNeutral.mass = totalNeutralMomentum.M();
+        combinedNeutral.energy = totalNeutralMomentum.E();
+        combinedNeutral.charge = 0.; 
+        out.push_back(combinedNeutral);
+    }
+
+    return out;
+}
+
+
+ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, ROOT::VecOps::RVec<TLorentzVector> Tau_vis){
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    TLorentzVector temp1;
+    TLorentzVector temp2;
+    //following Belle reconstruction https://arxiv.org/pdf/1310.8503
+    // first of all, build the visible taus from pi and pi0 with either jet tagger or the explciit reconstruction
+    // both should be built from the same jets so keeping the order as it is reuslts in the two taus which will be identified later by the charge of the pi
+    ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H;
+
+    double E_tau = Recoil.E()/2; //energy of the single taus in the higgs rest frame
+    double M_tau = 1.776; //GeV
+
+    for (size_t i = 0; i < Tau_vis.size(); ++i) {
+
+        // boost the visible taus to the recoil frame / "true" higgs rest frame
+        TLorentzVector boostedTau = Tau_vis[i]; 
+        boostedTau.Boost(-Recoil.BoostVector()); 
+        Tau_vis_H.push_back(boostedTau);
+    }
+
+    // determine the angle between the visible and neutrino in the higgs frame
+    double cos0 = (2 * E_tau * Tau_vis_H[0].E() - M_tau * M_tau - Tau_vis_H[0].M() * Tau_vis_H[0].M()) / (2 * Tau_vis_H[0].P() * sqrt(E_tau * E_tau - M_tau * M_tau));
+    double cos1 = (2 * E_tau * Tau_vis_H[1].E() - M_tau * M_tau - Tau_vis_H[1].M() * Tau_vis_H[1].M()) / (2 * Tau_vis_H[1].P() * sqrt(E_tau * E_tau - M_tau * M_tau));
+
+    // solve the system of equations knowing that there are two solutions for the direction of the first tau and take the mean as the answer
+    double a = Tau_vis_H[0].Px();
+    double b = Tau_vis_H[0].Py();
+    double c = Tau_vis_H[0].Pz();
+    double d = Tau_vis_H[0].P() * cos0;
+
+    double e = Tau_vis_H[1].Px();
+    double f = Tau_vis_H[1].Py();
+    double g = Tau_vis_H[1].Pz();
+    double h = - Tau_vis_H[1].P() * cos1;
+
+    double p1 = e*b - a*f;
+    double p2 = e*c - a*g;
+    double q1 = e*d - a*h;
+
+    if (p1 == 0) {
+        std::cerr << "Error: Invalid values encountered while solving the quadratic equation." << std::endl;
+        result.push_back(temp1);
+        result.push_back(temp2);
+        return result;
+    }
+
+    double r1 = (p1 * d - b * q1) / p1;
+    double r2 = (b * p2 - p1 * c) / p1;
+
+    double A = (r2*r2) / (a*a) + (p2*p2) / (p1*p1) +1;
+    double B = 2*((r1 * r2) / (a*a) - (q1 * p2) / (p1*p1));
+    double C = (r1*r1) / (a*a) + (q1*q1) / (p1*p1) -1;
+
+    double discriminant = B * B - 4 * A * C;
+    if (discriminant < -0.05) {
+        result.push_back(temp1);
+        result.push_back(temp2);
+        return result;
+    }
+    else if (discriminant >= -0.05 && discriminant<0){
+        discriminant = 0;
+    }
+
+    double z1 = (-B + sqrt(discriminant)) / (2*A);
+    double z2 = (-B - sqrt(discriminant)) / (2*A);
+
+    double y1 = (q1 - p2*z1) / p1;
+    double y2 = (q1 - p2*z2) / p1;
+
+    double x1 = (d - b*y1 - c*z1) / a;
+    double x2 = (d - b*y2 - c*z2) / a;
+
+    // finally compute the mean of the two vectors by component
+    // this is a unitary vector for the first tau (0)
+    double xm = (x1 + x2) / 2;
+    double ym = (y1 + y2) / 2;
+    double zm = (z1 + z2) / 2;
+
+    // now i need to build the TLV for the tau adding back the recoil mass and tau mass
+    // the charge class for the leading particle is organised with the same order of the jets used here so they match to find out which is the tau +-
+    // the tau vectors are boosted back into the lab frame since i want to later compute other frames
+    double P_tau = sqrt(E_tau * E_tau - M_tau * M_tau);
+    temp1.SetPxPyPzE(P_tau * xm, P_tau * ym, P_tau * zm, E_tau);
+    temp2.SetPxPyPzE(- P_tau * xm, - P_tau * ym, - P_tau * zm, E_tau);
+
+    // boost the taus to back to the lab frame
+    // for how things are written down, the charge should be kept in the order of how the jets are written
+    temp1.Boost( Recoil.BoostVector());
+    temp2.Boost( Recoil.BoostVector());
+
+    result.push_back(temp1);
+    result.push_back(temp2);
+
+    return result;
+}
 
 ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
 

@@ -3,17 +3,17 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    'noISR_e+e-_noCuts_EWonly':{},
-    'noISR_e+e-_noCuts_cehim_m1':{},
-    'noISR_e+e-_noCuts_cehim_p1':{},
-    'noISR_e+e-_noCuts_cehre_m1':{},
-    'noISR_e+e-_noCuts_cehre_p1':{},
+    #'noISR_e+e-_noCuts_EWonly':{},
+    #'noISR_e+e-_noCuts_cehim_m1':{},
+    #'noISR_e+e-_noCuts_cehim_p1':{},
+    #'noISR_e+e-_noCuts_cehre_m1':{},
+    #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    #'EWonly_taudecay_2Pi2Nu':{},
-    #'cehim_m1_taudecay_2Pi2Nu':{},
-    #'cehim_p1_taudecay_2Pi2Nu':{},
-    #'cehre_m1_taudecay_2Pi2Nu':{},
-    #'cehre_p1_taudecay_2Pi2Nu':{},
+    'EWonly_taudecay_2Pi2Nu':{},
+    'cehim_m1_taudecay_2Pi2Nu':{},
+    'cehim_p1_taudecay_2Pi2Nu':{},
+    'cehre_m1_taudecay_2Pi2Nu':{},
+    'cehre_p1_taudecay_2Pi2Nu':{},
 
     #'cehim_m5_taudecay_2Pi2Nu':{},
     #'cehim_p5_taudecay_2Pi2Nu':{},
@@ -114,9 +114,9 @@ processList_xsec = {
 
 }
 
-inputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage1_pi+rho"
+inputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage1_pinu"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage2_pi+rho"
+outputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage2_pinu_test"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -385,7 +385,7 @@ class RDFanalysis():
                 #angle between H vector in lab frame and tau in H rest frame
                 .Define("GenTheta2_cos",      "(GenHiggs_px.at(0)*HRF_GenTauM_px + GenHiggs_py.at(0)*HRF_GenTauM_py + GenHiggs_pz.at(0)*HRF_GenTauM_pz)/(GenHiggs_p.at(0)*HRF_GenTauM_p)")
                 .Define("GenTheta2",        "acos(GenTheta2_cos)")
-                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,1.,240.)")
+                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
                 .Define("GenRecoil",       "(Total_p4-GenZ_p4).M()")
 
                 #########
@@ -400,12 +400,12 @@ class RDFanalysis():
                 .Define("TauMRF_GenNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauM_p4, GenNuM_p4)")
 
 
-                .Define("hP_p3",       "if (GenPi0P_e>0) return (1.777 * (TauPRF_GenPiP_p4.E() - TauPRF_GenPi0P_p4.E()) * (TauPRF_GenPiP_p4.Vect() - TauPRF_GenPi0P_p4.Vect()) + 0.5 * (TauPRF_GenPiP_p4.P() - TauPRF_GenPi0P_p4.P()) * (TauPRF_GenPiP_p4.P() - TauPRF_GenPi0P_p4.P()) * TauPRF_GenNuP_p4.Vect()); \
-                                        else return TauPRF_GenPiP_p4.Vect();")
-                .Define("hM_p3",       "if (GenPi0M_e>0) return  (1.777 * (TauMRF_GenPiM_p4.E() - TauMRF_GenPi0M_p4.E()) * (TauMRF_GenPiM_p4.Vect() - TauMRF_GenPi0M_p4.Vect()) + 0.5 * (TauMRF_GenPiM_p4.P() - TauMRF_GenPi0M_p4.P()) * (TauMRF_GenPiM_p4.P() - TauMRF_GenPi0M_p4.P()) * TauMRF_GenNuM_p4.Vect()); \
-                                        else return TauMRF_GenPiM_p4.Vect();")
-                #.Define("hP_p3",        "TauPRF_GenPiP_p4.Vect()")
-                #.Define("hM_p3",        "TauMRF_GenPiM_p4.Vect()")
+                #.Define("hP_p3",       "if (GenPi0P_e>0) return (1.777 * (TauPRF_GenPiP_p4.E() - TauPRF_GenPi0P_p4.E()) * (TauPRF_GenPiP_p4.Vect() - TauPRF_GenPi0P_p4.Vect()) + 0.5 * (TauPRF_GenPiP_p4.P() - TauPRF_GenPi0P_p4.P()) * (TauPRF_GenPiP_p4.P() - TauPRF_GenPi0P_p4.P()) * TauPRF_GenNuP_p4.Vect()); \
+                #                        else return TauPRF_GenPiP_p4.Vect();")
+                #.Define("hM_p3",       "if (GenPi0M_e>0) return  (1.777 * (TauMRF_GenPiM_p4.E() - TauMRF_GenPi0M_p4.E()) * (TauMRF_GenPiM_p4.Vect() - TauMRF_GenPi0M_p4.Vect()) + 0.5 * (TauMRF_GenPiM_p4.P() - TauMRF_GenPi0M_p4.P()) * (TauMRF_GenPiM_p4.P() - TauMRF_GenPi0M_p4.P()) * TauMRF_GenNuM_p4.Vect()); \
+                #                        else return TauMRF_GenPiM_p4.Vect();")
+                .Define("hP_p3",        "TauPRF_GenPiP_p4.Vect()")
+                .Define("hM_p3",        "TauMRF_GenPiM_p4.Vect()")
 
                 .Define("hPnorm",       "(( HRF_GenTauM_p4.Vect() ).Cross( hP_p3 )).Unit()")
                 .Define("hMnorm",       "(( HRF_GenTauM_p4.Vect() ).Cross( hM_p3 )).Unit()")
@@ -822,6 +822,8 @@ class RDFanalysis():
 
             "TauPRF_GenPiP_p4",
             "TauMRF_GenPiM_p4",
+            "TauPRF_GenNuP_p4",
+            "TauMRF_GenNuM_p4",
 
             "hh_norm",
             "CosDeltaPhi",  

@@ -49,7 +49,7 @@ SUBDIR = [
 CAT = [
     #"QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LLHH = [

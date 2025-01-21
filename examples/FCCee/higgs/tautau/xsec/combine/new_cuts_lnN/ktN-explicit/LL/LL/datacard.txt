@@ -4,13 +4,8 @@ imax    1 number of bins
 jmax    * number of processes minus 1
 kmax    * number of nuisance parameters
 --------------------------------------------------------------------------------
-shapes wzp6_ee_LLH_Htautau_ecm240 * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root $CHANNEL
-shapes p8_ee_ZZ_ecm240 * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/p8_ee_ZZ_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root $CHANNEL
-shapes wzp6_ee_tautauH_Htautau_ecm240 * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_tautauH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root $CHANNEL
-shapes wzp6_ee_tautauH_HVV_ecm240 * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_tautauH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root $CHANNEL
-shapes wzp6_ee_nunuH_HVV_ecm240 * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_nunuH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root $CHANNEL
-shapes wzp6_ee_LLH_HVV_ecm240 * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_LLH_HVV_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root $CHANNEL
-shapes data_obs * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root $CHANNEL
+shapes * * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/Combine_Recoil_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root $PROCESS_$CHANNEL
+shapes data_obs * /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/final_241202/LL/LL/Combine_Recoil_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54_histo.root wzp6_ee_LLH_Htautau_ecm240_$CHANNEL
 --------------------------------------------------------------------------------
 bin                        Recoil
 observation                -1

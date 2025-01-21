@@ -36,7 +36,7 @@ def create_condor_config(nCPUs: int,
 
     #cfg += '+RequestWalltime = 180\n'
 
-    cfg += '+JobFlavor = "longlunch"\n'
+    cfg += '+JobFlavor = "espresso"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -195,7 +195,7 @@ localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename = 'analysis_stage1.py'
 
-nCPUS = 4
+nCPUS = 2
 Memory = 10000
 
 create_subjob_script(localDir, sourceDir, inputDir, output, outputDir, Filename)

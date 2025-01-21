@@ -1,4 +1,4 @@
-Combination of NuNuLL=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_v2//R5-tag/NuNu/LL/datacard.txt  NuNuLH=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_v2//R5-tag/NuNu/LH/datacard.txt  NuNuHH=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_v2//R5-tag/NuNu/HH/datacard.txt
+Combination of NuNuLL=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_011325//R5-tag/NuNu/LL/datacard.txt  NuNuLH=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_011325//R5-tag/NuNu/LH/datacard.txt  NuNuHH=/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_011325//R5-tag/NuNu/HH/datacard.txt
 imax 3 number of bins
 jmax 17 number of processes minus 1
 kmax 12 number of nuisance parameters
