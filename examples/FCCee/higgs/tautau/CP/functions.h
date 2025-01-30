@@ -467,6 +467,13 @@ ROOT::VecOps::RVec<float> get_scalar( ROOT::VecOps::RVec<TLorentzVector> v1,  RO
     return result;
 }
 
+ROOT::VecOps::RVec<float> build_float(float v1, float v2) {
+    ROOT::VecOps::RVec<float> result;
+    result.push_back(v1);
+    result.push_back(v2);
+    return result;
+}
+
 ROOT::VecOps::RVec<TLorentzVector> build_p4(ROOT::VecOps::RVec<float> px, ROOT::VecOps::RVec<float> py, ROOT::VecOps::RVec<float> pz, ROOT::VecOps::RVec<float> e) {
     ROOT::VecOps::RVec<TLorentzVector> p4;
     for (size_t i = 0; i < px.size(); ++i) {  
@@ -481,6 +488,13 @@ TLorentzVector build_p4_single(float px, float py, float pz, float e) {
     TLorentzVector tlv;
     tlv.SetPxPyPzE(px, py, pz, e);
     return tlv;
+}
+
+ROOT::VecOps::RVec<TLorentzVector> build_p4_class(TLorentzVector v1, TLorentzVector v2) {
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    result.push_back(v1);
+    result.push_back(v2);
+    return result;
 }
 
 ROOT::VecOps::RVec<float> get_p_tlv(ROOT::VecOps::RVec<TLorentzVector> vec) {
@@ -665,7 +679,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> get_chargedleading_fromj
         for (const auto& jc : jcs) {
 
             // Anything else lets: find the highest pt one, charged particle as lead only
-            if ((jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
+            if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
                 lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
                 chargeLead=jc.charge;
             }
@@ -712,32 +726,378 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> get_neutral_fromjet(const
     return out;
 }
 
+//begine of minimalizer function 1
+// returns taus in lab frame
 
-ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, ROOT::VecOps::RVec<TLorentzVector> Tau_vis){
+class Chi2Functor {
+public:
+    Chi2Functor(const TLorentzVector& Pi_plus,
+                const TLorentzVector& Pi_minus,
+                const TLorentzVector& Recoil,
+                const TLorentzVector& EMiss)
+        : Pi_plus_(Pi_plus), Pi_minus_(Pi_minus), Recoil_(Recoil), EMiss_(EMiss) {}
+
+    void operator()(int& npar, double* grad, double& fval, double* par, int flag) {
+        
+        const double m_tau = 1.777; 
+        //make sure the energy is corrected by using the tau mass
+        TLorentzVector Tau_plus, Tau_minus;
+        Tau_plus.SetPxPyPzE(par[0], par[1], par[2], par[3]); 
+        Tau_minus.SetPxPyPzE(par[4], par[5], par[6], par[7]); 
+
+        TLorentzVector Nu_plus = Tau_plus - Pi_plus_;
+        TLorentzVector Nu_minus = Tau_minus - Pi_minus_;
+
+        //minimize missing energy after accounting for the neutrinos
+        TLorentzVector total;
+        total.SetPxPyPzE(0., 0., 0., 240.);
+
+        double emiss_e = (EMiss_ - (Nu_plus + Nu_minus)).E();
+        double emiss_px = (EMiss_ - (Nu_plus + Nu_minus)).Px();
+        double emiss_py = (EMiss_ - (Nu_plus + Nu_minus)).Py();
+        double emiss_pz = (EMiss_ - (Nu_plus + Nu_minus)).Pz();
+
+        double recoil_e = (Recoil_ - Tau_minus - Tau_plus).E();
+        double recoil_px = (Recoil_ - Tau_minus - Tau_plus).Px();
+        double recoil_py = (Recoil_ - Tau_minus - Tau_plus).Py();
+        double recoil_pz = (Recoil_ - Tau_minus - Tau_plus).Pz();
+
+        double tau_p = m_tau - Tau_plus.M();
+        double tau_m = m_tau - Tau_minus.M();
+
+        fval = pow(emiss_e, 2) + pow(emiss_px, 2) + pow(emiss_py, 2) + pow(emiss_pz, 2) \
+                + pow(recoil_e, 2) + pow(recoil_px, 2) + pow(recoil_py, 2) + pow(recoil_pz, 2) \
+                + pow(tau_p, 2) + pow(tau_m, 2);
+
+    }
+
+private:
+    TLorentzVector Pi_plus_;
+    TLorentzVector Pi_minus_;
+    TLorentzVector Recoil_;
+    TLorentzVector EMiss_;
+};
+
+// Wrapper for TMinuit
+static Chi2Functor* chi2FunctorInstance = nullptr;
+
+void Chi2Wrapper(Int_t& npar, Double_t* grad, Double_t& fval, Double_t* par, Int_t flag) {
+    if (chi2FunctorInstance) {
+        (*chi2FunctorInstance)(npar, grad, fval, par, flag);
+    }
+}
+
+ROOT::VecOps::RVec<TLorentzVector> build_nu_kin(const TLorentzVector& Recoil, const TLorentzVector& EMiss,
+                                                 const ROOT::VecOps::RVec<TLorentzVector>& Tau_vis,
+                                                 const ROOT::VecOps::RVec<float>& charge) {
     ROOT::VecOps::RVec<TLorentzVector> result;
-    TLorentzVector temp1;
-    TLorentzVector temp2;
+    TLorentzVector Pi_plus, Pi_minus;
+    const double m_tau = 1.777; 
+
+    // order the taus by charge: first the positive then negative to keep consistent later on
+    // assumes they have opposite charges
+    if (charge[0]==1) {
+        Pi_plus = Tau_vis[0];
+        Pi_minus = Tau_vis[1];
+    }
+    else {
+        Pi_plus = Tau_vis[1];
+        Pi_minus = Tau_vis[0];
+    }
+
+    // Initialize TMinuit
+    TMinuit minuit(6); 
+    Chi2Functor functor(Pi_plus, Pi_minus, Recoil, EMiss);
+    chi2FunctorInstance = &functor;
+    minuit.SetFCN(Chi2Wrapper);
+    minuit.SetPrintLevel(-1);
+
+    // Set initial parameter values and limits for the tau in the recoil frame (only 3 parameters necessary)
+    double step = 0.1;
+    minuit.DefineParameter(3, "E_plus", 0.1, step, 0.1, Recoil.E());
+    minuit.DefineParameter(0, "px_plus", 0.1, step, -Recoil.Px(), Recoil.Px());
+    minuit.DefineParameter(1, "py_plus", 0.1, step, -Recoil.Py(), Recoil.Py());
+    minuit.DefineParameter(2, "pz_plus", 0.1, step, -Recoil.Pz(), Recoil.Pz());
+
+    minuit.DefineParameter(7, "E_minus", 0.1, step, 0.1, Recoil.E());
+    minuit.DefineParameter(4, "px_minus", 0.1, step, -Recoil.Px(), Recoil.Px());
+    minuit.DefineParameter(5, "py_minus", 0.1, step, -Recoil.Py(), Recoil.Py());
+    minuit.DefineParameter(6, "pz_minus", 0.1, step, -Recoil.Pz(), Recoil.Pz());
+
+    TLorentzVector Tau_plus_fit, Tau_minus_fit;
+    int status = minuit.Migrad();
+    if (status != 0) {
+        //std::cerr << "Minimization did not converge! Status code: " << status << std::endl;
+        //return empty vectors to trow away later
+        result.push_back(Tau_plus_fit);
+        result.push_back(Tau_minus_fit);
+        return result;
+    } 
+
+    // Retrieve fitted parameters
+    double paramValue, paramError;
+    double P_px, P_py, P_pz, M_px, M_py, M_pz, p_E, m_E;
+    for (int i = 0; i < 8; ++i) {
+        minuit.GetParameter(i, paramValue, paramError);
+
+        if (i == 3) p_E = paramValue; 
+        else if (i == 0) P_px = paramValue;
+        else if (i == 1) P_py = paramValue;
+        else if (i == 2) P_pz = paramValue;
+        else if (i == 4) M_px = paramValue;
+        else if (i == 5) M_py = paramValue;
+        else if (i == 6) M_pz = paramValue;
+        else if (i == 7) m_E = paramValue;
+    }
+
+    Tau_plus_fit.SetPxPyPzE(P_px, P_py, P_pz, p_E); 
+    Tau_minus_fit.SetPxPyPzE(M_px, M_py, M_pz, m_E); 
+
+    result.push_back(Tau_plus_fit);
+    result.push_back(Tau_minus_fit);
+    return result;
+}
+//end
+
+//---------------------------------------------------------------------
+
+//begin of minmalizer function 2
+//returns neutrinos in lab frame
+//following ILC paper https://arxiv.org/pdf/1804.01241 and reference from d. Jeans https://arxiv.org/pdf/1507.01700
+
+class NuKinFunctor {
+public:
+    NuKinFunctor(const TLorentzVector& Recoil,
+                const TLorentzVector& TauP_p_p4,
+                const TLorentzVector& TauM_p_p4,
+                const TLorentzVector& TauP_k_p4,
+                const TLorentzVector& TauM_k_p4,
+                const TLorentzVector& TauP_d_p4,
+                const TLorentzVector& TauM_d_p4)
+        : Recoil_(Recoil), TauP_p_p4_(TauP_p_p4), TauM_p_p4_(TauM_p_p4), TauP_k_p4_(TauP_k_p4), TauM_k_p4_(TauM_k_p4), TauP_d_p4_(TauP_d_p4), TauM_d_p4_(TauM_d_p4) {}
+
+    void operator()(int& npar, double* grad, double& fval, double* par, int flag) {
+        const double m_tau = 1.777; 
+
+        //assign notation as in ILC/D.Jeans paper
+        TLorentzVector TauP_h_p4 = TauP_p_p4_ + TauP_k_p4_;
+        TLorentzVector TauM_h_p4 = TauM_p_p4_ + TauM_k_p4_;
+
+        TVector3 TauP_h_par = ((TauP_h_p4.Vect().Dot(TauP_p_p4_.Vect())) / ((TauP_p_p4_.Vect()).Mag2())) * TauP_p_p4_.Vect();
+        TVector3 TauM_h_par = ((TauM_h_p4.Vect().Dot(TauM_p_p4_.Vect())) / ((TauM_p_p4_.Vect()).Mag2())) * TauM_p_p4_.Vect();
+
+        TVector3 TauP_fcap = (TauP_h_par.Cross((TauP_d_p4_.Vect()).Cross(TauP_h_par))).Unit();
+        TVector3 TauM_fcap = (TauM_h_par.Cross((TauM_d_p4_.Vect()).Cross(TauM_h_par))).Unit();
+
+        TVector3 TauP_k_par = ((TauP_k_p4_.Vect().Dot(TauP_p_p4_.Vect())) / ((TauP_p_p4_.Vect()).Mag2())) * TauP_p_p4_.Vect();
+        TVector3 TauM_k_par = ((TauM_k_p4_.Vect().Dot(TauM_p_p4_.Vect())) / ((TauM_p_p4_.Vect()).Mag2())) * TauM_p_p4_.Vect();
+
+        TVector3 TauP_k_perp = (TauP_k_p4_.Vect() - TauP_k_par);
+        TVector3 TauM_k_perp = (TauM_k_p4_.Vect() - TauM_k_par);
+
+        //perpendicular components are straight-forward
+        TVector3 TauP_q_perp = -TauP_k_perp;
+        TVector3 TauM_q_perp = -TauM_k_perp;
+
+        //now use the paramters  to assign the neutrino parallel component
+        TVector3 TauP_q_par_cap = (cos(par[0]) * TauP_h_par.Unit() + sin(par[0]) * TauP_fcap);
+        TVector3 TauM_q_par_cap = (cos(par[1]) * TauM_h_par.Unit() + sin(par[1]) * TauM_fcap);
+
+        //solution from tau mass balance to find the magnitude of the neutrinos
+        //second grade equation has two solutions in general so 4 combinations possible in total
+        double AP = m_tau*m_tau - TauP_h_p4.M()*TauP_h_p4.M() -2* ((TauP_h_p4.Vect()).Dot(TauP_k_perp));
+        double BP = 2*(TauP_q_par_cap.Dot(TauP_h_p4.Vect() - TauP_k_perp));
+        double CP = 2*TauP_h_p4.E();
+
+        double aP = BP*BP - CP*CP;
+        double bP = 2*AP*BP;
+        double cP = AP*AP - CP*CP * (TauP_k_perp.Mag2());
+
+        double dP =bP*bP -4*aP*cP;
+
+        double AM = m_tau*m_tau - TauM_h_p4.M()*TauM_h_p4.M() -2* ((TauM_h_p4.Vect()).Dot(TauM_k_perp));
+        double BM = 2*(TauM_q_par_cap.Dot(TauM_h_p4.Vect() - TauM_k_perp));
+        double CM = 2*TauM_h_p4.E();
+
+        double aM = BM*BM - CM*CM;
+        double bM = 2*AM*BM;
+        double cM = AM*AM - CM*CM * (TauM_k_perp.Mag2());
+
+        double dM = bM*bM -4*aM*cM;
+
+        if (dP<0 || dM<0) {
+            //std::cerr << "WARNING: Discriminant is negative. Skipping iteration." << std::endl;
+            fval = 1e6;  // Large penalty so minimizer avoids this region
+            return;
+        }
+
+        double QP1 = (-bP + sqrt(dP)) / (2*aP);
+        double QP2 = (-bP - sqrt(dP)) / (2*aP);
+
+        double QM1 = (-bM + sqrt(dM)) / (2*aM);
+        double QM2 = (-bM - sqrt(dM)) / (2*aM);
+
+        TVector3 TauP_q1 = QP1 * TauP_q_par_cap + TauP_q_perp;
+        TVector3 TauP_q2 = QP2 * TauP_q_par_cap + TauP_q_perp;
+        TVector3 TauM_q1 = QM1 * TauM_q_par_cap + TauM_q_perp;
+        TVector3 TauM_q2 = QM2 * TauM_q_par_cap + TauM_q_perp;
+
+        //ensure massless neutrinos by setting the right energy
+        TLorentzVector TauP_nu1(TauP_q1, TauP_q1.Mag());
+        TLorentzVector TauP_nu2(TauP_q2, TauP_q2.Mag());
+        TLorentzVector TauM_nu1(TauM_q1, TauM_q1.Mag());
+        TLorentzVector TauM_nu2(TauM_q2, TauM_q2.Mag());
+
+        TLorentzVector total;
+        total.SetPxPyPzE(0., 0., 0., 240.);
+
+        // Build the combinations of neutrinos and corresponding missing energy
+        std::vector<std::tuple<double, TLorentzVector, TLorentzVector>> neutrino_pairs = {
+            { (total - (Recoil_ + TauP_h_p4 + TauM_h_p4 + TauP_nu1 + TauM_nu1)).E(), TauP_nu1, TauM_nu1 },
+            { (total - (Recoil_ + TauP_h_p4 + TauM_h_p4 + TauP_nu1 + TauM_nu2)).E(), TauP_nu1, TauM_nu2 },
+            { (total - (Recoil_ + TauP_h_p4 + TauM_h_p4 + TauP_nu2 + TauM_nu1)).E(), TauP_nu2, TauM_nu1 },
+            { (total - (Recoil_ + TauP_h_p4 + TauM_h_p4 + TauP_nu2 + TauM_nu2)).E(), TauP_nu2, TauM_nu2 }
+        };
+
+        // Find the pair with the lowest missing energy by comparing the first element of each tuple (the missing energy)
+        auto best_pair = *std::min_element(neutrino_pairs.begin(), neutrino_pairs.end(),
+            [](const std::tuple<double, TLorentzVector, TLorentzVector>& a,
+            const std::tuple<double, TLorentzVector, TLorentzVector>& b) {
+                return std::get<0>(a) < std::get<0>(b);  // Compare based on the missing energy (first element)
+            });
+
+        // Minimize the missing energy between the full run of parameters and save the associated neutrino pair
+        fval = std::get<0>(best_pair);
+        TLorentzVector best_NuP_nu_, best_NuM_nu_;
+        best_NuP_nu_ = std::get<1>(best_pair);
+        best_NuM_nu_ = std::get<2>(best_pair);
+    }
+
+    // Getter methods for best neutrinos
+    TLorentzVector getBestNuP_Nu() const { return best_NuP_nu_; }
+    TLorentzVector getBestNuM_Nu() const { return best_NuM_nu_; }
+
+
+private:
+    TLorentzVector Recoil_;
+    TLorentzVector TauP_p_p4_;
+    TLorentzVector TauM_p_p4_;
+    TLorentzVector TauP_k_p4_;
+    TLorentzVector TauM_k_p4_;
+    TLorentzVector TauP_d_p4_;
+    TLorentzVector TauM_d_p4_;
+    TLorentzVector best_NuP_nu_, best_NuM_nu_;
+};
+
+// Wrapper for TMinuit
+static NuKinFunctor* NuKinFunctorInstance = nullptr;
+
+void NuKinWrapper(Int_t& npar, Double_t* grad, Double_t& fval, Double_t* par, Int_t flag) {
+    if (NuKinFunctorInstance) {
+        (*NuKinFunctorInstance)(npar, grad, fval, par, flag);
+    }
+}
+
+ROOT::VecOps::RVec<TLorentzVector> build_nu_kin_ILC(const TLorentzVector& Recoil, const TLorentzVector& EMiss,
+                                                 const ROOT::VecOps::RVec<TLorentzVector>& Charged_p4,
+                                                 const ROOT::VecOps::RVec<TLorentzVector>& Neutral_p4,
+                                                 const ROOT::VecOps::RVec<TLorentzVector>& Impact_p4,
+                                                 const ROOT::VecOps::RVec<float>& charge) {
+
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    const double m_tau = 1.777; 
+
+    // work in the recoil frame so there are less free parameters and some constraints are already applied
+    TLorentzVector TauP_p_p4, TauM_p_p4, TauP_k_p4, TauM_k_p4, TauP_d_p4, TauM_d_p4;
+    // order the particles by charge: first the positive then negative to keep consistent later on
+    // assumes they have opposite charges
+    if (charge[0]==1) {
+        TauP_p_p4 = Charged_p4[0];
+        TauM_p_p4 = Charged_p4[1];
+        TauP_k_p4 = Neutral_p4[0];
+        TauM_k_p4 = Neutral_p4[1];
+        TauP_d_p4 = Impact_p4[0];
+        TauM_d_p4 = Impact_p4[1];
+    }
+    else {
+        TauP_p_p4 = Charged_p4[1];
+        TauM_p_p4 = Charged_p4[0];
+        TauP_k_p4 = Neutral_p4[1];
+        TauM_k_p4 = Neutral_p4[0];
+        TauP_d_p4 = Impact_p4[1];
+        TauM_d_p4 = Impact_p4[0];
+    }
+
+    // Initialize TMinuit
+    TMinuit minuit(2); 
+    NuKinFunctor functor(Recoil, TauP_p_p4, TauM_p_p4, TauP_k_p4, TauM_k_p4, TauP_d_p4, TauM_d_p4);
+    NuKinFunctorInstance = &functor;
+    minuit.SetFCN(NuKinWrapper);
+    minuit.SetPrintLevel(-1);
+
+    // Define parameters (only phi angles)
+    double step = 0.05;
+    minuit.DefineParameter(0, "phi_plus", 0.0, step, -2*M_PI, 2*M_PI);
+    minuit.DefineParameter(1, "phi_minus", 0.0, step, -2*M_PI, 2*M_PI);
+
+    // Run the minimization
+    int status = minuit.Migrad();
+    if (status != 0) {
+        //std::cerr << "Minimization did not converge! Status code: " << status << std::endl;
+        //return empty vectors to trow away later
+        TLorentzVector Tau_plus_fit, Tau_minus_fit;
+        result.push_back(Tau_plus_fit);
+        result.push_back(Tau_minus_fit);
+        return result;
+    } 
+
+    // Retrieve the best neutrino momenta that resulted in minimal missing energy
+    result.push_back(functor.getBestNuP_Nu());  
+    result.push_back(functor.getBestNuM_Nu());
+
+    return result;
+}
+
+//end
+
+ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentzVector EMiss, ROOT::VecOps::RVec<TLorentzVector> Tau_vis, ROOT::VecOps::RVec<float> charge){
+    
     //following Belle reconstruction https://arxiv.org/pdf/1310.8503
     // first of all, build the visible taus from pi and pi0 with either jet tagger or the explciit reconstruction
     // both should be built from the same jets so keeping the order as it is reuslts in the two taus which will be identified later by the charge of the pi
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    TLorentzVector temp1;
+    TLorentzVector temp2;
+    ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H_temp;
     ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H;
 
     double E_tau = Recoil.E()/2; //energy of the single taus in the higgs rest frame
-    double M_tau = 1.776; //GeV
+    double M_tau = 1.777; //GeV
 
     for (size_t i = 0; i < Tau_vis.size(); ++i) {
 
         // boost the visible taus to the recoil frame / "true" higgs rest frame
         TLorentzVector boostedTau = Tau_vis[i]; 
         boostedTau.Boost(-Recoil.BoostVector()); 
-        Tau_vis_H.push_back(boostedTau);
+        Tau_vis_H_temp.push_back(boostedTau);
+    }
+
+    // order the taus by charge: first the positive then negative to keep consistent later on
+    // assumes they have opposite charges
+    if (charge[0]==1) {
+        Tau_vis_H.push_back(Tau_vis_H_temp[0]);
+        Tau_vis_H.push_back(Tau_vis_H_temp[1]);
+    }
+    else {
+        Tau_vis_H.push_back(Tau_vis_H_temp[1]);
+        Tau_vis_H.push_back(Tau_vis_H_temp[0]);
     }
 
     // determine the angle between the visible and neutrino in the higgs frame
     double cos0 = (2 * E_tau * Tau_vis_H[0].E() - M_tau * M_tau - Tau_vis_H[0].M() * Tau_vis_H[0].M()) / (2 * Tau_vis_H[0].P() * sqrt(E_tau * E_tau - M_tau * M_tau));
     double cos1 = (2 * E_tau * Tau_vis_H[1].E() - M_tau * M_tau - Tau_vis_H[1].M() * Tau_vis_H[1].M()) / (2 * Tau_vis_H[1].P() * sqrt(E_tau * E_tau - M_tau * M_tau));
 
-    // solve the system of equations knowing that there are two solutions for the direction of the first tau and take the mean as the answer
+    // solve the system of equations 
     double a = Tau_vis_H[0].Px();
     double b = Tau_vis_H[0].Py();
     double c = Tau_vis_H[0].Pz();
@@ -767,14 +1127,14 @@ ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, ROOT::Ve
     double C = (r1*r1) / (a*a) + (q1*q1) / (p1*p1) -1;
 
     double discriminant = B * B - 4 * A * C;
-    if (discriminant < -0.05) {
+    if (discriminant < 0) {
         result.push_back(temp1);
         result.push_back(temp2);
         return result;
     }
-    else if (discriminant >= -0.05 && discriminant<0){
-        discriminant = 0;
-    }
+    //else if (discriminant >= -10 && discriminant<0){
+    //    discriminant = 0;
+    //}
 
     double z1 = (-B + sqrt(discriminant)) / (2*A);
     double z2 = (-B - sqrt(discriminant)) / (2*A);
@@ -785,29 +1145,103 @@ ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, ROOT::Ve
     double x1 = (d - b*y1 - c*z1) / a;
     double x2 = (d - b*y2 - c*z2) / a;
 
-    // finally compute the mean of the two vectors by component
-    // this is a unitary vector for the first tau (0)
-    double xm = (x1 + x2) / 2;
-    double ym = (y1 + y2) / 2;
-    double zm = (z1 + z2) / 2;
-
     // now i need to build the TLV for the tau adding back the recoil mass and tau mass
-    // the charge class for the leading particle is organised with the same order of the jets used here so they match to find out which is the tau +-
-    // the tau vectors are boosted back into the lab frame since i want to later compute other frames
     double P_tau = sqrt(E_tau * E_tau - M_tau * M_tau);
-    temp1.SetPxPyPzE(P_tau * xm, P_tau * ym, P_tau * zm, E_tau);
-    temp2.SetPxPyPzE(- P_tau * xm, - P_tau * ym, - P_tau * zm, E_tau);
+    TLorentzVector plus1;
+    plus1.SetPxPyPzE(P_tau * x1, P_tau * y1, P_tau * z1, E_tau);
+    TLorentzVector plus2;
+    plus2.SetPxPyPzE(P_tau * x2, P_tau * y2, P_tau * z2, E_tau);
+    TLorentzVector min1;
+    min1.SetPxPyPzE(-P_tau * x1, -P_tau * y1, -P_tau * z1, E_tau);
+    TLorentzVector min2;
+    min2.SetPxPyPzE(-P_tau * x2, -P_tau * y2, -P_tau * z2, E_tau);
 
-    // boost the taus to back to the lab frame
-    // for how things are written down, the charge should be kept in the order of how the jets are written
-    temp1.Boost( Recoil.BoostVector());
-    temp2.Boost( Recoil.BoostVector());
+    if (discriminant > 0) {
+        // boost back the solutions to figure out the best one against the recoil frame
+        plus1.Boost( Recoil.BoostVector());
+        plus2.Boost( Recoil.BoostVector());
+        min1.Boost( Recoil.BoostVector());
+        min2.Boost( Recoil.BoostVector());
 
-    result.push_back(temp1);
-    result.push_back(temp2);
+        TLorentzVector sol1 = plus1 + min1; 
+        TLorentzVector sol2 = plus2 + min2; 
+
+        // Energy conservation check
+        double energy_diff1 = (Recoil - sol1).E();
+        double energy_diff2 = (Recoil - sol2).E();
+
+        // Compute momentum balance for both solutions
+        double momentum_diff1 = (Recoil - sol1).P(); 
+        double momentum_diff2 = (Recoil - sol2).P();
+
+        TLorentzVector nuplus1, nuplus2, numin1, numin2;
+
+        if (charge[0]==1){
+            nuplus1 = plus1 - Tau_vis[0];
+            nuplus2 = plus2 - Tau_vis[0];
+            numin1 = min1 - Tau_vis[1];
+            numin2 = min2 - Tau_vis[1];
+        }
+        else {
+            nuplus1 = plus1 - Tau_vis[1];
+            nuplus2 = plus2 - Tau_vis[1];
+            numin1 = min1 - Tau_vis[0];
+            numin2 = min2 - Tau_vis[0];
+        }
+
+        // Calculate deltaR between the neutrinos and tau
+        float D1 = deltaR(plus1.Phi(), nuplus1.Phi(), plus1.Eta(), nuplus1.Eta());
+        float D2 = deltaR(plus2.Phi(), nuplus2.Phi(), plus2.Eta(), nuplus2.Eta());
+
+        // Now apply the criteria to choose the best solution:
+        // 1. First, choose the solution with the smallest energy difference
+        // 2. If the energy differences are similar, choose the one with the smallest momentum discrepancy
+        // 3. If both are similar, use the deltaR minimization as a tie-breaker.
+
+        bool choose_solution1 = false;
+        bool choose_solution2 = false;
+
+        if (energy_diff1 < energy_diff2) {
+            //std::cout<<"energy first "<<energy_diff1<<std::endl;
+            choose_solution1 = true;
+        } else if (energy_diff1 > energy_diff2) {
+            //std::cout<<"energy second "<<energy_diff2<<std::endl;
+            choose_solution2 = true;
+        } else { 
+            if (momentum_diff1 < momentum_diff2) {
+                //std::cout<<"momentum first "<<momentum_diff1<<std::endl;
+                choose_solution1 = true;
+            } else if (momentum_diff1 > momentum_diff2) {
+                //std::cout<<"momentum second "<<momentum_diff2<<std::endl;
+                choose_solution2 = true;
+            } else { 
+                if (D1 < D2) {
+                    //std::cout<<"DR first "<<D1<<std::endl;
+                    choose_solution1 = true;
+                } else {
+                    //std::cout<<"DR second "<<D2<<std::endl;
+                    choose_solution2 = true;
+                }
+            }
+        }
+
+        if (choose_solution1) {
+            result.push_back(plus1);
+            result.push_back(min1);
+        } else if (choose_solution2) {
+            result.push_back(plus2);
+            result.push_back(min2);
+        }
+    }
+    else {
+        result.push_back(plus1);
+        result.push_back(min1);
+    }
 
     return result;
 }
+
+
 
 ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
 
@@ -853,7 +1287,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
             }
 
             // Anything else lets: find the highest pt one, charged particle as lead only
-            if ((jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
+            if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
                 lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
                 chargeLead=jc.charge;
             }
@@ -1006,7 +1440,7 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_pi0(const RO
             }
 
             // Anything else lets: find the highest pt one, charged particle as lead only
-            if ((jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
+            if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
                 lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
                 chargeLead=jc.charge;
             }
@@ -1200,7 +1634,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_OG (const R
              }
 
            // Anything else lets: find the highest pt one 
-           if ((jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt()){
+           if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt()){
                         lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
                         chargeLead=jc.charge;
            }

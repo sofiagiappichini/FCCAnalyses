@@ -1,4 +1,5 @@
 import os
+from math import ceil
 
 def make_dir_if_not_exists(directory):
     if not os.path.exists(directory):
@@ -49,14 +50,26 @@ def create_condor_config(nCPUs: int,
     cfg += 'when_to_transfer_output  = ON_EXIT\n'
 
     cfg += 'queue filename matching files'
+
+    if chunks:
+
+        for process in processList:
+            with open(output_dir + process + '/job_submit.cfg', 'w') as sub:
+                sub.write(cfg)
+                for file in os.listdir(output_dir + process):
+                    filename = os.fsdecode(file)
+                    if filename.endswith('.sh'):
+                        sub.write(f' ' + output_dir + process + '/' + filename)
+
+    else:
  
-    with open(output_dir+'job_submit.cfg', 'w') as sub:
-        sub.write(cfg)
-        for file in os.listdir(output_dir):
-            #if "NuNuLL" in file:
-                filename = os.fsdecode(file)
-                if filename.endswith('.sh'):
-                    sub.write(f' ' + output_dir + filename)
+        with open(output_dir+'job_submit.cfg', 'w') as sub:
+            sub.write(cfg)
+            for file in os.listdir(output_dir):
+                #if "NuNuLL" in file:
+                    filename = os.fsdecode(file)
+                    if filename.endswith('.sh'):
+                        sub.write(f' ' + output_dir + filename)
 
 # _____________________________________________________________________________
 def create_subjob_script(local_dir: str,
@@ -74,16 +87,46 @@ def create_subjob_script(local_dir: str,
     make_dir_if_not_exists(output_dir+"log")
     make_dir_if_not_exists(output_dir+"err")
 
-    for process in processList:
-        scr  = '#!/bin/bash\n\n'
-        scr += 'source ' + source_dir + 'setup.sh\n\n'
-        scr += 'cd ' + local_dir + '\n\n'
-        scr += 'fccanalysis run ' + ananame + ' --batch '
-        scr += f' --output  ' + output_ana + process + '.root --files-list  ' + input_dir + process + '.root'
-        scr += '\n\n'     
-        with open(output_dir+'submit_'+process+'.sh', 'w') as sh:
-            sh.write(scr)
-    print("done")
+    if chunks:
+
+        for process in processList:
+            j = 0
+            files = os.listdir(input_dir + process)
+            num_files = len(files)
+            num_chunks = ceil(num_files / 20)  # Calculate the number of chunks (20 files per chunk)
+
+            for chunk_idx in range(num_chunks):
+                make_dir_if_not_exists(output_dir + process)
+                # Collect up to 20 files for this chunk
+                chunk_files = files[chunk_idx * 20:(chunk_idx + 1) * 20]
+                files_list = ' '.join([input_dir + process + '/' + file for file in chunk_files])
+
+                # Generate the submission script
+                scr  = '#!/bin/bash\n\n'
+                scr += 'source ' + source_dir + 'setup.sh\n\n'
+                scr += 'cd ' + local_dir + '\n\n'
+                scr += 'fccanalysis run ' + ananame + ' --batch '
+                scr += f' --output ' + output_ana + process + '/' + 'chunk_' + str(chunk_idx) + '.root --files-list ' + files_list
+                scr += '\n\n'
+
+                # Write the script to a file
+                script_path = output_dir + process + '/submit_chunk_' + str(chunk_idx) + '.sh'
+                with open(script_path, 'w') as sh:
+                    sh.write(scr)
+                print(f"SUBMISSION FILE CREATED: {process}, chunk {chunk_idx}")
+    
+    else:
+
+        for process in processList:
+            scr  = '#!/bin/bash\n\n'
+            scr += 'source ' + source_dir + 'setup.sh\n\n'
+            scr += 'cd ' + local_dir + '\n\n'
+            scr += 'fccanalysis run ' + ananame + ' --batch '
+            scr += f' --output  ' + output_ana + process + '.root --files-list  ' + input_dir + process + '.root'
+            scr += '\n\n'     
+            with open(output_dir+'submit_'+process+'.sh', 'w') as sh:
+                sh.write(scr)
+        print("done")
              
 
 processList_ = {
@@ -181,15 +224,26 @@ processList_ = {
 }
 
 processList = {
-   'EWonly_taudecay_2Pi2Nu':{},
+    'EWonly_taudecay_2Pi2Nu':{},
     'cehim_m1_taudecay_2Pi2Nu':{},
     'cehim_p1_taudecay_2Pi2Nu':{},
     'cehre_m1_taudecay_2Pi2Nu':{},
     'cehre_p1_taudecay_2Pi2Nu':{},
+    'cehim_m5_taudecay_2Pi2Nu':{},
+    'cehim_p5_taudecay_2Pi2Nu':{},
+    'cehre_m5_taudecay_2Pi2Nu':{},
+    'cehre_p5_taudecay_2Pi2Nu':{},
+   #'p8_ee_ZZ_ecm240':{},
 }
 
+if "ZZ" in processList:
+    chunks = True
+
+chunks = False
+
 inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/"
-output = '/work/sgiappic/HTCondor/stage1_CPReco/' ##output directory of submission files, needs to be different to have unique submission files
+#inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
+output = '/work/sgiappic/HTCondor/stage1_CP/' ##output directory of submission files, needs to be different to have unique submission files
 outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage1/" ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'

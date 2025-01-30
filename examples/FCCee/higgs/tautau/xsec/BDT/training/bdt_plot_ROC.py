@@ -43,36 +43,6 @@ def get_entries(infilepath: str) -> tuple[int, int]:
 
     return events_processed, events_in_ttree
 
-vars_list_NuNuLL_explicit = [
-            "RecoEmiss_pz",
-            "RecoEmiss_pt",
-            "RecoEmiss_p",
-            "RecoEmiss_e",
-            "RecoEmiss_costheta",
-            "RecoH_pz",
-            "RecoH_p",
-            "RecoH_pt",
-            "RecoH_e",
-            "RecoH_eta",
-            "TauLead_pz",   
-            "TauLead_p",   
-            "TauLead_pt",   
-            "TauLead_e",    
-            "TauLead_eta",    
-            "TauLead_mass",
-            "TauSub_pz",   
-            "TauSub_p",   
-            "TauSub_pt",   
-            "TauSub_e",    
-            "TauSub_eta",    
-            "TauSub_mass", 
-            "Tau_DPhi",
-            "Tau_DR",
-            "Tau_cos",
-            "Tau_DEta",
-            "Visible_mass",
-            ]
-
 vars_list_NuNu_explicit = [
             "RecoEmiss_pz",
             "RecoEmiss_pt",
@@ -90,14 +60,12 @@ vars_list_NuNu_explicit = [
             "TauLead_e",    
             "TauLead_eta",    
             "TauLead_mass",
-            "TauLead_type",
             "TauSub_pz",   
             "TauSub_p",   
             "TauSub_pt",   
             "TauSub_e",    
             "TauSub_eta",    
             "TauSub_mass", 
-            "TauSub_type",
             "Tau_DPhi",
             "Tau_DR",
             "Tau_cos",
@@ -414,7 +382,7 @@ xsec = {'p8_ee_WW_ecm240':16.4385,
 DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
 
 TAG = [
-    "R5-explicit",
+    #"R5-explicit",
     "R5-tag",
     "ktN-explicit",
     "ktN-tag",
@@ -444,7 +412,7 @@ leg_sub = {
 
 output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/output_overtraining.txt"
 
-modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_130125/"
+modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_230125/"
 
 #get gen number of events for each signal and backgorund file
 for tag in TAG:
@@ -467,10 +435,7 @@ for tag in TAG:
                 if "QQ" in cat:
                     vars_list = vars_list_QQ_explcit
                 else:
-                    if "LL" in sub:
-                        vars_list = vars_list_NuNuLL_explicit
-                    else:
-                        vars_list = vars_list_NuNu_explicit
+                    vars_list = vars_list_NuNu_explicit
             else:
                 if "QQ" in cat:
                     if "HH" in sub:
@@ -485,7 +450,7 @@ for tag in TAG:
                     elif "LH" in sub:
                         vars_list = vars_list_NuNuLH_tag
                     else:
-                        vars_list = vars_list_NuNuLL_explicit
+                        vars_list = vars_list_NuNu_explicit
 
             N = {}
             N_gen = {}
