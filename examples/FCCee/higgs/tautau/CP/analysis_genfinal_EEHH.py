@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage2_pi+rho"
+inputDir = "/ceph/sgiappic/HiggsCP/CPGen/stage2+gen"
 
 #Optional: output directory, default is local running directory
-outputDir = "/ceph/sgiappic/HiggsCP/CPGen/final_pi+rho"
+outputDir = "/ceph/sgiappic/HiggsCP/CPGen/final+gen"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -22,17 +22,17 @@ doTree = False
 
 #Mandatory: List of processes
 processList = {
-    'noISR_e+e-_noCuts_EWonly':{},
-    'noISR_e+e-_noCuts_cehim_m1':{},
-    'noISR_e+e-_noCuts_cehim_p1':{},
-    'noISR_e+e-_noCuts_cehre_m1':{},
-    'noISR_e+e-_noCuts_cehre_p1':{},
+    #'noISR_e+e-_noCuts_EWonly':{},
+    #'noISR_e+e-_noCuts_cehim_m1':{},
+    #'noISR_e+e-_noCuts_cehim_p1':{},
+    #'noISR_e+e-_noCuts_cehre_m1':{},
+    #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    #'EWonly_taudecay_2Pi2Nu':{},
-    #'cehim_m1_taudecay_2Pi2Nu':{},
-    #'cehim_p1_taudecay_2Pi2Nu':{},
-    #'cehre_m1_taudecay_2Pi2Nu':{},
-    #'cehre_p1_taudecay_2Pi2Nu':{},
+    'EWonly_taudecay_2Pi2Nu':{},
+    'cehim_m1_taudecay_2Pi2Nu':{},
+    'cehim_p1_taudecay_2Pi2Nu':{},
+    'cehre_m1_taudecay_2Pi2Nu':{},
+    'cehre_p1_taudecay_2Pi2Nu':{},
 
     #'cehim_m5_taudecay_2Pi2Nu':{},
     #'cehim_p5_taudecay_2Pi2Nu':{},
@@ -45,7 +45,8 @@ processList = {
     #'cehre_p2_taudecay_2Pi2Nu':{},
 
     #'wzp6_ee_eeH_Htautau_ecm240': {},
-}
+    #'p8_ee_ZZ_ecm240':{},
+    }
 ###Dictionary for prettier names of processes (optional)
 #change them if you want but they don't do anything
 processLabels = {}
@@ -82,7 +83,7 @@ procDictAdd = {
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selGen": "true",
+    "selReco": "true",
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -108,22 +109,22 @@ histoList = {
     "FSGenElectron_vertex_y":           {"name":"FSGenElectron_vertex_y", "title":"Final state gen e^{#font[122]{\55}} production vertex y [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
     "FSGenElectron_vertex_z":           {"name":"FSGenElectron_vertex_z", "title":"Final state gen e^{#font[122]{\55}} production vertex z [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
    
-    "n_HiggsGenTau":                      {"name":"n_HiggsGenTau",                  "title":"Number of final state gen taus",              "bin":5, "xmin":-0.5, "xmax":4.5},
-    "HiggsGenTau_e":                      {"name":"HiggsGenTau_e",                  "title":"Final state gen taus energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "HiggsGenTau_p":                      {"name":"HiggsGenTau_p",                  "title":"Final state gen taus p [GeV]",                "bin":50, "xmin":0, "xmax":100},
-    "HiggsGenTau_pt":                     {"name":"HiggsGenTau_pt",                 "title":"Final state gen taus p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
-    "HiggsGenTau_px":                     {"name":"HiggsGenTau_px",                 "title":"Final state gen taus p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "HiggsGenTau_py":                     {"name":"HiggsGenTau_py",                 "title":"Final state gen taus p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "HiggsGenTau_pz":                     {"name":"HiggsGenTau_pz",                 "title":"Final state gen taus p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "HiggsGenTau_y":                      {"name":"HiggsGenTau_y",                  "title":"Final state gen taus rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "HiggsGenTau_eta":                    {"name":"HiggsGenTau_eta",                "title":"Final state gen taus #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "HiggsGenTau_theta":                  {"name":"HiggsGenTau_theta",              "title":"Final state gen taus #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "HiggsGenTau_phi":                    {"name":"HiggsGenTau_phi",                "title":"Final state gen taus #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "HiggsGenTau_charge":                 {"name":"HiggsGenTau_charge",             "title":"Final state gen taus charge",                 "bin":3, "xmin":-1.5,"xmax":1.5},
-    "HiggsGenTau_mass":                   {"name":"HiggsGenTau_mass",               "title":"Final state gen taus mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
-    "HiggsGenTau_vertex_x":               {"name":"HiggsGenTau_vertex_x", "title":"Final state gen #tau^{#font[122]{\55}} production vertex x [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
-    "HiggsGenTau_vertex_y":               {"name":"HiggsGenTau_vertex_y", "title":"Final state gen #tau^{#font[122]{\55}} production vertex y [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
-    "HiggsGenTau_vertex_z":               {"name":"HiggsGenTau_vertex_z", "title":"Final state gen #tau^{#font[122]{\55}} production vertex z [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
+    "n_GenTau":                      {"name":"n_GenTau",                  "title":"Number of final state gen taus",              "bin":5, "xmin":-0.5, "xmax":4.5},
+    "GenTau_e":                      {"name":"GenTau_e",                  "title":"Final state gen taus energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "GenTau_p":                      {"name":"GenTau_p",                  "title":"Final state gen taus p [GeV]",                "bin":50, "xmin":0, "xmax":100},
+    "GenTau_pt":                     {"name":"GenTau_pt",                 "title":"Final state gen taus p_{T} [GeV]",            "bin":50, "xmin":0, "xmax":100},
+    "GenTau_px":                     {"name":"GenTau_px",                 "title":"Final state gen taus p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "GenTau_py":                     {"name":"GenTau_py",                 "title":"Final state gen taus p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "GenTau_pz":                     {"name":"GenTau_pz",                 "title":"Final state gen taus p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "GenTau_y":                      {"name":"GenTau_y",                  "title":"Final state gen taus rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    "GenTau_eta":                    {"name":"GenTau_eta",                "title":"Final state gen taus #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "GenTau_theta":                  {"name":"GenTau_theta",              "title":"Final state gen taus #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "GenTau_phi":                    {"name":"GenTau_phi",                "title":"Final state gen taus #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "GenTau_charge":                 {"name":"GenTau_charge",             "title":"Final state gen taus charge",                 "bin":3, "xmin":-1.5,"xmax":1.5},
+    "GenTau_mass":                   {"name":"GenTau_mass",               "title":"Final state gen taus mass [GeV]",             "bin":20, "xmin":0., "xmax":2.},
+    "GenTau_vertex_x":               {"name":"GenTau_vertex_x", "title":"Final state gen #tau^{#font[122]{\55}} production vertex x [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
+    "GenTau_vertex_y":               {"name":"GenTau_vertex_y", "title":"Final state gen #tau^{#font[122]{\55}} production vertex y [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
+    "GenTau_vertex_z":               {"name":"GenTau_vertex_z", "title":"Final state gen #tau^{#font[122]{\55}} production vertex z [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
 
     "GenPiP_e":                      {"name":"GenPiP_e",                  "title":"Final state gen #pi^{+} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
     "GenPiP_p":                      {"name":"GenPiP_p",                  "title":"Final state gen #pi^{+} p [GeV]",                "bin":50, "xmin":0, "xmax":100},
@@ -381,10 +382,10 @@ histoList = {
     "GenTauM_y":                 {"name":"GenTauM_y",                  "title":"#tau^{-} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "GenTauM_mass":              {"name":"GenTauM_mass",               "title":"#tau^{-} mass",                   "bin":30, "xmin":0., "xmax":3.},
 
-    "HiggsGenTau_DPhi":         {"name":"HiggsGenTau_DPhi",           "title":"#Delta#phi(#tau#tau)",                                "bin":128, "xmin":-6.4,"xmax":6.4},
-    "HiggsGenTau_DR":                   {"name":"HiggsGenTau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
-    "HiggsGenTau_cos":                  {"name":"HiggsGenTau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
-    "HiggsGenTau_DEta":                             {"name":"HiggsGenTau_DEta",           "title":"Gen di-#tau #Delta#eta",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
+    "GenTau_DPhi":         {"name":"GenTau_DPhi",           "title":"#Delta#phi(#tau#tau)",                                "bin":128, "xmin":-6.4,"xmax":6.4},
+    "GenTau_DR":                   {"name":"GenTau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
+    "GenTau_cos":                  {"name":"GenTau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
+    "GenTau_DEta":                             {"name":"GenTau_DEta",           "title":"Gen di-#tau #Delta#eta",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
 
     "FSGenZDaughter_DPhi":         {"name":"FSGenZDaughter_DPhi",           "title":"#Delta#phi(ll)",                                "bin":128, "xmin":-6.4,"xmax":6.4},
     "FSGenZDaughter_DR":                   {"name":"FSGenZDaughter_DR",                     "title":"#Delta R(ll)",                  "bin":70, "xmin":0,"xmax":7},
@@ -393,8 +394,8 @@ histoList = {
 
     #### CP variables
 
-    "HiggsGenTau_DEta_y":                             {"name":"HiggsGenTau_DEta_y",           "title":"Gen di-#tau #Delta#eta",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
-    "HiggsGenTau_DPhi_y":                           {"name":"HiggsGenTau_DPhi_y",           "title":"#Delta#phi(#tau#tau)",                                "bin":128, "xmin":-6.4,"xmax":6.4},
+    "GenTau_DEta_y":                             {"name":"GenTau_DEta_y",           "title":"Gen di-#tau #Delta#eta",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
+    "GenTau_DPhi_y":                           {"name":"GenTau_DPhi_y",           "title":"#Delta#phi(#tau#tau)",                                "bin":128, "xmin":-6.4,"xmax":6.4},
     "FSGenZDaughter_DEta_y":                 {"name":"FSGenZDaughter_DEta_y",           "title":"Gen Z daughters #Delta#eta",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
     "FSGenZDaughter_DPhi_y":                 {"name":"FSGenZDaughter_DPhi_y",           "title":"Gen Z daughters #Delta#phi",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
 
@@ -455,9 +456,9 @@ histoList = {
     "SinPhi":              {"name":"SinPhi",            "title":"sin#phi (angle of decay)",                  "bin":50, "xmin":-1.,"xmax":1.},
     "GenPhi_decay":              {"name":"GenPhi_decay",            "title":"#Delta#phi (angle of decay)",                  "bin":63, "xmin":-3.14,"xmax":3.14},
     
-    "GenTheta2":              {"name":"GenTheta2",            "title":"Gen #theta_{2}",                  "bin":32, "xmin":0,"xmax":3.2},
-    "GenTheta2_cos":              {"name":"GenTheta2_cos",            "title":"Gen cos#theta_{2}",                  "bin":50, "xmin":-1.,"xmax":1.},
-    "GenRecoil":                   {"name":"GenRecoil",                   "title":"Gen M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
+    #"GenTheta2":              {"name":"GenTheta2",            "title":"Gen #theta_{2}",                  "bin":32, "xmin":0,"xmax":3.2},
+    #"GenTheta2_cos":              {"name":"GenTheta2_cos",            "title":"Gen cos#theta_{2}",                  "bin":50, "xmin":-1.,"xmax":1.},
+    #"GenRecoil":                   {"name":"GenRecoil",                   "title":"Gen M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
     
 
 }

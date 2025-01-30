@@ -225,8 +225,8 @@ class RDFanalysis():
                 .Define("FSGenZDaughter_DPhi_y",    "if (FSGenZLead_y>FSGenZSub_y) return (FSGenZLead_phi - FSGenZSub_phi); \
                                         else if (FSGenZLead_y<FSGenZSub_y) return (FSGenZSub_phi - FSGenZLead_phi); else return double(-10.);")
 
-                .Define("HiggsGenTau_p4",     "FCCAnalyses::ZHfunctions::build_p4(HiggsGenTau_px, HiggsGenTau_py, HiggsGenTau_pz, HiggsGenTau_e)")
-                .Define("GenTauLead_p4",     "if (HiggsGenTau_p4.at(0).Pt()>HiggsGenTau_p4.at(1).Pt()) return HiggsGenTau_p4.at(0); else return HiggsGenTau_p4.at(1);")
+                .Define("GenTau_p4",     "FCCAnalyses::ZHfunctions::build_p4(GenTau_px, GenTau_py, GenTau_pz, GenTau_e)")
+                .Define("GenTauLead_p4",     "if (GenTau_p4.at(0).Pt()>GenTau_p4.at(1).Pt()) return GenTau_p4.at(0); else return GenTau_p4.at(1);")
                 .Define("GenTauLead_px",    "GenTauLead_p4.Px()")
                 .Define("GenTauLead_py",    "GenTauLead_p4.Py()")
                 .Define("GenTauLead_pz",    "GenTauLead_p4.Pz()")
@@ -239,7 +239,7 @@ class RDFanalysis():
                 .Define("GenTauLead_y",     "GenTauLead_p4.Rapidity()")
                 .Define("GenTauLead_mass",    "GenTauLead_p4.M()")
                 
-                .Define("GenTauSub_p4",     "if (HiggsGenTau_p4.at(0).Pt()>HiggsGenTau_p4.at(1).Pt()) return HiggsGenTau_p4.at(1); else return HiggsGenTau_p4.at(0);")
+                .Define("GenTauSub_p4",     "if (GenTau_p4.at(0).Pt()>GenTau_p4.at(1).Pt()) return GenTau_p4.at(1); else return GenTau_p4.at(0);")
                 .Define("GenTauSub_px",    "GenTauSub_p4.Px()")
                 .Define("GenTauSub_py",    "GenTauSub_p4.Py()")
                 .Define("GenTauSub_pz",    "GenTauSub_p4.Pz()")
@@ -252,7 +252,7 @@ class RDFanalysis():
                 .Define("GenTauSub_y",     "GenTauSub_p4.Rapidity()")
                 .Define("GenTauSub_mass",    "GenTauSub_p4.M()")
 
-                .Define("GenTauP_p4",     "if (HiggsGenTau_charge.at(0)==1) return HiggsGenTau_p4.at(0); else return HiggsGenTau_p4.at(1);")
+                .Define("GenTauP_p4",     "if (GenTau_charge.at(0)==1) return GenTau_p4.at(0); else return GenTau_p4.at(1);")
                 .Define("GenTauP_px",    "GenTauP_p4.Px()")
                 .Define("GenTauP_py",    "GenTauP_p4.Py()")
                 .Define("GenTauP_pz",    "GenTauP_p4.Pz()")
@@ -265,7 +265,7 @@ class RDFanalysis():
                 .Define("GenTauP_y",     "GenTauP_p4.Rapidity()")
                 .Define("GenTauP_mass",    "GenTauP_p4.M()")
                 
-                .Define("GenTauM_p4",     "if (HiggsGenTau_charge.at(0)==1) return HiggsGenTau_p4.at(1); else return HiggsGenTau_p4.at(0);")
+                .Define("GenTauM_p4",     "if (GenTau_charge.at(0)==1) return GenTau_p4.at(1); else return GenTau_p4.at(0);")
                 .Define("GenTauM_px",    "GenTauM_p4.Px()")
                 .Define("GenTauM_py",    "GenTauM_p4.Py()")
                 .Define("GenTauM_pz",    "GenTauM_p4.Pz()")
@@ -278,50 +278,28 @@ class RDFanalysis():
                 .Define("GenTauM_y",     "GenTauM_p4.Rapidity()")
                 .Define("GenTauM_mass",    "GenTauM_p4.M()")
 
-                .Define("GenTau_scalar", "(HiggsGenTau_px.at(0)*HiggsGenTau_px.at(1) + HiggsGenTau_py.at(0)*HiggsGenTau_py.at(1) + HiggsGenTau_pz.at(0)*HiggsGenTau_pz.at(1))")
-                .Define("HiggsGenTau_cos", "GenTau_scalar/(HiggsGenTau_p.at(0)*HiggsGenTau_p.at(1))")
+                .Define("GenTau_scalar", "(GenTau_px.at(0)*GenTau_px.at(1) + GenTau_py.at(0)*GenTau_py.at(1) + GenTau_pz.at(0)*GenTau_pz.at(1))")
+                .Define("GenTau_cos", "GenTau_scalar/(GenTau_p.at(0)*GenTau_p.at(1))")
                 
-                .Define("HiggsGenTau_DEta","GenTauLead_eta - GenTauSub_eta")
-                .Define("HiggsGenTau_DPhi","FCCAnalyses::ZHfunctions::deltaPhi(GenTauLead_phi, GenTauSub_phi)")
-                .Define("HiggsGenTau_DEta_y",    "if (GenTauLead_y>GenTauSub_y) return (GenTauLead_eta - GenTauSub_eta); \
+                .Define("GenTau_DEta","GenTauLead_eta - GenTauSub_eta")
+                .Define("GenTau_DPhi","FCCAnalyses::ZHfunctions::deltaPhi(GenTauLead_phi, GenTauSub_phi)")
+                .Define("GenTau_DEta_y",    "if (GenTauLead_y>GenTauSub_y) return (GenTauLead_eta - GenTauSub_eta); \
                                         else if (GenTauLead_y<GenTauSub_y) return (GenTauSub_eta - GenTauLead_eta); else return double(-10.);")
-                .Define("HiggsGenTau_DPhi_y",    "if (GenTauLead_y>GenTauSub_y) return (GenTauLead_phi - GenTauSub_phi); \
+                .Define("GenTau_DPhi_y",    "if (GenTauLead_y>GenTauSub_y) return (GenTauLead_phi - GenTauSub_phi); \
                                         else if (GenTauLead_y<GenTauSub_y) return (GenTauSub_phi - GenTauLead_phi); else return double(-10.);")
-                .Define("HiggsGenTau_DR","FCCAnalyses::ZHfunctions::deltaR(HiggsGenTau_phi.at(0), HiggsGenTau_phi.at(1), HiggsGenTau_eta.at(0), HiggsGenTau_eta.at(1))")
+                .Define("GenTau_DR","FCCAnalyses::ZHfunctions::deltaR(GenTau_phi.at(0), GenTau_phi.at(1), GenTau_eta.at(0), GenTau_eta.at(1))")
 
                 #####################
                 ######## CP #########
                 #####################
 
-                .Define("GenHiggs_p4",      "FCCAnalyses::ZHfunctions::build_p4(GenHiggs_px, GenHiggs_py, GenHiggs_pz, GenHiggs_e)")
-
-                #following CMS paper
-                .Define("ZMF_p4",     "GenTauP_p4+GenTauM_p4")#"GenRhoP_p4+GenRhoM_p4")
-                #.Define("ZMF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPiP_p4)")
-                #.Define("ZMF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPiM_p4)")
-                #.Define("ZMF_GenPi0P_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPi0P_p4)")
-                #.Define("ZMF_GenPi0M_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPi0M_p4)")
-
-                #.Define("yplus",        "(GenPiP_e.at(0) - GenPi0P_e)/(GenPiP_e.at(0) + GenPi0P_e)")
-                #.Define("yminus",        "(GenPiM_e.at(0) - GenPi0M_e)/(GenPiM_e.at(0) + GenPi0M_e)")
-                #.Define("ytau",            "yplus * yminus")
-
-                #.Define("ZMF_LambdaP",      "ZMF_GenPi0P_p4.Vect()")
-                #.Define("ZMF_LambdaM",      "ZMF_GenPi0M_p4.Vect()")
-                #.Define("ZMF_qP",      "(ZMF_GenPiP_p4.Vect()).Unit()")
-                #.Define("ZMF_qM",      "(ZMF_GenPiM_p4.Vect()).Unit()")
-
-                #.Define("ZMF_HatLambdaP",       "(ZMF_LambdaP - (ZMF_LambdaP.Dot(ZMF_qP) * ZMF_qP)).Unit()") #transverse component with respect to q normalised 
-                #.Define("ZMF_HatLambdaM",       "(ZMF_LambdaM - (ZMF_LambdaM.Dot(ZMF_qM) * ZMF_qM)).Unit()")
-
-                #.Define("GenPhiCP_pre",     "acos(ZMF_HatLambdaP.Dot(ZMF_HatLambdaM))")
-
-                #.Define("GenPhiCP",     "if (ytau>0) return GenPhiCP_pre; else return (2*3.1415 - GenPhiCP_pre);")
+                #.Define("GenHiggs_p4",      "FCCAnalyses::ZHfunctions::build_p4(GenHiggs_px, GenHiggs_py, GenHiggs_pz, GenHiggs_e)")
+                .Define("ZMF_p4",     "GenTauP_p4+GenTauM_p4")
 
                 #########
 
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                .Define("HRF_GenTau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- GenHiggs_p4.at(0), HiggsGenTau_p4)")
+                .Define("HRF_GenTau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- ZMF_p4, GenTau_p4)")
                 .Define("HRF_GenTauLead_p4",     "if (HRF_GenTau_p4.at(0).Pt()>HRF_GenTau_p4.at(1).Pt()) return HRF_GenTau_p4.at(0); else return HRF_GenTau_p4.at(1);")
                 .Define("HRF_GenTauLead_px",    "HRF_GenTauLead_p4.Px()")
                 .Define("HRF_GenTauLead_py",    "HRF_GenTauLead_p4.Py()")
@@ -348,7 +326,7 @@ class RDFanalysis():
                 .Define("HRF_GenTauSub_y",     "HRF_GenTauSub_p4.Rapidity()")
                 .Define("HRF_GenTauSub_mass",    "HRF_GenTauSub_p4.M()")
 
-                .Define("HRF_GenTauP_p4",     "if (HiggsGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(0); else return HRF_GenTau_p4.at(1);")
+                .Define("HRF_GenTauP_p4",     "if (GenTau_charge.at(0)==1) return HRF_GenTau_p4.at(0); else return HRF_GenTau_p4.at(1);")
                 .Define("HRF_GenTauP_px",    "HRF_GenTauP_p4.Px()")
                 .Define("HRF_GenTauP_py",    "HRF_GenTauP_p4.Py()")
                 .Define("HRF_GenTauP_pz",    "HRF_GenTauP_p4.Pz()")
@@ -361,7 +339,7 @@ class RDFanalysis():
                 .Define("HRF_GenTauP_y",     "HRF_GenTauP_p4.Rapidity()")
                 .Define("HRF_GenTauP_mass",    "HRF_GenTauP_p4.M()")
                 
-                .Define("HRF_GenTauM_p4",     "if (HiggsGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(1); else return HRF_GenTau_p4.at(0);")
+                .Define("HRF_GenTauM_p4",     "if (GenTau_charge.at(0)==1) return HRF_GenTau_p4.at(1); else return HRF_GenTau_p4.at(0);")
                 .Define("HRF_GenTauM_px",    "HRF_GenTauM_p4.Px()")
                 .Define("HRF_GenTauM_py",    "HRF_GenTauM_p4.Py()")
                 .Define("HRF_GenTauM_pz",    "HRF_GenTauM_p4.Pz()")
@@ -384,8 +362,8 @@ class RDFanalysis():
                 ### angles visualisation in figure 1 (2) at pag 8 of https://arxiv.org/pdf/2205.07715, changed some of the names around
                 #may be interesting to simnply keep the cosine of thetas (John Hopkins)
                 #angle between H vector in lab frame and tau in H rest frame
-                .Define("GenTheta2_cos",      "(GenHiggs_px.at(0)*HRF_GenTauM_px + GenHiggs_py.at(0)*HRF_GenTauM_py + GenHiggs_pz.at(0)*HRF_GenTauM_pz)/(GenHiggs_p.at(0)*HRF_GenTauM_p)")
-                .Define("GenTheta2",        "acos(GenTheta2_cos)")
+                #.Define("GenTheta2_cos",      "(GenHiggs_px.at(0)*HRF_GenTauM_px + GenHiggs_py.at(0)*HRF_GenTauM_py + GenHiggs_pz.at(0)*HRF_GenTauM_pz)/(GenHiggs_p.at(0)*HRF_GenTauM_p)")
+                #.Define("GenTheta2",        "acos(GenTheta2_cos)")
                 .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
                 .Define("GenRecoil",       "(Total_p4-GenZ_p4).M()")
 
@@ -393,11 +371,11 @@ class RDFanalysis():
                 # polarimetric vector from ILC paper
 
                 .Define("TauPRF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauP_p4, GenPiP_p4)")
-                .Define("TauPRF_GenPi0P_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauP_p4, GenPi0P_p4)")
+                #.Define("TauPRF_GenPi0P_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauP_p4, GenPi0P_p4)")
                 .Define("TauPRF_GenNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauP_p4, GenNuP_p4)")
 
                 .Define("TauMRF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauM_p4, GenPiM_p4)")
-                .Define("TauMRF_GenPi0M_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauM_p4, GenPi0M_p4)")
+                #.Define("TauMRF_GenPi0M_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauM_p4, GenPi0M_p4)")
                 .Define("TauMRF_GenNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenTauM_p4, GenNuM_p4)")
 
 
@@ -419,14 +397,14 @@ class RDFanalysis():
                 #########
                 # gen reconstruction of the angle between decay planes in higgs rest frame
 
-                .Define("HRF_GenNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), GenNuP_p4)")
-                .Define("HRF_GenNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), GenNuM_p4)")
+                .Define("HRF_GenNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenNuP_p4)")
+                .Define("HRF_GenNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenNuM_p4)")
 
-                .Define("HRF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), GenPiP_p4)")
-                .Define("HRF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), GenPiM_p4)")
+                .Define("HRF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPiP_p4)")
+                .Define("HRF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPiM_p4)")
                 #defined ad pi+pi0 so when there is no pi0 it's just pi so it works for both
-                .Define("HRF_GenRhoP_p4",    "if (GenPi0P_e>0) return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), -GenRhoP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), GenPiP_p4);")
-                .Define("HRF_GenRhoM_p4",    "if (GenPi0M_e>0) return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), -GenRhoM_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), GenPiM_p4);")
+                #.Define("HRF_GenRhoP_p4",    "if (GenPi0P_e>0) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, -GenRhoP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPiP_p4);")
+                #.Define("HRF_GenRhoM_p4",    "if (GenPi0M_e>0) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, -GenRhoM_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, GenPiM_p4);")
 
                 .Define("HRF_Pnorm",        "((( HRF_GenTauM_p4.Vect() ).Cross( HRF_GenPiP_p4.Vect() )).Unit());")
                 .Define("HRF_Mnorm",        "((( HRF_GenTauM_p4.Vect() ).Cross( HRF_GenPiM_p4.Vect() )).Unit());")
@@ -519,23 +497,23 @@ class RDFanalysis():
 
             #"noFSRGenTau_parentPDG",
 
-            "n_HiggsGenTau",
-            "HiggsGenTau_e",
-            "HiggsGenTau_p",
-            "HiggsGenTau_pt",
-            "HiggsGenTau_px",
-            "HiggsGenTau_py",
-            "HiggsGenTau_pz",
-            "HiggsGenTau_y",
-            "HiggsGenTau_eta",
-            "HiggsGenTau_theta",
-            "HiggsGenTau_phi",
-            "HiggsGenTau_charge",
-            "HiggsGenTau_mass",
-            "HiggsGenTau_parentPDG",
-            "HiggsGenTau_vertex_x",
-            "HiggsGenTau_vertex_y",
-            "HiggsGenTau_vertex_z",
+            "n_GenTau",
+            "GenTau_e",
+            "GenTau_p",
+            "GenTau_pt",
+            "GenTau_px",
+            "GenTau_py",
+            "GenTau_pz",
+            "GenTau_y",
+            "GenTau_eta",
+            "GenTau_theta",
+            "GenTau_phi",
+            "GenTau_charge",
+            "GenTau_mass",
+            "GenTau_parentPDG",
+            "GenTau_vertex_x",
+            "GenTau_vertex_y",
+            "GenTau_vertex_z",
   
             "GenNuP_e",
             "GenNuP_p",
@@ -747,18 +725,18 @@ class RDFanalysis():
             "GenTauM_y",    
             "GenTauM_mass",
         
-            "HiggsGenTau_DR",
-            "HiggsGenTau_cos",
-            "HiggsGenTau_DEta", 
-            "HiggsGenTau_DPhi",
+            "GenTau_DR",
+            "GenTau_cos",
+            "GenTau_DEta", 
+            "GenTau_DPhi",
             
             "FSGenZDaughter_DR", 
             "FSGenZDaughter_cos", 
             "FSGenZDaughter_DEta", 
             "FSGenZDaughter_DPhi", 
 
-            "HiggsGenTau_DEta_y", 
-            "HiggsGenTau_DPhi_y", 
+            "GenTau_DEta_y", 
+            "GenTau_DPhi_y", 
             
             "FSGenZDaughter_DEta_y", 
             "FSGenZDaughter_DPhi_y", 
@@ -816,10 +794,6 @@ class RDFanalysis():
             #"HRF_GenTau_DEta_y", 
             #"HRF_GenTau_DPhi_y", 
 
-            "GenTheta2",
-            "GenTheta2_cos",
-
-            "GenRecoil",
 
             "TauPRF_GenPiP_p4",
             "TauMRF_GenPiM_p4",

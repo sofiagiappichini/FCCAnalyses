@@ -116,7 +116,7 @@ processList_xsec = {
 
 inputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage1/"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage2_tag/"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage2_explicit/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -132,77 +132,25 @@ class RDFanalysis():
                 ######################
                 ##### FILTERING ######
                 ######################
-                .Define("OnePair",     "((n_RecoElectrons_sel==2 and n_RecoMuons_sel==0 and (RecoLepton_sel_charge.at(0) + RecoLepton_sel_charge.at(1))==0)*1.0)")
+                .Define("OnePair",     "((n_RecoElectrons==2 and n_RecoMuons==0 and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0)")
 
-                #.Filter("OnePair==1 && n_TauFromJet_R5==2 && n_TagJet_R5_sel==0")
+                .Filter("OnePair==1 && n_TauFromJet_R5==2 && n_TagJet_R5_sel==0")
 
-                #.Filter("(TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0")
+                .Filter("(TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0")
 
                 # tau type for pinu decay in both, with no photons
-                #.Filter("TauFromJet_R5_type.at(0)==0 and TauFromJet_R5_type.at(1)==0")
-
-                .Define("TauTag_px",      "TagJet_R5_px[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_py",      "TagJet_R5_py[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_pz",      "TagJet_R5_pz[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_pt",      "TagJet_R5_pt[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_p",      "TagJet_R5_p[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_e",      "TagJet_R5_e[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_phi",      "TagJet_R5_phi[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_eta",      "TagJet_R5_eta[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_theta",      "TagJet_R5_theta[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_charge",      "TagJet_R5_charge[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_mass",      "TagJet_R5_mass[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_isG",      "TagJet_R5_isG[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_isU",      "TagJet_R5_isU[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_isD",      "TagJet_R5_isD[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_isS",      "TagJet_R5_isS[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_isC",      "TagJet_R5_isC[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_isB",      "TagJet_R5_isB[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_isTAU",      "TagJet_R5_isTAU[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("TauTag_flavor",      "TagJet_R5_flavor[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("n_TauTag_constituents",        "n_TagJet_R5_constituents[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("n_TauTag_charged_constituents",        "n_TagJet_R5_charged_constituents[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("n_TauTag_neutral_constituents",        "n_TagJet_R5_neutral_constituents[TagJet_R5_isTAU>0.5 && TagJet_R5_cleanup==1]")
-                .Define("n_TauTag",          "TauTag_px.size()")
-
-                .Define("QuarkTag_px",      "TagJet_R5_px[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_py",      "TagJet_R5_py[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_pz",      "TagJet_R5_pz[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_pt",      "TagJet_R5_pt[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_p",      "TagJet_R5_p[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_e",      "TagJet_R5_e[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_phi",      "TagJet_R5_phi[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_eta",      "TagJet_R5_eta[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_theta",      "TagJet_R5_theta[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_charge",      "TagJet_R5_charge[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_mass",      "TagJet_R5_mass[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_isG",      "TagJet_R5_isG[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_isU",      "TagJet_R5_isU[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_isD",      "TagJet_R5_isD[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_isS",      "TagJet_R5_isS[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_isC",      "TagJet_R5_isC[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_isB",      "TagJet_R5_isB[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_isTAU",      "TagJet_R5_isTAU[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("QuarkTag_flavor",      "TagJet_R5_flavor[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("n_QuarkTag_constituents",        "n_TagJet_R5_constituents[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("n_QuarkTag_charged_constituents",        "n_TagJet_R5_charged_constituents[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("n_QuarkTag_neutral_constituents",        "n_TagJet_R5_neutral_constituents[TagJet_R5_isTAU<=0.5 && TagJet_R5_cleanup==1]")
-                .Define("n_QuarkTag",     "QuarkTag_charge.size()")
-
-                ###################################
-
-                .Filter("OnePair==1 && n_TauTag==2 && n_QuarkTag==0 && n_TauTag_charged_constituents.at(0)==1 && n_TauTag_charged_constituents.at(1)==1")
+                .Filter("TauFromJet_R5_type.at(0)==0 and TauFromJet_R5_type.at(1)==0")
 
                 ##################
                 # Reco particles #
                 ##################
 
-                .Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_sel_px, RecoLepton_sel_py, RecoLepton_sel_pz, RecoLepton_sel_e)")
+                .Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_px, RecoLepton_py, RecoLepton_pz, RecoLepton_e)")
 
-                #.Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_3(RecoLepton_p4, RecoLepton_sel_charge, RecoLepton_sel_mass, 91.188)")
+                #.Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_3(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188)")
 
-                .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_sel_px.at(0), RecoLepton_sel_py.at(0), RecoLepton_sel_pz.at(0), RecoLepton_sel_e.at(0))")
-                .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_sel_px.at(1), RecoLepton_sel_py.at(1), RecoLepton_sel_pz.at(1), RecoLepton_sel_e.at(1))")
+                .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(0), RecoLepton_py.at(0), RecoLepton_pz.at(0), RecoLepton_e.at(0))")
+                .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(RecoLepton_px.at(1), RecoLepton_py.at(1), RecoLepton_pz.at(1), RecoLepton_e.at(1))")
 
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
@@ -230,7 +178,7 @@ class RDFanalysis():
                 .Define("RecoZSub_y",     "RecoZSub_p4.Rapidity()")
                 .Define("RecoZSub_mass",    "RecoZSub_p4.M()")
 
-                .Define("RecoZP_p4",      "if (RecoLepton_sel_charge.at(0)==1) return RecoZ1_p4; else return RecoZ2_p4;")
+                .Define("RecoZP_p4",      "if (RecoLepton_charge.at(0)==1) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZP_px",    "RecoZP_p4.Px()")
                 .Define("RecoZP_py",    "RecoZP_p4.Py()")
                 .Define("RecoZP_pz",    "RecoZP_p4.Pz()")
@@ -243,7 +191,7 @@ class RDFanalysis():
                 .Define("RecoZP_y",     "RecoZP_p4.Rapidity()")
                 .Define("RecoZP_mass",    "RecoZP_p4.M()")
 
-                .Define("RecoZM_p4",      "if (RecoLepton_sel_charge.at(0)==1) return RecoZ2_p4; else return RecoZ1_p4;")
+                .Define("RecoZM_p4",      "if (RecoLepton_charge.at(0)==1) return RecoZ2_p4; else return RecoZ1_p4;")
                 .Define("RecoZM_px",    "RecoZM_p4.Px()")
                 .Define("RecoZM_py",    "RecoZM_p4.Py()")
                 .Define("RecoZM_pz",    "RecoZM_p4.Pz()")
@@ -269,18 +217,18 @@ class RDFanalysis():
                 .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
                 .Define("RecoZ_mass",    "RecoZ_p4.M()")
                 
-                #.Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
-                #.Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauTag_px.at(0), TauTag_py.at(0), TauTag_pz.at(0), TauTag_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauTag_px.at(1), TauTag_py.at(1), TauTag_pz.at(1), TauTag_e.at(1))")
-                .Define("RecoTau1_type",        "TauTag_isTAU.at(0)") #"TauFromJet_R5Tag_type.at(0)")
-                .Define("RecoTau2_type",        "TauTag_isTAU.at(1)") #"TauFromJet_R5Tag_type.at(1)")
-                .Define("n_RecoTau1_constituents",        "n_TauTag_constituents.at(0)")
-                .Define("n_RecoTau2_constituents",        "n_TauTag_constituents.at(1)")
-                .Define("n_RecoTau1_charged_constituents",        "n_TauTag_charged_constituents.at(0)")
-                .Define("n_RecoTau2_charged_constituents",        "n_TauTag_charged_constituents.at(1)")
-                .Define("n_RecoTau1_neutral_constituents",        "n_TauTag_charged_constituents.at(0)")
-                .Define("n_RecoTau2_neutral_constituents",        "n_TauTag_neutral_constituents.at(1)")
+                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
+                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
+                #.Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauTag_px.at(0), TauTag_py.at(0), TauTag_pz.at(0), TauTag_e.at(0))")
+                #Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauTag_px.at(1), TauTag_py.at(1), TauTag_pz.at(1), TauTag_e.at(1))")
+                .Define("RecoTau1_type",        "TauFromJet_R5_type.at(0)")
+                .Define("RecoTau2_type",       "TauFromJet_R5_type.at(1)")
+                #.Define("n_RecoTau1_constituents",        "n_TauTag_constituents.at(0)")
+                #.Define("n_RecoTau2_constituents",        "n_TauTag_constituents.at(1)")
+                #.Define("n_RecoTau1_charged_constituents",        "n_TauTag_charged_constituents.at(0)")
+                #.Define("n_RecoTau2_charged_constituents",        "n_TauTag_charged_constituents.at(1)")
+                #.Define("n_RecoTau1_neutral_constituents",        "n_TauTag_charged_constituents.at(0)")
+                #.Define("n_RecoTau2_neutral_constituents",        "n_TauTag_neutral_constituents.at(1)")
 
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
@@ -308,9 +256,6 @@ class RDFanalysis():
                 .Define("TauLead_y",     "TauLead_p4.Rapidity()")
                 .Define("TauLead_mass",    "TauLead_p4.M()")
                 .Define("TauLead_type",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_type; else return RecoTau2_type;")
-                .Define("n_TauLead_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau1_constituents; else return n_RecoTau2_constituents;")
-                .Define("n_TauLead_charged_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau1_charged_constituents; else return n_RecoTau2_charged_constituents;")
-                .Define("n_TauLead_neutral_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau1_neutral_constituents; else return n_RecoTau2_neutral_constituents;")
 
                 .Define("TauSub_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauSub_px",    "TauSub_p4.Px()")
@@ -325,11 +270,8 @@ class RDFanalysis():
                 .Define("TauSub_y",     "TauSub_p4.Rapidity()")
                 .Define("TauSub_mass",    "TauSub_p4.M()")
                 .Define("TauSub_type",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau2_type; else return RecoTau1_type;")
-                .Define("n_TauSub_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau2_constituents; else return n_RecoTau1_constituents;")
-                .Define("n_TauSub_charged_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau2_charged_constituents; else return n_RecoTau1_charged_constituents;")
-                .Define("n_TauSub_neutral_constituents",     "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return n_RecoTau2_neutral_constituents; else return n_RecoTau1_neutral_constituents;")
 
-                .Define("TauP_p4","if (ChargedPar_charge.at(0)==1) return RecoTau1_p4; else return RecoTau2_p4;")
+                .Define("TauP_p4","if (TauFromJet_R5_charge.at(0)==1) return RecoTau1_p4; else return RecoTau2_p4;")
                 .Define("TauP_px",    "TauP_p4.Px()")
                 .Define("TauP_py",    "TauP_p4.Py()")
                 .Define("TauP_pz",    "TauP_p4.Pz()")
@@ -341,11 +283,8 @@ class RDFanalysis():
                 .Define("TauP_theta",    "TauP_p4.Theta()")
                 .Define("TauP_y",     "TauP_p4.Rapidity()")
                 .Define("TauP_mass",    "TauP_p4.M()")
-                .Define("n_TauP_constituents",     "if (ChargedPar_charge.at(0)==1) return n_RecoTau1_constituents; else return n_RecoTau2_constituents;")
-                .Define("n_TauP_charged_constituents",     "if (ChargedPar_charge.at(0)==1) return n_RecoTau1_charged_constituents; else return n_RecoTau2_charged_constituents;")
-                .Define("n_TauP_neutral_constituents",     "if (ChargedPar_charge.at(0)==1) return n_RecoTau1_neutral_constituents; else return n_RecoTau2_neutral_constituents;")
 
-                .Define("TauM_p4",       "if (ChargedPar_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
+                .Define("TauM_p4",       "if (TauFromJet_R5_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauM_px",    "TauM_p4.Px()")
                 .Define("TauM_py",    "TauM_p4.Py()")
                 .Define("TauM_pz",    "TauM_p4.Pz()")
@@ -357,9 +296,6 @@ class RDFanalysis():
                 .Define("TauM_theta",    "TauM_p4.Theta()")
                 .Define("TauM_y",     "TauM_p4.Rapidity()")
                 .Define("TauM_mass",    "TauM_p4.M()")
-                .Define("n_TauM_constituents",     "if (ChargedPar_charge.at(0)==1) return n_RecoTau2_constituents; else return n_RecoTau1_constituents;")
-                .Define("n_TauM_charged_constituents",     "if (ChargedPar_charge.at(0)==1) return n_RecoTau2_charged_constituents; else return n_RecoTau1_charged_constituents;")
-                .Define("n_TauM_neutral_constituents",     "if (ChargedPar_charge.at(0)==1) return n_RecoTau2_neutral_constituents; else return n_RecoTau1_neutral_constituents;")
 
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
@@ -390,37 +326,10 @@ class RDFanalysis():
                 ######## CP #########
                 #####################
 
-                .Define("RecoEmiss_p4",  "FCCAnalyses::ZHfunctions::build_p4_single(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
-
-                # redefine th eimpact vector from the actual ip recontructed from the Z vertex
-                .Define("ChargedParP_d0",        "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::myUtils::get_d0(RecoIP.Vect(), (ChargedPar_p4.at(0)).Vect()); else return FCCAnalyses::myUtils::get_d0(RecoIP.Vect(), (ChargedPar_p4.at(1)).Vect());")
-                .Define("ChargedParM_d0",        "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::myUtils::get_d0(RecoIP.Vect(), (ChargedPar_p4.at(1)).Vect()); else return FCCAnalyses::myUtils::get_d0(RecoIP.Vect(), (ChargedPar_p4.at(0)).Vect());")
-                .Define("ChargedParP_Z0",        "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::myUtils::get_z0(RecoIP.Vect(), (ChargedPar_p4.at(0)).Vect()); else return FCCAnalyses::myUtils::get_z0(RecoIP.Vect(), (ChargedPar_p4.at(1)).Vect());")
-                .Define("ChargedParM_Z0",        "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::myUtils::get_z0(RecoIP.Vect(), (ChargedPar_p4.at(1)).Vect()); else return FCCAnalyses::myUtils::get_z0(RecoIP.Vect(), (ChargedPar_p4.at(0)).Vect());")
-                .Define("ChargedParP_phi",        "if (ChargedPar_charge.at(0)==1) return acos(ChargedPar_px.at(0)/ChargedPar_p.at(0)); else return acos(ChargedPar_px.at(1)/ChargedPar_p.at(1));")
-                .Define("ChargedParM_phi",        "if (ChargedPar_charge.at(0)==1) return acos(ChargedPar_px.at(1)/ChargedPar_p.at(1)); else return acos(ChargedPar_px.at(0)/ChargedPar_p.at(0));")
-                .Define("ChargedParP_x0",        "ChargedParP_d0*cos(ChargedParP_phi)")
-                .Define("ChargedParM_x0",        "ChargedParM_d0*cos(ChargedParM_phi)")
-                .Define("ChargedParP_y0",        "ChargedParP_d0*sin(ChargedParP_phi)")
-                .Define("ChargedParM_y0",        "ChargedParM_d0*sin(ChargedParM_phi)")
-                .Define("ChargedParP_norm",     "sqrt(ChargedParP_x0*ChargedParP_x0 + ChargedParP_y0*ChargedParP_y0 + ChargedParP_Z0*ChargedParP_Z0)")
-                .Define("ImpactPNorm_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParP_x0/ChargedParP_norm, ChargedParP_y0/ChargedParP_norm, ChargedParP_Z0/ChargedParP_norm, 0.)")
-                .Define("ImpactP_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParP_x0, ChargedParP_y0, ChargedParP_Z0, 0.)")
-                .Define("ChargedParM_norm",     "sqrt(ChargedParM_x0*ChargedParM_x0 + ChargedParM_y0*ChargedParM_y0 + ChargedParM_Z0*ChargedParM_Z0)")
-                .Define("ImpactMNorm_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParM_x0/ChargedParM_norm, ChargedParM_y0/ChargedParM_norm, ChargedParM_Z0/ChargedParM_norm, 0.)")
-                .Define("ImpactM_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParM_x0, ChargedParM_y0, ChargedParM_Z0, 0.)")
-
-                #.Define("ImpactPNorm_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpactNorm_p4.at(0); else return TrackImpactNorm_p4.at(1);")
-                #.Define("ImpactMNorm_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpactNorm_p4.at(1); else return TrackImpactNorm_p4.at(0);")
-                #.Define("ImpactP_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpact_p4.at(0); else return TrackImpact_p4.at(1);")
-                #.Define("ImpactM_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpact_p4.at(1); else return TrackImpact_p4.at(0);")
-
-                .Define("Impact_p4",      "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::build_p4_class(ImpactP_p4, ImpactM_p4); else return FCCAnalyses::ZHfunctions::build_p4_class(ImpactM_p4, ImpactP_p4);")
-
                 #boosted_p4 function will boost a vector of 4-vectors(_tlv, last component is the time/energy), to go to the rest frame you need to use the inverse vector 
-                #.Define("RecoTau_p4",      "FCCAnalyses::ZHfunctions::build_p4(TauFromJet_R5_px, TauFromJet_R5_py, TauFromJet_R5_pz, TauFromJet_R5_e)")
-                .Define("RecoTau_p4",      "FCCAnalyses::ZHfunctions::build_p4(TauTag_px, TauTag_py, TauTag_pz, TauTag_e)")
-                .Define("HRF_Tau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- Recoil_p4, RecoTau_p4)")
+                .Define("RecoTau_p4",      "FCCAnalyses::ZHfunctions::build_p4(TauFromJet_R5_px, TauFromJet_R5_py, TauFromJet_R5_pz, TauFromJet_R5_e)")
+                #.Define("RecoTau_p4",      "FCCAnalyses::ZHfunctions::build_p4(TauTag_px, TauTag_py, TauTag_pz, TauTag_e)")
+                .Define("HRF_Tau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- RecoH_p4, RecoTau_p4)")
                 .Define("HRF_TauLead_p4",     "if (HRF_Tau_p4.at(0).Pt()>HRF_Tau_p4.at(1).Pt()) return HRF_Tau_p4.at(0); else return HRF_Tau_p4.at(1);")
                 .Define("HRF_TauLead_px",    "HRF_TauLead_p4.Px()")
                 .Define("HRF_TauLead_py",    "HRF_TauLead_p4.Py()")
@@ -447,7 +356,7 @@ class RDFanalysis():
                 .Define("HRF_TauSub_y",     "HRF_TauSub_p4.Rapidity()")
                 .Define("HRF_TauSub_mass",    "HRF_TauSub_p4.M()")
 
-                .Define("HRF_TauP_p4",     "if (ChargedPar_charge.at(0)==1) return HRF_Tau_p4.at(0); else return HRF_Tau_p4.at(1);")
+                .Define("HRF_TauP_p4",     "if (TauFromJet_R5_charge.at(0)==1) return HRF_Tau_p4.at(0); else return HRF_Tau_p4.at(1);")
                 .Define("HRF_TauP_px",    "HRF_TauP_p4.Px()")
                 .Define("HRF_TauP_py",    "HRF_TauP_p4.Py()")
                 .Define("HRF_TauP_pz",    "HRF_TauP_p4.Pz()")
@@ -460,7 +369,7 @@ class RDFanalysis():
                 .Define("HRF_TauP_y",     "HRF_TauP_p4.Rapidity()")
                 .Define("HRF_TauP_mass",    "HRF_TauP_p4.M()")
                 
-                .Define("HRF_TauM_p4",     "if (ChargedPar_charge.at(0)==1) return HRF_Tau_p4.at(1); else return HRF_Tau_p4.at(0);")
+                .Define("HRF_TauM_p4",     "if (TauFromJet_R5_charge.at(0)==1) return HRF_Tau_p4.at(1); else return HRF_Tau_p4.at(0);")
                 .Define("HRF_TauM_px",    "HRF_TauM_p4.Px()")
                 .Define("HRF_TauM_py",    "HRF_TauM_p4.Py()")
                 .Define("HRF_TauM_pz",    "HRF_TauM_p4.Pz()")
@@ -479,7 +388,92 @@ class RDFanalysis():
                                         else if (HRF_TauLead_y<HRF_TauSub_y) return (HRF_TauSub_phi - HRF_TauLead_phi); else return double(-10.);")
                 .Define("HRF_Tau_DEta","HRF_TauLead_eta - HRF_TauSub_eta")
                 .Define("HRF_Tau_DPhi","HRF_TauLead_phi - HRF_TauSub_phi")
+
+                ######################
+                ##### CP angle #######
+                #####################
+
+                # impact parameter method from CMS for decay into one pion
+                # we do know the higgs rest frame / recoil frame so we can use that instead of going around it with the visible taus
+
+                .Define("ZMF_p4",       "TauFromJet_R5.at(0) + TauFromJet_R5.at(1)")
+                .Define("ZMF_RecoPiP_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, ChargedPar_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, ChargedPar_p4.at(1));")
+                .Define("ZMF_ImpactP_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, Impact_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, Impact_p4.at(1));")
+
+                .Define("ZMF_RecoPiM_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, ChargedPar_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, ChargedPar_p4.at(0));")
+                .Define("ZMF_ImpactM_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, Impact_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, Impact_p4.at(0));")
+
+                .Define("ZMF_ImpactP_par",       "((ZMF_ImpactP_p4.Vect()).Dot((ZMF_RecoPiP_p4.Vect())))/((ZMF_RecoPiP_p4.Vect()).Mag2())*ZMF_RecoPiP_p4.Vect()")
+                .Define("ZMF_ImpactP_perp",      "(ZMF_ImpactP_p4.Vect() - ZMF_ImpactP_par).Unit()")
+                .Redefine("ZMF_ImpactP_par",       "(((ZMF_ImpactP_p4.Vect()).Dot((ZMF_RecoPiP_p4.Vect())))/((ZMF_RecoPiP_p4.Vect()).Mag2())*ZMF_RecoPiP_p4.Vect()).Unit()")
+
+                .Define("ZMF_ImpactM_par",       "((ZMF_ImpactM_p4.Vect()).Dot((ZMF_RecoPiM_p4.Vect())))/((ZMF_RecoPiM_p4.Vect()).Mag2())*ZMF_RecoPiM_p4.Vect()")
+                .Define("ZMF_ImpactM_perp",      "(ZMF_ImpactP_p4.Vect() - ZMF_ImpactM_par).Unit()")
+                .Redefine("ZMF_ImpactM_par",       "(((ZMF_ImpactM_p4.Vect()).Dot((ZMF_RecoPiM_p4.Vect())))/((ZMF_RecoPiM_p4.Vect()).Mag2())*ZMF_RecoPiM_p4.Vect()).Unit()")
+
+                .Define("Phi_Recoil",       "acos(ZMF_ImpactP_perp.Dot(ZMF_ImpactM_perp))")
+                .Define("O_Recoil",         "((ZMF_RecoPiM_p4.Vect()).Unit()).Dot(ZMF_ImpactP_perp.Cross(ZMF_ImpactM_perp))")
+
+                .Define("PhiCP_CMS",        "if (O_Recoil>=0) return Phi_Recoil; else return (2*3.1415 - Phi_Recoil);")
+
+                ######################
+                #### tau momentum reco ####
+                ######################
+
+                #following ILC paper https://arxiv.org/pdf/1804.01241 and reference from d. Jeans https://arxiv.org/pdf/1507.01700
+
+                .Define("TauP_d_p4",        "if (TauFromJet_R5_charge.at(0)==1) return Impact_p4.at(0); else return Impact_p4.at(1);")
+                .Define("TauM_d_p4",        "if (TauFromJet_R5_charge.at(0)==1) return Impact_p4.at(1); else return Impact_p4.at(0);")
+                .Define("TauP_p_p4",        "if (TauFromJet_R5_charge.at(0)==1) return RecoTau_p4.at(0); else return RecoTau_p4.at(1);")
+                .Define("TauM_p_p4",        "if (TauFromJet_R5_charge.at(0)==1) return RecoTau_p4.at(1); else return RecoTau_p4.at(0);")
+                .Define("TauP_k_p4",        "if (TauFromJet_R5_charge.at(0)==1) return NeutralSyst_p4.at(0); else return NeutralSyst_p4.at(1);")
+                .Define("TauM_k_p4",        "if (TauFromJet_R5_charge.at(0)==1) return NeutralSyst_p4.at(1); else return NeutralSyst_p4.at(0);")
+                .Define("TauP_h_p4",     "if (TauFromJet_R5_charge.at(0)==1) return RecoTau_p4.at(0) + NeutralSyst_p4.at(0); else return RecoTau_p4.at(1) + NeutralSyst_p4.at(1);") #in general p+h where h is the neutral hadron system
+                .Define("TauM_h_p4",     "if (TauFromJet_R5_charge.at(0)==1) return RecoTau_p4.at(1) + NeutralSyst_p4.at(1); else return RecoTau_p4.at(0) + NeutralSyst_p4.at(0);")
+
+                .Define("TauP_h_par",        "((TauP_h_p4.Vect()).Dot((TauP_p_p4.Vect())))/((TauP_p_p4.Vect()).Mag2())*TauP_p_p4.Vect()")
+                .Define("TauM_h_par",        "((TauM_h_p4.Vect()).Dot((TauM_p_p4.Vect())))/((TauM_p_p4.Vect()).Mag2())*TauM_p_p4.Vect()")
+                .Define("TauP_fcap",        "(TauP_h_par.Cross((TauP_h_par))).Unit()")
+                .Define("TauM_fcap",        "(TauM_h_par.Cross((TauM_h_par))).Unit()")
+
+                .Define("TauP_q_perp",       " - (TauP_h_p4.Vect() - TauP_h_par)")
+                .Define("TauM_q_perp",       " - (TauM_h_p4.Vect() - TauM_h_par)")
+
+                #not conluded: missing optimization to get magnitude and angle in the decay plane
+
+                ############
+
+                #following Belle reconstruction https://arxiv.org/pdf/1310.8503 to get the tau 4 vector in the recoil frame, then get the neutrino momentum by subtraction
+
+                #.Define("ChargedPar_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedPar_px, ChargedPar_py, ChargedPar_pz, ChargedPar_e)")
+                #.Define("NeutralSyst_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralSyst_px, NeutralSyst_py, NeutralSyst_pz, NeutralSyst_e)")
+
+                .Define("RecoEmiss_p4",  "FCCAnalyses::ZHfunctions::build_p4_single(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
+
+                .Define("True_Tau_p4",        "FCCAnalyses::ZHfunctions::build_tau_p4(Recoil_p4, RecoEmiss_p4, RecoTau_p4, TauFromJet_R5_charge)")
+                .Define("True_TauP_p4",       "True_Tau_p4.at(0)")
+                .Define("True_TauP_idx",       "if (TauFromJet_R5_charge.at(0)==1) return 0; else return 1;")
+                .Define("True_NuP_p4",         "if (TauFromJet_R5_charge.at(0)==1) return True_TauP_p4 - RecoTau_p4.at(0); else return True_TauP_p4 - RecoTau_p4.at(1);")
+                .Define("True_TauM_p4",       "True_Tau_p4.at(1)")
+                .Define("True_TauM_idx",       "if (TauFromJet_R5_charge.at(0)==1) return 1; else return 0;")
+                .Define("True_NuM_p4",         "if (TauFromJet_R5_charge.at(0)==1) return True_TauM_p4 - RecoTau_p4.at(1); else return True_TauM_p4 - RecoTau_p4.at(0);") 
+                #filtering events where the discriminant to solve is negative and so the reconstruction didn't work out
+                .Filter("True_Tau_p4.at(0).P()!=0 and True_Tau_p4.at(1).P()!=0")
+
+                .Define("Emiss_tot",      "(True_NuP_p4 + True_NuM_p4 - RecoEmiss_p4).E()")
+
+                # compare the reconstructed with generated tau to establish the efficiency of the method
+
+                .Define("GenRecoTauP_DR",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::deltaR(True_TauP_p4.Phi(), HadGenTau_phi.at(0), True_TauP_p4.Eta(), HadGenTau_eta.at(0)); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return FCCAnalyses::ZHfunctions::deltaR(True_TauP_p4.Phi(), HadGenTau_phi.at(1), True_TauP_p4.Eta(), HadGenTau_eta.at(1)); \
+                                                else return float(-99.)")
+                .Define("GenRecoTauP_p",        "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (True_TauP_p4.P() - HadGenTau_p.at(0)); else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (True_TauP_p4.P() - HadGenTau_p.at(1)); else return double (-99.); ")
+                .Define("GenRecoTauM_DR",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::deltaR(True_TauM_p4.Phi(), HadGenTau_phi.at(1), True_TauM_p4.Eta(), HadGenTau_eta.at(1)); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return FCCAnalyses::ZHfunctions::deltaR(True_TauM_p4.Phi(), HadGenTau_phi.at(0), True_TauM_p4.Eta(), HadGenTau_eta.at(0)); \
+                                                else return float(-99.)")
+                .Define("GenRecoTauM_p",        "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (True_TauM_p4.P() - HadGenTau_p.at(1)); else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (True_TauM_p4.P() - HadGenTau_p.at(0)); else return double (-99.); ")
                 
+
                 ######################
                 ##### CP angle #######
                 #####################
@@ -488,45 +482,34 @@ class RDFanalysis():
                 # we do know the higgs rest frame / recoil frame so we can use that instead of going around it with the visible taus
 
                 .Define("ZMF_p4",       "RecoTau_p4.at(0) + RecoTau_p4.at(1)")
-                .Define("ZMF_RecoPiP_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoTau_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoTau_p4.at(1));")
-                .Define("ZMF_ImpactP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, ImpactP_p4)")
-                .Define("ZMF_ImpactP_vect",      "(ZMF_ImpactP_p4.Vect()).Unit()")
+                .Define("ZMF_RecoPiP_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoTau_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoTau_p4.at(1));")
+                .Define("ZMF_ImpactP_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, Impact_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, Impact_p4.at(1));")
 
-                .Define("ZMF_RecoPiM_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoTau_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoTau_p4.at(0));")
-                .Define("ZMF_ImpactM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, ImpactM_p4)")
-                .Define("ZMF_ImpactM_vect",      "(ZMF_ImpactM_p4.Vect()).Unit()")
+                .Define("ZMF_RecoPiM_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoTau_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoTau_p4.at(0));")
+                .Define("ZMF_ImpactM_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, Impact_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, Impact_p4.at(0));")
 
-                .Define("ZMF_ImpactP_par",       "(((ZMF_ImpactP_vect).Dot(ZMF_RecoPiP_p4.Vect()))/((ZMF_RecoPiP_p4.Vect()).Mag2()))*ZMF_RecoPiP_p4.Vect()")
-                .Define("ZMF_ImpactP_perp",      "(ZMF_ImpactP_vect - ZMF_ImpactP_par)")
+                .Define("ZMF_ImpactP_par",       "((ZMF_ImpactP_p4.Vect()).Dot((ZMF_RecoPiP_p4.Vect())))/((ZMF_RecoPiP_p4.Vect()).Mag2())*ZMF_RecoPiP_p4.Vect()")
+                .Define("ZMF_ImpactP_perp",      "(ZMF_ImpactP_p4.Vect() - ZMF_ImpactP_par).Unit()")
+                .Redefine("ZMF_ImpactP_par",       "(((ZMF_ImpactP_p4.Vect()).Dot((ZMF_RecoPiP_p4.Vect())))/((ZMF_RecoPiP_p4.Vect()).Mag2())*ZMF_RecoPiP_p4.Vect()).Unit()")
 
-                .Define("ZMF_ImpactM_par",       "(((ZMF_ImpactM_vect).Dot(ZMF_RecoPiM_p4.Vect()))/((ZMF_RecoPiM_p4.Vect()).Mag2()))*ZMF_RecoPiM_p4.Vect()")
-                .Define("ZMF_ImpactM_perp",      "(ZMF_ImpactM_vect - ZMF_ImpactM_par)")
+                .Define("ZMF_ImpactM_par",       "((ZMF_ImpactM_p4.Vect()).Dot((ZMF_RecoPiM_p4.Vect())))/((ZMF_RecoPiM_p4.Vect()).Mag2())*ZMF_RecoPiM_p4.Vect()")
+                .Define("ZMF_ImpactM_perp",      "(ZMF_ImpactP_p4.Vect() - ZMF_ImpactM_par).Unit()")
+                .Redefine("ZMF_ImpactM_par",       "(((ZMF_ImpactM_p4.Vect()).Dot((ZMF_RecoPiM_p4.Vect())))/((ZMF_RecoPiM_p4.Vect()).Mag2())*ZMF_RecoPiM_p4.Vect()).Unit()")
 
-                .Define("Phi_ZMF",       "acos(ZMF_ImpactP_perp.Dot(ZMF_ImpactM_perp))")
-                .Define("O_ZMF",         "(ZMF_ImpactP_perp.Cross(ZMF_ImpactM_perp)).Dot((ZMF_RecoPiM_p4.Vect()).Unit())")
+                .Define("Phi_Recoil",       "acos(ZMF_ImpactP_perp.Dot(ZMF_ImpactM_perp))")
+                .Define("O_Recoil",         "((ZMF_RecoPiM_p4.Vect()).Unit()).Dot(ZMF_ImpactP_perp.Cross(ZMF_ImpactM_perp))")
 
-                .Define("PhiCP_CMS",        "if (O_ZMF>=0) return Phi_ZMF; else return (2*3.1415 - Phi_ZMF);")
-
-                ###########################################
+                .Define("PhiCP_CMS",        "if (O_Recoil>=0) return Phi_Recoil; else return (2*3.1415 - Phi_Recoil);")
             
-                # polarimetric vector from ILC paper for angle reconstruction
-                #following Belle reconstruction https://arxiv.org/pdf/1310.8503 to get the tau 4 vector in the recoil frame, then get the neutrino momentum by subtraction
-
-                .Define("True_Tau_p4",        "FCCAnalyses::ZHfunctions::build_tau_p4(Recoil_p4, RecoEmiss_p4, RecoTau_p4, ChargedPar_charge)")
-                .Define("True_TauP_p4",       "True_Tau_p4.at(0)")
-                .Define("True_NuP_p4",         "if (ChargedPar_charge.at(0)==1) return True_TauP_p4 - RecoTau_p4.at(0); else return True_TauP_p4 - RecoTau_p4.at(1);")
-                .Define("True_TauM_p4",       "True_Tau_p4.at(1)")
-                .Define("True_NuM_p4",         "if (ChargedPar_charge.at(0)==1) return True_TauM_p4 - RecoTau_p4.at(1); else return True_TauM_p4 - RecoTau_p4.at(0);") 
-                #filtering events where the discriminant to solve is negative and so the reconstruction didn't work out
-                .Filter("True_Tau_p4.at(0).P()!=0 and True_Tau_p4.at(1).P()!=0")
+                # polarimetric vector from ILC paper
 
                 # first boost the vectors in the respective tau rest frames
-                #.Define("TauPRF_RecoPiP_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, ChargedPar_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, ChargedPar_p4.at(1));")
-                #.Define("TauPRF_RecoPi0P_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, NeutralSyst_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, NeutralSyst_p4.at(1));")
+                #.Define("TauPRF_RecoPiP_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, ChargedPar_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, ChargedPar_p4.at(1));")
+                #.Define("TauPRF_RecoPi0P_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, NeutralSyst_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, NeutralSyst_p4.at(1));")
                 #.Define("TauPRF_RecoNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, True_NuP_p4)")
 
-                #.Define("TauMRF_RecoPiM_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, ChargedPar_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, ChargedPar_p4.at(0));")
-                #.Define("TauMRF_RecoPi0M_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, NeutralSyst_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, NeutralSyst_p4.at(0));")
+                #.Define("TauMRF_RecoPiM_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, ChargedPar_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, ChargedPar_p4.at(0));")
+                #.Define("TauMRF_RecoPi0M_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, NeutralSyst_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, NeutralSyst_p4.at(0));")
                 #.Define("TauMRF_RecoNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, True_NuM_p4)")
 
                 # allow for both decay into pinu and pipi0nu depenidng on wether the neutral system has any energy or not independently for each tau
@@ -536,10 +519,10 @@ class RDFanalysis():
                 #.Define("hM_p3",       "if (TauMRF_RecoPi0M_p4.E()>0) return  (1.777 * (TauMRF_RecoPiM_p4.E() - TauMRF_RecoPi0M_p4.E()) * (TauMRF_RecoPiM_p4.Vect() - TauMRF_RecoPi0M_p4.Vect()) + 0.5 * (TauMRF_RecoPiM_p4.P() - TauMRF_RecoPi0M_p4.P()) * (TauMRF_RecoPiM_p4.P() - TauMRF_RecoPi0M_p4.P()) * TauMRF_RecoNuM_p4.Vect()); \
                 #                        else return TauMRF_RecoPiM_p4.Vect();")
 
-                .Define("TauPRF_RecoPiP_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, RecoTau_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4,  RecoTau_p4.at(1));")
+                .Define("TauPRF_RecoPiP_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, RecoTau_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4,  RecoTau_p4.at(1));")
                 .Define("TauPRF_RecoNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, True_NuP_p4)")
 
-                .Define("TauMRF_RecoPiM_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4,  RecoTau_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4,  RecoTau_p4.at(0));")
+                .Define("TauMRF_RecoPiM_p4",    "if (TauFromJet_R5_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4,  RecoTau_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4,  RecoTau_p4.at(0));")
                 .Define("TauMRF_RecoNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauM_p4, True_NuM_p4)")
                 
                 .Define("hP_p3",       "TauPRF_RecoPiP_p4.Vect()")
@@ -554,39 +537,7 @@ class RDFanalysis():
                 .Define("hh_norm",       "hPnorm.Cross(hMnorm)")
                 .Define("CosDeltaPhi",        "hPnorm.Dot(hMnorm)")
                 .Define("SinDeltaPhi",       "hh_norm.Dot( (Recoil_TauM_p4.Vect()).Unit() )")
-                .Define("DeltaPhi",     "atan2(SinDeltaPhi, CosDeltaPhi)") 
-
-                #####################################################
-
-                #following ILC paper https://arxiv.org/pdf/1804.01241 and reference from d. Jeans https://arxiv.org/pdf/1507.01700
-
-                .Define("KinILC_Nu_p4",        "FCCAnalyses::ZHfunctions::build_nu_kin_ILC(Recoil_p4, RecoEmiss_p4, ChargedPar_p4, NeutralSyst_p4, TrackImpact_p4, ChargedPar_charge)")
-
-                .Define("KinILC_NuP_p4",       "KinILC_Nu_p4.at(0)")
-                .Define("KinILC_NuM_p4",       "KinILC_Nu_p4.at(1)")
-
-                .Define("KinILC_TauP_p4",      "if (ChargedPar_charge.at(0)==1) return (KinILC_NuP_p4 + ChargedPar_p4.at(0)); else return (KinILC_NuP_p4 + ChargedPar_p4.at(1));")
-                .Define("KinILC_TauM_p4",      "if (ChargedPar_charge.at(0)==1) return (KinILC_NuM_p4 + ChargedPar_p4.at(1)); else return (KinILC_NuM_p4 + ChargedPar_p4.at(0));")
-
-                .Define("TauPRF_ILCPiP_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauP_p4, RecoTau_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauP_p4,  RecoTau_p4.at(1));")
-                .Define("TauPRF_ILCNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauP_p4, True_NuP_p4)")
-
-                .Define("TauMRF_ILCPiM_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauM_p4,  RecoTau_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauM_p4,  RecoTau_p4.at(0));")
-                .Define("TauMRF_ILCNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauM_p4, True_NuM_p4)")
-                
-                .Define("ILChP_p3",       "TauPRF_ILCPiP_p4.Vect()")
-                .Define("ILChM_p3",       "TauMRF_ILCPiM_p4.Vect()")
-
-                # get the direction on which to compute the angles from the tauM boosted into the higgs/recoil rest frame
-                .Define("Recoil_ILCTauM_p4",      "FCCAnalyses::ZHfunctions::boosted_p4_single(- Recoil_p4, KinILC_TauM_p4)")
-
-                .Define("ILChPnorm",       "(( Recoil_ILCTauM_p4.Vect() ).Cross( ILChP_p3 )).Unit()")
-                .Define("ILChMnorm",       "(( Recoil_ILCTauM_p4.Vect() ).Cross( ILChM_p3 )).Unit()")
-
-                .Define("ILChh_norm",       "ILChPnorm.Cross(ILChMnorm)")
-                .Define("CosDeltaPhiILC",        "ILChPnorm.Dot(ILChMnorm)")
-                .Define("SinDeltaPhiILC",       "ILChh_norm.Dot( (Recoil_ILCTauM_p4.Vect()).Unit() )")
-                .Define("DeltaPhiILC",     "atan2(SinDeltaPhiILC, CosDeltaPhiILC)") 
+                .Define("DeltaPhi",     "atan2(SinDeltaPhi, CosDeltaPhi)")
 
         )
         return df2
@@ -842,6 +793,20 @@ class RDFanalysis():
         ]'''
         branchList = [
 
+            "HadGenTau_e",
+            "HadGenTau_p",
+            "HadGenTau_pt",
+            "HadGenTau_px",
+            "HadGenTau_py",
+            "HadGenTau_pz",
+            "HadGenTau_y",
+            "HadGenTau_eta",
+            "HadGenTau_theta",
+            "HadGenTau_phi",
+            "HadGenTau_charge",
+            "HadGenTau_mass",
+            "n_GenTau_had",
+
         ######## Reconstructed particles #######
             #"RecoMC_PID",
 
@@ -1087,16 +1052,6 @@ class RDFanalysis():
             "NeutralSyst_charge",
             "NeutralSyst_mass",
 
-            "TrackImpact_p4", 
-            "TrackImpactNorm_p4",
-            "ImpactP_p4",
-            "ImpactM_p4",
-            "ImpactPNorm_p4",
-            "ImpactMNorm_p4",
-            "ChargedPar_p4", 
-            "NeutralSyst_p4",
-            "RecoChargedParTrack_charge",
-
         ]
         branchList += [
             ######## stage2
@@ -1185,9 +1140,6 @@ class RDFanalysis():
             "TauLead_y",    
             "TauLead_mass",
             "TauLead_type",
-            "n_TauLead_constituents",
-            "n_TauLead_charged_constituents",
-            "n_TauLead_neutral_constituents",
 
             "TauSub_px",    
             "TauSub_py",   
@@ -1201,9 +1153,6 @@ class RDFanalysis():
             "TauSub_y",    
             "TauSub_mass",
             "TauSub_type",
-            "n_TauSub_constituents",
-            "n_TauSub_charged_constituents",
-            "n_TauSub_neutral_constituents",
 
             "TauP_px", 
             "TauP_py",   
@@ -1244,13 +1193,6 @@ class RDFanalysis():
 
             ########## cp
             "Recoil_p4",
-
-            "ZMF_ImpactP_par",
-            "ZMF_ImpactM_par",
-            "Phi_ZMF",
-            "O_ZMF",      
-            "PhiCP_CMS",
-
             "True_Tau_p4", 
             "True_TauM_p4",    
             "True_NuM_p4",  
@@ -1262,18 +1204,25 @@ class RDFanalysis():
             "TauPRF_RecoNuP_p4",  
             "TauMRF_RecoPiM_p4",   
             #"TauMRF_RecoPi0M_p4", 
-            "TauMRF_RecoNuM_p4",      
+            "TauMRF_RecoNuM_p4",   
+            "hP_p3",      
+            "hM_p3",     
+            "Recoil_TauM_p4",  
+            "hPnorm",     
+            "hMnorm",   
+            "hh_norm",      
             "CosDeltaPhi",   
             "SinDeltaPhi",   
             "DeltaPhi",  
 
-            "KinILC_NuP_p4",
-            "KinILC_NuM_p4",   
-            "KinILC_TauP_p4", 
-            "KinILC_TauM_p4",
-            "CosDeltaPhiILC",   
-            "SinDeltaPhiILC",   
-            "DeltaPhiILC",  
+            "GenRecoTauP_DR",
+            "GenRecoTauM_DR",
+            "GenRecoTauP_p",
+            "GenRecoTauM_p",
+
+            "Phi_Recoil",
+            "O_Recoil",      
+            "PhiCP_CMS",
         ]
 
         return branchList

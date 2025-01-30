@@ -44,36 +44,6 @@ def get_entries(infilepath: str) -> tuple[int, int]:
 
     return events_processed, events_in_ttree
 
-vars_list_NuNuLL_explicit = [
-            "RecoEmiss_pz",
-            "RecoEmiss_pt",
-            "RecoEmiss_p",
-            "RecoEmiss_e",
-            "RecoEmiss_costheta",
-            "RecoH_pz",
-            "RecoH_p",
-            "RecoH_pt",
-            "RecoH_e",
-            "RecoH_eta",
-            "TauLead_pz",   
-            "TauLead_p",   
-            "TauLead_pt",   
-            "TauLead_e",    
-            "TauLead_eta",    
-            "TauLead_mass",
-            "TauSub_pz",   
-            "TauSub_p",   
-            "TauSub_pt",   
-            "TauSub_e",    
-            "TauSub_eta",    
-            "TauSub_mass", 
-            "Tau_DPhi",
-            "Tau_DR",
-            "Tau_cos",
-            "Tau_DEta",
-            "Visible_mass",
-            ]
-
 vars_list_NuNu_explicit = [
             "RecoEmiss_pz",
             "RecoEmiss_pt",
@@ -91,14 +61,12 @@ vars_list_NuNu_explicit = [
             "TauLead_e",    
             "TauLead_eta",    
             "TauLead_mass",
-            "TauLead_type",
             "TauSub_pz",   
             "TauSub_p",   
             "TauSub_pt",   
             "TauSub_e",    
             "TauSub_eta",    
             "TauSub_mass", 
-            "TauSub_type",
             "Tau_DPhi",
             "Tau_DR",
             "Tau_cos",
@@ -445,7 +413,7 @@ leg_sub = {
 
 output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/output_overtraining.txt"
 
-modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_130125/"
+modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_230125/"
 
 #fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, gridspec_kw={'height_ratios': [1, 1], 'hspace':0})
 colorDict = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
@@ -681,4 +649,4 @@ for tag in TAG:
             plt.tight_layout()
             plt.savefig("/web/sgiappic/public_html/Higgs_xsec/"+{tag}+"/"+cat+sub+"_overtrain.pdf")
 
-            print(f"Done: {tga}{cat}{sub}")
+            print(f"Done: {tag}{cat}{sub}")
