@@ -10,10 +10,10 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
     #'EWonly_taudecay_2Pi2Nu':{},
-    #'cehim_m1_taudecay_2Pi2Nu':{},
-    #'cehim_p1_taudecay_2Pi2Nu':{},
-    #'cehre_m1_taudecay_2Pi2Nu':{},
-    #'cehre_p1_taudecay_2Pi2Nu':{},
+    'cehim_m1_taudecay_2Pi2Nu':{},
+    'cehim_p1_taudecay_2Pi2Nu':{},
+    'cehre_m1_taudecay_2Pi2Nu':{},
+    'cehre_p1_taudecay_2Pi2Nu':{},
 
     #'cehim_m5_taudecay_2Pi2Nu':{},
     #'cehim_p5_taudecay_2Pi2Nu':{},
@@ -26,7 +26,6 @@ processList = {
     #'cehre_p2_taudecay_2Pi2Nu':{},
 
     #'wzp6_ee_eeH_Htautau_ecm240': {},
-    'p8_ee_ZZ_ecm240':{},
 }
 
 processList_xsec = {
@@ -436,6 +435,43 @@ class RDFanalysis():
                 .Define("SinPhi",       "Cross_norm.Dot( (HRF_GenTauM_p4.Vect()).Unit() )")
                 .Define("GenPhi_decay",     "atan2(SinPhi, CosPhi)")
 
+                #############################################
+
+                #tau reconstruction on gen objects
+
+                .Define("GenEmiss_p4",     "GenNuP_p4 + GenNuM_p4")
+                .Define("GenPi_p4",      "FCCAnalyses::ZHfunctions::build_p4_class(GenPiP_p4, GenPiM_p4)")
+                .Define("GenPi_charge",     "FCCAnalyses::ZHfunctions::build_float(1, -1)")
+                
+                .Define("Kin_Tau_p4",        "FCCAnalyses::ZHfunctions::build_nu_kin(GenHiggs_p4.at(0), GenEmiss_p4, GenPi_p4, GenPi_charge)")
+                .Filter("Kin_Tau_p4.at(0).M()>0 and Kin_Tau_p4.at(1).M()>0")
+
+                .Define("Kin_TauP_p4",       "Kin_Tau_p4.at(0)")
+                .Define("Kin_TauM_p4",       "Kin_Tau_p4.at(1)")
+
+                .Define("Kin_NuP_p4",      "Kin_TauP_p4 - GenPiP_p4")
+                .Define("Kin_NuM_p4",      "Kin_TauM_p4 - GenPiM_p4")
+
+                .Define("TauPRF_KinPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauP_p4, GenPiP_p4)")
+                .Define("TauPRF_KinNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauP_p4, Kin_NuP_p4)")
+
+                .Define("TauMRF_KinPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauM_p4,  GenPiM_p4)")
+                .Define("TauMRF_KinNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauM_p4, Kin_NuM_p4)")
+                
+                .Define("hP_p3Kin",       "TauPRF_KinPiP_p4.Vect()")
+                .Define("hM_p3Kin",       "TauMRF_KinPiM_p4.Vect()")
+                .Define("RecoilKin_TauM_p4",      "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4.at(0), Kin_TauM_p4)")
+
+                .Define("hPnormKin",       "(( RecoilKin_TauM_p4.Vect() ).Cross( hP_p3Kin )).Unit()")
+                .Define("hMnormKin",       "(( RecoilKin_TauM_p4.Vect() ).Cross( hM_p3Kin )).Unit()")
+
+                .Define("hh_normKin",       "hPnormKin.Cross(hMnormKin)")
+                .Define("CosDeltaPhiKin",        "hPnormKin.Dot(hMnormKin)")
+                .Define("SinDeltaPhiKin",       "hh_normKin.Dot( (RecoilKin_TauM_p4.Vect()).Unit() )")
+                .Define("DeltaPhiKin",     "atan2(SinDeltaPhiKin, CosDeltaPhiKin)")
+
+                .Define("Emiss_totKin",      "(GenEmiss_p4 - Kin_NuP_p4 - Kin_NuM_p4).E()")
+
         )
         return df2
 
@@ -838,6 +874,15 @@ class RDFanalysis():
             "CosPhi",  
             "SinPhi",    
             "GenPhi_decay",
+
+            "Emiss_totKin",
+            "Kin_TauP_p4", 
+            "Kin_TauM_p4", 
+            "Kin_NuP_p4", 
+            "Kin_NuM_p4",   
+            "CosDeltaPhiKin",   
+            "SinDeltaPhiKin",   
+            "DeltaPhiKin",
 
         ]
 

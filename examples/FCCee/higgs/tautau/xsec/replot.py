@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm240/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -46,7 +46,7 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     #"LL",
     "NuNu",
 ]
@@ -73,11 +73,11 @@ CUTS_LLLH = [
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss", 
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss_Zp54",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss", 
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss_Zp54",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
 ]
 
 CUTS_LLLL = [
@@ -95,13 +95,13 @@ CUTS_LLLL = [
 ]
 
 CUTS_QQHH = [
-    "selReco_0.5BDT",
+    #"selReco_0.5BDT",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
@@ -114,10 +114,10 @@ CUTS_QQLH = [
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
 ]
 
 CUTS_QQLL = [
@@ -140,9 +140,9 @@ CUTS_NuNuHH = [
     #"selReco_100Me_TauDPhi3_2DR",
     #"selReco_100Me_TauDPhi3_2DR_cos0.4",
     #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    #"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    #"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
 ]
 
 CUTS_NuNuLH = [
@@ -152,21 +152,21 @@ CUTS_NuNuLH = [
     #"selReco_100Me_TauDPhi3_2DR",
     #"selReco_100Me_TauDPhi3_2DR_cos0.4",
     #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    #"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    #"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
 ]
 
 CUTS_NuNuLL = [
-    "selReco",
-    "selReco_100Me",
-    "selReco_100Me_TauDPhi3",
-    "selReco_100Me_TauDPhi3_2DR",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
+    #"selReco",
+    #"selReco_100Me",
+    #"selReco_100Me_TauDPhi3",
+    #"selReco_100Me_TauDPhi3_2DR",
+    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
+    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
+    #"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    #"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
 ]
 
 CUTS = {
@@ -179,18 +179,6 @@ CUTS = {
     'NuNuLL':CUTS_NuNuLL,
     'NuNuLH':CUTS_NuNuLH,
     'NuNuHH':CUTS_NuNuHH,
-}
-
-CUTS_simple = {
-    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-}
-
-VARIABLES_simple = {
-    'LL':"Collinear_mass",
-    'QQ':"Collinear_mass",
-    #'NuNu':"Visible_mass",
 }
 
 #now you can list all the histograms that you want to plot
@@ -1444,12 +1432,12 @@ for tag in TAG:
                 variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] #+ ["BDT_score"]
         else: 
             variables = VARIABLES + LIST_VAR[cat] #+["BDT_score"]
-        variables = ["BDT_score"]
+        #variables = ["RecoEmiss_e",]
 
         for sub in SUBDIR:
-                    directory = DIRECTORY + tag + "/final_241202_BDT/" + cat + "/" + sub + "/"
+                    directory = DIRECTORY + tag + "/final_241202/" + cat + "/" + sub + "/"
 
-                    #CUT = CUTS[cat+sub]
+                    CUT = CUTS[cat+sub]
 
                     if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
                         CUT = [
@@ -1459,30 +1447,32 @@ for tag in TAG:
                             #"selReco_100Coll150_115Rec160_2DR",
                             #"selReco_100Coll150_115Rec160_2DR_cos0.6",
                             #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
+                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
                         ]
 
-                    #if "tag" in tag and "QQ" in cat and "HH" in sub:
-                    CUT = [
-                        "selReco",
-                        #"selReco_100Coll150",
-                        #"selReco_100Coll150_115Rec160",
-                        #"selReco_100Coll150_115Rec160_2DR",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
-                    ]
+                    if "tag" in tag and "QQ" in cat and "HH" in sub:
+                        CUT = [
+                            #"selReco",
+                            #"selReco_100Coll150",
+                            #"selReco_100Coll150_115Rec160",
+                            #"selReco_100Coll150_115Rec160_2DR",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
+                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
+                        ]
 
                     for cut in CUT:
                         for variable in variables:
+
+                            print(variable, cut, directory)
 
                             canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1601,7 +1591,7 @@ for tag in TAG:
                                             last = histos[i].GetMaximum() 
                                         # Set the y-axis range with additional white space
                                     #hStackBkg.SetMinimum(0)
-                                    hStackBkg.SetMaximum(last*1.2)
+                                    hStackBkg.SetMaximum(last*2.5)
 
                                 #draw the histograms
                                 hStackBkg.Draw("HIST")
@@ -1615,11 +1605,11 @@ for tag in TAG:
 
                                 hStackBkg.GetYaxis().SetTitle("Events")
                                 hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
-                                #hStackBkg.GetXaxis().SetTitle("Reco visible mass [GeV]")
+                                #hStackBkg.GetXaxis().SetTitle("TAU score")
                                 #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                                 hStackBkg.GetXaxis().SetTitleOffset(1.2)
                                 
-                                #hStackBkg.GetXaxis().SetLimits(0.5, 1.)
+                                #hStackBkg.GetXaxis().SetLimits(100, 240)
 
                             else: 
                                 # add the signal histograms
@@ -1631,7 +1621,6 @@ for tag in TAG:
                                         h.Draw("HIST")
                                         h.GetYaxis().SetTitle("Events")
                                         h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
-                                        #h.GetXaxis().SetTitle("{}".format(variable))
                                         #h.GetYaxis().SetTitleOffset(1.5)
                                         h.GetXaxis().SetTitleOffset(1.2)
                                         #h.GetXaxis().SetLimits(1, 1000)
@@ -1693,7 +1682,7 @@ for tag in TAG:
                                 canvas.Modified()
                                 canvas.Update()
 
-                                dir = DIR_PLOTS + tag + "/BDT/" 
+                                dir = DIR_PLOTS + tag + "/" 
                                 make_dir_if_not_exists(dir)
 
                                 canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")

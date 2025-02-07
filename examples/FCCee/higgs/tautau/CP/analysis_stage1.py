@@ -9,16 +9,16 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    'EWonly_taudecay_2Pi2Nu':{},
-    'cehim_m1_taudecay_2Pi2Nu':{},
-    'cehim_p1_taudecay_2Pi2Nu':{},
-    'cehre_m1_taudecay_2Pi2Nu':{},
-    'cehre_p1_taudecay_2Pi2Nu':{},
+    #'EWonly_taudecay_2Pi2Nu':{},
+    #'cehim_m1_taudecay_2Pi2Nu':{},
+    #'cehim_p1_taudecay_2Pi2Nu':{},
+    #'cehre_m1_taudecay_2Pi2Nu':{},
+    #'cehre_p1_taudecay_2Pi2Nu':{},
 
-    #'cehim_m5_taudecay_2Pi2Nu':{},
-    #'cehim_p5_taudecay_2Pi2Nu':{},
-    #'cehre_m5_taudecay_2Pi2Nu':{},
-    #'cehre_p5_taudecay_2Pi2Nu':{},
+    'cehim_m5_taudecay_2Pi2Nu':{},
+    'cehim_p5_taudecay_2Pi2Nu':{},
+    'cehre_m5_taudecay_2Pi2Nu':{},
+    'cehre_p5_taudecay_2Pi2Nu':{},
 
     #'cehim_m2_taudecay_2Pi2Nu':{},
     #'cehim_p2_taudecay_2Pi2Nu':{},
@@ -328,11 +328,11 @@ class RDFanalysis():
                 #select the right decay for both taus
 
                 ###############################
-                #.Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
+                .Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
                 #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPtoENuNu_idx.size()>0 || TauPtoMuNuNu_idx.size()>0 || TauPtoA1Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
                 #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMtoA1Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
                 #.Filter("n_GenTau==2 && n_FSGenElectron==2")
-                #.Filter("TauPtoPiNu_idx.size()>0 && TauMtoPiNu_idx.size()>0")
+                .Filter("TauPtoPiNu_idx.size()>0 && TauMtoPiNu_idx.size()>0")
                 ###############################
 
                 .Define("GenPiP_e",     "if (TauPtoPiNu_idx.size()>0) return FCCAnalyses::MCParticle::get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData>{Particle.at(TauPtoPiNu_idx[1])}); \

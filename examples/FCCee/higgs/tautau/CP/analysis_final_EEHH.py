@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage2_tag/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage2+gen/"
 
 #Optional: output directory, default is local running directory
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/final_tag"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/final+gen"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -34,10 +34,10 @@ processList = {
     'cehre_m1_taudecay_2Pi2Nu':{},
     'cehre_p1_taudecay_2Pi2Nu':{},
 
-    'cehim_m5_taudecay_2Pi2Nu':{},
-    'cehim_p5_taudecay_2Pi2Nu':{},
-    'cehre_m5_taudecay_2Pi2Nu':{},
-    'cehre_p5_taudecay_2Pi2Nu':{},
+    #'cehim_m5_taudecay_2Pi2Nu':{},
+    #'cehim_p5_taudecay_2Pi2Nu':{},
+    #'cehre_m5_taudecay_2Pi2Nu':{},
+    #'cehre_p5_taudecay_2Pi2Nu':{},
 
     #'cehim_m2_taudecay_2Pi2Nu':{},
     #'cehim_p2_taudecay_2Pi2Nu':{},
@@ -467,7 +467,7 @@ histoList = {
     "RecoZDaughter_cos":                  {"name":"RecoZDaughter_cos",                    "title":"cos#theta(ll)",                 "bin":100, "xmin":-1.,"xmax":1.},
     "RecoZDaughter_DEta":                   {"name":"RecoZDaughter_DEta",           "title":"Reco Z daughters #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
 
-    "DeltaPhi":                             {"name":"DeltaPhi",           "title":"Reco #Delta#Phi_{CP}",                  "bin":64, "xmin":-3.2,"xmax":3.2},
+    "DeltaPhiKin":                             {"name":"DeltaPhiKin",           "title":"Reco #Delta#Phi_{CP}",                  "bin":64, "xmin":-3.14,"xmax":3.14},
 
 }
 

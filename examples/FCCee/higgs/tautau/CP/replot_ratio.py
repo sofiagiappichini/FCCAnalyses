@@ -32,10 +32,10 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/final_tag/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/final+gen/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Reco_2Pi2Nu/WC5/' 
+DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Reco_2Pi2Nu/Gen_060225/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
@@ -754,7 +754,7 @@ VARIABLES_CPGEN = [
 ]
 
 VARIABLES_CPRECO = [
-            "DeltaPhi",
+            "DeltaPhiKin",
 ]
 
 #list of backgorunds, then legend and colors to be assigned to them
@@ -890,15 +890,15 @@ signals = [
     #'noISR_e+e-_noCuts_cehim_p1',
 
     'EWonly_taudecay_2Pi2Nu',
-    #'cehim_m1_taudecay_2Pi2Nu',
-    #'cehim_p1_taudecay_2Pi2Nu',
-    #'cehre_m1_taudecay_2Pi2Nu',
-    #'cehre_p1_taudecay_2Pi2Nu',
+    'cehim_m1_taudecay_2Pi2Nu',
+    'cehim_p1_taudecay_2Pi2Nu',
+    'cehre_m1_taudecay_2Pi2Nu',
+    'cehre_p1_taudecay_2Pi2Nu',
 
-    'cehim_m5_taudecay_2Pi2Nu',
-    'cehim_p5_taudecay_2Pi2Nu',
-    'cehre_m5_taudecay_2Pi2Nu',
-    'cehre_p5_taudecay_2Pi2Nu',
+    #'cehim_m5_taudecay_2Pi2Nu',
+    #'cehim_p5_taudecay_2Pi2Nu',
+    #'cehre_m5_taudecay_2Pi2Nu',
+    #'cehre_p5_taudecay_2Pi2Nu',
 
     #'cehim_m2_taudecay_2Pi2Nu',
     #'cehim_p2_taudecay_2Pi2Nu',

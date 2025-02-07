@@ -379,10 +379,10 @@ xsec = {'p8_ee_WW_ecm240':16.4385,
         "wzp6_ee_nunuH_Htautau_ecm240":0.002897,
 }
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm240/"
 
 TAG = [
-    #"R5-explicit",
+    "R5-explicit",
     "R5-tag",
     "ktN-explicit",
     "ktN-tag",
@@ -412,7 +412,7 @@ leg_sub = {
 
 output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/output_overtraining.txt"
 
-modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_230125/"
+modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_030225/"
 
 #get gen number of events for each signal and backgorund file
 for tag in TAG:
@@ -461,6 +461,8 @@ for tag in TAG:
             tot_weight_bkg = 0
             N_sig = 0
             N_sig_gen = 0
+            eff_tot_bkg = 0
+            eff_tot_sig = 0
             tot_weight_sig = 0
             for i in sigs+bkgs:
                 files = glob.glob(path + i + '/chunk_*.root')
@@ -679,7 +681,7 @@ for tag in TAG:
             col += 1
             print(leg_cat[cat], leg_sub[sub])
 
-            label.append(f'{tag}, {leg_cat[cat]} {leg_sub[sub]}, AUC={roc_auc:.3f}')
+            label.append(f'{leg_cat[cat]} {leg_sub[sub]}, AUC={roc_auc:.3f}')
 
             with open(output_file, "a") as file:
                 file.write(f"AUC:{roc_auc} \n\n")
@@ -698,7 +700,7 @@ for tag in TAG:
 
     plt.ylabel('True Positive Rate', fontsize=18)  # 1 - FPR
     plt.xlabel('False Positive Rate', fontsize=18)  # TPR
-    plt.title('FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
+    plt.title(f'{tag}   FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
 
     # Adjust ticks and legend
     ax.tick_params(axis='both', which='major', labelsize=15)
@@ -735,4 +737,5 @@ for tag in TAG:
     plt.tight_layout()
 
     # Save the figure
-    fig.savefig(f"/web/sgiappic/public_html/Higgs_xsec/{tag}/BDT_ROC.pdf")
+    fig.savefig(f"/web/sgiappic/public_html/Higgs_xsec/{tag}/BDT/BDT_ROC.pdf")
+    fig.savefig(f"/web/sgiappic/public_html/Higgs_xsec/{tag}/BDT/BDT_ROC.png")

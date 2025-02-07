@@ -467,6 +467,8 @@ class RDFanalysis():
                 .Define("GenPi_charge",     "FCCAnalyses::ZHfunctions::build_float(True_TauP_idx, True_TauM_idx)")
                 .Define("HadGenTau_p4",      "FCCAnalyses::ZHfunctions::build_p4(HadGenTau_px, HadGenTau_py, HadGenTau_pz, HadGenTau_e)")
                 .Define("GenEmiss_p4",     "HadGenTau_p4.at(0) +  HadGenTau_p4.at(1) - GenPiP_p4 - GenPiM_p4")
+                .Define("GenNuP_p4",     "if (HadGenTau_charge.at(0)==1) return (HadGenTau_p4.at(0) - GenPiP_p4); else return (HadGenTau_p4.at(1) - GenPiP_p4);")
+                .Define("GenNuM_p4",     "if (HadGenTau_charge.at(0)==1) return (HadGenTau_p4.at(1) - GenPiM_p4); else return (HadGenTau_p4.at(0) - GenPiM_p4);")
 
                 ############
 
@@ -475,7 +477,7 @@ class RDFanalysis():
 
                 .Define("Recoil_True_Tau_p4",        "FCCAnalyses::ZHfunctions::build_tau_p4(GenHiggs_p4, GenEmiss_p4, GenPi_p4, GenPi_charge)")
                 #filtering events where the discriminant to solve is negative and so the reconstruction didn't work out
-                .Filter("Recoil_True_Tau_p4.at(0).P()!=0 and Recoil_True_Tau_p4.at(1).P()!=0")
+                #.Filter("Recoil_True_Tau_p4.at(0).P()!=0 and Recoil_True_Tau_p4.at(1).P()!=0")
 
                 .Define("True_TauP_p4",     "Recoil_True_Tau_p4.at(0)")
                 .Define("True_TauM_p4",     "Recoil_True_Tau_p4.at(1)")
@@ -528,7 +530,8 @@ class RDFanalysis():
                 #kinematic fit
                 
                 .Define("Kin_Tau_p4",        "FCCAnalyses::ZHfunctions::build_nu_kin(GenHiggs_p4, GenEmiss_p4, GenPi_p4, GenPi_charge)")
-                .Filter("Kin_Tau_p4.at(0).P()!=0 and Kin_Tau_p4.at(1).P()!=0")
+                #.Filter("Kin_Tau_p4.at(0).M()>1.77 and Kin_Tau_p4.at(1).M()>1.77 and Kin_Tau_p4.at(0).M()<1.78 and Kin_Tau_p4.at(1).M()<1.78")
+                .Filter("Kin_Tau_p4.at(0).M()>0 && Kin_Tau_p4.at(1).M()>0")
 
                 .Define("Kin_TauP_p4",       "Kin_Tau_p4.at(0)")
                 .Define("Kin_TauM_p4",       "Kin_Tau_p4.at(1)")
@@ -570,9 +573,6 @@ class RDFanalysis():
 
                 # polarimetric vector from ILC paper - full gen
 
-                .Define("GenNuP_p4",        "if (HadGenTau_charge.at(0)==1) return (HadGenTau_p4.at(0)-GenPiP_p4); else return (HadGenTau_p4.at(1)-GenPiP_p4)")
-                .Define("GenNuM_p4",        "if (HadGenTau_charge.at(0)==1) return (HadGenTau_p4.at(1)-GenPiM_p4); else return (HadGenTau_p4.at(0)-GenPiM_p4)")
-
                 .Define("TauPRF_GenPiP_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPiP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPiP_p4);")
                 .Define("TauPRF_GenNuP_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenNuP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenNuP_p4);")
 
@@ -592,6 +592,70 @@ class RDFanalysis():
                 .Define("GenCosDeltaPhi",        "GenhPnorm.Dot(GenhMnorm)")
                 .Define("GenSinDeltaPhi",       "Genhh_norm.Dot( (HRF_HadGenTauM_p4.Vect()).Unit() )")
                 .Define("GenDeltaPhi",     "atan2(GenSinDeltaPhi, GenCosDeltaPhi)")
+
+                #####################################################
+
+                #following ILC paper https://arxiv.org/pdf/1804.01241 and reference from d. Jeans https://arxiv.org/pdf/1507.01700
+
+                .Define("KinILC_Nu_p4",        "FCCAnalyses::ZHfunctions::build_nu_kin_ILC(GenHiggs_p4, GenEmiss_p4, GenPi_p4, GenPi0_p4, Impact_p4, GenPi_charge)")
+
+                .Define("KinILC_NuP_p4",       "KinILC_Nu_p4.at(0)")
+                .Define("KinILC_NuM_p4",       "KinILC_Nu_p4.at(1)")
+
+                .Define("KinILC_TauP_p4",      "KinILC_NuP_p4 + GenPiP_p4")
+                .Define("KinILC_TauM_p4",     "KinILC_NuM_p4 + GenPiM_p4")
+
+                .Define("TauPRF_ILCPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauP_p4, GenPiP_p4)")
+                .Define("TauPRF_ILCNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauP_p4, True_NuP_p4)")
+
+                .Define("TauMRF_ILCPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauM_p4,  GenPiM_p4)")
+                .Define("TauMRF_ILCNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- KinILC_TauM_p4, True_NuM_p4)")
+                
+                .Define("ILChP_p3",       "TauPRF_ILCPiP_p4.Vect()")
+                .Define("ILChM_p3",       "TauMRF_ILCPiM_p4.Vect()")
+
+                # get the direction on which to compute the angles from the tauM boosted into the higgs/recoil rest frame
+                .Define("Recoil_ILCTauM_p4",      "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, KinILC_TauM_p4)")
+
+                .Define("ILChPnorm",       "(( Recoil_ILCTauM_p4.Vect() ).Cross( ILChP_p3 )).Unit()")
+                .Define("ILChMnorm",       "(( Recoil_ILCTauM_p4.Vect() ).Cross( ILChM_p3 )).Unit()")
+
+                .Define("ILChh_norm",       "ILChPnorm.Cross(ILChMnorm)")
+                .Define("CosDeltaPhiILC",        "ILChPnorm.Dot(ILChMnorm)")
+                .Define("SinDeltaPhiILC",       "ILChh_norm.Dot( (Recoil_ILCTauM_p4.Vect()).Unit() )")
+                .Define("DeltaPhiILC",     "atan2(SinDeltaPhiILC, CosDeltaPhiILC)") 
+
+                #comparison with gen
+
+                .Define("KinILCGenTauP_p4",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (KinILC_TauP_p4-HadGenTau_p4.at(0)); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (KinILC_TauP_p4-HadGenTau_p4.at(1)); \
+                                                else return TLorentzVector {};")
+
+                .Define("KinILCGenTauM_p4",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (KinILC_TauM_p4-HadGenTau_p4.at(1)); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (KinILC_TauM_p4-HadGenTau_p4.at(0)); \
+                                                else return TLorentzVector {};")
+
+                ########################################
+
+                .Define("RecoKin_Tau_p4",        "FCCAnalyses::ZHfunctions::build_nu_kin(Recoil_p4, RecoEmiss_p4, RecoTau_p4, ChargedPar_charge)")
+
+                .Define("RecoKin_TauP_p4",       "Kin_Tau_p4.at(0)")
+                .Define("RecoKin_TauM_p4",       "Kin_Tau_p4.at(1)")
+
+                .Define("RecoKin_NuP_p4",      "if (ChargedPar_charge.at(0)==1) return (Kin_TauP_p4 - RecoTau_p4.at(0)); else return (Kin_TauP_p4 - RecoTau_p4.at(1));")
+                .Define("RecoKin_NuM_p4",      "if (ChargedPar_charge.at(0)==1) return (Kin_TauM_p4 - RecoTau_p4.at(1)); else return (Kin_TauM_p4 - RecoTau_p4.at(0));")
+
+                #comparison with gen
+
+                .Define("RecoKinGenTauP_p4",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (RecoKin_TauP_p4-HadGenTau_p4.at(0)); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (RecoKin_TauP_p4-HadGenTau_p4.at(1)); \
+                                                else return TLorentzVector {};")
+
+                .Define("RecoKinGenTauM_p4",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (RecoKin_TauM_p4-HadGenTau_p4.at(1)); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (RecoKin_TauM_p4-HadGenTau_p4.at(0)); \
+                                                else return TLorentzVector {};")
+
+            
 
         )
         return df2
@@ -1285,6 +1349,10 @@ class RDFanalysis():
             "Emiss_tot",
             "Emiss_recoil",
             "RecoGenHiggs",
+            "GenNuP_p4",
+            "GenNuM_p4",
+            "GenEmiss_p4",
+            "GenDeltaPhi",
              
             "True_TauM_p4",  
             "True_NuM_p4",  
@@ -1302,12 +1370,33 @@ class RDFanalysis():
             "Kin_TauP_p4", 
             "Kin_TauM_p4", 
             "Kin_NuP_p4", 
-            "Kin_NuM_p4",   
+            "Kin_NuM_p4",  
+            "TauPRF_KinPiP_p4",  
+            "TauPRF_KinNuP_p4",
+            "TauMRF_KinPiM_p4",  
+            "TauMRF_KinNuM_p4",
             "KinGenTauP_p4",    
             "KinGenTauM_p4",
             "CosDeltaPhiKin",   
             "SinDeltaPhiKin",   
             "DeltaPhiKin",  
+
+            "KinILC_NuP_p4",
+            "KinILC_NuM_p4",   
+            "KinILC_TauP_p4", 
+            "KinILC_TauM_p4",
+            "CosDeltaPhiILC",   
+            "SinDeltaPhiILC",   
+            "DeltaPhiILC", 
+            "KinILCGenTauP_p4",
+            "KinILCGenTauM_p4",
+
+            "RecoKin_TauP_p4", 
+            "RecoKin_TauM_p4", 
+            "RecoKin_NuP_p4", 
+            "RecoKin_NuM_p4",   
+            "RecoKinGenTauP_p4",    
+            "RecoKinGenTauM_p4",
 
         ]
 

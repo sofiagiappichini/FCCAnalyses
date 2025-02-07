@@ -410,10 +410,13 @@ class RDFanalysis():
                 .Define("ImpactMNorm_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParM_x0/ChargedParM_norm, ChargedParM_y0/ChargedParM_norm, ChargedParM_Z0/ChargedParM_norm, 0.)")
                 .Define("ImpactM_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParM_x0, ChargedParM_y0, ChargedParM_Z0, 0.)")
 
-                #.Define("ImpactPNorm_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpactNorm_p4.at(0); else return TrackImpactNorm_p4.at(1);")
-                #.Define("ImpactMNorm_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpactNorm_p4.at(1); else return TrackImpactNorm_p4.at(0);")
-                #.Define("ImpactP_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpact_p4.at(0); else return TrackImpact_p4.at(1);")
-                #.Define("ImpactM_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpact_p4.at(1); else return TrackImpact_p4.at(0);")
+                .Define("TrackImpactPNorm_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpactNorm_p4.at(0); else return TrackImpactNorm_p4.at(1);")
+                .Define("TrackImpactMNorm_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpactNorm_p4.at(1); else return TrackImpactNorm_p4.at(0);")
+                .Define("TrackImpactP_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpact_p4.at(0); else return TrackImpact_p4.at(1);")
+                .Define("TrackImpactM_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpact_p4.at(1); else return TrackImpact_p4.at(0);")
+
+                .Define("TrackPar_ImpactP",     "TrackImpactP_p4-ImpactP_p4")
+                .Define("TrackPar_ImpactM",     "TrackImpactM_p4-ImpactM_p4")
 
                 .Define("Impact_p4",      "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::build_p4_class(ImpactP_p4, ImpactM_p4); else return FCCAnalyses::ZHfunctions::build_p4_class(ImpactM_p4, ImpactP_p4);")
 
@@ -518,7 +521,7 @@ class RDFanalysis():
                 .Define("True_TauM_p4",       "True_Tau_p4.at(1)")
                 .Define("True_NuM_p4",         "if (ChargedPar_charge.at(0)==1) return True_TauM_p4 - RecoTau_p4.at(1); else return True_TauM_p4 - RecoTau_p4.at(0);") 
                 #filtering events where the discriminant to solve is negative and so the reconstruction didn't work out
-                .Filter("True_Tau_p4.at(0).P()!=0 and True_Tau_p4.at(1).P()!=0")
+                #.Filter("True_Tau_p4.at(0).P()!=0 and True_Tau_p4.at(1).P()!=0")
 
                 # first boost the vectors in the respective tau rest frames
                 #.Define("TauPRF_RecoPiP_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, ChargedPar_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- True_TauP_p4, ChargedPar_p4.at(1));")
@@ -587,6 +590,39 @@ class RDFanalysis():
                 .Define("CosDeltaPhiILC",        "ILChPnorm.Dot(ILChMnorm)")
                 .Define("SinDeltaPhiILC",       "ILChh_norm.Dot( (Recoil_ILCTauM_p4.Vect()).Unit() )")
                 .Define("DeltaPhiILC",     "atan2(SinDeltaPhiILC, CosDeltaPhiILC)") 
+
+                ####################################################
+
+                #straight forward minimization of missing energy/tau mass/recoil
+
+                .Define("Kin_Tau_p4",        "FCCAnalyses::ZHfunctions::build_nu_kin(Recoil_p4, RecoEmiss_p4, ChargedPar_p4, ChargedPar_charge)")
+                .Filter("Kin_Tau_p4.at(0).M()>1.77 and Kin_Tau_p4.at(1).M()>1.77 and Kin_Tau_p4.at(0).M()<1.78 and Kin_Tau_p4.at(1).M()<1.78")
+
+                .Define("Kin_TauP_p4",       "Kin_Tau_p4.at(0)")
+                .Define("Kin_TauM_p4",       "Kin_Tau_p4.at(1)")
+
+                .Define("Kin_NuP_p4",      "if (ChargedPar_charge.at(0)==1) return (Kin_TauP_p4 - ChargedPar_p4.at(0)); else return (Kin_TauP_p4 - ChargedPar_p4.at(1));")
+                .Define("Kin_NuM_p4",      "if (ChargedPar_charge.at(0)==1) return (Kin_TauM_p4 - ChargedPar_p4.at(1)); else return (Kin_TauM_p4 - ChargedPar_p4.at(0));")
+
+                .Define("TauPRF_KinPiP_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauP_p4, ChargedPar_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauP_p4, ChargedPar_p4.at(1));")
+                .Define("TauPRF_KinNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauP_p4, Kin_NuP_p4)")
+
+                .Define("TauMRF_KinPiM_p4",    "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauM_p4,  ChargedPar_p4.at(1)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauP_p4, ChargedPar_p4.at(0));")
+                .Define("TauMRF_KinNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauM_p4, Kin_NuM_p4)")
+                
+                .Define("hP_p3Kin",       "TauPRF_KinPiP_p4.Vect()")
+                .Define("hM_p3Kin",       "TauMRF_KinPiM_p4.Vect()")
+                .Define("RecoilKin_TauM_p4",      "FCCAnalyses::ZHfunctions::boosted_p4_single(- Recoil_p4, Kin_TauM_p4)")
+
+                .Define("hPnormKin",       "(( RecoilKin_TauM_p4.Vect() ).Cross( hP_p3Kin )).Unit()")
+                .Define("hMnormKin",       "(( RecoilKin_TauM_p4.Vect() ).Cross( hM_p3Kin )).Unit()")
+
+                .Define("hh_normKin",       "hPnormKin.Cross(hMnormKin)")
+                .Define("CosDeltaPhiKin",        "hPnormKin.Dot(hMnormKin)")
+                .Define("SinDeltaPhiKin",       "hh_normKin.Dot( (RecoilKin_TauM_p4.Vect()).Unit() )")
+                .Define("DeltaPhiKin",     "atan2(SinDeltaPhiKin, CosDeltaPhiKin)")
+
+                .Define("Emiss_totKin",      "(RecoEmiss_p4 - Kin_NuP_p4 - Kin_NuM_p4)")
 
         )
         return df2
@@ -1273,7 +1309,20 @@ class RDFanalysis():
             "KinILC_TauM_p4",
             "CosDeltaPhiILC",   
             "SinDeltaPhiILC",   
-            "DeltaPhiILC",  
+            "DeltaPhiILC", 
+
+            "Emiss_totKin",
+            "Kin_TauP_p4", 
+            "Kin_TauM_p4", 
+            "Kin_NuP_p4", 
+            "Kin_NuM_p4",   
+            "CosDeltaPhiKin",   
+            "SinDeltaPhiKin",   
+            "DeltaPhiKin",  
+
+            "RecoIP",
+            "TrackPar_ImpactP",
+            "TrackPar_ImpactM", 
         ]
 
         return branchList
