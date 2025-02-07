@@ -380,8 +380,14 @@ xsec = {'p8_ee_WW_ecm240':16.4385,
         "wzp6_ee_nunuH_Htautau_ecm240":0.002897,
 }
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm240/"
 
+TAG = [
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
+]
 SUBDIR = [
     'LL',
     'LH',
@@ -392,12 +398,6 @@ CAT = [
     "QQ",
     #"LL",
     "NuNu",
-]
-TAG = [
-    "R5-explicit",
-    "R5-tag",
-    "ktN-explicit",
-    "ktN-tag",
 ]
 
 leg_cat = {
@@ -413,7 +413,7 @@ leg_sub = {
 
 output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/output_overtraining.txt"
 
-modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_230125/"
+modelDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/models_030225/"
 
 #fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, gridspec_kw={'height_ratios': [1, 1], 'hspace':0})
 colorDict = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
@@ -451,7 +451,7 @@ for tag in TAG:
                     elif "LH" in sub:
                         vars_list = vars_list_NuNuLH_tag
                     else:
-                        vars_list = vars_list_NuNu_explcit
+                        vars_list = vars_list_NuNu_explicit
 
             N = {}
             N_gen = {}
@@ -463,6 +463,8 @@ for tag in TAG:
             N_sig = 0
             N_sig_gen = 0
             tot_weight_sig = 0
+            eff_tot_bkg = 0
+            eff_tot_sig = 0
             for i in sigs+bkgs:
                 files = glob.glob(path + i + '/chunk_*.root')
                 N[i] = 0
@@ -555,7 +557,7 @@ for tag in TAG:
                     valid_files = []
 
                     for file in files:
-                        f = uproot.open(file)\
+                        f = uproot.open(file)
                         if "events;1" in f.keys():
                             valid_files.append(file)
 
@@ -647,6 +649,7 @@ for tag in TAG:
             plt.legend(loc="lower left", fontsize=15)
             plt.grid()
             plt.tight_layout()
-            plt.savefig("/web/sgiappic/public_html/Higgs_xsec/"+{tag}+"/"+cat+sub+"_overtrain.pdf")
+            plt.savefig(f"/web/sgiappic/public_html/Higgs_xsec/{tag}/BDT/{cat}{sub}_overtrain.pdf")
+            plt.savefig(f"/web/sgiappic/public_html/Higgs_xsec/{tag}/BDT/{cat}{sub}_overtrain.png")
 
             print(f"Done: {tag}{cat}{sub}")
