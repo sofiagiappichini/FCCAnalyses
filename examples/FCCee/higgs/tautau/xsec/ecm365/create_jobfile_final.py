@@ -80,8 +80,8 @@ def submit_jobs(output_dir: str):
         os.system(f"chmod -R +x {dir}")
         os.system(f"condor_submit {dir}/job_submit.cfg")
              
-output = '/work/sgiappic/HTCondor/final_v2/' ##output directory of submission files
-localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
+output = '/work/sgiappic/HTCondor/final_365/' ##output directory of submission files
+localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/'
 
 SUBDIR = [
     'LL',
@@ -91,7 +91,7 @@ SUBDIR = [
 
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
 
