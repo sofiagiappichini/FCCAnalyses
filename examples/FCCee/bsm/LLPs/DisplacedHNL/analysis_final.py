@@ -2,7 +2,7 @@
 inputDir = "/eos/user/s/sgiappic/2HNL_ana/stage1/"
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "/eos/user/s/sgiappic/2HNL_ana/final_paper/"
+outputDir = "/eos/user/s/sgiappic/2HNL_ana/final_test/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 204e6 #pb^-1
@@ -19,7 +19,7 @@ nCPUS = 6
 #produces ROOT TTrees, default is False
 doTree = False
 
-processList_ = {
+processList = {
     #run over the full statistics from stage1
 
     #backgrounds
@@ -36,9 +36,10 @@ processList_ = {
     #'mumununu_m':{},
     #'tatanunu_m':{},
     #'llnunu_m':{},
+    "HNL_1.33e-7_10gev":{},
 }
 
-processList = {
+processList_ = {
         'p8_ee_Zee_ecm91':{},
         'p8_ee_Zmumu_ecm91':{},
         'p8_ee_Ztautau_ecm91':{},
@@ -836,11 +837,11 @@ cutList = {
     ### cut to reduce Ztautau and llnunu
     #"selReco_gen_notracks_2eh_10MET_0cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_cos>0",
     #"selReco_gen_notracks_2eh_10MET_0cos_45ME": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_cos>0 && RecoEmiss_e>45",
-    #"selReco_gen_notracks_2eh_10MET_0cos_45ME_e35": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_antikt_jets==0 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
+    #"selReco_gen_notracks_2eh_10MET_0cos_45ME_e35": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
     ###HNL based cuts
-    "selReco_gen_notracks_2eh_15MET_0cos_45ME_e35_10M": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>15 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<10 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
-    "selReco_gen_notracks_2eh_15MET_0cos_45ME_e35_20M": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>15 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<20 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
-    "selReco_gen_notracks_2eh_15MET_0cos_45ME_e35_30M": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>15 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<30 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
+    #"selReco_gen_notracks_2eh_15MET_0cos_45ME_e35_10M": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>15 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<10 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
+    #"selReco_gen_notracks_2eh_15MET_0cos_45ME_e35_20M": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>15 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<20 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
+    #"selReco_gen_notracks_2eh_15MET_0cos_45ME_e35_30M": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>15 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<30 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
 
     ### select on different flavors to exclude ee/mumu nunu, cuts to feed combine
     #"selReco_gen_notracks_2eh_15MET_0cos_45ME_e35_10ME_DF": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>15 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<10 && Reco_cos>0 && n_RecoElectrons==1 && n_RecoMuons==1 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35",
@@ -857,9 +858,12 @@ cutList = {
     #"selReco_gen_notracks_2eh_10MET_0.8cos": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_cos>-0.8",
     #"selReco_gen_notracks_2eh_10MET_0.8cos_80ME": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_cos>-0.8 && Reco_invMass<80",
     #"selReco_gen_notracks_2eh_10MET_0.8cos_80ME_10chi": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.8 && RecoDecayVertexLepton.chi2<10 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000",
-    #"selReco_gen_notracks_2eh_10MET_0.8cos_80ME_10chi_0.64d0": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.8 && RecoDecayVertexLepton.chi2<10 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000 && RecoTrack_absD0_lead.at(0)>0.64 && RecoTrack_absD0_sub.at(0)>0.64  ",
+    "selReco_gen_notracks_2eh_10MET_0.8cos_80ME_10chi_0.64d0": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_invMass<80 && Reco_cos>-0.8 && RecoDecayVertexLepton.chi2<10 && Reco_Lxy<2000 && abs(RecoDecayVertexLepton.position.z)<2000 && RecoTrack_absD0_lead.at(0)>0.64 && RecoTrack_absD0_sub.at(0)>0.64  ",
 
     #"selReco_gen_0.64d0": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>5  && RecoTrack_absD0_lead.at(0)>0.64 && RecoTrack_absD0_sub.at(0)>0.64  ",
+
+    #"selReco_gen_notracks_2eh_10MET_0cos_45ME_e35_muon": "Reco_pt.at(0)>1 && Reco_pt.at(1)>1  && RecoEmiss_pt>10 && n_noLeptonTracks==0 && n_NeutralHadrons==0 && Reco_cos>0 && RecoEmiss_e>45 && Reco_e_lead.at(0)<35 && (n_RecoElectrons==0 && n_RecoMuons==2) ",
+    
 
 }
 
