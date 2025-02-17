@@ -1,0 +1,25 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/ktN-explicit/NuNu/analysis_stage2_NuNuHH.py
+----> INFO: Multithreading enabled. Running over 6 threads
+----> INFO: Loading functions.h...
+mkdir: cannot create directory '/eos': Permission denied
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/wzp6_ee_bbH_Hss_ecm365/chunk_0.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/wzp6_ee_bbH_Hss_ecm365/chunk_9.root	
+
+----> INFO: Number of events:
+            	- original: 200,000
+            	- local:    200,000
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/ecm365/ktN-explicit/stage2_280125/NuNu/HH/wzp6_ee_bbH_Hss_ecm365/chunk_1.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:27
+            Events processed/second: 7,389
+            Total events processed:  200,000
+            No. result events:       2
+            Reduction factor local:  1e-05
+            Reduction factor total:  1e-05
+            ================================================================================
+

@@ -1,0 +1,32 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/stage3/R5-explicit/analysis_stage3_NuNuLL.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_88.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_216.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_210.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_17.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_198.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_64.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_193.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_212.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_42.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/p8_ee_WW_ecm240/chunk_66.root	
+
+----> INFO: Number of events:
+            	- original: 12,500,000
+            	- local:    279,760
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage3_241202/NuNu/LL/p8_ee_WW_ecm240/chunk_18.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:50
+            Events processed/second: 5,561
+            Total events processed:  279,760
+            No. result events:       279,760
+            Reduction factor local:  1.0
+            Reduction factor total:  0.0223808
+            ================================================================================
+

@@ -1,0 +1,32 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/stage3/R5-explicit/analysis_stage3_NuNuLL.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_41.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_0.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_46.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_21.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_18.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_45.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_9.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_15.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_19.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_25.root	
+
+----> INFO: Number of events:
+            	- original: 10,600,000
+            	- local:    314,710
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage3_241202/NuNu/LL/wzp6_ee_tautau_ecm240/chunk_4.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:56
+            Events processed/second: 5,573
+            Total events processed:  314,710
+            No. result events:       314,710
+            Reduction factor local:  1.0
+            Reduction factor total:  0.029689622641509435
+            ================================================================================
+

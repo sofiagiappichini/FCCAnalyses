@@ -1,0 +1,24 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/R5-tag/QQ/analysis_stage2_QQHH.py
+----> INFO: Multithreading enabled. Running over 6 threads
+----> INFO: Loading functions.h...
+mkdir: cannot create directory '/eos': Permission denied
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/wzp6_ee_mumuH_HWW_ecm365/chunk_9.root	
+
+----> INFO: Number of events:
+            	- original: 100,000
+            	- local:    100,000
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/ecm365/R5-tag/stage2_280125/QQ/HH/wzp6_ee_mumuH_HWW_ecm365/chunk_1.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:31
+            Events processed/second: 3,177
+            Total events processed:  100,000
+            No. result events:       13
+            Reduction factor local:  0.00013
+            Reduction factor total:  0.00013
+            ================================================================================
+

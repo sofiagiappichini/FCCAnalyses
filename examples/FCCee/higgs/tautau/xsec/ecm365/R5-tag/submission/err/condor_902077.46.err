@@ -1,0 +1,33 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/R5-tag/NuNu/analysis_stage2_NuNuLL.py
+----> INFO: Multithreading enabled. Running over 6 threads
+----> INFO: Loading functions.h...
+mkdir: cannot create directory '/eos': Permission denied
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_54.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_51.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_34.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_13.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_47.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_31.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_58.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_38.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_10.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zbb_ecm365/chunk_56.root	
+
+----> INFO: Number of events:
+            	- original: 1,000,000
+            	- local:    1,000,000
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/ecm365/R5-tag/stage2_280125/NuNu/LL/p8_ee_Zbb_ecm365/chunk_0.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:55
+            Events processed/second: 18,086
+            Total events processed:  1,000,000
+            No. result events:       39
+            Reduction factor local:  3.9e-05
+            Reduction factor total:  3.9e-05
+            ================================================================================
+

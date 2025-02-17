@@ -1,0 +1,23 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/stage3/ktN-explicit/analysis_stage3_NuNuLH.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/stage2_241202_cut/NuNu/LH/wzp6_ee_eeH_Hss_ecm240/chunk_0.root	
+
+----> INFO: Number of events:
+            	- original: 352,836
+            	- local:    1
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/ktN-explicit/stage3_241202/NuNu/LH/wzp6_ee_eeH_Hss_ecm240/chunk_0.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:15
+            Events processed/second: 0
+            Total events processed:  1
+            No. result events:       1
+            Reduction factor local:  1.0
+            Reduction factor total:  2.8341779183530027e-06
+            ================================================================================
+

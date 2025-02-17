@@ -859,12 +859,17 @@ ROOT::VecOps::RVec<TLorentzVector> build_nu_kin(const TLorentzVector& Recoil, co
                                 std::sqrt(params[0]*params[0] + params[1]*params[1] + params[2]*params[2]));
     TLorentzVector Nu_minus_fit(params[3], params[4], params[5], 
                                  std::sqrt(params[3]*params[3] + params[4]*params[4] + params[5]*params[5]));
+
+    double fval = minimizer.MinValue();
     
     TLorentzVector Tau_plus_fit = Nu_plus_fit + Pi_plus;
     TLorentzVector Tau_minus_fit = Nu_minus_fit + Pi_minus;
+    TLorentzVector chi;
+    chi.SetPxPyPzE(fval, 0, 0, 0);
 
     result.push_back(Tau_plus_fit);
     result.push_back(Tau_minus_fit);
+    result.push_back(chi);
     
     return result;
 }

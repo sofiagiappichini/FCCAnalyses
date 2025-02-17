@@ -1,0 +1,32 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/stage3/R5-explicit/analysis_stage3_NuNuLL.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_23.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_11.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_4.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_67.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_48.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_33.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_6.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_16.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_55.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_59.root	
+
+----> INFO: Number of events:
+            	- original: 10,700,000
+            	- local:    3,468,704
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage3_241202/NuNu/LL/wzp6_ee_ee_Mee_30_150_ecm240/chunk_4.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:08:56
+            Events processed/second: 6,462
+            Total events processed:  3,468,704
+            No. result events:       3,468,704
+            Reduction factor local:  1.0
+            Reduction factor total:  0.32417794392523364
+            ================================================================================
+

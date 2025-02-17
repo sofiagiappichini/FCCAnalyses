@@ -1,0 +1,33 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/ktN-tag/LL/analysis_stage2_LLLH.py
+----> INFO: Multithreading enabled. Running over 6 threads
+----> INFO: Loading functions.h...
+mkdir: cannot create directory '/eos': Permission denied
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_26.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_24.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_40.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_2.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_39.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_35.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_36.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_50.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_37.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/p8_ee_Zcc_ecm365/chunk_22.root	
+
+----> INFO: Number of events:
+            	- original: 939,360
+            	- local:    939,360
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/ecm365/ktN-tag/stage2_280125/LL/LH/p8_ee_Zcc_ecm365/chunk_1.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:56
+            Events processed/second: 16,485
+            Total events processed:  939,360
+            No. result events:       0
+            Reduction factor local:  0.0
+            Reduction factor total:  0.0
+            ================================================================================
+

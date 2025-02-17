@@ -1,0 +1,32 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/BDT/stage3/R5-explicit/analysis_stage3_NuNuLH.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_55.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_59.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_88.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_17.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_64.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_42.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_66.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_27.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_8.root	
+            - /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage2_241202_cut/NuNu/LH/p8_ee_Zqq_ecm240/chunk_81.root	
+
+----> INFO: Number of events:
+            	- original: 10,000,000
+            	- local:    126
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/R5-explicit/stage3_241202/NuNu/LH/p8_ee_Zqq_ecm240/chunk_6.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:15
+            Events processed/second: 8
+            Total events processed:  126
+            No. result events:       126
+            Reduction factor local:  1.0
+            Reduction factor total:  1.26e-05
+            ================================================================================
+

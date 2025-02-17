@@ -1,0 +1,32 @@
+000 (902081.1823.000) 2025-02-07 20:43:27 Job submitted from host: <129.13.101.151:9618?addrs=129.13.101.151-9618+[2a00-1398-5-fe01-ec4-7aff-fede-e4ae]-9618&alias=bms3.etp.kit.edu&noUDP&sock=schedd_2157_19df>
+...
+040 (902081.1823.000) 2025-02-08 02:55:23 Finished transferring input files
+...
+001 (902081.1823.000) 2025-02-08 02:55:24 Job executing on host: <129.13.101.152:9618?addrs=129.13.101.152-9618+[2a00-1398-5-fe01--2001]-9618&alias=mdm1.etp.kit.edu&noUDP&sock=startd_3862_96d9>
+	SlotName: slot1_36@mdm1.etp.kit.edu
+	CondorScratchDir = "/local/scratch/ssd/condor/execute/dir_4174740"
+	Cpus = 4
+	Disk = 5298931
+	Memory = 10112
+...
+040 (902081.1823.000) 2025-02-08 03:02:17 Started transferring output files
+...
+040 (902081.1823.000) 2025-02-08 03:02:17 Finished transferring output files
+...
+005 (902081.1823.000) 2025-02-08 03:02:17 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	2426  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	2426  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        4         4 
+	   Disk (KB)            :       24  1000000   5298931 
+	   Memory (MB)          :             10000     10112 
+
+	Job terminated of its own accord at 2025-02-08T02:02:17Z with exit-code 0.
+...

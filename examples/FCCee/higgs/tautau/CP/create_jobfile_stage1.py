@@ -224,15 +224,15 @@ processList_ = {
 }
 
 processList = {
-    #'EWonly_taudecay_2Pi2Nu':{},
-    #'cehim_m1_taudecay_2Pi2Nu':{},
-    #'cehim_p1_taudecay_2Pi2Nu':{},
-    #'cehre_m1_taudecay_2Pi2Nu':{},
-    #'cehre_p1_taudecay_2Pi2Nu':{},
-    'cehim_m5_taudecay_2Pi2Nu':{},
-    'cehim_p5_taudecay_2Pi2Nu':{},
-    'cehre_m5_taudecay_2Pi2Nu':{},
-    'cehre_p5_taudecay_2Pi2Nu':{},
+    'EWonly_taudecay_2Pi2Nu':{},
+    'cehim_m1_taudecay_2Pi2Nu':{},
+    'cehim_p1_taudecay_2Pi2Nu':{},
+    'cehre_m1_taudecay_2Pi2Nu':{},
+    'cehre_p1_taudecay_2Pi2Nu':{},
+    #'cehim_m5_taudecay_2Pi2Nu':{},
+    #'cehim_p5_taudecay_2Pi2Nu':{},
+    #'cehre_m5_taudecay_2Pi2Nu':{},
+    #'cehre_p5_taudecay_2Pi2Nu':{},
    #'p8_ee_ZZ_ecm240':{},
 }
 
@@ -243,7 +243,7 @@ chunks = False
 
 inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/"
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
-output = '/work/sgiappic/HTCondor/stage1_CP5/' ##output directory of submission files, needs to be different to have unique submission files
+output = '/work/sgiappic/HTCondor/stage1_CP1/' ##output directory of submission files, needs to be different to have unique submission files
 outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage1+gen/" ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'

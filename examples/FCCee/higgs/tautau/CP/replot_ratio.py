@@ -39,11 +39,13 @@ DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Reco_2Pi2Nu/Gen_060225/'
 #list of cuts you want to plot
 CUTS = [
     "selReco",
+    "selDPhi",
  ] 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
     "selGen": "No additional selection",
+    "selDPhi":"KinGen_hh_norm_DPhi<0.5"
  }
 
 ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (#pi#nu)"
@@ -755,6 +757,7 @@ VARIABLES_CPGEN = [
 
 VARIABLES_CPRECO = [
             "DeltaPhiKin",
+            "GenDeltaPhi",
 ]
 
 #list of backgorunds, then legend and colors to be assigned to them

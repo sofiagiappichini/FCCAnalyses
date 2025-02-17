@@ -15,10 +15,10 @@ processList = {
     'cehre_m1_taudecay_2Pi2Nu':{},
     'cehre_p1_taudecay_2Pi2Nu':{},
 
-    #'cehim_m5_taudecay_2Pi2Nu':{},
-    #'cehim_p5_taudecay_2Pi2Nu':{},
-    #'cehre_m5_taudecay_2Pi2Nu':{},
-    #'cehre_p5_taudecay_2Pi2Nu':{},
+    'cehim_m5_taudecay_2Pi2Nu':{},
+    'cehim_p5_taudecay_2Pi2Nu':{},
+    'cehre_m5_taudecay_2Pi2Nu':{},
+    'cehre_p5_taudecay_2Pi2Nu':{},
 
     #'cehim_m2_taudecay_2Pi2Nu':{},
     #'cehim_p2_taudecay_2Pi2Nu':{},
@@ -457,6 +457,34 @@ class RDFanalysis():
                 #### tau momentum reco ####
                 ######################
 
+                # redefine th eimpact vector from the actual ip recontructed from the Z vertex
+                .Define("ChargedParP_d0",        "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::myUtils::get_d0(RecoIP.Vect(), (ChargedPar_p4.at(0)).Vect()); else return FCCAnalyses::myUtils::get_d0(RecoIP.Vect(), (ChargedPar_p4.at(1)).Vect());")
+                .Define("ChargedParM_d0",        "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::myUtils::get_d0(RecoIP.Vect(), (ChargedPar_p4.at(1)).Vect()); else return FCCAnalyses::myUtils::get_d0(RecoIP.Vect(), (ChargedPar_p4.at(0)).Vect());")
+                .Define("ChargedParP_Z0",        "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::myUtils::get_z0(RecoIP.Vect(), (ChargedPar_p4.at(0)).Vect()); else return FCCAnalyses::myUtils::get_z0(RecoIP.Vect(), (ChargedPar_p4.at(1)).Vect());")
+                .Define("ChargedParM_Z0",        "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::myUtils::get_z0(RecoIP.Vect(), (ChargedPar_p4.at(1)).Vect()); else return FCCAnalyses::myUtils::get_z0(RecoIP.Vect(), (ChargedPar_p4.at(0)).Vect());")
+                .Define("ChargedParP_phi",        "if (ChargedPar_charge.at(0)==1) return acos(ChargedPar_px.at(0)/ChargedPar_p.at(0)); else return acos(ChargedPar_px.at(1)/ChargedPar_p.at(1));")
+                .Define("ChargedParM_phi",        "if (ChargedPar_charge.at(0)==1) return acos(ChargedPar_px.at(1)/ChargedPar_p.at(1)); else return acos(ChargedPar_px.at(0)/ChargedPar_p.at(0));")
+                .Define("ChargedParP_x0",        "ChargedParP_d0*cos(ChargedParP_phi)")
+                .Define("ChargedParM_x0",        "ChargedParM_d0*cos(ChargedParM_phi)")
+                .Define("ChargedParP_y0",        "ChargedParP_d0*sin(ChargedParP_phi)")
+                .Define("ChargedParM_y0",        "ChargedParM_d0*sin(ChargedParM_phi)")
+                .Define("ChargedParP_norm",     "sqrt(ChargedParP_x0*ChargedParP_x0 + ChargedParP_y0*ChargedParP_y0 + ChargedParP_Z0*ChargedParP_Z0)")
+                .Define("ImpactPNorm_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParP_x0/ChargedParP_norm, ChargedParP_y0/ChargedParP_norm, ChargedParP_Z0/ChargedParP_norm, 0.)")
+                .Define("ImpactP_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParP_x0, ChargedParP_y0, ChargedParP_Z0, 0.)")
+                .Define("ChargedParM_norm",     "sqrt(ChargedParM_x0*ChargedParM_x0 + ChargedParM_y0*ChargedParM_y0 + ChargedParM_Z0*ChargedParM_Z0)")
+                .Define("ImpactMNorm_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParM_x0/ChargedParM_norm, ChargedParM_y0/ChargedParM_norm, ChargedParM_Z0/ChargedParM_norm, 0.)")
+                .Define("ImpactM_p4",        "FCCAnalyses::ZHfunctions::build_p4_single(ChargedParM_x0, ChargedParM_y0, ChargedParM_Z0, 0.)")
+
+                .Define("TrackImpactPNorm_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpactNorm_p4.at(0); else return TrackImpactNorm_p4.at(1);")
+                .Define("TrackImpactMNorm_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpactNorm_p4.at(1); else return TrackImpactNorm_p4.at(0);")
+                .Define("TrackImpactP_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpact_p4.at(0); else return TrackImpact_p4.at(1);")
+                .Define("TrackImpactM_p4",       "if (RecoChargedParTrack_charge.at(0)==1) return TrackImpact_p4.at(1); else return TrackImpact_p4.at(0);")
+
+                .Define("TrackPar_ImpactP",     "TrackImpactP_p4-ImpactP_p4")
+                .Define("TrackPar_ImpactM",     "TrackImpactM_p4-ImpactM_p4")
+
+                .Define("Impact_p4",      "if (ChargedPar_charge.at(0)==1) return FCCAnalyses::ZHfunctions::build_p4_class(ImpactP_p4, ImpactM_p4); else return FCCAnalyses::ZHfunctions::build_p4_class(ImpactM_p4, ImpactP_p4);")
+
 
                 .Define("GenPi_p4",      "FCCAnalyses::ZHfunctions::build_p4_class(GenPiP_p4, GenPiM_p4)")
                 .Define("GenPi0_p4",      "FCCAnalyses::ZHfunctions::build_p4_class( TLorentzVector {}, TLorentzVector {})")
@@ -467,10 +495,20 @@ class RDFanalysis():
                 .Define("GenPi_charge",     "FCCAnalyses::ZHfunctions::build_float(True_TauP_idx, True_TauM_idx)")
                 .Define("HadGenTau_p4",      "FCCAnalyses::ZHfunctions::build_p4(HadGenTau_px, HadGenTau_py, HadGenTau_pz, HadGenTau_e)")
                 .Define("GenEmiss_p4",     "HadGenTau_p4.at(0) +  HadGenTau_p4.at(1) - GenPiP_p4 - GenPiM_p4")
-                .Define("GenNuP_p4",     "if (HadGenTau_charge.at(0)==1) return (HadGenTau_p4.at(0) - GenPiP_p4); else return (HadGenTau_p4.at(1) - GenPiP_p4);")
-                .Define("GenNuM_p4",     "if (HadGenTau_charge.at(0)==1) return (HadGenTau_p4.at(1) - GenPiM_p4); else return (HadGenTau_p4.at(0) - GenPiM_p4);")
+                .Define("GenEmiss_px", "GenEmiss_p4.Px()")
+                .Define("GenEmiss_py", "GenEmiss_p4.Py()")
+                .Define("GenEmiss_pz", "GenEmiss_p4.Pz()")
+                .Define("GenEmiss_e", "GenEmiss_p4.E()")
+                .Define("GenEmiss_y", "GenEmiss_p4.Rapidity()")
+                .Define("GenEmiss_p", "GenEmiss_p4.P()")
+                .Define("GenEmiss_pt", "GenEmiss_p4.Pt()")
+                .Define("GenEmiss_eta", "GenEmiss_p4.Eta()")
+                .Define("GenEmiss_phi", "GenEmiss_p4.Phi()")
+                .Define("GenEmiss_theta", "GenEmiss_p4.Theta()")
+                #.Define("GenNuP_p4",     "if (HadGenTau_charge.at(0)==1) return (HadGenTau_p4.at(0) - GenPiP_p4); else return (HadGenTau_p4.at(1) - GenPiP_p4);")
+                #.Define("GenNuM_p4",     "if (HadGenTau_charge.at(0)==1) return (HadGenTau_p4.at(1) - GenPiM_p4); else return (HadGenTau_p4.at(0) - GenPiM_p4);")
 
-                ############
+                #########################################
 
                 #following Belle reconstruction https://arxiv.org/pdf/1310.8503 to get the tau 4 vector in the recoil frame, then get the neutrino momentum by subtraction
                 #following ILC polarimetric vectors
@@ -521,11 +559,34 @@ class RDFanalysis():
 
                 .Define("RecoGen_RecoilTauM_p4",       "Recoil_TauM_p4 - Recoil_HadGenTauM_p4")
 
-                .Define("Emiss_tot",      "(RecoEmiss_p4 - True_NuP_p4 - True_NuM_p4).E()")
                 .Define("Emiss_recoil",     "(Recoil_p4 - RecoEmiss_p4).E()")
                 .Define("RecoGenHiggs",     "Recoil_p4-GenHiggs_p4")
 
-                ###########################
+                ################################################
+
+                # polarimetric vector from ILC paper - full gen
+
+                .Define("TauPRF_GenPiP_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPiP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPiP_p4);")
+                .Define("TauPRF_GenNuP_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenNuP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenNuP_p4);")
+
+                .Define("TauMRF_GenPiM_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPiM_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPiM_p4);")
+                .Define("TauMRF_GenNuM_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenNuM_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenNuM_p4);")
+
+                .Define("GenhP_p3",        "TauPRF_GenPiP_p4.Vect()")
+                .Define("GenhM_p3",        "TauMRF_GenPiM_p4.Vect()")
+
+                .Define("HRF_HadGenTau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- GenHiggs_p4, HadGenTau_p4)")
+                .Define("HRF_HadGenTauM_p4",     "if (HadGenTau_charge.at(0)==1) return HRF_HadGenTau_p4.at(1); else return HRF_HadGenTau_p4.at(0);")
+
+                .Define("GenhPnorm",       "(( HRF_HadGenTauM_p4.Vect() ).Cross( GenhP_p3 )).Unit()")
+                .Define("GenhMnorm",       "(( HRF_HadGenTauM_p4.Vect() ).Cross( GenhM_p3 )).Unit()")
+
+                .Define("Genhh_norm",       "GenhPnorm.Cross(GenhMnorm)")
+                .Define("GenCosDeltaPhi",        "GenhPnorm.Dot(GenhMnorm)")
+                .Define("GenSinDeltaPhi",       "Genhh_norm.Dot( (HRF_HadGenTauM_p4.Vect()).Unit() )")
+                .Define("GenDeltaPhi",     "atan2(GenSinDeltaPhi, GenCosDeltaPhi)")
+
+                ####################################################
 
                 #kinematic fit
                 
@@ -535,9 +596,13 @@ class RDFanalysis():
 
                 .Define("Kin_TauP_p4",       "Kin_Tau_p4.at(0)")
                 .Define("Kin_TauM_p4",       "Kin_Tau_p4.at(1)")
+                .Define("Kin_chi2",         "Kin_Tau_p4.at(2).Px()")
 
                 .Define("Kin_NuP_p4",      "Kin_TauP_p4 - GenPiP_p4")
                 .Define("Kin_NuM_p4",      "Kin_TauM_p4 - GenPiM_p4")
+
+                .Define("Kin_TauNuP_DR",        "FCCAnalyses::ZHfunctions::deltaR(Kin_TauP_p4.Phi(), Kin_NuP_p4.Phi(), Kin_TauP_p4.Eta(), Kin_NuP_p4.Eta())")
+                .Define("Kin_TauNuM_DR",        "FCCAnalyses::ZHfunctions::deltaR(Kin_TauM_p4.Phi(), Kin_NuM_p4.Phi(), Kin_TauM_p4.Eta(), Kin_NuM_p4.Eta())")
 
                 .Define("TauPRF_KinPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauP_p4, GenPiP_p4)")
                 .Define("TauPRF_KinNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- Kin_TauP_p4, Kin_NuP_p4)")
@@ -557,41 +622,301 @@ class RDFanalysis():
                 .Define("SinDeltaPhiKin",       "hh_normKin.Dot( (RecoilKin_TauM_p4.Vect()).Unit() )")
                 .Define("DeltaPhiKin",     "atan2(SinDeltaPhiKin, CosDeltaPhiKin)")
 
-                .Define("Emiss_totKin",      "(GenEmiss_p4 - Kin_NuP_p4 - Kin_NuM_p4).E()")
+                .Define("Kin_TauP_Px", "Kin_TauP_p4.Px()")
+                .Define("Kin_TauP_Py", "Kin_TauP_p4.Py()")
+                .Define("Kin_TauP_Pz", "Kin_TauP_p4.Pz()")
+                .Define("Kin_TauP_E", "Kin_TauP_p4.E()")
+                .Define("Kin_TauP_M", "Kin_TauP_p4.M()")
+                .Define("Kin_TauP_Eta", "Kin_TauP_p4.Eta()")
+                .Define("Kin_TauP_Phi", "Kin_TauP_p4.Phi()")
+                .Define("Kin_TauP_P", "Kin_TauP_p4.P()")
+                .Define("Kin_TauP_Pt", "Kin_TauP_p4.Pt()")
+                .Define("Kin_TauP_Theta", "Kin_TauP_p4.Theta()")
+                .Define("Kin_TauP_Rapidity", "Kin_TauP_p4.Rapidity()")
 
-                #comparison with gen
+                .Define("Kin_TauM_Px", "Kin_TauM_p4.Px()")
+                .Define("Kin_TauM_Py", "Kin_TauM_p4.Py()")
+                .Define("Kin_TauM_Pz", "Kin_TauM_p4.Pz()")
+                .Define("Kin_TauM_E", "Kin_TauM_p4.E()")
+                .Define("Kin_TauM_M", "Kin_TauM_p4.M()")
+                .Define("Kin_TauM_Eta", "Kin_TauM_p4.Eta()")
+                .Define("Kin_TauM_Phi", "Kin_TauM_p4.Phi()")
+                .Define("Kin_TauM_P", "Kin_TauM_p4.P()")
+                .Define("Kin_TauM_Pt", "Kin_TauM_p4.Pt()")
+                .Define("Kin_TauM_Theta", "Kin_TauM_p4.Theta()")
+                .Define("Kin_TauM_Rapidity", "Kin_TauM_p4.Rapidity()")
+
+                .Define("Kin_NuP_Px", "Kin_NuP_p4.Px()")
+                .Define("Kin_NuP_Py", "Kin_NuP_p4.Py()")
+                .Define("Kin_NuP_Pz", "Kin_NuP_p4.Pz()")
+                .Define("Kin_NuP_E", "Kin_NuP_p4.E()")
+                .Define("Kin_NuP_M", "Kin_NuP_p4.M()")
+                .Define("Kin_NuP_Eta", "Kin_NuP_p4.Eta()")
+                .Define("Kin_NuP_Phi", "Kin_NuP_p4.Phi()")
+                .Define("Kin_NuP_P", "Kin_NuP_p4.P()")
+                .Define("Kin_NuP_Pt", "Kin_NuP_p4.Pt()")
+                .Define("Kin_NuP_Theta", "Kin_NuP_p4.Theta()")
+                .Define("Kin_NuP_Rapidity", "Kin_NuP_p4.Rapidity()")
+
+                .Define("Kin_NuM_Px", "Kin_NuM_p4.Px()")
+                .Define("Kin_NuM_Py", "Kin_NuM_p4.Py()")
+                .Define("Kin_NuM_Pz", "Kin_NuM_p4.Pz()")
+                .Define("Kin_NuM_E", "Kin_NuM_p4.E()")
+                .Define("Kin_NuM_M", "Kin_NuM_p4.M()")
+                .Define("Kin_NuM_Eta", "Kin_NuM_p4.Eta()")
+                .Define("Kin_NuM_Phi", "Kin_NuM_p4.Phi()")
+                .Define("Kin_NuM_P", "Kin_NuM_p4.P()")
+                .Define("Kin_NuM_Pt", "Kin_NuM_p4.Pt()")
+                .Define("Kin_NuM_Theta", "Kin_NuM_p4.Theta()")
+                .Define("Kin_NuM_Rapidity", "Kin_NuM_p4.Rapidity()")
+
+                .Define("TauPRF_KinPiP_Px", "TauPRF_KinPiP_p4.Px()")
+                .Define("TauPRF_KinPiP_Py", "TauPRF_KinPiP_p4.Py()")
+                .Define("TauPRF_KinPiP_Pz", "TauPRF_KinPiP_p4.Pz()")
+                .Define("TauPRF_KinPiP_E", "TauPRF_KinPiP_p4.E()")
+                .Define("TauPRF_KinPiP_M", "TauPRF_KinPiP_p4.M()")
+                .Define("TauPRF_KinPiP_Eta", "TauPRF_KinPiP_p4.Eta()")
+                .Define("TauPRF_KinPiP_Phi", "TauPRF_KinPiP_p4.Phi()")
+                .Define("TauPRF_KinPiP_P", "TauPRF_KinPiP_p4.P()")
+                .Define("TauPRF_KinPiP_Pt", "TauPRF_KinPiP_p4.Pt()")
+                .Define("TauPRF_KinPiP_Theta", "TauPRF_KinPiP_p4.Theta()")
+                .Define("TauPRF_KinPiP_Rapidity", "TauPRF_KinPiP_p4.Rapidity()")
+
+                .Define("TauMRF_KinPiM_Px", "TauMRF_KinPiM_p4.Px()")
+                .Define("TauMRF_KinPiM_Py", "TauMRF_KinPiM_p4.Py()")
+                .Define("TauMRF_KinPiM_Pz", "TauMRF_KinPiM_p4.Pz()")
+                .Define("TauMRF_KinPiM_E", "TauMRF_KinPiM_p4.E()")
+                .Define("TauMRF_KinPiM_M", "TauMRF_KinPiM_p4.M()")
+                .Define("TauMRF_KinPiM_Eta", "TauMRF_KinPiM_p4.Eta()")
+                .Define("TauMRF_KinPiM_Phi", "TauMRF_KinPiM_p4.Phi()")
+                .Define("TauMRF_KinPiM_P", "TauMRF_KinPiM_p4.P()")
+                .Define("TauMRF_KinPiM_Pt", "TauMRF_KinPiM_p4.Pt()")
+                .Define("TauMRF_KinPiM_Theta", "TauMRF_KinPiM_p4.Theta()")
+                .Define("TauMRF_KinPiM_Rapidity", "TauMRF_KinPiM_p4.Rapidity()")
+
+                .Define("TauPRF_KinNuP_Px", "TauPRF_KinNuP_p4.Px()")
+                .Define("TauPRF_KinNuP_Py", "TauPRF_KinNuP_p4.Py()")
+                .Define("TauPRF_KinNuP_Pz", "TauPRF_KinNuP_p4.Pz()")
+                .Define("TauPRF_KinNuP_E", "TauPRF_KinNuP_p4.E()")
+                .Define("TauPRF_KinNuP_M", "TauPRF_KinNuP_p4.M()")
+                .Define("TauPRF_KinNuP_Eta", "TauPRF_KinNuP_p4.Eta()")
+                .Define("TauPRF_KinNuP_Phi", "TauPRF_KinNuP_p4.Phi()")
+                .Define("TauPRF_KinNuP_P", "TauPRF_KinNuP_p4.P()")
+                .Define("TauPRF_KinNuP_Pt", "TauPRF_KinNuP_p4.Pt()")
+                .Define("TauPRF_KinNuP_Theta", "TauPRF_KinNuP_p4.Theta()")
+                .Define("TauPRF_KinNuP_Rapidity", "TauPRF_KinNuP_p4.Rapidity()")
+
+                .Define("TauMRF_KinNuM_Px", "TauMRF_KinNuM_p4.Px()")
+                .Define("TauMRF_KinNuM_Py", "TauMRF_KinNuM_p4.Py()")
+                .Define("TauMRF_KinNuM_Pz", "TauMRF_KinNuM_p4.Pz()")
+                .Define("TauMRF_KinNuM_E", "TauMRF_KinNuM_p4.E()")
+                .Define("TauMRF_KinNuM_M", "TauMRF_KinNuM_p4.M()")
+                .Define("TauMRF_KinNuM_Eta", "TauMRF_KinNuM_p4.Eta()")
+                .Define("TauMRF_KinNuM_Phi", "TauMRF_KinNuM_p4.Phi()")
+                .Define("TauMRF_KinNuM_P", "TauMRF_KinNuM_p4.P()")
+                .Define("TauMRF_KinNuM_Pt", "TauMRF_KinNuM_p4.Pt()")
+                .Define("TauMRF_KinNuM_Theta", "TauMRF_KinNuM_p4.Theta()")
+                .Define("TauMRF_KinNuM_Rapidity", "TauMRF_KinNuM_p4.Rapidity()")
+
+                .Define("RecoilKin_TauM_Px", "RecoilKin_TauM_p4.Px()")
+                .Define("RecoilKin_TauM_Py", "RecoilKin_TauM_p4.Py()")
+                .Define("RecoilKin_TauM_Pz", "RecoilKin_TauM_p4.Pz()")
+                .Define("RecoilKin_TauM_E", "RecoilKin_TauM_p4.E()")
+                .Define("RecoilKin_TauM_M", "RecoilKin_TauM_p4.M()")
+                .Define("RecoilKin_TauM_Eta", "RecoilKin_TauM_p4.Eta()")
+                .Define("RecoilKin_TauM_Phi", "RecoilKin_TauM_p4.Phi()")
+                .Define("RecoilKin_TauM_P", "RecoilKin_TauM_p4.P()")
+                .Define("RecoilKin_TauM_Pt", "RecoilKin_TauM_p4.Pt()")
+                .Define("RecoilKin_TauM_Theta", "RecoilKin_TauM_p4.Theta()")
+                .Define("RecoilKin_TauM_Rapidity", "RecoilKin_TauM_p4.Rapidity()")
+
+                .Define("hPnormKin_Px", "hPnormKin.X()")
+                .Define("hPnormKin_Py", "hPnormKin.Y()")
+                .Define("hPnormKin_Pz", "hPnormKin.Z()")
+                .Define("hPnormKin_P", "hPnormKin.Mag()")
+                .Define("hPnormKin_Pt", "hPnormKin.Pt()")
+                .Define("hPnormKin_Eta", "hPnormKin.Eta()")
+                .Define("hPnormKin_Theta", "hPnormKin.Theta()")
+                .Define("hPnormKin_Phi", "hPnormKin.Phi()")
+
+                .Define("hMnormKin_Px", "hMnormKin.X()")
+                .Define("hMnormKin_Py", "hMnormKin.Y()")
+                .Define("hMnormKin_Pz", "hMnormKin.Z()")
+                .Define("hMnormKin_P", "hMnormKin.Mag()")
+                .Define("hMnormKin_Pt", "hMnormKin.Pt()")
+                .Define("hMnormKin_Phi", "hMnormKin.Phi()")
+                .Define("hMnormKin_Eta", "hMnormKin.Eta()")
+                .Define("hMnormKin_Theta", "hMnormKin.Theta()")
+
+                .Define("hh_normKin_Px", "hh_normKin.X()")
+                .Define("hh_normKin_Py", "hh_normKin.Y()")
+                .Define("hh_normKin_Pz", "hh_normKin.Z()")
+                .Define("hh_normKin_P", "hh_normKin.Mag()")
+                .Define("hh_normKin_Pt", "hh_normKin.Pt()")
+                .Define("hh_normKin_Phi", "hh_normKin.Phi()")
+                .Define("hh_normKin_Eta", "hh_normKin.Eta()")
+                .Define("hh_normKin_Theta", "hh_normKin.Theta()")
+
+                #comparison between kinematic fit and gen
 
                 .Define("KinGenTauP_p4",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (Kin_TauP_p4-HadGenTau_p4.at(0)); \
                                                 else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (Kin_TauP_p4-HadGenTau_p4.at(1)); \
                                                 else return TLorentzVector {};")
+                .Define("KinGenTauP_Px",        "KinGenTauP_p4.Px()")
+                .Define("KinGenTauP_Py",        "KinGenTauP_p4.Py()")
+                .Define("KinGenTauP_Pz",        "KinGenTauP_p4.Pz()")
+                .Define("KinGenTauP_P",        "KinGenTauP_p4.P()")
+                .Define("KinGenTauP_Pt",        "KinGenTauP_p4.Pt()")
+                .Define("KinGenTauP_E",        "KinGenTauP_p4.E()")
+                .Define("KinGenTauP_M",        "KinGenTauP_p4.M()")
+                .Define("KinGenTauP_DPhi",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::deltaPhi(Kin_TauP_p4.Phi(), HadGenTau_p4.at(0).Phi()); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return FCCAnalyses::ZHfunctions::deltaPhi(Kin_TauP_p4.Phi(), HadGenTau_p4.at(1).Phi()); \
+                                                else return float(-99);")
+                .Define("KinGenTauP_DEta",      "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (Kin_TauP_p4.Eta()-(HadGenTau_p4.at(0)).Eta()); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (Kin_TauP_p4.Eta()-(HadGenTau_p4.at(1)).Eta()); \
+                                                else return double(-99);")
+                .Define("KinGenTauP_DTheta",      "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return ((Kin_TauP_p4.Vect()).Angle(HadGenTau_p4.at(0).Vect())); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return ((Kin_TauP_p4.Vect()).Angle(HadGenTau_p4.at(1).Vect())); \
+                                                else return double(-99.);")
+                
+
+                .Define("KinGenNuP_p4",       "(Kin_NuP_p4-GenNuP_p4)")
+                .Define("KinGenNuP_Px",        "KinGenNuP_p4.Px()")
+                .Define("KinGenNuP_Py",        "KinGenNuP_p4.Py()")
+                .Define("KinGenNuP_Pz",        "KinGenNuP_p4.Pz()")
+                .Define("KinGenNuP_P",        "KinGenNuP_p4.P()")
+                .Define("KinGenNuP_Pt",        "KinGenNuP_p4.Pt()")
+                .Define("KinGenNuP_M",        "KinGenNuP_p4.M()")
+                .Define("KinGenNuP_E",        "KinGenNuP_p4.E()")
+                .Define("KinGenNuP_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(Kin_NuP_p4.Phi(), GenNuP_p4.Phi())")
+                .Define("KinGenNuP_DEta",      "(Kin_NuP_p4.Eta()-(GenNuP_p4).Eta())")
+                .Define("KinGenNuP_DTheta",     "((Kin_NuP_p4.Vect()).Angle(GenNuP_p4.Vect()))")
+
+                .Define("TauPRF_KinGenNuP_p4",       "(TauPRF_KinNuP_p4-TauPRF_GenNuP_p4)")
+                .Define("TauPRF_KinGenNuP_Px",        "TauPRF_KinGenNuP_p4.Px()")
+                .Define("TauPRF_KinGenNuP_Py",        "TauPRF_KinGenNuP_p4.Py()")
+                .Define("TauPRF_KinGenNuP_Pz",        "TauPRF_KinGenNuP_p4.Pz()")
+                .Define("TauPRF_KinGenNuP_P",        "TauPRF_KinGenNuP_p4.P()")
+                .Define("TauPRF_KinGenNuP_Pt",        "TauPRF_KinGenNuP_p4.Pt()")
+                .Define("TauPRF_KinGenNuP_M",        "TauPRF_KinGenNuP_p4.M()")
+                .Define("TauPRF_KinGenNuP_E",        "TauPRF_KinGenNuP_p4.E()")
+                .Define("TauPRF_KinGenNuP_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(TauPRF_KinNuP_p4.Phi(), TauPRF_GenNuP_p4.Phi())")
+                .Define("TauPRF_KinGenNuP_DEta",      "(TauPRF_KinNuP_p4.Eta()-(TauPRF_GenNuP_p4).Eta())")
+                .Define("TauPRF_KinGenNuP_DTheta",      "((TauPRF_KinNuP_p4.Vect()).Angle(TauPRF_GenNuP_p4.Vect()))")
+
+                .Define("TauPRF_KinGenPiP_p4",       "(TauPRF_KinPiP_p4-TauPRF_GenPiP_p4)")
+                .Define("TauPRF_KinGenPiP_Px",        "TauPRF_KinGenPiP_p4.Px()")
+                .Define("TauPRF_KinGenPiP_Py",        "TauPRF_KinGenPiP_p4.Py()")
+                .Define("TauPRF_KinGenPiP_Pz",        "TauPRF_KinGenPiP_p4.Pz()")
+                .Define("TauPRF_KinGenPiP_P",        "TauPRF_KinGenPiP_p4.P()")
+                .Define("TauPRF_KinGenPiP_Pt",        "TauPRF_KinGenPiP_p4.Pt()")
+                .Define("TauPRF_KinGenPiP_M",        "TauPRF_KinGenPiP_p4.M()")
+                .Define("TauPRF_KinGenPiP_E",        "TauPRF_KinGenPiP_p4.E()")
+                .Define("TauPRF_KinGenPiP_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(TauPRF_KinPiP_p4.Phi(), TauPRF_GenPiP_p4.Phi())")
+                .Define("TauPRF_KinGenPiP_DEta",      "(TauPRF_KinPiP_p4.Eta()-(TauPRF_GenPiP_p4).Eta())")
+                .Define("TauPRF_KinGenPiP_DTheta",      "((TauPRF_KinPiP_p4.Vect()).Angle(TauPRF_GenPiP_p4.Vect()))")
+
+                .Define("KinGen_hPnorm_p3",       "(hPnormKin-GenhPnorm)")
+                .Define("KinGen_hPnorm_Px",        "KinGen_hPnorm_p3.Px()")
+                .Define("KinGen_hPnorm_Py",        "KinGen_hPnorm_p3.Py()")
+                .Define("KinGen_hPnorm_Pz",        "KinGen_hPnorm_p3.Pz()")
+                .Define("KinGen_hPnorm_P",        "KinGen_hPnorm_p3.Mag()")
+                .Define("KinGen_hPnorm_Pt",        "KinGen_hPnorm_p3.Pt()")
+                .Define("KinGen_hPnorm_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(hPnormKin.Phi(), GenhPnorm.Phi())")
+                .Define("KinGen_hPnorm_DEta",      "(hPnormKin.Eta()-(GenhPnorm).Eta())")
+                .Define("KinGen_hPnorm_DTheta",     "(hPnormKin.Angle(GenhPnorm))")
 
                 .Define("KinGenTauM_p4",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (Kin_TauM_p4-HadGenTau_p4.at(1)); \
                                                 else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (Kin_TauM_p4-HadGenTau_p4.at(0)); \
                                                 else return TLorentzVector {};")
-            
-                ################################################
+                .Define("KinGenTauM_Px",        "KinGenTauM_p4.Px()")
+                .Define("KinGenTauM_Py",        "KinGenTauM_p4.Py()")
+                .Define("KinGenTauM_Pz",        "KinGenTauM_p4.Pz()")
+                .Define("KinGenTauM_P",        "KinGenTauM_p4.P()")
+                .Define("KinGenTauM_Pt",        "KinGenTauM_p4.Pt()")
+                .Define("KinGenTauM_E",        "KinGenTauM_p4.E()")
+                .Define("KinGenTauM_M",        "KinGenTauM_p4.M()")
+                .Define("KinGenTauM_DPhi",       "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::deltaPhi(Kin_TauM_p4.Phi(), HadGenTau_p4.at(1).Phi()); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return FCCAnalyses::ZHfunctions::deltaPhi(Kin_TauM_p4.Phi(), HadGenTau_p4.at(0).Phi()); \
+                                                else return float(-99);")
+                .Define("KinGenTauM_DEta",      "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return (Kin_TauM_p4.Eta()-(HadGenTau_p4.at(1)).Eta()); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return (Kin_TauM_p4.Eta()-(HadGenTau_p4.at(0)).Eta()); \
+                                                else return double(-99);")
+                .Define("KinGenTauM_DTheta",      "if (n_GenTau_had==2 and HadGenTau_charge.at(0)==1) return ((Kin_TauM_p4.Vect()).Angle(HadGenTau_p4.at(1).Vect())); \
+                                                else if (n_GenTau_had==2 and HadGenTau_charge.at(0)==(-1)) return ((Kin_TauM_p4.Vect()).Angle(HadGenTau_p4.at(0).Vect())); \
+                                                else return double(-99.);")
 
-                # polarimetric vector from ILC paper - full gen
+                .Define("KinGenNuM_p4",       "(Kin_NuM_p4-GenNuM_p4)")
+                .Define("KinGenNuM_Px",        "KinGenNuM_p4.Px()")
+                .Define("KinGenNuM_Py",        "KinGenNuM_p4.Py()")
+                .Define("KinGenNuM_Pz",        "KinGenNuM_p4.Pz()")
+                .Define("KinGenNuM_P",        "KinGenNuM_p4.P()")
+                .Define("KinGenNuM_Pt",        "KinGenNuM_p4.Pt()")
+                .Define("KinGenNuM_M",        "KinGenNuM_p4.M()")
+                .Define("KinGenNuM_E",        "KinGenNuM_p4.E()")
+                .Define("KinGenNuM_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(Kin_NuM_p4.Phi(), GenNuM_p4.Phi())")
+                .Define("KinGenNuM_DEta",      "(Kin_NuM_p4.Eta()-(GenNuM_p4).Eta())")
+                .Define("KinGenNuM_DTheta",     "((Kin_NuM_p4.Vect()).Angle(GenNuM_p4.Vect()))")
 
-                .Define("TauPRF_GenPiP_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPiP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPiP_p4);")
-                .Define("TauPRF_GenNuP_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenNuP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenNuP_p4);")
+                .Define("TauMRF_KinGenNuM_p4",       "(TauMRF_KinNuM_p4-TauMRF_GenNuM_p4)")
+                .Define("TauMRF_KinGenNuM_Px",        "TauMRF_KinGenNuM_p4.Px()")
+                .Define("TauMRF_KinGenNuM_Py",        "TauMRF_KinGenNuM_p4.Py()")
+                .Define("TauMRF_KinGenNuM_Pz",        "TauMRF_KinGenNuM_p4.Pz()")
+                .Define("TauMRF_KinGenNuM_P",        "TauMRF_KinGenNuM_p4.P()")
+                .Define("TauMRF_KinGenNuM_Pt",        "TauMRF_KinGenNuM_p4.Pt()")
+                .Define("TauMRF_KinGenNuM_E",        "TauMRF_KinGenNuM_p4.E()")
+                .Define("TauMRF_KinGenNuM_M",        "TauMRF_KinGenNuM_p4.M()")
+                .Define("TauMRF_KinGenNuM_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(TauMRF_KinNuM_p4.Phi(), TauMRF_GenNuM_p4.Phi())")
+                .Define("TauMRF_KinGenNuM_DEta",      "(TauMRF_KinNuM_p4.Eta()-(TauMRF_GenNuM_p4).Eta())")
+                .Define("TauMRF_KinGenNuM_DTheta",      "((TauMRF_KinNuM_p4.Vect()).Angle(TauMRF_GenNuM_p4.Vect()))")
 
-                .Define("TauMRF_GenPiM_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPiM_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPiM_p4);")
-                .Define("TauMRF_GenNuM_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenNuM_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenNuM_p4);")
+                .Define("TauMRF_KinGenPiM_p4",       "(TauMRF_KinPiM_p4-TauMRF_GenPiM_p4)")
+                .Define("TauMRF_KinGenPiM_Px",        "TauMRF_KinGenPiM_p4.Px()")
+                .Define("TauMRF_KinGenPiM_Py",        "TauMRF_KinGenPiM_p4.Py()")
+                .Define("TauMRF_KinGenPiM_Pz",        "TauMRF_KinGenPiM_p4.Pz()")
+                .Define("TauMRF_KinGenPiM_P",        "TauMRF_KinGenPiM_p4.P()")
+                .Define("TauMRF_KinGenPiM_Pt",        "TauMRF_KinGenPiM_p4.Pt()")
+                .Define("TauMRF_KinGenPiM_M",        "TauMRF_KinGenPiM_p4.M()")
+                .Define("TauMRF_KinGenPiM_E",        "TauMRF_KinGenPiM_p4.E()")
+                .Define("TauMRF_KinGenPiM_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(TauMRF_KinPiM_p4.Phi(), TauMRF_GenPiM_p4.Phi())")
+                .Define("TauMRF_KinGenPiM_DEta",      "(TauMRF_KinPiM_p4.Eta()-(TauMRF_GenPiM_p4).Eta())")
+                .Define("TauMRF_KinGenPiM_DTheta",      "((TauMRF_KinPiM_p4.Vect()).Angle(TauMRF_GenPiM_p4.Vect()))")
 
-                .Define("GenhP_p3",        "TauPRF_GenPiP_p4.Vect()")
-                .Define("GenhM_p3",        "TauMRF_GenPiM_p4.Vect()")
+                .Define("HRF_KinGenTauM_p4",       "(RecoilKin_TauM_p4-HRF_HadGenTauM_p4)")
+                .Define("HRF_KinGenTauM_Px",        "HRF_KinGenTauM_p4.Px()")
+                .Define("HRF_KinGenTauM_Py",        "HRF_KinGenTauM_p4.Py()")
+                .Define("HRF_KinGenTauM_Pz",        "HRF_KinGenTauM_p4.Pz()")
+                .Define("HRF_KinGenTauM_P",        "HRF_KinGenTauM_p4.P()")
+                .Define("HRF_KinGenTauM_Pt",        "HRF_KinGenTauM_p4.Pt()")
+                .Define("HRF_KinGenTauM_M",        "HRF_KinGenTauM_p4.M()")
+                .Define("HRF_KinGenTauM_E",        "HRF_KinGenTauM_p4.E()")
+                .Define("HRF_KinGenTauM_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(RecoilKin_TauM_p4.Phi(), HRF_HadGenTauM_p4.Phi())")
+                .Define("HRF_KinGenTauM_DEta",      "(RecoilKin_TauM_p4.Eta()-(HRF_HadGenTauM_p4).Eta())")
+                .Define("HRF_KinGenTauM_DTheta",     "((RecoilKin_TauM_p4.Vect()).Angle(HRF_HadGenTauM_p4.Vect()))")
 
-                .Define("HRF_HadGenTau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- GenHiggs_p4, HadGenTau_p4)")
-                .Define("HRF_HadGenTauM_p4",     "if (HadGenTau_charge.at(0)==1) return HadGenTau_p4.at(1); else return HadGenTau_p4.at(0);")
+                .Define("KinGen_hMnorm_p3",       "(hMnormKin-GenhMnorm)")
+                .Define("KinGen_hMnorm_Px",        "KinGen_hMnorm_p3.Px()")
+                .Define("KinGen_hMnorm_Py",        "KinGen_hMnorm_p3.Py()")
+                .Define("KinGen_hMnorm_Pz",        "KinGen_hMnorm_p3.Pz()")
+                .Define("KinGen_hMnorm_P",        "KinGen_hMnorm_p3.Mag()")
+                .Define("KinGen_hMnorm_Pt",        "KinGen_hMnorm_p3.Pt()")
+                .Define("KinGen_hMnorm_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(hMnormKin.Phi(), GenhMnorm.Phi())")
+                .Define("KinGen_hMnorm_DEta",      "(hMnormKin.Eta()-(GenhMnorm).Eta())")
+                .Define("KinGen_hMnorm_DTheta",     "(hMnormKin.Angle(GenhMnorm))")
 
-                .Define("GenhPnorm",       "(( HRF_HadGenTauM_p4.Vect() ).Cross( GenhP_p3 )).Unit()")
-                .Define("GenhMnorm",       "(( HRF_HadGenTauM_p4.Vect() ).Cross( GenhM_p3 )).Unit()")
+                .Define("KinGen_hh_norm_p3",       "(hh_normKin-Genhh_norm)")
+                .Define("KinGen_hh_norm_Px",        "KinGen_hh_norm_p3.Px()")
+                .Define("KinGen_hh_norm_Py",        "KinGen_hh_norm_p3.Py()")
+                .Define("KinGen_hh_norm_Pz",        "KinGen_hh_norm_p3.Pz()")
+                .Define("KinGen_hh_norm_P",        "KinGen_hh_norm_p3.Mag()")
+                .Define("KinGen_hh_norm_Pt",        "KinGen_hh_norm_p3.Pt()")
+                .Define("KinGen_hh_norm_DPhi",       "FCCAnalyses::ZHfunctions::deltaPhi(hh_normKin.Phi(), Genhh_norm.Phi())")
+                .Define("KinGen_hh_norm_DEta",      "(hh_normKin.Eta()-(Genhh_norm).Eta())")
+                .Define("KinGen_hh_norm_DTheta",     "(hh_normKin.Angle(Genhh_norm))")
 
-                .Define("Genhh_norm",       "GenhPnorm.Cross(GenhMnorm)")
-                .Define("GenCosDeltaPhi",        "GenhPnorm.Dot(GenhMnorm)")
-                .Define("GenSinDeltaPhi",       "Genhh_norm.Dot( (HRF_HadGenTauM_p4.Vect()).Unit() )")
-                .Define("GenDeltaPhi",     "atan2(GenSinDeltaPhi, GenCosDeltaPhi)")
+                .Define("KinGen_CosDelta",       "(CosDeltaPhiKin-GenCosDeltaPhi)")
+                .Define("KinGen_SinDelta",       "(SinDeltaPhiKin-GenSinDeltaPhi)")
+                .Define("KinGen_Delta",       "(DeltaPhiKin-GenDeltaPhi)")
 
                 #####################################################
 
@@ -1346,12 +1671,23 @@ class RDFanalysis():
             "RecoZDaughter_DPhi", 
 
             ########## cp
-            "Emiss_tot",
             "Emiss_recoil",
             "RecoGenHiggs",
             "GenNuP_p4",
             "GenNuM_p4",
             "GenEmiss_p4",
+            "GenEmiss_px", 
+            "GenEmiss_py", 
+            "GenEmiss_pz", 
+            "GenEmiss_e", 
+            "GenEmiss_y",
+            "GenEmiss_p", 
+            "GenEmiss_pt", 
+            "GenEmiss_eta", 
+            "GenEmiss_phi",
+            "GenEmiss_theta",
+            "GenCosDeltaPhi",
+            "GenSinDeltaPhi",
             "GenDeltaPhi",
              
             "True_TauM_p4",  
@@ -1366,20 +1702,166 @@ class RDFanalysis():
             "RecoGenTauM_p4",
             "RecoGen_RecoilTauM_p4",
 
-            "Emiss_totKin",
             "Kin_TauP_p4", 
             "Kin_TauM_p4", 
+            "Kin_chi2", 
             "Kin_NuP_p4", 
             "Kin_NuM_p4",  
+            "Kin_TauNuP_DR", 
+            "Kin_TauNuM_DR",
             "TauPRF_KinPiP_p4",  
             "TauPRF_KinNuP_p4",
             "TauMRF_KinPiM_p4",  
             "TauMRF_KinNuM_p4",
-            "KinGenTauP_p4",    
-            "KinGenTauM_p4",
+            "RecoilKin_TauM_p4",
+            "hPnormKin", 
+            "hMnormKin",
+            "hh_normKin", 
             "CosDeltaPhiKin",   
             "SinDeltaPhiKin",   
             "DeltaPhiKin",  
+
+            "KinGenTauP_p4",  
+            "KinGenTauP_Px",
+            "KinGenTauP_Py",
+            "KinGenTauP_Pz",
+            "KinGenTauP_Pt",
+            "KinGenTauP_P",
+            "KinGenTauP_E", 
+            "KinGenTauP_M",   
+            "KinGenTauP_DPhi",
+            "KinGenTauP_DEta", 
+            "KinGenTauP_DTheta",  
+
+            "KinGenNuP_p4", 
+            "KinGenNuP_Px",
+            "KinGenNuP_Py",
+            "KinGenNuP_Pz",
+            "KinGenNuP_Pt",
+            "KinGenNuP_P",
+            "KinGenNuP_E", 
+            "KinGenNuP_M",       
+            "KinGenNuP_DPhi",      
+            "KinGenNuP_DEta",   
+            "KinGenNuP_DTheta",      
+
+            "TauPRF_KinGenNuP_p4", 
+            "TauPRF_KinGenNuP_Px",
+            "TauPRF_KinGenNuP_Py",
+            "TauPRF_KinGenNuP_Pz",
+            "TauPRF_KinGenNuP_Pt",
+            "TauPRF_KinGenNuP_P",
+            "TauPRF_KinGenNuP_M",
+            "TauPRF_KinGenNuP_E",      
+            "TauPRF_KinGenNuP_DPhi",      
+            "TauPRF_KinGenNuP_DEta",  
+            "TauPRF_KinGenNuP_DTheta",       
+
+            "TauPRF_KinGenPiP_p4", 
+            "TauPRF_KinGenPiP_Px",
+            "TauPRF_KinGenPiP_Py",
+            "TauPRF_KinGenPiP_Pz",
+            "TauPRF_KinGenPiP_P",
+            "TauPRF_KinGenPiP_Pt",
+            "TauPRF_KinGenPiP_M",
+            "TauPRF_KinGenPiP_E",      
+            "TauPRF_KinGenPiP_DPhi",       
+            "TauPRF_KinGenPiP_DEta",   
+            "TauPRF_KinGenPiP_DTheta",
+
+            "KinGen_hPnorm_p3", 
+            "KinGen_hPnorm_Px",
+            "KinGen_hPnorm_Py",
+            "KinGen_hPnorm_Pz",
+            "KinGen_hPnorm_P",
+            "KinGen_hPnorm_Pt",         
+            "KinGen_hPnorm_DPhi",     
+            "KinGen_hPnorm_DEta", 
+            "KinGen_hPnorm_DTheta",     
+
+            "KinGenTauM_p4", 
+            "KinGenTauM_Px",
+            "KinGenTauM_Py",
+            "KinGenTauM_Pz",
+            "KinGenTauM_P",
+            "KinGenTauM_Pt",
+            "KinGenTauM_E",
+            "KinGenTauM_M",         
+            "KinGenTauM_DPhi",
+            "KinGenTauM_DEta", 
+            "KinGenTauM_DTheta",
+
+            "KinGenNuM_p4",
+            "KinGenNuM_Px",
+            "KinGenNuM_Py",
+            "KinGenNuM_Pz",
+            "KinGenNuM_P",
+            "KinGenNuM_E",
+            "KinGenNuM_M",
+            "KinGenNuM_Pt",      
+            "KinGenNuM_DPhi",      
+            "KinGenNuM_DEta",     
+            "KinGenNuM_DTheta", 
+
+            "TauMRF_KinGenNuM_p4",    
+            "TauMRF_KinGenNuM_Px",
+            "TauMRF_KinGenNuM_Py",
+            "TauMRF_KinGenNuM_Pz",
+            "TauMRF_KinGenNuM_P",
+            "TauMRF_KinGenNuM_E",
+            "TauMRF_KinGenNuM_M",
+            "TauMRF_KinGenNuM_Pt",
+            "TauMRF_KinGenNuM_DPhi",      
+            "TauMRF_KinGenNuM_DEta",      
+            "TauMRF_KinGenNuM_DTheta",
+
+            "TauMRF_KinGenPiM_p4",
+            "TauMRF_KinGenPiM_Px",
+            "TauMRF_KinGenPiM_Py",
+            "TauMRF_KinGenPiM_Pz",
+            "TauMRF_KinGenPiM_P",
+            "TauMRF_KinGenPiM_Pt",
+            "TauMRF_KinGenPiM_E",
+            "TauMRF_KinGenPiM_M",      
+            "TauMRF_KinGenPiM_DPhi",       
+            "TauMRF_KinGenPiM_DEta",    
+            "TauMRF_KinGenPiM_DTheta",  
+
+            "HRF_KinGenTauM_p4", 
+            "HRF_KinGenTauM_Px",
+            "HRF_KinGenTauM_Py",
+            "HRF_KinGenTauM_Pz",
+            "HRF_KinGenTauM_Pt",
+            "HRF_KinGenTauM_P",
+            "HRF_KinGenTauM_E",
+            "HRF_KinGenTauM_M",            
+            "HRF_KinGenTauM_DPhi",       
+            "HRF_KinGenTauM_DEta",   
+            "HRF_KinGenTauM_DTheta",
+
+            "KinGen_hMnorm_p3",
+            "KinGen_hMnorm_Px",
+            "KinGen_hMnorm_Py",
+            "KinGen_hMnorm_Pz",
+            "KinGen_hMnorm_P",
+            "KinGen_hMnorm_Pt",      
+            "KinGen_hMnorm_DPhi",     
+            "KinGen_hMnorm_DEta",   
+            "KinGen_hMnorm_DTheta",
+
+            "KinGen_hh_norm_p3",      
+            "KinGen_hh_norm_Px",
+            "KinGen_hh_norm_Py",
+            "KinGen_hh_norm_Pz",
+            "KinGen_hh_norm_P",
+            "KinGen_hh_norm_Pt",                              
+            "KinGen_hh_norm_DPhi",     
+            "KinGen_hh_norm_DEta",    
+            "KinGen_hh_norm_DTheta",
+
+            "KinGen_CosDelta",     
+            "KinGen_SinDelta",    
+            "KinGen_Delta",       
 
             "KinILC_NuP_p4",
             "KinILC_NuM_p4",   
@@ -1397,6 +1879,49 @@ class RDFanalysis():
             "RecoKin_NuM_p4",   
             "RecoKinGenTauP_p4",    
             "RecoKinGenTauM_p4",
+
+        ]
+
+        branchList += [
+            "Kin_TauP_Px", "Kin_TauP_Py", "Kin_TauP_Pz", "Kin_TauP_E",
+            "Kin_TauP_M", "Kin_TauP_Eta", "Kin_TauP_Phi", "Kin_TauP_P", 
+            "Kin_TauP_Pt", "Kin_TauP_Theta", "Kin_TauP_Rapidity",
+            
+            "Kin_TauM_Px", "Kin_TauM_Py", "Kin_TauM_Pz", "Kin_TauM_E",
+            "Kin_TauM_M", "Kin_TauM_Eta", "Kin_TauM_Phi", "Kin_TauM_P", 
+            "Kin_TauM_Pt", "Kin_TauM_Theta", "Kin_TauM_Rapidity",
+
+            "Kin_NuP_Px", "Kin_NuP_Py", "Kin_NuP_Pz", "Kin_NuP_E",
+            "Kin_NuP_M", "Kin_NuP_Eta", "Kin_NuP_Phi", "Kin_NuP_P", 
+            "Kin_NuP_Pt", "Kin_NuP_Theta", "Kin_NuP_Rapidity",
+
+            "Kin_NuM_Px", "Kin_NuM_Py", "Kin_NuM_Pz", "Kin_NuM_E",
+            "Kin_NuM_M", "Kin_NuM_Eta", "Kin_NuM_Phi", "Kin_NuM_P", 
+            "Kin_NuM_Pt", "Kin_NuM_Theta", "Kin_NuM_Rapidity",
+
+            "TauPRF_KinPiP_Px", "TauPRF_KinPiP_Py", "TauPRF_KinPiP_Pz", "TauPRF_KinPiP_E",
+            "TauPRF_KinPiP_M", "TauPRF_KinPiP_Eta", "TauPRF_KinPiP_Phi", "TauPRF_KinPiP_P", 
+            "TauPRF_KinPiP_Pt", "TauPRF_KinPiP_Theta", "TauPRF_KinPiP_Rapidity",
+
+            "TauPRF_KinNuP_Px", "TauPRF_KinNuP_Py", "TauPRF_KinNuP_Pz", "TauPRF_KinNuP_E",
+            "TauPRF_KinNuP_M", "TauPRF_KinNuP_Eta", "TauPRF_KinNuP_Phi", "TauPRF_KinNuP_P", 
+            "TauPRF_KinNuP_Pt", "TauPRF_KinNuP_Theta", "TauPRF_KinNuP_Rapidity",
+
+            "TauMRF_KinPiM_Px", "TauMRF_KinPiM_Py", "TauMRF_KinPiM_Pz", "TauMRF_KinPiM_E",
+            "TauMRF_KinPiM_M", "TauMRF_KinPiM_Eta", "TauMRF_KinPiM_Phi", "TauMRF_KinPiM_P", 
+            "TauMRF_KinPiM_Pt", "TauMRF_KinPiM_Theta", "TauMRF_KinPiM_Rapidity",
+
+            "TauMRF_KinNuM_Px", "TauMRF_KinNuM_Py", "TauMRF_KinNuM_Pz", "TauMRF_KinNuM_E",
+            "TauMRF_KinNuM_M", "TauMRF_KinNuM_Eta", "TauMRF_KinNuM_Phi", "TauMRF_KinNuM_P", 
+            "TauMRF_KinNuM_Pt", "TauMRF_KinNuM_Theta", "TauMRF_KinNuM_Rapidity",
+
+            "RecoilKin_TauM_Px", "RecoilKin_TauM_Py", "RecoilKin_TauM_Pz", "RecoilKin_TauM_E",
+            "RecoilKin_TauM_M", "RecoilKin_TauM_Eta", "RecoilKin_TauM_Phi", "RecoilKin_TauM_P", 
+            "RecoilKin_TauM_Pt", "RecoilKin_TauM_Theta", "RecoilKin_TauM_Rapidity",
+
+            "hPnormKin_Px", "hPnormKin_Py", "hPnormKin_Pz", "hPnormKin_Pt", "hPnormKin_P", "hPnormKin_Phi", "hPnormKin_Eta", "hPnormKin_Theta",
+            "hMnormKin_Px", "hMnormKin_Py", "hMnormKin_Pz", "hMnormKin_Pt", "hMnormKin_P", "hMnormKin_Phi", "hMnormKin_Eta", "hMnormKin_Theta",
+            "hh_normKin_Px", "hh_normKin_Py", "hh_normKin_Pz", "hh_normKin_Pt", "hh_normKin_P", "hh_normKin_Phi", "hh_normKin_Eta", "hh_normKin_Theta",
 
         ]
 
