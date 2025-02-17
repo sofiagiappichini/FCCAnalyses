@@ -29,7 +29,7 @@ def make_dir_if_not_exists(directory):
         print(f"Directory already exists.")
 
 DIRECTORY = '/eos/user/s/sgiappic/2HNL_ana/final_paper/' 
-DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/FINAL/PLOTS_FOR_PAPER/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/paper/FINAL/PLOTS_FOR_PAPER_125ab/' 
 
 CUTS = [
     #"selReco",
@@ -101,9 +101,9 @@ LABELS = {
  }
 
 ana_tex        = "e^{+}e^{-} #rightarrow N_{1,2} #nu, N_{1,2} #rightarrow ll#nu"
-energy         = 91
+energy         = 91.2
 collider       = 'FCC-ee'
-intLumi        = 204 #ab-1
+intLumi        = 125 #ab-1
 
 LOGY = True
 LOGX = False
@@ -598,6 +598,8 @@ for cut in CUTS:
                     h.SetLineWidth(1)
                     h.SetLineColor(ROOT.kBlack)
                     h.SetFillColor(colors[i])
+                    ## scale processes to 125 ab-1 from 204
+                    h.Scale(0.61)
                     if h.Integral() > 0:
                         BgMCHistYieldsDic[h.Integral()] = h
                     else:
@@ -616,6 +618,8 @@ for cut in CUTS:
                     h = histos[i]
                     h.SetLineWidth(3)
                     h.SetLineColor(colors[i])
+                    ## scale processes to 125 ab-1 from 204
+                    h.Scale(0.61)
                     h.Draw("HIST SAME")
 
                 hStackBkg.GetYaxis().SetTitle("Events")

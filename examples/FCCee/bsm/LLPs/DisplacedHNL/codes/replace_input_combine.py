@@ -464,7 +464,7 @@ for replacement_word in replacement_words:
 
     # Define the file names
     input_file = "significance.txt"
-    output_file = "/eos/user/s/sgiappic/combine/output_7aug_final.csv"
+    output_file = "/eos/user/s/sgiappic/combine/output_250211_125ab.csv"
 
     with open(input_file, "r") as file:
             read = False

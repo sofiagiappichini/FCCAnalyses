@@ -199,7 +199,7 @@ data_point = data[280:]
 
 log_coupling = np.log10(data_point[:, 0])
 mass = data_point[:, 1]
-significance = data_point[:, 2]
+significance = data_point[:, 2]*0.49 #scaling to the recommended value
 #significance_DF = data_point[:, 3]
 
 #significance = []
@@ -214,7 +214,7 @@ contour_levels = [4]
 contour_lines = axes.contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='#8ab0ed', linewidths=2)
 
 ## prompt
-data = np.genfromtxt("/eos/user/s/sgiappic/combine/output_7aug_final.csv", delimiter=',')
+data = np.genfromtxt("/eos/user/s/sgiappic/combine/output_250206_newscale.csv", delimiter=',')
 #only take the points relative the point 6
 data_point = data[280:]
 

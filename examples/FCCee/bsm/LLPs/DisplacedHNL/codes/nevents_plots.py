@@ -44,7 +44,7 @@ for i, data_file in enumerate(data_files):
             #coupling = data_point[:, 0]
             log_coupling = np.log10(data_point[:, 0])
             mass = data_point[:, 1]
-            significance = (data_point[:, 2])*1.13 # scale lumi from 180 to 204
+            significance = (data_point[:, 2])*0.61 #scaling to 125ab-1
             #significance_DF = data_point[:, 3]
 
             #significance = []
@@ -134,4 +134,4 @@ axs[1].set_title(r'$Displaced\; events - Inverted\; Hierarchy$', fontsize=20, y=
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/paper/nevents_final_points.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/paper/nevents_125ab.png', format='png', dpi=330)

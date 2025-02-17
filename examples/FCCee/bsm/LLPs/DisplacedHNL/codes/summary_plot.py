@@ -41,7 +41,7 @@ data_point = data[280:]
 
 log_coupling = np.log10(data_point[:, 0])
 mass = data_point[:, 1]
-significance = data_point[:, 2]
+significance = data_point[:, 2]*0.61 #scaling to 125ab-1
 
 mass_grid, coupling_grid = np.meshgrid(np.linspace(min(mass), max(mass), 8),
                                                     np.linspace(min(log_coupling), max(log_coupling), 6))
@@ -51,7 +51,7 @@ contour_levels = [4]
 contour_lines = plt.contour(mass_grid, coupling_grid, significance_grid, levels=contour_levels, colors='#8ab0ed', linewidths=5)
 
 ## prompt
-data = np.genfromtxt("/eos/user/s/sgiappic/combine/output_7aug_final.csv", delimiter=',')
+data = np.genfromtxt("/eos/user/s/sgiappic/combine/output_250211_125ab.csv", delimiter=',')
 #only take the points relative the point 6
 data_point = data[280:]
 
@@ -79,8 +79,8 @@ plt.ylabel(r'$log$ $U^2$', fontsize=18)
 plt.ylim([-12, -6])  # Corrected function call
 plt.legend(custom_lines, [r'Event count from displaced selection', r'Significance from inclusive selection'], 
            title=r'$U^2_{e}/U^2:U^2_{\mu}/U^2:U^2_{\tau}/U^2$=0.9:0.1:0', title_fontsize=18, loc='lower right', fontsize=18 )
-plt.title(r'$N_{1,2}\to\ell\ell\nu\; at\; FCC-ee,\; \sqrt{s}=91\; GeV,\; \mathcal{L}_{int}=204\; ab^{-1}$', fontsize=20, y=1.05)
+plt.title(r'$N_{1,2}\to\ell\ell\nu\; at\; FCC-ee,\; \sqrt{s}=91.2\; GeV,\; \mathcal{L}=125\; ab^{-1}$', fontsize=20, y=1.05)
 
 plt.tick_params(direction='out', top=False, right=False, which='major', labelsize=16)
 plt.tight_layout()
-plt.savefig("/eos/user/s/sgiappic/www/paper/summary_plot.png", format='png', dpi=330)
+plt.savefig("/eos/user/s/sgiappic/www/paper/summary_plot_125ab.png", format='png', dpi=330)
