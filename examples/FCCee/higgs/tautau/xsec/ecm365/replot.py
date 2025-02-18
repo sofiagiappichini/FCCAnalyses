@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -47,138 +47,33 @@ SUBDIR = [
 #category to plot
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
-
 #list of cuts you want to plot
-CUTS_LLHH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss", 
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss_Zp54",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
-]
-
-CUTS_LLLH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss", 
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss_Zp54",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
-]
-
-CUTS_LLLL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_40Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss", 
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss_Zp54",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
-]
-
-CUTS_QQHH = [
-    "selReco_0.5BDT",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
-]
-
-CUTS_QQLH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
-]
-
-CUTS_QQLL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss_Zp52",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
-]
-    
-CUTS_NuNuHH = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
-]
-
-CUTS_NuNuLH = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
-]
-
-CUTS_NuNuLL = [
+CUTS_LL = [
     "selReco",
-    "selReco_100Me",
-    "selReco_100Me_TauDPhi3",
-    "selReco_100Me_TauDPhi3_2DR",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_1DR",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100",
+]
+CUTS_NuNu = [
+    "selReco",
+    "selReco_180Me",
+    "selReco_180Me_TauDPhi3",
+    "selReco_180Me_TauDPhi3_1DR",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1",
 ]
 
 CUTS = {
-    'LLLL':CUTS_LLLL,
-    'LLLH':CUTS_LLLH,
-    'LLHH':CUTS_LLHH,
-    'QQLL':CUTS_QQLL,
-    'QQLH':CUTS_QQLH,
-    'QQHH':CUTS_QQHH,
-    'NuNuLL':CUTS_NuNuLL,
-    'NuNuLH':CUTS_NuNuLH,
-    'NuNuHH':CUTS_NuNuHH,
+    'LL':CUTS_LL,
+    'QQ':CUTS_LL,
+    'NuNu':CUTS_NuNu,
 }
 
 CUTS_simple = {
@@ -1150,7 +1045,7 @@ LIST_VAR = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
+DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/ecm365/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -1254,188 +1149,206 @@ ana_tex_sub = {
 
 energy         = 240
 collider       = 'FCC-ee'
-intLumi        = 10.8 #ab-1
+intLumi        = 2.65 #ab-1
 LOGY = True
 
 #list of backgorunds, then legend and colors to be assigned to them
 backgrounds_all = [
-    "p8_ee_WW_ecm240",
-    "p8_ee_Zqq_ecm240",
-    "p8_ee_ZZ_ecm240",
+    "p8_ee_WW_ecm365",
+    "p8_ee_ZQQ_ecm365",
+    "p8_ee_ZZ_ecm365",
+    'p8_ee_tt_ecm365',
 
-    "wzp6_ee_LL_ecm240",
-    "wzp6_ee_tautau_ecm240",
+    "wzp6_ee_LL_ecm365",
+    "wzp6_ee_tautau_ecm365",
 
-    "wzp6_ee_nuenueZ_ecm240",
+    "wzp6_ee_nuenueZ_ecm365",
 
-    "wzp6_ee_egamma_eZ_ZLL_ecm240",
+    "wzp6_ee_egamma_eZ_ZLL_ecm365",
     
-    "wzp6_ee_gaga_LL_60_ecm240",
-    "wzp6_ee_gaga_tautau_60_ecm240",
+    "wzp6_ee_gaga_LL_60_ecm365",
+    "wzp6_ee_gaga_tautau_60_ecm365",
 
-    "wzp6_ee_tautauH_Htautau_ecm240",
-    "wzp6_ee_tautauH_HQQ_ecm240",
-    "wzp6_ee_tautauH_Hgg_ecm240",
-    "wzp6_ee_tautauH_HVV_ecm240",
+    "wzp6_ee_tautauH_Htautau_ecm365",
+    "wzp6_ee_tautauH_HQQ_ecm365",
+    "wzp6_ee_tautauH_Hgg_ecm365",
+    "wzp6_ee_tautauH_HVV_ecm365",
 
-    #"wzp6_ee_nunuH_Htautau_ecm240",
-    "wzp6_ee_nunuH_HQQ_ecm240",
-    "wzp6_ee_nunuH_Hgg_ecm240",
-    "wzp6_ee_nunuH_HVV_ecm240",
+    #"wzp6_ee_nunuH_Htautau_ecm365",
+    "wzp6_ee_VBFnunu_HQQ_ecm365",
+    "wzp6_ee_VBFnunu_Hgg_ecm365",
+    "wzp6_ee_VBFnunu_HVV_ecm365",
 
-    #"wzp6_ee_LLH_Htautau_ecm240",
-    "wzp6_ee_LLH_HQQ_ecm240",
-    "wzp6_ee_LLH_Hgg_ecm240",
-    "wzp6_ee_LLH_HVV_ecm240",
+    "wzp6_ee_ZH_Znunu_HQQ_ecm365",
+    "wzp6_ee_ZH_Znunu_Hgg_ecm365",
+    "wzp6_ee_ZH_Znunu_HVV_ecm365",
 
-    #"wzp6_ee_QQH_Htautau_ecm240",
-    "wzp6_ee_QQH_HQQ_ecm240",
-    "wzp6_ee_QQH_Hgg_ecm240",
-    "wzp6_ee_QQH_HVV_ecm240",
+    #"wzp6_ee_LLH_Htautau_ecm365",
+    "wzp6_ee_LLH_HQQ_ecm365",
+    "wzp6_ee_LLH_Hgg_ecm365",
+    "wzp6_ee_LLH_HVV_ecm365",
 
-    #"wzp6_ee_eeH_Htautau_ecm240",
-    #"wzp6_ee_eeH_HQQ_ecm240",
-    #"wzp6_ee_eeH_Hgg_ecm240",
-    #"wzp6_ee_eeH_HVV_ecm240",
+    #"wzp6_ee_QQH_Htautau_ecm365",
+    "wzp6_ee_QQH_HQQ_ecm365",
+    "wzp6_ee_QQH_Hgg_ecm365",
+    "wzp6_ee_QQH_HVV_ecm365",
 
-    #"wzp6_ee_mumuH_Htautau_ecm240",
-    #"wzp6_ee_mumuH_HQQ_ecm240",
-    #"wzp6_ee_mumuH_Hgg_ecm240",
-    #"wzp6_ee_mumuH_HVV_ecm240",
+    #"wzp6_ee_eeH_Htautau_ecm365",
+    #"wzp6_ee_eeH_HQQ_ecm365",
+    #"wzp6_ee_eeH_Hgg_ecm365",
+    #"wzp6_ee_eeH_HVV_ecm365",
 
-    #"wzp6_ee_ZheavyH_Htautau_ecm240",
-    #"wzp6_ee_ZheavyH_HQQ_ecm240",
-    #"wzp6_ee_ZheavyH_Hgg_ecm240",
-    #"wzp6_ee_ZheavyH_HVV_ecm240",
+    #"wzp6_ee_mumuH_Htautau_ecm365",
+    #"wzp6_ee_mumuH_HQQ_ecm365",
+    #"wzp6_ee_mumuH_Hgg_ecm365",
+    #"wzp6_ee_mumuH_HVV_ecm365",
 
-    #"wzp6_ee_ZlightH_Htautau_ecm240",
-    #"wzp6_ee_ZlightH_HQQ_ecm240",
-    #"wzp6_ee_ZlightH_Hgg_ecm240",
-    #"wzp6_ee_ZlightH_HVV_ecm240",
+    #"wzp6_ee_ZheavyH_Htautau_ecm365",
+    #"wzp6_ee_ZheavyH_HQQ_ecm365",
+    #"wzp6_ee_ZheavyH_Hgg_ecm365",
+    #"wzp6_ee_ZheavyH_HVV_ecm365",
+
+    #"wzp6_ee_ZlightH_Htautau_ecm365",
+    #"wzp6_ee_ZlightH_HQQ_ecm365",
+    #"wzp6_ee_ZlightH_Hgg_ecm365",
+    #"wzp6_ee_ZlightH_HVV_ecm365",
 ]
 
 legend = {
-    'p8_ee_WW_ecm240':"WW",
-    'p8_ee_Zqq_ecm240':"Z #rightarrow QQ",
-    'p8_ee_ZZ_ecm240':"ZZ",
+    'p8_ee_WW_ecm365':"WW",
+    'p8_ee_ZQQ_ecm365':"Z #rightarrow QQ",
+    'p8_ee_ZZ_ecm365':"ZZ",
+    'p8_ee_tt_ecm365':"tt",
 
-    'wzp6_ee_LL_ecm240':"e^{+}e^{-}#rightarrow ll",
-    'wzp6_ee_tautau_ecm240':"e^{+}e^{-}#rightarrow #tau#tau",
+    'wzp6_ee_LL_ecm365':"e^{+}e^{-}#rightarrow ll",
+    'wzp6_ee_tautau_ecm365':"e^{+}e^{-}#rightarrow #tau#tau",
 
-    "wzp6_ee_nuenueZ_ecm240":"e^{+}e^{-}#rightarrow #nu_{e}#nu_{e} Z",
+    "wzp6_ee_nuenueZ_ecm365":"e^{+}e^{-}#rightarrow #nu_{e}#nu_{e} Z",
 
-    "wzp6_ee_egamma_eZ_ZLL_ecm240":"e#gamma #rightarrow eZ(ll)",
+    "wzp6_ee_egamma_eZ_ZLL_ecm365":"e#gamma #rightarrow eZ(ll)",
     
-    "wzp6_ee_gaga_LL_60_ecm240":"#gamma#gamma #rightarrow ll",
-    "wzp6_ee_gaga_tautau_60_ecm240":"#gamma#gamma #rightarrow #tau#tau",
+    "wzp6_ee_gaga_LL_60_ecm365":"#gamma#gamma #rightarrow ll",
+    "wzp6_ee_gaga_tautau_60_ecm365":"#gamma#gamma #rightarrow #tau#tau",
 
-    "wzp6_ee_tautauH_Htautau_ecm240":"Z(#tau#tau)H(#tau#tau)",
-    "wzp6_ee_tautauH_HQQ_ecm240":"Z(#tau#tau)H(QQ)",
-    "wzp6_ee_tautauH_Hgg_ecm240":"Z(#tau#tau)H(gg)",
-    "wzp6_ee_tautauH_HVV_ecm240":"Z(#tau#tau)H(VV)",
+    "wzp6_ee_tautauH_Htautau_ecm365":"Z(#tau#tau)H(#tau#tau)",
+    "wzp6_ee_tautauH_HQQ_ecm365":"Z(#tau#tau)H(QQ)",
+    "wzp6_ee_tautauH_Hgg_ecm365":"Z(#tau#tau)H(gg)",
+    "wzp6_ee_tautauH_HVV_ecm365":"Z(#tau#tau)H(VV)",
 
-    'wzp6_ee_nunuH_Htautau_ecm240':"Z(#nu#nu)H(#tau#tau)",
-    "wzp6_ee_nunuH_HQQ_ecm240":"Z(#nu#nu)H(QQ)",
-    "wzp6_ee_nunuH_Hgg_ecm240":"Z(#nu#nu)H(gg)",
-    "wzp6_ee_nunuH_HVV_ecm240":"Z(#nu#nu)H(VV)",
+    'wzp6_ee_VBFnunu_Htautau_ecm365':"VBF #nu#nu H(#tau#tau)",
+    "wzp6_ee_VBFnunu_HQQ_ecm365":"VBF #nu#nu H(QQ)",
+    "wzp6_ee_VBFnunu_Hgg_ecm365":"VBF #nu#nu H(gg)",
+    "wzp6_ee_VBFnunu_HVV_ecm365":"VBF #nu#nu H(VV)",
 
-    'wzp6_ee_eeH_Htautau_ecm240':"Z(ee)H(#tau#tau)",
-    "wzp6_ee_eeH_HQQ_ecm240":"Z(ee)H(QQ)",
-    "wzp6_ee_eeH_Hgg_ecm240":"Z(ee)H(gg)",
-    "wzp6_ee_eeH_HVV_ecm240":"Z(ee)H(VV)",
+    'wzp6_ee_ZH_Znunu_Htautau_ecm365':"Z(#nu#nu)H(#tau#tau)",
+    "wzp6_ee_ZH_Znunu_HQQ_ecm365":"Z(#nu#nu)H(QQ)",
+    "wzp6_ee_ZH_Znunu_Hgg_ecm365":"Z(#nu#nu)H(gg)",
+    "wzp6_ee_ZH_Znunu_HVV_ecm365":"Z(#nu#nu)H(VV)",
 
-    'wzp6_ee_mumuH_Htautau_ecm240':"Z(#mu#mu)H(#tau#tau)",
-    "wzp6_ee_mumuH_HQQ_ecm240":"Z(#mu#mu)H(QQ)",
-    "wzp6_ee_mumuH_Hgg_ecm240":"Z(#mu#mu)H(gg)",
-    "wzp6_ee_mumuH_HVV_ecm240":"Z(#mu#mu)H(VV)",
+    'wzp6_ee_eeH_Htautau_ecm365':"Z(ee)H(#tau#tau)",
+    "wzp6_ee_eeH_HQQ_ecm365":"Z(ee)H(QQ)",
+    "wzp6_ee_eeH_Hgg_ecm365":"Z(ee)H(gg)",
+    "wzp6_ee_eeH_HVV_ecm365":"Z(ee)H(VV)",
 
-    'wzp6_ee_ZheavyH_Htautau_ecm240':"Z(bb, cc)H(#tau#tau)",
-    "wzp6_ee_ZheavyH_HQQ_ecm240":"Z(bb, cc)H(QQ)",
-    "wzp6_ee_ZheavyH_Hgg_ecm240":"Z(bb, cc)H(gg)",
-    "wzp6_ee_ZheavyH_HVV_ecm240":"Z(bb, cc)H(VV)",
+    'wzp6_ee_mumuH_Htautau_ecm365':"Z(#mu#mu)H(#tau#tau)",
+    "wzp6_ee_mumuH_HQQ_ecm365":"Z(#mu#mu)H(QQ)",
+    "wzp6_ee_mumuH_Hgg_ecm365":"Z(#mu#mu)H(gg)",
+    "wzp6_ee_mumuH_HVV_ecm365":"Z(#mu#mu)H(VV)",
 
-    'wzp6_ee_ZlightH_Htautau_ecm240':"Z(uu, dd, ss)H(#tau#tau)",
-    "wzp6_ee_ZlightH_HQQ_ecm240":"Z(uu, dd, ss)H(QQ)",
-    "wzp6_ee_ZlightH_Hgg_ecm240":"Z(uu, dd, ss)H(gg)",
-    "wzp6_ee_ZlightH_HVV_ecm240":"Z(uu, dd, ss)H(VV)",
+    'wzp6_ee_ZheavyH_Htautau_ecm365':"Z(bb, cc)H(#tau#tau)",
+    "wzp6_ee_ZheavyH_HQQ_ecm365":"Z(bb, cc)H(QQ)",
+    "wzp6_ee_ZheavyH_Hgg_ecm365":"Z(bb, cc)H(gg)",
+    "wzp6_ee_ZheavyH_HVV_ecm365":"Z(bb, cc)H(VV)",
 
-    'wzp6_ee_LLH_Htautau_ecm240':"Z(ll)H(#tau#tau)",
-    "wzp6_ee_LLH_HQQ_ecm240":"Z(ll)H(QQ)",
-    "wzp6_ee_LLH_Hgg_ecm240":"Z(ll)H(gg)",
-    "wzp6_ee_LLH_HVV_ecm240":"Z(ll)H(VV)",
+    'wzp6_ee_ZlightH_Htautau_ecm365':"Z(uu, dd, ss)H(#tau#tau)",
+    "wzp6_ee_ZlightH_HQQ_ecm365":"Z(uu, dd, ss)H(QQ)",
+    "wzp6_ee_ZlightH_Hgg_ecm365":"Z(uu, dd, ss)H(gg)",
+    "wzp6_ee_ZlightH_HVV_ecm365":"Z(uu, dd, ss)H(VV)",
 
-    'wzp6_ee_QQH_Htautau_ecm240':"Z(qq)H(#tau#tau)",
-    "wzp6_ee_QQH_HQQ_ecm240":"Z(qq)H(QQ)",
-    "wzp6_ee_QQH_Hgg_ecm240":"Z(qq)H(gg)",
-    "wzp6_ee_QQH_HVV_ecm240":"Z(qq)H(VV)",
+    'wzp6_ee_LLH_Htautau_ecm365':"Z(ll)H(#tau#tau)",
+    "wzp6_ee_LLH_HQQ_ecm365":"Z(ll)H(QQ)",
+    "wzp6_ee_LLH_Hgg_ecm365":"Z(ll)H(gg)",
+    "wzp6_ee_LLH_HVV_ecm365":"Z(ll)H(VV)",
+
+    'wzp6_ee_QQH_Htautau_ecm365':"Z(qq)H(#tau#tau)",
+    "wzp6_ee_QQH_HQQ_ecm365":"Z(qq)H(QQ)",
+    "wzp6_ee_QQH_Hgg_ecm365":"Z(qq)H(gg)",
+    "wzp6_ee_QQH_HVV_ecm365":"Z(qq)H(VV)",
 }
 
 legcolors = {
-    'p8_ee_WW_ecm240':ROOT.kSpring+2,
-    'p8_ee_Zqq_ecm240':ROOT.kMagenta-8,
-    'p8_ee_ZZ_ecm240':ROOT.kSpring+3,
+    'p8_ee_WW_ecm365':ROOT.kSpring+2,
+    'p8_ee_ZQQ_ecm365':ROOT.kMagenta-8,
+    'p8_ee_ZZ_ecm365':ROOT.kSpring+3,
+    'p8_ee_tt_ecm365':ROOT.kTeal-9,
 
-    'wzp6_ee_LL_ecm240':ROOT.kMagenta-6,
-    'wzp6_ee_tautau_ecm240':ROOT.kPink+1,
+    'wzp6_ee_LL_ecm365':ROOT.kMagenta-6,
+    'wzp6_ee_tautau_ecm365':ROOT.kPink+1,
 
-    "wzp6_ee_nuenueZ_ecm240":ROOT.kPink-4,
+    "wzp6_ee_nuenueZ_ecm365":ROOT.kPink-4,
 
-    "wzp6_ee_egamma_eZ_ZLL_ecm240":ROOT.kOrange-4,
+    "wzp6_ee_egamma_eZ_ZLL_ecm365":ROOT.kOrange-4,
     
-    "wzp6_ee_gaga_LL_60_ecm240":ROOT.kOrange-9,
-    "wzp6_ee_gaga_tautau_60_ecm240":ROOT.kOrange+6,
+    "wzp6_ee_gaga_LL_60_ecm365":ROOT.kOrange-9,
+    "wzp6_ee_gaga_tautau_60_ecm365":ROOT.kOrange+6,
 
-    "wzp6_ee_tautauH_Htautau_ecm240":ROOT.kViolet+6,
-    "wzp6_ee_tautauH_HQQ_ecm240":ROOT.kViolet+5,
-    "wzp6_ee_tautauH_Hgg_ecm240":ROOT.kViolet-4,
-    "wzp6_ee_tautauH_HVV_ecm240":ROOT.kViolet+1,
+    "wzp6_ee_tautauH_Htautau_ecm365":ROOT.kViolet+6,
+    "wzp6_ee_tautauH_HQQ_ecm365":ROOT.kViolet+5,
+    "wzp6_ee_tautauH_Hgg_ecm365":ROOT.kViolet-4,
+    "wzp6_ee_tautauH_HVV_ecm365":ROOT.kViolet+1,
 
-    'wzp6_ee_nunuH_Htautau_ecm240':ROOT.kGreen-3,
-    "wzp6_ee_nunuH_HQQ_ecm240":ROOT.kGreen-5,
-    "wzp6_ee_nunuH_Hgg_ecm240":ROOT.kGreen-8,
-    "wzp6_ee_nunuH_HVV_ecm240":ROOT.kGreen-10,
+    'wzp6_ee_VBFnunu_Htautau_ecm365':ROOT.kGreen-3,
+    "wzp6_ee_VBFnunu_HQQ_ecm365":ROOT.kGreen-5,
+    "wzp6_ee_VBFnunu_Hgg_ecm365":ROOT.kGreen-8,
+    "wzp6_ee_VBFnunu_HVV_ecm365":ROOT.kGreen-10,
 
-    'wzp6_ee_eeH_Htautau_ecm240':ROOT.kBlue-9,
-    "wzp6_ee_eeH_HQQ_ecm240":ROOT.kCyan-5,
-    "wzp6_ee_eeH_Hgg_ecm240":ROOT.kCyan-8,
-    "wzp6_ee_eeH_HVV_ecm240":ROOT.kCyan-10,
+    'wzp6_ee_ZH_Znunu_Htautau_ecm365':ROOT.kMagenta-3,
+    "wzp6_ee_ZH_Znunu_HQQ_ecm365":ROOT.kMagenta-5,
+    "wzp6_ee_ZH_Znunu_Hgg_ecm365":ROOT.kMagenta-8,
+    "wzp6_ee_ZH_Znunu_HVV_ecm365":ROOT.kMagenta-10,
 
-    'wzp6_ee_mumuH_Htautau_ecm240':ROOT.kBlue-3,
-    "wzp6_ee_mumuH_HQQ_ecm240":ROOT.kBlue-5,
-    "wzp6_ee_mumuH_Hgg_ecm240":ROOT.kBlue-8,
-    "wzp6_ee_mumuH_HVV_ecm240":ROOT.kBlue-10,
+    'wzp6_ee_eeH_Htautau_ecm365':ROOT.kBlue-9,
+    "wzp6_ee_eeH_HQQ_ecm365":ROOT.kCyan-5,
+    "wzp6_ee_eeH_Hgg_ecm365":ROOT.kCyan-8,
+    "wzp6_ee_eeH_HVV_ecm365":ROOT.kCyan-10,
 
-    'wzp6_ee_ZheavyH_Htautau_ecm240':ROOT.kRed-3,
-    "wzp6_ee_ZheavyH_HQQ_ecm240":ROOT.kRed-5,
-    "wzp6_ee_ZheavyH_Hgg_ecm240":ROOT.kRed-8,
-    "wzp6_ee_ZheavyH_HVV_ecm240":ROOT.kRed-10,
+    'wzp6_ee_mumuH_Htautau_ecm365':ROOT.kBlue-3,
+    "wzp6_ee_mumuH_HQQ_ecm365":ROOT.kBlue-5,
+    "wzp6_ee_mumuH_Hgg_ecm365":ROOT.kBlue-8,
+    "wzp6_ee_mumuH_HVV_ecm365":ROOT.kBlue-10,
 
-    'wzp6_ee_ZlightH_Htautau_ecm240':ROOT.kRed-9,
-    "wzp6_ee_ZlightH_HQQ_ecm240":ROOT.kMagenta-5,
-    "wzp6_ee_ZlightH_Hgg_ecm240":ROOT.kMagenta-8,
-    "wzp6_ee_ZlightH_HVV_ecm240":ROOT.kMagenta-10,
+    'wzp6_ee_ZheavyH_Htautau_ecm365':ROOT.kRed-3,
+    "wzp6_ee_ZheavyH_HQQ_ecm365":ROOT.kRed-5,
+    "wzp6_ee_ZheavyH_Hgg_ecm365":ROOT.kRed-8,
+    "wzp6_ee_ZheavyH_HVV_ecm365":ROOT.kRed-10,
 
-    'wzp6_ee_LLH_Htautau_ecm240':ROOT.kBlue-9,
-    "wzp6_ee_LLH_HQQ_ecm240":ROOT.kCyan-5,
-    "wzp6_ee_LLH_Hgg_ecm240":ROOT.kCyan-8,
-    "wzp6_ee_LLH_HVV_ecm240":ROOT.kCyan-10,
+    'wzp6_ee_ZlightH_Htautau_ecm365':ROOT.kRed-9,
+    "wzp6_ee_ZlightH_HQQ_ecm365":ROOT.kMagenta-5,
+    "wzp6_ee_ZlightH_Hgg_ecm365":ROOT.kMagenta-8,
+    "wzp6_ee_ZlightH_HVV_ecm365":ROOT.kMagenta-10,
 
-    'wzp6_ee_QQH_Htautau_ecm240':ROOT.kRed-9,
-    "wzp6_ee_QQH_HQQ_ecm240":ROOT.kMagenta-5,
-    "wzp6_ee_QQH_Hgg_ecm240":ROOT.kMagenta-8,
-    "wzp6_ee_QQH_HVV_ecm240":ROOT.kMagenta-10,
+    'wzp6_ee_LLH_Htautau_ecm365':ROOT.kBlue-9,
+    "wzp6_ee_LLH_HQQ_ecm365":ROOT.kCyan-5,
+    "wzp6_ee_LLH_Hgg_ecm365":ROOT.kCyan-8,
+    "wzp6_ee_LLH_HVV_ecm365":ROOT.kCyan-10,
+
+    'wzp6_ee_QQH_Htautau_ecm365':ROOT.kRed-9,
+    "wzp6_ee_QQH_HQQ_ecm365":ROOT.kMagenta-5,
+    "wzp6_ee_QQH_Hgg_ecm365":ROOT.kMagenta-8,
+    "wzp6_ee_QQH_HVV_ecm365":ROOT.kMagenta-10,
 
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    #'wzp6_ee_ZheavyH_Htautau_ecm240',
-    #'wzp6_ee_ZlightH_Htautau_ecm240',
-    'wzp6_ee_QQH_Htautau_ecm240',
-    #'wzp6_ee_eeH_Htautau_ecm240',
-    #'wzp6_ee_mumuH_Htautau_ecm240',
-    'wzp6_ee_LLH_Htautau_ecm240',
-    'wzp6_ee_nunuH_Htautau_ecm240',
+    #'wzp6_ee_ZheavyH_Htautau_ecm365',
+    #'wzp6_ee_ZlightH_Htautau_ecm365',
+    'wzp6_ee_QQH_Htautau_ecm365',
+    #'wzp6_ee_eeH_Htautau_ecm365',
+    #'wzp6_ee_mumuH_Htautau_ecm365',
+    'wzp6_ee_LLH_Htautau_ecm365',
+    'wzp6_ee_VBFnunu_Htautau_ecm365',
+    'wzp6_ee_ZH_Znunu_Htautau_ecm365',
 ]
 
 for tag in TAG:
@@ -1444,45 +1357,16 @@ for tag in TAG:
                 variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] #+ ["BDT_score"]
         else: 
             variables = VARIABLES + LIST_VAR[cat] #+["BDT_score"]
-        variables = ["BDT_score"]
 
         for sub in SUBDIR:
-                    directory = DIRECTORY + tag + "/final_241202_BDT/" + cat + "/" + sub + "/"
+                    directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
 
-                    #CUT = CUTS[cat+sub]
-
-                    if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
-                        CUT = [
-                            #"selReco",
-                            #"selReco_100Coll150",
-                            #"selReco_100Coll150_115Rec160",
-                            #"selReco_100Coll150_115Rec160_2DR",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
-                        ]
-
-                    #if "tag" in tag and "QQ" in cat and "HH" in sub:
-                    CUT = [
-                        "selReco",
-                        #"selReco_100Coll150",
-                        #"selReco_100Coll150_115Rec160",
-                        #"selReco_100Coll150_115Rec160_2DR",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
-                        #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
-                    ]
+                    CUT = CUTS[cat]
 
                     for cut in CUT:
                         for variable in variables:
+
+                            print(tag, cat, sub, cut, variable)
 
                             canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1693,7 +1577,7 @@ for tag in TAG:
                                 canvas.Modified()
                                 canvas.Update()
 
-                                dir = DIR_PLOTS + tag + "/BDT/" 
+                                dir = DIR_PLOTS + tag +  "/" + cat + "/" + sub + "/log/" + cut + "/"
                                 make_dir_if_not_exists(dir)
 
                                 canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")

@@ -98,7 +98,7 @@ os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
 os.system("cmsenv")
 
 input_file = "significance.txt"
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_011325/"
+outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/"
 output_file = outputDir + "output_xsec.csv"
 
 tab = []

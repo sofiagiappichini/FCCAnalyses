@@ -32,153 +32,48 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 TAG = [
-    #"R5-explicit",
-    #"R5-tag",
-    #"ktN-explicit",
-    #"ktN-tag",
-    "",
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
 ]
 SUBDIR = [
     'LL',
-    #'LH',
-    #'HH',
+    'LH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
+    "QQ",
     "LL",
-    #"NuNu",
+    "NuNu",
 ]
 #list of cuts you want to plot
-CUTS_LLHH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss", 
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss_Zp54",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
-]
-
-CUTS_LLLH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss", 
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss_Zp54",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
-]
-
-CUTS_LLLL = [
+CUTS_LL = [
     "selReco",
     "selReco_100Coll150",
     "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_2DR",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_40Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss", 
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss_Zp54",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
+    "selReco_100Coll150_115Rec160_1DR",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100",
 ]
-
-CUTS_QQHH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
-]
-
-CUTS_QQLH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
-]
-
-CUTS_QQLL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss_Zp52",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
-]
-    
-CUTS_NuNuHH = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
-]
-
-CUTS_NuNuLH = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
-]
-
-CUTS_NuNuLL = [
+CUTS_NuNu = [
     "selReco",
-    "selReco_100Me",
-    "selReco_100Me_TauDPhi3",
-    "selReco_100Me_TauDPhi3_2DR",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
+    "selReco_180Me",
+    "selReco_180Me_TauDPhi3",
+    "selReco_180Me_TauDPhi3_1DR",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1",
 ]
 
 CUTS = {
-    'LLLL':CUTS_LLLL,
-    'LLLH':CUTS_LLLH,
-    'LLHH':CUTS_LLHH,
-    'QQLL':CUTS_QQLL,
-    'QQLH':CUTS_QQLH,
-    'QQHH':CUTS_QQHH,
-    'NuNuLL':CUTS_NuNuLL,
-    'NuNuLH':CUTS_NuNuLH,
-    'NuNuHH':CUTS_NuNuHH,
+    'LL':CUTS_LL,
+    'QQ':CUTS_LL,
+    'NuNu':CUTS_NuNu,
 }
 
 #now you can list all the histograms that you want to plot
@@ -816,8 +711,8 @@ VAR_JET = [
     "n_TagJet_kt1_sel",
 
 ]
-
 VARIABLES_TAG = [
+    
     "TauTag_px", 
     "TauTag_py",    
     "TauTag_pz",      
@@ -829,9 +724,9 @@ VARIABLES_TAG = [
     "TauTag_e",     
     "TauTag_mass",        
     "TauTag_mass",        
-   # "TauTag_charge",       
+    # "TauTag_charge",       
     "TauTag_mass",          
-   # "TauTag_charge",       
+    # "TauTag_charge",       
     "n_TauTag",          
     "TauTag_isG",  
     "TauTag_isU",
@@ -863,7 +758,6 @@ VARIABLES_TAG = [
     "QuarkTag_isC",
     "QuarkTag_isB",  
     "QuarkTag_isTAU",
-
 
     "TauLead_type",
     "n_TauLead_constituents",
@@ -1229,209 +1123,230 @@ LIST_VAR = {
 
 #list of backgrounds, then legend and colors to be assigned to them
 backgrounds_1 = [
-    'wzp6_ee_mumu_ecm240',
-    'wzp6_ee_ee_Mee_30_150_ecm240',
+    'wzp6_ee_mumu_ecm365',
+    'wzp6_ee_ee_Mee_30_150_ecm365',
 ]
 backgrounds_2 = [
-    'wzp6_egamma_eZ_Zmumu_ecm240',
-    'wzp6_egamma_eZ_Zee_ecm240',
-    'wzp6_gammae_eZ_Zmumu_ecm240',
-    'wzp6_gammae_eZ_Zee_ecm240',
+    'wzp6_egamma_eZ_Zmumu_ecm365',
+    'wzp6_egamma_eZ_Zee_ecm365',
+    'wzp6_gammae_eZ_Zmumu_ecm365',
+    'wzp6_gammae_eZ_Zee_ecm365',
 ]
 backgrounds_3 = [
-    'wzp6_gaga_mumu_60_ecm240',
-    'wzp6_gaga_ee_60_ecm240',
+    'wzp6_gaga_mumu_60_ecm365',
+    'wzp6_gaga_ee_60_ecm365',
 ]
 backgrounds_4 = [
-    'wzp6_ee_tautauH_Hbb_ecm240',
-    'wzp6_ee_tautauH_Hcc_ecm240',
-    'wzp6_ee_tautauH_Hss_ecm240',
+    'wzp6_ee_tautauH_Hbb_ecm365',
+    'wzp6_ee_tautauH_Hcc_ecm365',
+    'wzp6_ee_tautauH_Hss_ecm365',
 ]
 backgrounds_5 = [
-    'wzp6_ee_tautauH_HWW_ecm240',
-    'wzp6_ee_tautauH_HZZ_ecm240',
+    'wzp6_ee_tautauH_HWW_ecm365',
+    'wzp6_ee_tautauH_HZZ_ecm365',
 ]
 backgrounds_6 = [
-    'wzp6_ee_nunuH_Hbb_ecm240',
-    'wzp6_ee_nunuH_Hcc_ecm240',
-    'wzp6_ee_nunuH_Hss_ecm240',
+    'wzp6_ee_VBFnunuH_Hbb_ecm365',
+    'wzp6_ee_VBFnunuH_Hcc_ecm365',
+    'wzp6_ee_VBFnunuH_Hss_ecm365',
 ]
 backgrounds_7 = [
-    'wzp6_ee_nunuH_HWW_ecm240',
-    'wzp6_ee_nunuH_HZZ_ecm240',
+    'wzp6_ee_VBFnunuH_HWW_ecm365',
+    'wzp6_ee_VBFnunuH_HZZ_ecm365',
 ]
 backgrounds_8 = [
-    'wzp6_ee_eeH_Hbb_ecm240',
-    'wzp6_ee_eeH_Hcc_ecm240',
-    'wzp6_ee_eeH_Hss_ecm240',
+    'wzp6_ee_eeH_Hbb_ecm365',
+    'wzp6_ee_eeH_Hcc_ecm365',
+    'wzp6_ee_eeH_Hss_ecm365',
 
-    'wzp6_ee_mumuH_Hbb_ecm240',
-    'wzp6_ee_mumuH_Hcc_ecm240',
-    'wzp6_ee_mumuH_Hss_ecm240',
+    'wzp6_ee_mumuH_Hbb_ecm365',
+    'wzp6_ee_mumuH_Hcc_ecm365',
+    'wzp6_ee_mumuH_Hss_ecm365',
 ]
 backgrounds_9 = [
-    'wzp6_ee_eeH_HWW_ecm240',
-    'wzp6_ee_eeH_HZZ_ecm240',
+    'wzp6_ee_eeH_HWW_ecm365',
+    'wzp6_ee_eeH_HZZ_ecm365',
 
-    'wzp6_ee_mumuH_HWW_ecm240',
-    'wzp6_ee_mumuH_HZZ_ecm240',
+    'wzp6_ee_mumuH_HWW_ecm365',
+    'wzp6_ee_mumuH_HZZ_ecm365',
 ]
 backgrounds_10 = [
-    'wzp6_ee_eeH_Hbb_ecm240',
-    'wzp6_ee_eeH_Hcc_ecm240',
-    'wzp6_ee_eeH_Hss_ecm240',
+    'wzp6_ee_eeH_Hbb_ecm365',
+    'wzp6_ee_eeH_Hcc_ecm365',
+    'wzp6_ee_eeH_Hss_ecm365',
 ]
 backgrounds_11 = [
-    'wzp6_ee_eeH_HWW_ecm240',
-    'wzp6_ee_eeH_HZZ_ecm240',
+    'wzp6_ee_eeH_HWW_ecm365',
+    'wzp6_ee_eeH_HZZ_ecm365',
 ]
 backgrounds_12 = [
-    'wzp6_ee_mumuH_Hbb_ecm240',
-    'wzp6_ee_mumuH_Hcc_ecm240',
-    'wzp6_ee_mumuH_Hss_ecm240',
+    'wzp6_ee_mumuH_Hbb_ecm365',
+    'wzp6_ee_mumuH_Hcc_ecm365',
+    'wzp6_ee_mumuH_Hss_ecm365',
 ]
 backgrounds_13 = [
-    'wzp6_ee_mumuH_HWW_ecm240',
-    'wzp6_ee_mumuH_HZZ_ecm240',
+    'wzp6_ee_mumuH_HWW_ecm365',
+    'wzp6_ee_mumuH_HZZ_ecm365',
 ]
 backgrounds_14 = [
-    'wzp6_ee_bbH_Hbb_ecm240',
-    'wzp6_ee_bbH_Hcc_ecm240',
-    'wzp6_ee_bbH_Hss_ecm240',
+    'wzp6_ee_bbH_Hbb_ecm365',
+    'wzp6_ee_bbH_Hcc_ecm365',
+    'wzp6_ee_bbH_Hss_ecm365',
 
-    'wzp6_ee_ccH_Hbb_ecm240',
-    'wzp6_ee_ccH_Hcc_ecm240',
-    'wzp6_ee_ccH_Hss_ecm240',
+    'wzp6_ee_ccH_Hbb_ecm365',
+    'wzp6_ee_ccH_Hcc_ecm365',
+    'wzp6_ee_ccH_Hss_ecm365',
 
-    'wzp6_ee_ssH_Hbb_ecm240',
-    'wzp6_ee_ssH_Hcc_ecm240',
-    'wzp6_ee_ssH_Hss_ecm240',
+    'wzp6_ee_ssH_Hbb_ecm365',
+    'wzp6_ee_ssH_Hcc_ecm365',
+    'wzp6_ee_ssH_Hss_ecm365',
 
-    'wzp6_ee_qqH_Hbb_ecm240',
-    'wzp6_ee_qqH_Hcc_ecm240',
-    'wzp6_ee_qqH_Hss_ecm240',
+    'wzp6_ee_qqH_Hbb_ecm365',
+    'wzp6_ee_qqH_Hcc_ecm365',
+    'wzp6_ee_qqH_Hss_ecm365',
 ]
 backgrounds_15 = [
-    'wzp6_ee_bbH_Hbb_ecm240',
-    'wzp6_ee_bbH_Hcc_ecm240',
-    'wzp6_ee_bbH_Hss_ecm240',
+    'wzp6_ee_bbH_Hbb_ecm365',
+    'wzp6_ee_bbH_Hcc_ecm365',
+    'wzp6_ee_bbH_Hss_ecm365',
 
-    'wzp6_ee_ccH_Hbb_ecm240',
-    'wzp6_ee_ccH_Hcc_ecm240',
-    'wzp6_ee_ccH_Hss_ecm240',
+    'wzp6_ee_ccH_Hbb_ecm365',
+    'wzp6_ee_ccH_Hcc_ecm365',
+    'wzp6_ee_ccH_Hss_ecm365',
 ]
 backgrounds_16 = [
-    'wzp6_ee_ssH_Hbb_ecm240',
-    'wzp6_ee_ssH_Hcc_ecm240',
-    'wzp6_ee_ssH_Hss_ecm240',
+    'wzp6_ee_ssH_Hbb_ecm365',
+    'wzp6_ee_ssH_Hcc_ecm365',
+    'wzp6_ee_ssH_Hss_ecm365',
 
-    'wzp6_ee_qqH_Hbb_ecm240',
-    'wzp6_ee_qqH_Hcc_ecm240',
-    'wzp6_ee_qqH_Hss_ecm240',
+    'wzp6_ee_qqH_Hbb_ecm365',
+    'wzp6_ee_qqH_Hcc_ecm365',
+    'wzp6_ee_qqH_Hss_ecm365',
 ]
 backgrounds_17 = [
-    'wzp6_ee_bbH_HWW_ecm240',
-    'wzp6_ee_bbH_HZZ_ecm240',
+    'wzp6_ee_bbH_HWW_ecm365',
+    'wzp6_ee_bbH_HZZ_ecm365',
 
-    'wzp6_ee_ccH_HWW_ecm240',
-    'wzp6_ee_ccH_HZZ_ecm240',
+    'wzp6_ee_ccH_HWW_ecm365',
+    'wzp6_ee_ccH_HZZ_ecm365',
 
-    'wzp6_ee_ssH_HWW_ecm240',
-    'wzp6_ee_ssH_HZZ_ecm240',
+    'wzp6_ee_ssH_HWW_ecm365',
+    'wzp6_ee_ssH_HZZ_ecm365',
     
-    'wzp6_ee_qqH_HWW_ecm240',
-    'wzp6_ee_qqH_HZZ_ecm240',
+    'wzp6_ee_qqH_HWW_ecm365',
+    'wzp6_ee_qqH_HZZ_ecm365',
 ]
 backgrounds_18 = [
-    'wzp6_ee_bbH_HWW_ecm240',
-    'wzp6_ee_bbH_HZZ_ecm240',
+    'wzp6_ee_bbH_HWW_ecm365',
+    'wzp6_ee_bbH_HZZ_ecm365',
 
-    'wzp6_ee_ccH_HWW_ecm240',
-    'wzp6_ee_ccH_HZZ_ecm240',
+    'wzp6_ee_ccH_HWW_ecm365',
+    'wzp6_ee_ccH_HZZ_ecm365',
 ]
 backgrounds_19 = [    
-    'wzp6_ee_ssH_HWW_ecm240',
-    'wzp6_ee_ssH_HZZ_ecm240',
+    'wzp6_ee_ssH_HWW_ecm365',
+    'wzp6_ee_ssH_HZZ_ecm365',
     
-    'wzp6_ee_qqH_HWW_ecm240',
-    'wzp6_ee_qqH_HZZ_ecm240',
+    'wzp6_ee_qqH_HWW_ecm365',
+    'wzp6_ee_qqH_HZZ_ecm365',
 ]
 backgrounds_20 = [
-    'wzp6_ee_bbH_Hgg_ecm240',
-    'wzp6_ee_ccH_Hgg_ecm240',
-    'wzp6_ee_ssH_Hgg_ecm240',
-    'wzp6_ee_qqH_Hgg_ecm240',
+    'wzp6_ee_bbH_Hgg_ecm365',
+    'wzp6_ee_ccH_Hgg_ecm365',
+    'wzp6_ee_ssH_Hgg_ecm365',
+    'wzp6_ee_qqH_Hgg_ecm365',
 ]
 backgrounds_21 = [
-    'wzp6_ee_bbH_Hgg_ecm240',
-    'wzp6_ee_ccH_Hgg_ecm240',
+    'wzp6_ee_bbH_Hgg_ecm365',
+    'wzp6_ee_ccH_Hgg_ecm365',
 ]
 backgrounds_22 = [
-    'wzp6_ee_ssH_Hgg_ecm240',
-    'wzp6_ee_qqH_Hgg_ecm240',
+    'wzp6_ee_ssH_Hgg_ecm365',
+    'wzp6_ee_qqH_Hgg_ecm365',
 ]
 backgrounds_23 = [
-    'wzp6_ee_eeH_Hgg_ecm240',
-    'wzp6_ee_mumuH_Hgg_ecm240',
+    'wzp6_ee_eeH_Hgg_ecm365',
+    'wzp6_ee_mumuH_Hgg_ecm365',
 ]
+backgrounds_28 = [
+    'p8_ee_Zbb_ecm365',
+    'p8_ee_Zcc_ecm365',
+    'p8_ee_Zss_ecm365',
+    'p8_ee_Zqq_ecm365', #only u d in this sample
+]
+
+backgrounds_29 = [
+    'wzp6_ee_ZH_Znunu_Hbb_ecm365',
+    'wzp6_ee_ZH_Znunu_Hcc_ecm365',
+    'wzp6_ee_ZH_Znunu_Hss_ecm365',
+]
+backgrounds_30 = [
+    'wzp6_ee_ZH_Znunu_HWW_ecm365',
+    'wzp6_ee_ZH_Znunu_HZZ_ecm365',
+]
+
 #signals
 backgrounds_24 = [
-    'wzp6_ee_eeH_Htautau_ecm240',
-    'wzp6_ee_mumuH_Htautau_ecm240',
+    'wzp6_ee_eeH_Htautau_ecm365',
+    'wzp6_ee_mumuH_Htautau_ecm365',
 ]
 backgrounds_25 = [
-    'wzp6_ee_bbH_Htautau_ecm240',
-    'wzp6_ee_ccH_Htautau_ecm240',
+    'wzp6_ee_bbH_Htautau_ecm365',
+    'wzp6_ee_ccH_Htautau_ecm365',
 
-    'wzp6_ee_ssH_Htautau_ecm240',
-    'wzp6_ee_qqH_Htautau_ecm240',
+    'wzp6_ee_ssH_Htautau_ecm365',
+    'wzp6_ee_qqH_Htautau_ecm365',
 ]
 backgrounds_26 = [
-    'wzp6_ee_bbH_Htautau_ecm240',
-    'wzp6_ee_ccH_Htautau_ecm240',
+    'wzp6_ee_bbH_Htautau_ecm365',
+    'wzp6_ee_ccH_Htautau_ecm365',
 ]
 backgrounds_27 = [
-    'wzp6_ee_ssH_Htautau_ecm240',
-    'wzp6_ee_qqH_Htautau_ecm240',
+    'wzp6_ee_ssH_Htautau_ecm365',
+    'wzp6_ee_qqH_Htautau_ecm365',
 ]
 
 legend = {
-    1:"wzp6_ee_LL_ecm240",
+    1:"wzp6_ee_LL_ecm365",
 
-    2:"wzp6_ee_egamma_eZ_ZLL_ecm240",
-    3:"wzp6_ee_gaga_LL_60_ecm240",
+    2:"wzp6_ee_egamma_eZ_ZLL_ecm365",
+    3:"wzp6_ee_gaga_LL_60_ecm365",
 
-    4:"wzp6_ee_tautauH_HQQ_ecm240",
-    5:"wzp6_ee_tautauH_HVV_ecm240",
+    4:"wzp6_ee_tautauH_HQQ_ecm365",
+    5:"wzp6_ee_tautauH_HVV_ecm365",
 
-    6:"wzp6_ee_nunuH_HQQ_ecm240",
-    7:"wzp6_ee_nunuH_HVV_ecm240",
+    6:"wzp6_ee_VBFnunuH_HQQ_ecm365",
+    7:"wzp6_ee_VBFnunuH_HVV_ecm365",
 
-    8:"wzp6_ee_LLH_HQQ_ecm240",
-    9:"wzp6_ee_LLH_HVV_ecm240",
-    10:"wzp6_ee_eeH_HQQ_ecm240",
-    11:"wzp6_ee_eeH_HVV_ecm240",
-    12:"wzp6_ee_mumuH_HQQ_ecm240",
-    13:"wzp6_ee_mumuH_HVV_ecm240",
+    8:"wzp6_ee_LLH_HQQ_ecm365",
+    9:"wzp6_ee_LLH_HVV_ecm365",
+    10:"wzp6_ee_eeH_HQQ_ecm365",
+    11:"wzp6_ee_eeH_HVV_ecm365",
+    12:"wzp6_ee_mumuH_HQQ_ecm365",
+    13:"wzp6_ee_mumuH_HVV_ecm365",
 
-    14:"wzp6_ee_QQH_HQQ_ecm240",
-    15:"wzp6_ee_ZheavyH_HQQ_ecm240",
-    16:"wzp6_ee_ZlightQH_HQQ_ecm240",
-    17:"wzp6_ee_QQH_HVV_ecm240",
-    18:"wzp6_ee_ZheavyH_HVV_ecm240",
-    19:"wzp6_ee_ZlightH_HVV_ecm240",
+    14:"wzp6_ee_QQH_HQQ_ecm365",
+    15:"wzp6_ee_ZheavyH_HQQ_ecm365",
+    16:"wzp6_ee_ZlightQH_HQQ_ecm365",
+    17:"wzp6_ee_QQH_HVV_ecm365",
+    18:"wzp6_ee_ZheavyH_HVV_ecm365",
+    19:"wzp6_ee_ZlightH_HVV_ecm365",
 
-    20:"wzp6_ee_QQH_Hgg_ecm240",
-    21:"wzp6_ee_ZheavyH_Hgg_ecm240",
-    22:"wzp6_ee_ZlightH_Hgg_ecm240",
+    20:"wzp6_ee_QQH_Hgg_ecm365",
+    21:"wzp6_ee_ZheavyH_Hgg_ecm365",
+    22:"wzp6_ee_ZlightH_Hgg_ecm365",
 
-    23:"wzp6_ee_LLH_Hgg_ecm240",
+    23:"wzp6_ee_LLH_Hgg_ecm365",
+
+    28:"p8_ee_ZQQ_ecm365",
+    29:"wzp6_ee_ZH_Znunu_HQQ_ecm365",
+    30:"wzp6_ee_ZH_Znunu_HVV_ecm365",
     #signals
-    24:"wzp6_ee_LLH_Htautau_ecm240",
+    24:"wzp6_ee_LLH_Htautau_ecm365",
 
-    25:"wzp6_ee_QQH_Htautau_ecm240",
-    26:"wzp6_ee_ZheavyH_Htautau_ecm240",
-    27:"wzp6_ee_ZlightH_Htautau_ecm240",
+    25:"wzp6_ee_QQH_Htautau_ecm365",
+    26:"wzp6_ee_ZheavyH_Htautau_ecm365",
+    27:"wzp6_ee_ZlightH_Htautau_ecm365",
 }
 
 list = {
@@ -1462,43 +1377,68 @@ list = {
     25:backgrounds_25,
     26:backgrounds_26,
     27:backgrounds_27,
+    28:backgrounds_28,
+    29:backgrounds_29,
+    30:backgrounds_30,
 }
+
+nunuH = [
+    'wzp6_ee_nunuH_Htautau_ecm365',
+    'wzp6_ee_nunuH_Hbb_ecm365',
+    'wzp6_ee_nunuH_Hcc_ecm365',
+    'wzp6_ee_nunuH_Hss_ecm365',
+    'wzp6_ee_nunuH_Hgg_ecm365',
+    'wzp6_ee_nunuH_HWW_ecm365',
+    'wzp6_ee_nunuH_HZZ_ecm365',
+]
+    
+nuenueH = [
+    'wzp6_ee_nuenueH_Htautau_ecm365',
+    'wzp6_ee_nuenueH_Hbb_ecm365',
+    'wzp6_ee_nuenueH_Hcc_ecm365',
+    'wzp6_ee_nuenueH_Hss_ecm365',
+    'wzp6_ee_nuenueH_Hgg_ecm365',
+    'wzp6_ee_nuenueH_HWW_ecm365',
+    'wzp6_ee_nuenueH_HZZ_ecm365',  
+]
+
+numunumuH = [
+    'wzp6_ee_numunumuH_Htautau_ecm365',
+    'wzp6_ee_numunumuH_Hbb_ecm365',
+    'wzp6_ee_numunumuH_Hcc_ecm365',
+    'wzp6_ee_numunumuH_Hss_ecm365',
+    'wzp6_ee_numunumuH_Hgg_ecm365',
+    'wzp6_ee_numunumuH_HWW_ecm365',
+    'wzp6_ee_numunumuH_HZZ_ecm365',  
+    ]
+
+legend_ZH = {
+    0:'wzp6_ee_ZH_Znunu_Htautau_ecm365',
+    1:'wzp6_ee_ZH_Znunu_Hbb_ecm365',
+    2:'wzp6_ee_ZH_Znunu_Hcc_ecm365',
+    3:'wzp6_ee_ZH_Znunu_Hss_ecm365',
+    4:'wzp6_ee_ZH_Znunu_Hgg_ecm365',
+    5:'wzp6_ee_ZH_Znunu_HWW_ecm365',
+    6:'wzp6_ee_ZH_Znunu_HZZ_ecm365', 
+}
+
+legend_VBF = {
+    0:'wzp6_ee_VBFnunu_Htautau_ecm365',
+    1:'wzp6_ee_VBFnunu_Hbb_ecm365',
+    2:'wzp6_ee_VBFnunu_Hcc_ecm365',
+    3:'wzp6_ee_VBFnunu_Hss_ecm365',
+    4:'wzp6_ee_VBFnunu_Hgg_ecm365',
+    5:'wzp6_ee_VBFnunu_HWW_ecm365',
+    6:'wzp6_ee_VBFnunu_HZZ_ecm365', 
+}
+
+################# VBF - ZH ##################
 
 for tag in TAG:
     for cat in CAT:
         for sub in SUBDIR:
 
-            CUT = CUTS[cat+sub]
-
-            if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
-                CUT = [
-                    #"selReco",
-                    #"selReco_100Coll150",
-                    #"selReco_100Coll150_115Rec160",
-                    #"selReco_100Coll150_115Rec160_2DR",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
-                ]
-
-            if "tag" in tag and "QQ" in cat and "HH" in sub:
-                CUT = [
-                    #"selReco",
-                    #"selReco_100Coll150",
-                    #"selReco_100Coll150_115Rec160",
-                    #"selReco_100Coll150_115Rec160_2DR",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
-                ]
+            CUT = CUTS[cat]
 
             for cut in CUT:
 
@@ -1507,9 +1447,95 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/final_241202_nojets/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
             
-                for num in range(1,28):
+                for i in range(len(nunuH)):
+                    output = f"{directory}{legend_ZH[i]}_{cut}_histo.root"
+                    #print(output)
+                    outFile = ROOT.TFile.Open(output, "RECREATE")
+                    check = False
+                    for var in variables:
+                        file = f"{directory}{nunuH[i]}_{cut}_histo.root"
+                        file2 = f"{directory}{numunumuH[i]}_{cut}_histo.root"
+                        hh, hh2 = None, None
+                        if file_exists(file):
+                            check = True
+                            tf = ROOT.TFile.Open(file, "READ")
+                            h = tf.Get(var)
+                            hh = copy.deepcopy(h)
+                            hh.SetDirectory(0)
+                            tf.Close()
+                            if file_exists(file2):
+                                tf2 = ROOT.TFile.Open(file2, "READ")
+                                h2 = tf2.Get(var)
+                                hh2 = copy.deepcopy(h2)
+                                hh2.SetDirectory(0)
+                                hh.Add(hh2, -3)
+                                tf2.Close()
+                            
+                        #write the histogram in the file   
+                        if check==True:
+                            outFile.cd()
+                            hh.Write()
+                            print(f"{tag}, {cat}, {sub}, {cut}, {i}, {var} ZH")
+
+                    outFile.Close()
+                    if check==False: #if nothing was written i don't want the file saved at all
+                        os.remove(output)
+
+                    # VBF
+                for i in range(len(nunuH)):
+                    output = f"{directory}{legend_VBF[i]}_{cut}_histo.root"
+                    #print(output)
+                    outFile = ROOT.TFile.Open(output, "RECREATE")
+                    check = False
+                    for var in variables:
+                        file1 = f"{directory}{nuenueH[i]}_{cut}_histo.root"
+                        file2 = f"{directory}{numunumuH[i]}_{cut}_histo.root"
+                        hh1, hh2 = None, None
+                        if file_exists(file1):
+                            check = True
+                            tf1 = ROOT.TFile.Open(file1, "READ")
+                            h1 = tf1.Get(var)
+                            hh1 = copy.deepcopy(h1)
+                            hh1.SetDirectory(0)
+                            tf1.Close()
+                            if file_exists(file2):
+                                tf2 = ROOT.TFile.Open(file2, "READ")
+                                h2 = tf2.Get(var)
+                                hh2 = copy.deepcopy(h2)
+                                hh2.SetDirectory(0)
+                                hh1.Add(hh2, -1)
+                                tf2.Close()
+                            
+                        #write the histogram in the file   
+                        if check==True:
+                            outFile.cd()
+                            hh1.Write()
+                            print(f"{tag}, {cat}, {sub}, {cut}, {i}, {var} VBF")
+                        
+                    outFile.Close()
+                    if check==False: #if nothing was written i don't want the file saved at all
+                        os.remove(output)
+
+#################### now add the decays #####################
+
+for tag in TAG:
+    for cat in CAT:
+        for sub in SUBDIR:
+
+            CUT = CUTS[cat]
+
+            for cut in CUT:
+
+                if "tag" in tag:
+                    variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat]
+                else: 
+                    variables = VARIABLES + LIST_VAR[cat] 
+
+                directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
+            
+                for num in range(1,31):
                     output = f"{directory}{legend[num]}_{cut}_histo.root"
                     #print(output)
                     outFile = ROOT.TFile.Open(output, "RECREATE")
@@ -1547,3 +1573,6 @@ for tag in TAG:
                     outFile.Close()
                     if check==False: #if nothing was written i don't want the file saved at all
                         os.remove(output)
+
+
+

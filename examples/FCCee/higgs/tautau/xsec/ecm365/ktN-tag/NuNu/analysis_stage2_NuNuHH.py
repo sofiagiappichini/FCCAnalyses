@@ -268,7 +268,7 @@ class RDFanalysis():
 
                 .Define("Visible_mass",     "return RecoH_mass;")
 
-                .Filter("RecoEmiss_e>100")
+                .Filter("RecoEmiss_e>180 ")
 
         )
         return df2

@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/ecm365/R5-explicit/stage2_280125/QQ/HH"
+inputDir = "/ceph/sgiappic/HiggsCP/ecm365/R5-explicit/stage2_280125_nocuts/QQ/LH"
 
-outputDir = "/ceph/sgiappic/HiggsCP/ecm365/R5-explicit/final_280125/QQ/HH"
+outputDir = "/ceph/sgiappic/HiggsCP/ecm365/R5-explicit/final_280125/QQ/LH"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 2.65e6 #pb^-1 #to be checked again for 240 gev
@@ -138,16 +138,13 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    #"selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100",
-    ##"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && QuarkTag_isTAU.at(0)<0.5 && QuarkTag_isTAU.at(1)<0.5",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100 && RecoEmiss_e>36",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>75 && RecoZ_mass<100 && RecoEmiss_e>36",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>75 && RecoZ_mass<100 && RecoEmiss_e>36 && RecoZ_p<52",
+    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
+    "selReco_100Coll150_115Rec160_1DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25)",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25) && RecoEmiss_costheta<0.98",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25) && RecoEmiss_costheta<0.98 && RecoZ_mass>70 && RecoZ_mass<100",
+     
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -156,12 +153,10 @@ cutLabels = {
     "selReco": "No additional selection",
     "selReco_100Coll150": "100<M_{collinear}<150 GeV",
     "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
-    "selReco_100Coll150_115Rec160_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, Quark #tau score<0.5",
-
+    "selReco_100Coll150_115Rec160_1DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25, |cos#theta_{miss}|<0.98",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25, |cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV",
 
 }
 
@@ -415,9 +410,9 @@ histoList = {
     "RecoEmiss_px":             {"name":"RecoEmiss_px",                  "title":"Reco missing energy p_{x} [GeV]",                    "bin":50,"xmin":-200 ,"xmax":200},
     "RecoEmiss_py":             {"name":"RecoEmiss_py",                  "title":"Reco missing energy p_{y} [GeV]",                    "bin":50,"xmin":-200 ,"xmax":200},
     "RecoEmiss_pz":             {"name":"RecoEmiss_pz",                  "title":"Reco missing energy p_{z} [GeV]",                    "bin":50,"xmin":-200 ,"xmax":200},
-    "RecoEmiss_pt":             {"name":"RecoEmiss_pt",                  "title":"Reco missing energy p_{T} [GeV]",                    "bin":60,"xmin":0 ,"xmax":120},
-    "RecoEmiss_p":              {"name":"RecoEmiss_p",                   "title":"Reco missing energy p [GeV]",                        "bin":60,"xmin":0 ,"xmax":120},
-    "RecoEmiss_e":              {"name":"RecoEmiss_e",                   "title":"Reco missing energy energy [GeV]",                   "bin":60,"xmin":0 ,"xmax":240},
+    "RecoEmiss_pt":             {"name":"RecoEmiss_pt",                  "title":"Reco missing energy p_{T} [GeV]",                    "bin":60,"xmin":0 ,"xmax":300},
+    "RecoEmiss_p":              {"name":"RecoEmiss_p",                   "title":"Reco missing energy p [GeV]",                        "bin":60,"xmin":0 ,"xmax":300},
+    "RecoEmiss_e":              {"name":"RecoEmiss_e",                   "title":"Reco missing energy energy [GeV]",                   "bin":60,"xmin":0 ,"xmax":365},
     "RecoEmiss_eta":            {"name":"RecoEmiss_eta",                 "title":"Reco missing energy #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoEmiss_phi":            {"name":"RecoEmiss_phi",                 "title":"Reco missing energy #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoEmiss_theta":          {"name":"RecoEmiss_theta",               "title":"Reco missing energy #theta",                         "bin":16, "xmin":0,"xmax":3.2},

@@ -50,13 +50,23 @@ def get_combined_unc(name, procs, bkg_procs):
     line += "\n"
     return line
 
+def get_combined_unc_v2(name, sub_proc, procs, bkg_procs):
+    line = f"unc_{name}      lnN     "
+    for p in procs:
+        if p in sub_proc and p in bkg_procs:
+            line += f"{'1.20':{' '}{'<'}{lspace}}"
+        else:
+            line += f"{'-':{' '}{'<'}{lspace}}"
+    line += "\n"
+    return line
+
 os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
 os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
 os.system("cmsenv")
 
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/combine/old_cuts_lnN_011325/"
+outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm365/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -75,18 +85,9 @@ CAT = [
     "NuNu",
 ]
 CUTS = {
-    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
-    #'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
-    #'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
-    #'QQ/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
-    #'QQ/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
-    #'QQ/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
-    #'NuNu/HH':"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
-    #'NuNu/LH':"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
-    #'NuNu/LL':"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
+    'LL':"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100",
+    'QQ':"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100",
+    'NuNu':"selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1",
 }
 VARIABLE = {
     'LL':"Recoil",
@@ -95,69 +96,75 @@ VARIABLE = {
     }
 
 backgrounds_all = [
-    "p8_ee_WW_ecm240",
-    "p8_ee_Zqq_ecm240",
-    "p8_ee_ZZ_ecm240",
+    "p8_ee_WW_ecm365",
+    "p8_ee_ZQQ_ecm365",
+    "p8_ee_ZZ_ecm365",
+    'p8_ee_tt_ecm365',
 
-    "wzp6_ee_LL_ecm240",
-    "wzp6_ee_tautau_ecm240",
+    "wzp6_ee_LL_ecm365",
+    "wzp6_ee_tautau_ecm365",
 
-    "wzp6_ee_nuenueZ_ecm240",
+    "wzp6_ee_nuenueZ_ecm365",
 
-    "wzp6_ee_egamma_eZ_ZLL_ecm240",
+    "wzp6_ee_egamma_eZ_ZLL_ecm365",
     
-    "wzp6_ee_gaga_LL_60_ecm240",
-    "wzp6_ee_gaga_tautau_60_ecm240",
+    "wzp6_ee_gaga_LL_60_ecm365",
+    "wzp6_ee_gaga_tautau_60_ecm365",
 
-    "wzp6_ee_tautauH_Htautau_ecm240",
-    "wzp6_ee_tautauH_HQQ_ecm240",
-    "wzp6_ee_tautauH_Hgg_ecm240",
-    "wzp6_ee_tautauH_HVV_ecm240",
+    "wzp6_ee_tautauH_Htautau_ecm365",
+    "wzp6_ee_tautauH_HQQ_ecm365",
+    "wzp6_ee_tautauH_Hgg_ecm365",
+    "wzp6_ee_tautauH_HVV_ecm365",
 
-    "wzp6_ee_nunuH_Htautau_ecm240",
-    "wzp6_ee_nunuH_HQQ_ecm240",
-    "wzp6_ee_nunuH_Hgg_ecm240",
-    "wzp6_ee_nunuH_HVV_ecm240",
+    #"wzp6_ee_nunuH_Htautau_ecm365",
+    "wzp6_ee_VBFnunu_HQQ_ecm365",
+    "wzp6_ee_VBFnunu_Hgg_ecm365",
+    "wzp6_ee_VBFnunu_HVV_ecm365",
 
-    "wzp6_ee_LLH_Htautau_ecm240",
-    "wzp6_ee_LLH_HQQ_ecm240",
-    "wzp6_ee_LLH_Hgg_ecm240",
-    "wzp6_ee_LLH_HVV_ecm240",
+    "wzp6_ee_ZH_Znunu_HQQ_ecm365",
+    "wzp6_ee_ZH_Znunu_Hgg_ecm365",
+    "wzp6_ee_ZH_Znunu_HVV_ecm365",
 
-    "wzp6_ee_QQH_Htautau_ecm240",
-    "wzp6_ee_QQH_HQQ_ecm240",
-    "wzp6_ee_QQH_Hgg_ecm240",
-    "wzp6_ee_QQH_HVV_ecm240",
+    #"wzp6_ee_LLH_Htautau_ecm365",
+    "wzp6_ee_LLH_HQQ_ecm365",
+    "wzp6_ee_LLH_Hgg_ecm365",
+    "wzp6_ee_LLH_HVV_ecm365",
 
-    #"wzp6_ee_eeH_Htautau_ecm240",
-    #"wzp6_ee_eeH_HQQ_ecm240",
-    #"wzp6_ee_eeH_Hgg_ecm240",
-    #"wzp6_ee_eeH_HVV_ecm240",
+    #"wzp6_ee_QQH_Htautau_ecm365",
+    "wzp6_ee_QQH_HQQ_ecm365",
+    "wzp6_ee_QQH_Hgg_ecm365",
+    "wzp6_ee_QQH_HVV_ecm365",
 
-    #"wzp6_ee_mumuH_Htautau_ecm240",
-    #"wzp6_ee_mumuH_HQQ_ecm240",
-    #"wzp6_ee_mumuH_Hgg_ecm240",
-    #"wzp6_ee_mumuH_HVV_ecm240",
+    #"wzp6_ee_eeH_Htautau_ecm365",
+    #"wzp6_ee_eeH_HQQ_ecm365",
+    #"wzp6_ee_eeH_Hgg_ecm365",
+    #"wzp6_ee_eeH_HVV_ecm365",
 
-    #"wzp6_ee_ZheavyH_Htautau_ecm240",
-    #"wzp6_ee_ZheavyH_HQQ_ecm240",
-    #"wzp6_ee_ZheavyH_Hgg_ecm240",
-    #"wzp6_ee_ZheavyH_HVV_ecm240",
+    #"wzp6_ee_mumuH_Htautau_ecm365",
+    #"wzp6_ee_mumuH_HQQ_ecm365",
+    #"wzp6_ee_mumuH_Hgg_ecm365",
+    #"wzp6_ee_mumuH_HVV_ecm365",
 
-    #"wzp6_ee_ZlightH_Htautau_ecm240",
-    #"wzp6_ee_ZlightH_HQQ_ecm240",
-    #"wzp6_ee_ZlightH_Hgg_ecm240",
-    #"wzp6_ee_ZlightH_HVV_ecm240",
+    #"wzp6_ee_ZheavyH_Htautau_ecm365",
+    #"wzp6_ee_ZheavyH_HQQ_ecm365",
+    #"wzp6_ee_ZheavyH_Hgg_ecm365",
+    #"wzp6_ee_ZheavyH_HVV_ecm365",
+
+    #"wzp6_ee_ZlightH_Htautau_ecm365",
+    #"wzp6_ee_ZlightH_HQQ_ecm365",
+    #"wzp6_ee_ZlightH_Hgg_ecm365",
+    #"wzp6_ee_ZlightH_HVV_ecm365",
 ]
 
 signals = [
-    #'wzp6_ee_ZheavyH_Htautau_ecm240',
-    #'wzp6_ee_ZlightH_Htautau_ecm240',
-    'wzp6_ee_QQH_Htautau_ecm240',
-    #'wzp6_ee_eeH_Htautau_ecm240',
-    #'wzp6_ee_mumuH_Htautau_ecm240',
-    'wzp6_ee_LLH_Htautau_ecm240',
-    'wzp6_ee_nunuH_Htautau_ecm240',
+    #'wzp6_ee_ZheavyH_Htautau_ecm365',
+    #'wzp6_ee_ZlightH_Htautau_ecm365',
+    'wzp6_ee_QQH_Htautau_ecm365',
+    #'wzp6_ee_eeH_Htautau_ecm365',
+    #'wzp6_ee_mumuH_Htautau_ecm365',
+    'wzp6_ee_LLH_Htautau_ecm365',
+    'wzp6_ee_VBFnunu_Htautau_ecm365',
+    'wzp6_ee_ZH_Znunu_Htautau_ecm365',
 ]
 
 make_card = True
@@ -181,15 +188,7 @@ if make_card:
                 dc += f"kmax    * number of nuisance parameters\n"
                 dc += f"--------------------------------------------------------------------------------\n"
                 
-                directory = DIRECTORY + tag + "/final_241202/" + cat  + "/" + sub + "/"
-
-                #if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
-                #    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54"
-                #if "tag" in tag and "QQ" in cat and "HH" in sub:
-                #    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52"
-
-                #index = f"{cat}/{sub}"
-                #cut = CUTS[index]
+                directory = DIRECTORY + tag + "/final_280125/" + cat  + "/" + sub + "/"
 
                 cut = CUTS[cat]
                 print(cut, tag, cat, sub)
@@ -290,24 +289,32 @@ if make_card:
                 dc += "\n\n"'''
 
 
-                if any("nunuH" in proc for proc in bkg_procs):
-                    dc += get_combined_unc("nunuH", procs, bkg_procs)
-                if any("LLH" in proc for proc in bkg_procs):
-                    dc += get_combined_unc("LLH", procs, bkg_procs)
-                if any("QQH" in proc for proc in bkg_procs):
-                    dc += get_combined_unc("QQH", procs, bkg_procs)
-                if any("tautauH" in proc for proc in bkg_procs):
-                    dc += get_combined_unc("tautauH", procs, bkg_procs)
+                #combined uncertainties
+                if any("H_H" in proc for proc in bkg_procs):
+                    dc += get_combined_unc("H_H", procs, bkg_procs)
+
+                Z_proc = []
                 for proc in bkg_procs:
-                    if all(substring not in proc for substring in ["nunuH", "LLH", "QQH", "tautauH"]):
+                    if proc in ["wzp6_ee_LL_ecm240", "wzp6_ee_tautau_ecm240","p8_ee_Zqq_ecm240"]:
+                        Z_proc.append(proc)
+                        print(proc)
+                dc += get_combined_unc_v2("Z", Z_proc, procs, bkg_procs)        
+
+                #individual uncertainties
+                for proc in bkg_procs:
+                    if all(substring not in proc for substring in ["nunuH", "LLH", "QQH", "tautauH", "_ee_tautau_", "_ee_LL_", "_ee_Zqq_"]):
                         dc += f"unc_{proc}      lnN     "
                         for p in procs:
-                            if p == proc:
-                                dc += f"{'1.20':{' '}{'<'}{lspace}}"
+                            if p == proc and ('p8_ee_ZZ_ecm240' in proc or 'p8_ee_WW_ecm240' in proc):
+                                dc += f"{'1.02':<{lspace}}"
+                            elif p == proc:
+                                dc += f"{'1.20':<{lspace}}"
                             else:
-                                dc += f"{'-':{' '}{'<'}{lspace}}"
+                                dc += f"{'-':<{lspace}}"
                         dc += "\n"
-                    dc += "\n\n"
+
+                dc += "\n\n" 
+
 
                 dc += "* autoMCStats 1 1"
 

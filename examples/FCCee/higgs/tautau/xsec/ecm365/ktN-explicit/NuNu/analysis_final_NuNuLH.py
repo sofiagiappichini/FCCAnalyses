@@ -1,5 +1,5 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/ecm365/ktN-explicit/stage2_280125/NuNu/LH"
+inputDir = "/ceph/sgiappic/HiggsCP/ecm365/ktN-explicit/stage2_280125_nocuts/NuNu/LH"
 
 outputDir = "/ceph/sgiappic/HiggsCP/ecm365/ktN-explicit/final_280125/NuNu/LH"
 
@@ -138,27 +138,25 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    #"selReco_100Me": "RecoEmiss_e>100",
-    #"selReco_100Me_TauDPhi3": "RecoEmiss_e>100 && abs(Tau_DPhi)<3",
-    #"selReco_100Me_TauDPhi3_2DR": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
-    #"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "RecoEmiss_e>140 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
-    #"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1": "RecoEmiss_e>140 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.94 && abs(RecoEmiss_y)<1",
-    
+    "selReco_180Me": "RecoEmiss_e>180",
+    "selReco_180Me_TauDPhi3": "RecoEmiss_e>180 && abs(Tau_DPhi)<3",
+    "selReco_180Me_TauDPhi3_1DR": "RecoEmiss_e>180 && abs(Tau_DPhi)<3 && Tau_DR>1",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25": "RecoEmiss_e>180 && abs(Tau_DPhi)<3 && Tau_DR>1 && Tau_cos<0.25",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98": "RecoEmiss_e>180 && abs(Tau_DPhi)<3 && Tau_DR>1 && Tau_cos<0.25 && RecoEmiss_costheta<0.98",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1": "RecoEmiss_e>180 && abs(Tau_DPhi)<3 && Tau_DR>1 && Tau_cos<0.25 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
+  
 }
 
 # Dictionary for prettier names of cuts (optional)
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
 cutLabels = {
     "selReco": "No additional selection",
-    "selReco_100Me": "E_{miss}>100 GeV",
-    "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
-    "selReco_100Me_TauDPhi3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
-    "selReco_100Me_TauDPhi3_2DR_cos0": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98}",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<0}, |cos#theta_{miss}|<0.98} && |y_{miss}|<1",
+    "selReco_180Me": "E_{miss}>180 GeV",
+    "selReco_180Me_TauDPhi3": "E_{miss}>180 GeV, |#Delta#phi_{#tau}|<3",
+    "selReco_180Me_TauDPhi3_1DR": "E_{miss}>180 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>1",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25": "E_{miss}>180 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25}",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98": "E_{miss}>180 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25}, |cos#theta_{miss}|<0.98}",
+    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1": "E_{miss}>180 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25}, |cos#theta_{miss}|<0.98} && |y_{miss}|<1",
 }
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
@@ -411,9 +409,9 @@ histoList = {
     "RecoEmiss_px":             {"name":"RecoEmiss_px",                  "title":"Reco missing energy p_{x} [GeV]",                    "bin":50,"xmin":-200 ,"xmax":200},
     "RecoEmiss_py":             {"name":"RecoEmiss_py",                  "title":"Reco missing energy p_{y} [GeV]",                    "bin":50,"xmin":-200 ,"xmax":200},
     "RecoEmiss_pz":             {"name":"RecoEmiss_pz",                  "title":"Reco missing energy p_{z} [GeV]",                    "bin":50,"xmin":-200 ,"xmax":200},
-    "RecoEmiss_pt":             {"name":"RecoEmiss_pt",                  "title":"Reco missing energy p_{T} [GeV]",                    "bin":60,"xmin":0 ,"xmax":120},
-    "RecoEmiss_p":              {"name":"RecoEmiss_p",                   "title":"Reco missing energy p [GeV]",                        "bin":60,"xmin":0 ,"xmax":120},
-    "RecoEmiss_e":              {"name":"RecoEmiss_e",                   "title":"Reco missing energy energy [GeV]",                   "bin":60,"xmin":0 ,"xmax":240},
+    "RecoEmiss_pt":             {"name":"RecoEmiss_pt",                  "title":"Reco missing energy p_{T} [GeV]",                    "bin":60,"xmin":0 ,"xmax":300},
+    "RecoEmiss_p":              {"name":"RecoEmiss_p",                   "title":"Reco missing energy p [GeV]",                        "bin":60,"xmin":0 ,"xmax":300},
+    "RecoEmiss_e":              {"name":"RecoEmiss_e",                   "title":"Reco missing energy energy [GeV]",                   "bin":60,"xmin":0 ,"xmax":365},
     "RecoEmiss_eta":            {"name":"RecoEmiss_eta",                 "title":"Reco missing energy #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoEmiss_phi":            {"name":"RecoEmiss_phi",                 "title":"Reco missing energy #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoEmiss_theta":          {"name":"RecoEmiss_theta",               "title":"Reco missing energy #theta",                         "bin":16, "xmin":0,"xmax":3.2},
@@ -741,4 +739,6 @@ histoList = {
     "Tau_DR":                   {"name":"Tau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
     "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
     "Tau_DEta":                             {"name":"Tau_DEta",           "title":"Reco di-#tau #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
+
+    "Visible_mass":               {"name":"Visible_mass",               "title":"Visible mass",                   "bin":75, "xmin":0 ,"xmax":200},
 }

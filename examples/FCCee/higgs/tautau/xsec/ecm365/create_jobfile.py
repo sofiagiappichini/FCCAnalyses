@@ -34,7 +34,7 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "longlunch"\n'
+    cfg += '+JobFlavour      = "workday"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -96,6 +96,13 @@ def create_subjob_script(local_dir: str,
                 g = ''
                 j+=1
     print("done")
+
+def submit_jobs(output_dir: str):
+    #for process in processList:
+        dir = output_dir #+ process 
+        num_files = len(os.listdir(dir))-1
+        os.system(f"chmod -R +x {dir}")
+        os.system(f"condor_submit {dir}/job_submit.cfg")
              
 
 processList = {
@@ -204,10 +211,10 @@ processList = {
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
 inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/'
-output = '/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/R5-explicit/submission/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/ecm365/R5-explicit/stage2_280125/' ##output directory of stage2 samples
-localDir_path = '/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/R5-explicit/'
-sourceDir = '/work/awiedl/FCCAnalyses/'
+output = '/work/sgiappic/HTCondor/stage2_ecm365_cut/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/sgiappic/HiggsCP/ecm365/' ##output directory of stage2 samples
+localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/'
+sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage2_'
 SUBDIR = [
     'LL',
@@ -215,24 +222,33 @@ SUBDIR = [
     'HH',
 ]
 CAT = [
-    "QQ",
-    "LL",
+    #"QQ",
+    #"LL",
     "NuNu",
 ]
-nCPUS = 4
+TAG = [
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
+    "ktN-tag",
+]
+nCPUS = 1
 Memory = 10000
-for cat in CAT:
-    for sub in SUBDIR:
-        if "BDT" in localDir_path:
-            localDir = localDir_path
-        else:
-            localDir = localDir_path + cat + "/"
-        if "stage1" in inputDir_path:
-            inputDir = inputDir_path 
-        else:
-            inputDir = inputDir_path + cat + "/" + sub + "/"
-        outputDir = outputDir_path + cat + "/" + sub + "/"
-        Filename = Filename_path + cat + sub + ".py"
-        create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output, outputDir, Filename)
+for tag in TAG:
+    output_condor = output + tag + "/"
+    for cat in CAT:
+        for sub in SUBDIR:
+            if "BDT" in localDir_path:
+                localDir = localDir_path
+            else:
+                localDir = localDir_path + tag + "/" + cat + "/"
+            if "stage1" in inputDir_path:
+                inputDir = inputDir_path 
+            else:
+                inputDir = inputDir_path + cat + "/" + sub + "/"
+            outputDir = outputDir_path + tag + "/stage2_280125_cut/" + cat + "/" + sub + "/"
+            Filename = Filename_path + cat + sub + ".py"
+            create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output_condor, outputDir, Filename)
 
-create_condor_config(nCPUS, Memory, output)
+    create_condor_config(nCPUS, Memory, output_condor)
+    submit_jobs(output_condor)
