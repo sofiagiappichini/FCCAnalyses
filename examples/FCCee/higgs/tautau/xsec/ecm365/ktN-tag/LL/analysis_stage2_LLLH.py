@@ -362,7 +362,7 @@ class RDFanalysis():
                 .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
                 .Define("RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(RecoZLead_phi, RecoZSub_phi)")
 
-                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,1.,240.)")
+                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,1.,365.)")
                 .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
 
                 .Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")
@@ -371,6 +371,8 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
+
+                #.Filter("Collinear_mass>100 && Collinear_mass<150")
 
         )
         return df2

@@ -318,7 +318,7 @@ class RDFanalysis():
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
 
-                #.Filter("Collinear_mass>100 && Collinear_mass<150")
+                .Filter("Collinear_mass>100 && Collinear_mass<150")
 
         )
         return df2

@@ -13,92 +13,75 @@ color = ['#8C0303', '#D04747', '#03028D', '#4E6BD3']
 fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(25, 25))
 
 replacement_sig = [
-    'wzp6_ee_mumuH_Htautau_ecm240',
-    'wzp6_ee_qqH_Htautau_ecm240',
-    'wzp6_ee_ssH_Htautau_ecm240',
-    'wzp6_ee_nunuH_Htautau_ecm240',
-    'wzp6_ee_bbH_Htautau_ecm240',
-    'wzp6_ee_ccH_Htautau_ecm240',
-    'wzp6_ee_eeH_Htautau_ecm240'
+    #'wzp6_ee_ZheavyH_Htautau_ecm365',
+    #'wzp6_ee_ZlightH_Htautau_ecm365',
+    'wzp6_ee_QQH_Htautau_ecm365',
+    #'wzp6_ee_eeH_Htautau_ecm365',
+    #'wzp6_ee_mumuH_Htautau_ecm365',
+    'wzp6_ee_LLH_Htautau_ecm365',
+    'wzp6_ee_VBFnunu_Htautau_ecm365',
+    'wzp6_ee_ZH_Znunu_Htautau_ecm365',
 ]
 
 replacement_bkgs = [
-    'p8_ee_WW_ecm240',
-    'p8_ee_Zqq_ecm240',
-    'p8_ee_ZZ_ecm240',
+    "p8_ee_WW_ecm365",
+    "p8_ee_ZQQ_ecm365",
+    "p8_ee_ZZ_ecm365",
+    'p8_ee_tt_ecm365',
+
+    "wzp6_ee_LL_ecm365",
+    "wzp6_ee_tautau_ecm365",
+
+    "wzp6_ee_nuenueZ_ecm365",
+
+    "wzp6_ee_egamma_eZ_ZLL_ecm365",
     
-    'wzp6_ee_tautau_ecm240',
-    'wzp6_ee_mumu_ecm240',
-    'wzp6_ee_ee_Mee_30_150_ecm240',
+    "wzp6_ee_gaga_LL_60_ecm365",
+    "wzp6_ee_gaga_tautau_60_ecm365",
 
-    'wzp6_ee_tautauH_Htautau_ecm240',
-    'wzp6_ee_tautauH_Hbb_ecm240',
-    'wzp6_ee_tautauH_Hcc_ecm240',
-    'wzp6_ee_tautauH_Hss_ecm240',
-    'wzp6_ee_tautauH_Hgg_ecm240',
-    'wzp6_ee_tautauH_HWW_ecm240',
-    'wzp6_ee_tautauH_HZZ_ecm240',
+    "wzp6_ee_tautauH_Htautau_ecm365",
+    "wzp6_ee_tautauH_HQQ_ecm365",
+    "wzp6_ee_tautauH_Hgg_ecm365",
+    "wzp6_ee_tautauH_HVV_ecm365",
 
-    'wzp6_egamma_eZ_Zmumu_ecm240',
-    'wzp6_egamma_eZ_Zee_ecm240',
-    'wzp6_gammae_eZ_Zmumu_ecm240',
-    'wzp6_gammae_eZ_Zee_ecm240',
+    #"wzp6_ee_nunuH_Htautau_ecm365",
+    "wzp6_ee_VBFnunu_HQQ_ecm365",
+    "wzp6_ee_VBFnunu_Hgg_ecm365",
+    "wzp6_ee_VBFnunu_HVV_ecm365",
 
-    'wzp6_gaga_tautau_60_ecm240',
-    'wzp6_gaga_mumu_60_ecm240',
-    'wzp6_gaga_ee_60_ecm240',
+    "wzp6_ee_ZH_Znunu_HQQ_ecm365",
+    "wzp6_ee_ZH_Znunu_Hgg_ecm365",
+    "wzp6_ee_ZH_Znunu_HVV_ecm365",
 
-    'wzp6_ee_nuenueZ_ecm240',
+    #"wzp6_ee_LLH_Htautau_ecm365",
+    "wzp6_ee_LLH_HQQ_ecm365",
+    "wzp6_ee_LLH_Hgg_ecm365",
+    "wzp6_ee_LLH_HVV_ecm365",
 
-    'wzp6_ee_nunuH_Hbb_ecm240',
-    'wzp6_ee_nunuH_Hcc_ecm240',
-    'wzp6_ee_nunuH_Hss_ecm240',
-    'wzp6_ee_nunuH_Hgg_ecm240',
-    'wzp6_ee_nunuH_HWW_ecm240',
-    'wzp6_ee_nunuH_HZZ_ecm240',
+    #"wzp6_ee_QQH_Htautau_ecm365",
+    "wzp6_ee_QQH_HQQ_ecm365",
+    "wzp6_ee_QQH_Hgg_ecm365",
+    "wzp6_ee_QQH_HVV_ecm365",
 
-    'wzp6_ee_eeH_Hbb_ecm240',
-    'wzp6_ee_eeH_Hcc_ecm240',
-    'wzp6_ee_eeH_Hss_ecm240',
-    'wzp6_ee_eeH_Hgg_ecm240',
-    'wzp6_ee_eeH_HWW_ecm240',
-    'wzp6_ee_eeH_HZZ_ecm240',
+    #"wzp6_ee_eeH_Htautau_ecm365",
+    #"wzp6_ee_eeH_HQQ_ecm365",
+    #"wzp6_ee_eeH_Hgg_ecm365",
+    #"wzp6_ee_eeH_HVV_ecm365",
 
-    'wzp6_ee_mumuH_Hbb_ecm240',
-    'wzp6_ee_mumuH_Hcc_ecm240',
-    'wzp6_ee_mumuH_Hss_ecm240',
-    'wzp6_ee_mumuH_Hgg_ecm240',
-    'wzp6_ee_mumuH_HWW_ecm240',
-    'wzp6_ee_mumuH_HZZ_ecm240',
+    #"wzp6_ee_mumuH_Htautau_ecm365",
+    #"wzp6_ee_mumuH_HQQ_ecm365",
+    #"wzp6_ee_mumuH_Hgg_ecm365",
+    #"wzp6_ee_mumuH_HVV_ecm365",
 
-    'wzp6_ee_bbH_Hbb_ecm240',
-    'wzp6_ee_bbH_Hcc_ecm240',
-    'wzp6_ee_bbH_Hss_ecm240',
-    'wzp6_ee_bbH_Hgg_ecm240',
-    'wzp6_ee_bbH_HWW_ecm240',
-    'wzp6_ee_bbH_HZZ_ecm240',
+    #"wzp6_ee_ZheavyH_Htautau_ecm365",
+    #"wzp6_ee_ZheavyH_HQQ_ecm365",
+    #"wzp6_ee_ZheavyH_Hgg_ecm365",
+    #"wzp6_ee_ZheavyH_HVV_ecm365",
 
-    'wzp6_ee_ccH_Hbb_ecm240',
-    'wzp6_ee_ccH_Hcc_ecm240',
-    'wzp6_ee_ccH_Hss_ecm240',
-    'wzp6_ee_ccH_Hgg_ecm240',
-    'wzp6_ee_ccH_HWW_ecm240',
-    'wzp6_ee_ccH_HZZ_ecm240',
-
-    'wzp6_ee_ssH_Hbb_ecm240',
-    'wzp6_ee_ssH_Hcc_ecm240',
-    'wzp6_ee_ssH_Hss_ecm240',
-    'wzp6_ee_ssH_Hgg_ecm240',
-    'wzp6_ee_ssH_HWW_ecm240',
-    'wzp6_ee_ssH_HZZ_ecm240',
-
-    'wzp6_ee_qqH_Hbb_ecm240',
-    'wzp6_ee_qqH_Hcc_ecm240',
-    'wzp6_ee_qqH_Hss_ecm240',
-    'wzp6_ee_qqH_Hgg_ecm240',
-    'wzp6_ee_qqH_HWW_ecm240',
-    'wzp6_ee_qqH_HZZ_ecm240',
-
+    #"wzp6_ee_ZlightH_Htautau_ecm365",
+    #"wzp6_ee_ZlightH_HQQ_ecm365",
+    #"wzp6_ee_ZlightH_Hgg_ecm365",
+    #"wzp6_ee_ZlightH_HVV_ecm365",
 ]
 
 # Define the tree name
@@ -108,9 +91,9 @@ tree_name = "events"
 # automatic checks also prompt variable to get more accurate values
 #leaf_name = "TauTag_R5_isTAU"
 
-leaf_name = "RecoZ_p"
+leaf_name = "RecoEmiss_e"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 
 TAG = [
     "R5-explicit",
@@ -126,24 +109,24 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    "QQ",
-    "LL",
-    #"NuNu",
+    #"QQ",
+    #"LL",
+    "NuNu",
 ]
 
 CUTS = {
-    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
+    'LL':"selReco_100Coll150",
+    'QQ':"selReco_100Coll150",
+    'NuNu':"selReco",
 }
 
-output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/" +leaf_name+ "_optimization_lower.txt"
+output_file = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/" +leaf_name+ "_optimization_lower.txt"
 
 for a, tag in enumerate(TAG):
     for j, cat in enumerate(CAT):
         for k, sub in enumerate(SUBDIR):
 
-            dir = DIRECTORY + tag + "/final_241202/" + cat + "/" + sub + "/"
+            dir = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
 
             # book array for background entries
             entries_bkg_tag = []
@@ -270,10 +253,10 @@ for a, tag in enumerate(TAG):
                     p.append(0)
                 
             s_max = np.max(s)
-            index = s.index(s_max)*(2)
+            index = s.index(s_max)*(6.1)
 
             p_max = np.max(p)
-            indexp = p.index(p_max)*(2)
+            indexp = p.index(p_max)*(6.1)
 
             #significance = (entries_sig_exc / np.sqrt(entries_bkg_exc))
             #purity = ((entries_sig_exc / (entries_bkg_exc + entries_sig_exc)))
@@ -302,7 +285,7 @@ for a, tag in enumerate(TAG):
             row = k % 3
             col = j % 2
 
-            x = np.arange(0, 150, 2).tolist()
+            x = np.arange(0, 365, 6.1).tolist()
 
             axs[row][col].plot(x, s, linestyle='-', color=color[a], label=f"{tag} significance")
             #axs[row][col].plot(x, p, linestyle='--', color=color[a], label=f"{tag} purity")
@@ -320,4 +303,4 @@ for a, tag in enumerate(TAG):
             #axs[row][col].set_yscale('log')
 
 plt.tight_layout()
-plt.savefig(f'/web/sgiappic/public_html/Higgs_xsec/cut_optimizer_{leaf_name}_lower.png', format='png', dpi=330)
+plt.savefig(f'/web/sgiappic/public_html/Higgs_xsec/ecm365/cut_optimizer_{leaf_name}_lower.png', format='png', dpi=330)

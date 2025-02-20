@@ -28,16 +28,23 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    'EWonly_taudecay_2Pi2Nu':{},
-    'cehim_m1_taudecay_2Pi2Nu':{},
-    'cehim_p1_taudecay_2Pi2Nu':{},
-    'cehre_m1_taudecay_2Pi2Nu':{},
-    'cehre_p1_taudecay_2Pi2Nu':{},
+    #'EWonly_taudecay_2Pi2Nu':{},
+    #'cehim_m1_taudecay_2Pi2Nu':{},
+    #'cehim_p1_taudecay_2Pi2Nu':{},
+    #'cehre_m1_taudecay_2Pi2Nu':{},
+    #'cehre_p1_taudecay_2Pi2Nu':{},
 
-    'cehim_m5_taudecay_2Pi2Nu':{},
-    'cehim_p5_taudecay_2Pi2Nu':{},
-    'cehre_m5_taudecay_2Pi2Nu':{},
-    'cehre_p5_taudecay_2Pi2Nu':{},
+    #'cehim_m5_taudecay_2Pi2Nu':{},
+    #'cehim_p5_taudecay_2Pi2Nu':{},
+    #'cehre_m5_taudecay_2Pi2Nu':{},
+    #'cehre_p5_taudecay_2Pi2Nu':{},
+
+    'cehim_p0p1_taudecay_2Pi2Nu':{},
+    'cehim_m0p1_taudecay_2Pi2Nu':{},
+    'cehre_m0p1_taudecay_2Pi2Nu':{},
+    'cehre_p0p1_taudecay_2Pi2Nu':{},
+    'cehim_p10_taudecay_2Pi2Nu':{},
+    'cehim_m10_taudecay_2Pi2Nu':{},
 
     #'cehim_m2_taudecay_2Pi2Nu':{},
     #'cehim_p2_taudecay_2Pi2Nu':{},
@@ -76,6 +83,12 @@ procDictAdd = {
     'cehim_p2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.8639785901564145e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'cehre_m2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 7.264271533677142e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'cehre_p2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 4.461910656050512e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_p0p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.777551779024773e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_m0p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.778338822008795e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_m0p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.8484197952269994e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_p0p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.708301892822401e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_p10_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 7.89816811069392e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_m10_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 7.89562565428267e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
 }
 

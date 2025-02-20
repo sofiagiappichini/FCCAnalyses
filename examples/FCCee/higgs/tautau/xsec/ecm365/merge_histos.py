@@ -34,21 +34,21 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 TAG = [
-    "R5-explicit",
-    "R5-tag",
-    "ktN-explicit",
+    #"R5-explicit",
+    #"R5-tag",
+    #"ktN-explicit",
     "ktN-tag",
 ]
 SUBDIR = [
     'LL',
     'LH',
-    'HH',
+    #'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LL = [
@@ -1448,42 +1448,8 @@ for tag in TAG:
                     variables = VARIABLES + LIST_VAR[cat] 
 
                 directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
-            
-                for i in range(len(nunuH)):
-                    output = f"{directory}{legend_ZH[i]}_{cut}_histo.root"
-                    #print(output)
-                    outFile = ROOT.TFile.Open(output, "RECREATE")
-                    check = False
-                    for var in variables:
-                        file = f"{directory}{nunuH[i]}_{cut}_histo.root"
-                        file2 = f"{directory}{numunumuH[i]}_{cut}_histo.root"
-                        hh, hh2 = None, None
-                        if file_exists(file):
-                            check = True
-                            tf = ROOT.TFile.Open(file, "READ")
-                            h = tf.Get(var)
-                            hh = copy.deepcopy(h)
-                            hh.SetDirectory(0)
-                            tf.Close()
-                            if file_exists(file2):
-                                tf2 = ROOT.TFile.Open(file2, "READ")
-                                h2 = tf2.Get(var)
-                                hh2 = copy.deepcopy(h2)
-                                hh2.SetDirectory(0)
-                                hh.Add(hh2, -3)
-                                tf2.Close()
-                            
-                        #write the histogram in the file   
-                        if check==True:
-                            outFile.cd()
-                            hh.Write()
-                            print(f"{tag}, {cat}, {sub}, {cut}, {i}, {var} ZH")
 
-                    outFile.Close()
-                    if check==False: #if nothing was written i don't want the file saved at all
-                        os.remove(output)
-
-                    # VBF
+                # VBF = nuenueH - numunumuH
                 for i in range(len(nunuH)):
                     output = f"{directory}{legend_VBF[i]}_{cut}_histo.root"
                     #print(output)
@@ -1517,6 +1483,51 @@ for tag in TAG:
                     outFile.Close()
                     if check==False: #if nothing was written i don't want the file saved at all
                         os.remove(output)
+
+                # ZH = nunuH - VBF = nunuH -nuenueH + numunumuH
+                for i in range(len(nunuH)):
+                    output = f"{directory}{legend_ZH[i]}_{cut}_histo.root"
+                    #print(output)
+                    outFile = ROOT.TFile.Open(output, "RECREATE")
+                    check = False
+                    for var in variables:
+                        file = f"{directory}{nunuH[i]}_{cut}_histo.root"
+                        file1 = f"{directory}{nuenueH[i]}_{cut}_histo.root"
+                        file2 = f"{directory}{numunumuH[i]}_{cut}_histo.root"
+                        hh, hh1, hh2 = None, None, None
+                        if file_exists(file):
+                            check = True
+                            tf = ROOT.TFile.Open(file, "READ")
+                            h = tf.Get(var)
+                            hh = copy.deepcopy(h)
+                            hh.SetDirectory(0)
+                            tf.Close()
+                            if file_exists(file1):
+                                tf1 = ROOT.TFile.Open(file1, "READ")
+                                h1 = tf1.Get(var)
+                                hh1 = copy.deepcopy(h1)
+                                hh1.SetDirectory(0)
+                                hh.Add(hh1, -1)
+                                tf1.Close()
+                                if file_exists(file2):
+                                    tf2 = ROOT.TFile.Open(file2, "READ")
+                                    h2 = tf2.Get(var)
+                                    hh2 = copy.deepcopy(h2)
+                                    hh2.SetDirectory(0)
+                                    hh.Add(hh2)
+                                    tf2.Close()
+                                
+                        #write the histogram in the file   
+                        if check==True:
+                            outFile.cd()
+                            hh.Write()
+                            print(f"{tag}, {cat}, {sub}, {cut}, {i}, {var} ZH")
+
+                    outFile.Close()
+                    if check==False: #if nothing was written i don't want the file saved at all
+                        os.remove(output)
+
+                    
 
 #################### now add the decays #####################
 

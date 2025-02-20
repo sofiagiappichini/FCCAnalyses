@@ -46,88 +46,107 @@ def get_entries(infilepath: str) -> tuple[int, int]:
     return events_processed, events_in_ttree
 
 replacement_words = [
-    'p8_ee_WW_ecm240',
-    'p8_ee_Zqq_ecm240',
-    'p8_ee_ZZ_ecm240',
+    'p8_ee_WW_ecm365',
+    'p8_ee_Zqq_ecm365',
+    'p8_ee_ZZ_ecm365',
+    'p8_ee_Zbb_ecm365',
+    'p8_ee_Zcc_ecm365',
+    'p8_ee_Zss_ecm365',
+    'p8_ee_tt_ecm365',
     
-    'wzp6_ee_tautau_ecm240',
-    'wzp6_ee_mumu_ecm240',
-    'wzp6_ee_ee_Mee_30_150_ecm240',
+    'wzp6_ee_tautau_ecm365',
+    'wzp6_ee_mumu_ecm365',
+    'wzp6_ee_ee_Mee_30_150_ecm365',
 
-    'wzp6_ee_tautauH_Htautau_ecm240',
-    'wzp6_ee_tautauH_Hbb_ecm240',
-    'wzp6_ee_tautauH_Hcc_ecm240',
-    'wzp6_ee_tautauH_Hss_ecm240',
-    'wzp6_ee_tautauH_Hgg_ecm240',
-    'wzp6_ee_tautauH_HWW_ecm240',
-    'wzp6_ee_tautauH_HZZ_ecm240',
+    'wzp6_ee_tautauH_Htautau_ecm365',
+    'wzp6_ee_tautauH_Hbb_ecm365',
+    'wzp6_ee_tautauH_Hcc_ecm365',
+    'wzp6_ee_tautauH_Hss_ecm365',
+    'wzp6_ee_tautauH_Hgg_ecm365',
+    'wzp6_ee_tautauH_HWW_ecm365',
+    'wzp6_ee_tautauH_HZZ_ecm365',
 
-    'wzp6_egamma_eZ_Zmumu_ecm240',
-    'wzp6_egamma_eZ_Zee_ecm240',
-    'wzp6_gammae_eZ_Zmumu_ecm240',
-    'wzp6_gammae_eZ_Zee_ecm240',
+    'wzp6_egamma_eZ_Zmumu_ecm365',
+    'wzp6_egamma_eZ_Zee_ecm365',
+    'wzp6_gammae_eZ_Zmumu_ecm365',
+    'wzp6_gammae_eZ_Zee_ecm365',
 
-    'wzp6_gaga_tautau_60_ecm240',
-    'wzp6_gaga_mumu_60_ecm240',
-    'wzp6_gaga_ee_60_ecm240',
+    'wzp6_gaga_tautau_60_ecm365',
+    'wzp6_gaga_mumu_60_ecm365',
+    'wzp6_gaga_ee_60_ecm365',
 
-    'wzp6_ee_nuenueZ_ecm240',
+    'wzp6_ee_nuenueZ_ecm365',
+    'wzp6_ee_nunuH_Htautau_ecm365',
+    'wzp6_ee_nunuH_Hbb_ecm365',
+    'wzp6_ee_nunuH_Hcc_ecm365',
+    'wzp6_ee_nunuH_Hss_ecm365',
+    'wzp6_ee_nunuH_Hgg_ecm365',
+    'wzp6_ee_nunuH_HWW_ecm365',
+    'wzp6_ee_nunuH_HZZ_ecm365',
 
-    'wzp6_ee_nunuH_Htautau_ecm240',
-    'wzp6_ee_nunuH_Hbb_ecm240',
-    'wzp6_ee_nunuH_Hcc_ecm240',
-    'wzp6_ee_nunuH_Hss_ecm240',
-    'wzp6_ee_nunuH_Hgg_ecm240',
-    'wzp6_ee_nunuH_HWW_ecm240',
-    'wzp6_ee_nunuH_HZZ_ecm240',
+    'wzp6_ee_eeH_Htautau_ecm365',
+    'wzp6_ee_eeH_Hbb_ecm365',
+    'wzp6_ee_eeH_Hcc_ecm365',
+    'wzp6_ee_eeH_Hss_ecm365',
+    'wzp6_ee_eeH_Hgg_ecm365',
+    'wzp6_ee_eeH_HWW_ecm365',
+    'wzp6_ee_eeH_HZZ_ecm365',
 
-    'wzp6_ee_eeH_Htautau_ecm240',
-    'wzp6_ee_eeH_Hbb_ecm240',
-    'wzp6_ee_eeH_Hcc_ecm240',
-    'wzp6_ee_eeH_Hss_ecm240',
-    'wzp6_ee_eeH_Hgg_ecm240',
-    'wzp6_ee_eeH_HWW_ecm240',
-    'wzp6_ee_eeH_HZZ_ecm240',
+    'wzp6_ee_mumuH_Htautau_ecm365',
+    'wzp6_ee_mumuH_Hbb_ecm365',
+    'wzp6_ee_mumuH_Hcc_ecm365',
+    'wzp6_ee_mumuH_Hss_ecm365',
+    'wzp6_ee_mumuH_Hgg_ecm365',
+    'wzp6_ee_mumuH_HWW_ecm365',
+    'wzp6_ee_mumuH_HZZ_ecm365',
 
-    'wzp6_ee_mumuH_Htautau_ecm240',
-    'wzp6_ee_mumuH_Hbb_ecm240',
-    'wzp6_ee_mumuH_Hcc_ecm240',
-    'wzp6_ee_mumuH_Hss_ecm240',
-    'wzp6_ee_mumuH_Hgg_ecm240',
-    'wzp6_ee_mumuH_HWW_ecm240',
-    'wzp6_ee_mumuH_HZZ_ecm240',
+    'wzp6_ee_bbH_Htautau_ecm365',
+    'wzp6_ee_bbH_Hbb_ecm365',
+    'wzp6_ee_bbH_Hcc_ecm365',
+    'wzp6_ee_bbH_Hss_ecm365',
+    'wzp6_ee_bbH_Hgg_ecm365',
+    'wzp6_ee_bbH_HWW_ecm365',
+    'wzp6_ee_bbH_HZZ_ecm365',
 
-    'wzp6_ee_bbH_Htautau_ecm240',
-    'wzp6_ee_bbH_Hbb_ecm240',
-    'wzp6_ee_bbH_Hcc_ecm240',
-    'wzp6_ee_bbH_Hss_ecm240',
-    'wzp6_ee_bbH_Hgg_ecm240',
-    'wzp6_ee_bbH_HWW_ecm240',
-    'wzp6_ee_bbH_HZZ_ecm240',
+    'wzp6_ee_ccH_Htautau_ecm365',
+    'wzp6_ee_ccH_Hbb_ecm365',
+    'wzp6_ee_ccH_Hcc_ecm365',
+    'wzp6_ee_ccH_Hss_ecm365',
+    'wzp6_ee_ccH_Hgg_ecm365',
+    'wzp6_ee_ccH_HWW_ecm365',
+    'wzp6_ee_ccH_HZZ_ecm365',
 
-    'wzp6_ee_ccH_Htautau_ecm240',
-    'wzp6_ee_ccH_Hbb_ecm240',
-    'wzp6_ee_ccH_Hcc_ecm240',
-    'wzp6_ee_ccH_Hss_ecm240',
-    'wzp6_ee_ccH_Hgg_ecm240',
-    'wzp6_ee_ccH_HWW_ecm240',
-    'wzp6_ee_ccH_HZZ_ecm240',
+    'wzp6_ee_ssH_Htautau_ecm365',
+    'wzp6_ee_ssH_Hbb_ecm365',
+    'wzp6_ee_ssH_Hcc_ecm365',
+    'wzp6_ee_ssH_Hss_ecm365',
+    'wzp6_ee_ssH_Hgg_ecm365',
+    'wzp6_ee_ssH_HWW_ecm365',
+    'wzp6_ee_ssH_HZZ_ecm365',
 
-    'wzp6_ee_ssH_Htautau_ecm240',
-    'wzp6_ee_ssH_Hbb_ecm240',
-    'wzp6_ee_ssH_Hcc_ecm240',
-    'wzp6_ee_ssH_Hss_ecm240',
-    'wzp6_ee_ssH_Hgg_ecm240',
-    'wzp6_ee_ssH_HWW_ecm240',
-    'wzp6_ee_ssH_HZZ_ecm240',
+    'wzp6_ee_qqH_Htautau_ecm365',
+    'wzp6_ee_qqH_Hbb_ecm365',
+    'wzp6_ee_qqH_Hcc_ecm365',
+    'wzp6_ee_qqH_Hss_ecm365',
+    'wzp6_ee_qqH_Hgg_ecm365',
+    'wzp6_ee_qqH_HWW_ecm365',
+    'wzp6_ee_qqH_HZZ_ecm365',
 
-    'wzp6_ee_qqH_Htautau_ecm240',
-    'wzp6_ee_qqH_Hbb_ecm240',
-    'wzp6_ee_qqH_Hcc_ecm240',
-    'wzp6_ee_qqH_Hss_ecm240',
-    'wzp6_ee_qqH_Hgg_ecm240',
-    'wzp6_ee_qqH_HWW_ecm240',
-    'wzp6_ee_qqH_HZZ_ecm240',
+    'wzp6_ee_nuenueH_Htautau_ecm365',
+    'wzp6_ee_nuenueH_Hbb_ecm365',
+    'wzp6_ee_nuenueH_Hcc_ecm365',
+    'wzp6_ee_nuenueH_Hss_ecm365',
+    'wzp6_ee_nuenueH_Hgg_ecm365',
+    'wzp6_ee_nuenueH_HWW_ecm365',
+    'wzp6_ee_nuenueH_HZZ_ecm365',  
+
+    'wzp6_ee_numunumuH_Htautau_ecm365',
+    'wzp6_ee_numunumuH_Hbb_ecm365',
+    'wzp6_ee_numunumuH_Hcc_ecm365',
+    'wzp6_ee_numunumuH_Hss_ecm365',
+    'wzp6_ee_numunumuH_Hgg_ecm365',
+    'wzp6_ee_numunumuH_HWW_ecm365',
+    'wzp6_ee_numunumuH_HZZ_ecm365',
 ]
 
 DIRECTORY = {
@@ -136,13 +155,13 @@ DIRECTORY = {
     'NuNu':"/ceph/awiedl/FCCee/HiggsCP/stage2/NuNu",
 }
 
-DIRECTORY_STAGE1 = "/ceph/awiedl/FCCee/HiggsCP/stage1/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 
 DIRECTORY_EOS = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
 
 TAG = [
-    #"R5-explicit",
-    #"R5-tag",
+    "R5-explicit",
+    "R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
@@ -155,7 +174,7 @@ SUBDIR = [
 #category to plot
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
 
@@ -199,7 +218,7 @@ for tag in TAG:
     tab = []
     for cat in CAT:
         for sub in SUBDIR:
-            directory = DIRECTORY_EOS + tag + "/stage2_241202_cut/" + cat + "/" + sub + "/"
+            directory = DIRECTORY + tag + "/stage2_280125_cut/" + cat + "/" + sub + "/"
             print(directory)
             newrow = []
             newrow.append(f"{cat+sub} & ") #header
@@ -230,7 +249,7 @@ for tag in TAG:
     # Write the content of the selected row to the output CSV file
     transposed_tab = list(zip(*tab))
 
-    output_file = DIRECTORY_EOS + tag + "/nevents_cut.txt"
+    output_file = DIRECTORY + tag + "/nevents_cut.txt"
     
     with open(output_file, "w", newline="") as file:
         writer = csv.writer(file)

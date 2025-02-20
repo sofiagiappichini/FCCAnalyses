@@ -35,11 +35,11 @@ def file_exists(file_path):
 DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/final+gen/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Reco_2Pi2Nu/Gen_060225/' 
+DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Reco_2Pi2Nu/Gen_WC10/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
-    "selDPhi",
+    #"selDPhi",
  ] 
 #labels for the cuts in the plots
 LABELS = {
@@ -893,10 +893,10 @@ signals = [
     #'noISR_e+e-_noCuts_cehim_p1',
 
     'EWonly_taudecay_2Pi2Nu',
-    'cehim_m1_taudecay_2Pi2Nu',
-    'cehim_p1_taudecay_2Pi2Nu',
-    'cehre_m1_taudecay_2Pi2Nu',
-    'cehre_p1_taudecay_2Pi2Nu',
+    #'cehim_m1_taudecay_2Pi2Nu',
+    #'cehim_p1_taudecay_2Pi2Nu',
+    #'cehre_m1_taudecay_2Pi2Nu',
+    #'cehre_p1_taudecay_2Pi2Nu',
 
     #'cehim_m5_taudecay_2Pi2Nu',
     #'cehim_p5_taudecay_2Pi2Nu',
@@ -907,6 +907,17 @@ signals = [
     #'cehim_p2_taudecay_2Pi2Nu',
     #'cehre_m2_taudecay_2Pi2Nu',
     #'cehre_p2_taudecay_2Pi2Nu',
+
+    #'cehim_p0p1_taudecay_2Pi2Nu',
+    #'cehim_m0p1_taudecay_2Pi2Nu',
+    #'cehre_m0p1_taudecay_2Pi2Nu',
+    #'cehre_p0p1_taudecay_2Pi2Nu',
+
+    'cehim_p10_taudecay_2Pi2Nu',
+    'cehim_m10_taudecay_2Pi2Nu',
+
+    #'cehim_p10_taudecay_2Pi2Nu':{},
+    #'cehim_m10_taudecay_2Pi2Nu':{},
 
     #'wzp6_ee_eeH_Htautau_ecm240',
 ]
@@ -936,6 +947,14 @@ slegend = {
     'cehim_p2_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV +2",
     'cehre_m2_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC -2",
     'cehre_p2_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC +2",
+
+    'cehim_m0p1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV -0.1",
+    'cehim_p0p1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV +0.1",
+    'cehre_m0p1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC -0.1",
+    'cehre_p0p1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPC +0.1",
+
+    'cehim_m10_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV -10",
+    'cehim_p10_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV +10",
 }
 
 scolors = {
@@ -963,6 +982,14 @@ scolors = {
     'cehim_p2_taudecay_2Pi2Nu':ROOT.kBlue-7,
     'cehre_m2_taudecay_2Pi2Nu':ROOT.kGreen-8,
     'cehre_p2_taudecay_2Pi2Nu':ROOT.kGreen-6,
+
+    'cehim_m0p1_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_p0p1_taudecay_2Pi2Nu':ROOT.kBlue-7,
+    'cehre_m0p1_taudecay_2Pi2Nu':ROOT.kGreen-8,
+    'cehre_p0p1_taudecay_2Pi2Nu':ROOT.kGreen-6,
+
+    'cehim_m10_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_p10_taudecay_2Pi2Nu':ROOT.kBlue-7,
 }
 
 for cut in CUTS:
