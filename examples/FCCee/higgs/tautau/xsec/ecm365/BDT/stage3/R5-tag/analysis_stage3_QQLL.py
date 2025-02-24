@@ -175,8 +175,6 @@ class RDFanalysis():
                                                         "fCollinear_mass"])
 
                 .Define("BDT_score_bkg",        "BDT_pred.at(0)")
-                .Define("BDT_score_ZH",         "BDT_pred.at(1)")
-                .Define("BDT_score_VBF",        "BDT_pred.at(2)")
         )
         return df2
 
@@ -1022,9 +1020,7 @@ class RDFanalysis():
             "RecoZDaughter_cos", 
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
-            "BDT_score_bkg",  
-                "BDT_score_ZH",    
-                "BDT_score_VBF",   
+            "BDT_score_bkg",   
         ]
 
         return branchList

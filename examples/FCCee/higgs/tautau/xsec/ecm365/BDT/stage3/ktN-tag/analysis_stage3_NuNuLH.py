@@ -118,7 +118,7 @@ processList = {
 includePaths = ["functions.h"]
 
 ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/BDT/models/ktN-tag/xgb_bdt_ktN-tag_NuNuLH.root");
-                                computeModel = TMVA::Experimental::Compute<21, float>(bdt);''') #needs to be passed the number of variables
+                                computeModel = TMVA::Experimental::Compute<33, float>(bdt);''') #needs to be passed the number of variables
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -166,18 +166,18 @@ class RDFanalysis():
                                                         "fRecoH_pt",
                                                         "fRecoH_e",
                                                         "fRecoH_eta",
-                                                        #"fTauLead_pz",
-                                                        #"fTauLead_p",
-                                                        #"fTauLead_pt",
-                                                        #"fTauLead_e",
-                                                        #"fTauLead_eta",
-                                                        #"fTauLead_mass",
-                                                        #"fTauSub_pz",
-                                                        #"fTauSub_p",
-                                                        #"fTauSub_pt",
-                                                        #"fTauSub_e",
-                                                        #"fTauSub_eta",
-                                                        #"fTauSub_mass",
+                                                        "fTauLead_pz",
+                                                        "fTauLead_p",
+                                                        "fTauLead_pt",
+                                                        "fTauLead_e",
+                                                        "fTauLead_eta",
+                                                        "fTauLead_mass",
+                                                        "fTauSub_pz",
+                                                        "fTauSub_p",
+                                                        "fTauSub_pt",
+                                                        "fTauSub_e",
+                                                        "fTauSub_eta",
+                                                        "fTauSub_mass",
                                                         "fTau_DPhi",
                                                         "fTau_DR",
                                                         "fTau_cos",

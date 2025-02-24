@@ -139,9 +139,6 @@ class RDFanalysis():
                 .Define("fTauLead_e",       "static_cast<float>(TauLead_e)")
                 .Define("fTauLead_eta",       "static_cast<float>(TauLead_eta)")
                 .Define("fTauLead_mass",       "static_cast<float>(TauLead_mass)")
-                #.Define("fTauLead_type",       "static_cast<float>(TauLead_type)")
-                #.Define("fn_TauLead_charged_constituents",       "static_cast<float>(n_TauLead_charged_constituents)")
-                #.Define("fn_TauLead_neutral_constituents",       "static_cast<float>(n_TauLead_neutral_constituents)")
                 .Define("fTauSub_pz",       "static_cast<float>(TauSub_pz)")
                 .Define("fTauSub_pt",       "static_cast<float>(TauSub_pt)")
                 .Define("fTauSub_p",       "static_cast<float>(TauSub_p)")
@@ -152,10 +149,7 @@ class RDFanalysis():
                 .Define("fTau_DR",       "static_cast<float>(Tau_DR)")
                 .Define("fTau_cos",       "static_cast<float>(Tau_cos)")
                 .Define("fTau_DEta",       "static_cast<float>(Tau_DEta)")
-                #.Define("fTauSub_type",       "static_cast<float>(TauSub_type)")
-                #.Define("fn_TauSub_charged_constituents",       "static_cast<float>(n_TauSub_charged_constituents)")
-                #.Define("fn_TauSub_neutral_constituents",       "static_cast<float>(n_TauSub_neutral_constituents)")
-
+              
                 ##### variable lists need to have the same order of variables used in the training to work properly, renaming them is ok
                 .Define("BDT_pred", ROOT.computeModel, ["RecoEmiss_pz",
                                                         "RecoEmiss_pt",
@@ -173,18 +167,12 @@ class RDFanalysis():
                                                         "fTauLead_e",
                                                         "fTauLead_eta",
                                                         "fTauLead_mass",
-                                                        #"fTauLead_type",
-                                                        #"n_TauLead_charged_constituents",
-                                                        #"n_TauLead_neutral_constituents",
                                                         "fTauSub_pz",
                                                         "fTauSub_p",
                                                         "fTauSub_pt",
                                                         "fTauSub_e",
                                                         "fTauSub_eta",
                                                         "fTauSub_mass",
-                                                        #"fTauSub_type",
-                                                        #"fn_TauSub_charged_constituents",
-                                                        #"fn_TauSub_neutral_constituents",
                                                         "fTau_DPhi",
                                                         "fTau_DR",
                                                         "fTau_cos",

@@ -1341,6 +1341,8 @@ for tag in TAG:
                                     h = tf.Get(variable)
                                     hh = copy.deepcopy(h)
                                     hh.SetDirectory(0)
+                                    if hh.Integral()==0:
+                                        continue
                                     histos.append(hh)
                                     colors.append(legcolors[s])
                                     leg.AddEntry(histos[-1], legend[s], "l")

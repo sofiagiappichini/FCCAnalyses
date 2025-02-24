@@ -118,7 +118,7 @@ processList = {
 includePaths = ["functions.h"]
 
 ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/BDT/models/R5-tag/xgb_bdt_R5-tag_NuNuLH.root");
-                                computeModel = TMVA::Experimental::Compute<21, float>(bdt);''') #needs to be passed the number of variables
+                                computeModel = TMVA::Experimental::Compute<33, float>(bdt);''') #needs to be passed the number of variables
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -133,18 +133,18 @@ class RDFanalysis():
                 .Define("fRecoH_eta",       "static_cast<float>(RecoH_eta)")
                 .Define("fRecoH_mass",       "static_cast<float>(RecoH_mass)")
                 .Define("fVisible_mass",       "static_cast<float>(Visible_mass)")
-                #.Define("fTauLead_pz",       "static_cast<float>(TauLead_pz)")
-                #.Define("fTauLead_pt",       "static_cast<float>(TauLead_pt)")
-                #.Define("fTauLead_p",       "static_cast<float>(TauLead_p)")
-                #.Define("fTauLead_e",       "static_cast<float>(TauLead_e)")
-                #.Define("fTauLead_eta",       "static_cast<float>(TauLead_eta)")
-                #.Define("fTauLead_mass",       "static_cast<float>(TauLead_mass)")
-                #.Define("fTauSub_pz",       "static_cast<float>(TauSub_pz)")
-                #.Define("fTauSub_pt",       "static_cast<float>(TauSub_pt)")
-                #.Define("fTauSub_p",       "static_cast<float>(TauSub_p)")
-                #.Define("fTauSub_e",       "static_cast<float>(TauSub_e)")
-                #.Define("fTauSub_eta",       "static_cast<float>(TauSub_eta)")
-                #.Define("fTauSub_mass",       "static_cast<float>(TauSub_mass)")
+                .Define("fTauLead_pz",       "static_cast<float>(TauLead_pz)")
+                .Define("fTauLead_pt",       "static_cast<float>(TauLead_pt)")
+                .Define("fTauLead_p",       "static_cast<float>(TauLead_p)")
+                .Define("fTauLead_e",       "static_cast<float>(TauLead_e)")
+                .Define("fTauLead_eta",       "static_cast<float>(TauLead_eta)")
+                .Define("fTauLead_mass",       "static_cast<float>(TauLead_mass)")
+                .Define("fTauSub_pz",       "static_cast<float>(TauSub_pz)")
+                .Define("fTauSub_pt",       "static_cast<float>(TauSub_pt)")
+                .Define("fTauSub_p",       "static_cast<float>(TauSub_p)")
+                .Define("fTauSub_e",       "static_cast<float>(TauSub_e)")
+                .Define("fTauSub_eta",       "static_cast<float>(TauSub_eta)")
+                .Define("fTauSub_mass",       "static_cast<float>(TauSub_mass)")
                 .Define("fTau_DPhi",       "static_cast<float>(Tau_DPhi)")
                 .Define("fTau_DR",       "static_cast<float>(Tau_DR)")
                 .Define("fTau_cos",       "static_cast<float>(Tau_cos)")
@@ -166,19 +166,30 @@ class RDFanalysis():
                                                         "fRecoH_p",
                                                         "fRecoH_pt",
                                                         "fRecoH_e",
-                                                        "fRecoH_eta",
+                                                        "fRecoH_eta",    
+                                                        "fTauLead_pz",   
+                                                        "fTauLead_p",   
+                                                        "fTauLead_pt",   
+                                                        "fTauLead_e",    
+                                                        "fTauLead_eta",    
+                                                        "fTauLead_mass",
+                                                        "fTauSub_pz",   
+                                                        "fTauSub_p",   
+                                                        "fTauSub_pt",   
+                                                        "fTauSub_e",    
+                                                        "fTauSub_eta", 
+                                                        "fTauSub_mass",
                                                         "fTau_DPhi",
                                                         "fTau_DR",
                                                         "fTau_cos",
                                                         "fTau_DEta",
                                                         "fVisible_mass",
-                                                        "fTauLepton_type", 
-                                                        "fTauHadron_type",        
-                                                        "fn_TauLepton_charged_constituents", 
-                                                        "fn_TauHadron_charged_constituents",      
-                                                        "fn_TauLepton_neutral_constituents",  
-                                                        "fn_TauHadron_neutral_constituents",
-                                                        ])
+                                                        "fTauLepton_type",
+                                                        "fTauHadron_type",
+                                                        "fn_TauLepton_charged_constituents",
+                                                        "fn_TauHadron_charged_constituents",
+                                                        "fn_TauLepton_neutral_constituents",
+                                                        "fn_TauHadron_neutral_constituents"])
 
                 .Define("BDT_score_bkg",        "BDT_pred.at(0)")
                 .Define("BDT_score_ZH",         "BDT_pred.at(1)")

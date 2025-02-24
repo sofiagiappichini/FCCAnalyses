@@ -39,8 +39,9 @@ def do_combine(outdir, file):
         if filename.startswith("datacard") and filename.endswith(".txt"):
             datacard = filename
 
-    os.system(f"text2workspace.py {outdir}/{datacard} -o {outdir}/ws.root")
-    os.system(f"combine -M FitDiagnostics -t -1 --expectSignal=1 {outdir}/ws.root --rMin -10  --cminDefaultMinimizerStrategy 0 --robustFit 1 >{file}")
+    ## --PO 'map=bin/process:parameter', can be repeated the same parameter name for different processes (will be correlated into one r), first time it needs [starting_value,min,max]
+    os.system(f"text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-10,2]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-10,2]' {outdir}/{datacard} -o {outdir}/ws.root")
+    os.system(f"combine -M MultiDimFit -d {outdir}/ws.root >{file}") ## --cminDefaultMinimizerStrategy 0 --robustFit 1
 
     with open(file, "r") as file:
             read = False
@@ -141,11 +142,11 @@ for k, tag in enumerate(TAG):
 
             #get fit from subcategories
             content_of_row = do_combine(dir, file_read)
-            processed= process_content_of_row(content_of_row)
+            #processed= process_content_of_row(content_of_row)
 
-            if processed == 'error':
-                print("REPORCESSING")
-                content_of_row = do_combine_alt(dir, file_read)
+            #if processed == 'error':
+            #    print("REPORCESSING")
+            #    content_of_row = do_combine_alt(dir, file_read)
 
             # Write the content of the selected row to the output CSV file
             with open(output_file, "a") as csv_file:
@@ -163,11 +164,11 @@ for k, tag in enumerate(TAG):
         n_cat.append(f"{cat} &")
 
         content_of_row = do_combine(cat_dir, input_file_dir)
-        processed = process_content_of_row(content_of_row)
+        #processed = process_content_of_row(content_of_row)
 
-        if processed == 'error':
-            print("REPORCESSING")
-            content_of_row = do_combine_alt(cat_dir, input_file_dir)
+        #if processed == 'error':
+        #    print("REPORCESSING")
+        #    content_of_row = do_combine_alt(cat_dir, input_file_dir)
 
         # Write the content of the selected row to the output CSV file
         with open(output_file, "a") as csv_file:
@@ -189,11 +190,11 @@ for k, tag in enumerate(TAG):
     dir_fin = f"{outputDir}/{tag}/"
 
     content_of_row = do_combine(dir_fin, input_file_fin)
-    processed= process_content_of_row(content_of_row)
+    #processed= process_content_of_row(content_of_row)
 
-    if processed == 'error':
-        print("REPORCESSING")
-        content_of_row = do_combine_alt(dir_fin, input_file_fin)
+    #if processed == 'error':
+    #    print("REPORCESSING")
+    #    content_of_row = do_combine_alt(dir_fin, input_file_fin)
 
     # Write the content of the selected row to the output CSV file
     with open(output_file, "a") as csv_file:

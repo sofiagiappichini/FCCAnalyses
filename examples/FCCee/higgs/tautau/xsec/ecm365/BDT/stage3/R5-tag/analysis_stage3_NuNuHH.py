@@ -119,7 +119,7 @@ includePaths = ["functions.h"]
 
 ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/BDT/models/R5-tag/xgb_bdt_R5-tag_NuNuHH.root");
 
-                                computeModel = TMVA::Experimental::Compute<27, float>(bdt);''') #needs to be passed the number of variables
+                                computeModel = TMVA::Experimental::Compute<33, float>(bdt);''') #needs to be passed the number of variables
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -900,7 +900,6 @@ class RDFanalysis():
 
         ]
         #complex variables added here at stage2
-        branchList += [
         branchList += [
                 "TauTag_px", 
                 "TauTag_py",    

@@ -66,7 +66,7 @@ os.system("cmsenv")
 
 outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm365/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -154,17 +154,28 @@ backgrounds_all = [
     #"wzp6_ee_ZlightH_HQQ_ecm365",
     #"wzp6_ee_ZlightH_Hgg_ecm365",
     #"wzp6_ee_ZlightH_HVV_ecm365",
+
+    #'wzp6_ee_ZheavyH_Htautau_ecm365',
+    #'wzp6_ee_ZlightH_Htautau_ecm365',
+    #'wzp6_ee_QQH_Htautau_ecm365',
+    #'wzp6_ee_eeH_Htautau_ecm365',
+    #'wzp6_ee_mumuH_Htautau_ecm365',
+    #'wzp6_ee_LLH_Htautau_ecm365',
+    'wzp6_ee_VBFnunu_Htautau_ecm365',
+    #'wzp6_ee_ZH_Znunu_Htautau_ecm365',
+    'wzp6_ee_ZH_Htautau_ecm365',
 ]
 
 signals = [
     #'wzp6_ee_ZheavyH_Htautau_ecm365',
     #'wzp6_ee_ZlightH_Htautau_ecm365',
-    'wzp6_ee_QQH_Htautau_ecm365',
+    #'wzp6_ee_QQH_Htautau_ecm365',
     #'wzp6_ee_eeH_Htautau_ecm365',
     #'wzp6_ee_mumuH_Htautau_ecm365',
-    'wzp6_ee_LLH_Htautau_ecm365',
+    #'wzp6_ee_LLH_Htautau_ecm365',
     'wzp6_ee_VBFnunu_Htautau_ecm365',
-    'wzp6_ee_ZH_Znunu_Htautau_ecm365',
+    #'wzp6_ee_ZH_Znunu_Htautau_ecm365',
+    'wzp6_ee_ZH_Htautau_ecm365',
 ]
 
 make_card = True
@@ -181,8 +192,8 @@ if make_card:
 
                 ## datacard header, common
                 dc = ""
-                dc += f"# text2workspace.py datacard.txt -o ws.root\n"
-                dc += f"# combine -M FitDiagnostics -t -1 --expectSignal=1 ws.root --rMin -2 \n"
+                dc += f"# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-10,10]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-10,10]' datacard.txt  -o ws.root\n"
+                dc += f"# combine -M MultiDimFit -d  ws.root \n"
                 dc += f"imax    1 number of bins\n"
                 dc += f"jmax    * number of processes minus 1\n"
                 dc += f"kmax    * number of nuisance parameters\n"
@@ -290,22 +301,22 @@ if make_card:
 
 
                 #combined uncertainties
-                if any("H_H" in proc for proc in bkg_procs):
-                    dc += get_combined_unc("H_H", procs, bkg_procs)
+                if any("H" in proc for proc in bkg_procs):
+                    dc += get_combined_unc("_H", procs, bkg_procs)
 
                 Z_proc = []
                 for proc in bkg_procs:
-                    if proc in ["wzp6_ee_LL_ecm240", "wzp6_ee_tautau_ecm240","p8_ee_Zqq_ecm240"]:
+                    if proc in ["wzp6_ee_LL_ecm365", "wzp6_ee_tautau_ecm365","p8_ee_ZQQ_ecm365"]:
                         Z_proc.append(proc)
                         print(proc)
                 dc += get_combined_unc_v2("Z", Z_proc, procs, bkg_procs)        
 
                 #individual uncertainties
                 for proc in bkg_procs:
-                    if all(substring not in proc for substring in ["nunuH", "LLH", "QQH", "tautauH", "_ee_tautau_", "_ee_LL_", "_ee_Zqq_"]):
+                    if all(substring not in proc for substring in ["H", "_ee_tautau_", "_ee_LL_", "_ee_ZQQ_"]):
                         dc += f"unc_{proc}      lnN     "
                         for p in procs:
-                            if p == proc and ('p8_ee_ZZ_ecm240' in proc or 'p8_ee_WW_ecm240' in proc):
+                            if p == proc and ('p8_ee_ZZ_ecm365' in proc or 'p8_ee_WW_ecm365' in proc):
                                 dc += f"{'1.02':<{lspace}}"
                             elif p == proc:
                                 dc += f"{'1.20':<{lspace}}"

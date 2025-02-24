@@ -148,13 +148,7 @@ class RDFanalysis():
                 .Define("fTau_DR",       "static_cast<float>(Tau_DR)")
                 .Define("fTau_cos",       "static_cast<float>(Tau_cos)")
                 .Define("fTau_DEta",       "static_cast<float>(Tau_DEta)")
-                .Define("fTauLead_type",       "static_cast<float>(TauLead_type)")
-                .Define("fTauSub_type",       "static_cast<float>(TauSub_type)")
-                #.Define("fn_TauLepton_charged_constituents",       "static_cast<float>(n_TauLepton_charged_constituents)")
-                #.Define("fn_TauLepton_neutral_constituents",       "static_cast<float>(n_TauLepton_neutral_constituents)")
-                #.Define("fn_TauHadron_charged_constituents",       "static_cast<float>(n_TauHadron_charged_constituents)")
-                #.Define("fn_TauHadron_neutral_constituents",       "static_cast<float>(n_TauHadron_neutral_constituents)")
-
+               
                 ##### variable lists need to have the same order of variables used in the training to work properly, renaming them is ok
                 .Define("BDT_pred", ROOT.computeModel, ["RecoEmiss_pz",
                                                         "RecoEmiss_pt",
@@ -183,12 +177,6 @@ class RDFanalysis():
                                                         "fTau_cos",
                                                         "fTau_DEta",
                                                         "fVisible_mass",
-                                                        #"fTauLead_type", 
-                                                        #"fTauSub_type",        
-                                                        #"fn_TauLepton_charged_constituents", 
-                                                        #"fn_TauHadron_charged_constituents",      
-                                                        #"fn_TauLepton_neutral_constituents",  
-                                                        #"fn_TauHadron_neutral_constituents",
                                                         ])
 
                 .Define("BDT_score_bkg",        "BDT_pred.at(0)")

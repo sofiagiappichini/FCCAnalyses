@@ -34,21 +34,21 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 TAG = [
-    #"R5-explicit",
-    #"R5-tag",
-    #"ktN-explicit",
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
     "ktN-tag",
 ]
 SUBDIR = [
     'LL',
     'LH',
-    #'HH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
-    "LL",
-    #"NuNu",
+    "QQ",
+    #"LL",
+    "NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LL = [
@@ -72,8 +72,10 @@ CUTS_NuNu = [
 
 CUTS = {
     'LL':CUTS_LL,
-    'QQ':CUTS_LL,
-    'NuNu':CUTS_NuNu,
+    #'QQ':CUTS_LL,
+    #'NuNu':CUTS_NuNu,
+    'QQ':["selReco","selReco_0.5BDT"],
+    'NuNu':["selReco","selReco_0.5BDT"],
 }
 
 #now you can list all the histograms that you want to plot
@@ -1033,7 +1035,7 @@ VARIABLES_QQ = [
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
 
-    #"BDT_score",
+    "BDT_score_bkg",
 ]
 
 VARIABLES_NuNu = [
@@ -1112,7 +1114,9 @@ VARIABLES_NuNu = [
     "Tau_DPhi",
     "Visible_mass",
 
-    #"BDT_score",
+    "BDT_score_bkg",
+    "BDT_score_VBF",
+    "BDT_score_ZH",
 ]
 
 LIST_VAR = {
@@ -1432,7 +1436,16 @@ legend_VBF = {
     6:'wzp6_ee_VBFnunu_HZZ_ecm365', 
 }
 
-################# VBF - ZH ##################
+other_signal = [
+    'wzp6_ee_eeH_Htautau_ecm365',
+    'wzp6_ee_mumuH_Htautau_ecm365',
+    'wzp6_ee_qqH_Htautau_ecm365',
+    'wzp6_ee_ssH_Htautau_ecm365',
+    'wzp6_ee_bbH_Htautau_ecm365',
+    'wzp6_ee_ccH_Htautau_ecm365',
+]
+
+################# VBF - ZH nu nu ##################
 
 for tag in TAG:
     for cat in CAT:
@@ -1447,7 +1460,7 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final_280125_BDT/" + cat + "/" + sub + "/"
 
                 # VBF = nuenueH - numunumuH
                 for i in range(len(nunuH)):
@@ -1527,10 +1540,65 @@ for tag in TAG:
                     if check==False: #if nothing was written i don't want the file saved at all
                         os.remove(output)
 
-                    
+##################### ZH signal #########################
+
+for tag in TAG:
+    for cat in CAT:
+        for sub in SUBDIR:
+
+            CUT = CUTS[cat]
+
+            for cut in CUT:
+
+                if "tag" in tag:
+                    variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat]
+                else: 
+                    variables = VARIABLES + LIST_VAR[cat] 
+
+                directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
+
+                # ZH_nunu + all other ZH signals for Htautau
+                output = f"{directory}wzp6_ee_ZH_Htautau_ecm365_{cut}_histo.root"
+                #print(output)
+                outFile = ROOT.TFile.Open(output, "RECREATE")
+                check = False
+                for var in variables:
+                    file = f"{directory}wzp6_ee_ZH_Znunu_Htautau_ecm365_{cut}_histo.root"
+                    hh = None
+                    if file_exists(file):
+                        check = True
+                        tf = ROOT.TFile.Open(file, "READ")
+                        h = tf.Get(var)
+                        if h:
+                            hh = copy.deepcopy(h)
+                            hh.SetDirectory(0)
+                        tf.Close()
+                    for s in other_signal:
+                        file3 = f"{directory}{s}_{cut}_histo.root"
+                        if file_exists(file3):
+                            check = True
+                            tf3 = ROOT.TFile.Open(file3, "READ")
+                            h3 = tf3.Get(var)
+                            if h3:
+                                hh3 = copy.deepcopy(h3)
+                                hh3.SetDirectory(0)
+                                if hh:  
+                                    hh.Add(hh3)
+                                else:
+                                    hh = copy.deepcopy(hh3)
+                            tf3.Close()
+                                
+                    #write the histogram in the file   
+                    if check: #either there is ZH nunu or the rest so it's safe to use the file for combine only, plotting them separately as usual
+                        outFile.cd()
+                        hh.Write()
+                        print(f"{tag}, {cat}, {sub}, {cut}, {var} ZH")
+
+                outFile.Close()
+                if check==False: #if nothing was written i don't want the file saved at all
+                    os.remove(output)
 
 #################### now add the decays #####################
-
 for tag in TAG:
     for cat in CAT:
         for sub in SUBDIR:

@@ -118,7 +118,7 @@ processList = {
 includePaths = ["functions.h"]
 
 ROOT.gInterpreter.ProcessLine('''TMVA::Experimental::RBDT<> bdt("Htautau", "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/BDT/models/ktN-tag/xgb_bdt_ktN-tag_QQHH.root");
-                                computeModel = TMVA::Experimental::Compute<23, float>(bdt);''') #needs to be passed the number of variables
+                                computeModel = TMVA::Experimental::Compute<29, float>(bdt);''') #needs to be passed the number of variables
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -183,8 +183,6 @@ class RDFanalysis():
                                                         "fCollinear_mass"])
 
                 .Define("BDT_score_bkg",        "BDT_pred.at(0)")
-                .Define("BDT_score_ZH",         "BDT_pred.at(1)")
-                .Define("BDT_score_VBF",        "BDT_pred.at(2)")
         )
         return df2
 
@@ -1032,8 +1030,6 @@ class RDFanalysis():
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi",
             "BDT_score_bkg",  
-                "BDT_score_ZH",    
-                "BDT_score_VBF",   
         ]
 
         return branchList

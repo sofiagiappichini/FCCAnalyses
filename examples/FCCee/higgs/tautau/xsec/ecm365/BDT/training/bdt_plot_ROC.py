@@ -43,6 +43,7 @@ def get_entries(infilepath: str) -> tuple[int, int]:
 
     return events_processed, events_in_ttree
 
+## 27
 vars_list_NuNu_explicit = [
             "RecoEmiss_pz",
             "RecoEmiss_pt",
@@ -73,6 +74,7 @@ vars_list_NuNu_explicit = [
             "Visible_mass",
             ]
 
+## 33
 vars_list_NuNuHH_tag = [
             "RecoEmiss_pz",
             "RecoEmiss_pt",
@@ -109,6 +111,7 @@ vars_list_NuNuHH_tag = [
             "Visible_mass",
             ]
 
+## 33
 vars_list_NuNuLH_tag = [
             "RecoEmiss_pz",
             "RecoEmiss_pt",
@@ -145,6 +148,7 @@ vars_list_NuNuLH_tag = [
             "n_TauHadron_neutral_constituents",
             ]
 
+## 23
 vars_list_QQ_explcit = [
             "RecoEmiss_pz",
             "RecoEmiss_pt",
@@ -170,6 +174,7 @@ vars_list_QQ_explcit = [
             "Recoil",
             "Collinear_mass"]
 
+## 29
 vars_list_QQHH_tag = [
             "RecoEmiss_pz",
             "RecoEmiss_pt",
@@ -201,6 +206,7 @@ vars_list_QQHH_tag = [
             "Recoil",
             "Collinear_mass"]
 
+## 29
 vars_list_QQLH_tag = [
             "RecoEmiss_pz",
             "RecoEmiss_pt",
@@ -219,30 +225,33 @@ vars_list_QQLH_tag = [
             "RecoH_e",
             "RecoH_eta",
             "RecoH_mass",
-            "Tau_DPhi",
-            "Tau_DR",
-            "Tau_cos",
-            "Tau_DEta",
-            "Recoil",
-            "Collinear_mass",
             "TauLepton_type",
             "TauHadron_type",
             "n_TauLepton_charged_constituents",
             "n_TauLepton_neutral_constituents",
             "n_TauHadron_charged_constituents",
             "n_TauHadron_neutral_constituents",
-            ]
+            "Tau_DPhi",
+            "Tau_DR",
+            "Tau_cos",
+            "Tau_DEta",
+            "Recoil",
+            "Collinear_mass"]
 
-sigs = [#'wzp6_ee_nuenueH_Htautau_ecm365',
-        'wzp6_ee_numunumuH_Htautau_ecm365',
-        #'wzp6_ee_nunuH_Htautau_ecm365',
-        #'wzp6_ee_tautauH_Htautau_ecm365',
-        'wzp6_ee_mumuH_Htautau_ecm365',
-        'wzp6_ee_eeH_Htautau_ecm365',
+sigs_QQ = [
         'wzp6_ee_qqH_Htautau_ecm365',
         'wzp6_ee_ssH_Htautau_ecm365',
         'wzp6_ee_bbH_Htautau_ecm365',
         'wzp6_ee_ccH_Htautau_ecm365',
+]
+sigs_ZH = [
+    #'wzp6_ee_nuenueH_Htautau_ecm365',
+    'wzp6_ee_numunumuH_Htautau_ecm365',
+]
+
+sigs_VBF = [
+    'wzp6_ee_nuenueH_Htautau_ecm365',
+    #'wzp6_ee_numunumuH_Htautau_ecm365',
 ]
 
 bkgs = ['p8_ee_WW_ecm365',
@@ -276,12 +285,12 @@ bkgs = ['p8_ee_WW_ecm365',
 
     'wzp6_ee_nuenueZ_ecm365',
 
-    #'wzp6_ee_nunuH_Hbb_ecm365',
-    #'wzp6_ee_nunuH_Hcc_ecm365',
-    #'wzp6_ee_nunuH_Hss_ecm365',
-    #'wzp6_ee_nunuH_Hgg_ecm365',
-    #'wzp6_ee_nunuH_HWW_ecm365',
-    #'wzp6_ee_nunuH_HZZ_ecm365',
+    'wzp6_ee_nunuH_Hbb_ecm365',
+    'wzp6_ee_nunuH_Hcc_ecm365',
+    'wzp6_ee_nunuH_Hss_ecm365',
+    'wzp6_ee_nunuH_Hgg_ecm365',
+    'wzp6_ee_nunuH_HWW_ecm365',
+    'wzp6_ee_nunuH_HZZ_ecm365',
 
     'wzp6_ee_eeH_Hbb_ecm365',
     'wzp6_ee_eeH_Hcc_ecm365',
@@ -460,7 +469,7 @@ SUBDIR = [
 CAT = [
     "QQ",
     #"LL",
-    #"NuNu",
+    "NuNu",
 ]
 
 leg_cat = {
@@ -516,138 +525,95 @@ for tag in TAG:
                     else:
                         vars_list = vars_list_NuNu_explicit
 
-            N = {}
-            N_gen = {}
-            eff = {}
-            weight = {}
-            N_bkg = 0
-            N_bkg_gen = 0
-            tot_weight_bkg = 0
-            N_sig = 0
-            N_sig_gen = 0
-            eff_tot_bkg = 0
-            eff_tot_sig = 0
-            tot_weight_sig = 0
-            for i in sigs+bkgs:
-                files = glob.glob(path + i + '/chunk_*.root')
-                N[i] = 0
-                N_gen[i] = 0
-                eff[i] = 0
-                for f in files:
-                    events_processed, events_in_ttree = get_entries(f)
-                    if events_processed is not None and events_in_ttree is not None:
-                        N[i] += events_in_ttree
-                        N_gen[i] += events_processed
+            if 'QQ' in cat:
+                sigs = sigs_QQ
 
-                #calculate efficiency of each sample    
-                if N_gen[i]!=0:
-                    eff[i] = N[i] / N_gen[i]
-                weight[i] = xsec[i] * eff[i] * 10.8e6
+                N = {}
+                N_gen = {}
+                eff = {}
+                weight = {}
+                N_bkg = 0
+                N_bkg_gen = 0
+                tot_weight_bkg = 0
+                N_sig = 0
+                N_sig_gen = 0
+                eff_tot_bkg = 0
+                eff_tot_sig = 0
+                tot_weight_sig = 0
+                #get gen number of events for each signal and backgorund file
+                for i in sigs+bkgs:
+                    files = glob.glob(path + i + '/chunk_*.root')
+                    N[i] = 0
+                    N_gen[i] = 0
+                    eff[i] = 0
+                    for f in files:
+                        #getting the raw number of events in this way only works if there are some events in the trees themselves 
+                        #but here it doesn't matter as we don't use those samples anyway
+                        events_processed, events_in_ttree = get_entries(f)
+                        if events_processed is not None and events_in_ttree is not None:
+                            N[i] += events_in_ttree
+                            N_gen[i] += events_processed
 
-                #commulative number of events for background
-                if i in bkgs: 
-                    N_bkg += N[i]
-                    N_bkg_gen += N_gen[i]
-                    tot_weight_bkg += weight[i]
-                if N_bkg_gen!=0:
-                    eff_tot_bkg = N_bkg / N_bkg_gen
-                if i in sigs: 
-                    N_sig += N[i]
-                    N_sig_gen += N_gen[i]
-                    tot_weight_sig += weight[i]
-                if N_sig_gen!=0:
-                    eff_tot_sig = N_sig / N_sig_gen
+                    #calculate efficiency of each sample    
+                    if N_gen[i]!=0:
+                        eff[i] = N[i] / N_gen[i]
+                    weight[i] = xsec[i] * eff[i] * 2.65e6
 
-            with open(output_file, "a") as file:
-                file.write(f"Category {cat}{sub}:\n")
-                file.write(f"Events of backgrounds: {N_bkg}\n")
-                file.write(f"Events of signals: {N_sig}\n")
-                file.write(f"Weight of backgrounds: {tot_weight_bkg}\n")
-                file.write(f"Weight of signals: {tot_weight_sig}\n")
-                file.write(f"Efficiency of backgrounds: {eff_tot_bkg}\n")
-                file.write(f"Efficiency of signals: {eff_tot_sig}\n\n")
+                    #commulative number of events for background
+                    if i in bkgs: 
+                        N_bkg += N[i]
+                        N_bkg_gen += N_gen[i]
+                        tot_weight_bkg += weight[i]
+                    if N_bkg_gen!=0:
+                        eff_tot_bkg = N_bkg / N_bkg_gen
+                    if i in sigs: 
+                        N_sig += N[i]
+                        N_sig_gen += N_gen[i]
+                        tot_weight_sig += weight[i]
+                    if N_sig_gen!=0:
+                        eff_tot_sig = N_sig / N_sig_gen
 
-            #minumum number between the events in the samples and the one we expect to have in the signal composition
-            N_min = {}
-            N_sig_new = N_sig
-            for i in sigs:
-                N_min[i] = min(N[i], N_sig * weight[i] / tot_weight_sig) 
-                if N_min[i]==N[i] and weight[i]>0 and N[i]>0:
-                    N_sig_new = N_min[i] * tot_weight_sig / weight[i]
+                #pprint.pprint(N)
+                #pprint.pprint(N_gen)
+                #pprint.pprint(eff)
+                with open(output_file, "a") as file:
+                    file.write(f"Events of backgrounds: {N_bkg}\n")
+                    file.write(f"Events of signals: {N_sig}\n")
+                    file.write(f"Weight of backgrounds: {tot_weight_bkg}\n")
+                    file.write(f"Weight of signals: {tot_weight_sig}\n")
+                    file.write(f"Efficiency of backgrounds: {eff_tot_bkg}\n")
+                    file.write(f"Efficiency of signals: {eff_tot_sig}\n\n")
 
-            with open(output_file, "a") as file:
-                file.write(f"Adjusted size of signal: {N_sig_new}\n\n")   
+                #minumum number between the events in the samples and the one we expect to have in the signal composition
+                N_min = {}
+                N_sig_new = N_sig
+                for i in sigs:
+                    N_min[i] = min(N[i], N_sig * weight[i] / tot_weight_sig) 
+                    if N_min[i]==N[i]:
+                        if weight[i] == 0:
+                            continue
+                        N_sig_new = N_min[i] * tot_weight_sig / weight[i]
 
-            #upload signals into a dataframe
-            df_sig = pd.DataFrame()
-            for q in sigs:
-                prev = len(df_sig)
-                target_events = int(N_sig_new * weight[q] / tot_weight_sig)
-                
-                # Only takes the samples that actually have any events remaining  
-                if N[q] > 0: 
-                    files = glob.glob(path + q + '/chunk_*.root')
-                    df = pd.DataFrame()
+                with open(output_file, "a") as file:
+                    file.write(f"Adjusted size of signal: {N_sig_new}\n\n")
 
-                    valid_files = []
-
-                    for file in files:
-                        f = uproot.open(file)
-                        if "events;1" in f.keys():
-                            valid_files.append(file)
-
-                    files = [f for f in valid_files]
-                    if files==[]:
-                        break
-                    else:
-                        for file in files:
-                            f = uproot.open(file)
-                            tree = f["events;1"]
-                            temp_df = tree.arrays(expressions=vars_list, library="pd")
-                            df = pd.concat([df, temp_df])
-
-                            # Check if we have enough events to meet the target
-                            if len(df) >= target_events:
-                                break 
-
-                    df = df.head(target_events)
-                    df_sig = pd.concat([df_sig, df])
-
-                    with open(output_file, "a") as file:
-                        file.write(f"Weight of {q}: {weight[q]}\n")
-                        file.write(f"Relative weight of {q}: {weight[q] / tot_weight_sig}\n")
-                        file.write(f"Requested size of {q}: {N_sig * weight[q] / tot_weight_sig}\n")
-                        file.write(f"Events after stage2 of {q}: {N[q]}\n")
-                        file.write(f"Number of events in the dataframe of {q}: {len(df_sig) - prev}\n\n")
+                #upload signals into a dataframe
+                df_sig = pd.DataFrame()
+                for q in sigs:
+                    prev = len(df_sig)
+                    target_events = int(N_sig_new * weight[q] / tot_weight_sig)
                     
-            with open(output_file, "a") as file:
-                file.write(f"Total size of signal sample: {len(df_sig)}\n")
-            
-            #now for backgrounds
-            df_bkg = pd.DataFrame()
-            for q in bkgs:
-                prev = len(df_bkg)
-                target_events = int(N_sig_new * weight[q] / tot_weight_bkg)
-                
-                # Only takes the samples that actually have any events remaining  
-                if N[q] > target_events and target_events>0: 
-                    files = glob.glob(path + q + '/chunk_*.root')
-                    df = pd.DataFrame()
+                    # Only takes the samples that actually have any events remaining  
+                    if N[q] > 0: 
+                        files = glob.glob(path + q + '/chunk_*.root')
+                        df = pd.DataFrame()
 
-                    valid_files = []
-
-                    for file in files:
-                        f = uproot.open(file)
-                        if "events;1" in f.keys():
-                            valid_files.append(file)
-
-                    files = [f for f in valid_files]
-                    if files==[]:
-                        break
-                    else:
                         for file in files:
                             f = uproot.open(file)
-                            tree = f["events;1"]
+                            if f.keys()==['eventsProcessed;1']:
+                                files.remove(file)
+                                continue
+                            tree = f["events"]
                             temp_df = tree.arrays(expressions=vars_list, library="pd")
                             df = pd.concat([df, temp_df])
 
@@ -655,103 +621,340 @@ for tag in TAG:
                             if len(df) >= target_events:
                                 break 
 
-                    df = df.head(target_events)
-                    df_bkg = pd.concat([df_bkg, df])
+                        df = df.head(target_events)
+                        df_sig = pd.concat([df_sig, df])
 
-                    with open(output_file, "a") as file:
-                        file.write(f"Weight of {q}: {weight[q]}\n")
-                        file.write(f"Relative weight of {q}: {weight[q] / tot_weight_bkg}\n")
-                        file.write(f"Requested size of {q}: {len(df_sig) * weight[q] / tot_weight_bkg}\n")
-                        file.write(f"Events after stage2 of {q}: {N[q]}\n")
-                        file.write(f"Number of events in the dataframe of {q}: {len(df_bkg) - prev}\n\n")
+                        with open(output_file, "a") as file:
+                            file.write(f"Weight of {q}: {weight[q]}\n")
+                            file.write(f"Relative weight of {q}: {weight[q] / tot_weight_sig}\n")
+                            file.write(f"Requested size of {q}: {N_sig * weight[q] / tot_weight_sig}\n")
+                            file.write(f"Events after stage2 of {q}: {N[q]}\n")
+                            file.write(f"Number of events in the dataframe of {q}: {len(df_sig) - prev}\n\n")
+                        
+                with open(output_file, "a") as file:
+                    file.write(f"Total size of signal sample: {len(df_sig)}\n")
+                #print(f"Total size of signal sample: {len(df_sig)}\n")
 
-            with open(output_file, "a") as file:
-                file.write(f"Total size of bkg sample: {len(df_bkg)}\n\n")
-            #print(f"Total size of bkg sample: {len(df_bkg)}\n")
-            
-            #set Signal and background labels
-            df_sig["label"] = 1
-            df_bkg["label"] = 0
-            
-            #save some data for testing later
-            df_sig = df_sig.sample(frac=1, random_state=1)
-            df_bkg = df_bkg.sample(frac=1, random_state=1)
-            train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
-            train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
-            
-            #Combine the datasets
-            df_train = pd.concat([train_sig,train_bkg])
-            #shuffle the rows so they are mixed between signal and background
-            df_train = df_train.sample(frac=1)
-            df_test = pd.concat([test_sig,test_bkg])
-            
-            with open(output_file, "a") as file:
-                file.write("Normalised sample size \n")
-                file.write(f"Training: {len(df_train)}\n")
-                file.write(f"Test: {len(df_test)}\n\n")
+                #now for backgrounds
+                df_bkg = pd.DataFrame()
+                for q in bkgs:
+                    prev = len(df_bkg)
+                    target_events = int(N_sig_new * weight[q] / tot_weight_bkg)
+                    
+                    # Only takes the samples that actually have any events remaining  
+                    if N[q] > target_events and target_events>0: 
+                        files = glob.glob(path + q + '/chunk_*.root')
+                        df = pd.DataFrame()
 
-            #Split into class label (y) and training vars (x)
-            y = df_train["label"]
-            x = df_train[vars_list]
+                        for file in files:
+                            f = uproot.open(file)
+                            if f.keys()==['eventsProcessed;1']:
+                                files.remove(file)
+                                continue
+                            tree = f["events"]
+                            temp_df = tree.arrays(expressions=vars_list, library="pd")
+                            df = pd.concat([df, temp_df])
 
-            y = y.to_numpy()
-            x = x.to_numpy()
+                            # Check if we have enough events to meet the target
+                            if len(df) >= target_events:
+                                break 
 
-            y_test = df_test["label"]
-            x_test = df_test[vars_list]
+                        df = df.head(target_events)
+                        df_bkg = pd.concat([df_bkg, df])
 
-            y_test = y_test.to_numpy()
-            x_test = x_test.to_numpy()
-            with open(output_file, "a") as file:
-                file.write("Effective input shape for training \n")
-                file.write(f"X: {x.shape}\n")
-                file.write(f"Y: {y.shape}\n\n")
-            
-            #import bdt already trained and test it 
-            bdt = joblib.load(f"{modelDir}/{tag}/xgb_bdt_{tag}_{cat}{sub}.joblib")
+                        with open(output_file, "a") as file:
+                            file.write(f"Weight of {q}: {weight[q]}\n")
+                            file.write(f"Relative weight of {q}: {weight[q] / tot_weight_bkg}\n")
+                            file.write(f"Requested size of {q}: {len(df_sig) * weight[q] / tot_weight_bkg}\n")
+                            file.write(f"Events after stage2 of {q}: {N[q]}\n")
+                            file.write(f"Number of events in the dataframe of {q}: {len(df_bkg) - prev}\n\n")
 
-            pred_test = bdt.predict_proba(x_test)
+                with open(output_file, "a") as file:
+                    file.write(f"Total size of bkg sample: {len(df_bkg)}\n\n")
+                #print(f"Total size of bkg sample: {len(df_bkg)}\n")
 
-            # Calculate FPR, TPR, and AUC
-            fpr, tpr, thresholds = roc_curve(y_test, pred_test[:, 1], pos_label=1)
-            roc_auc = auc(fpr, tpr)
+                #set Signal and background labels
+                df_sig["label"] = 1
+                df_bkg["label"] = 0
 
-            # Plot the ROC curve
-            plt.plot(fpr, tpr, lw=1.5, color=colorDict[col])
-            #ax1.plot(fpr, 1-tpr, lw=1.5, color=colorDict[col])  # Log plot (0.8 to 1)
-            #ax2.plot(fpr, 1-tpr, lw=1.5, color=colorDict[col])  # Linear plot (0 to 0.8)
-            
-            col += 1
-            print(leg_cat[cat], leg_sub[sub])
+                #save some data for testing later
+                df_sig = df_sig.sample(frac=1, random_state=1)
+                df_bkg = df_bkg.sample(frac=1, random_state=1)
+                train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
+                train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
 
-            label.append(f'{leg_cat[cat]} {leg_sub[sub]}, AUC={roc_auc:.3f}')
+                #Combine the datasets
+                df_train = pd.concat([train_sig,train_bkg])
+                #shuffle the rows so they are mixed between signal and background
+                df_train = df_train.sample(frac=1)
+                df_test = pd.concat([test_sig,test_bkg])
 
-            with open(output_file, "a") as file:
-                file.write(f"AUC:{roc_auc} \n\n")
-                file.write("-----------------------------------------\n")
+                with open(output_file, "a") as file:
+                    file.write("Normalised sample size \n")
+                    file.write(f"Training: {len(df_train)}\n")
+                    file.write(f"Test: {len(df_test)}\n\n")
 
-            print(f"Done: {cat}{sub}")
+                #Split into class label (y) and training vars (x)
+                y = df_train["label"]
+                x = df_train[vars_list]
 
-    # Plot the baseline for random classifier
-    plt.plot([0., 1.], [0., 1.], linestyle="--", color="k", label='50/50')
-    label.append('50/50')
+                y = y.to_numpy()
+                x = x.to_numpy()
 
-    # Set limits and labels
-    #plt.xlim(0., 1.)
-    plt.ylim(0., 1.)
-    plt.xscale('log')
+                y_test = df_test["label"]
+                x_test = df_test[vars_list]
 
-    plt.ylabel('True Positive Rate', fontsize=18)  # 1 - FPR
-    plt.xlabel('False Positive Rate', fontsize=18)  # TPR
-    plt.title(f'{tag}   FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
+                y_test = y_test.to_numpy()
+                x_test = x_test.to_numpy()
+                with open(output_file, "a") as file:
+                    file.write("Effective input shape for training \n")
+                    file.write(f"X: {x.shape}\n")
+                    file.write(f"Y: {y.shape}\n\n")
+                
+                #import bdt already trained and test it 
+                bdt = joblib.load(f"{modelDir}/{tag}/xgb_bdt_{tag}_{cat}{sub}.joblib")
 
-    # Adjust ticks and legend
-    ax.tick_params(axis='both', which='major', labelsize=15)
-    plt.legend(label, loc="lower right", fontsize=15)
-    plt.grid()
+                pred_test = bdt.predict_proba(x_test)
 
-    plt.tight_layout()
+                # Calculate FPR, TPR, and AUC
+                fpr, tpr, thresholds = roc_curve(y_test, pred_test[:, 1], pos_label=1)
+                roc_auc = auc(fpr, tpr)
 
-    # Save the figure
-    fig.savefig(f"/web/sgiappic/public_html/Higgs_xsec/ecm365/{tag}/BDT/BDT_ROC.pdf")
-    fig.savefig(f"/web/sgiappic/public_html/Higgs_xsec/ecm365/{tag}/BDT/BDT_ROC.png")
+                # Plot the ROC curve
+                plt.plot(fpr, tpr, lw=1.5, color=colorDict[col])
+                #ax1.plot(fpr, 1-tpr, lw=1.5, color=colorDict[col])  # Log plot (0.8 to 1)
+                #ax2.plot(fpr, 1-tpr, lw=1.5, color=colorDict[col])  # Linear plot (0 to 0.8)
+                
+                col += 1
+                print(leg_cat[cat], leg_sub[sub])
+
+                label.append(f'{leg_cat[cat]} {leg_sub[sub]}, AUC={roc_auc:.3f}')
+
+                with open(output_file, "a") as file:
+                    file.write(f"AUC:{roc_auc} \n\n")
+                    file.write("-----------------------------------------\n")
+
+                print(f"Done: {cat}{sub}")
+
+            else:
+                N, N_gen, eff, weight = {}, {}, {}, {}
+                N_bkg, N_bkg_gen, tot_weight_bkg = 0, 0, 0
+                N_sig_ZH, N_sig_ZH_gen, tot_weight_sig_ZH = 0, 0, 0
+                N_sig_VBF, N_sig_VBF_gen, tot_weight_sig_VBF = 0, 0, 0
+
+                for i in sigs_ZH + sigs_VBF + bkgs:
+                    files = glob.glob(path + i + '/chunk_*.root')
+                    N[i], N_gen[i], eff[i] = 0, 0, 0
+                    
+                    for f in files:
+                        events_processed, events_in_ttree = get_entries(f)
+                        if events_processed and events_in_ttree:
+                            N[i] += events_in_ttree
+                            N_gen[i] += events_processed
+                    
+                    if N_gen[i]:
+                        eff[i] = N[i] / N_gen[i]
+                    weight[i] = xsec[i] * eff[i] * 2.65e6
+                    
+                    if i in bkgs:
+                        N_bkg += N[i]
+                        N_bkg_gen += N_gen[i]
+                        tot_weight_bkg += weight[i]
+                    elif i in sigs_ZH:
+                        N_sig_ZH += N[i]
+                        N_sig_ZH_gen += N_gen[i]
+                        tot_weight_sig_ZH += weight[i]
+                    elif i in sigs_VBF:
+                        N_sig_VBF += N[i]
+                        N_sig_VBF_gen += N_gen[i]
+                        tot_weight_sig_VBF += weight[i]
+
+                # Compute total efficiencies
+                if N_bkg_gen:
+                    eff_tot_bkg = N_bkg / N_bkg_gen
+                if N_sig_ZH_gen or N_sig_VBF_gen:
+                    eff_tot_sig = (N_sig_ZH + N_sig_VBF) / (N_sig_VBF_gen + N_sig_ZH_gen)
+
+
+                # Adjust sample sizes
+                N_min = {}
+                N_sig_ZH_new, N_sig_VBF_new = N_sig_ZH, N_sig_VBF
+                for i in sigs_ZH:
+                    N_min[i] = min(N[i], N_sig_ZH * weight[i] / tot_weight_sig_ZH)
+                    if N_min[i] == N[i] and weight[i] > 0:
+                        N_sig_ZH_new = N_min[i] * tot_weight_sig_ZH / weight[i]
+                for i in sigs_VBF:
+                    N_min[i] = min(N[i], N_sig_VBF * weight[i] / tot_weight_sig_VBF)
+                    if N_min[i] == N[i] and weight[i] > 0:
+                        N_sig_VBF_new = N_min[i] * tot_weight_sig_VBF / weight[i]
+                N_sig_new = N_sig_VBF_new + N_sig_ZH_new
+
+                with open(output_file, "a") as file:
+                    file.write(f"Events of backgrounds: {N_bkg}\n")
+                    file.write(f"Events of signals: {N_sig_ZH+N_sig_VBF}\n")
+                    file.write(f"Weight of backgrounds: {tot_weight_bkg}\n")
+                    file.write(f"Weight of signals: {tot_weight_sig_ZH+tot_weight_sig_VBF}\n")
+                    file.write(f"Efficiency of backgrounds: {eff_tot_bkg}\n")
+                    file.write(f"Efficiency of signals: {eff_tot_sig}\n\n")
+                    file.write(f"Adjusted size of signal: {N_sig_new}\n\n")
+
+                df_sig_ZH, df_sig_VBF, df_bkg = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+
+                # Load signal and background samples
+                for q in sigs_ZH + sigs_VBF:
+                    target_events = int(N_sig_ZH_new * weight[q] / tot_weight_sig_ZH) if q in sigs_ZH else (
+                                    int(N_sig_VBF_new * weight[q] / tot_weight_sig_VBF) )
+                    
+                    if N[q] > 0:
+                        files = glob.glob(path + q + '/chunk_*.root')
+                        df = pd.DataFrame()
+
+                        for file in files:
+                            f = uproot.open(file)
+                            if f.keys()==['eventsProcessed;1']:
+                                files.remove(file)
+                                continue
+                            tree = f["events"]
+                            temp_df = tree.arrays(expressions=vars_list, library="pd")
+                            df = pd.concat([df, temp_df])
+
+                            # Check if we have enough events to meet the target
+                            if len(df) >= target_events:
+                                break 
+
+                        df = df.head(target_events)
+
+                        if q in sigs_ZH:
+                            prev = len(df_sig_ZH)
+                            df_sig_ZH = pd.concat([df_sig_ZH, df])
+                        else:
+                            prev = len(df_sig_VBF)
+                            df_sig_VBF = pd.concat([df_sig_VBF, df])
+
+                        with open(output_file, "a") as file:
+                            file.write(f"Weight of {q}: {weight[q]}\n")
+                            file.write(f"Relative weight of {q}: {(weight[q] / tot_weight_sig_ZH) if q in sigs_ZH else ((weight[q] / tot_weight_sig_VBF))}\n")
+                            file.write(f"Requested size of {q}: {int(N_sig_ZH_new * weight[q] / tot_weight_sig_ZH) if q in sigs_ZH else (int(N_sig_VBF_new * weight[q] / tot_weight_sig_VBF))}\n")
+                            file.write(f"Events after stage2 of {q}: {N[q]}\n")
+                            file.write(f"Number of events in the dataframe of {q}: {(len(df_sig_ZH) - prev) if q in sigs_ZH else ((len(df_sig_VBF) - prev))}\n\n")
+
+
+                with open(output_file, "a") as file:
+                    file.write(f"Total size of signal sample: {len(df_sig_VBF)+len(df_sig_ZH)}\n")
+
+                for q in bkgs:
+                    target_events = int(N_sig_new * weight[q] / tot_weight_bkg)
+                    
+                    if N[q] > target_events and target_events>0: 
+                        files = glob.glob(path + q + '/chunk_*.root')
+                        df = pd.DataFrame()
+
+                        for file in files:
+                            f = uproot.open(file)
+                            if f.keys()==['eventsProcessed;1']:
+                                files.remove(file)
+                                continue
+                            tree = f["events"]
+                            temp_df = tree.arrays(expressions=vars_list, library="pd")
+                            df = pd.concat([df, temp_df])
+
+                            # Check if we have enough events to meet the target
+                            if len(df) >= target_events:
+                                break 
+
+                        df = df.head(target_events)
+                        df_bkg = pd.concat([df_bkg, df])
+                        prev = len(df_bkg)
+
+                        with open(output_file, "a") as file:
+                            file.write(f"Weight of {q}: {weight[q]}\n")
+                            file.write(f"Relative weight of {q}: {weight[q] / tot_weight_bkg}\n")
+                            file.write(f"Requested size of {q}: {N_sig_new * weight[q] / tot_weight_bkg}\n")
+                            file.write(f"Events after stage2 of {q}: {N[q]}\n")
+                            file.write(f"Number of events in the dataframe of {q}: {len(df_bkg) - prev}\n\n")
+
+                with open(output_file, "a") as file:
+                    file.write(f"Total size of bkg sample: {len(df_bkg)}\n\n")
+
+                # Assign labels
+                df_sig_ZH['label'] = 1
+                df_sig_VBF['label'] = 2
+                df_bkg['label'] = 0
+
+                # Shuffle and split datasets
+                df_sig_ZH = df_sig_ZH.sample(frac=1, random_state=1)
+                df_sig_VBF = df_sig_VBF.sample(frac=1, random_state=1)
+                df_bkg = df_bkg.sample(frac=1, random_state=1)
+                df_sig = pd.concat([df_sig_ZH, df_sig_VBF])
+
+                train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
+                train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
+                df_train = pd.concat([train_sig, train_bkg]).sample(frac=1)
+                df_test = pd.concat([test_sig, test_bkg])
+
+                # Prepare input features and labels
+                x_train, y_train = df_train[vars_list].to_numpy(), df_train['label'].to_numpy()
+                x_test, y_test = df_test[vars_list].to_numpy(), df_test['label'].to_numpy()
+
+                bdt = xgb.XGBClassifier()
+                bdt.load_model(f"{out}/xgb_bdt_ktN-explicit_NuNuHH_model.json")
+
+                print("Testing model")
+                pred_test = bdt.predict_proba(x_test)  # Get probabilities
+
+                #only plot ZH vs background ROC
+                fpr, tpr, _ = roc_curve(y_test, pred_test[:, 1], pos_label=i)
+                roc_auc = auc(fpr, tpr)
+                
+                plt.plot(fpr, tpr, lw=1.5, color=colorDict[col])
+
+                col += 1
+                print(leg_cat[cat], leg_sub[sub])
+
+                label.append(f'{leg_cat[cat]} {leg_sub[sub]}, AUC={roc_auc:.3f}')
+
+                with open(output_file, "a") as file:
+                    file.write(f"AUC:{roc_auc} \n\n")
+                    file.write("-----------------------------------------\n")
+
+                print(f"Done: {cat}{sub}")
+
+                '''
+                # Compute ROC for ZH vs VBF (label 1 vs label 2)
+                prob_test = bdt.predict_proba(x_test)
+                y_test_ZH_VBF = y_test[y_test != 0]  # Remove true background
+                prob_test_ZH_VBF = prob_test[y_test != 0, 1]  # Get ZH scores for ZH or VBF true events: [event,i] where 1 is the label with predict_proba, 1D with predict(only label of events instead of probabilities for each class)
+                fpr_zh_vbf, tpr_zh_vbf, _ = roc_curve(y_test_ZH_VBF, prob_test_ZH_VBF, pos_label=1) 
+                #False Positive Rate (FPR): Probability that a VBF event is misclassified as ZH. 
+                #True Positive Rate (TPR): Probability that a ZH event is correctly classified as ZH.
+                roc_auc_zh_vbf = auc(fpr, tpr)
+
+                # Plot ZH vs VBF ROC curve
+                ax.plot(fpr_zh_vbf, tpr_zh_vbf, lw=2, color="purple", label=f'ZH vs VBF (AUC = {roc_auc_zh_vbf:.3f})')
+
+                # Plot random classifier baseline
+                ax.plot([0., 1.], [0., 1.], linestyle="--", color="black", label="Random Classifier")'''
+
+        # Plot the baseline for random classifier
+        plt.plot([0., 1.], [0., 1.], linestyle="--", color="k", label='50/50')
+        label.append('50/50')
+
+        # Set limits and labels
+        #plt.xlim(0., 1.)
+        plt.ylim(0., 1.)
+        plt.xscale('log')
+
+        plt.ylabel('True Positive Rate', fontsize=18)  # 1 - FPR
+        plt.xlabel('False Positive Rate', fontsize=18)  # TPR
+        plt.title(f'{tag}   FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
+
+        # Adjust ticks and legend
+        ax.tick_params(axis='both', which='major', labelsize=15)
+        plt.legend(label, loc="lower right", fontsize=15)
+        plt.grid()
+
+        plt.tight_layout()
+
+        # Save the figure
+        fig.savefig(f"/web/sgiappic/public_html/Higgs_xsec/ecm365/{tag}/BDT/BDT_ROC.pdf")
+        fig.savefig(f"/web/sgiappic/public_html/Higgs_xsec/ecm365/{tag}/BDT/BDT_ROC.png")

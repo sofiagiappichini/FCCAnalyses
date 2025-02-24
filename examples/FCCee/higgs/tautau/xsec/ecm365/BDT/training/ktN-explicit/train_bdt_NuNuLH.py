@@ -442,8 +442,8 @@ df_sig_VBF = df_sig_VBF.sample(frac=1, random_state=1)
 df_bkg = df_bkg.sample(frac=1, random_state=1)
 df_sig = pd.concat([df_sig_ZH, df_sig_VBF])
 
-train_sig, test_sig = train_test_split(df_sig, test_size=0.9)
-train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.9)
+train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
+train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
 df_train = pd.concat([train_sig, train_bkg]).sample(frac=1)
 df_test = pd.concat([test_sig, test_bkg])
 

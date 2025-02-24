@@ -441,8 +441,8 @@ df_sig_VBF = df_sig_VBF.sample(frac=1, random_state=1)
 df_bkg = df_bkg.sample(frac=1, random_state=1)
 df_sig = pd.concat([df_sig_ZH, df_sig_VBF])
 
-train_sig, test_sig = train_test_split(df_sig, test_size=0.9)
-train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.9)
+train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
+train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
 df_train = pd.concat([train_sig, train_bkg]).sample(frac=1)
 df_test = pd.concat([test_sig, test_bkg])
 
@@ -453,7 +453,7 @@ x_test, y_test = df_test[vars_list].to_numpy(), df_test['label'].to_numpy()
 # Compute sample weights
 weights = compute_sample_weight(class_weight='balanced', y=y_train)
 
-'''# Train XGBoost Model
+'''c# Train XGBoost Model
 config_dict = {"n_estimators": 200, "learning_rate": 0.3, "max_depth": 2}
 bdt = xgb.XGBClassifier(n_estimators=config_dict["n_estimators"],
                         max_depth=config_dict["max_depth"],
@@ -499,19 +499,20 @@ colors = ["red", "blue", "green"]
 fig, ax = plt.subplots(figsize=(8, 8))
 
 # Loop through each class (ignoring background, index=0)
-'''for i in range(1, 3):
+for i in range(1, 3):
     fpr, tpr, _ = roc_curve(y_test, pred_test[:, i], pos_label=i)
     roc_auc = auc(fpr, tpr)
     
-    ax.plot(fpr, tpr, lw=2, color=colors[i], label=f'{labels[i]} (AUC = {roc_auc:.3f})')'''
+    ax.plot(fpr, tpr, lw=2, color=colors[i], label=f'{labels[i]} (AUC = {roc_auc:.3f})')
 
 # Compute ROC for ZH vs VBF (label 1 vs label 2)
-y_test = np.where(Is_ZH_sample, 1, 0)
-pred_test = np.where(ZH_score > VBF_score, 1, 0)
-fpr, tpr, thresholds = roc_curve(y_test, pred_test, pos_label=1)
-
-#fpr_zh_vbf, tpr_zh_vbf, _ = roc_curve((y_test == 1).astype(int), (y_test == 2).astype(int))
-roc_auc_zh_vbf = auc(fpr, tpr)
+prob_test = bdt.predict_proba(x_test)
+y_test_ZH_VBF = y_test[y_test != 0]  # Remove true background
+prob_test_ZH_VBF = prob_test[y_test != 0, 1]  # Get ZH scores for ZH or VBF true events: [event,i] where 1 is the label with predict_proba, 1D with predict(only label of events instead of probabilities for each class)
+fpr_zh_vbf, tpr_zh_vbf, _ = roc_curve(y_test_ZH_VBF, prob_test_ZH_VBF, pos_label=1) 
+#False Positive Rate (FPR): Probability that a VBF event is misclassified as ZH. 
+#True Positive Rate (TPR): Probability that a ZH event is correctly classified as ZH.
+roc_auc_zh_vbf = auc(fpr_zh_vbf, tpr_zh_vbf)
 
 # Plot ZH vs VBF ROC curve
 ax.plot(fpr_zh_vbf, tpr_zh_vbf, lw=2, color="purple", label=f'ZH vs VBF (AUC = {roc_auc_zh_vbf:.3f})')
@@ -532,4 +533,4 @@ plt.tight_layout()
 
 # Save the figure
 print("Saving ROC plot")
-fig.savefig("/web/sgiappic/public_html/Higgs_xsec/ecm365/ktN-explicit/BDT/NuNuHH_ROC.pdf")
+fig.savefig("/web/sgiappic/public_html/Higgs_xsec/ecm365/ktN-explicit/BDT/NuNuHH_ROC_v2.pdf")

@@ -3,10 +3,10 @@ import ROOT
 
 ### it's best to process stage3 in batch because some files will be empty and it will abort everything but in batch it aborts only the respective jobs
 
-inputDir = "/ceph/sgiappic/HiggsCP/ecm365/R5-explicit/stage2_280125_cut/NuNu/HH/"
+inputDir = "/ceph/sgiappic/HiggsCP/ecm365/R5-explicit/stage2_280125_cut/QQ/HH/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/gsiappic/HiggsCP/ecm365/R5-explicit/stage3_280125/NuNu/HH/" 
+outputDir   = "/ceph/gsiappic/HiggsCP/ecm365/R5-explicit/stage3_280125/QQ/HH/" 
 
 #Mandatory: List of processes
 processList = {
@@ -138,14 +138,6 @@ class RDFanalysis():
                 .Define("fRecoH_e",       "static_cast<float>(RecoH_e)")
                 .Define("fRecoH_eta",       "static_cast<float>(RecoH_eta)")
                 .Define("fRecoH_mass",       "static_cast<float>(RecoH_mass)")
-                #.Define("fTauLepton_type",       "static_cast<float>(TauLepton_type)")
-                #.Define("fn_TauLepton_constituents",       "static_cast<float>(n_TauLepton_constituents)")
-                #.Define("fn_TauLepton_charged_constituents",       "static_cast<float>(n_TauLepton_charged_constituents)")
-                #.Define("fn_TauLepton_neutral_constituents",       "static_cast<float>(n_TauLepton_neutral_constituents)")
-                #.Define("fTauHadron_type",       "static_cast<float>(TauHadron_type)")
-                #.Define("fn_TauHadron_constituents",       "static_cast<float>(n_TauHadron_constituents)")
-                #.Define("fn_TauHadron_charged_constituents",       "static_cast<float>(n_TauHadron_charged_constituents)")
-                #.Define("fn_TauHadron_neutral_constituents",       "static_cast<float>(n_TauHadron_neutral_constituents)")
                 .Define("fTau_DPhi",       "static_cast<float>(Tau_DPhi)")
                 .Define("fTau_DR",       "static_cast<float>(Tau_DR)")
                 .Define("fTau_cos",       "static_cast<float>(Tau_cos)")
@@ -171,12 +163,6 @@ class RDFanalysis():
                                                         "fRecoH_e",
                                                         "fRecoH_eta",
                                                         "fRecoH_mass",
-                                                        #"fTauLepton_type",
-                                                        #"fTauHadron_type",
-                                                        #"fn_TauLepton_charged_constituents",
-                                                        #"fn_TauLepton_neutral_constituents",
-                                                        #"fn_TauHadron_charged_constituents",
-                                                        #"fn_TauHadron_neutral_constituents",
                                                         "fTau_DPhi",
                                                         "fTau_DR",
                                                         "fTau_cos",
@@ -185,8 +171,6 @@ class RDFanalysis():
                                                         "fCollinear_mass"])
 
                 .Define("BDT_score_bkg",        "BDT_pred.at(0)")
-                .Define("BDT_score_ZH",         "BDT_pred.at(1)")
-                .Define("BDT_score_VBF",        "BDT_pred.at(2)")
         )
         return df2
 
@@ -1008,8 +992,6 @@ class RDFanalysis():
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
             "BDT_score_bkg",  
-                "BDT_score_ZH",    
-                "BDT_score_VBF",   
         ]
 
         return branchList

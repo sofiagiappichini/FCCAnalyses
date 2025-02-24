@@ -34,7 +34,7 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "workday"\n'
+    cfg += '+JobFlavour      = "espresso"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -210,26 +210,26 @@ processList = {
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/ecm365/stage1_280125/'
-output = '/work/sgiappic/HTCondor/stage2_ecm365_ll/' ##output directory of submission files, needs to be different to have unique submission files
+inputDir_path = '/ceph/sgiappic/HiggsCP/ecm365/'
+output = '/work/sgiappic/HTCondor/stage3_ecm365_2/' ##output directory of submission files, needs to be different to have unique submission files
 outputDir_path = '/ceph/sgiappic/HiggsCP/ecm365/' ##output directory of stage2 samples
-localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/'
+localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/BDT/stage3/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
-Filename_path = 'analysis_stage2_'
+Filename_path = 'analysis_stage3_'
 SUBDIR = [
     'LL',
     'LH',
-    #'HH',
+    'HH',
 ]
 CAT = [
     #"QQ",
-    "LL",
-    #"NuNu",
+    #"LL",
+    "NuNu",
 ]
 TAG = [
-    #"R5-explicit",
-    #"R5-tag",
-    #"ktN-explicit",
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
     "ktN-tag",
 ]
 nCPUS = 1
@@ -238,15 +238,12 @@ for tag in TAG:
     output_condor = output + tag + "/"
     for cat in CAT:
         for sub in SUBDIR:
-            if "BDT" in localDir_path:
-                localDir = localDir_path
-            else:
-                localDir = localDir_path + tag + "/" + cat + "/"
+            localDir = localDir_path + tag + "/" 
             if "stage1" in inputDir_path:
                 inputDir = inputDir_path 
             else:
-                inputDir = inputDir_path + cat + "/" + sub + "/"
-            outputDir = outputDir_path + tag + "/stage2_280125_nocuts/" + cat + "/" + sub + "/"
+                inputDir = inputDir_path + tag + "/stage2_280125_cut/" + cat + "/" + sub + "/"
+            outputDir = outputDir_path + tag + "/stage3_280125/" + cat + "/" + sub + "/"
             Filename = Filename_path + cat + sub + ".py"
             create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output_condor, outputDir, Filename)
 
