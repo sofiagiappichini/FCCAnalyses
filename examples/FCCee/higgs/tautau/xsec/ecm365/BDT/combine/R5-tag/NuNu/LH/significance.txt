@@ -1,0 +1,428 @@
+
+>>> Random number generator seed is 123456
+>>> Method used is MultiDimFit
+Adding /work/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,ONE,ZERO,prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin0_In,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin1_In,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin2_In,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin3_In,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin4_In,prop_binBDT_score_VBF_bin5,prop_binBDT_score_VBF_bin5_In,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel BDT_score_VBF=pdf_binBDT_score_VBF_bonly extraConstraints=() channelMasks=() ] = 1.3e-08
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_VBF=pdf_binBDT_score_VBF extraConstraints=() channelMasks=() ] = 1.5e-08
+RooProdPdf::nuisancePdf[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binBDT_score_VBF[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binBDT_score_VBF_nuis * pdfbins_binBDT_score_VBF ] = 1.5e-08
+RooProdPdf::pdf_binBDT_score_VBF_bonly[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binBDT_score_VBF_bonly_nuis * pdfbins_binBDT_score_VBF ] = 1.3e-08
+RooRealSumPdf::pdf_binBDT_score_VBF_bonly_nuis[ ONE * prop_binBDT_score_VBF_bonly ] = 1.3e-08
+RooRealSumPdf::pdf_binBDT_score_VBF_nuis[ ONE * prop_binBDT_score_VBF ] = 1.5e-08
+RooProdPdf::pdfbins_binBDT_score_VBF[ prop_binBDT_score_VBF_bin0_Pdf * prop_binBDT_score_VBF_bin1_Pdf * prop_binBDT_score_VBF_bin2_Pdf * prop_binBDT_score_VBF_bin3_Pdf * prop_binBDT_score_VBF_bin4_Pdf * prop_binBDT_score_VBF_bin5_Pdf ] = 1
+SimpleGaussianConstraint::prop_binBDT_score_VBF_bin0_Pdf[ x=prop_binBDT_score_VBF_bin0 mean=prop_binBDT_score_VBF_bin0_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binBDT_score_VBF_bin1_Pdf[ x=prop_binBDT_score_VBF_bin1 mean=prop_binBDT_score_VBF_bin1_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binBDT_score_VBF_bin2_Pdf[ x=prop_binBDT_score_VBF_bin2 mean=prop_binBDT_score_VBF_bin2_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binBDT_score_VBF_bin3_Pdf[ x=prop_binBDT_score_VBF_bin3 mean=prop_binBDT_score_VBF_bin3_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binBDT_score_VBF_bin4_Pdf[ x=prop_binBDT_score_VBF_bin4 mean=prop_binBDT_score_VBF_bin4_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binBDT_score_VBF_bin5_Pdf[ x=prop_binBDT_score_VBF_bin5 mean=prop_binBDT_score_VBF_bin5_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_Z_Pdf[ x=unc_Z mean=unc_Z_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_ecm365_Pdf[ x=unc_p8_ee_WW_ecm365 mean=unc_p8_ee_WW_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf[ x=unc_wzp6_ee_egamma_eZ_ZLL_ecm365 mean=unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_gaga_LL_60_ecm365_Pdf[ x=unc_wzp6_ee_gaga_LL_60_ecm365 mean=unc_wzp6_ee_gaga_LL_60_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_nuenueZ_ecm365_Pdf[ x=unc_wzp6_ee_nuenueZ_ecm365 mean=unc_wzp6_ee_nuenueZ_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_LLH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_VBFnunu_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_ZH_Znunu_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binBDT_score_VBF_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+CMSHistErrorPropagator::prop_binBDT_score_VBF[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_BDT_score_VBF_rebinPdf,shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_p8_ee_WW_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_LL_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_VBF_rebinPdf) coeffs=(n_exp_binBDT_score_VBF_proc_wzp6_ee_VBFnunu_Htautau_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_ZH_Htautau_ecm365,n_exp_binBDT_score_VBF_proc_p8_ee_WW_ecm365,n_exp_binBDT_score_VBF_proc_p8_ee_ZQQ_ecm365,n_exp_binBDT_score_VBF_proc_p8_ee_ZZ_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_LL_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_tautau_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_nuenueZ_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_egamma_eZ_ZLL_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_gaga_LL_60_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_LLH_HQQ_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_LLH_HVV_ecm365) binpars=(prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin5) ] = 1.5e-08
+CMSHistErrorPropagator::prop_binBDT_score_VBF_bonly[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_BDT_score_VBF_rebinPdf,shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_p8_ee_WW_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_LL_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_VBF_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_VBF_rebinPdf) coeffs=(ZERO,ZERO,n_exp_binBDT_score_VBF_proc_p8_ee_WW_ecm365,n_exp_binBDT_score_VBF_proc_p8_ee_ZQQ_ecm365,n_exp_binBDT_score_VBF_proc_p8_ee_ZZ_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_LL_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_tautau_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_nuenueZ_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_egamma_eZ_ZLL_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_gaga_LL_60_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_LLH_HQQ_ecm365,n_exp_binBDT_score_VBF_proc_wzp6_ee_LLH_HVV_ecm365) binpars=(prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin5) ] = 1.3e-08
+CMSHistFunc::shapeBkg_p8_ee_WW_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_WW_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_WW_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZZ_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZZ_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZZ_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LL_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LL_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LL_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_VBF_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_VBF_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_VBF_rebinPdf err=prop_binBDT_score_VBF ] = 1e-09
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,prop_binBDT_score_VBF_bin0_In,prop_binBDT_score_VBF_bin1_In,prop_binBDT_score_VBF_bin2_In,prop_binBDT_score_VBF_bin3_In,prop_binBDT_score_VBF_bin4_In,prop_binBDT_score_VBF_bin5_In)
+ModelConfig_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin5)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,prop_binBDT_score_VBF_bin0_In,prop_binBDT_score_VBF_bin1_In,prop_binBDT_score_VBF_bin2_In,prop_binBDT_score_VBF_bin3_In,prop_binBDT_score_VBF_bin4_In,prop_binBDT_score_VBF_bin5_In)
+ModelConfig_bonly_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin5)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,prop_binBDT_score_VBF_bin0_In,prop_binBDT_score_VBF_bin1_In,prop_binBDT_score_VBF_bin2_In,prop_binBDT_score_VBF_bin3_In,prop_binBDT_score_VBF_bin4_In,prop_binBDT_score_VBF_bin5_In)
+group_autoMCStats:(prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin5)
+nuisances:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin5)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin5)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,prop_binBDT_score_VBF_bin0_In,prop_binBDT_score_VBF_bin1_In,prop_binBDT_score_VBF_bin2_In,prop_binBDT_score_VBF_bin3_In,prop_binBDT_score_VBF_bin4_In,prop_binBDT_score_VBF_bin5_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_VBF=pdf_binBDT_score_VBF extraConstraints=() channelMasks=() ] = 1.5e-08
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,prop_binBDT_score_VBF_bin0,prop_binBDT_score_VBF_bin1,prop_binBDT_score_VBF_bin2,prop_binBDT_score_VBF_bin3,prop_binBDT_score_VBF_bin4,prop_binBDT_score_VBF_bin5)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,prop_binBDT_score_VBF_bin0_In,prop_binBDT_score_VBF_bin1_In,prop_binBDT_score_VBF_bin2_In,prop_binBDT_score_VBF_bin3_In,prop_binBDT_score_VBF_bin4_In,prop_binBDT_score_VBF_bin5_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_VBF=pdf_binBDT_score_VBF extraConstraints=() channelMasks=() ] = 1.5e-08
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Found a parameter named ONE infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Found a parameter named ZERO infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 0 
+CMS_th1x = 199.5 
+ONE = 1 (constant)
+prop_binBDT_score_VBF_bin0 = 0 
+prop_binBDT_score_VBF_bin0_In = 0 (constant)
+prop_binBDT_score_VBF_bin1 = 0 
+prop_binBDT_score_VBF_bin1_In = 0 (constant)
+prop_binBDT_score_VBF_bin2 = 0 
+prop_binBDT_score_VBF_bin2_In = 0 (constant)
+prop_binBDT_score_VBF_bin3 = 0 
+prop_binBDT_score_VBF_bin3_In = 0 (constant)
+prop_binBDT_score_VBF_bin4 = 0 
+prop_binBDT_score_VBF_bin4_In = 0 (constant)
+prop_binBDT_score_VBF_bin5 = 0 
+prop_binBDT_score_VBF_bin5_In = 0 (constant)
+r_VBF = 1 
+r_ZH = 1 
+unc_Z = 0 
+unc_Z_In = 0 (constant)
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_WW_ecm365 = 0 
+unc_p8_ee_WW_ecm365_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = 0 
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In = 0 (constant)
+unc_wzp6_ee_gaga_LL_60_ecm365 = 0 
+unc_wzp6_ee_gaga_LL_60_ecm365_In = 0 (constant)
+unc_wzp6_ee_nuenueZ_ecm365 = 0 
+unc_wzp6_ee_nuenueZ_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binBDT_score_VBF_obsOnly: in 200 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5     BDT_score_VBF  1735583.2500000
+   1               1.5     BDT_score_VBF  271698.4062500
+   2               2.5     BDT_score_VBF  60723.3867188
+   3               3.5     BDT_score_VBF  18028.8593750
+   4               4.5     BDT_score_VBF   367.6752319
+   5               5.5     BDT_score_VBF     0.8426393
+   6               6.5     BDT_score_VBF     0.0000000
+   7               7.5     BDT_score_VBF     0.0000000
+   8               8.5     BDT_score_VBF     0.0000000
+   9               9.5     BDT_score_VBF     0.0000000
+  10              10.5     BDT_score_VBF     0.0000000
+  11              11.5     BDT_score_VBF     0.0000000
+  12              12.5     BDT_score_VBF     0.0000000
+  13              13.5     BDT_score_VBF     0.0000000
+  14              14.5     BDT_score_VBF     0.0000000
+  15              15.5     BDT_score_VBF     0.0000000
+  16              16.5     BDT_score_VBF     0.0000000
+  17              17.5     BDT_score_VBF     0.0000000
+  18              18.5     BDT_score_VBF     0.0000000
+  19              19.5     BDT_score_VBF     0.0000000
+  20              20.5     BDT_score_VBF     0.0000000
+  21              21.5     BDT_score_VBF     0.0000000
+  22              22.5     BDT_score_VBF     0.0000000
+  23              23.5     BDT_score_VBF     0.0000000
+  24              24.5     BDT_score_VBF     0.0000000
+  25              25.5     BDT_score_VBF     0.0000000
+  26              26.5     BDT_score_VBF     0.0000000
+  27              27.5     BDT_score_VBF     0.0000000
+  28              28.5     BDT_score_VBF     0.0000000
+  29              29.5     BDT_score_VBF     0.0000000
+  30              30.5     BDT_score_VBF     0.0000000
+  31              31.5     BDT_score_VBF     0.0000000
+  32              32.5     BDT_score_VBF     0.0000000
+  33              33.5     BDT_score_VBF     0.0000000
+  34              34.5     BDT_score_VBF     0.0000000
+  35              35.5     BDT_score_VBF     0.0000000
+  36              36.5     BDT_score_VBF     0.0000000
+  37              37.5     BDT_score_VBF     0.0000000
+  38              38.5     BDT_score_VBF     0.0000000
+  39              39.5     BDT_score_VBF     0.0000000
+  40              40.5     BDT_score_VBF     0.0000000
+  41              41.5     BDT_score_VBF     0.0000000
+  42              42.5     BDT_score_VBF     0.0000000
+  43              43.5     BDT_score_VBF     0.0000000
+  44              44.5     BDT_score_VBF     0.0000000
+  45              45.5     BDT_score_VBF     0.0000000
+  46              46.5     BDT_score_VBF     0.0000000
+  47              47.5     BDT_score_VBF     0.0000000
+  48              48.5     BDT_score_VBF     0.0000000
+  49              49.5     BDT_score_VBF     0.0000000
+  50              50.5     BDT_score_VBF     0.0000000
+  51              51.5     BDT_score_VBF     0.0000000
+  52              52.5     BDT_score_VBF     0.0000000
+  53              53.5     BDT_score_VBF     0.0000000
+  54              54.5     BDT_score_VBF     0.0000000
+  55              55.5     BDT_score_VBF     0.0000000
+  56              56.5     BDT_score_VBF     0.0000000
+  57              57.5     BDT_score_VBF     0.0000000
+  58              58.5     BDT_score_VBF     0.0000000
+  59              59.5     BDT_score_VBF     0.0000000
+  60              60.5     BDT_score_VBF     0.0000000
+  61              61.5     BDT_score_VBF     0.0000000
+  62              62.5     BDT_score_VBF     0.0000000
+  63              63.5     BDT_score_VBF     0.0000000
+  64              64.5     BDT_score_VBF     0.0000000
+  65              65.5     BDT_score_VBF     0.0000000
+  66              66.5     BDT_score_VBF     0.0000000
+  67              67.5     BDT_score_VBF     0.0000000
+  68              68.5     BDT_score_VBF     0.0000000
+  69              69.5     BDT_score_VBF     0.0000000
+  70              70.5     BDT_score_VBF     0.0000000
+  71              71.5     BDT_score_VBF     0.0000000
+  72              72.5     BDT_score_VBF     0.0000000
+  73              73.5     BDT_score_VBF     0.0000000
+  74              74.5     BDT_score_VBF     0.0000000
+  75              75.5     BDT_score_VBF     0.0000000
+  76              76.5     BDT_score_VBF     0.0000000
+  77              77.5     BDT_score_VBF     0.0000000
+  78              78.5     BDT_score_VBF     0.0000000
+  79              79.5     BDT_score_VBF     0.0000000
+  80              80.5     BDT_score_VBF     0.0000000
+  81              81.5     BDT_score_VBF     0.0000000
+  82              82.5     BDT_score_VBF     0.0000000
+  83              83.5     BDT_score_VBF     0.0000000
+  84              84.5     BDT_score_VBF     0.0000000
+  85              85.5     BDT_score_VBF     0.0000000
+  86              86.5     BDT_score_VBF     0.0000000
+  87              87.5     BDT_score_VBF     0.0000000
+  88              88.5     BDT_score_VBF     0.0000000
+  89              89.5     BDT_score_VBF     0.0000000
+  90              90.5     BDT_score_VBF     0.0000000
+  91              91.5     BDT_score_VBF     0.0000000
+  92              92.5     BDT_score_VBF     0.0000000
+  93              93.5     BDT_score_VBF     0.0000000
+  94              94.5     BDT_score_VBF     0.0000000
+  95              95.5     BDT_score_VBF     0.0000000
+  96              96.5     BDT_score_VBF     0.0000000
+  97              97.5     BDT_score_VBF     0.0000000
+  98              98.5     BDT_score_VBF     0.0000000
+  99              99.5     BDT_score_VBF     0.0000000
+ 100             100.5     BDT_score_VBF     0.0000000
+ 101             101.5     BDT_score_VBF     0.0000000
+ 102             102.5     BDT_score_VBF     0.0000000
+ 103             103.5     BDT_score_VBF     0.0000000
+ 104             104.5     BDT_score_VBF     0.0000000
+ 105             105.5     BDT_score_VBF     0.0000000
+ 106             106.5     BDT_score_VBF     0.0000000
+ 107             107.5     BDT_score_VBF     0.0000000
+ 108             108.5     BDT_score_VBF     0.0000000
+ 109             109.5     BDT_score_VBF     0.0000000
+ 110             110.5     BDT_score_VBF     0.0000000
+ 111             111.5     BDT_score_VBF     0.0000000
+ 112             112.5     BDT_score_VBF     0.0000000
+ 113             113.5     BDT_score_VBF     0.0000000
+ 114             114.5     BDT_score_VBF     0.0000000
+ 115             115.5     BDT_score_VBF     0.0000000
+ 116             116.5     BDT_score_VBF     0.0000000
+ 117             117.5     BDT_score_VBF     0.0000000
+ 118             118.5     BDT_score_VBF     0.0000000
+ 119             119.5     BDT_score_VBF     0.0000000
+ 120             120.5     BDT_score_VBF     0.0000000
+ 121             121.5     BDT_score_VBF     0.0000000
+ 122             122.5     BDT_score_VBF     0.0000000
+ 123             123.5     BDT_score_VBF     0.0000000
+ 124             124.5     BDT_score_VBF     0.0000000
+ 125             125.5     BDT_score_VBF     0.0000000
+ 126             126.5     BDT_score_VBF     0.0000000
+ 127             127.5     BDT_score_VBF     0.0000000
+ 128             128.5     BDT_score_VBF     0.0000000
+ 129             129.5     BDT_score_VBF     0.0000000
+ 130             130.5     BDT_score_VBF     0.0000000
+ 131             131.5     BDT_score_VBF     0.0000000
+ 132             132.5     BDT_score_VBF     0.0000000
+ 133             133.5     BDT_score_VBF     0.0000000
+ 134             134.5     BDT_score_VBF     0.0000000
+ 135             135.5     BDT_score_VBF     0.0000000
+ 136             136.5     BDT_score_VBF     0.0000000
+ 137             137.5     BDT_score_VBF     0.0000000
+ 138             138.5     BDT_score_VBF     0.0000000
+ 139             139.5     BDT_score_VBF     0.0000000
+ 140             140.5     BDT_score_VBF     0.0000000
+ 141             141.5     BDT_score_VBF     0.0000000
+ 142             142.5     BDT_score_VBF     0.0000000
+ 143             143.5     BDT_score_VBF     0.0000000
+ 144             144.5     BDT_score_VBF     0.0000000
+ 145             145.5     BDT_score_VBF     0.0000000
+ 146             146.5     BDT_score_VBF     0.0000000
+ 147             147.5     BDT_score_VBF     0.0000000
+ 148             148.5     BDT_score_VBF     0.0000000
+ 149             149.5     BDT_score_VBF     0.0000000
+ 150             150.5     BDT_score_VBF     0.0000000
+ 151             151.5     BDT_score_VBF     0.0000000
+ 152             152.5     BDT_score_VBF     0.0000000
+ 153             153.5     BDT_score_VBF     0.0000000
+ 154             154.5     BDT_score_VBF     0.0000000
+ 155             155.5     BDT_score_VBF     0.0000000
+ 156             156.5     BDT_score_VBF     0.0000000
+ 157             157.5     BDT_score_VBF     0.0000000
+ 158             158.5     BDT_score_VBF     0.0000000
+ 159             159.5     BDT_score_VBF     0.0000000
+ 160             160.5     BDT_score_VBF     0.0000000
+ 161             161.5     BDT_score_VBF     0.0000000
+ 162             162.5     BDT_score_VBF     0.0000000
+ 163             163.5     BDT_score_VBF     0.0000000
+ 164             164.5     BDT_score_VBF     0.0000000
+ 165             165.5     BDT_score_VBF     0.0000000
+ 166             166.5     BDT_score_VBF     0.0000000
+ 167             167.5     BDT_score_VBF     0.0000000
+ 168             168.5     BDT_score_VBF     0.0000000
+ 169             169.5     BDT_score_VBF     0.0000000
+ 170             170.5     BDT_score_VBF     0.0000000
+ 171             171.5     BDT_score_VBF     0.0000000
+ 172             172.5     BDT_score_VBF     0.0000000
+ 173             173.5     BDT_score_VBF     0.0000000
+ 174             174.5     BDT_score_VBF     0.0000000
+ 175             175.5     BDT_score_VBF     0.0000000
+ 176             176.5     BDT_score_VBF     0.0000000
+ 177             177.5     BDT_score_VBF     0.0000000
+ 178             178.5     BDT_score_VBF     0.0000000
+ 179             179.5     BDT_score_VBF     0.0000000
+ 180             180.5     BDT_score_VBF     0.0000000
+ 181             181.5     BDT_score_VBF     0.0000000
+ 182             182.5     BDT_score_VBF     0.0000000
+ 183             183.5     BDT_score_VBF     0.0000000
+ 184             184.5     BDT_score_VBF     0.0000000
+ 185             185.5     BDT_score_VBF     0.0000000
+ 186             186.5     BDT_score_VBF     0.0000000
+ 187             187.5     BDT_score_VBF     0.0000000
+ 188             188.5     BDT_score_VBF     0.0000000
+ 189             189.5     BDT_score_VBF     0.0000000
+ 190             190.5     BDT_score_VBF     0.0000000
+ 191             191.5     BDT_score_VBF     0.0000000
+ 192             192.5     BDT_score_VBF     0.0000000
+ 193             193.5     BDT_score_VBF     0.0000000
+ 194             194.5     BDT_score_VBF     0.0000000
+ 195             195.5     BDT_score_VBF     0.0000000
+ 196             196.5     BDT_score_VBF     0.0000000
+ 197             197.5     BDT_score_VBF     0.0000000
+ 198             198.5     BDT_score_VBF     0.0000000
+ 199             199.5     BDT_score_VBF     0.0000000
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_Z) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_nuenueZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_gaga_LL_60_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binBDT_score_VBF_bin0) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binBDT_score_VBF_bin1) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binBDT_score_VBF_bin2) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binBDT_score_VBF_bin3) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binBDT_score_VBF_bin4) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binBDT_score_VBF_bin5) new range named 'optimizeBoundRange' created with bounds [-7,7]
+Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 4500 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 4.40650981071e-10 Nfcn = 37
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0
+----------> Iteration 1
+            FVAL = -3.93009033601e-09 Edm = 7.19413277805e-09 Nfcn = 70
+            Error matrix change = 0.561772
+            Parameters :  p0 = 0.999987 p1 = 0.999988 p2 = -1.73934e-07 p3 = -4.85511e-06 p4 = -1.7047e-06 p5 = -1.52176e-06 p6 = -2.72826e-06 p7 = -4.56109e-07 p8 = -4.52468e-06
+----------> Iteration 2
+            FVAL = -3.93009033601e-09 Edm = 7.19413277805e-09 Nfcn = 70
+            Error matrix change = 0.561772
+            Parameters :  p0 = 0.999987 p1 = 0.999988 p2 = -1.73934e-07 p3 = -4.85511e-06 p4 = -1.7047e-06 p5 = -1.52176e-06 p6 = -2.72826e-06 p7 = -4.56109e-07 p8 = -4.52468e-06
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = -3.93009033601152067e-09
+Edm   = 7.19413277805188319e-09
+Nfcn  = 70
+r_VBF	  = 0.999987	 +/-  1.1762	(limited)
+r_ZH	  = 0.999988	 +/-  2.2357	(limited)
+unc_Z	  = -1.73934e-07	 +/-  0.00937427
+unc__H	  = -4.85511e-06	 +/-  1.00031
+unc_p8_ee_WW_ecm365	  = -1.7047e-06	 +/-  0.174918
+unc_p8_ee_ZZ_ecm365	  = -1.52176e-06	 +/-  0.984615
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = -2.72826e-06	 +/-  0.379045
+unc_wzp6_ee_gaga_LL_60_ecm365	  = -4.56109e-07	 +/-  0.0273234
+unc_wzp6_ee_nuenueZ_ecm365	  = -4.52468e-06	 +/-  0.898615
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.047751 seconds (0.040000 CPU time)
+FINAL NLL - NLL0 VALUE = 2.731931492e-08
+
+
+ --- MultiDimFit ---
+best fit parameter values: 
+    r_ZH :    +1.000
+   r_VBF :    +1.000
+Done in 0.00 min (cpu), 0.00 min (real)
+40 log messages saved to combine_logger.out

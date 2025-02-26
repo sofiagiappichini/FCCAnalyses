@@ -1,0 +1,975 @@
+
+>>> Random number generator seed is 123456
+>>> Method used is MultiDimFit
+Adding /work/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,ONE,ZERO,prop_binLLHH_bin39,prop_binLLHH_bin39_In,prop_binLLHH_bin40,prop_binLLHH_bin40_In,prop_binLLHH_bin41,prop_binLLHH_bin41_In,prop_binLLHH_bin42,prop_binLLHH_bin42_In,prop_binLLHH_bin43,prop_binLLHH_bin43_In,prop_binLLHH_bin44,prop_binLLHH_bin44_In,prop_binLLHH_bin45,prop_binLLHH_bin45_In,prop_binLLHH_bin46,prop_binLLHH_bin46_In,prop_binLLHH_bin47,prop_binLLHH_bin47_In,prop_binLLHH_bin48,prop_binLLHH_bin48_In,prop_binLLHH_bin49,prop_binLLHH_bin49_In,prop_binLLHH_bin50,prop_binLLHH_bin50_In,prop_binLLHH_bin51,prop_binLLHH_bin51_In,prop_binLLHH_bin52,prop_binLLHH_bin52_In,prop_binLLHH_bin53,prop_binLLHH_bin53_In,prop_binLLHH_bin54,prop_binLLHH_bin54_In,prop_binLLHH_bin55,prop_binLLHH_bin55_In,prop_binLLHH_bin56,prop_binLLHH_bin56_In,prop_binLLHH_bin57,prop_binLLHH_bin57_In,prop_binLLHH_bin58,prop_binLLHH_bin58_In,prop_binLLHH_bin59,prop_binLLHH_bin59_In,prop_binLLHH_bin60,prop_binLLHH_bin60_In,prop_binLLHH_bin61,prop_binLLHH_bin61_In,prop_binLLHH_bin62,prop_binLLHH_bin62_In,prop_binLLHH_bin63,prop_binLLHH_bin63_In,prop_binLLHH_bin64,prop_binLLHH_bin64_In,prop_binLLHH_bin65,prop_binLLHH_bin65_In,prop_binLLLH_bin39,prop_binLLLH_bin39_In,prop_binLLLH_bin40,prop_binLLLH_bin40_In,prop_binLLLH_bin41,prop_binLLLH_bin41_In,prop_binLLLH_bin42,prop_binLLLH_bin42_In,prop_binLLLH_bin43,prop_binLLLH_bin43_In,prop_binLLLH_bin44,prop_binLLLH_bin44_In,prop_binLLLH_bin45,prop_binLLLH_bin45_In,prop_binLLLH_bin46,prop_binLLLH_bin46_In,prop_binLLLH_bin47,prop_binLLLH_bin47_In,prop_binLLLH_bin48,prop_binLLLH_bin48_In,prop_binLLLH_bin49,prop_binLLLH_bin49_In,prop_binLLLH_bin50,prop_binLLLH_bin50_In,prop_binLLLH_bin51,prop_binLLLH_bin51_In,prop_binLLLH_bin52,prop_binLLLH_bin52_In,prop_binLLLH_bin53,prop_binLLLH_bin53_In,prop_binLLLH_bin54,prop_binLLLH_bin54_In,prop_binLLLH_bin55,prop_binLLLH_bin55_In,prop_binLLLH_bin56,prop_binLLLH_bin56_In,prop_binLLLH_bin57,prop_binLLLH_bin57_In,prop_binLLLH_bin58,prop_binLLLH_bin58_In,prop_binLLLH_bin59,prop_binLLLH_bin59_In,prop_binLLLH_bin60,prop_binLLLH_bin60_In,prop_binLLLH_bin61,prop_binLLLH_bin61_In,prop_binLLLH_bin62,prop_binLLLH_bin62_In,prop_binLLLH_bin63,prop_binLLLH_bin63_In,prop_binLLLH_bin64,prop_binLLLH_bin64_In,prop_binLLLH_bin65,prop_binLLLH_bin65_In,prop_binLLLL_bin39,prop_binLLLL_bin39_In,prop_binLLLL_bin40,prop_binLLLL_bin40_In,prop_binLLLL_bin41,prop_binLLLL_bin41_In,prop_binLLLL_bin42,prop_binLLLL_bin42_In,prop_binLLLL_bin43,prop_binLLLL_bin43_In,prop_binLLLL_bin44,prop_binLLLL_bin44_In,prop_binLLLL_bin45,prop_binLLLL_bin45_In,prop_binLLLL_bin46,prop_binLLLL_bin46_In,prop_binLLLL_bin47,prop_binLLLL_bin47_In,prop_binLLLL_bin48,prop_binLLLL_bin48_In,prop_binLLLL_bin49,prop_binLLLL_bin49_In,prop_binLLLL_bin50,prop_binLLLL_bin50_In,prop_binLLLL_bin51,prop_binLLLL_bin51_In,prop_binLLLL_bin52,prop_binLLLL_bin52_In,prop_binLLLL_bin53,prop_binLLLL_bin53_In,prop_binLLLL_bin54,prop_binLLLL_bin54_In,prop_binLLLL_bin55,prop_binLLLL_bin55_In,prop_binLLLL_bin56,prop_binLLLL_bin56_In,prop_binLLLL_bin57,prop_binLLLL_bin57_In,prop_binLLLL_bin58,prop_binLLLL_bin58_In,prop_binLLLL_bin59,prop_binLLLL_bin59_In,prop_binLLLL_bin60,prop_binLLLL_bin60_In,prop_binLLLL_bin61,prop_binLLLL_bin61_In,prop_binLLLL_bin62,prop_binLLLL_bin62_In,prop_binLLLL_bin63,prop_binLLLL_bin63_In,prop_binLLLL_bin64,prop_binLLLL_bin64_In,prop_binLLLL_bin65,prop_binLLLL_bin65_In,r_VBF,r_ZH,unc__H,unc__H_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel LLLL=pdf_binLLLL_bonly LLLH=pdf_binLLLH_bonly LLHH=pdf_binLLHH_bonly extraConstraints=() channelMasks=() ] = 1.33333e-09
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel LLLL=pdf_binLLLL LLLH=pdf_binLLLH LLHH=pdf_binLLHH extraConstraints=() channelMasks=() ] = 1.66667e-09
+RooProdPdf::nuisancePdf[ unc__H_Pdf * unc_p8_ee_ZZ_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binLLHH[ unc__H_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * pdf_binLLHH_nuis * pdfbins_binLLHH ] = 8e-09
+RooProdPdf::pdf_binLLHH_bonly[ unc__H_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * pdf_binLLHH_bonly_nuis * pdfbins_binLLHH ] = 7e-09
+RooRealSumPdf::pdf_binLLHH_bonly_nuis[ ONE * prop_binLLHH_bonly ] = 7e-09
+RooRealSumPdf::pdf_binLLHH_nuis[ ONE * prop_binLLHH ] = 8e-09
+RooProdPdf::pdf_binLLLH[ unc__H_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * pdf_binLLLH_nuis * pdfbins_binLLLH ] = 4e-09
+RooProdPdf::pdf_binLLLH_bonly[ unc__H_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * pdf_binLLLH_bonly_nuis * pdfbins_binLLLH ] = 3e-09
+RooRealSumPdf::pdf_binLLLH_bonly_nuis[ ONE * prop_binLLLH_bonly ] = 3e-09
+RooRealSumPdf::pdf_binLLLH_nuis[ ONE * prop_binLLLH ] = 4e-09
+RooProdPdf::pdf_binLLLL[ unc__H_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * pdf_binLLLL_nuis * pdfbins_binLLLL ] = 5e-09
+RooProdPdf::pdf_binLLLL_bonly[ unc__H_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * pdf_binLLLL_bonly_nuis * pdfbins_binLLLL ] = 4e-09
+RooRealSumPdf::pdf_binLLLL_bonly_nuis[ ONE * prop_binLLLL_bonly ] = 4e-09
+RooRealSumPdf::pdf_binLLLL_nuis[ ONE * prop_binLLLL ] = 5e-09
+RooProdPdf::pdfbins_binLLHH[ prop_binLLHH_bin39_Pdf * prop_binLLHH_bin40_Pdf * prop_binLLHH_bin41_Pdf * prop_binLLHH_bin42_Pdf * prop_binLLHH_bin43_Pdf * prop_binLLHH_bin44_Pdf * prop_binLLHH_bin45_Pdf * prop_binLLHH_bin46_Pdf * prop_binLLHH_bin47_Pdf * prop_binLLHH_bin48_Pdf * prop_binLLHH_bin49_Pdf * prop_binLLHH_bin50_Pdf * prop_binLLHH_bin51_Pdf * prop_binLLHH_bin52_Pdf * prop_binLLHH_bin53_Pdf * prop_binLLHH_bin54_Pdf * prop_binLLHH_bin55_Pdf * prop_binLLHH_bin56_Pdf * prop_binLLHH_bin57_Pdf * prop_binLLHH_bin58_Pdf * prop_binLLHH_bin59_Pdf * prop_binLLHH_bin60_Pdf * prop_binLLHH_bin61_Pdf * prop_binLLHH_bin62_Pdf * prop_binLLHH_bin63_Pdf * prop_binLLHH_bin64_Pdf * prop_binLLHH_bin65_Pdf ] = 1
+RooProdPdf::pdfbins_binLLLH[ prop_binLLLH_bin39_Pdf * prop_binLLLH_bin40_Pdf * prop_binLLLH_bin41_Pdf * prop_binLLLH_bin42_Pdf * prop_binLLLH_bin43_Pdf * prop_binLLLH_bin44_Pdf * prop_binLLLH_bin45_Pdf * prop_binLLLH_bin46_Pdf * prop_binLLLH_bin47_Pdf * prop_binLLLH_bin48_Pdf * prop_binLLLH_bin49_Pdf * prop_binLLLH_bin50_Pdf * prop_binLLLH_bin51_Pdf * prop_binLLLH_bin52_Pdf * prop_binLLLH_bin53_Pdf * prop_binLLLH_bin54_Pdf * prop_binLLLH_bin55_Pdf * prop_binLLLH_bin56_Pdf * prop_binLLLH_bin57_Pdf * prop_binLLLH_bin58_Pdf * prop_binLLLH_bin59_Pdf * prop_binLLLH_bin60_Pdf * prop_binLLLH_bin61_Pdf * prop_binLLLH_bin62_Pdf * prop_binLLLH_bin63_Pdf * prop_binLLLH_bin64_Pdf * prop_binLLLH_bin65_Pdf ] = 1
+RooProdPdf::pdfbins_binLLLL[ prop_binLLLL_bin39_Pdf * prop_binLLLL_bin40_Pdf * prop_binLLLL_bin41_Pdf * prop_binLLLL_bin42_Pdf * prop_binLLLL_bin43_Pdf * prop_binLLLL_bin44_Pdf * prop_binLLLL_bin45_Pdf * prop_binLLLL_bin46_Pdf * prop_binLLLL_bin47_Pdf * prop_binLLLL_bin48_Pdf * prop_binLLLL_bin49_Pdf * prop_binLLLL_bin50_Pdf * prop_binLLLL_bin51_Pdf * prop_binLLLL_bin52_Pdf * prop_binLLLL_bin53_Pdf * prop_binLLLL_bin54_Pdf * prop_binLLLL_bin55_Pdf * prop_binLLLL_bin56_Pdf * prop_binLLLL_bin57_Pdf * prop_binLLLL_bin58_Pdf * prop_binLLLL_bin59_Pdf * prop_binLLLL_bin60_Pdf * prop_binLLLL_bin61_Pdf * prop_binLLLL_bin62_Pdf * prop_binLLLL_bin63_Pdf * prop_binLLLL_bin64_Pdf * prop_binLLLL_bin65_Pdf ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin39_Pdf[ x=prop_binLLHH_bin39 mean=prop_binLLHH_bin39_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin40_Pdf[ x=prop_binLLHH_bin40 mean=prop_binLLHH_bin40_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin41_Pdf[ x=prop_binLLHH_bin41 mean=prop_binLLHH_bin41_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin42_Pdf[ x=prop_binLLHH_bin42 mean=prop_binLLHH_bin42_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin43_Pdf[ x=prop_binLLHH_bin43 mean=prop_binLLHH_bin43_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin44_Pdf[ x=prop_binLLHH_bin44 mean=prop_binLLHH_bin44_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin45_Pdf[ x=prop_binLLHH_bin45 mean=prop_binLLHH_bin45_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin46_Pdf[ x=prop_binLLHH_bin46 mean=prop_binLLHH_bin46_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin47_Pdf[ x=prop_binLLHH_bin47 mean=prop_binLLHH_bin47_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin48_Pdf[ x=prop_binLLHH_bin48 mean=prop_binLLHH_bin48_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin49_Pdf[ x=prop_binLLHH_bin49 mean=prop_binLLHH_bin49_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin50_Pdf[ x=prop_binLLHH_bin50 mean=prop_binLLHH_bin50_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin51_Pdf[ x=prop_binLLHH_bin51 mean=prop_binLLHH_bin51_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin52_Pdf[ x=prop_binLLHH_bin52 mean=prop_binLLHH_bin52_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin53_Pdf[ x=prop_binLLHH_bin53 mean=prop_binLLHH_bin53_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin54_Pdf[ x=prop_binLLHH_bin54 mean=prop_binLLHH_bin54_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin55_Pdf[ x=prop_binLLHH_bin55 mean=prop_binLLHH_bin55_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin56_Pdf[ x=prop_binLLHH_bin56 mean=prop_binLLHH_bin56_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin57_Pdf[ x=prop_binLLHH_bin57 mean=prop_binLLHH_bin57_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin58_Pdf[ x=prop_binLLHH_bin58 mean=prop_binLLHH_bin58_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin59_Pdf[ x=prop_binLLHH_bin59 mean=prop_binLLHH_bin59_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin60_Pdf[ x=prop_binLLHH_bin60 mean=prop_binLLHH_bin60_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin61_Pdf[ x=prop_binLLHH_bin61 mean=prop_binLLHH_bin61_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin62_Pdf[ x=prop_binLLHH_bin62 mean=prop_binLLHH_bin62_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin63_Pdf[ x=prop_binLLHH_bin63 mean=prop_binLLHH_bin63_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin64_Pdf[ x=prop_binLLHH_bin64 mean=prop_binLLHH_bin64_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLHH_bin65_Pdf[ x=prop_binLLHH_bin65 mean=prop_binLLHH_bin65_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin39_Pdf[ x=prop_binLLLH_bin39 mean=prop_binLLLH_bin39_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin40_Pdf[ x=prop_binLLLH_bin40 mean=prop_binLLLH_bin40_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin41_Pdf[ x=prop_binLLLH_bin41 mean=prop_binLLLH_bin41_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin42_Pdf[ x=prop_binLLLH_bin42 mean=prop_binLLLH_bin42_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin43_Pdf[ x=prop_binLLLH_bin43 mean=prop_binLLLH_bin43_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin44_Pdf[ x=prop_binLLLH_bin44 mean=prop_binLLLH_bin44_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin45_Pdf[ x=prop_binLLLH_bin45 mean=prop_binLLLH_bin45_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin46_Pdf[ x=prop_binLLLH_bin46 mean=prop_binLLLH_bin46_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin47_Pdf[ x=prop_binLLLH_bin47 mean=prop_binLLLH_bin47_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin48_Pdf[ x=prop_binLLLH_bin48 mean=prop_binLLLH_bin48_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin49_Pdf[ x=prop_binLLLH_bin49 mean=prop_binLLLH_bin49_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin50_Pdf[ x=prop_binLLLH_bin50 mean=prop_binLLLH_bin50_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin51_Pdf[ x=prop_binLLLH_bin51 mean=prop_binLLLH_bin51_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin52_Pdf[ x=prop_binLLLH_bin52 mean=prop_binLLLH_bin52_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin53_Pdf[ x=prop_binLLLH_bin53 mean=prop_binLLLH_bin53_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin54_Pdf[ x=prop_binLLLH_bin54 mean=prop_binLLLH_bin54_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin55_Pdf[ x=prop_binLLLH_bin55 mean=prop_binLLLH_bin55_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin56_Pdf[ x=prop_binLLLH_bin56 mean=prop_binLLLH_bin56_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin57_Pdf[ x=prop_binLLLH_bin57 mean=prop_binLLLH_bin57_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin58_Pdf[ x=prop_binLLLH_bin58 mean=prop_binLLLH_bin58_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin59_Pdf[ x=prop_binLLLH_bin59 mean=prop_binLLLH_bin59_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin60_Pdf[ x=prop_binLLLH_bin60 mean=prop_binLLLH_bin60_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin61_Pdf[ x=prop_binLLLH_bin61 mean=prop_binLLLH_bin61_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin62_Pdf[ x=prop_binLLLH_bin62 mean=prop_binLLLH_bin62_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin63_Pdf[ x=prop_binLLLH_bin63 mean=prop_binLLLH_bin63_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin64_Pdf[ x=prop_binLLLH_bin64 mean=prop_binLLLH_bin64_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLH_bin65_Pdf[ x=prop_binLLLH_bin65 mean=prop_binLLLH_bin65_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin39_Pdf[ x=prop_binLLLL_bin39 mean=prop_binLLLL_bin39_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin40_Pdf[ x=prop_binLLLL_bin40 mean=prop_binLLLL_bin40_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin41_Pdf[ x=prop_binLLLL_bin41 mean=prop_binLLLL_bin41_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin42_Pdf[ x=prop_binLLLL_bin42 mean=prop_binLLLL_bin42_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin43_Pdf[ x=prop_binLLLL_bin43 mean=prop_binLLLL_bin43_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin44_Pdf[ x=prop_binLLLL_bin44 mean=prop_binLLLL_bin44_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin45_Pdf[ x=prop_binLLLL_bin45 mean=prop_binLLLL_bin45_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin46_Pdf[ x=prop_binLLLL_bin46 mean=prop_binLLLL_bin46_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin47_Pdf[ x=prop_binLLLL_bin47 mean=prop_binLLLL_bin47_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin48_Pdf[ x=prop_binLLLL_bin48 mean=prop_binLLLL_bin48_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin49_Pdf[ x=prop_binLLLL_bin49 mean=prop_binLLLL_bin49_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin50_Pdf[ x=prop_binLLLL_bin50 mean=prop_binLLLL_bin50_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin51_Pdf[ x=prop_binLLLL_bin51 mean=prop_binLLLL_bin51_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin52_Pdf[ x=prop_binLLLL_bin52 mean=prop_binLLLL_bin52_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin53_Pdf[ x=prop_binLLLL_bin53 mean=prop_binLLLL_bin53_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin54_Pdf[ x=prop_binLLLL_bin54 mean=prop_binLLLL_bin54_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin55_Pdf[ x=prop_binLLLL_bin55 mean=prop_binLLLL_bin55_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin56_Pdf[ x=prop_binLLLL_bin56 mean=prop_binLLLL_bin56_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin57_Pdf[ x=prop_binLLLL_bin57 mean=prop_binLLLL_bin57_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin58_Pdf[ x=prop_binLLLL_bin58 mean=prop_binLLLL_bin58_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin59_Pdf[ x=prop_binLLLL_bin59 mean=prop_binLLLL_bin59_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin60_Pdf[ x=prop_binLLLL_bin60 mean=prop_binLLLL_bin60_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin61_Pdf[ x=prop_binLLLL_bin61 mean=prop_binLLLL_bin61_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin62_Pdf[ x=prop_binLLLL_bin62 mean=prop_binLLLL_bin62_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin63_Pdf[ x=prop_binLLLL_bin63 mean=prop_binLLLL_bin63_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin64_Pdf[ x=prop_binLLLL_bin64 mean=prop_binLLLL_bin64_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binLLLL_bin65_Pdf[ x=prop_binLLLL_bin65 mean=prop_binLLLL_bin65_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binLLHH_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLHH_proc_wzp6_ee_LLH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLHH_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLHH_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLHH_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
+ProcessNormalization::n_exp_binLLHH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLHH_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLHH_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLLH_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLLH_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLLH_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
+ProcessNormalization::n_exp_binLLLH_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLLL_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLLL_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLLL_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
+ProcessNormalization::n_exp_binLLLL_proc_wzp6_ee_ZH_Znunu_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binLLLL_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+CMSHistErrorPropagator::prop_binLLHH[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLHH_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_LLH_HQQ_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_QQH_HVV_ecm365_LLHH_rebinPdf) coeffs=(n_exp_binLLHH_proc_wzp6_ee_ZH_Htautau_ecm365,n_exp_binLLHH_proc_p8_ee_ZZ_ecm365,n_exp_binLLHH_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binLLHH_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binLLHH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binLLHH_proc_wzp6_ee_LLH_HQQ_ecm365,n_exp_binLLHH_proc_wzp6_ee_LLH_HVV_ecm365,n_exp_binLLHH_proc_wzp6_ee_QQH_HVV_ecm365) binpars=(prop_binLLHH_bin39,prop_binLLHH_bin40,prop_binLLHH_bin41,prop_binLLHH_bin42,prop_binLLHH_bin43,prop_binLLHH_bin44,prop_binLLHH_bin45,prop_binLLHH_bin46,prop_binLLHH_bin47,prop_binLLHH_bin48,prop_binLLHH_bin49,prop_binLLHH_bin50,prop_binLLHH_bin51,prop_binLLHH_bin52,prop_binLLHH_bin53,prop_binLLHH_bin54,prop_binLLHH_bin55,prop_binLLHH_bin56,prop_binLLHH_bin57,prop_binLLHH_bin58,prop_binLLHH_bin59,prop_binLLHH_bin60,prop_binLLHH_bin61,prop_binLLHH_bin62,prop_binLLHH_bin63,prop_binLLHH_bin64,prop_binLLHH_bin65) ] = 8e-09
+CMSHistErrorPropagator::prop_binLLHH_bonly[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLHH_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_LLH_HQQ_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLHH_rebinPdf,shapeBkg_wzp6_ee_QQH_HVV_ecm365_LLHH_rebinPdf) coeffs=(ZERO,n_exp_binLLHH_proc_p8_ee_ZZ_ecm365,n_exp_binLLHH_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binLLHH_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binLLHH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binLLHH_proc_wzp6_ee_LLH_HQQ_ecm365,n_exp_binLLHH_proc_wzp6_ee_LLH_HVV_ecm365,n_exp_binLLHH_proc_wzp6_ee_QQH_HVV_ecm365) binpars=(prop_binLLHH_bin39,prop_binLLHH_bin40,prop_binLLHH_bin41,prop_binLLHH_bin42,prop_binLLHH_bin43,prop_binLLHH_bin44,prop_binLLHH_bin45,prop_binLLHH_bin46,prop_binLLHH_bin47,prop_binLLHH_bin48,prop_binLLHH_bin49,prop_binLLHH_bin50,prop_binLLHH_bin51,prop_binLLHH_bin52,prop_binLLHH_bin53,prop_binLLHH_bin54,prop_binLLHH_bin55,prop_binLLHH_bin56,prop_binLLHH_bin57,prop_binLLHH_bin58,prop_binLLHH_bin59,prop_binLLHH_bin60,prop_binLLHH_bin61,prop_binLLHH_bin62,prop_binLLHH_bin63,prop_binLLHH_bin64,prop_binLLHH_bin65) ] = 7e-09
+CMSHistErrorPropagator::prop_binLLLH[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLH_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_LLLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLH_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLH_rebinPdf) coeffs=(n_exp_binLLLH_proc_wzp6_ee_ZH_Htautau_ecm365,n_exp_binLLLH_proc_p8_ee_ZZ_ecm365,n_exp_binLLLH_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binLLLH_proc_wzp6_ee_LLH_HVV_ecm365) binpars=(prop_binLLLH_bin39,prop_binLLLH_bin40,prop_binLLLH_bin41,prop_binLLLH_bin42,prop_binLLLH_bin43,prop_binLLLH_bin44,prop_binLLLH_bin45,prop_binLLLH_bin46,prop_binLLLH_bin47,prop_binLLLH_bin48,prop_binLLLH_bin49,prop_binLLLH_bin50,prop_binLLLH_bin51,prop_binLLLH_bin52,prop_binLLLH_bin53,prop_binLLLH_bin54,prop_binLLLH_bin55,prop_binLLLH_bin56,prop_binLLLH_bin57,prop_binLLLH_bin58,prop_binLLLH_bin59,prop_binLLLH_bin60,prop_binLLLH_bin61,prop_binLLLH_bin62,prop_binLLLH_bin63,prop_binLLLH_bin64,prop_binLLLH_bin65) ] = 4e-09
+CMSHistErrorPropagator::prop_binLLLH_bonly[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLH_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_LLLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLH_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLH_rebinPdf) coeffs=(ZERO,n_exp_binLLLH_proc_p8_ee_ZZ_ecm365,n_exp_binLLLH_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binLLLH_proc_wzp6_ee_LLH_HVV_ecm365) binpars=(prop_binLLLH_bin39,prop_binLLLH_bin40,prop_binLLLH_bin41,prop_binLLLH_bin42,prop_binLLLH_bin43,prop_binLLLH_bin44,prop_binLLLH_bin45,prop_binLLLH_bin46,prop_binLLLH_bin47,prop_binLLLH_bin48,prop_binLLLH_bin49,prop_binLLLH_bin50,prop_binLLLH_bin51,prop_binLLLH_bin52,prop_binLLLH_bin53,prop_binLLLH_bin54,prop_binLLLH_bin55,prop_binLLLH_bin56,prop_binLLLH_bin57,prop_binLLLH_bin58,prop_binLLLH_bin59,prop_binLLLH_bin60,prop_binLLLH_bin61,prop_binLLLH_bin62,prop_binLLLH_bin63,prop_binLLLH_bin64,prop_binLLLH_bin65) ] = 3e-09
+CMSHistErrorPropagator::prop_binLLLL[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLL_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_LLLL_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLL_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLLL_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLL_rebinPdf) coeffs=(n_exp_binLLLL_proc_wzp6_ee_ZH_Htautau_ecm365,n_exp_binLLLL_proc_p8_ee_ZZ_ecm365,n_exp_binLLLL_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binLLLL_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binLLLL_proc_wzp6_ee_LLH_HVV_ecm365) binpars=(prop_binLLLL_bin39,prop_binLLLL_bin40,prop_binLLLL_bin41,prop_binLLLL_bin42,prop_binLLLL_bin43,prop_binLLLL_bin44,prop_binLLLL_bin45,prop_binLLLL_bin46,prop_binLLLL_bin47,prop_binLLLL_bin48,prop_binLLLL_bin49,prop_binLLLL_bin50,prop_binLLLL_bin51,prop_binLLLL_bin52,prop_binLLLL_bin53,prop_binLLLL_bin54,prop_binLLLL_bin55,prop_binLLLL_bin56,prop_binLLLL_bin57,prop_binLLLL_bin58,prop_binLLLL_bin59,prop_binLLLL_bin60,prop_binLLLL_bin61,prop_binLLLL_bin62,prop_binLLLL_bin63,prop_binLLLL_bin64,prop_binLLLL_bin65) ] = 5e-09
+CMSHistErrorPropagator::prop_binLLLL_bonly[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLL_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_LLLL_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLL_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLLL_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLL_rebinPdf) coeffs=(ZERO,n_exp_binLLLL_proc_p8_ee_ZZ_ecm365,n_exp_binLLLL_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binLLLL_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binLLLL_proc_wzp6_ee_LLH_HVV_ecm365) binpars=(prop_binLLLL_bin39,prop_binLLLL_bin40,prop_binLLLL_bin41,prop_binLLLL_bin42,prop_binLLLL_bin43,prop_binLLLL_bin44,prop_binLLLL_bin45,prop_binLLLL_bin46,prop_binLLLL_bin47,prop_binLLLL_bin48,prop_binLLLL_bin49,prop_binLLLL_bin50,prop_binLLLL_bin51,prop_binLLLL_bin52,prop_binLLLL_bin53,prop_binLLLL_bin54,prop_binLLLL_bin55,prop_binLLLL_bin56,prop_binLLLL_bin57,prop_binLLLL_bin58,prop_binLLLL_bin59,prop_binLLLL_bin60,prop_binLLLL_bin61,prop_binLLLL_bin62,prop_binLLLL_bin63,prop_binLLLL_bin64,prop_binLLLL_bin65) ] = 4e-09
+CMSHistFunc::shapeBkg_p8_ee_ZZ_ecm365_LLHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZZ_ecm365_LLHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZZ_ecm365_LLHH_rebinPdf err=prop_binLLHH ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZZ_ecm365_LLLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZZ_ecm365_LLLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZZ_ecm365_LLLH_rebinPdf err=prop_binLLLH ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZZ_ecm365_LLLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZZ_ecm365_LLLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZZ_ecm365_LLLL_rebinPdf err=prop_binLLLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_LLHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_LLHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HQQ_ecm365_LLHH_rebinPdf err=prop_binLLHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLHH_rebinPdf err=prop_binLLHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLH_rebinPdf err=prop_binLLLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HVV_ecm365_LLLL_rebinPdf err=prop_binLLLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_QQH_HVV_ecm365_LLHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_QQH_HVV_ecm365_LLHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_QQH_HVV_ecm365_LLHH_rebinPdf err=prop_binLLHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLHH_rebinPdf err=prop_binLLHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_LLLL_rebinPdf err=prop_binLLLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLHH_rebinPdf err=prop_binLLHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLH_rebinPdf err=prop_binLLLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HVV_ecm365_LLLL_rebinPdf err=prop_binLLLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_LLHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_LLHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_LLHH_rebinPdf err=prop_binLLHH ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLHH_rebinPdf err=prop_binLLHH ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLH_rebinPdf err=prop_binLLLH ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_ZH_Htautau_ecm365_LLLL_rebinPdf err=prop_binLLLL ] = 1e-09
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc__H_In,unc_p8_ee_ZZ_ecm365_In,prop_binLLLL_bin39_In,prop_binLLLL_bin40_In,prop_binLLLL_bin41_In,prop_binLLLL_bin42_In,prop_binLLLL_bin43_In,prop_binLLLL_bin44_In,prop_binLLLL_bin45_In,prop_binLLLL_bin46_In,prop_binLLLL_bin47_In,prop_binLLLL_bin48_In,prop_binLLLL_bin49_In,prop_binLLLL_bin50_In,prop_binLLLL_bin51_In,prop_binLLLL_bin52_In,prop_binLLLL_bin53_In,prop_binLLLL_bin54_In,prop_binLLLL_bin55_In,prop_binLLLL_bin56_In,prop_binLLLL_bin57_In,prop_binLLLL_bin58_In,prop_binLLLL_bin59_In,prop_binLLLL_bin60_In,prop_binLLLL_bin61_In,prop_binLLLL_bin62_In,prop_binLLLL_bin63_In,prop_binLLLL_bin64_In,prop_binLLLL_bin65_In,prop_binLLLH_bin39_In,prop_binLLLH_bin40_In,prop_binLLLH_bin41_In,prop_binLLLH_bin42_In,prop_binLLLH_bin43_In,prop_binLLLH_bin44_In,prop_binLLLH_bin45_In,prop_binLLLH_bin46_In,prop_binLLLH_bin47_In,prop_binLLLH_bin48_In,prop_binLLLH_bin49_In,prop_binLLLH_bin50_In,prop_binLLLH_bin51_In,prop_binLLLH_bin52_In,prop_binLLLH_bin53_In,prop_binLLLH_bin54_In,prop_binLLLH_bin55_In,prop_binLLLH_bin56_In,prop_binLLLH_bin57_In,prop_binLLLH_bin58_In,prop_binLLLH_bin59_In,prop_binLLLH_bin60_In,prop_binLLLH_bin61_In,prop_binLLLH_bin62_In,prop_binLLLH_bin63_In,prop_binLLLH_bin64_In,prop_binLLLH_bin65_In,prop_binLLHH_bin39_In,prop_binLLHH_bin40_In,prop_binLLHH_bin41_In,prop_binLLHH_bin42_In,prop_binLLHH_bin43_In,prop_binLLHH_bin44_In,prop_binLLHH_bin45_In,prop_binLLHH_bin46_In,prop_binLLHH_bin47_In,prop_binLLHH_bin48_In,prop_binLLHH_bin49_In,prop_binLLHH_bin50_In,prop_binLLHH_bin51_In,prop_binLLHH_bin52_In,prop_binLLHH_bin53_In,prop_binLLHH_bin54_In,prop_binLLHH_bin55_In,prop_binLLHH_bin56_In,prop_binLLHH_bin57_In,prop_binLLHH_bin58_In,prop_binLLHH_bin59_In,prop_binLLHH_bin60_In,prop_binLLHH_bin61_In,prop_binLLHH_bin62_In,prop_binLLHH_bin63_In,prop_binLLHH_bin64_In,prop_binLLHH_bin65_In)
+ModelConfig_NuisParams:(unc__H,unc_p8_ee_ZZ_ecm365,prop_binLLLL_bin39,prop_binLLLL_bin40,prop_binLLLL_bin41,prop_binLLLL_bin42,prop_binLLLL_bin43,prop_binLLLL_bin44,prop_binLLLL_bin45,prop_binLLLL_bin46,prop_binLLLL_bin47,prop_binLLLL_bin48,prop_binLLLL_bin49,prop_binLLLL_bin50,prop_binLLLL_bin51,prop_binLLLL_bin52,prop_binLLLL_bin53,prop_binLLLL_bin54,prop_binLLLL_bin55,prop_binLLLL_bin56,prop_binLLLL_bin57,prop_binLLLL_bin58,prop_binLLLL_bin59,prop_binLLLL_bin60,prop_binLLLL_bin61,prop_binLLLL_bin62,prop_binLLLL_bin63,prop_binLLLL_bin64,prop_binLLLL_bin65,prop_binLLLH_bin39,prop_binLLLH_bin40,prop_binLLLH_bin41,prop_binLLLH_bin42,prop_binLLLH_bin43,prop_binLLLH_bin44,prop_binLLLH_bin45,prop_binLLLH_bin46,prop_binLLLH_bin47,prop_binLLLH_bin48,prop_binLLLH_bin49,prop_binLLLH_bin50,prop_binLLLH_bin51,prop_binLLLH_bin52,prop_binLLLH_bin53,prop_binLLLH_bin54,prop_binLLLH_bin55,prop_binLLLH_bin56,prop_binLLLH_bin57,prop_binLLLH_bin58,prop_binLLLH_bin59,prop_binLLLH_bin60,prop_binLLLH_bin61,prop_binLLLH_bin62,prop_binLLLH_bin63,prop_binLLLH_bin64,prop_binLLLH_bin65,prop_binLLHH_bin39,prop_binLLHH_bin40,prop_binLLHH_bin41,prop_binLLHH_bin42,prop_binLLHH_bin43,prop_binLLHH_bin44,prop_binLLHH_bin45,prop_binLLHH_bin46,prop_binLLHH_bin47,prop_binLLHH_bin48,prop_binLLHH_bin49,prop_binLLHH_bin50,prop_binLLHH_bin51,prop_binLLHH_bin52,prop_binLLHH_bin53,prop_binLLHH_bin54,prop_binLLHH_bin55,prop_binLLHH_bin56,prop_binLLHH_bin57,prop_binLLHH_bin58,prop_binLLHH_bin59,prop_binLLHH_bin60,prop_binLLHH_bin61,prop_binLLHH_bin62,prop_binLLHH_bin63,prop_binLLHH_bin64,prop_binLLHH_bin65)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc__H_In,unc_p8_ee_ZZ_ecm365_In,prop_binLLLL_bin39_In,prop_binLLLL_bin40_In,prop_binLLLL_bin41_In,prop_binLLLL_bin42_In,prop_binLLLL_bin43_In,prop_binLLLL_bin44_In,prop_binLLLL_bin45_In,prop_binLLLL_bin46_In,prop_binLLLL_bin47_In,prop_binLLLL_bin48_In,prop_binLLLL_bin49_In,prop_binLLLL_bin50_In,prop_binLLLL_bin51_In,prop_binLLLL_bin52_In,prop_binLLLL_bin53_In,prop_binLLLL_bin54_In,prop_binLLLL_bin55_In,prop_binLLLL_bin56_In,prop_binLLLL_bin57_In,prop_binLLLL_bin58_In,prop_binLLLL_bin59_In,prop_binLLLL_bin60_In,prop_binLLLL_bin61_In,prop_binLLLL_bin62_In,prop_binLLLL_bin63_In,prop_binLLLL_bin64_In,prop_binLLLL_bin65_In,prop_binLLLH_bin39_In,prop_binLLLH_bin40_In,prop_binLLLH_bin41_In,prop_binLLLH_bin42_In,prop_binLLLH_bin43_In,prop_binLLLH_bin44_In,prop_binLLLH_bin45_In,prop_binLLLH_bin46_In,prop_binLLLH_bin47_In,prop_binLLLH_bin48_In,prop_binLLLH_bin49_In,prop_binLLLH_bin50_In,prop_binLLLH_bin51_In,prop_binLLLH_bin52_In,prop_binLLLH_bin53_In,prop_binLLLH_bin54_In,prop_binLLLH_bin55_In,prop_binLLLH_bin56_In,prop_binLLLH_bin57_In,prop_binLLLH_bin58_In,prop_binLLLH_bin59_In,prop_binLLLH_bin60_In,prop_binLLLH_bin61_In,prop_binLLLH_bin62_In,prop_binLLLH_bin63_In,prop_binLLLH_bin64_In,prop_binLLLH_bin65_In,prop_binLLHH_bin39_In,prop_binLLHH_bin40_In,prop_binLLHH_bin41_In,prop_binLLHH_bin42_In,prop_binLLHH_bin43_In,prop_binLLHH_bin44_In,prop_binLLHH_bin45_In,prop_binLLHH_bin46_In,prop_binLLHH_bin47_In,prop_binLLHH_bin48_In,prop_binLLHH_bin49_In,prop_binLLHH_bin50_In,prop_binLLHH_bin51_In,prop_binLLHH_bin52_In,prop_binLLHH_bin53_In,prop_binLLHH_bin54_In,prop_binLLHH_bin55_In,prop_binLLHH_bin56_In,prop_binLLHH_bin57_In,prop_binLLHH_bin58_In,prop_binLLHH_bin59_In,prop_binLLHH_bin60_In,prop_binLLHH_bin61_In,prop_binLLHH_bin62_In,prop_binLLHH_bin63_In,prop_binLLHH_bin64_In,prop_binLLHH_bin65_In)
+ModelConfig_bonly_NuisParams:(unc__H,unc_p8_ee_ZZ_ecm365,prop_binLLLL_bin39,prop_binLLLL_bin40,prop_binLLLL_bin41,prop_binLLLL_bin42,prop_binLLLL_bin43,prop_binLLLL_bin44,prop_binLLLL_bin45,prop_binLLLL_bin46,prop_binLLLL_bin47,prop_binLLLL_bin48,prop_binLLLL_bin49,prop_binLLLL_bin50,prop_binLLLL_bin51,prop_binLLLL_bin52,prop_binLLLL_bin53,prop_binLLLL_bin54,prop_binLLLL_bin55,prop_binLLLL_bin56,prop_binLLLL_bin57,prop_binLLLL_bin58,prop_binLLLL_bin59,prop_binLLLL_bin60,prop_binLLLL_bin61,prop_binLLLL_bin62,prop_binLLLL_bin63,prop_binLLLL_bin64,prop_binLLLL_bin65,prop_binLLLH_bin39,prop_binLLLH_bin40,prop_binLLLH_bin41,prop_binLLLH_bin42,prop_binLLLH_bin43,prop_binLLLH_bin44,prop_binLLLH_bin45,prop_binLLLH_bin46,prop_binLLLH_bin47,prop_binLLLH_bin48,prop_binLLLH_bin49,prop_binLLLH_bin50,prop_binLLLH_bin51,prop_binLLLH_bin52,prop_binLLLH_bin53,prop_binLLLH_bin54,prop_binLLLH_bin55,prop_binLLLH_bin56,prop_binLLLH_bin57,prop_binLLLH_bin58,prop_binLLLH_bin59,prop_binLLLH_bin60,prop_binLLLH_bin61,prop_binLLLH_bin62,prop_binLLLH_bin63,prop_binLLLH_bin64,prop_binLLLH_bin65,prop_binLLHH_bin39,prop_binLLHH_bin40,prop_binLLHH_bin41,prop_binLLHH_bin42,prop_binLLHH_bin43,prop_binLLHH_bin44,prop_binLLHH_bin45,prop_binLLHH_bin46,prop_binLLHH_bin47,prop_binLLHH_bin48,prop_binLLHH_bin49,prop_binLLHH_bin50,prop_binLLHH_bin51,prop_binLLHH_bin52,prop_binLLHH_bin53,prop_binLLHH_bin54,prop_binLLHH_bin55,prop_binLLHH_bin56,prop_binLLHH_bin57,prop_binLLHH_bin58,prop_binLLHH_bin59,prop_binLLHH_bin60,prop_binLLHH_bin61,prop_binLLHH_bin62,prop_binLLHH_bin63,prop_binLLHH_bin64,prop_binLLHH_bin65)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc__H_In,unc_p8_ee_ZZ_ecm365_In,prop_binLLLL_bin39_In,prop_binLLLL_bin40_In,prop_binLLLL_bin41_In,prop_binLLLL_bin42_In,prop_binLLLL_bin43_In,prop_binLLLL_bin44_In,prop_binLLLL_bin45_In,prop_binLLLL_bin46_In,prop_binLLLL_bin47_In,prop_binLLLL_bin48_In,prop_binLLLL_bin49_In,prop_binLLLL_bin50_In,prop_binLLLL_bin51_In,prop_binLLLL_bin52_In,prop_binLLLL_bin53_In,prop_binLLLL_bin54_In,prop_binLLLL_bin55_In,prop_binLLLL_bin56_In,prop_binLLLL_bin57_In,prop_binLLLL_bin58_In,prop_binLLLL_bin59_In,prop_binLLLL_bin60_In,prop_binLLLL_bin61_In,prop_binLLLL_bin62_In,prop_binLLLL_bin63_In,prop_binLLLL_bin64_In,prop_binLLLL_bin65_In,prop_binLLLH_bin39_In,prop_binLLLH_bin40_In,prop_binLLLH_bin41_In,prop_binLLLH_bin42_In,prop_binLLLH_bin43_In,prop_binLLLH_bin44_In,prop_binLLLH_bin45_In,prop_binLLLH_bin46_In,prop_binLLLH_bin47_In,prop_binLLLH_bin48_In,prop_binLLLH_bin49_In,prop_binLLLH_bin50_In,prop_binLLLH_bin51_In,prop_binLLLH_bin52_In,prop_binLLLH_bin53_In,prop_binLLLH_bin54_In,prop_binLLLH_bin55_In,prop_binLLLH_bin56_In,prop_binLLLH_bin57_In,prop_binLLLH_bin58_In,prop_binLLLH_bin59_In,prop_binLLLH_bin60_In,prop_binLLLH_bin61_In,prop_binLLLH_bin62_In,prop_binLLLH_bin63_In,prop_binLLLH_bin64_In,prop_binLLLH_bin65_In,prop_binLLHH_bin39_In,prop_binLLHH_bin40_In,prop_binLLHH_bin41_In,prop_binLLHH_bin42_In,prop_binLLHH_bin43_In,prop_binLLHH_bin44_In,prop_binLLHH_bin45_In,prop_binLLHH_bin46_In,prop_binLLHH_bin47_In,prop_binLLHH_bin48_In,prop_binLLHH_bin49_In,prop_binLLHH_bin50_In,prop_binLLHH_bin51_In,prop_binLLHH_bin52_In,prop_binLLHH_bin53_In,prop_binLLHH_bin54_In,prop_binLLHH_bin55_In,prop_binLLHH_bin56_In,prop_binLLHH_bin57_In,prop_binLLHH_bin58_In,prop_binLLHH_bin59_In,prop_binLLHH_bin60_In,prop_binLLHH_bin61_In,prop_binLLHH_bin62_In,prop_binLLHH_bin63_In,prop_binLLHH_bin64_In,prop_binLLHH_bin65_In)
+group_autoMCStats:(prop_binLLLL_bin39,prop_binLLLL_bin40,prop_binLLLL_bin41,prop_binLLLL_bin42,prop_binLLLL_bin43,prop_binLLLL_bin44,prop_binLLLL_bin45,prop_binLLLL_bin46,prop_binLLLL_bin47,prop_binLLLL_bin48,prop_binLLLL_bin49,prop_binLLLL_bin50,prop_binLLLL_bin51,prop_binLLLL_bin52,prop_binLLLL_bin53,prop_binLLLL_bin54,prop_binLLLL_bin55,prop_binLLLL_bin56,prop_binLLLL_bin57,prop_binLLLL_bin58,prop_binLLLL_bin59,prop_binLLLL_bin60,prop_binLLLL_bin61,prop_binLLLL_bin62,prop_binLLLL_bin63,prop_binLLLL_bin64,prop_binLLLL_bin65,prop_binLLLH_bin39,prop_binLLLH_bin40,prop_binLLLH_bin41,prop_binLLLH_bin42,prop_binLLLH_bin43,prop_binLLLH_bin44,prop_binLLLH_bin45,prop_binLLLH_bin46,prop_binLLLH_bin47,prop_binLLLH_bin48,prop_binLLLH_bin49,prop_binLLLH_bin50,prop_binLLLH_bin51,prop_binLLLH_bin52,prop_binLLLH_bin53,prop_binLLLH_bin54,prop_binLLLH_bin55,prop_binLLLH_bin56,prop_binLLLH_bin57,prop_binLLLH_bin58,prop_binLLLH_bin59,prop_binLLLH_bin60,prop_binLLLH_bin61,prop_binLLLH_bin62,prop_binLLLH_bin63,prop_binLLLH_bin64,prop_binLLLH_bin65,prop_binLLHH_bin39,prop_binLLHH_bin40,prop_binLLHH_bin41,prop_binLLHH_bin42,prop_binLLHH_bin43,prop_binLLHH_bin44,prop_binLLHH_bin45,prop_binLLHH_bin46,prop_binLLHH_bin47,prop_binLLHH_bin48,prop_binLLHH_bin49,prop_binLLHH_bin50,prop_binLLHH_bin51,prop_binLLHH_bin52,prop_binLLHH_bin53,prop_binLLHH_bin54,prop_binLLHH_bin55,prop_binLLHH_bin56,prop_binLLHH_bin57,prop_binLLHH_bin58,prop_binLLHH_bin59,prop_binLLHH_bin60,prop_binLLHH_bin61,prop_binLLHH_bin62,prop_binLLHH_bin63,prop_binLLHH_bin64,prop_binLLHH_bin65)
+nuisances:(unc__H,unc_p8_ee_ZZ_ecm365,prop_binLLLL_bin39,prop_binLLLL_bin40,prop_binLLLL_bin41,prop_binLLLL_bin42,prop_binLLLL_bin43,prop_binLLLL_bin44,prop_binLLLL_bin45,prop_binLLLL_bin46,prop_binLLLL_bin47,prop_binLLLL_bin48,prop_binLLLL_bin49,prop_binLLLL_bin50,prop_binLLLL_bin51,prop_binLLLL_bin52,prop_binLLLL_bin53,prop_binLLLL_bin54,prop_binLLLL_bin55,prop_binLLLL_bin56,prop_binLLLL_bin57,prop_binLLLL_bin58,prop_binLLLL_bin59,prop_binLLLL_bin60,prop_binLLLL_bin61,prop_binLLLL_bin62,prop_binLLLL_bin63,prop_binLLLL_bin64,prop_binLLLL_bin65,prop_binLLLH_bin39,prop_binLLLH_bin40,prop_binLLLH_bin41,prop_binLLLH_bin42,prop_binLLLH_bin43,prop_binLLLH_bin44,prop_binLLLH_bin45,prop_binLLLH_bin46,prop_binLLLH_bin47,prop_binLLLH_bin48,prop_binLLLH_bin49,prop_binLLLH_bin50,prop_binLLLH_bin51,prop_binLLLH_bin52,prop_binLLLH_bin53,prop_binLLLH_bin54,prop_binLLLH_bin55,prop_binLLLH_bin56,prop_binLLLH_bin57,prop_binLLLH_bin58,prop_binLLLH_bin59,prop_binLLLH_bin60,prop_binLLLH_bin61,prop_binLLLH_bin62,prop_binLLLH_bin63,prop_binLLLH_bin64,prop_binLLLH_bin65,prop_binLLHH_bin39,prop_binLLHH_bin40,prop_binLLHH_bin41,prop_binLLHH_bin42,prop_binLLHH_bin43,prop_binLLHH_bin44,prop_binLLHH_bin45,prop_binLLHH_bin46,prop_binLLHH_bin47,prop_binLLHH_bin48,prop_binLLHH_bin49,prop_binLLHH_bin50,prop_binLLHH_bin51,prop_binLLHH_bin52,prop_binLLHH_bin53,prop_binLLHH_bin54,prop_binLLHH_bin55,prop_binLLHH_bin56,prop_binLLHH_bin57,prop_binLLHH_bin58,prop_binLLHH_bin59,prop_binLLHH_bin60,prop_binLLHH_bin61,prop_binLLHH_bin62,prop_binLLHH_bin63,prop_binLLHH_bin64,prop_binLLHH_bin65)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_p8_ee_ZZ_ecm365,prop_binLLLL_bin39,prop_binLLLL_bin40,prop_binLLLL_bin41,prop_binLLLL_bin42,prop_binLLLL_bin43,prop_binLLLL_bin44,prop_binLLLL_bin45,prop_binLLLL_bin46,prop_binLLLL_bin47,prop_binLLLL_bin48,prop_binLLLL_bin49,prop_binLLLL_bin50,prop_binLLLL_bin51,prop_binLLLL_bin52,prop_binLLLL_bin53,prop_binLLLL_bin54,prop_binLLLL_bin55,prop_binLLLL_bin56,prop_binLLLL_bin57,prop_binLLLL_bin58,prop_binLLLL_bin59,prop_binLLLL_bin60,prop_binLLLL_bin61,prop_binLLLL_bin62,prop_binLLLL_bin63,prop_binLLLL_bin64,prop_binLLLL_bin65,prop_binLLLH_bin39,prop_binLLLH_bin40,prop_binLLLH_bin41,prop_binLLLH_bin42,prop_binLLLH_bin43,prop_binLLLH_bin44,prop_binLLLH_bin45,prop_binLLLH_bin46,prop_binLLLH_bin47,prop_binLLLH_bin48,prop_binLLLH_bin49,prop_binLLLH_bin50,prop_binLLLH_bin51,prop_binLLLH_bin52,prop_binLLLH_bin53,prop_binLLLH_bin54,prop_binLLLH_bin55,prop_binLLLH_bin56,prop_binLLLH_bin57,prop_binLLLH_bin58,prop_binLLLH_bin59,prop_binLLLH_bin60,prop_binLLLH_bin61,prop_binLLLH_bin62,prop_binLLLH_bin63,prop_binLLLH_bin64,prop_binLLLH_bin65,prop_binLLHH_bin39,prop_binLLHH_bin40,prop_binLLHH_bin41,prop_binLLHH_bin42,prop_binLLHH_bin43,prop_binLLHH_bin44,prop_binLLHH_bin45,prop_binLLHH_bin46,prop_binLLHH_bin47,prop_binLLHH_bin48,prop_binLLHH_bin49,prop_binLLHH_bin50,prop_binLLHH_bin51,prop_binLLHH_bin52,prop_binLLHH_bin53,prop_binLLHH_bin54,prop_binLLHH_bin55,prop_binLLHH_bin56,prop_binLLHH_bin57,prop_binLLHH_bin58,prop_binLLHH_bin59,prop_binLLHH_bin60,prop_binLLHH_bin61,prop_binLLHH_bin62,prop_binLLHH_bin63,prop_binLLHH_bin64,prop_binLLHH_bin65)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_p8_ee_ZZ_ecm365_In,prop_binLLLL_bin39_In,prop_binLLLL_bin40_In,prop_binLLLL_bin41_In,prop_binLLLL_bin42_In,prop_binLLLL_bin43_In,prop_binLLLL_bin44_In,prop_binLLLL_bin45_In,prop_binLLLL_bin46_In,prop_binLLLL_bin47_In,prop_binLLLL_bin48_In,prop_binLLLL_bin49_In,prop_binLLLL_bin50_In,prop_binLLLL_bin51_In,prop_binLLLL_bin52_In,prop_binLLLL_bin53_In,prop_binLLLL_bin54_In,prop_binLLLL_bin55_In,prop_binLLLL_bin56_In,prop_binLLLL_bin57_In,prop_binLLLL_bin58_In,prop_binLLLL_bin59_In,prop_binLLLL_bin60_In,prop_binLLLL_bin61_In,prop_binLLLL_bin62_In,prop_binLLLL_bin63_In,prop_binLLLL_bin64_In,prop_binLLLL_bin65_In,prop_binLLLH_bin39_In,prop_binLLLH_bin40_In,prop_binLLLH_bin41_In,prop_binLLLH_bin42_In,prop_binLLLH_bin43_In,prop_binLLLH_bin44_In,prop_binLLLH_bin45_In,prop_binLLLH_bin46_In,prop_binLLLH_bin47_In,prop_binLLLH_bin48_In,prop_binLLLH_bin49_In,prop_binLLLH_bin50_In,prop_binLLLH_bin51_In,prop_binLLLH_bin52_In,prop_binLLLH_bin53_In,prop_binLLLH_bin54_In,prop_binLLLH_bin55_In,prop_binLLLH_bin56_In,prop_binLLLH_bin57_In,prop_binLLLH_bin58_In,prop_binLLLH_bin59_In,prop_binLLLH_bin60_In,prop_binLLLH_bin61_In,prop_binLLLH_bin62_In,prop_binLLLH_bin63_In,prop_binLLLH_bin64_In,prop_binLLLH_bin65_In,prop_binLLHH_bin39_In,prop_binLLHH_bin40_In,prop_binLLHH_bin41_In,prop_binLLHH_bin42_In,prop_binLLHH_bin43_In,prop_binLLHH_bin44_In,prop_binLLHH_bin45_In,prop_binLLHH_bin46_In,prop_binLLHH_bin47_In,prop_binLLHH_bin48_In,prop_binLLHH_bin49_In,prop_binLLHH_bin50_In,prop_binLLHH_bin51_In,prop_binLLHH_bin52_In,prop_binLLHH_bin53_In,prop_binLLHH_bin54_In,prop_binLLHH_bin55_In,prop_binLLHH_bin56_In,prop_binLLHH_bin57_In,prop_binLLHH_bin58_In,prop_binLLHH_bin59_In,prop_binLLHH_bin60_In,prop_binLLHH_bin61_In,prop_binLLHH_bin62_In,prop_binLLHH_bin63_In,prop_binLLHH_bin64_In,prop_binLLHH_bin65_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel LLLL=pdf_binLLLL LLLH=pdf_binLLLH LLHH=pdf_binLLHH extraConstraints=() channelMasks=() ] = 1.66667e-09
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_p8_ee_ZZ_ecm365,prop_binLLLL_bin39,prop_binLLLL_bin40,prop_binLLLL_bin41,prop_binLLLL_bin42,prop_binLLLL_bin43,prop_binLLLL_bin44,prop_binLLLL_bin45,prop_binLLLL_bin46,prop_binLLLL_bin47,prop_binLLLL_bin48,prop_binLLLL_bin49,prop_binLLLL_bin50,prop_binLLLL_bin51,prop_binLLLL_bin52,prop_binLLLL_bin53,prop_binLLLL_bin54,prop_binLLLL_bin55,prop_binLLLL_bin56,prop_binLLLL_bin57,prop_binLLLL_bin58,prop_binLLLL_bin59,prop_binLLLL_bin60,prop_binLLLL_bin61,prop_binLLLL_bin62,prop_binLLLL_bin63,prop_binLLLL_bin64,prop_binLLLL_bin65,prop_binLLLH_bin39,prop_binLLLH_bin40,prop_binLLLH_bin41,prop_binLLLH_bin42,prop_binLLLH_bin43,prop_binLLLH_bin44,prop_binLLLH_bin45,prop_binLLLH_bin46,prop_binLLLH_bin47,prop_binLLLH_bin48,prop_binLLLH_bin49,prop_binLLLH_bin50,prop_binLLLH_bin51,prop_binLLLH_bin52,prop_binLLLH_bin53,prop_binLLLH_bin54,prop_binLLLH_bin55,prop_binLLLH_bin56,prop_binLLLH_bin57,prop_binLLLH_bin58,prop_binLLLH_bin59,prop_binLLLH_bin60,prop_binLLLH_bin61,prop_binLLLH_bin62,prop_binLLLH_bin63,prop_binLLLH_bin64,prop_binLLLH_bin65,prop_binLLHH_bin39,prop_binLLHH_bin40,prop_binLLHH_bin41,prop_binLLHH_bin42,prop_binLLHH_bin43,prop_binLLHH_bin44,prop_binLLHH_bin45,prop_binLLHH_bin46,prop_binLLHH_bin47,prop_binLLHH_bin48,prop_binLLHH_bin49,prop_binLLHH_bin50,prop_binLLHH_bin51,prop_binLLHH_bin52,prop_binLLHH_bin53,prop_binLLHH_bin54,prop_binLLHH_bin55,prop_binLLHH_bin56,prop_binLLHH_bin57,prop_binLLHH_bin58,prop_binLLHH_bin59,prop_binLLHH_bin60,prop_binLLHH_bin61,prop_binLLHH_bin62,prop_binLLHH_bin63,prop_binLLHH_bin64,prop_binLLHH_bin65)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_p8_ee_ZZ_ecm365_In,prop_binLLLL_bin39_In,prop_binLLLL_bin40_In,prop_binLLLL_bin41_In,prop_binLLLL_bin42_In,prop_binLLLL_bin43_In,prop_binLLLL_bin44_In,prop_binLLLL_bin45_In,prop_binLLLL_bin46_In,prop_binLLLL_bin47_In,prop_binLLLL_bin48_In,prop_binLLLL_bin49_In,prop_binLLLL_bin50_In,prop_binLLLL_bin51_In,prop_binLLLL_bin52_In,prop_binLLLL_bin53_In,prop_binLLLL_bin54_In,prop_binLLLL_bin55_In,prop_binLLLL_bin56_In,prop_binLLLL_bin57_In,prop_binLLLL_bin58_In,prop_binLLLL_bin59_In,prop_binLLLL_bin60_In,prop_binLLLL_bin61_In,prop_binLLLL_bin62_In,prop_binLLLL_bin63_In,prop_binLLLL_bin64_In,prop_binLLLL_bin65_In,prop_binLLLH_bin39_In,prop_binLLLH_bin40_In,prop_binLLLH_bin41_In,prop_binLLLH_bin42_In,prop_binLLLH_bin43_In,prop_binLLLH_bin44_In,prop_binLLLH_bin45_In,prop_binLLLH_bin46_In,prop_binLLLH_bin47_In,prop_binLLLH_bin48_In,prop_binLLLH_bin49_In,prop_binLLLH_bin50_In,prop_binLLLH_bin51_In,prop_binLLLH_bin52_In,prop_binLLLH_bin53_In,prop_binLLLH_bin54_In,prop_binLLLH_bin55_In,prop_binLLLH_bin56_In,prop_binLLLH_bin57_In,prop_binLLLH_bin58_In,prop_binLLLH_bin59_In,prop_binLLLH_bin60_In,prop_binLLLH_bin61_In,prop_binLLLH_bin62_In,prop_binLLLH_bin63_In,prop_binLLLH_bin64_In,prop_binLLLH_bin65_In,prop_binLLHH_bin39_In,prop_binLLHH_bin40_In,prop_binLLHH_bin41_In,prop_binLLHH_bin42_In,prop_binLLHH_bin43_In,prop_binLLHH_bin44_In,prop_binLLHH_bin45_In,prop_binLLHH_bin46_In,prop_binLLHH_bin47_In,prop_binLLHH_bin48_In,prop_binLLHH_bin49_In,prop_binLLHH_bin50_In,prop_binLLHH_bin51_In,prop_binLLHH_bin52_In,prop_binLLHH_bin53_In,prop_binLLHH_bin54_In,prop_binLLHH_bin55_In,prop_binLLHH_bin56_In,prop_binLLHH_bin57_In,prop_binLLHH_bin58_In,prop_binLLHH_bin59_In,prop_binLLHH_bin60_In,prop_binLLHH_bin61_In,prop_binLLHH_bin62_In,prop_binLLHH_bin63_In,prop_binLLHH_bin64_In,prop_binLLHH_bin65_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel LLLL=pdf_binLLLL LLLH=pdf_binLLLH LLHH=pdf_binLLHH extraConstraints=() channelMasks=() ] = 1.66667e-09
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Found a parameter named ONE infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Found a parameter named ZERO infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 2 
+CMS_th1x = 149.5 
+ONE = 1 (constant)
+prop_binLLHH_bin39 = 0 
+prop_binLLHH_bin39_In = 0 (constant)
+prop_binLLHH_bin40 = 0 
+prop_binLLHH_bin40_In = 0 (constant)
+prop_binLLHH_bin41 = 0 
+prop_binLLHH_bin41_In = 0 (constant)
+prop_binLLHH_bin42 = 0 
+prop_binLLHH_bin42_In = 0 (constant)
+prop_binLLHH_bin43 = 0 
+prop_binLLHH_bin43_In = 0 (constant)
+prop_binLLHH_bin44 = 0 
+prop_binLLHH_bin44_In = 0 (constant)
+prop_binLLHH_bin45 = 0 
+prop_binLLHH_bin45_In = 0 (constant)
+prop_binLLHH_bin46 = 0 
+prop_binLLHH_bin46_In = 0 (constant)
+prop_binLLHH_bin47 = 0 
+prop_binLLHH_bin47_In = 0 (constant)
+prop_binLLHH_bin48 = 0 
+prop_binLLHH_bin48_In = 0 (constant)
+prop_binLLHH_bin49 = 0 
+prop_binLLHH_bin49_In = 0 (constant)
+prop_binLLHH_bin50 = 0 
+prop_binLLHH_bin50_In = 0 (constant)
+prop_binLLHH_bin51 = 0 
+prop_binLLHH_bin51_In = 0 (constant)
+prop_binLLHH_bin52 = 0 
+prop_binLLHH_bin52_In = 0 (constant)
+prop_binLLHH_bin53 = 0 
+prop_binLLHH_bin53_In = 0 (constant)
+prop_binLLHH_bin54 = 0 
+prop_binLLHH_bin54_In = 0 (constant)
+prop_binLLHH_bin55 = 0 
+prop_binLLHH_bin55_In = 0 (constant)
+prop_binLLHH_bin56 = 0 
+prop_binLLHH_bin56_In = 0 (constant)
+prop_binLLHH_bin57 = 0 
+prop_binLLHH_bin57_In = 0 (constant)
+prop_binLLHH_bin58 = 0 
+prop_binLLHH_bin58_In = 0 (constant)
+prop_binLLHH_bin59 = 0 
+prop_binLLHH_bin59_In = 0 (constant)
+prop_binLLHH_bin60 = 0 
+prop_binLLHH_bin60_In = 0 (constant)
+prop_binLLHH_bin61 = 0 
+prop_binLLHH_bin61_In = 0 (constant)
+prop_binLLHH_bin62 = 0 
+prop_binLLHH_bin62_In = 0 (constant)
+prop_binLLHH_bin63 = 0 
+prop_binLLHH_bin63_In = 0 (constant)
+prop_binLLHH_bin64 = 0 
+prop_binLLHH_bin64_In = 0 (constant)
+prop_binLLHH_bin65 = 0 
+prop_binLLHH_bin65_In = 0 (constant)
+prop_binLLLH_bin39 = 0 
+prop_binLLLH_bin39_In = 0 (constant)
+prop_binLLLH_bin40 = 0 
+prop_binLLLH_bin40_In = 0 (constant)
+prop_binLLLH_bin41 = 0 
+prop_binLLLH_bin41_In = 0 (constant)
+prop_binLLLH_bin42 = 0 
+prop_binLLLH_bin42_In = 0 (constant)
+prop_binLLLH_bin43 = 0 
+prop_binLLLH_bin43_In = 0 (constant)
+prop_binLLLH_bin44 = 0 
+prop_binLLLH_bin44_In = 0 (constant)
+prop_binLLLH_bin45 = 0 
+prop_binLLLH_bin45_In = 0 (constant)
+prop_binLLLH_bin46 = 0 
+prop_binLLLH_bin46_In = 0 (constant)
+prop_binLLLH_bin47 = 0 
+prop_binLLLH_bin47_In = 0 (constant)
+prop_binLLLH_bin48 = 0 
+prop_binLLLH_bin48_In = 0 (constant)
+prop_binLLLH_bin49 = 0 
+prop_binLLLH_bin49_In = 0 (constant)
+prop_binLLLH_bin50 = 0 
+prop_binLLLH_bin50_In = 0 (constant)
+prop_binLLLH_bin51 = 0 
+prop_binLLLH_bin51_In = 0 (constant)
+prop_binLLLH_bin52 = 0 
+prop_binLLLH_bin52_In = 0 (constant)
+prop_binLLLH_bin53 = 0 
+prop_binLLLH_bin53_In = 0 (constant)
+prop_binLLLH_bin54 = 0 
+prop_binLLLH_bin54_In = 0 (constant)
+prop_binLLLH_bin55 = 0 
+prop_binLLLH_bin55_In = 0 (constant)
+prop_binLLLH_bin56 = 0 
+prop_binLLLH_bin56_In = 0 (constant)
+prop_binLLLH_bin57 = 0 
+prop_binLLLH_bin57_In = 0 (constant)
+prop_binLLLH_bin58 = 0 
+prop_binLLLH_bin58_In = 0 (constant)
+prop_binLLLH_bin59 = 0 
+prop_binLLLH_bin59_In = 0 (constant)
+prop_binLLLH_bin60 = 0 
+prop_binLLLH_bin60_In = 0 (constant)
+prop_binLLLH_bin61 = 0 
+prop_binLLLH_bin61_In = 0 (constant)
+prop_binLLLH_bin62 = 0 
+prop_binLLLH_bin62_In = 0 (constant)
+prop_binLLLH_bin63 = 0 
+prop_binLLLH_bin63_In = 0 (constant)
+prop_binLLLH_bin64 = 0 
+prop_binLLLH_bin64_In = 0 (constant)
+prop_binLLLH_bin65 = 0 
+prop_binLLLH_bin65_In = 0 (constant)
+prop_binLLLL_bin39 = 0 
+prop_binLLLL_bin39_In = 0 (constant)
+prop_binLLLL_bin40 = 0 
+prop_binLLLL_bin40_In = 0 (constant)
+prop_binLLLL_bin41 = 0 
+prop_binLLLL_bin41_In = 0 (constant)
+prop_binLLLL_bin42 = 0 
+prop_binLLLL_bin42_In = 0 (constant)
+prop_binLLLL_bin43 = 0 
+prop_binLLLL_bin43_In = 0 (constant)
+prop_binLLLL_bin44 = 0 
+prop_binLLLL_bin44_In = 0 (constant)
+prop_binLLLL_bin45 = 0 
+prop_binLLLL_bin45_In = 0 (constant)
+prop_binLLLL_bin46 = 0 
+prop_binLLLL_bin46_In = 0 (constant)
+prop_binLLLL_bin47 = 0 
+prop_binLLLL_bin47_In = 0 (constant)
+prop_binLLLL_bin48 = 0 
+prop_binLLLL_bin48_In = 0 (constant)
+prop_binLLLL_bin49 = 0 
+prop_binLLLL_bin49_In = 0 (constant)
+prop_binLLLL_bin50 = 0 
+prop_binLLLL_bin50_In = 0 (constant)
+prop_binLLLL_bin51 = 0 
+prop_binLLLL_bin51_In = 0 (constant)
+prop_binLLLL_bin52 = 0 
+prop_binLLLL_bin52_In = 0 (constant)
+prop_binLLLL_bin53 = 0 
+prop_binLLLL_bin53_In = 0 (constant)
+prop_binLLLL_bin54 = 0 
+prop_binLLLL_bin54_In = 0 (constant)
+prop_binLLLL_bin55 = 0 
+prop_binLLLL_bin55_In = 0 (constant)
+prop_binLLLL_bin56 = 0 
+prop_binLLLL_bin56_In = 0 (constant)
+prop_binLLLL_bin57 = 0 
+prop_binLLLL_bin57_In = 0 (constant)
+prop_binLLLL_bin58 = 0 
+prop_binLLLL_bin58_In = 0 (constant)
+prop_binLLLL_bin59 = 0 
+prop_binLLLL_bin59_In = 0 (constant)
+prop_binLLLL_bin60 = 0 
+prop_binLLLL_bin60_In = 0 (constant)
+prop_binLLLL_bin61 = 0 
+prop_binLLLL_bin61_In = 0 (constant)
+prop_binLLLL_bin62 = 0 
+prop_binLLLL_bin62_In = 0 (constant)
+prop_binLLLL_bin63 = 0 
+prop_binLLLL_bin63_In = 0 (constant)
+prop_binLLLL_bin64 = 0 
+prop_binLLLL_bin64_In = 0 (constant)
+prop_binLLLL_bin65 = 0 
+prop_binLLLL_bin65_In = 0 (constant)
+r_ZH = 1 
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binLLLL_obsOnly: in 150 x-bins
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binLLLH_obsOnly: in 150 x-bins
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binLLHH_obsOnly: in 150 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5              LLHH     0.0000000
+   1               1.5              LLHH     0.0000000
+   2               2.5              LLHH     0.0000000
+   3               3.5              LLHH     0.0000000
+   4               4.5              LLHH     0.0000000
+   5               5.5              LLHH     0.0000000
+   6               6.5              LLHH     0.0000000
+   7               7.5              LLHH     0.0000000
+   8               8.5              LLHH     0.0000000
+   9               9.5              LLHH     0.0000000
+  10              10.5              LLHH     0.0000000
+  11              11.5              LLHH     0.0000000
+  12              12.5              LLHH     0.0000000
+  13              13.5              LLHH     0.0000000
+  14              14.5              LLHH     0.0000000
+  15              15.5              LLHH     0.0000000
+  16              16.5              LLHH     0.0000000
+  17              17.5              LLHH     0.0000000
+  18              18.5              LLHH     0.0000000
+  19              19.5              LLHH     0.0000000
+  20              20.5              LLHH     0.0000000
+  21              21.5              LLHH     0.0000000
+  22              22.5              LLHH     0.0000000
+  23              23.5              LLHH     0.0000000
+  24              24.5              LLHH     0.0000000
+  25              25.5              LLHH     0.0000000
+  26              26.5              LLHH     0.0000000
+  27              27.5              LLHH     0.0000000
+  28              28.5              LLHH     0.0000000
+  29              29.5              LLHH     0.0000000
+  30              30.5              LLHH     0.0000000
+  31              31.5              LLHH     0.0000000
+  32              32.5              LLHH     0.0000000
+  33              33.5              LLHH     0.0000000
+  34              34.5              LLHH     0.0000000
+  35              35.5              LLHH     0.0000000
+  36              36.5              LLHH     0.0000000
+  37              37.5              LLHH     0.0000000
+  38              38.5              LLHH     0.0000000
+  39              39.5              LLHH     3.4479322
+  40              40.5              LLHH     3.0673416
+  41              41.5              LLHH     3.2969391
+  42              42.5              LLHH     5.4268699
+  43              43.5              LLHH    17.5290241
+  44              44.5              LLHH    53.1405754
+  45              45.5              LLHH    69.4195175
+  46              46.5              LLHH    42.9506187
+  47              47.5              LLHH    22.1422634
+  48              48.5              LLHH    14.9207888
+  49              49.5              LLHH    12.3400221
+  50              50.5              LLHH    11.7660656
+  51              51.5              LLHH    11.0203428
+  52              52.5              LLHH     9.7770605
+  53              53.5              LLHH     8.4135571
+  54              54.5              LLHH     8.1489563
+  55              55.5              LLHH     7.8105345
+  56              56.5              LLHH     7.8271432
+  57              57.5              LLHH     7.3006063
+  58              58.5              LLHH     7.1527143
+  59              59.5              LLHH     6.2449574
+  60              60.5              LLHH     6.2467337
+  61              61.5              LLHH     5.2801418
+  62              62.5              LLHH     4.2714596
+  63              63.5              LLHH     3.1936479
+  64              64.5              LLHH     4.6031241
+  65              65.5              LLHH     3.8184381
+  66              66.5              LLHH     0.0000000
+  67              67.5              LLHH     0.0000000
+  68              68.5              LLHH     0.0000000
+  69              69.5              LLHH     0.0000000
+  70              70.5              LLHH     0.0000000
+  71              71.5              LLHH     0.0000000
+  72              72.5              LLHH     0.0000000
+  73              73.5              LLHH     0.0000000
+  74              74.5              LLHH     0.0000000
+  75              75.5              LLHH     0.0000000
+  76              76.5              LLHH     0.0000000
+  77              77.5              LLHH     0.0000000
+  78              78.5              LLHH     0.0000000
+  79              79.5              LLHH     0.0000000
+  80              80.5              LLHH     0.0000000
+  81              81.5              LLHH     0.0000000
+  82              82.5              LLHH     0.0000000
+  83              83.5              LLHH     0.0000000
+  84              84.5              LLHH     0.0000000
+  85              85.5              LLHH     0.0000000
+  86              86.5              LLHH     0.0000000
+  87              87.5              LLHH     0.0000000
+  88              88.5              LLHH     0.0000000
+  89              89.5              LLHH     0.0000000
+  90              90.5              LLHH     0.0000000
+  91              91.5              LLHH     0.0000000
+  92              92.5              LLHH     0.0000000
+  93              93.5              LLHH     0.0000000
+  94              94.5              LLHH     0.0000000
+  95              95.5              LLHH     0.0000000
+  96              96.5              LLHH     0.0000000
+  97              97.5              LLHH     0.0000000
+  98              98.5              LLHH     0.0000000
+  99              99.5              LLHH     0.0000000
+ 100             100.5              LLHH     0.0000000
+ 101             101.5              LLHH     0.0000000
+ 102             102.5              LLHH     0.0000000
+ 103             103.5              LLHH     0.0000000
+ 104             104.5              LLHH     0.0000000
+ 105             105.5              LLHH     0.0000000
+ 106             106.5              LLHH     0.0000000
+ 107             107.5              LLHH     0.0000000
+ 108             108.5              LLHH     0.0000000
+ 109             109.5              LLHH     0.0000000
+ 110             110.5              LLHH     0.0000000
+ 111             111.5              LLHH     0.0000000
+ 112             112.5              LLHH     0.0000000
+ 113             113.5              LLHH     0.0000000
+ 114             114.5              LLHH     0.0000000
+ 115             115.5              LLHH     0.0000000
+ 116             116.5              LLHH     0.0000000
+ 117             117.5              LLHH     0.0000000
+ 118             118.5              LLHH     0.0000000
+ 119             119.5              LLHH     0.0000000
+ 120             120.5              LLHH     0.0000000
+ 121             121.5              LLHH     0.0000000
+ 122             122.5              LLHH     0.0000000
+ 123             123.5              LLHH     0.0000000
+ 124             124.5              LLHH     0.0000000
+ 125             125.5              LLHH     0.0000000
+ 126             126.5              LLHH     0.0000000
+ 127             127.5              LLHH     0.0000000
+ 128             128.5              LLHH     0.0000000
+ 129             129.5              LLHH     0.0000000
+ 130             130.5              LLHH     0.0000000
+ 131             131.5              LLHH     0.0000000
+ 132             132.5              LLHH     0.0000000
+ 133             133.5              LLHH     0.0000000
+ 134             134.5              LLHH     0.0000000
+ 135             135.5              LLHH     0.0000000
+ 136             136.5              LLHH     0.0000000
+ 137             137.5              LLHH     0.0000000
+ 138             138.5              LLHH     0.0000000
+ 139             139.5              LLHH     0.0000000
+ 140             140.5              LLHH     0.0000000
+ 141             141.5              LLHH     0.0000000
+ 142             142.5              LLHH     0.0000000
+ 143             143.5              LLHH     0.0000000
+ 144             144.5              LLHH     0.0000000
+ 145             145.5              LLHH     0.0000000
+ 146             146.5              LLHH     0.0000000
+ 147             147.5              LLHH     0.0000000
+ 148             148.5              LLHH     0.0000000
+ 149             149.5              LLHH     0.0000000
+ 150               0.5              LLLH     0.0000000
+ 151               1.5              LLLH     0.0000000
+ 152               2.5              LLLH     0.0000000
+ 153               3.5              LLLH     0.0000000
+ 154               4.5              LLLH     0.0000000
+ 155               5.5              LLLH     0.0000000
+ 156               6.5              LLLH     0.0000000
+ 157               7.5              LLLH     0.0000000
+ 158               8.5              LLLH     0.0000000
+ 159               9.5              LLLH     0.0000000
+ 160              10.5              LLLH     0.0000000
+ 161              11.5              LLLH     0.0000000
+ 162              12.5              LLLH     0.0000000
+ 163              13.5              LLLH     0.0000000
+ 164              14.5              LLLH     0.0000000
+ 165              15.5              LLLH     0.0000000
+ 166              16.5              LLLH     0.0000000
+ 167              17.5              LLLH     0.0000000
+ 168              18.5              LLLH     0.0000000
+ 169              19.5              LLLH     0.0000000
+ 170              20.5              LLLH     0.0000000
+ 171              21.5              LLLH     0.0000000
+ 172              22.5              LLLH     0.0000000
+ 173              23.5              LLLH     0.0000000
+ 174              24.5              LLLH     0.0000000
+ 175              25.5              LLLH     0.0000000
+ 176              26.5              LLLH     0.0000000
+ 177              27.5              LLLH     0.0000000
+ 178              28.5              LLLH     0.0000000
+ 179              29.5              LLLH     0.0000000
+ 180              30.5              LLLH     0.0000000
+ 181              31.5              LLLH     0.0000000
+ 182              32.5              LLLH     0.0000000
+ 183              33.5              LLLH     0.0000000
+ 184              34.5              LLLH     0.0000000
+ 185              35.5              LLLH     0.0000000
+ 186              36.5              LLLH     0.0000000
+ 187              37.5              LLLH     0.0000000
+ 188              38.5              LLLH     0.0000000
+ 189              39.5              LLLH     1.1959690
+ 190              40.5              LLLH     1.5101993
+ 191              41.5              LLLH     1.1426687
+ 192              42.5              LLLH     2.7403436
+ 193              43.5              LLLH     5.5300379
+ 194              44.5              LLLH    18.1868172
+ 195              45.5              LLLH    23.4800034
+ 196              46.5              LLLH    14.3022423
+ 197              47.5              LLLH     7.4187026
+ 198              48.5              LLLH     6.3385234
+ 199              49.5              LLLH     4.6539721
+ 200              50.5              LLLH     4.7419291
+ 201              51.5              LLLH     3.5286522
+ 202              52.5              LLLH     3.5137215
+ 203              53.5              LLLH     3.2323961
+ 204              54.5              LLLH     3.0173013
+ 205              55.5              LLLH     2.9965470
+ 206              56.5              LLLH     2.3481469
+ 207              57.5              LLLH     2.1120660
+ 208              58.5              LLLH     1.8104484
+ 209              59.5              LLLH     2.7459378
+ 210              60.5              LLLH     2.0411994
+ 211              61.5              LLLH     2.1197150
+ 212              62.5              LLLH     1.3732291
+ 213              63.5              LLLH     1.9010913
+ 214              64.5              LLLH     1.4155869
+ 215              65.5              LLLH     1.5374842
+ 216              66.5              LLLH     0.0000000
+ 217              67.5              LLLH     0.0000000
+ 218              68.5              LLLH     0.0000000
+ 219              69.5              LLLH     0.0000000
+ 220              70.5              LLLH     0.0000000
+ 221              71.5              LLLH     0.0000000
+ 222              72.5              LLLH     0.0000000
+ 223              73.5              LLLH     0.0000000
+ 224              74.5              LLLH     0.0000000
+ 225              75.5              LLLH     0.0000000
+ 226              76.5              LLLH     0.0000000
+ 227              77.5              LLLH     0.0000000
+ 228              78.5              LLLH     0.0000000
+ 229              79.5              LLLH     0.0000000
+ 230              80.5              LLLH     0.0000000
+ 231              81.5              LLLH     0.0000000
+ 232              82.5              LLLH     0.0000000
+ 233              83.5              LLLH     0.0000000
+ 234              84.5              LLLH     0.0000000
+ 235              85.5              LLLH     0.0000000
+ 236              86.5              LLLH     0.0000000
+ 237              87.5              LLLH     0.0000000
+ 238              88.5              LLLH     0.0000000
+ 239              89.5              LLLH     0.0000000
+ 240              90.5              LLLH     0.0000000
+ 241              91.5              LLLH     0.0000000
+ 242              92.5              LLLH     0.0000000
+ 243              93.5              LLLH     0.0000000
+ 244              94.5              LLLH     0.0000000
+ 245              95.5              LLLH     0.0000000
+ 246              96.5              LLLH     0.0000000
+ 247              97.5              LLLH     0.0000000
+ 248              98.5              LLLH     0.0000000
+ 249              99.5              LLLH     0.0000000
+ 250             100.5              LLLH     0.0000000
+ 251             101.5              LLLH     0.0000000
+ 252             102.5              LLLH     0.0000000
+ 253             103.5              LLLH     0.0000000
+ 254             104.5              LLLH     0.0000000
+ 255             105.5              LLLH     0.0000000
+ 256             106.5              LLLH     0.0000000
+ 257             107.5              LLLH     0.0000000
+ 258             108.5              LLLH     0.0000000
+ 259             109.5              LLLH     0.0000000
+ 260             110.5              LLLH     0.0000000
+ 261             111.5              LLLH     0.0000000
+ 262             112.5              LLLH     0.0000000
+ 263             113.5              LLLH     0.0000000
+ 264             114.5              LLLH     0.0000000
+ 265             115.5              LLLH     0.0000000
+ 266             116.5              LLLH     0.0000000
+ 267             117.5              LLLH     0.0000000
+ 268             118.5              LLLH     0.0000000
+ 269             119.5              LLLH     0.0000000
+ 270             120.5              LLLH     0.0000000
+ 271             121.5              LLLH     0.0000000
+ 272             122.5              LLLH     0.0000000
+ 273             123.5              LLLH     0.0000000
+ 274             124.5              LLLH     0.0000000
+ 275             125.5              LLLH     0.0000000
+ 276             126.5              LLLH     0.0000000
+ 277             127.5              LLLH     0.0000000
+ 278             128.5              LLLH     0.0000000
+ 279             129.5              LLLH     0.0000000
+ 280             130.5              LLLH     0.0000000
+ 281             131.5              LLLH     0.0000000
+ 282             132.5              LLLH     0.0000000
+ 283             133.5              LLLH     0.0000000
+ 284             134.5              LLLH     0.0000000
+ 285             135.5              LLLH     0.0000000
+ 286             136.5              LLLH     0.0000000
+ 287             137.5              LLLH     0.0000000
+ 288             138.5              LLLH     0.0000000
+ 289             139.5              LLLH     0.0000000
+ 290             140.5              LLLH     0.0000000
+ 291             141.5              LLLH     0.0000000
+ 292             142.5              LLLH     0.0000000
+ 293             143.5              LLLH     0.0000000
+ 294             144.5              LLLH     0.0000000
+ 295             145.5              LLLH     0.0000000
+ 296             146.5              LLLH     0.0000000
+ 297             147.5              LLLH     0.0000000
+ 298             148.5              LLLH     0.0000000
+ 299             149.5              LLLH     0.0000000
+ 300               0.5              LLLL     0.0000000
+ 301               1.5              LLLL     0.0000000
+ 302               2.5              LLLL     0.0000000
+ 303               3.5              LLLL     0.0000000
+ 304               4.5              LLLL     0.0000000
+ 305               5.5              LLLL     0.0000000
+ 306               6.5              LLLL     0.0000000
+ 307               7.5              LLLL     0.0000000
+ 308               8.5              LLLL     0.0000000
+ 309               9.5              LLLL     0.0000000
+ 310              10.5              LLLL     0.0000000
+ 311              11.5              LLLL     0.0000000
+ 312              12.5              LLLL     0.0000000
+ 313              13.5              LLLL     0.0000000
+ 314              14.5              LLLL     0.0000000
+ 315              15.5              LLLL     0.0000000
+ 316              16.5              LLLL     0.0000000
+ 317              17.5              LLLL     0.0000000
+ 318              18.5              LLLL     0.0000000
+ 319              19.5              LLLL     0.0000000
+ 320              20.5              LLLL     0.0000000
+ 321              21.5              LLLL     0.0000000
+ 322              22.5              LLLL     0.0000000
+ 323              23.5              LLLL     0.0000000
+ 324              24.5              LLLL     0.0000000
+ 325              25.5              LLLL     0.0000000
+ 326              26.5              LLLL     0.0000000
+ 327              27.5              LLLL     0.0000000
+ 328              28.5              LLLL     0.0000000
+ 329              29.5              LLLL     0.0000000
+ 330              30.5              LLLL     0.0000000
+ 331              31.5              LLLL     0.0000000
+ 332              32.5              LLLL     0.0000000
+ 333              33.5              LLLL     0.0000000
+ 334              34.5              LLLL     0.0000000
+ 335              35.5              LLLL     0.0000000
+ 336              36.5              LLLL     0.0000000
+ 337              37.5              LLLL     0.0000000
+ 338              38.5              LLLL     0.0000000
+ 339              39.5              LLLL    13.5203009
+ 340              40.5              LLLL    12.0440674
+ 341              41.5              LLLL    17.7236137
+ 342              42.5              LLLL    13.4498644
+ 343              43.5              LLLL    16.7376995
+ 344              44.5              LLLL    21.3933411
+ 345              45.5              LLLL    19.8901634
+ 346              46.5              LLLL    20.9437027
+ 347              47.5              LLLL    14.7450705
+ 348              48.5              LLLL    16.1150627
+ 349              49.5              LLLL    13.7737093
+ 350              50.5              LLLL    12.7031889
+ 351              51.5              LLLL    13.2219048
+ 352              52.5              LLLL    13.7336779
+ 353              53.5              LLLL    13.0807390
+ 354              54.5              LLLL    10.6502056
+ 355              55.5              LLLL    10.8446341
+ 356              56.5              LLLL    10.5295877
+ 357              57.5              LLLL    13.0261087
+ 358              58.5              LLLL    12.6694918
+ 359              59.5              LLLL    11.3175201
+ 360              60.5              LLLL     6.5353251
+ 361              61.5              LLLL     3.9742262
+ 362              62.5              LLLL     4.7162452
+ 363              63.5              LLLL     2.8817508
+ 364              64.5              LLLL     3.7944765
+ 365              65.5              LLLL     2.5793757
+ 366              66.5              LLLL     0.0000000
+ 367              67.5              LLLL     0.0000000
+ 368              68.5              LLLL     0.0000000
+ 369              69.5              LLLL     0.0000000
+ 370              70.5              LLLL     0.0000000
+ 371              71.5              LLLL     0.0000000
+ 372              72.5              LLLL     0.0000000
+ 373              73.5              LLLL     0.0000000
+ 374              74.5              LLLL     0.0000000
+ 375              75.5              LLLL     0.0000000
+ 376              76.5              LLLL     0.0000000
+ 377              77.5              LLLL     0.0000000
+ 378              78.5              LLLL     0.0000000
+ 379              79.5              LLLL     0.0000000
+ 380              80.5              LLLL     0.0000000
+ 381              81.5              LLLL     0.0000000
+ 382              82.5              LLLL     0.0000000
+ 383              83.5              LLLL     0.0000000
+ 384              84.5              LLLL     0.0000000
+ 385              85.5              LLLL     0.0000000
+ 386              86.5              LLLL     0.0000000
+ 387              87.5              LLLL     0.0000000
+ 388              88.5              LLLL     0.0000000
+ 389              89.5              LLLL     0.0000000
+ 390              90.5              LLLL     0.0000000
+ 391              91.5              LLLL     0.0000000
+ 392              92.5              LLLL     0.0000000
+ 393              93.5              LLLL     0.0000000
+ 394              94.5              LLLL     0.0000000
+ 395              95.5              LLLL     0.0000000
+ 396              96.5              LLLL     0.0000000
+ 397              97.5              LLLL     0.0000000
+ 398              98.5              LLLL     0.0000000
+ 399              99.5              LLLL     0.0000000
+ 400             100.5              LLLL     0.0000000
+ 401             101.5              LLLL     0.0000000
+ 402             102.5              LLLL     0.0000000
+ 403             103.5              LLLL     0.0000000
+ 404             104.5              LLLL     0.0000000
+ 405             105.5              LLLL     0.0000000
+ 406             106.5              LLLL     0.0000000
+ 407             107.5              LLLL     0.0000000
+ 408             108.5              LLLL     0.0000000
+ 409             109.5              LLLL     0.0000000
+ 410             110.5              LLLL     0.0000000
+ 411             111.5              LLLL     0.0000000
+ 412             112.5              LLLL     0.0000000
+ 413             113.5              LLLL     0.0000000
+ 414             114.5              LLLL     0.0000000
+ 415             115.5              LLLL     0.0000000
+ 416             116.5              LLLL     0.0000000
+ 417             117.5              LLLL     0.0000000
+ 418             118.5              LLLL     0.0000000
+ 419             119.5              LLLL     0.0000000
+ 420             120.5              LLLL     0.0000000
+ 421             121.5              LLLL     0.0000000
+ 422             122.5              LLLL     0.0000000
+ 423             123.5              LLLL     0.0000000
+ 424             124.5              LLLL     0.0000000
+ 425             125.5              LLLL     0.0000000
+ 426             126.5              LLLL     0.0000000
+ 427             127.5              LLLL     0.0000000
+ 428             128.5              LLLL     0.0000000
+ 429             129.5              LLLL     0.0000000
+ 430             130.5              LLLL     0.0000000
+ 431             131.5              LLLL     0.0000000
+ 432             132.5              LLLL     0.0000000
+ 433             133.5              LLLL     0.0000000
+ 434             134.5              LLLL     0.0000000
+ 435             135.5              LLLL     0.0000000
+ 436             136.5              LLLL     0.0000000
+ 437             137.5              LLLL     0.0000000
+ 438             138.5              LLLL     0.0000000
+ 439             139.5              LLLL     0.0000000
+ 440             140.5              LLLL     0.0000000
+ 441             141.5              LLLL     0.0000000
+ 442             142.5              LLLL     0.0000000
+ 443             143.5              LLLL     0.0000000
+ 444             144.5              LLLL     0.0000000
+ 445             145.5              LLLL     0.0000000
+ 446             146.5              LLLL     0.0000000
+ 447             147.5              LLLL     0.0000000
+ 448             148.5              LLLL     0.0000000
+ 449             149.5              LLLL     0.0000000
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin39) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin40) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin41) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin42) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin43) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin44) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin45) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin46) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin47) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin48) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin49) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin50) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin51) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin52) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin53) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin54) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin55) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin56) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin57) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin58) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin59) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin60) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin61) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin62) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin63) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin64) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLL_bin65) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin39) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin40) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin41) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin42) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin43) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin44) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin45) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin46) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin47) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin48) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin49) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin50) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin51) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin52) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin53) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin54) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin55) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin56) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin57) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin58) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin59) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin60) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin61) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin62) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin63) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin64) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLLH_bin65) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin39) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin40) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin41) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin42) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin43) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin44) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin45) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin46) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin47) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin48) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin49) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin50) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin51) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin52) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin53) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin54) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin55) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin56) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin57) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin58) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin59) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin60) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin61) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin62) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin63) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin64) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binLLHH_bin65) new range named 'optimizeBoundRange' created with bounds [-7,7]
+Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 1500 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 1.65432475155e-13 Nfcn = 13
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 0 p2 = 0
+----------> Iteration 1
+            FVAL = 0 Edm = 1.65432475155e-13 Nfcn = 18
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 0 p2 = 0
+----------> Iteration 2
+            FVAL = 0 Edm = 1.65432475155e-13 Nfcn = 18
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 0 p2 = 0
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = 0
+Edm   = 1.65432475155054155e-13
+Nfcn  = 18
+r_ZH	  = 1	 +/-  0.0559467	(limited)
+unc__H	  = 0	 +/-  0.997269
+unc_p8_ee_ZZ_ecm365	  = 0	 +/-  0.951218
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.047784 seconds (0.040000 CPU time)
+FINAL NLL - NLL0 VALUE = -5.129262469e-13
+
+
+ --- MultiDimFit ---
+best fit parameter values: 
+    r_ZH :    +1.000
+   r_VBF :    +1.000
+Done in 0.00 min (cpu), 0.00 min (real)
+183 log messages saved to combine_logger.out

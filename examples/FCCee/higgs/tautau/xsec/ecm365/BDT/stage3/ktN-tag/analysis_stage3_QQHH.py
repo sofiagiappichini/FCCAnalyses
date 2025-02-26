@@ -3,10 +3,10 @@ import ROOT
 
 ### it's best to process stage3 in batch because some files will be empty and it will abort everything but in batch it aborts only the respective jobs
 
-inputDir = "/ceph/sgiappic/HiggsCP/ecm365/ktN-tag/stage2_280125_cut/NuNu/HH/"
+inputDir = "/ceph/sgiappic/HiggsCP/ecm365/ktN-tag/stage2_280125_cut/QQ/HH/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/ceph/gsiappic/HiggsCP/ecm365/ktN-tag/stage3_280125/NuNu/HH/" 
+outputDir   = "/ceph/gsiappic/HiggsCP/ecm365/ktN-tag/stage3_280125/QQ/HH/" 
 
 #Mandatory: List of processes
 processList = {

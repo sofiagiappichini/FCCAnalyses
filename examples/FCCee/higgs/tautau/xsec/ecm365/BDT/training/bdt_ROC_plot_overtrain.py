@@ -234,16 +234,20 @@ vars_list_QQLH_tag = [
             "n_TauHadron_neutral_constituents",
             ]
 
-sigs = [#'wzp6_ee_nuenueH_Htautau_ecm365',
-        'wzp6_ee_numunumuH_Htautau_ecm365',
-        #'wzp6_ee_nunuH_Htautau_ecm365',
-        #'wzp6_ee_tautauH_Htautau_ecm365',
-        'wzp6_ee_mumuH_Htautau_ecm365',
-        'wzp6_ee_eeH_Htautau_ecm365',
+sigs_QQ = [
         'wzp6_ee_qqH_Htautau_ecm365',
         'wzp6_ee_ssH_Htautau_ecm365',
         'wzp6_ee_bbH_Htautau_ecm365',
         'wzp6_ee_ccH_Htautau_ecm365',
+]
+sigs_ZH = [
+    #'wzp6_ee_nuenueH_Htautau_ecm365',
+    'wzp6_ee_numunumuH_Htautau_ecm365',
+]
+
+sigs_VBF = [
+    'wzp6_ee_nuenueH_Htautau_ecm365',
+    #'wzp6_ee_numunumuH_Htautau_ecm365',
 ]
 
 bkgs = ['p8_ee_WW_ecm365',
@@ -277,12 +281,12 @@ bkgs = ['p8_ee_WW_ecm365',
 
     'wzp6_ee_nuenueZ_ecm365',
 
-    #'wzp6_ee_nunuH_Hbb_ecm365',
-    #'wzp6_ee_nunuH_Hcc_ecm365',
-    #'wzp6_ee_nunuH_Hss_ecm365',
-    #'wzp6_ee_nunuH_Hgg_ecm365',
-    #'wzp6_ee_nunuH_HWW_ecm365',
-    #'wzp6_ee_nunuH_HZZ_ecm365',
+    'wzp6_ee_nunuH_Hbb_ecm365',
+    'wzp6_ee_nunuH_Hcc_ecm365',
+    'wzp6_ee_nunuH_Hss_ecm365',
+    'wzp6_ee_nunuH_Hgg_ecm365',
+    'wzp6_ee_nunuH_HWW_ecm365',
+    'wzp6_ee_nunuH_HZZ_ecm365',
 
     'wzp6_ee_eeH_Hbb_ecm365',
     'wzp6_ee_eeH_Hcc_ecm365',
@@ -447,21 +451,21 @@ xsec = {'p8_ee_WW_ecm365':10.7165,
 DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 
 TAG = [
-    #"R5-explicit",
-    #"R5-tag",
-    #"ktN-explicit",
+    "R5-explicit",
+    "R5-tag",
+    "ktN-explicit",
     "ktN-tag",
 ]
 SUBDIR = [
-    #'LL',
-    #'LH',
+    'LL',
+    'LH',
     'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
     #"LL",
-    #"NuNu",
+    "NuNu",
 ]
 
 leg_cat = {
@@ -516,142 +520,268 @@ for tag in TAG:
                         vars_list = vars_list_NuNuLH_tag
                     else:
                         vars_list = vars_list_NuNu_explicit
-
-            N = {}
-            N_gen = {}
-            eff = {}
-            weight = {}
-            N_bkg = 0
-            N_bkg_gen = 0
-            tot_weight_bkg = 0
-            N_sig = 0
-            N_sig_gen = 0
-            tot_weight_sig = 0
-            eff_tot_bkg = 0
-            eff_tot_sig = 0
-            for i in sigs+bkgs:
-                files = glob.glob(path + i + '/chunk_*.root')
-                N[i] = 0
-                N_gen[i] = 0
-                eff[i] = 0
-                for f in files:
-                    #getting the raw number of events in this way only works if there are some events in the trees themselves 
-                    #but here it doesn't matter as we don't use those samples anyway
-                    events_processed, events_in_ttree = get_entries(f)
-                    if events_processed is not None and events_in_ttree is not None:
-                        N[i] += events_in_ttree
-                        N_gen[i] += events_processed
-
-                #calculate efficiency of each sample    
-                if N_gen[i]!=0:
-                    eff[i] = N[i] / N_gen[i]
-                weight[i] = xsec[i] * eff[i] * 10.8e6
-
-                #commulative number of events for background
-                if i in bkgs: 
-                    N_bkg += N[i]
-                    N_bkg_gen += N_gen[i]
-                    tot_weight_bkg += weight[i]
-                if N_bkg_gen!=0:
-                    eff_tot_bkg = N_bkg / N_bkg_gen
-                if i in sigs: 
-                    N_sig += N[i]
-                    N_sig_gen += N_gen[i]
-                    tot_weight_sig += weight[i]
-                if N_sig_gen!=0:
-                    eff_tot_sig = N_sig / N_sig_gen
-
-            #minumum number between the events in the samples and the one we expect to have in the signal composition
-            N_min = {}
-            N_sig_new = N_sig
-            for i in sigs:
-                N_min[i] = min(N[i], N_sig * weight[i] / tot_weight_sig) 
-                if N_min[i]==N[i] and weight[i]>0 and N[i]>0:
-                    N_sig_new = N_min[i] * tot_weight_sig / weight[i]
-
-            with open(output_file, "a") as file:
-                file.write(f"Adjusted size of signal: {N_sig_new}\n\n")   
-
-            #upload signals into a dataframe
-            df_sig = pd.DataFrame()
-            for q in sigs:
-                prev = len(df_sig)
-                target_events = int(N_sig_new * weight[q] / tot_weight_sig)
-                
-                # Only takes the samples that actually have any events remaining  
-                if N[q] > 0: 
-                    files = glob.glob(path + q + '/chunk_*.root')
-                    df = pd.DataFrame()
-
-                    valid_files = []
-
-                    for file in files:
-                        f = uproot.open(file)
-                        if "events;1" in f.keys():
-                            valid_files.append(file)
-
-                    files = [f for f in valid_files]
-                    if files==[]:
-                        break
-                    else:
-                        for file in files:
-                            f = uproot.open(file)
-                            tree = f["events;1"]
-                            temp_df = tree.arrays(expressions=vars_list, library="pd")
-                            df = pd.concat([df, temp_df])
-
-                            # Check if we have enough events to meet the target
-                            if len(df) >= target_events:
-                                break 
-
-                    df = df.head(target_events)
-                    df_sig = pd.concat([df_sig, df])
-            
-            #now for backgrounds
-            df_bkg = pd.DataFrame()
-            for q in bkgs:
-                prev = len(df_bkg)
-                target_events = int(N_sig_new * weight[q] / tot_weight_bkg)
-                
-                # Only takes the samples that actually have any events remaining  
-                if N[q] > target_events and target_events>0: 
-                    files = glob.glob(path + q + '/chunk_*.root')
-                    df = pd.DataFrame()
-
-                    valid_files = []
-
-                    for file in files:
-                        f = uproot.open(file)
-                        if "events;1" in f.keys():
-                            valid_files.append(file)
-
-                    files = [f for f in valid_files]
-                    if files==[]:
-                        break
-                    else:
-                        for file in files:
-                            f = uproot.open(file)
-                            tree = f["events;1"]
-                            temp_df = tree.arrays(expressions=vars_list, library="pd")
-                            df = pd.concat([df, temp_df])
-
-                            # Check if we have enough events to meet the target
-                            if len(df) >= target_events:
-                                break 
-
-                    df = df.head(target_events)
-                    df_bkg = pd.concat([df_bkg, df])
             
             #set Signal and background labels
-            df_sig["label"] = 1
-            df_bkg["label"] = 0
+            if "QQ" in cat:
 
-            
-            #save some data for testing later
-            df_sig = df_sig.sample(frac=1, random_state=1)
-            df_bkg = df_bkg.sample(frac=1, random_state=1)
-            train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
-            train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
+                N = {}
+                N_gen = {}
+                eff = {}
+                weight = {}
+                N_bkg = 0
+                N_bkg_gen = 0
+                tot_weight_bkg = 0
+                N_sig = 0
+                N_sig_gen = 0
+                tot_weight_sig = 0
+                eff_tot_bkg = 0
+                eff_tot_sig = 0
+                for i in sigs_QQ+bkgs:
+                    files = glob.glob(path + i + '/chunk_*.root')
+                    N[i] = 0
+                    N_gen[i] = 0
+                    eff[i] = 0
+                    for f in files:
+                        #getting the raw number of events in this way only works if there are some events in the trees themselves 
+                        #but here it doesn't matter as we don't use those samples anyway
+                        events_processed, events_in_ttree = get_entries(f)
+                        if events_processed is not None and events_in_ttree is not None:
+                            N[i] += events_in_ttree
+                            N_gen[i] += events_processed
+
+                    #calculate efficiency of each sample    
+                    if N_gen[i]!=0:
+                        eff[i] = N[i] / N_gen[i]
+                    weight[i] = xsec[i] * eff[i] * 10.8e6
+
+                    #commulative number of events for background
+                    if i in bkgs: 
+                        N_bkg += N[i]
+                        N_bkg_gen += N_gen[i]
+                        tot_weight_bkg += weight[i]
+                    if N_bkg_gen!=0:
+                        eff_tot_bkg = N_bkg / N_bkg_gen
+                    if i in sigs_QQ: 
+                        N_sig += N[i]
+                        N_sig_gen += N_gen[i]
+                        tot_weight_sig += weight[i]
+                    if N_sig_gen!=0:
+                        eff_tot_sig = N_sig / N_sig_gen
+
+                #minumum number between the events in the samples and the one we expect to have in the signal composition
+                N_min = {}
+                N_sig_new = N_sig
+                for i in sigs_QQ:
+                    N_min[i] = min(N[i], N_sig * weight[i] / tot_weight_sig) 
+                    if N_min[i]==N[i] and weight[i]>0 and N[i]>0:
+                        N_sig_new = N_min[i] * tot_weight_sig / weight[i]
+
+                with open(output_file, "a") as file:
+                    file.write(f"Adjusted size of signal: {N_sig_new}\n\n")   
+
+                #upload signals into a dataframe
+                df_sig = pd.DataFrame()
+                for q in sigs_QQ:
+                    prev = len(df_sig)
+                    target_events = int(N_sig_new * weight[q] / tot_weight_sig)
+                    
+                    # Only takes the samples that actually have any events remaining  
+                    if N[q] > 0: 
+                        files = glob.glob(path + q + '/chunk_*.root')
+                        df = pd.DataFrame()
+
+                        valid_files = []
+
+                        for file in files:
+                            f = uproot.open(file)
+                            if "events;1" in f.keys():
+                                valid_files.append(file)
+
+                        files = [f for f in valid_files]
+                        if files==[]:
+                            break
+                        else:
+                            for file in files:
+                                f = uproot.open(file)
+                                tree = f["events;1"]
+                                temp_df = tree.arrays(expressions=vars_list, library="pd")
+                                df = pd.concat([df, temp_df])
+
+                                # Check if we have enough events to meet the target
+                                if len(df) >= target_events:
+                                    break 
+
+                        df = df.head(target_events)
+                        df_sig = pd.concat([df_sig, df])
+                
+                #now for backgrounds
+                df_bkg = pd.DataFrame()
+                for q in bkgs:
+                    prev = len(df_bkg)
+                    target_events = int(N_sig_new * weight[q] / tot_weight_bkg)
+                    
+                    # Only takes the samples that actually have any events remaining  
+                    if N[q] > target_events and target_events>0: 
+                        files = glob.glob(path + q + '/chunk_*.root')
+                        df = pd.DataFrame()
+
+                        valid_files = []
+
+                        for file in files:
+                            f = uproot.open(file)
+                            if "events;1" in f.keys():
+                                valid_files.append(file)
+
+                        files = [f for f in valid_files]
+                        if files==[]:
+                            break
+                        else:
+                            for file in files:
+                                f = uproot.open(file)
+                                tree = f["events;1"]
+                                temp_df = tree.arrays(expressions=vars_list, library="pd")
+                                df = pd.concat([df, temp_df])
+
+                                # Check if we have enough events to meet the target
+                                if len(df) >= target_events:
+                                    break 
+
+                        df = df.head(target_events)
+                        df_bkg = pd.concat([df_bkg, df])
+
+
+                df_sig["label"] = 1
+                df_bkg["label"] = 0
+
+                
+                #save some data for testing later
+                df_sig = df_sig.sample(frac=1, random_state=1)
+                df_bkg = df_bkg.sample(frac=1, random_state=1)
+                train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
+                train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
+            else:
+
+                N, N_gen, eff, weight = {}, {}, {}, {}
+                N_bkg, N_bkg_gen, tot_weight_bkg = 0, 0, 0
+                N_sig_ZH, N_sig_ZH_gen, tot_weight_sig_ZH = 0, 0, 0
+                N_sig_VBF, N_sig_VBF_gen, tot_weight_sig_VBF = 0, 0, 0
+
+                for i in sigs_ZH + sigs_VBF + bkgs:
+                    files = glob.glob(path + i + '/chunk_*.root')
+                    N[i], N_gen[i], eff[i] = 0, 0, 0
+                    
+                    for f in files:
+                        events_processed, events_in_ttree = get_entries(f)
+                        if events_processed and events_in_ttree:
+                            N[i] += events_in_ttree
+                            N_gen[i] += events_processed
+                    
+                    if N_gen[i]:
+                        eff[i] = N[i] / N_gen[i]
+                    weight[i] = xsec[i] * eff[i] * 2.65e6
+                    
+                    if i in bkgs:
+                        N_bkg += N[i]
+                        N_bkg_gen += N_gen[i]
+                        tot_weight_bkg += weight[i]
+                    elif i in sigs_ZH:
+                        N_sig_ZH += N[i]
+                        N_sig_ZH_gen += N_gen[i]
+                        tot_weight_sig_ZH += weight[i]
+                    elif i in sigs_VBF:
+                        N_sig_VBF += N[i]
+                        N_sig_VBF_gen += N_gen[i]
+                        tot_weight_sig_VBF += weight[i]
+
+                # Compute total efficiencies
+                if N_bkg_gen:
+                    eff_tot_bkg = N_bkg / N_bkg_gen
+                if N_sig_ZH_gen or N_sig_VBF_gen:
+                    eff_tot_sig = (N_sig_ZH + N_sig_VBF) / (N_sig_VBF_gen + N_sig_ZH_gen)
+
+
+                # Adjust sample sizes
+                N_min = {}
+                N_sig_ZH_new, N_sig_VBF_new = N_sig_ZH, N_sig_VBF
+                for i in sigs_ZH:
+                    N_min[i] = min(N[i], N_sig_ZH * weight[i] / tot_weight_sig_ZH)
+                    if N_min[i] == N[i] and weight[i] > 0:
+                        N_sig_ZH_new = N_min[i] * tot_weight_sig_ZH / weight[i]
+                for i in sigs_VBF:
+                    N_min[i] = min(N[i], N_sig_VBF * weight[i] / tot_weight_sig_VBF)
+                    if N_min[i] == N[i] and weight[i] > 0:
+                        N_sig_VBF_new = N_min[i] * tot_weight_sig_VBF / weight[i]
+                N_sig_new = N_sig_VBF_new + N_sig_ZH_new
+
+                df_sig_ZH, df_sig_VBF, df_bkg = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+
+                # Load signal and background samples
+                for q in sigs_ZH + sigs_VBF:
+                    target_events = int(N_sig_ZH_new * weight[q] / tot_weight_sig_ZH) if q in sigs_ZH else (
+                                    int(N_sig_VBF_new * weight[q] / tot_weight_sig_VBF) )
+                    
+                    if N[q] > 0:
+                        files = glob.glob(path + q + '/chunk_*.root')
+                        df = pd.DataFrame()
+
+                        for file in files:
+                            f = uproot.open(file)
+                            if f.keys()==['eventsProcessed;1']:
+                                files.remove(file)
+                                continue
+                            tree = f["events"]
+                            temp_df = tree.arrays(expressions=vars_list, library="pd")
+                            df = pd.concat([df, temp_df])
+
+                            # Check if we have enough events to meet the target
+                            if len(df) >= target_events:
+                                break 
+
+                        df = df.head(target_events)
+
+                        if q in sigs_ZH:
+                            prev = len(df_sig_ZH)
+                            df_sig_ZH = pd.concat([df_sig_ZH, df])
+                        else:
+                            prev = len(df_sig_VBF)
+                            df_sig_VBF = pd.concat([df_sig_VBF, df])
+
+                for q in bkgs:
+                    target_events = int(N_sig_new * weight[q] / tot_weight_bkg)
+                    
+                    if N[q] > target_events and target_events>0: 
+                        files = glob.glob(path + q + '/chunk_*.root')
+                        df = pd.DataFrame()
+
+                        for file in files:
+                            f = uproot.open(file)
+                            if f.keys()==['eventsProcessed;1']:
+                                files.remove(file)
+                                continue
+                            tree = f["events"]
+                            temp_df = tree.arrays(expressions=vars_list, library="pd")
+                            df = pd.concat([df, temp_df])
+
+                            # Check if we have enough events to meet the target
+                            if len(df) >= target_events:
+                                break 
+
+                        df = df.head(target_events)
+                        df_bkg = pd.concat([df_bkg, df])
+                        prev = len(df_bkg)
+
+                df_sig_ZH['label'] = 1
+                df_sig_VBF['label'] = 2
+                df_bkg['label'] = 0
+
+                # Shuffle and split datasets
+                df_sig_ZH = df_sig_ZH.sample(frac=1, random_state=1)
+                df_sig_VBF = df_sig_VBF.sample(frac=1, random_state=1)
+                df_bkg = df_bkg.sample(frac=1, random_state=1)
+                df_sig = (pd.concat([df_sig_ZH, df_sig_VBF])).sample(frac=1, random_state=1)
+
+                train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
+                train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
             
             bdt = joblib.load(f"{modelDir}/{tag}/xgb_bdt_{tag}_{cat}{sub}.joblib")
 

@@ -1,0 +1,56 @@
+R5-explicit/QQ/LL: r_ZH	  = 1	 +/-  0.212091	(limited) | error 
+R5-explicit/QQ/LH: r_ZH	  = 1	 +/-  0.0411247	(limited) | error 
+R5-explicit/QQ/HH: r_ZH	  = 1	 +/-  0.127834	(limited) | error 
+R5-explicit/QQ: r_ZH	  = 1	 +/-  0.0450135	(limited) | error 
+R5-explicit/LL/LL: r_ZH	  = 1	 +/-  0.434194	(limited) | error 
+R5-explicit/LL/LH: r_ZH	  = 1	 +/-  0.116501	(limited) | error 
+R5-explicit/LL/HH: r_ZH	  = 1	 +/-  0.0644271	(limited) | error 
+R5-explicit/LL: r_ZH	  = 1	 +/-  0.0559467	(limited) | error 
+R5-explicit/NuNu/LL: r_ZH	  = 0.999988	 +/-  2.07592	(limited) | r_VBF	  = 1.00003	 +/-  2.15137	(limited) 
+R5-explicit/NuNu/LH: r_ZH	  = 1	 +/-  0.730606	(limited) | r_VBF	  = 1	 +/-  0.765058	(limited) 
+R5-explicit/NuNu/HH: r_ZH	  = 1	 +/-  0.302301	(limited) | r_VBF	  = 1	 +/-  0.269427	(limited) 
+R5-explicit/NuNu: r_ZH	  = 1	 +/-  0.287885	(limited) | r_VBF	  = 1	 +/-  0.240206	(limited) 
+R5-explicit combined: r_ZH	  = 1	 +/-  0.0345383	(limited) | r_VBF	  = 1	 +/-  0.251054	(limited) 
+
+R5-tag/QQ/LL: r_ZH	  = 1	 +/-  0.186397	(limited) | error 
+R5-tag/QQ/LH: r_ZH	  = 1	 +/-  0.0407665	(limited) | error 
+R5-tag/QQ/HH: r_ZH	  = 1	 +/-  0.0362667	(limited) | error 
+R5-tag/QQ: r_ZH	  = 1	 +/-  0.027801	(limited) | error 
+R5-tag/LL/LL: r_ZH	  = 1	 +/-  0.437747	(limited) | error 
+R5-tag/LL/LH: r_ZH	  = 1	 +/-  0.107905	(limited) | error 
+R5-tag/LL/HH: r_ZH	  = 1	 +/-  0.0409989	(limited) | error 
+R5-tag/LL: r_ZH	  = 1	 +/-  0.0459433	(limited) | error 
+R5-tag/NuNu/LL: r_ZH	  = 1	 +/-  2.07105	(limited) | r_VBF	  = 0.999998	 +/-  3.38634	(limited) 
+R5-tag/NuNu/LH: r_ZH	  = 0.999988	 +/-  2.2357	(limited) | r_VBF	  = 0.999987	 +/-  1.1762	(limited) 
+R5-tag/NuNu/HH: r_ZH	  = 1	 +/-  0.261666	(limited) | r_VBF	  = 1	 +/-  0.248791	(limited) 
+R5-tag/NuNu: r_ZH	  = 1	 +/-  0.259656	(limited) | r_VBF	  = 1	 +/-  0.243069	(limited) 
+R5-tag combined: r_ZH	  = 1	 +/-  0.0236906	(limited) | r_VBF	  = 1	 +/-  0.243648	(limited) 
+
+ktN-explicit/QQ/LL: r_ZH	  = 1	 +/-  0.119275	(limited) | error 
+ktN-explicit/QQ/LH: r_ZH	  = 1	 +/-  0.0323327	(limited) | r_VBF	  = 1	 +/-  7.72541	(limited) 
+ktN-explicit/QQ/HH: r_ZH	  = 1	 +/-  0.0239879	(limited) | r_VBF	  = 0.999967	 +/-  7.35041	(limited) 
+ktN-explicit/QQ: r_ZH	  = 1	 +/-  0.0189376	(limited) | r_VBF	  = 0.999973	 +/-  7.38731	(limited) 
+ktN-explicit/LL/LL: r_ZH	  = 1	 +/-  0.437747	(limited) | error 
+ktN-explicit/LL/LH: r_ZH	  = 1	 +/-  0.132237	(limited) | error 
+ktN-explicit/LL/HH: r_ZH	  = 1	 +/-  0.0669457	(limited) | error 
+ktN-explicit/LL: r_ZH	  = 1	 +/-  0.0591702	(limited) | error 
+ktN-explicit/NuNu/LL: r_ZH	  = 1.00001	 +/-  2.16615	(limited) | r_VBF	  = 1.00002	 +/-  3.44062	(limited) 
+ktN-explicit/NuNu/LH: r_ZH	  = 0.999999	 +/-  0.763928	(limited) | r_VBF	  = 1	 +/-  0.853387	(limited) 
+ktN-explicit/NuNu/HH: r_ZH	  = 1	 +/-  0.324755	(limited) | r_VBF	  = 1	 +/-  0.31158	(limited) 
+ktN-explicit/NuNu: r_ZH	  = 0.999999	 +/-  0.2957	(limited) | r_VBF	  = 1	 +/-  0.284898	(limited) 
+ktN-explicit combined: r_ZH	  = 1	 +/-  0.0180463	(limited) | r_VBF	  = 1	 +/-  0.290379	(limited) 
+
+ktN-tag/QQ/LL: r_ZH	  = 1	 +/-  0.106949	(limited) | error 
+ktN-tag/QQ/LH: r_ZH	  = 1	 +/-  0.0264187	(limited) | error 
+ktN-tag/QQ/HH: r_ZH	  = 1	 +/-  0.0537107	(limited) | r_VBF	  = 0.999796	 +/-  7.25372	(limited) 
+ktN-tag/QQ: r_ZH	  = 1	 +/-  0.0233097	(limited) | r_VBF	  = 0.999966	 +/-  5.16406	(limited) 
+ktN-tag/LL/LL: r_ZH	  = 1	 +/-  0.437747	(limited) | error 
+ktN-tag/LL/LH: r_ZH	  = 1	 +/-  0.149134	(limited) | error 
+ktN-tag/LL/HH: r_ZH	  = 1	 +/-  0.0581101	(limited) | error 
+ktN-tag/LL: r_ZH	  = 1	 +/-  0.0581101	(limited) | error 
+ktN-tag/NuNu/LL: r_ZH	  = 1	 +/-  2.05613	(limited) | r_VBF	  = 1	 +/-  3.41926	(limited) 
+ktN-tag/NuNu/LH: r_ZH	  = 0.999982	 +/-  2.26839	(limited) | r_VBF	  = 0.999983	 +/-  1.29954	(limited) 
+ktN-tag/NuNu/HH: r_ZH	  = 1	 +/-  0.298244	(limited) | r_VBF	  = 1	 +/-  0.26893	(limited) 
+ktN-tag/NuNu: r_ZH	  = 1	 +/-  0.282503	(limited) | r_VBF	  = 1	 +/-  0.26061	(limited) 
+ktN-tag combined: r_ZH	  = 1	 +/-  0.0214253	(limited) | r_VBF	  = 1	 +/-  0.26615	(limited) 
+

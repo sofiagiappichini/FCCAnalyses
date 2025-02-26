@@ -29,7 +29,7 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "longlunch"\n'
+    cfg += '+JobFlavour      = "espresso"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -80,13 +80,13 @@ def submit_jobs(output_dir: str):
         os.system(f"chmod -R +x {dir}")
         os.system(f"condor_submit {dir}/job_submit.cfg")
              
-output = '/work/sgiappic/HTCondor/BDT_train_365/' ##output directory of submission files
+output = '/work/sgiappic/HTCondor/BDT_train_365_2/' ##output directory of submission files
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/BDT/training/'
 
 SUBDIR = [
-    'LL',
+    #'LL',
     'LH',
-    'HH',
+    #'HH',
 ]
 
 CAT = [
@@ -96,9 +96,9 @@ CAT = [
 ]
 
 TAG = [
-    "R5-explicit",
+    #"R5-explicit",
     "R5-tag",
-    "ktN-explicit",
+    #"ktN-explicit",
     "ktN-tag",
 ]
 

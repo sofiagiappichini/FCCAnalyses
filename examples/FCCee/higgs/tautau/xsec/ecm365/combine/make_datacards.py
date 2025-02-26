@@ -23,7 +23,7 @@ def check_nonzero(directory, CUTS, process, list, VARIABLE):
         histo_file = uproot.open(path)
         selected_leaf = histo_file[VARIABLE]
         y_values = selected_leaf.values()
-        if (sum(y_values)!=0):
+        if (sum(y_values)>0):
             list.append(process)
     return list
 
@@ -192,8 +192,8 @@ if make_card:
 
                 ## datacard header, common
                 dc = ""
-                dc += f"# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-10,10]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-10,10]' datacard.txt  -o ws.root\n"
-                dc += f"# combine -M MultiDimFit -d  ws.root \n"
+                dc += f"# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-5,5]' datacard.txt  -o ws.root\n"
+                dc += f"# combine -M MultiDimFit -d  ws.root --cminDefaultMinimizerStrategy 0 -t -1 --expectSignal=1 -v 10 \n"
                 dc += f"imax    1 number of bins\n"
                 dc += f"jmax    * number of processes minus 1\n"
                 dc += f"kmax    * number of nuisance parameters\n"
@@ -308,7 +308,7 @@ if make_card:
                 for proc in bkg_procs:
                     if proc in ["wzp6_ee_LL_ecm365", "wzp6_ee_tautau_ecm365","p8_ee_ZQQ_ecm365"]:
                         Z_proc.append(proc)
-                        print(proc)
+                        #print(proc)
                 dc += get_combined_unc_v2("Z", Z_proc, procs, bkg_procs)        
 
                 #individual uncertainties

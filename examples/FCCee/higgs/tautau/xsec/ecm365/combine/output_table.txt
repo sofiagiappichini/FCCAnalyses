@@ -1,0 +1,25 @@
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ & R5-explicit & R5-tag & ktN-explicit & ktN-tag \\
+\hline
+QQLL & $\pm$50.75 &  $\pm$48.25 &  $\pm$36.94 &  $\pm$22.87 &  \\ \hline 
+QQLH & $\pm$23.42 &  $\pm$18.24 &  $\pm$15.14 &  $\pm$12.78 &  \\ \hline 
+QQHH & $\pm$8.52 &  $\pm$8.06 &  $\pm$8.81 &  $\pm$6.64 &  \\ \hline 
+QQ &$\pm$6.51 &  $\pm$5.34 &  $\pm$5.23 &  $\pm$5.02 &  \\ \hline 
+LLLL & $\pm$40.07 &  $\pm$44.99 &  $\pm$44.99 &  $\pm$44.99 &  \\ \hline 
+LLLH & $\pm$11.66 &  $\pm$6.23 &  $\pm$8.35 &  $\pm$14.90 &  \\ \hline 
+LLHH & $\pm$6.44 &  $\pm$5.11 &  $\pm$6.68 &  $\pm$3.09 &  \\ \hline 
+LL &$\pm$5.59 &  $\pm$4.59 &  $\pm$5.92 &  $\pm$2.53 &  \\ \hline 
+NuNuLL & $\pm$241.40 | $\pm$323.27 &  $\pm$241.40 | $\pm$323.27 &  $\pm$241.40 | $\pm$323.27 &  $\pm$241.40 | $\pm$323.27 &  \\ \hline 
+NuNuLH & $\pm$69.04 | $\pm$62.91 &  $\pm$66.87 | $\pm$80.64 &  $\pm$77.12 | $\pm$81.13 &  $\pm$87.35 | $\pm$77.05 &  \\ \hline 
+NuNuHH & $\pm$30.18 | $\pm$28.29 &  $\pm$27.69 | $\pm$25.75 &  $\pm$28.10 | $\pm$26.57 &  $\pm$27.12 | $\pm$24.20 &  \\ \hline 
+NuNu &$\pm$27.92 | $\pm$25.91 &  $\pm$25.63 | $\pm$23.88 &  $\pm$29.13 | $\pm$27.51 &  $\pm$25.89 | $\pm$23.47 &  \\ \hline 
+combined & $\pm$4.52 | $\pm$26.03 &  $\pm$3.90 | $\pm$23.12 &  $\pm$4.28 | $\pm$27.76 &  $\pm$3.92 | $\pm$23.90 &  \\ \hline 
+
+\hline
+\end{tabular}
+\caption{Fit Results}
+\end{table}

@@ -34,10 +34,10 @@ def file_exists(file_path):
 # directory with final stage files
 DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
 TAG = [
-    "R5-explicit",
+    #"R5-explicit",
     "R5-tag",
     "ktN-explicit",
-    "ktN-tag",
+    #"ktN-tag",
 ]
 SUBDIR = [
     'LL',
@@ -46,7 +46,7 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    "QQ",
+   # "QQ",
     #"LL",
     "NuNu",
 ]
@@ -1555,7 +1555,7 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final_280125_BDT/" + cat + "/" + sub + "/"
 
                 # ZH_nunu + all other ZH signals for Htautau
                 output = f"{directory}wzp6_ee_ZH_Htautau_ecm365_{cut}_histo.root"
@@ -1566,26 +1566,28 @@ for tag in TAG:
                     file = f"{directory}wzp6_ee_ZH_Znunu_Htautau_ecm365_{cut}_histo.root"
                     hh = None
                     if file_exists(file):
-                        check = True
+                        print(file)
                         tf = ROOT.TFile.Open(file, "READ")
                         h = tf.Get(var)
-                        if h:
-                            hh = copy.deepcopy(h)
-                            hh.SetDirectory(0)
+                        check = True
+                        hh = copy.deepcopy(h)
+                        hh.SetDirectory(0)
                         tf.Close()
                     for s in other_signal:
                         file3 = f"{directory}{s}_{cut}_histo.root"
                         if file_exists(file3):
-                            check = True
                             tf3 = ROOT.TFile.Open(file3, "READ")
                             h3 = tf3.Get(var)
-                            if h3:
-                                hh3 = copy.deepcopy(h3)
-                                hh3.SetDirectory(0)
-                                if hh:  
-                                    hh.Add(hh3)
-                                else:
-                                    hh = copy.deepcopy(hh3)
+                            print(f"variable {var} in file {s}")
+                            hh3 = copy.deepcopy(h3)
+                            hh3.SetDirectory(0)
+                            if hh:  
+                                print(f"ZHnunu already present")
+                                hh.Add(hh3)
+                            else:
+                                print(f"no ZHnunu, adding histo now")
+                                hh = copy.deepcopy(h3)
+                            check = True
                             tf3.Close()
                                 
                     #write the histogram in the file   
@@ -1612,7 +1614,7 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final_280125_BDT/" + cat + "/" + sub + "/"
             
                 for num in range(1,31):
                     output = f"{directory}{legend[num]}_{cut}_histo.root"

@@ -46,8 +46,8 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    "QQ",
-    "LL",
+    #"QQ",
+    #"LL",
     "NuNu",
 ]
 #list of cuts you want to plot
@@ -1082,7 +1082,7 @@ ana_tex_sub = {
 energy         = 365
 collider       = 'FCC-ee'
 intLumi        = 2.65 #ab-1
-LOGY = False
+LOGY = True
 
 #list of backgorunds, then legend and colors to be assigned to them
 backgrounds_all = [
@@ -1286,14 +1286,20 @@ signals = [
 for tag in TAG:
     for cat in CAT:
         if "tag" in tag:
-                variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] #+ ["BDT_score"]
+            if "QQ" in cat:
+                variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] + ["BDT_score_bkg"]
+            else:
+                variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] + ["BDT_score_bkg", "BDT_score_VBF", "BDT_score_ZH",]
         else: 
-            variables = VARIABLES + LIST_VAR[cat] #+["BDT_score"]
+            if "QQ" in cat:
+                variables = VARIABLES +LIST_VAR[cat] + ["BDT_score_bkg"]
+            else:
+                variables = VARIABLES +LIST_VAR[cat] + ["BDT_score_bkg", "BDT_score_VBF", "BDT_score_ZH",]
 
         for sub in SUBDIR:
-                    directory = DIRECTORY + tag + "/final_280125/" + cat + "/" + sub + "/"
+                    directory = DIRECTORY + tag + "/final_280125_BDT/" + cat + "/" + sub + "/"
 
-                    CUT = CUTS[cat]
+                    CUT = ["selReco",]#CUTS[cat]
 
                     for cut in CUT:
                         for variable in variables:

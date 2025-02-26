@@ -3,34 +3,16 @@ import os
 import re
 
 def process_content_of_row(content_of_row):
+    # Use regex to find all numbers after "+/-"
+    matches = re.findall(r"\+/-\s*([-+]?\d*\.?\d+)", content_of_row)
 
-    result_min = ""
-    result_plus = ""
-    read_p = False
-    read_m = False
-
-    for n,i in enumerate(content_of_row):
-        if i in "-+":
-            if i=="-":
-                if "/" in content_of_row[n+1:n+7]:
-                    continue
-                result_min=float(content_of_row[n+1:n+7])*100
-                read_m = True
-
-            if i=="+":
-                if "(" in content_of_row[n+1:n+7]:
-                    print("ERROR in +")
-                    continue
-                result_plus=float(content_of_row[n+1:n+7])*100
-                read_p = True
-
-    if read_m and read_p:
-        #return f"\\substack{{^{+{result_plus}}}_{{-{negative_error}}}}"
-        content_of_row = f"-{result_min:.2f}, +{result_plus:.2f}"
-
+    if matches:
+        # Convert all matches to float and multiply by 100
+        results = [f"$\pm${float(num) * 100:.2f}" for num in matches]
+        content_of_row = " | ".join(results)  # Join results with '|'
     else:
-        content_of_row = 'error'
-    
+        content_of_row = "error"
+
     return content_of_row
 
 def do_combine(outdir, file):
@@ -40,19 +22,19 @@ def do_combine(outdir, file):
             datacard = filename
 
     ## --PO 'map=bin/process:parameter', can be repeated the same parameter name for different processes (will be correlated into one r), first time it needs [starting_value,min,max]
-    os.system(f"text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-10,2]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-10,2]' {outdir}/{datacard} -o {outdir}/ws.root")
-    os.system(f"combine -M MultiDimFit -d {outdir}/ws.root >{file}") ## --cminDefaultMinimizerStrategy 0 --robustFit 1
+    os.system(f"text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-5,5]' {outdir}/{datacard} -o {outdir}/ws.root")
+    os.system(f"combine -M MultiDimFit {outdir}/ws.root --cminDefaultMinimizerStrategy 0 -t -1 --expectSignal=1 -v 10 >{file}") ##  --robustFit 1
 
-    with open(file, "r") as file:
-            read = False
-            for line in file:
-                if "Best fit r:" in line:
-                    content_of_row=line[11:]
-                    read=True
-            if read == False:
-                content_of_row='error'
+    with open(file, "r") as f:  # Avoid reusing 'file' as a variable name
+        content_of_row = "error"
+        content_of_row_VBF = "error"
+        for line in f:
+            if "r_ZH	  =" in line:
+                content_of_row = line.strip()
+            if "r_VBF	  =" in line:
+                content_of_row_VBF = line.strip()
 
-    return content_of_row
+    return content_of_row + " | " + content_of_row_VBF
 
 def do_combine_alt(outdir, file):
 
@@ -60,21 +42,20 @@ def do_combine_alt(outdir, file):
         if filename.startswith("datacard") and filename.endswith(".txt"):
             datacard = filename
 
-    os.system(f"text2workspace.py {outdir}/{datacard} -o {outdir}/ws.root")
-    os.system(f"combine -M FitDiagnostics -t -1 --expectSignal=1 {outdir}/ws.root --rMin -10  --cminDefaultMinimizerStrategy 0 >{file}")
+    ## --PO 'map=bin/process:parameter', can be repeated the same parameter name for different processes (will be correlated into one r), first time it needs [starting_value,min,max]
+    os.system(f"text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-5,5]' {outdir}/{datacard} -o {outdir}/ws.root")
+    os.system(f"combine -M MultiDimFit {outdir}/ws.root -t -1 --expectSignal=1 -v 10 >{file}") ##  --robustFit 1
 
-    with open(file, "r") as file:
-            read = False
-            for line in file:
-                if "Best fit r:" in line:
-                    content_of_row=line[11:]
-                    read=True
-            if read == False:
-                content_of_row='error'
+    with open(file, "r") as f:  # Avoid reusing 'file' as a variable name
+        content_of_row = "error"
+        content_of_row_VBF = "error"
+        for line in f:
+            if "r_ZH	  =" in line:
+                content_of_row = line.strip()
+            if "r_VBF	  =" in line:
+                content_of_row_VBF = line.strip()
 
-    print(content_of_row)
-
-    return content_of_row
+    return content_of_row + " | " + content_of_row_VBF
 
 TAG = [
     "R5-explicit",
@@ -142,11 +123,10 @@ for k, tag in enumerate(TAG):
 
             #get fit from subcategories
             content_of_row = do_combine(dir, file_read)
-            #processed= process_content_of_row(content_of_row)
 
-            #if processed == 'error':
-            #    print("REPORCESSING")
-            #    content_of_row = do_combine_alt(dir, file_read)
+            if "nan" in content_of_row:
+                print("REPORCESSING")
+                content_of_row = do_combine_alt(dir, file_read)
 
             # Write the content of the selected row to the output CSV file
             with open(output_file, "a") as csv_file:
@@ -155,7 +135,7 @@ for k, tag in enumerate(TAG):
             processed= process_content_of_row(content_of_row)
             ele.append(f"{processed} & ")
 
-            print("Content from {} has been written to {}".format(cat+sub, output_file))
+            print("Content from {} has been written to {}".format(cat+sub, output_file, content_of_row))
 
         input_file_dir = f"{outputDir}/{tag}/{cat}/{input_file}"
         cat_dir = f"{outputDir}/{tag}/{cat}/"
@@ -164,11 +144,10 @@ for k, tag in enumerate(TAG):
         n_cat.append(f"{cat} &")
 
         content_of_row = do_combine(cat_dir, input_file_dir)
-        #processed = process_content_of_row(content_of_row)
 
-        #if processed == 'error':
-        #    print("REPORCESSING")
-        #    content_of_row = do_combine_alt(cat_dir, input_file_dir)
+        if "nan" in content_of_row:
+            print("REPORCESSING")
+            content_of_row = do_combine_alt(dir, file_read)
 
         # Write the content of the selected row to the output CSV file
         with open(output_file, "a") as csv_file:
@@ -190,11 +169,10 @@ for k, tag in enumerate(TAG):
     dir_fin = f"{outputDir}/{tag}/"
 
     content_of_row = do_combine(dir_fin, input_file_fin)
-    #processed= process_content_of_row(content_of_row)
 
-    #if processed == 'error':
-    #    print("REPORCESSING")
-    #    content_of_row = do_combine_alt(dir_fin, input_file_fin)
+    if "nan" in content_of_row:
+        print("REPORCESSING")
+        content_of_row = do_combine_alt(dir, file_read)
 
     # Write the content of the selected row to the output CSV file
     with open(output_file, "a") as csv_file:

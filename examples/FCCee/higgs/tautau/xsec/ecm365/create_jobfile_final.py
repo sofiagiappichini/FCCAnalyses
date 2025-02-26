@@ -90,7 +90,7 @@ SUBDIR = [
 ]
 
 CAT = [
-    "QQ",
+    #"QQ",
     #"LL",
     "NuNu",
 ]

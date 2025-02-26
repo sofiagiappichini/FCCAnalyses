@@ -1,11 +1,426 @@
- <<< Combine >>> 
- <<< v10.0.2 >>>
+
 >>> Random number generator seed is 123456
 >>> Method used is MultiDimFit
+Adding /work/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,ONE,ZERO,prop_binRecoil_bin39,prop_binRecoil_bin39_In,prop_binRecoil_bin40,prop_binRecoil_bin40_In,prop_binRecoil_bin41,prop_binRecoil_bin41_In,prop_binRecoil_bin42,prop_binRecoil_bin42_In,prop_binRecoil_bin43,prop_binRecoil_bin43_In,prop_binRecoil_bin44,prop_binRecoil_bin44_In,prop_binRecoil_bin45,prop_binRecoil_bin45_In,prop_binRecoil_bin46,prop_binRecoil_bin46_In,prop_binRecoil_bin47,prop_binRecoil_bin47_In,prop_binRecoil_bin48,prop_binRecoil_bin48_In,prop_binRecoil_bin49,prop_binRecoil_bin49_In,prop_binRecoil_bin50,prop_binRecoil_bin50_In,prop_binRecoil_bin51,prop_binRecoil_bin51_In,prop_binRecoil_bin52,prop_binRecoil_bin52_In,prop_binRecoil_bin53,prop_binRecoil_bin53_In,prop_binRecoil_bin54,prop_binRecoil_bin54_In,prop_binRecoil_bin55,prop_binRecoil_bin55_In,prop_binRecoil_bin56,prop_binRecoil_bin56_In,prop_binRecoil_bin57,prop_binRecoil_bin57_In,prop_binRecoil_bin58,prop_binRecoil_bin58_In,prop_binRecoil_bin59,prop_binRecoil_bin59_In,prop_binRecoil_bin60,prop_binRecoil_bin60_In,prop_binRecoil_bin61,prop_binRecoil_bin61_In,prop_binRecoil_bin62,prop_binRecoil_bin62_In,prop_binRecoil_bin63,prop_binRecoil_bin63_In,prop_binRecoil_bin64,prop_binRecoil_bin64_In,prop_binRecoil_bin65,prop_binRecoil_bin65_In,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365,unc_p8_ee_tt_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel Recoil=pdf_binRecoil_bonly extraConstraints=() channelMasks=() ] = 6e-09
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel Recoil=pdf_binRecoil extraConstraints=() channelMasks=() ] = 7e-09
+RooProdPdf::nuisancePdf[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binRecoil[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * pdf_binRecoil_nuis * pdfbins_binRecoil ] = 7e-09
+RooProdPdf::pdf_binRecoil_bonly[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * pdf_binRecoil_bonly_nuis * pdfbins_binRecoil ] = 6e-09
+RooRealSumPdf::pdf_binRecoil_bonly_nuis[ ONE * prop_binRecoil_bonly ] = 6e-09
+RooRealSumPdf::pdf_binRecoil_nuis[ ONE * prop_binRecoil ] = 7e-09
+RooProdPdf::pdfbins_binRecoil[ prop_binRecoil_bin39_Pdf * prop_binRecoil_bin40_Pdf * prop_binRecoil_bin41_Pdf * prop_binRecoil_bin42_Pdf * prop_binRecoil_bin43_Pdf * prop_binRecoil_bin44_Pdf * prop_binRecoil_bin45_Pdf * prop_binRecoil_bin46_Pdf * prop_binRecoil_bin47_Pdf * prop_binRecoil_bin48_Pdf * prop_binRecoil_bin49_Pdf * prop_binRecoil_bin50_Pdf * prop_binRecoil_bin51_Pdf * prop_binRecoil_bin52_Pdf * prop_binRecoil_bin53_Pdf * prop_binRecoil_bin54_Pdf * prop_binRecoil_bin55_Pdf * prop_binRecoil_bin56_Pdf * prop_binRecoil_bin57_Pdf * prop_binRecoil_bin58_Pdf * prop_binRecoil_bin59_Pdf * prop_binRecoil_bin60_Pdf * prop_binRecoil_bin61_Pdf * prop_binRecoil_bin62_Pdf * prop_binRecoil_bin63_Pdf * prop_binRecoil_bin64_Pdf * prop_binRecoil_bin65_Pdf ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin39_Pdf[ x=prop_binRecoil_bin39 mean=prop_binRecoil_bin39_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin40_Pdf[ x=prop_binRecoil_bin40 mean=prop_binRecoil_bin40_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin41_Pdf[ x=prop_binRecoil_bin41 mean=prop_binRecoil_bin41_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin42_Pdf[ x=prop_binRecoil_bin42 mean=prop_binRecoil_bin42_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin43_Pdf[ x=prop_binRecoil_bin43 mean=prop_binRecoil_bin43_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin44_Pdf[ x=prop_binRecoil_bin44 mean=prop_binRecoil_bin44_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin45_Pdf[ x=prop_binRecoil_bin45 mean=prop_binRecoil_bin45_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin46_Pdf[ x=prop_binRecoil_bin46 mean=prop_binRecoil_bin46_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin47_Pdf[ x=prop_binRecoil_bin47 mean=prop_binRecoil_bin47_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin48_Pdf[ x=prop_binRecoil_bin48 mean=prop_binRecoil_bin48_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin49_Pdf[ x=prop_binRecoil_bin49 mean=prop_binRecoil_bin49_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin50_Pdf[ x=prop_binRecoil_bin50 mean=prop_binRecoil_bin50_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin51_Pdf[ x=prop_binRecoil_bin51 mean=prop_binRecoil_bin51_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin52_Pdf[ x=prop_binRecoil_bin52 mean=prop_binRecoil_bin52_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin53_Pdf[ x=prop_binRecoil_bin53 mean=prop_binRecoil_bin53_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin54_Pdf[ x=prop_binRecoil_bin54 mean=prop_binRecoil_bin54_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin55_Pdf[ x=prop_binRecoil_bin55 mean=prop_binRecoil_bin55_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin56_Pdf[ x=prop_binRecoil_bin56 mean=prop_binRecoil_bin56_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin57_Pdf[ x=prop_binRecoil_bin57 mean=prop_binRecoil_bin57_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin58_Pdf[ x=prop_binRecoil_bin58 mean=prop_binRecoil_bin58_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin59_Pdf[ x=prop_binRecoil_bin59 mean=prop_binRecoil_bin59_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin60_Pdf[ x=prop_binRecoil_bin60 mean=prop_binRecoil_bin60_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin61_Pdf[ x=prop_binRecoil_bin61 mean=prop_binRecoil_bin61_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin62_Pdf[ x=prop_binRecoil_bin62 mean=prop_binRecoil_bin62_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin63_Pdf[ x=prop_binRecoil_bin63 mean=prop_binRecoil_bin63_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin64_Pdf[ x=prop_binRecoil_bin64 mean=prop_binRecoil_bin64_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binRecoil_bin65_Pdf[ x=prop_binRecoil_bin65 mean=prop_binRecoil_bin65_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_Z_Pdf[ x=unc_Z mean=unc_Z_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_ecm365_Pdf[ x=unc_p8_ee_WW_ecm365 mean=unc_p8_ee_WW_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_tt_ecm365_Pdf[ x=unc_p8_ee_tt_ecm365 mean=unc_p8_ee_tt_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binRecoil_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binRecoil_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binRecoil_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binRecoil_proc_p8_ee_tt_ecm365[ thetaList=(unc_p8_ee_tt_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binRecoil_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binRecoil_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
+ProcessNormalization::n_exp_binRecoil_proc_wzp6_ee_tautauH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+CMSHistErrorPropagator::prop_binRecoil[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_ZH_Htautau_ecm365_Recoil_rebinPdf,shapeBkg_p8_ee_WW_ecm365_Recoil_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_Recoil_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_Recoil_rebinPdf,shapeBkg_p8_ee_tt_ecm365_Recoil_rebinPdf,shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_Recoil_rebinPdf,shapeBkg_wzp6_ee_QQH_HVV_ecm365_Recoil_rebinPdf) coeffs=(n_exp_binRecoil_proc_wzp6_ee_ZH_Htautau_ecm365,n_exp_binRecoil_proc_p8_ee_WW_ecm365,n_exp_binRecoil_proc_p8_ee_ZQQ_ecm365,n_exp_binRecoil_proc_p8_ee_ZZ_ecm365,n_exp_binRecoil_proc_p8_ee_tt_ecm365,n_exp_binRecoil_proc_wzp6_ee_tautauH_HQQ_ecm365,n_exp_binRecoil_proc_wzp6_ee_QQH_HVV_ecm365) binpars=(prop_binRecoil_bin39,prop_binRecoil_bin40,prop_binRecoil_bin41,prop_binRecoil_bin42,prop_binRecoil_bin43,prop_binRecoil_bin44,prop_binRecoil_bin45,prop_binRecoil_bin46,prop_binRecoil_bin47,prop_binRecoil_bin48,prop_binRecoil_bin49,prop_binRecoil_bin50,prop_binRecoil_bin51,prop_binRecoil_bin52,prop_binRecoil_bin53,prop_binRecoil_bin54,prop_binRecoil_bin55,prop_binRecoil_bin56,prop_binRecoil_bin57,prop_binRecoil_bin58,prop_binRecoil_bin59,prop_binRecoil_bin60,prop_binRecoil_bin61,prop_binRecoil_bin62,prop_binRecoil_bin63,prop_binRecoil_bin64,prop_binRecoil_bin65) ] = 7e-09
+CMSHistErrorPropagator::prop_binRecoil_bonly[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_ZH_Htautau_ecm365_Recoil_rebinPdf,shapeBkg_p8_ee_WW_ecm365_Recoil_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_Recoil_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_Recoil_rebinPdf,shapeBkg_p8_ee_tt_ecm365_Recoil_rebinPdf,shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_Recoil_rebinPdf,shapeBkg_wzp6_ee_QQH_HVV_ecm365_Recoil_rebinPdf) coeffs=(ZERO,n_exp_binRecoil_proc_p8_ee_WW_ecm365,n_exp_binRecoil_proc_p8_ee_ZQQ_ecm365,n_exp_binRecoil_proc_p8_ee_ZZ_ecm365,n_exp_binRecoil_proc_p8_ee_tt_ecm365,n_exp_binRecoil_proc_wzp6_ee_tautauH_HQQ_ecm365,n_exp_binRecoil_proc_wzp6_ee_QQH_HVV_ecm365) binpars=(prop_binRecoil_bin39,prop_binRecoil_bin40,prop_binRecoil_bin41,prop_binRecoil_bin42,prop_binRecoil_bin43,prop_binRecoil_bin44,prop_binRecoil_bin45,prop_binRecoil_bin46,prop_binRecoil_bin47,prop_binRecoil_bin48,prop_binRecoil_bin49,prop_binRecoil_bin50,prop_binRecoil_bin51,prop_binRecoil_bin52,prop_binRecoil_bin53,prop_binRecoil_bin54,prop_binRecoil_bin55,prop_binRecoil_bin56,prop_binRecoil_bin57,prop_binRecoil_bin58,prop_binRecoil_bin59,prop_binRecoil_bin60,prop_binRecoil_bin61,prop_binRecoil_bin62,prop_binRecoil_bin63,prop_binRecoil_bin64,prop_binRecoil_bin65) ] = 6e-09
+CMSHistFunc::shapeBkg_p8_ee_WW_ecm365_Recoil_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_WW_ecm365_Recoil_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_WW_ecm365_Recoil_rebinPdf err=prop_binRecoil ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZQQ_ecm365_Recoil_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZQQ_ecm365_Recoil_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZQQ_ecm365_Recoil_rebinPdf err=prop_binRecoil ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZZ_ecm365_Recoil_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZZ_ecm365_Recoil_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZZ_ecm365_Recoil_rebinPdf err=prop_binRecoil ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_tt_ecm365_Recoil_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_tt_ecm365_Recoil_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_tt_ecm365_Recoil_rebinPdf err=prop_binRecoil ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_QQH_HVV_ecm365_Recoil_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_QQH_HVV_ecm365_Recoil_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_QQH_HVV_ecm365_Recoil_rebinPdf err=prop_binRecoil ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_Recoil_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_Recoil_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_Recoil_rebinPdf err=prop_binRecoil ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_ZH_Htautau_ecm365_Recoil_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_ZH_Htautau_ecm365_Recoil_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_ZH_Htautau_ecm365_Recoil_rebinPdf err=prop_binRecoil ] = 1e-09
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,prop_binRecoil_bin39_In,prop_binRecoil_bin40_In,prop_binRecoil_bin41_In,prop_binRecoil_bin42_In,prop_binRecoil_bin43_In,prop_binRecoil_bin44_In,prop_binRecoil_bin45_In,prop_binRecoil_bin46_In,prop_binRecoil_bin47_In,prop_binRecoil_bin48_In,prop_binRecoil_bin49_In,prop_binRecoil_bin50_In,prop_binRecoil_bin51_In,prop_binRecoil_bin52_In,prop_binRecoil_bin53_In,prop_binRecoil_bin54_In,prop_binRecoil_bin55_In,prop_binRecoil_bin56_In,prop_binRecoil_bin57_In,prop_binRecoil_bin58_In,prop_binRecoil_bin59_In,prop_binRecoil_bin60_In,prop_binRecoil_bin61_In,prop_binRecoil_bin62_In,prop_binRecoil_bin63_In,prop_binRecoil_bin64_In,prop_binRecoil_bin65_In)
+ModelConfig_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,prop_binRecoil_bin39,prop_binRecoil_bin40,prop_binRecoil_bin41,prop_binRecoil_bin42,prop_binRecoil_bin43,prop_binRecoil_bin44,prop_binRecoil_bin45,prop_binRecoil_bin46,prop_binRecoil_bin47,prop_binRecoil_bin48,prop_binRecoil_bin49,prop_binRecoil_bin50,prop_binRecoil_bin51,prop_binRecoil_bin52,prop_binRecoil_bin53,prop_binRecoil_bin54,prop_binRecoil_bin55,prop_binRecoil_bin56,prop_binRecoil_bin57,prop_binRecoil_bin58,prop_binRecoil_bin59,prop_binRecoil_bin60,prop_binRecoil_bin61,prop_binRecoil_bin62,prop_binRecoil_bin63,prop_binRecoil_bin64,prop_binRecoil_bin65)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,prop_binRecoil_bin39_In,prop_binRecoil_bin40_In,prop_binRecoil_bin41_In,prop_binRecoil_bin42_In,prop_binRecoil_bin43_In,prop_binRecoil_bin44_In,prop_binRecoil_bin45_In,prop_binRecoil_bin46_In,prop_binRecoil_bin47_In,prop_binRecoil_bin48_In,prop_binRecoil_bin49_In,prop_binRecoil_bin50_In,prop_binRecoil_bin51_In,prop_binRecoil_bin52_In,prop_binRecoil_bin53_In,prop_binRecoil_bin54_In,prop_binRecoil_bin55_In,prop_binRecoil_bin56_In,prop_binRecoil_bin57_In,prop_binRecoil_bin58_In,prop_binRecoil_bin59_In,prop_binRecoil_bin60_In,prop_binRecoil_bin61_In,prop_binRecoil_bin62_In,prop_binRecoil_bin63_In,prop_binRecoil_bin64_In,prop_binRecoil_bin65_In)
+ModelConfig_bonly_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,prop_binRecoil_bin39,prop_binRecoil_bin40,prop_binRecoil_bin41,prop_binRecoil_bin42,prop_binRecoil_bin43,prop_binRecoil_bin44,prop_binRecoil_bin45,prop_binRecoil_bin46,prop_binRecoil_bin47,prop_binRecoil_bin48,prop_binRecoil_bin49,prop_binRecoil_bin50,prop_binRecoil_bin51,prop_binRecoil_bin52,prop_binRecoil_bin53,prop_binRecoil_bin54,prop_binRecoil_bin55,prop_binRecoil_bin56,prop_binRecoil_bin57,prop_binRecoil_bin58,prop_binRecoil_bin59,prop_binRecoil_bin60,prop_binRecoil_bin61,prop_binRecoil_bin62,prop_binRecoil_bin63,prop_binRecoil_bin64,prop_binRecoil_bin65)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,prop_binRecoil_bin39_In,prop_binRecoil_bin40_In,prop_binRecoil_bin41_In,prop_binRecoil_bin42_In,prop_binRecoil_bin43_In,prop_binRecoil_bin44_In,prop_binRecoil_bin45_In,prop_binRecoil_bin46_In,prop_binRecoil_bin47_In,prop_binRecoil_bin48_In,prop_binRecoil_bin49_In,prop_binRecoil_bin50_In,prop_binRecoil_bin51_In,prop_binRecoil_bin52_In,prop_binRecoil_bin53_In,prop_binRecoil_bin54_In,prop_binRecoil_bin55_In,prop_binRecoil_bin56_In,prop_binRecoil_bin57_In,prop_binRecoil_bin58_In,prop_binRecoil_bin59_In,prop_binRecoil_bin60_In,prop_binRecoil_bin61_In,prop_binRecoil_bin62_In,prop_binRecoil_bin63_In,prop_binRecoil_bin64_In,prop_binRecoil_bin65_In)
+group_autoMCStats:(prop_binRecoil_bin39,prop_binRecoil_bin40,prop_binRecoil_bin41,prop_binRecoil_bin42,prop_binRecoil_bin43,prop_binRecoil_bin44,prop_binRecoil_bin45,prop_binRecoil_bin46,prop_binRecoil_bin47,prop_binRecoil_bin48,prop_binRecoil_bin49,prop_binRecoil_bin50,prop_binRecoil_bin51,prop_binRecoil_bin52,prop_binRecoil_bin53,prop_binRecoil_bin54,prop_binRecoil_bin55,prop_binRecoil_bin56,prop_binRecoil_bin57,prop_binRecoil_bin58,prop_binRecoil_bin59,prop_binRecoil_bin60,prop_binRecoil_bin61,prop_binRecoil_bin62,prop_binRecoil_bin63,prop_binRecoil_bin64,prop_binRecoil_bin65)
+nuisances:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,prop_binRecoil_bin39,prop_binRecoil_bin40,prop_binRecoil_bin41,prop_binRecoil_bin42,prop_binRecoil_bin43,prop_binRecoil_bin44,prop_binRecoil_bin45,prop_binRecoil_bin46,prop_binRecoil_bin47,prop_binRecoil_bin48,prop_binRecoil_bin49,prop_binRecoil_bin50,prop_binRecoil_bin51,prop_binRecoil_bin52,prop_binRecoil_bin53,prop_binRecoil_bin54,prop_binRecoil_bin55,prop_binRecoil_bin56,prop_binRecoil_bin57,prop_binRecoil_bin58,prop_binRecoil_bin59,prop_binRecoil_bin60,prop_binRecoil_bin61,prop_binRecoil_bin62,prop_binRecoil_bin63,prop_binRecoil_bin64,prop_binRecoil_bin65)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,prop_binRecoil_bin39,prop_binRecoil_bin40,prop_binRecoil_bin41,prop_binRecoil_bin42,prop_binRecoil_bin43,prop_binRecoil_bin44,prop_binRecoil_bin45,prop_binRecoil_bin46,prop_binRecoil_bin47,prop_binRecoil_bin48,prop_binRecoil_bin49,prop_binRecoil_bin50,prop_binRecoil_bin51,prop_binRecoil_bin52,prop_binRecoil_bin53,prop_binRecoil_bin54,prop_binRecoil_bin55,prop_binRecoil_bin56,prop_binRecoil_bin57,prop_binRecoil_bin58,prop_binRecoil_bin59,prop_binRecoil_bin60,prop_binRecoil_bin61,prop_binRecoil_bin62,prop_binRecoil_bin63,prop_binRecoil_bin64,prop_binRecoil_bin65)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,prop_binRecoil_bin39_In,prop_binRecoil_bin40_In,prop_binRecoil_bin41_In,prop_binRecoil_bin42_In,prop_binRecoil_bin43_In,prop_binRecoil_bin44_In,prop_binRecoil_bin45_In,prop_binRecoil_bin46_In,prop_binRecoil_bin47_In,prop_binRecoil_bin48_In,prop_binRecoil_bin49_In,prop_binRecoil_bin50_In,prop_binRecoil_bin51_In,prop_binRecoil_bin52_In,prop_binRecoil_bin53_In,prop_binRecoil_bin54_In,prop_binRecoil_bin55_In,prop_binRecoil_bin56_In,prop_binRecoil_bin57_In,prop_binRecoil_bin58_In,prop_binRecoil_bin59_In,prop_binRecoil_bin60_In,prop_binRecoil_bin61_In,prop_binRecoil_bin62_In,prop_binRecoil_bin63_In,prop_binRecoil_bin64_In,prop_binRecoil_bin65_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel Recoil=pdf_binRecoil extraConstraints=() channelMasks=() ] = 7e-09
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,prop_binRecoil_bin39,prop_binRecoil_bin40,prop_binRecoil_bin41,prop_binRecoil_bin42,prop_binRecoil_bin43,prop_binRecoil_bin44,prop_binRecoil_bin45,prop_binRecoil_bin46,prop_binRecoil_bin47,prop_binRecoil_bin48,prop_binRecoil_bin49,prop_binRecoil_bin50,prop_binRecoil_bin51,prop_binRecoil_bin52,prop_binRecoil_bin53,prop_binRecoil_bin54,prop_binRecoil_bin55,prop_binRecoil_bin56,prop_binRecoil_bin57,prop_binRecoil_bin58,prop_binRecoil_bin59,prop_binRecoil_bin60,prop_binRecoil_bin61,prop_binRecoil_bin62,prop_binRecoil_bin63,prop_binRecoil_bin64,prop_binRecoil_bin65)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,prop_binRecoil_bin39_In,prop_binRecoil_bin40_In,prop_binRecoil_bin41_In,prop_binRecoil_bin42_In,prop_binRecoil_bin43_In,prop_binRecoil_bin44_In,prop_binRecoil_bin45_In,prop_binRecoil_bin46_In,prop_binRecoil_bin47_In,prop_binRecoil_bin48_In,prop_binRecoil_bin49_In,prop_binRecoil_bin50_In,prop_binRecoil_bin51_In,prop_binRecoil_bin52_In,prop_binRecoil_bin53_In,prop_binRecoil_bin54_In,prop_binRecoil_bin55_In,prop_binRecoil_bin56_In,prop_binRecoil_bin57_In,prop_binRecoil_bin58_In,prop_binRecoil_bin59_In,prop_binRecoil_bin60_In,prop_binRecoil_bin61_In,prop_binRecoil_bin62_In,prop_binRecoil_bin63_In,prop_binRecoil_bin64_In,prop_binRecoil_bin65_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel Recoil=pdf_binRecoil extraConstraints=() channelMasks=() ] = 7e-09
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Found a parameter named ONE infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Found a parameter named ZERO infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 0 
+CMS_th1x = 149.5 
+ONE = 1 (constant)
+prop_binRecoil_bin39 = 0 
+prop_binRecoil_bin39_In = 0 (constant)
+prop_binRecoil_bin40 = 0 
+prop_binRecoil_bin40_In = 0 (constant)
+prop_binRecoil_bin41 = 0 
+prop_binRecoil_bin41_In = 0 (constant)
+prop_binRecoil_bin42 = 0 
+prop_binRecoil_bin42_In = 0 (constant)
+prop_binRecoil_bin43 = 0 
+prop_binRecoil_bin43_In = 0 (constant)
+prop_binRecoil_bin44 = 0 
+prop_binRecoil_bin44_In = 0 (constant)
+prop_binRecoil_bin45 = 0 
+prop_binRecoil_bin45_In = 0 (constant)
+prop_binRecoil_bin46 = 0 
+prop_binRecoil_bin46_In = 0 (constant)
+prop_binRecoil_bin47 = 0 
+prop_binRecoil_bin47_In = 0 (constant)
+prop_binRecoil_bin48 = 0 
+prop_binRecoil_bin48_In = 0 (constant)
+prop_binRecoil_bin49 = 0 
+prop_binRecoil_bin49_In = 0 (constant)
+prop_binRecoil_bin50 = 0 
+prop_binRecoil_bin50_In = 0 (constant)
+prop_binRecoil_bin51 = 0 
+prop_binRecoil_bin51_In = 0 (constant)
+prop_binRecoil_bin52 = 0 
+prop_binRecoil_bin52_In = 0 (constant)
+prop_binRecoil_bin53 = 0 
+prop_binRecoil_bin53_In = 0 (constant)
+prop_binRecoil_bin54 = 0 
+prop_binRecoil_bin54_In = 0 (constant)
+prop_binRecoil_bin55 = 0 
+prop_binRecoil_bin55_In = 0 (constant)
+prop_binRecoil_bin56 = 0 
+prop_binRecoil_bin56_In = 0 (constant)
+prop_binRecoil_bin57 = 0 
+prop_binRecoil_bin57_In = 0 (constant)
+prop_binRecoil_bin58 = 0 
+prop_binRecoil_bin58_In = 0 (constant)
+prop_binRecoil_bin59 = 0 
+prop_binRecoil_bin59_In = 0 (constant)
+prop_binRecoil_bin60 = 0 
+prop_binRecoil_bin60_In = 0 (constant)
+prop_binRecoil_bin61 = 0 
+prop_binRecoil_bin61_In = 0 (constant)
+prop_binRecoil_bin62 = 0 
+prop_binRecoil_bin62_In = 0 (constant)
+prop_binRecoil_bin63 = 0 
+prop_binRecoil_bin63_In = 0 (constant)
+prop_binRecoil_bin64 = 0 
+prop_binRecoil_bin64_In = 0 (constant)
+prop_binRecoil_bin65 = 0 
+prop_binRecoil_bin65_In = 0 (constant)
+r_ZH = 1 
+unc_Z = 0 
+unc_Z_In = 0 (constant)
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_WW_ecm365 = 0 
+unc_p8_ee_WW_ecm365_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+unc_p8_ee_tt_ecm365 = 0 
+unc_p8_ee_tt_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binRecoil_obsOnly: in 150 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5            Recoil     0.0000000
+   1               1.5            Recoil     0.0000000
+   2               2.5            Recoil     0.0000000
+   3               3.5            Recoil     0.0000000
+   4               4.5            Recoil     0.0000000
+   5               5.5            Recoil     0.0000000
+   6               6.5            Recoil     0.0000000
+   7               7.5            Recoil     0.0000000
+   8               8.5            Recoil     0.0000000
+   9               9.5            Recoil     0.0000000
+  10              10.5            Recoil     0.0000000
+  11              11.5            Recoil     0.0000000
+  12              12.5            Recoil     0.0000000
+  13              13.5            Recoil     0.0000000
+  14              14.5            Recoil     0.0000000
+  15              15.5            Recoil     0.0000000
+  16              16.5            Recoil     0.0000000
+  17              17.5            Recoil     0.0000000
+  18              18.5            Recoil     0.0000000
+  19              19.5            Recoil     0.0000000
+  20              20.5            Recoil     0.0000000
+  21              21.5            Recoil     0.0000000
+  22              22.5            Recoil     0.0000000
+  23              23.5            Recoil     0.0000000
+  24              24.5            Recoil     0.0000000
+  25              25.5            Recoil     0.0000000
+  26              26.5            Recoil     0.0000000
+  27              27.5            Recoil     0.0000000
+  28              28.5            Recoil     0.0000000
+  29              29.5            Recoil     0.0000000
+  30              30.5            Recoil     0.0000000
+  31              31.5            Recoil     0.0000000
+  32              32.5            Recoil     0.0000000
+  33              33.5            Recoil     0.0000000
+  34              34.5            Recoil     0.0000000
+  35              35.5            Recoil     0.0000000
+  36              36.5            Recoil     0.0000000
+  37              37.5            Recoil     0.0000000
+  38              38.5            Recoil     0.0000000
+  39              39.5            Recoil   297.6039734
+  40              40.5            Recoil   410.5143433
+  41              41.5            Recoil   400.5810547
+  42              42.5            Recoil   451.1666870
+  43              43.5            Recoil   415.3544312
+  44              44.5            Recoil   418.9154663
+  45              45.5            Recoil   409.5307007
+  46              46.5            Recoil   388.3917542
+  47              47.5            Recoil   407.7694092
+  48              48.5            Recoil   346.8994446
+  49              49.5            Recoil   310.7398071
+  50              50.5            Recoil   291.0269775
+  51              51.5            Recoil   279.0898743
+  52              52.5            Recoil   330.2928772
+  53              53.5            Recoil   301.9962158
+  54              54.5            Recoil   292.4959106
+  55              55.5            Recoil   274.4286194
+  56              56.5            Recoil   253.2172394
+  57              57.5            Recoil   237.4715424
+  58              58.5            Recoil   235.7552490
+  59              59.5            Recoil   244.5811768
+  60              60.5            Recoil   190.9546661
+  61              61.5            Recoil   190.9149323
+  62              62.5            Recoil   188.6640167
+  63              63.5            Recoil   171.6854095
+  64              64.5            Recoil   143.2342072
+  65              65.5            Recoil   140.5914612
+  66              66.5            Recoil     0.0000000
+  67              67.5            Recoil     0.0000000
+  68              68.5            Recoil     0.0000000
+  69              69.5            Recoil     0.0000000
+  70              70.5            Recoil     0.0000000
+  71              71.5            Recoil     0.0000000
+  72              72.5            Recoil     0.0000000
+  73              73.5            Recoil     0.0000000
+  74              74.5            Recoil     0.0000000
+  75              75.5            Recoil     0.0000000
+  76              76.5            Recoil     0.0000000
+  77              77.5            Recoil     0.0000000
+  78              78.5            Recoil     0.0000000
+  79              79.5            Recoil     0.0000000
+  80              80.5            Recoil     0.0000000
+  81              81.5            Recoil     0.0000000
+  82              82.5            Recoil     0.0000000
+  83              83.5            Recoil     0.0000000
+  84              84.5            Recoil     0.0000000
+  85              85.5            Recoil     0.0000000
+  86              86.5            Recoil     0.0000000
+  87              87.5            Recoil     0.0000000
+  88              88.5            Recoil     0.0000000
+  89              89.5            Recoil     0.0000000
+  90              90.5            Recoil     0.0000000
+  91              91.5            Recoil     0.0000000
+  92              92.5            Recoil     0.0000000
+  93              93.5            Recoil     0.0000000
+  94              94.5            Recoil     0.0000000
+  95              95.5            Recoil     0.0000000
+  96              96.5            Recoil     0.0000000
+  97              97.5            Recoil     0.0000000
+  98              98.5            Recoil     0.0000000
+  99              99.5            Recoil     0.0000000
+ 100             100.5            Recoil     0.0000000
+ 101             101.5            Recoil     0.0000000
+ 102             102.5            Recoil     0.0000000
+ 103             103.5            Recoil     0.0000000
+ 104             104.5            Recoil     0.0000000
+ 105             105.5            Recoil     0.0000000
+ 106             106.5            Recoil     0.0000000
+ 107             107.5            Recoil     0.0000000
+ 108             108.5            Recoil     0.0000000
+ 109             109.5            Recoil     0.0000000
+ 110             110.5            Recoil     0.0000000
+ 111             111.5            Recoil     0.0000000
+ 112             112.5            Recoil     0.0000000
+ 113             113.5            Recoil     0.0000000
+ 114             114.5            Recoil     0.0000000
+ 115             115.5            Recoil     0.0000000
+ 116             116.5            Recoil     0.0000000
+ 117             117.5            Recoil     0.0000000
+ 118             118.5            Recoil     0.0000000
+ 119             119.5            Recoil     0.0000000
+ 120             120.5            Recoil     0.0000000
+ 121             121.5            Recoil     0.0000000
+ 122             122.5            Recoil     0.0000000
+ 123             123.5            Recoil     0.0000000
+ 124             124.5            Recoil     0.0000000
+ 125             125.5            Recoil     0.0000000
+ 126             126.5            Recoil     0.0000000
+ 127             127.5            Recoil     0.0000000
+ 128             128.5            Recoil     0.0000000
+ 129             129.5            Recoil     0.0000000
+ 130             130.5            Recoil     0.0000000
+ 131             131.5            Recoil     0.0000000
+ 132             132.5            Recoil     0.0000000
+ 133             133.5            Recoil     0.0000000
+ 134             134.5            Recoil     0.0000000
+ 135             135.5            Recoil     0.0000000
+ 136             136.5            Recoil     0.0000000
+ 137             137.5            Recoil     0.0000000
+ 138             138.5            Recoil     0.0000000
+ 139             139.5            Recoil     0.0000000
+ 140             140.5            Recoil     0.0000000
+ 141             141.5            Recoil     0.0000000
+ 142             142.5            Recoil     0.0000000
+ 143             143.5            Recoil     0.0000000
+ 144             144.5            Recoil     0.0000000
+ 145             145.5            Recoil     0.0000000
+ 146             146.5            Recoil     0.0000000
+ 147             147.5            Recoil     0.0000000
+ 148             148.5            Recoil     0.0000000
+ 149             149.5            Recoil     0.0000000
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_Z) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_tt_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin39) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin40) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin41) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin42) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin43) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin44) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin45) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin46) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin47) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin48) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin49) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin50) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin51) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin52) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin53) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin54) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin55) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin56) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin57) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin58) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin59) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin60) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin61) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin62) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin63) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin64) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binRecoil_bin65) new range named 'optimizeBoundRange' created with bounds [-7,7]
 Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 3000 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 9.97933153857e-17 Nfcn = 25
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 0 p2 = 0 p3 = 0 p4 = 0 p5 = 0
+----------> Iteration 1
+            FVAL = -2.42351330341e-11 Edm = 2.00561581501e-15 Nfcn = 42
+            Error matrix change = 0.620294
+            Parameters :  p0 = 1 p1 = -1.81587e-08 p2 = -6.84207e-10 p3 = 2.45812e-08 p4 = -4.51669e-08 p5 = -4.00235e-08
+----------> Iteration 2
+            FVAL = -2.42351330341e-11 Edm = 2.00561581501e-15 Nfcn = 42
+            Error matrix change = 0.620294
+            Parameters :  p0 = 1 p1 = -1.81587e-08 p2 = -6.84207e-10 p3 = 2.45812e-08 p4 = -4.51669e-08 p5 = -4.00235e-08
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = -2.4235133034052638e-11
+Edm   = 2.00561581500514929e-15
+Nfcn  = 42
+r_ZH	  = 1	 +/-  0.23419	(limited)
+unc_Z	  = -1.81587e-08	 +/-  1.0035
+unc__H	  = -6.84207e-10	 +/-  0.986617
+unc_p8_ee_WW_ecm365	  = 2.45812e-08	 +/-  0.834242
+unc_p8_ee_ZZ_ecm365	  = -4.51669e-08	 +/-  0.92175
+unc_p8_ee_tt_ecm365	  = -4.00235e-08	 +/-  1.04853
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.062493 seconds (0.060000 CPU time)
+FINAL NLL - NLL0 VALUE = 5.501750429e-11
+
 
  --- MultiDimFit ---
 best fit parameter values: 
-    r_ZH :    +0.567
+    r_ZH :    +1.000
    r_VBF :    +1.000
 Done in 0.00 min (cpu), 0.00 min (real)
+77 log messages saved to combine_logger.out

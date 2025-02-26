@@ -733,7 +733,7 @@ histoList = {
     "Visible_mass":               {"name":"Visible_mass",               "title":"Visible mass",                   "bin":75, "xmin":0 ,"xmax":200},
     
     "BDT_score_bkg":           {"name":"BDT_score_bkg",           "title":"BDT score bkg",                  "bin":200, "xmin":0., "xmax":1.},
-    "BDT_score_ZH":           {"name":"BDT_score_bkg",           "title":"BDT score bkg",                  "bin":200, "xmin":0., "xmax":1.},
-    "BDT_score_VBF":           {"name":"BDT_score_bkg",           "title":"BDT score bkg",                  "bin":200, "xmin":0., "xmax":1.},
+    "BDT_score_ZH":           {"name":"BDT_score_ZH",           "title":"BDT score ZH",                  "bin":200, "xmin":0., "xmax":1.},
+    "BDT_score_VBF":           {"name":"BDT_score_VBF",           "title":"BDT score VBF",                  "bin":200, "xmin":0., "xmax":1.},
 
 }

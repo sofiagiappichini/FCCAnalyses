@@ -889,7 +889,7 @@ for tag in TAG:
 
                 train_sig, test_sig = train_test_split(df_sig, test_size=0.3)
                 train_bkg, test_bkg = train_test_split(df_bkg, test_size=0.3)
-                df_train = pd.concat([train_sig, train_bkg]).sample(frac=1)
+                df_train = pd.concat([train_sig, train_bkg]).sample(frac=1, random_state=1)
                 df_test = pd.concat([test_sig, test_bkg])
 
                 # Prepare input features and labels
@@ -897,13 +897,12 @@ for tag in TAG:
                 x_test, y_test = df_test[vars_list].to_numpy(), df_test['label'].to_numpy()
 
                 bdt = xgb.XGBClassifier()
-                bdt.load_model(f"{out}/xgb_bdt_ktN-explicit_NuNuHH_model.json")
+                bdt.load_model(f"{modelDir}/{tag}/xgb_bdt_{tag}_{cat}{sub}_model.json")
 
-                print("Testing model")
                 pred_test = bdt.predict_proba(x_test)  # Get probabilities
 
-                #only plot ZH vs background ROC
-                fpr, tpr, _ = roc_curve(y_test, pred_test[:, 1], pos_label=i)
+                #only plot background vs signal ROC
+                fpr, tpr, _ = roc_curve(y_test, pred_test[:, 0], pos_label=0)
                 roc_auc = auc(fpr, tpr)
                 
                 plt.plot(fpr, tpr, lw=1.5, color=colorDict[col])
@@ -937,7 +936,6 @@ for tag in TAG:
 
         # Plot the baseline for random classifier
         plt.plot([0., 1.], [0., 1.], linestyle="--", color="k", label='50/50')
-        label.append('50/50')
 
         # Set limits and labels
         #plt.xlim(0., 1.)

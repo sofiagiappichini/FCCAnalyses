@@ -217,9 +217,9 @@ localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage3_'
 SUBDIR = [
-    'LL',
+    #'LL',
     'LH',
-    'HH',
+    #'HH',
 ]
 CAT = [
     #"QQ",
@@ -227,9 +227,9 @@ CAT = [
     "NuNu",
 ]
 TAG = [
-    "R5-explicit",
+    #"R5-explicit",
     "R5-tag",
-    "ktN-explicit",
+    #"ktN-explicit",
     "ktN-tag",
 ]
 nCPUS = 1

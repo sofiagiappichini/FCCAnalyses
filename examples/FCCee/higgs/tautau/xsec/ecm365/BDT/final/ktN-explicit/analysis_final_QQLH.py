@@ -735,6 +735,7 @@ histoList = {
     "TauSub_phi":               {"name":"TauSub_phi",                "title":"#tau_{subleading} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
     "TauSub_theta":             {"name":"TauSub_theta",              "title":"#tau_{subleading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{subleading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "TauSub_mass":             {"name":"TauSub_mass",               "title":"#tau_{subleading} mass",                   "bin":30, "xmin":0., "xmax":3.},
     
     "Tau_DPhi":         {"name":"Tau_DPhi",           "title":"#Delta#phi(#tau#tau)",                "bin":32, "xmin":-3.2,"xmax":3.2},
     "Tau_DR":                   {"name":"Tau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
