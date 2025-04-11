@@ -1,0 +1,110 @@
+import model SMEFTsim_topU3l_MwScheme_UFO__taudecay_UFO
+
+define lep = e+ e- mu+ mu- ta+ ta-
+define nu = vl vl~ 
+
+#-----------------------------------------------#
+#   pure SMEFT process (quadratics do not exists)       
+#generate e+ e- > e+ e- h, h > pi+ vt pi- vt~  QCD=0 NP==1 NPprop=0 SMHLOOP=0 
+#
+#   SM+SMEFT interference (quadratics do not exists)    
+#   run2: cehre=0.1   
+#-----------------------------------------------#
+generate e+ e- > e+ e- h, h > pi+ vt pi- vt~  SMHLOOP=0 NP=1 QCD=0 
+output ZH_SMEFT_prod/noISR_e+e-_noCuts_cehre_p0p1_taudecay_2Pi2Nu
+launch ZH_SMEFT_prod/noISR_e+e-_noCuts_cehre_p0p1_taudecay_2Pi2Nu
+set smeft 100 0.1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
+##-----------------------------------------------#
+##   run3: cehre=-0.1
+generate e+ e- > e+ e- h, h > pi+ vt pi- vt~  SMHLOOP=0 NP=1 QCD=0 
+output ZH_SMEFT_prod/noISR_e+e-_noCuts_cehre_m0p1_taudecay_2Pi2Nu
+launch ZH_SMEFT_prod/noISR_e+e-_noCuts_cehre_m0p1_taudecay_2Pi2Nu
+set smeft 100 -0.1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
+###-----------------------------------------------#
+###   run4: cehim=0.1
+generate e+ e- > e+ e- h, h > pi+ vt pi- vt~  SMHLOOP=0 NP=1 QCD=0 
+output ZH_SMEFT_prod/noISR_e+e-_noCuts_cehim_p0p1_taudecay_2Pi2Nu
+launch ZH_SMEFT_prod/noISR_e+e-_noCuts_cehim_p0p1_taudecay_2Pi2Nu
+set smeftcpv 45 0.1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
+###-----------------------------------------------#
+###   run4: cehim=-0.1
+generate e+ e- > e+ e- h, h > pi+ vt pi- vt~  SMHLOOP=0 NP=1 QCD=0 
+output ZH_SMEFT_prod/noISR_e+e-_noCuts_cehim_m0p1_taudecay_2Pi2Nu
+launch ZH_SMEFT_prod/noISR_e+e-_noCuts_cehim_m0p1_taudecay_2Pi2Nu
+set smeftcpv 45 -0.1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
+###-----------------------------------------------#
+###-----------------------------------------------#
+###   run4: cehim=10
+generate e+ e- > e+ e- h, h > pi+ vt pi- vt~  SMHLOOP=0 NP=1 QCD=0 
+output ZH_SMEFT_prod/noISR_e+e-_noCuts_cehim_p10_taudecay_2Pi2Nu
+launch ZH_SMEFT_prod/noISR_e+e-_noCuts_cehim_p10_taudecay_2Pi2Nu
+set smeftcpv 45 10
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
+###-----------------------------------------------#
+###   run4: cehim=-10
+generate e+ e- > e+ e- h, h > pi+ vt pi- vt~  SMHLOOP=0 NP=1 QCD=0 
+output ZH_SMEFT_prod/noISR_e+e-_noCuts_cehim_m10_taudecay_2Pi2Nu
+launch ZH_SMEFT_prod/noISR_e+e-_noCuts_cehim_m10_taudecay_2Pi2Nu
+set smeftcpv 45 -10
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
+###-----------------------------------------------#
+
+
