@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage2+gen/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_v3/"
 
 #Optional: output directory, default is local running directory
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/final+gen"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_v3/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -38,6 +38,19 @@ processList = {
     #'cehim_p5_taudecay_2Pi2Nu':{},
     #'cehre_m5_taudecay_2Pi2Nu':{},
     #'cehre_p5_taudecay_2Pi2Nu':{},
+
+    'EWonly_taudecay_PiPi0Nu':{},
+    'cehim_m1_taudecay_PiPi0Nu':{},
+    'cehim_p1_taudecay_PiPi0Nu':{},
+    'cehre_m1_taudecay_PiPi0Nu':{},
+    'cehre_p1_taudecay_PiPi0Nu':{},
+
+    #'cehim_p0p1_taudecay_2Pi2Nu':{},
+    #'cehim_m0p1_taudecay_2Pi2Nu':{},
+    #'cehre_m0p1_taudecay_2Pi2Nu':{},
+    #'cehre_p0p1_taudecay_2Pi2Nu':{},
+    #'cehim_p10_taudecay_2Pi2Nu':{},
+    #'cehim_m10_taudecay_2Pi2Nu':{},
 
     #'cehim_m2_taudecay_2Pi2Nu':{},
     #'cehim_p2_taudecay_2Pi2Nu':{},
@@ -76,13 +89,26 @@ procDictAdd = {
     'cehim_p2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.8639785901564145e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'cehre_m2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 7.264271533677142e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'cehre_p2_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 4.461910656050512e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_p0p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.777551779024773e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_m0p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.778338822008795e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_m0p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.8484197952269994e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_p0p1_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.708301892822401e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_p10_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 7.89816811069392e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_m10_taudecay_2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 7.89562565428267e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'EWonly_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.839033691284505e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_m1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.8451232342224154e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehim_p1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.846975057236473e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_m1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 3.193361184321185e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'cehre_p1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.5052618455527882e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
 
 }
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
+    "selReco_20chi": "KinILC_chi2<20",
+    "selReco":"true",
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -290,31 +316,83 @@ histoList = {
     "TagJet_R5_sel_mass":         {"name":"TagJet_R5_sel_mass",                "title":"Quark/gluon R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "n_TagJet_R5_sel":            {"name":"n_TagJet_R5_sel",                   "title":"Number of Quark/gluon R5 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
 
-    "n_ChargedPar":            {"name":"n_ChargedPar",                  "title":"Number of reco leading charged particle in R5 jets",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "ChargedPar_e":             {"name":"ChargedPar_e",                   "title":"Leading charged particle in R5 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    "ChargedPar_p":             {"name":"ChargedPar_p",                   "title":"Leading charged particle in R5 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "ChargedPar_pt":            {"name":"ChargedPar_pt",                  "title":"Leading charged particle in R5 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "ChargedPar_px":            {"name":"ChargedPar_px",                  "title":"Leading charged particle in R5 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "ChargedPar_py":            {"name":"ChargedPar_py",                  "title":"Leading charged particle in R5 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "ChargedPar_pz":            {"name":"ChargedPar_pz",                  "title":"Leading charged particle in R5 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "ChargedPar_eta":           {"name":"ChargedPar_eta",                 "title":"Leading charged particle in R5 jet #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
-    "ChargedPar_theta":         {"name":"ChargedPar_theta",               "title":"Leading charged particle in R5 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "ChargedPar_phi":           {"name":"ChargedPar_phi",                 "title":"Leading charged particle in R5 jet #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
-    "ChargedPar_charge":        {"name":"ChargedPar_charge",              "title":"Leading charged particle in R5 jet charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    "ChargedPar_mass":          {"name":"ChargedPar_mass",                 "title":"Leading charged particle in R5 jet mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+    "n_ChargedTau":            {"name":"n_ChargedTau",                  "title":"Number of reco leading charged particle in explicit R5 tau jets",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    "ChargedTau_e":             {"name":"ChargedTau_e",                   "title":"Leading charged particle in explicit R5 tau jets energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedTau_p":             {"name":"ChargedTau_p",                   "title":"Leading charged particle in explicit R5 tau jets p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedTau_pt":            {"name":"ChargedTau_pt",                  "title":"Leading charged particle in explicit R5 tau jets p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedTau_px":            {"name":"ChargedTau_px",                  "title":"Leading charged particle in explicit R5 tau jets p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedTau_py":            {"name":"ChargedTau_py",                  "title":"Leading charged particle in explicit R5 tau jets p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedTau_pz":            {"name":"ChargedTau_pz",                  "title":"Leading charged particle in explicit R5 tau jets p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedTau_eta":           {"name":"ChargedTau_eta",                 "title":"Leading charged particle in explicit R5 tau jets #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "ChargedTau_theta":         {"name":"ChargedTau_theta",               "title":"Leading charged particle in explicit R5 tau jets #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "ChargedTau_phi":           {"name":"ChargedTau_phi",                 "title":"Leading charged particle in explicit R5 tau jets #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "ChargedTau_charge":        {"name":"ChargedTau_charge",              "title":"Leading charged particle in explicit R5 tau jets charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    "ChargedTau_mass":          {"name":"ChargedTau_mass",                 "title":"Leading charged particle in explicit R5 tau jets mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
 
-    "n_NeutralSyst":            {"name":"n_NeutralSyst",                  "title":"Number of reco neutral system in R5 jets",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "NeutralSyst_e":             {"name":"NeutralSyst_e",                   "title":"Neutral system in R5 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralSyst_p":             {"name":"NeutralSyst_p",                   "title":"Neutral system in R5 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralSyst_pt":            {"name":"NeutralSyst_pt",                  "title":"Neutral system in R5 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralSyst_px":            {"name":"NeutralSyst_px",                  "title":"Neutral system in R5 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralSyst_py":            {"name":"NeutralSyst_py",                  "title":"Neutral system in R5 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralSyst_pz":            {"name":"NeutralSyst_pz",                  "title":"Neutral system in R5 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralSyst_eta":           {"name":"NeutralSyst_eta",                 "title":"Neutral system in R5 jet #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
-    "NeutralSyst_theta":         {"name":"NeutralSyst_theta",               "title":"Neutral system in R5 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "NeutralSyst_phi":           {"name":"NeutralSyst_phi",                 "title":"Neutral system in R5 jet #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
-    "NeutralSyst_charge":        {"name":"NeutralSyst_charge",              "title":"Neutral system in R5 jet charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    "NeutralSyst_mass":          {"name":"NeutralSyst_mass",                 "title":"Neutral system in R5 jet mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+    "n_NeutralTau":            {"name":"n_NeutralTau",                  "title":"Number of reco neutral system in explicit R5 tau jetss",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    "NeutralTau_e":             {"name":"NeutralTau_e",                   "title":"Neutral system in explicit R5 tau jets energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralTau_p":             {"name":"NeutralTau_p",                   "title":"Neutral system in explicit R5 tau jets p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralTau_pt":            {"name":"NeutralTau_pt",                  "title":"Neutral system in explicit R5 tau jets p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralTau_px":            {"name":"NeutralTau_px",                  "title":"Neutral system in explicit R5 tau jets p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralTau_py":            {"name":"NeutralTau_py",                  "title":"Neutral system in explicit R5 tau jets p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralTau_pz":            {"name":"NeutralTau_pz",                  "title":"Neutral system in explicit R5 tau jets p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralTau_eta":           {"name":"NeutralTau_eta",                 "title":"Neutral system in explicit R5 tau jets #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "NeutralTau_theta":         {"name":"NeutralTau_theta",               "title":"Neutral system in explicit R5 tau jets #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "NeutralTau_phi":           {"name":"NeutralTau_phi",                 "title":"Neutral system in explicit R5 tau jets #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "NeutralTau_charge":        {"name":"NeutralTau_charge",              "title":"Neutral system in explicit R5 tau jets charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    "NeutralTau_mass":          {"name":"NeutralTau_mass",                 "title":"Neutral system in explicit R5 tau jets mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+
+    "n_ChargedJet":            {"name":"n_ChargedJet",                  "title":"Number of reco leading charged particle in tagged R5 tau jets",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    "ChargedJet_e":             {"name":"ChargedJet_e",                   "title":"Leading charged particle in tagged R5 tau jets energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedJet_p":             {"name":"ChargedJet_p",                   "title":"Leading charged particle in tagged R5 tau jets p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedJet_pt":            {"name":"ChargedJet_pt",                  "title":"Leading charged particle in tagged R5 tau jets p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedJet_px":            {"name":"ChargedJet_px",                  "title":"Leading charged particle in tagged R5 tau jets p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedJet_py":            {"name":"ChargedJet_py",                  "title":"Leading charged particle in tagged R5 tau jets p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedJet_pz":            {"name":"ChargedJet_pz",                  "title":"Leading charged particle in tagged R5 tau jets p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedJet_eta":           {"name":"ChargedJet_eta",                 "title":"Leading charged particle in tagged R5 tau jets #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "ChargedJet_theta":         {"name":"ChargedJet_theta",               "title":"Leading charged particle in tagged R5 tau jets #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "ChargedJet_phi":           {"name":"ChargedJet_phi",                 "title":"Leading charged particle in tagged R5 tau jets #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "ChargedJet_charge":        {"name":"ChargedJet_charge",              "title":"Leading charged particle in tagged R5 tau jets charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    "ChargedJet_mass":          {"name":"ChargedJet_mass",                 "title":"Leading charged particle in tagged R5 tau jets mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+
+    "n_NeutralJet":            {"name":"n_NeutralJet",                  "title":"Number of reco neutral system in tagged R5 tau jetss",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    "NeutralJet_e":             {"name":"NeutralJet_e",                   "title":"Neutral system in tagged R5 tau jets energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralJet_p":             {"name":"NeutralJet_p",                   "title":"Neutral system in tagged R5 tau jets p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralJet_pt":            {"name":"NeutralJet_pt",                  "title":"Neutral system in tagged R5 tau jets p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralJet_px":            {"name":"NeutralJet_px",                  "title":"Neutral system in tagged R5 tau jets p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralJet_py":            {"name":"NeutralJet_py",                  "title":"Neutral system in tagged R5 tau jets p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralJet_pz":            {"name":"NeutralJet_pz",                  "title":"Neutral system in tagged R5 tau jets p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralJet_eta":           {"name":"NeutralJet_eta",                 "title":"Neutral system in tagged R5 tau jets #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "NeutralJet_theta":         {"name":"NeutralJet_theta",               "title":"Neutral system in tagged R5 tau jets #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "NeutralJet_phi":           {"name":"NeutralJet_phi",                 "title":"Neutral system in tagged R5 tau jets #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "NeutralJet_charge":        {"name":"NeutralJet_charge",              "title":"Neutral system in tagged R5 tau jets charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    "NeutralJet_mass":          {"name":"NeutralJet_mass",                 "title":"Neutral system in tagged R5 tau jets mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+
+    "n_NeutralHadron":            {"name":"n_NeutralHadron",                  "title":"Number of reco neutral hadron",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    "NeutralHadron_e":             {"name":"NeutralHadron_e",                   "title":"Neutral hadron energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralHadron_p":             {"name":"NeutralHadron_p",                   "title":"Neutral hadron p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralHadron_pt":            {"name":"NeutralHadron_pt",                  "title":"Neutral hadron p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralHadron_px":            {"name":"NeutralHadron_px",                  "title":"Neutral hadron p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralHadron_py":            {"name":"NeutralHadron_py",                  "title":"Neutral hadron p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralHadron_pz":            {"name":"NeutralHadron_pz",                  "title":"Neutral hadron p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralHadron_eta":           {"name":"NeutralHadron_eta",                 "title":"Neutral hadron #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "NeutralHadron_theta":         {"name":"NeutralHadron_theta",               "title":"Neutral hadron #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "NeutralHadron_phi":           {"name":"NeutralHadron_phi",                 "title":"Neutral hadron #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "NeutralHadron_charge":        {"name":"NeutralHadron_charge",              "title":"Neutral hadron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    "NeutralHadron_mass":          {"name":"NeutralHadron_mass",                 "title":"Neutral hadron mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+
+    "n_ChargedHadron":            {"name":"n_ChargedHadron",                  "title":"Number of reco Charged hadron",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    "ChargedHadron_e":             {"name":"ChargedHadron_e",                   "title":"Charged hadron energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedHadron_p":             {"name":"ChargedHadron_p",                   "title":"Charged hadron p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedHadron_pt":            {"name":"ChargedHadron_pt",                  "title":"Charged hadron p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "ChargedHadron_px":            {"name":"ChargedHadron_px",                  "title":"Charged hadron p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedHadron_py":            {"name":"ChargedHadron_py",                  "title":"Charged hadron p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedHadron_pz":            {"name":"ChargedHadron_pz",                  "title":"Charged hadron p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "ChargedHadron_eta":           {"name":"ChargedHadron_eta",                 "title":"Charged hadron #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "ChargedHadron_theta":         {"name":"ChargedHadron_theta",               "title":"Charged hadron #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "ChargedHadron_phi":           {"name":"ChargedHadron_phi",                 "title":"Charged hadron #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
+    "ChargedHadron_charge":        {"name":"ChargedHadron_charge",              "title":"Charged hadron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    "ChargedHadron_mass":          {"name":"ChargedHadron_mass",                 "title":"Charged hadron mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
 
 
     ###########################
@@ -379,17 +457,17 @@ histoList = {
     "RecoZM_y":                 {"name":"RecoZM_y",                  "title":"Reco negative Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "RecoZM_mass":              {"name":"RecoZM_mass",               "title":"Reco negative Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
                                 
-    "RecoH_px":                 {"name":"RecoH_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoH_py":                 {"name":"RecoH_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoH_pz":                 {"name":"RecoH_pz",                 "title":"Reco H p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoH_p":                  {"name":"RecoH_p",                  "title":"Reco H p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
-    "RecoH_pt":                 {"name":"RecoH_pt",                 "title":"Reco H p_{T} [GeV]",            "bin":75, "xmin":0 ,"xmax":150},
-    "RecoH_e":                  {"name":"RecoH_e",                  "title":"Reco H energy [GeV]",           "bin":75, "xmin":0 ,"xmax":150},
-    "RecoH_eta":                {"name":"RecoH_eta",                "title":"Reco H #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "RecoH_phi":                {"name":"RecoH_phi",                "title":"Reco H #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "RecoH_theta":              {"name":"RecoH_theta",              "title":"Reco H #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoH_y":                  {"name":"RecoH_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
+    "Higgs_px":                 {"name":"Higgs_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "Higgs_py":                 {"name":"Higgs_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "Higgs_pz":                 {"name":"Higgs_pz",                 "title":"Reco H p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "Higgs_p":                  {"name":"Higgs_p",                  "title":"Reco H p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
+    "Higgs_pt":                 {"name":"Higgs_pt",                 "title":"Reco H p_{T} [GeV]",            "bin":75, "xmin":0 ,"xmax":150},
+    "Higgs_e":                  {"name":"Higgs_e",                  "title":"Reco H energy [GeV]",           "bin":75, "xmin":0 ,"xmax":150},
+    "Higgs_eta":                {"name":"Higgs_eta",                "title":"Reco H #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "Higgs_phi":                {"name":"Higgs_phi",                "title":"Reco H #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "Higgs_theta":              {"name":"Higgs_theta",              "title":"Reco H #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "Higgs_y":                  {"name":"Higgs_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    "Higgs_mass":               {"name":"Higgs_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
 
     "TauLead_px":               {"name":"TauLead_px",                 "title":"#tau_{leading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
     "TauLead_py":               {"name":"TauLead_py",                 "title":"#tau_{leading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
@@ -402,7 +480,7 @@ histoList = {
     "TauLead_theta":            {"name":"TauLead_theta",              "title":"#tau_{leading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "TauLead_y":                {"name":"TauLead_y",                  "title":"#tau_{leading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "TauLead_mass":             {"name":"TauLead_mass",               "title":"#tau_{leading} mass",                   "bin":30, "xmin":0., "xmax":3.},
-    "TauLead_type":             {"name":"TauLead_type",               "title":"#tau_{leading} type",                   "bin":113, "xmin":-0.13, "xmax":1.},
+    #"TauLead_type":             {"name":"TauLead_type",               "title":"#tau_{leading} type",                   "bin":113, "xmin":-0.13, "xmax":1.},
     
     "TauSub_px":                {"name":"TauSub_px",                 "title":"#tau_{subleading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
     "TauSub_py":                {"name":"TauSub_py",                 "title":"#tau_{subleading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
@@ -415,7 +493,7 @@ histoList = {
     "TauSub_theta":             {"name":"TauSub_theta",              "title":"#tau_{subleading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{subleading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "TauSub_mass":              {"name":"TauSub_mass",               "title":"#tau_{subleading} mass",                   "bin":30, "xmin":0., "xmax":3.},
-    "TauSub_type":              {"name":"TauSub_type",               "title":"#tau_{subleading} type",                   "bin":113, "xmin":-0.13, "xmax":1.},
+    #"TauSub_type":              {"name":"TauSub_type",               "title":"#tau_{subleading} type",                   "bin":113, "xmin":-0.13, "xmax":1.},
     
     "TauP_px":               {"name":"TauP_px",                 "title":"#tau^{+} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
     "TauP_py":               {"name":"TauP_py",                 "title":"#tau^{+} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
@@ -456,18 +534,78 @@ histoList = {
 
     #### CP variables
 
+    "CosDeltaPhiILC":                          {"name": "CosDeltaPhiILC", "title": "cos(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
+    "SinDeltaPhiILC":                          {"name": "SinDeltaPhiILC", "title": "sin(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
+    "DeltaPhiILC":                             {"name":"DeltaPhiILC",           "title":"#Delta#Phi_{CP} ILC",                  "bin":32, "xmin":-3.14,"xmax":3.14},
+    "KinILC_chi2":                             {"name":"KinILC_chi2",           "title":"#chi^{2} ILC",                  "bin":50, "xmin":0,"xmax":20},
+
+    "RecoH_px":                 {"name":"RecoH_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoH_py":                 {"name":"RecoH_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoH_pz":                 {"name":"RecoH_pz",                 "title":"Reco H p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoH_p":                  {"name":"RecoH_p",                  "title":"Reco H p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_pt":                 {"name":"RecoH_pt",                 "title":"Reco H p_{T} [GeV]",            "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_e":                  {"name":"RecoH_e",                  "title":"Reco H energy [GeV]",           "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_eta":                {"name":"RecoH_eta",                "title":"Reco H #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoH_phi":                {"name":"RecoH_phi",                "title":"Reco H #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoH_theta":              {"name":"RecoH_theta",              "title":"Reco H #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoH_y":                  {"name":"RecoH_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
+
+    "RecoTauLead_px":               {"name":"RecoTauLead_px",                 "title":"#tau_{leading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoTauLead_py":               {"name":"RecoTauLead_py",                 "title":"#tau_{leading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoTauLead_pz":               {"name":"RecoTauLead_pz",                 "title":"#tau_{leading} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoTauLead_p":                {"name":"RecoTauLead_p",                  "title":"#tau_{leading} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoTauLead_pt":               {"name":"RecoTauLead_pt",                 "title":"#tau_{leading} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoTauLead_e":                {"name":"RecoTauLead_e",                  "title":"#tau_{leading} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoTauLead_eta":              {"name":"RecoTauLead_eta",                "title":"#tau_{leading} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTauLead_phi":              {"name":"RecoTauLead_phi",                "title":"#tau_{leading} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTauLead_theta":            {"name":"RecoTauLead_theta",              "title":"#tau_{leading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoTauLead_y":                {"name":"RecoTauLead_y",                  "title":"#tau_{leading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoTauLead_mass":             {"name":"RecoTauLead_mass",               "title":"#tau_{leading} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    #"RecoTauLead_type":             {"name":"RecoTauLead_type",               "title":"#tau_{leading} type",                   "bin":113, "xmin":-0.13, "xmax":1.},
     
-    "Tau_DPhi":         {"name":"Tau_DPhi",           "title":"#Delta#phi(#tau#tau)",                "bin":32, "xmin":-3.2,"xmax":3.2},
-    "Tau_DR":                   {"name":"Tau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
-    "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
-    "Tau_DEta":                             {"name":"Tau_DEta",           "title":"Reco di-#tau #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoTauSub_px":                {"name":"RecoTauSub_px",                 "title":"#tau_{subleading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoTauSub_py":                {"name":"RecoTauSub_py",                 "title":"#tau_{subleading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoTauSub_pz":                {"name":"RecoTauSub_pz",                 "title":"#tau_{subleading} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoTauSub_p":                 {"name":"RecoTauSub_p",                  "title":"#tau_{subleading} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoTauSub_pt":                {"name":"RecoTauSub_pt",                 "title":"#tau_{subleading} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoTauSub_e":                 {"name":"RecoTauSub_e",                  "title":"#tau_{subleading} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoTauSub_eta":               {"name":"RecoTauSub_eta",                "title":"#tau_{subleading} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTauSub_phi":               {"name":"RecoTauSub_phi",                "title":"#tau_{subleading} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTauSub_theta":             {"name":"RecoTauSub_theta",              "title":"#tau_{subleading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoTauSub_y":                 {"name":"RecoTauSub_y",                  "title":"#tau_{subleading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoTauSub_mass":              {"name":"RecoTauSub_mass",               "title":"#tau_{subleading} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    #"RecoTauSub_type":              {"name":"RecoTauSub_type",               "title":"#tau_{subleading} type",                   "bin":113, "xmin":-0.13, "xmax":1.},
+    
+    "RecoTauP_px":               {"name":"RecoTauP_px",                 "title":"#tau^{+} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoTauP_py":               {"name":"RecoTauP_py",                 "title":"#tau^{+} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoTauP_pz":               {"name":"RecoTauP_pz",                 "title":"#tau^{+} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "RecoTauP_p":                {"name":"RecoTauP_p",                  "title":"#tau^{+} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoTauP_pt":               {"name":"RecoTauP_pt",                 "title":"#tau^{+} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoTauP_e":                {"name":"RecoTauP_e",                  "title":"#tau^{+} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoTauP_eta":              {"name":"RecoTauP_eta",                "title":"#tau^{+} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTauP_phi":              {"name":"RecoTauP_phi",                "title":"#tau^{+} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTauP_theta":            {"name":"RecoTauP_theta",              "title":"#tau^{+} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoTauP_y":                {"name":"RecoTauP_y",                  "title":"#tau^{+} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoTauP_mass":             {"name":"RecoTauP_mass",               "title":"#tau^{+} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    
+    "RecoTauM_px":                {"name":"RecoTauM_px",                 "title":"#tau^{-} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoTauM_py":                {"name":"RecoTauM_py",                 "title":"#tau^{-} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoTauM_pz":                {"name":"RecoTauM_pz",                 "title":"#tau^{-} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "RecoTauM_p":                 {"name":"RecoTauM_p",                  "title":"#tau^{-} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "RecoTauM_pt":                {"name":"RecoTauM_pt",                 "title":"#tau^{-} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "RecoTauM_e":                 {"name":"RecoTauM_e",                  "title":"#tau^{-} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "RecoTauM_eta":               {"name":"RecoTauM_eta",                "title":"#tau^{-} #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTauM_phi":               {"name":"RecoTauM_phi",                "title":"#tau^{-} #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTauM_theta":             {"name":"RecoTauM_theta",              "title":"#tau^{-} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoTauM_y":                 {"name":"RecoTauM_y",                  "title":"#tau^{-} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "RecoTauM_mass":              {"name":"RecoTauM_mass",               "title":"#tau^{-} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    
+    "RecoTau_DPhi":         {"name":"RecoTau_DPhi",           "title":"#Delta#phi(#tau#tau)",                                "bin":128, "xmin":-6.4,"xmax":6.4},
+    "RecoTau_DR":                   {"name":"RecoTau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
+    "RecoTau_cos":                  {"name":"RecoTau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
+    "RecoTau_DEta":                             {"name":"RecoTau_DEta",           "title":"Reco di-#tau #Delta#eta",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
 
-    "RecoZDaughter_DPhi":         {"name":"RecoZDaughter_DPhi",           "title":"#Delta#phi(ll)",                "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoZDaughter_DR":                   {"name":"RecoZDaughter_DR",                     "title":"#Delta R(ll)",                  "bin":70, "xmin":0,"xmax":7},
-    "RecoZDaughter_cos":                  {"name":"RecoZDaughter_cos",                    "title":"cos#theta(ll)",                 "bin":100, "xmin":-1.,"xmax":1.},
-    "RecoZDaughter_DEta":                   {"name":"RecoZDaughter_DEta",           "title":"Reco Z daughters #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
-
-    "DeltaPhiKin":                             {"name":"DeltaPhiKin",           "title":"Reco #Delta#Phi_{CP}",                  "bin":64, "xmin":-3.14,"xmax":3.14},
 
 }
 
@@ -512,4 +650,13 @@ histoList = {
     "QuarkTag_isB":             {"name":"QuarkTag_isB",                "title":"Quark jet from tagged jet B score",                     "bin":100, "xmin":0., "xmax":1.},
     "QuarkTag_isTAU":             {"name":"QuarkTag_isTAU",                "title":"Quark jet from tagged jet TAU score",                     "bin":100, "xmin":0., "xmax":1.},
 
+
+    "CosDeltaPhi":                          {"name": "CosDeltaPhi", "title": "cos(#Delta#phi_{CP}) Belle", "bin": 50, "xmin": -1, "xmax": 1},
+    "SinDeltaPhi":                          {"name": "SinDeltaPhi", "title": "sin(#Delta#phi_{CP}) Belle", "bin": 50, "xmin": -1, "xmax": 1},
+    "DeltaPhi":                             {"name":"DeltaPhi",           "title":"#Delta#Phi_{CP} Belle",                  "bin":32, "xmin":-3.14,"xmax":3.14},
+
+    
+    "Phi_Recoil":                          {"name": "Phi_Recoil", "title": "cos(#Delta#phi_{CP}) CMS", "bin": 50, "xmin": -1, "xmax": 1},
+    "O_Recoil":                          {"name": "O_Recoil", "title": "sin(#Delta#phi_{CP}) CMS", "bin": 50, "xmin": -1, "xmax": 1},
+    "PhiCP_CMS":                             {"name":"PhiCP_CMS",           "title":"#Delta#Phi_{CP} CMS",                  "bin":32, "xmin":-3.14,"xmax":3.14},
 '''

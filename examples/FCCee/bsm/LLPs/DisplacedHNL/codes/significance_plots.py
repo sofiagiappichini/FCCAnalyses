@@ -20,7 +20,7 @@ def split_into_three(arr):
     return arr[:third], arr[third:2*third], arr[2*third:]
 
 data_files = [
-    "/eos/user/s/sgiappic/combine/output_5aug_0cos_45ME_e35_DF.csv",
+    "/eos/user/s/sgiappic/combine/output_7aug_final.csv",
     ]
 
 
@@ -99,7 +99,7 @@ for i, data_file in enumerate(data_files):
             #axs[row, col].set_xscale('log')
             axs[col].set_ylim([-12, -6])
 
-        axs[col].tick_params(direction='out', top=False, right=False)
+        axs[col].tick_params(direction='out', top=False, right=False, which='major', labelsize=16)
 
 df_FCC_ee = pd.read_csv("/eos/user/s/sgiappic/2HNL_samples/data/FCC_ee_2_data.csv",header=None, sep=",", names = ["X", "Y"])
 x_FCC_ee, y_FCC_ee = [], []
@@ -128,4 +128,4 @@ axs[1].set_title(r'$Shape\; analysis - Inverted\; Hierarchy$', fontsize=20, y=1.
 
 # Show all the plots
 plt.tight_layout()
-plt.savefig('/eos/user/s/sgiappic/www/paper/significance_5aug_0cos_45ME_e35_DF.png', format='png', dpi=330)
+plt.savefig('/eos/user/s/sgiappic/www/paper/significance_final_points.png', format='png', dpi=330)

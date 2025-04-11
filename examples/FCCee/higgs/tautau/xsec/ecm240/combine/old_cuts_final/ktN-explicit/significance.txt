@@ -1,0 +1,8 @@
+ <<< Combine >>> 
+ <<< v10.0.2 >>>
+>>> Random number generator seed is 123456
+>>> Method used is FitDiagnostics
+
+ --- FitDiagnostics ---
+Best fit r: 1  -0.0149091/+0.0149815  (68% CL)
+Done in 0.15 min (cpu), 0.15 min (real)

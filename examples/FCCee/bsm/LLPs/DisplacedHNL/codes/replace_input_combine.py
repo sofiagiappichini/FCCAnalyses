@@ -422,43 +422,49 @@ if not os.path.exists(backup_dir):
 for replacement_word in replacement_words:
 
     # Backup the original file
-    shutil.copy("/eos/user/s/sgiappic/combine/datacard_24july.txt", os.path.join(backup_dir, "datacard_backup.txt"))
+    shutil.copy("/eos/user/s/sgiappic/combine/datacard_24july_combined.txt", os.path.join(backup_dir, "datacard_backup.txt"))
 
-    '''if "_10gev" in replacement_word:
-        with open("/eos/user/s/sgiappic/combine/datacard_24july_10gev_DF.txt", "r") as file:
-            file_data = file.read()
-    else:'''
+    if "_10gev" in replacement_word:
+
+        if "HNL_6.67e-8_10gev" in replacement_word:
+            with open("/eos/user/s/sgiappic/combine/datacard_24july_10gev_combined_rebinned.txt", "r") as file:
+                file_data = file.read()
+        else:
+            with open("/eos/user/s/sgiappic/combine/datacard_24july_10gev_combined.txt", "r") as file:
+                file_data = file.read()
+
+    else:
         # Perform substitution using sed within the loop
-    with open(os.path.join(backup_dir, "datacard_backup.txt"), "r") as file:
-        file_data = file.read()
+        with open(os.path.join(backup_dir, "datacard_backup.txt"), "r") as file:
+            file_data = file.read()
 
     file_data = file_data.replace(nomeFile, replacement_word)
 
-    '''for mass in SUBSTRING:
+    for mass in SUBSTRING:
         if mass in replacement_word:
 
-            #newcut_SF = "selReco_gen_notracks_2eh_M80_10MET_0cos_SF"
-            #file_data = file_data.replace(cut_SF, newcut_SF)
+            newcut_SF = "selReco_gen_notracks_2eh_M80_10MET_0cos_45ME_e35_SF"
             newcut_DF = "selReco_gen_notracks_2eh_M80_10MET_0cos_45ME_e35_DF"
+            file_data = file_data.replace(cut_SF, newcut_SF)
             file_data = file_data.replace(cut_DF, newcut_DF)
             with open(os.path.join(backup_dir, "datacard_backup.txt"), "w") as file:
                 file.write(file_data)
 
     for mass in SUBCUTS:
-        if mass in replacement_word:'''
-                 
-            #newcut_SF = "selReco_gen_notracks_2eh_M80_10MET_0cos" + mass + "_SF"
-            #file_data = file_data.replace(cut_SF, newcut_SF)
-    newcut_DF = "selReco_gen_notracks_2eh_M80_10MET_0cos" # + mass + "_DF"
-    file_data = file_data.replace(cut_SF, newcut_DF)
-    with open(os.path.join(backup_dir, "datacard_backup.txt"), "w") as file:
-        file.write(file_data)
+        if mass in replacement_word:
+            
+            newcut_SF = "selReco_gen_notracks_2eh_M80_10MET_0cos_45ME_e35" + mass + "_SF"
+            newcut_DF = "selReco_gen_notracks_2eh_M80_10MET_0cos_45ME_e35" + mass + "_DF"
+            file_data = file_data.replace(cut_SF, newcut_SF)
+            file_data = file_data.replace(cut_DF, newcut_DF)
+            with open(os.path.join(backup_dir, "datacard_backup.txt"), "w") as file:
+                file.write(file_data)
 
     os.system("combine -M Significance {} -t -1 --expectSignal=1 >significance.txt".format(os.path.join(backup_dir, "datacard_backup.txt")))
 
     # Define the file names
     input_file = "significance.txt"
-    output_file = "/eos/user/s/sgiappic/combine/output_5aug_0cos.csv"
+    output_file = "/eos/user/s/sgiappic/combine/output_7aug_final.csv"
 
     with open(input_file, "r") as file:
             read = False

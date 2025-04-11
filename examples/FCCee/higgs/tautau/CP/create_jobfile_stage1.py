@@ -127,113 +127,55 @@ def create_subjob_script(local_dir: str,
             with open(output_dir+'submit_'+process+'.sh', 'w') as sh:
                 sh.write(scr)
         print("done")
+
+def submit_jobs(output_dir: str):
+    #for process in processList:
+        dir = output_dir #+ process 
+        num_files = len(os.listdir(dir))-1
+        os.system(f"chmod -R +x {dir}")
+        os.system(f"condor_submit {dir}/job_submit.cfg")
+        #print(f"GOOD SUBMISSION: {process} with {num_files} chunks")
              
 
-processList_ = {
-    'p8_ee_WW_ecm240':{'chunks':100},
-    'p8_ee_Zqq_ecm240':{'chunks':100},
-    'p8_ee_ZZ_ecm240':{'chunks':100},
-    
-    'wzp6_ee_tautau_ecm240':{'chunks':100},
-    'wzp6_ee_mumu_ecm240':{'chunks':100},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
-
-    'wzp6_ee_tautauH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_tautauH_Hbb_ecm240': {'chunks':1},
-    'wzp6_ee_tautauH_Hcc_ecm240': {'chunks':1},
-    'wzp6_ee_tautauH_Hss_ecm240': {'chunks':1},
-    'wzp6_ee_tautauH_Hgg_ecm240': {'chunks':1},
-    'wzp6_ee_tautauH_HWW_ecm240': {'chunks':1},
-    'wzp6_ee_tautauH_HZZ_ecm240': {'chunks':1},
-
-    'wzp6_egamma_eZ_Zmumu_ecm240': {'chunks':100},
-    'wzp6_egamma_eZ_Zee_ecm240': {'chunks':100},
-    'wzp6_gammae_eZ_Zmumu_ecm240': {'chunks':100},
-    'wzp6_gammae_eZ_Zee_ecm240': {'chunks':100},
-
-    'wzp6_gaga_tautau_60_ecm240': {'chunks':100},
-    'wzp6_gaga_mumu_60_ecm240': {'chunks':100},
-    'wzp6_gaga_ee_60_ecm240': {'chunks':100},
-
-    'wzp6_ee_nuenueZ_ecm240': {'chunks':100},
-
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_nunuH_Hbb_ecm240': {'chunks':1},
-    'wzp6_ee_nunuH_Hcc_ecm240': {'chunks':1},
-    'wzp6_ee_nunuH_Hss_ecm240': {'chunks':1},
-    'wzp6_ee_nunuH_Hgg_ecm240': {'chunks':1},
-    'wzp6_ee_nunuH_HWW_ecm240': {'chunks':1},
-    'wzp6_ee_nunuH_HZZ_ecm240': {'chunks':1},
-
-    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_eeH_Hbb_ecm240': {'chunks':1},
-    'wzp6_ee_eeH_Hcc_ecm240': {'chunks':1},
-    'wzp6_ee_eeH_Hss_ecm240': {'chunks':1},
-    'wzp6_ee_eeH_Hgg_ecm240': {'chunks':1},
-    'wzp6_ee_eeH_HWW_ecm240': {'chunks':1},
-    'wzp6_ee_eeH_HZZ_ecm240': {'chunks':1},
-
-    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_Hss_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_HWW_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':1},
-
-    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_Hbb_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_Hcc_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_Hss_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_Hgg_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_HWW_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_HZZ_ecm240': {'chunks':1},
-
-    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_Hbb_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_Hcc_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_Hss_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_Hgg_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_HWW_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_HZZ_ecm240': {'chunks':1},
-
-    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_Hbb_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_Hcc_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_Hss_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_Hgg_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_HWW_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_HZZ_ecm240': {'chunks':1},
-
-    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_Hbb_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_Hcc_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_Hss_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_Hgg_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_HWW_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_HZZ_ecm240': {'chunks':1},
-}
-processList_ = {
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':1},
-}
-
 processList = {
-    #'EWonly_taudecay_2Pi2Nu':{},
-    #'cehim_m1_taudecay_2Pi2Nu':{},
-    #'cehim_p1_taudecay_2Pi2Nu':{},
-    #'cehre_m1_taudecay_2Pi2Nu':{},
-    #'cehre_p1_taudecay_2Pi2Nu':{},
+    'noISR_e+e-_noCuts_EWonly':{},
+    'noISR_e+e-_noCuts_cehim_m1':{},
+    'noISR_e+e-_noCuts_cehim_p1':{},
+    'noISR_e+e-_noCuts_cehre_m1':{},
+    'noISR_e+e-_noCuts_cehre_p1':{},
+    
+    'EWonly_taudecay_2Pi2Nu':{},
+    'cehim_m1_taudecay_2Pi2Nu':{},
+    'cehim_p1_taudecay_2Pi2Nu':{},
+    'cehre_m1_taudecay_2Pi2Nu':{},
+    'cehre_p1_taudecay_2Pi2Nu':{},
+
     'cehim_m5_taudecay_2Pi2Nu':{},
     'cehim_p5_taudecay_2Pi2Nu':{},
     'cehre_m5_taudecay_2Pi2Nu':{},
     'cehre_p5_taudecay_2Pi2Nu':{},
-   #'p8_ee_ZZ_ecm240':{},
+
+    'EWonly_taudecay_PiPi0Nu':{},
+    'cehim_m1_taudecay_PiPi0Nu':{},
+    'cehim_p1_taudecay_PiPi0Nu':{},
+    'cehre_m1_taudecay_PiPi0Nu':{},
+    'cehre_p1_taudecay_PiPi0Nu':{},
+
+    #'cehim_m2_taudecay_2Pi2Nu':{},
+    #'cehim_p2_taudecay_2Pi2Nu':{},
+    #'cehre_m2_taudecay_2Pi2Nu':{},
+    #'cehre_p2_taudecay_2Pi2Nu':{},
+
+    #'cehim_p0p1_taudecay_2Pi2Nu':{},
+    #'cehim_m0p1_taudecay_2Pi2Nu':{},
+    #'cehre_m0p1_taudecay_2Pi2Nu':{},
+    #'cehre_p0p1_taudecay_2Pi2Nu':{},
+
+    #'cehim_p10_taudecay_2Pi2Nu':{},
+    #'cehim_m10_taudecay_2Pi2Nu':{},
+
+    #'wzp6_ee_eeH_Htautau_ecm240': {},
+    #'p8_ee_ZZ_ecm240':{'chunks':100},
 }
 
 if "ZZ" in processList:
@@ -243,15 +185,17 @@ chunks = False
 
 inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/"
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
-output = '/work/sgiappic/HTCondor/stage1_CP5/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco_2Pi2Nu/stage1+gen/" ##output directory of stage2 samples
+output = '/work/sgiappic/HTCondor/stage1_CP/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1/" ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename = 'analysis_stage1.py'
 
-nCPUS = 2
+nCPUS = 1
 Memory = 10000
 
 create_subjob_script(localDir, sourceDir, inputDir, output, outputDir, Filename)
 
 create_condor_config(nCPUS, Memory, output)
+
+submit_jobs(output)

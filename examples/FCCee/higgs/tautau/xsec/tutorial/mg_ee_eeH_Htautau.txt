@@ -1,0 +1,23 @@
+import model sm-lepton_masses
+
+generate e+ e- > e+ e- h, (h > ta+ ta-)
+
+output eeH_Htautau
+launch eeH_Htautau
+
+shower=Pythia8
+detector=Delphes
+analysis=OFF
+done
+
+pythia.cmd
+card_IDEA.tcl
+
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set no_parton_cuts
+
+set nevents 1000000
+done

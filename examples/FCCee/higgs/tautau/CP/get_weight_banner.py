@@ -21,17 +21,31 @@ replacement_words = [
     #'noISR_e+e-_noCuts_cehre_m5_taudecay_2Pi2Nu',
     #'noISR_e+e-_noCuts_cehre_p5_taudecay_2Pi2Nu',
 
-    'noISR_e+e-_noCuts_cehim_m2_taudecay_2Pi2Nu',
-    'noISR_e+e-_noCuts_cehim_p2_taudecay_2Pi2Nu',
-    'noISR_e+e-_noCuts_cehre_m2_taudecay_2Pi2Nu',
-    'noISR_e+e-_noCuts_cehre_p2_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehim_m2_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehim_p2_taudecay_2Pi2Nu',
+    #noISR_e+e-_noCuts_cehre_m2_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehre_p2_taudecay_2Pi2Nu',
+
+    #'noISR_e+e-_noCuts_cehim_p0p1_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehim_m0p1_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehre_m0p1_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehre_p0p1_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehim_p10_taudecay_2Pi2Nu',
+    #'noISR_e+e-_noCuts_cehim_m10_taudecay_2Pi2Nu',
+
+    'noISR_e+e-_noCuts_EWonly_taudecay_PiPi0Nu',
+    'noISR_e+e-_noCuts_cehim_m1_taudecay_PiPi0Nu',
+    'noISR_e+e-_noCuts_cehim_p1_taudecay_PiPi0Nu',
+    'noISR_e+e-_noCuts_cehre_m1_taudecay_PiPi0Nu',
+    'noISR_e+e-_noCuts_cehre_p1_taudecay_PiPi0Nu',
+
 ]
 
 # Loop through each replacement word
 for replacement_word in replacement_words:
 
     input_file = "/work/mpresill//MG5_aMC_v3_5_4/ZH_SMEFT_prod/{}/Events/run_01/run_01_tag_1_banner.txt".format(replacement_word)
-    output_file = "/ceph/sgiappic/HiggsCP/CP/weights.txt"
+    output_file = "/ceph/sgiappic/HiggsCP/CPReco/weights.txt"
 
     with open(input_file, "r") as file:
             read = False

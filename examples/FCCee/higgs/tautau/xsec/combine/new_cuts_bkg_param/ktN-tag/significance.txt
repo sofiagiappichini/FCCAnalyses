@@ -1,9 +1,0 @@
- <<< Combine >>> 
- <<< v10.0.2 >>>
->>> Random number generator seed is 123456
->>> Method used is FitDiagnostics
-[ERROR] Closed range without finding crossing! 
-
- --- FitDiagnostics ---
-Best fit r: 1  -0.0131199/+19  (68% CL)
-Done in 0.08 min (cpu), 0.09 min (real)
