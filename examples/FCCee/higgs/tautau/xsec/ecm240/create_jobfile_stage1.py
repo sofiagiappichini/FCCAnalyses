@@ -13,7 +13,7 @@ def create_condor_config(nCPUs: int,
     '''
     cfg = 'Universe          = docker\n'
 
-    cfg += 'docker_image     = cverstege/alma9-base\n'
+    cfg += 'docker_image     = cverstege/alma9-gridjob\n'
 
     cfg += 'accounting_group = cms.higgs \n'
 
@@ -81,7 +81,7 @@ def create_subjob_script(local_dir: str,
             with open(output_dir + process + '/submit_chunk_' + str(j) + '.sh', 'w') as sh:
                 sh.write(scr)
             j+=1
-            print(f"SUBMISSION FIlE CREATED: {process}, chunk {j-1}")
+            #print(f"SUBMISSION FIlE CREATED: {process}, chunk {j-1}")
 
 def submit_jobs(output_dir: str):
     for process in processList:
@@ -179,13 +179,13 @@ processList = {
 }
 
 inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
-output = '/work/sgiappic/HTCondor/stage1_nojets/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = '/ceph/sgiappic/HiggsCP/stage1_241202_nojets/' ##output directory of stage2 samples
-localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
+output = '/work/sgiappic/HTCondor/stage1_250414/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = '/ceph/sgiappic/HiggsCP/stage1_250414/' ##output directory of stage2 samples
+localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
-Filename = 'analysis_stage1_nojets.py'
+Filename = 'analysis_stage1.py'
 
-nCPUS = 2
+nCPUS = 1
 Memory = 10000
 
 create_subjob_script(localDir, sourceDir, inputDir, output, outputDir, Filename)

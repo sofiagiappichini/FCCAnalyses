@@ -19,7 +19,7 @@ def create_condor_config(nCPUs: int,
     '''
     cfg = 'Universe          = docker\n'
 
-    cfg += 'docker_image     = cverstege/alma9-base\n'
+    cfg += 'docker_image     = cverstege/alma9-gridjob\n'
 
     cfg += 'accounting_group = cms.higgs \n'
 
@@ -150,16 +150,19 @@ processList = {
     'cehre_m1_taudecay_2Pi2Nu':{},
     'cehre_p1_taudecay_2Pi2Nu':{},
 
-    'cehim_m5_taudecay_2Pi2Nu':{},
-    'cehim_p5_taudecay_2Pi2Nu':{},
-    'cehre_m5_taudecay_2Pi2Nu':{},
-    'cehre_p5_taudecay_2Pi2Nu':{},
+    #'cehim_m5_taudecay_2Pi2Nu':{},
+    #'cehim_p5_taudecay_2Pi2Nu':{},
+    #'cehre_m5_taudecay_2Pi2Nu':{},
+    #'cehre_p5_taudecay_2Pi2Nu':{},
 
     'EWonly_taudecay_PiPi0Nu':{},
     'cehim_m1_taudecay_PiPi0Nu':{},
     'cehim_p1_taudecay_PiPi0Nu':{},
     'cehre_m1_taudecay_PiPi0Nu':{},
     'cehre_p1_taudecay_PiPi0Nu':{},
+
+    #"e+e-_qqH_Htautau":{},
+    #"e+e-_qqH_H2Pi2Nu":{},
 
     #'cehim_m2_taudecay_2Pi2Nu':{},
     #'cehim_p2_taudecay_2Pi2Nu':{},
@@ -184,9 +187,9 @@ if "ZZ" in processList:
 chunks = False
 
 inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/"
-#inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
-output = '/work/sgiappic/HTCondor/stage1_CP/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1/" ##output directory of stage2 samples
+#inputDir = "/ceph/sgiappic/HiggsCP/"
+output = '/work/sgiappic/HTCondor/stage1_CPnewer/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_newer/" ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename = 'analysis_stage1.py'

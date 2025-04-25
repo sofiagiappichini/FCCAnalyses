@@ -650,7 +650,9 @@ ROOT::VecOps::RVec<int> deltaR_sel_idx_v2(ROOT::VecOps::RVec<float> phi1, ROOT::
     return result;
   }
 
-ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Charged (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_All (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets, int request){
+
+    // request parameter: 0 for full visible tau, 1 for charged leading pion, 2 for neutral system (vis-lead), 3 for sum of charged pions (only relevant for 3 pi decay), 4 for neutral system only (only relevant for 3 pi decay)
 
     // Identify taus by starting from a jet. An alternative is starting directly from reconstructed particles (to be tested more deeply in the future). 
     // This algorithm requires first building a jet (base example is clustering_ee_kt(2, 4, 1, 0) , we have tested with several configurations) from con 
@@ -666,10 +668,9 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Charged (con
         TLorentzVector neutral;
         TLorentzVector charged;
         edm4hep::ReconstructedParticleData Tau;
-        edm4hep::ReconstructedParticleData TauCharged;
-        edm4hep::ReconstructedParticleData TauNeutral;
+        edm4hep::ReconstructedParticleData TauVis;
         FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
-        int track;
+        int track=0;
         int tauID=-1;
         int count_piP=0, count_piM=0, count_nu=0, count_pho=0;
 
@@ -710,17 +711,13 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Charged (con
         if (lead.Pt()<2) {
             tauID=-1;
             Tau.type = tauID;
-            TauCharged.type = tauID;
-            TauNeutral.type = tauID;
-            out.push_back(TauCharged); //make sure to keep this iteration saved as non tau jets
+            out.push_back(Tau); //make sure to keep this iteration saved as non tau jets
             continue;
         } // Too low pt 
 
         if (tauID==-13 || tauID==-11) {
             Tau.type = tauID;
-            TauCharged.type = tauID;
-            TauNeutral.type = tauID;
-            out.push_back(TauCharged); //make sure to keep this iteration saved as non tau jets
+            out.push_back(Tau); //make sure to keep this iteration saved as non tau jets
             continue;
         }//jets with electrons or muon, cannot be tau jets
 
@@ -793,35 +790,68 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Charged (con
             if( (count_piP+count_piM)==3 && count_pho==5)  tauID=15;
             if( (count_piP+count_piM)==3 && count_pho>=6)  tauID=16;
 
-            Tau.momentum.x=sum_tau.Px();
-            Tau.momentum.y=sum_tau.Py();
-            Tau.momentum.z=sum_tau.Pz();
-            Tau.mass= sum_tau.M();
-            Tau.energy= sum_tau.E();
-            Tau.charge= (count_piP-count_piM);
-            Tau.type = tauID;
-            Tau.tracks_begin = 0;
+            TauVis.momentum.x=sum_tau.Px();
+            TauVis.momentum.y=sum_tau.Py();
+            TauVis.momentum.z=sum_tau.Pz();
+            TauVis.mass= sum_tau.M();
+            TauVis.energy= sum_tau.E();
+            TauVis.charge= (count_piP-count_piM);
+            TauVis.type = tauID;
+            TauVis.tracks_begin = 0;
 
-            TauCharged.momentum.x=charged.Px();
-            TauCharged.momentum.y=charged.Py();
-            TauCharged.momentum.z=charged.Pz();
-            TauCharged.mass= charged.M();
-            TauCharged.energy= charged.E();
-            TauCharged.charge= chargeLead;
-            TauCharged.type = tauID;
-            TauCharged.tracks_begin = track;
+            if (request==0) {
+                Tau.momentum.x=sum_tau.Px();
+                Tau.momentum.y=sum_tau.Py();
+                Tau.momentum.z=sum_tau.Pz();
+                Tau.mass= sum_tau.M();
+                Tau.energy= sum_tau.E();
+                Tau.charge= (count_piP-count_piM);
+                Tau.type = tauID;
+                Tau.tracks_begin = track;
+            }
+            else if (request==1) {
+                Tau.momentum.x=lead.Px();
+                Tau.momentum.y=lead.Py();
+                Tau.momentum.z=lead.Pz();
+                Tau.mass= lead.M();
+                Tau.energy= lead.E();
+                Tau.charge= (count_piP-count_piM);
+                Tau.type = tauID;
+                Tau.tracks_begin = track;
+            }
+            else if (request==2) {
+                Tau.momentum.x=(sum_tau-lead).Px();
+                Tau.momentum.y=(sum_tau-lead).Py();
+                Tau.momentum.z=(sum_tau-lead).Pz();
+                Tau.mass= (sum_tau-lead).M();
+                Tau.energy= (sum_tau-lead).E();
+                Tau.charge= (count_piP-count_piM);
+                Tau.type = tauID;
+                Tau.tracks_begin = track;
+            }
+            else if (request==3) {
+                Tau.momentum.x=charged.Px();
+                Tau.momentum.y=charged.Py();
+                Tau.momentum.z=charged.Pz();
+                Tau.mass= charged.M();
+                Tau.energy= charged.E();
+                Tau.charge= (count_piP-count_piM);
+                Tau.type = tauID;
+                Tau.tracks_begin = track;
+            }
+            else {
+                Tau.momentum.x=neutral.Px();
+                Tau.momentum.y=neutral.Py();
+                Tau.momentum.z=neutral.Pz();
+                Tau.mass= neutral.M();
+                Tau.energy= neutral.E();
+                Tau.charge= (count_piP-count_piM);
+                Tau.type = tauID;
+                Tau.tracks_begin = track;
+            }
 
-            TauNeutral.momentum.x=neutral.Px();
-            TauNeutral.momentum.y=neutral.Py();
-            TauNeutral.momentum.z=neutral.Pz();
-            TauNeutral.mass= neutral.M();
-            TauNeutral.energy= neutral.E();
-            TauNeutral.charge= chargeLead;
-            TauNeutral.type = tauID;
-            TauNeutral.tracks_begin = track;
-
-            if (tauID!=-1 && Tau.mass<3)  {
-                out.push_back(TauCharged);
+            if (tauID!=-1 && TauVis.mass<3)  {
+                    out.push_back(Tau);
             }
             else {
                 Tau.momentum.x = 0;
@@ -832,34 +862,13 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Charged (con
                 Tau.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
                 tauID = -2;
                 Tau.type = tauID;
-
-                TauCharged.momentum.x = 0;
-                TauCharged.momentum.y = 0;
-                TauCharged.momentum.z = 0;
-                TauCharged.mass = 0;
-                TauCharged.energy= 0;
-                TauCharged.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
-                TauCharged.type = tauID;
-
-                TauNeutral.momentum.x = 0;
-                TauNeutral.momentum.y = 0;
-                TauNeutral.momentum.z = 0;
-                TauNeutral.mass = 0;
-                TauNeutral.energy= 0;
-                TauNeutral.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
-                TauNeutral.type = tauID;
-
-                out.push_back(TauCharged);
+                out.push_back(Tau);
             }
         }
-
         else {
             tauID=-3;
-            Tau.type = tauID;
-            TauCharged.type = tauID;
-            TauNeutral.type = tauID;
-            
-            out.push_back(TauCharged);
+            Tau.type = tauID;            
+            out.push_back(Tau);
         }
     }
     return out;
@@ -1020,7 +1029,7 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (con
             TauCharged.momentum.z=charged.Pz();
             TauCharged.mass= charged.M();
             TauCharged.energy= charged.E();
-            TauCharged.charge= chargeLead;
+            TauCharged.charge= (count_piP-count_piM);
             TauCharged.type = tauID;
 
             TauNeutral.momentum.x=neutral.Px();
@@ -1028,7 +1037,7 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (con
             TauNeutral.momentum.z=neutral.Pz();
             TauNeutral.mass= neutral.M();
             TauNeutral.energy= neutral.E();
-            TauNeutral.charge= chargeLead;
+            TauNeutral.charge= (count_piP-count_piM);
             // charge of the mother tau
             TauNeutral.type = tauID;
 
@@ -1102,6 +1111,44 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> Jet_LeadingCharged(const
         partMod.momentum.z=lead.Pz();
         partMod.mass= lead.M();
         partMod.energy= lead.E();
+        partMod.charge= chargeLead;
+        partMod.tracks_begin = track;
+        
+        result.push_back(partMod);
+    }
+    return result;
+}
+
+ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> Jet_Charged(const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
+    ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> result;
+    for (int i = 0; i < jets.size(); ++i){
+
+        edm4hep::ReconstructedParticleData partMod;
+        FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
+        int chargeLead=0;
+        int track=0;
+        TLorentzVector sum;
+        TLorentzVector lead;
+        
+        for (const auto &jc : jcs){
+            if (jc.charge!=0) {
+                TLorentzVector temp;
+                temp.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
+                chargeLead+=jc.charge;
+                sum+=temp;
+            
+                if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt()){
+                    track = jc.tracks_begin;
+                    lead=temp;
+            }
+        }
+        }
+
+        partMod.momentum.x=sum.Px();
+        partMod.momentum.y=sum.Py();
+        partMod.momentum.z=sum.Pz();
+        partMod.mass= sum.M();
+        partMod.energy= sum.E();
         partMod.charge= chargeLead;
         partMod.tracks_begin = track;
         
@@ -2081,7 +2128,7 @@ std::vector<int> FindBest_3(ROOT::VecOps::RVec<TLorentzVector> P4vector, ROOT::V
 
     for (int i=0; i<P4vector.size(); i++){
         if (i==dau1 || i==dau2) continue;
-        if ((P4vector[i].Pt()>ptThird) && (abs(vec_mass[i]-vec_mass[dau1])<0.01)) { 
+        if ((P4vector[i].Pt()>ptThird)) { //&& (abs(vec_mass[i]-vec_mass[dau1])<0.01) 
             ptThird=P4vector[i].Pt(); 
             third=i;
             }

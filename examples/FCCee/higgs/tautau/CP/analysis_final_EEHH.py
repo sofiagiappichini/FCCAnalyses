@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_v3/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_new/"
 
 #Optional: output directory, default is local running directory
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_v3/"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_new/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -28,22 +28,24 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    'EWonly_taudecay_2Pi2Nu':{},
-    'cehim_m1_taudecay_2Pi2Nu':{},
-    'cehim_p1_taudecay_2Pi2Nu':{},
-    'cehre_m1_taudecay_2Pi2Nu':{},
-    'cehre_p1_taudecay_2Pi2Nu':{},
+    #'EWonly_taudecay_2Pi2Nu':{},
+    #'cehim_m1_taudecay_2Pi2Nu':{},
+    #'cehim_p1_taudecay_2Pi2Nu':{},
+    #'cehre_m1_taudecay_2Pi2Nu':{},
+    #'cehre_p1_taudecay_2Pi2Nu':{},
 
     #'cehim_m5_taudecay_2Pi2Nu':{},
     #'cehim_p5_taudecay_2Pi2Nu':{},
     #'cehre_m5_taudecay_2Pi2Nu':{},
     #'cehre_p5_taudecay_2Pi2Nu':{},
 
-    'EWonly_taudecay_PiPi0Nu':{},
-    'cehim_m1_taudecay_PiPi0Nu':{},
-    'cehim_p1_taudecay_PiPi0Nu':{},
-    'cehre_m1_taudecay_PiPi0Nu':{},
-    'cehre_p1_taudecay_PiPi0Nu':{},
+    #'EWonly_taudecay_PiPi0Nu':{},
+    #'cehim_m1_taudecay_PiPi0Nu':{},
+    #'cehim_p1_taudecay_PiPi0Nu':{},
+    #'cehre_m1_taudecay_PiPi0Nu':{},
+    #'cehre_p1_taudecay_PiPi0Nu':{},
+
+    "e+e-_qqH_H2Pi2Nu":{},
 
     #'cehim_p0p1_taudecay_2Pi2Nu':{},
     #'cehim_m0p1_taudecay_2Pi2Nu':{},
@@ -100,6 +102,7 @@ procDictAdd = {
     'cehim_p1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.846975057236473e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'cehre_m1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 3.193361184321185e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'cehre_p1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.5052618455527882e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'e+e-_qqH_H2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.674e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
 
 }
@@ -107,8 +110,8 @@ procDictAdd = {
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco_20chi": "KinILC_chi2<20",
-    "selReco":"true",
+    "selReco_ILC20chi": "ILC_Filter==1 && KinILC_chi2<20",
+    "selReco_CMS":"true",
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -433,31 +436,7 @@ histoList = {
     "RecoZSub_y":                 {"name":"RecoZSub_y",                  "title":"Reco subleading Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "RecoZSub_mass":              {"name":"RecoZSub_mass",               "title":"Reco subleading Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
 
-    "RecoZP_px":               {"name":"RecoZP_px",                 "title":"Reco positive Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZP_py":               {"name":"RecoZP_py",                 "title":"Reco positive Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZP_pz":               {"name":"RecoZP_pz",                 "title":"Reco positive Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
-    "RecoZP_p":                {"name":"RecoZP_p",                  "title":"Reco positive Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZP_pt":               {"name":"RecoZP_pt",                 "title":"Reco positive Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZP_e":                {"name":"RecoZP_e",                  "title":"Reco positive Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "RecoZP_eta":              {"name":"RecoZP_eta",                "title":"Reco positive Z daughter #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "RecoZP_phi":              {"name":"RecoZP_phi",                "title":"Reco positive Z daughter #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "RecoZP_theta":            {"name":"RecoZP_theta",              "title":"Reco positive Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoZP_y":                {"name":"RecoZP_y",                  "title":"Reco positive Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "RecoZP_mass":             {"name":"RecoZP_mass",               "title":"Reco positive Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
-
-    "RecoZM_px":                {"name":"RecoZM_px",                 "title":"Reco negative Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_py":                {"name":"RecoZM_py",                 "title":"Reco negative Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_pz":                {"name":"RecoZM_pz",                 "title":"Reco negative Z daughter p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
-    "RecoZM_p":                 {"name":"RecoZM_p",                  "title":"Reco negative Z daughter p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZM_pt":                {"name":"RecoZM_pt",                 "title":"Reco negative Z daughter p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
-    "RecoZM_e":                 {"name":"RecoZM_e",                  "title":"Reco negative Z daughter energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
-    "RecoZM_eta":               {"name":"RecoZM_eta",                "title":"Reco negative Z daughter #eta",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "RecoZM_phi":               {"name":"RecoZM_phi",                "title":"Reco negative Z daughter #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
-    "RecoZM_theta":             {"name":"RecoZM_theta",              "title":"Reco negative Z daughter #theta",                 "bin":16, "xmin":0,"xmax":3.2},
-    "RecoZM_y":                 {"name":"RecoZM_y",                  "title":"Reco negative Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
-    "RecoZM_mass":              {"name":"RecoZM_mass",               "title":"Reco negative Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
-                                
-    "Higgs_px":                 {"name":"Higgs_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+      "Higgs_px":                 {"name":"Higgs_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "Higgs_py":                 {"name":"Higgs_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "Higgs_pz":                 {"name":"Higgs_pz",                 "title":"Reco H p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "Higgs_p":                  {"name":"Higgs_p",                  "title":"Reco H p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
@@ -467,7 +446,7 @@ histoList = {
     "Higgs_phi":                {"name":"Higgs_phi",                "title":"Reco H #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
     "Higgs_theta":              {"name":"Higgs_theta",              "title":"Reco H #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "Higgs_y":                  {"name":"Higgs_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "Higgs_mass":               {"name":"Higgs_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
+    "Higgs_mass":               {"name":"Higgs_mass",               "title":"Reco H mass",                   "bin":100, "xmin":0 ,"xmax":200},
 
     "TauLead_px":               {"name":"TauLead_px",                 "title":"#tau_{leading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
     "TauLead_py":               {"name":"TauLead_py",                 "title":"#tau_{leading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
@@ -529,10 +508,15 @@ histoList = {
     "RecoZDaughter_cos":                  {"name":"RecoZDaughter_cos",                    "title":"cos#theta(ll)",                 "bin":100, "xmin":-1.,"xmax":1.},
     "RecoZDaughter_DEta":                   {"name":"RecoZDaughter_DEta",           "title":"Reco Z daughters #Delta#eta",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
 
-    "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
-    "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
+    "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":100, "xmin":0., "xmax":200.},
+    "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":100, "xmin":0., "xmax":200.},
 
     #### CP variables
+
+    "Phi_ZMF":                          {"name": "Phi_ZMF", "title": "cos(#Delta#phi_{CP}) CMS", "bin": 50, "xmin": -1, "xmax": 1},
+    "O_ZMF":                          {"name": "O_ZMF", "title": "sin(#Delta#phi_{CP}) CMS", "bin": 50, "xmin": -1, "xmax": 1},
+    "y_tau":                          {"name": "y_tau", "title": "y^{#tau} CMS", "bin": 50, "xmin": -1, "xmax": 1},
+    "PhiCP_CMS":                             {"name":"PhiCP_CMS",           "title":"#Delta#Phi_{CP} CMS",                  "bin":32, "xmin":-3.14,"xmax":3.14},
 
     "CosDeltaPhiILC":                          {"name": "CosDeltaPhiILC", "title": "cos(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
     "SinDeltaPhiILC":                          {"name": "SinDeltaPhiILC", "title": "sin(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
@@ -549,7 +533,7 @@ histoList = {
     "RecoH_phi":                {"name":"RecoH_phi",                "title":"Reco H #phi",                                   "bin":128, "xmin":-6.4,"xmax":6.4},
     "RecoH_theta":              {"name":"RecoH_theta",              "title":"Reco H #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "RecoH_y":                  {"name":"RecoH_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":100, "xmin":0 ,"xmax":200},
 
     "RecoTauLead_px":               {"name":"RecoTauLead_px",                 "title":"#tau_{leading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
     "RecoTauLead_py":               {"name":"RecoTauLead_py",                 "title":"#tau_{leading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
@@ -610,6 +594,7 @@ histoList = {
 }
 
 '''
+
 "TauTag_e":                {"name":"TauTag_e",                   "title":"#tau from tagged jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TauTag_p":                {"name":"TauTag_p",                   "title":"#tau from tagged jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
     "TauTag_pt":               {"name":"TauTag_pt",                  "title":"#tau from tagged jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
@@ -656,7 +641,4 @@ histoList = {
     "DeltaPhi":                             {"name":"DeltaPhi",           "title":"#Delta#Phi_{CP} Belle",                  "bin":32, "xmin":-3.14,"xmax":3.14},
 
     
-    "Phi_Recoil":                          {"name": "Phi_Recoil", "title": "cos(#Delta#phi_{CP}) CMS", "bin": 50, "xmin": -1, "xmax": 1},
-    "O_Recoil":                          {"name": "O_Recoil", "title": "sin(#Delta#phi_{CP}) CMS", "bin": 50, "xmin": -1, "xmax": 1},
-    "PhiCP_CMS":                             {"name":"PhiCP_CMS",           "title":"#Delta#Phi_{CP} CMS",                  "bin":32, "xmin":-3.14,"xmax":3.14},
-'''
+    '''

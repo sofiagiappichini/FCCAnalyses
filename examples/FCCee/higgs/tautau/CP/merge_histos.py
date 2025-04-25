@@ -32,12 +32,12 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_v3/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_new/"
 
 #list of cuts you want to plot
 CUT = [
-    "selReco",
-    "selReco_20chi",
+    "selReco_CMS",
+    "selReco_ILC20chi",
 ]
 
 #now you can list all the histograms that you want to plot
@@ -758,12 +758,22 @@ VARIABLES_CP = [
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
 
-            ########## cp 
+            
+]
+
+VARIABLES_CMS = [
+    "Phi_ZMF",
+    "O_ZMF",
+    "y_tau",
+    "PhiCP_CMS",
+]
+
+VARIABLES_ILC = [
             "CosDeltaPhiILC", 
             "SinDeltaPhiILC", 
             "DeltaPhiILC",
             "KinILC_chi2",
-
+            
             "RecoH_px",
             "RecoH_py",
             "RecoH_pz",
@@ -828,7 +838,6 @@ VARIABLES_CP = [
             "RecoTau_cos",
             "RecoTau_DEta", 
             "RecoTau_DPhi",
-
 ]
 
 VARIABLES_TAG = [
@@ -933,7 +942,7 @@ list = {
 
 for cut in CUT:
 
-    variables = VARIABLES_RECO + VARIABLES_CP
+    variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
 
     for num in range(1,6):
         outFile = ROOT.TFile.Open(DIRECTORY + legend[num] + "_" + cut + "_histo.root", "RECREATE")

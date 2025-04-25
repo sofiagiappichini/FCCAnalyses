@@ -53,7 +53,7 @@ def create_condor_config_KIT(nCPUs: int,
     '''
     cfg = 'Universe          = docker\n'
 
-    cfg += 'docker_image     = cverstege/alma9-base\n'
+    cfg += 'docker_image     = cverstege/alma9-gridjob\n'
 
     cfg += 'accounting_group = cms.higgs \n'
 

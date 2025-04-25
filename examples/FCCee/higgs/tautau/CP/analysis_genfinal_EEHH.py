@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_gen_v3_nu/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_gen/"
 
 #Optional: output directory, default is local running directory
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/final_gen_v3"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/final_gen"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -22,23 +22,23 @@ doTree = False
 
 #Mandatory: List of processes
 processList = {
-    #'noISR_e+e-_noCuts_EWonly':{},
-    #'noISR_e+e-_noCuts_cehim_m1':{},
-    #'noISR_e+e-_noCuts_cehim_p1':{},
+    'noISR_e+e-_noCuts_EWonly':{},
+    'noISR_e+e-_noCuts_cehim_m1':{},
+    'noISR_e+e-_noCuts_cehim_p1':{},
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    'EWonly_taudecay_2Pi2Nu':{},
-    'cehim_m1_taudecay_2Pi2Nu':{},
-    'cehim_p1_taudecay_2Pi2Nu':{},
-    'cehre_m1_taudecay_2Pi2Nu':{},
-    'cehre_p1_taudecay_2Pi2Nu':{},
+    #'EWonly_taudecay_2Pi2Nu':{},
+    #'cehim_m1_taudecay_2Pi2Nu':{},
+    #'cehim_p1_taudecay_2Pi2Nu':{},
+    #'cehre_m1_taudecay_2Pi2Nu':{},
+    #'cehre_p1_taudecay_2Pi2Nu':{},
 
-    'EWonly_taudecay_PiPi0Nu':{},
-    'cehim_m1_taudecay_PiPi0Nu':{},
-    'cehim_p1_taudecay_PiPi0Nu':{},
-    'cehre_m1_taudecay_PiPi0Nu':{},
-    'cehre_p1_taudecay_PiPi0Nu':{},
+    #'EWonly_taudecay_PiPi0Nu':{},
+    #'cehim_m1_taudecay_PiPi0Nu':{},
+    #'cehim_p1_taudecay_PiPi0Nu':{},
+    #'cehre_m1_taudecay_PiPi0Nu':{},
+    #'cehre_p1_taudecay_PiPi0Nu':{},
 
     #'cehim_m5_taudecay_2Pi2Nu':{},
     #'cehim_p5_taudecay_2Pi2Nu':{},
@@ -462,11 +462,11 @@ histoList = {
 
     "GenCosDeltaPhiILC":              {"name":"GenCosDeltaPhiILC",            "title":"cos#Delta#phi (ILC)",                  "bin":50, "xmin":-1.,"xmax":1.},
     "GenSinDeltaPhiILC":              {"name":"GenSinDeltaPhiILC",            "title":"sin#Delta#phi (ILC)",                  "bin":50, "xmin":-1.,"xmax":1.},
-    "GenDeltaPhiILC":              {"name":"GenDeltaPhiILC",            "title":"#Delta#phi (ILC)",                  "bin":30, "xmin":-3.14,"xmax":3.14},
+    "GenDeltaPhiILC":              {"name":"GenDeltaPhiILC",            "title":"#Delta#phi (ILC)",                  "bin":15, "xmin":-3.14,"xmax":3.14},
 
     "GenCosDeltaPhi":              {"name":"GenCosDeltaPhi",            "title":"cos#phi (angle of decay)",                  "bin":50, "xmin":-1.,"xmax":1.},
     "GenSinDeltaPhi":              {"name":"GenSinDeltaPhi",            "title":"sin#phi (angle of decay)",                  "bin":50, "xmin":-1.,"xmax":1.},
-    "GenDeltaPhi":              {"name":"GenDeltaPhi",            "title":"#Delta#phi (angle of decay)",                  "bin":30, "xmin":-3.14,"xmax":3.14},
+    "GenDeltaPhi":              {"name":"GenDeltaPhi",            "title":"#Delta#phi (angle of decay)",                  "bin":15, "xmin":-3.14,"xmax":3.14},
 
     #"GenTheta2":              {"name":"GenTheta2",            "title":"Gen #theta_{2}",                  "bin":32, "xmin":0,"xmax":3.2},
     #"GenTheta2_cos":              {"name":"GenTheta2_cos",            "title":"Gen cos#theta_{2}",                  "bin":50, "xmin":-1.,"xmax":1.},

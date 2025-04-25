@@ -9,17 +9,17 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    #'EWonly_taudecay_2Pi2Nu':{},
-    #'cehim_m1_taudecay_2Pi2Nu':{},
-    #'cehim_p1_taudecay_2Pi2Nu':{},
-    #'cehre_m1_taudecay_2Pi2Nu':{},
-    #'cehre_p1_taudecay_2Pi2Nu':{},
+    'EWonly_taudecay_2Pi2Nu':{},
+    'cehim_m1_taudecay_2Pi2Nu':{},
+    'cehim_p1_taudecay_2Pi2Nu':{},
+    'cehre_m1_taudecay_2Pi2Nu':{},
+    'cehre_p1_taudecay_2Pi2Nu':{},
     
     'EWonly_taudecay_PiPi0Nu':{},
-    #'cehim_m1_taudecay_PiPi0Nu':{},
-    #'cehim_p1_taudecay_PiPi0Nu':{},
-    #'cehre_m1_taudecay_PiPi0Nu':{},
-    #'cehre_p1_taudecay_PiPi0Nu':{},
+    'cehim_m1_taudecay_PiPi0Nu':{},
+    'cehim_p1_taudecay_PiPi0Nu':{},
+    'cehre_m1_taudecay_PiPi0Nu':{},
+    'cehre_p1_taudecay_PiPi0Nu':{},
 
     #'cehim_m5_taudecay_2Pi2Nu':{},
     #'cehim_p5_taudecay_2Pi2Nu':{},
@@ -34,9 +34,9 @@ processList = {
     #'wzp6_ee_eeH_Htautau_ecm240': {},
 }
 
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_v3/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1/"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_tag_v3/"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_tag/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -211,18 +211,18 @@ class RDFanalysis():
                 .Define("n_RecoTau1_neutral_constituents",        "n_TauTag_charged_constituents.at(0)")
                 .Define("n_RecoTau2_neutral_constituents",        "n_TauTag_neutral_constituents.at(1)")
 
-                .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
-                .Define("RecoH_px",    "RecoH_p4.Px()")
-                .Define("RecoH_py",    "RecoH_p4.Py()")
-                .Define("RecoH_pz",    "RecoH_p4.Pz()")
-                .Define("RecoH_p",    "RecoH_p4.P()")
-                .Define("RecoH_pt",    "RecoH_p4.Pt()")
-                .Define("RecoH_e",     "RecoH_p4.E()")
-                .Define("RecoH_eta",    "RecoH_p4.Eta()")
-                .Define("RecoH_phi",    "RecoH_p4.Phi()")
-                .Define("RecoH_theta",    "RecoH_p4.Theta()")
-                .Define("RecoH_y",     "RecoH_p4.Rapidity()")
-                .Define("RecoH_mass",    "RecoH_p4.M()")
+                .Define("Higgs_p4",         "RecoTau1_p4+RecoTau2_p4")
+                .Define("Higgs_px",    "Higgs_p4.Px()")
+                .Define("Higgs_py",    "Higgs_p4.Py()")
+                .Define("Higgs_pz",    "Higgs_p4.Pz()")
+                .Define("Higgs_p",    "Higgs_p4.P()")
+                .Define("Higgs_pt",    "Higgs_p4.Pt()")
+                .Define("Higgs_e",     "Higgs_p4.E()")
+                .Define("Higgs_eta",    "Higgs_p4.Eta()")
+                .Define("Higgs_phi",    "Higgs_p4.Phi()")
+                .Define("Higgs_theta",    "Higgs_p4.Theta()")
+                .Define("Higgs_y",     "Higgs_p4.Rapidity()")
+                .Define("Higgs_mass",    "Higgs_p4.M()")
                 
                 .Define("TauLead_p4",       "if (RecoTau1_p4.Pt()>RecoTau2_p4.Pt()) return RecoTau1_p4; else return RecoTau2_p4;")
                 .Define("TauLead_px",    "TauLead_p4.Px()")
@@ -311,7 +311,7 @@ class RDFanalysis():
                 .Define("f0",       "1./(1.+r0)")
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
-                .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
+                .Define("Collinear_mass",       "Higgs_mass/sqrt(f0*f1)")
 
                 #.Filter("Collinear_mass>100 && Collinear_mass<150")
 
@@ -322,33 +322,39 @@ class RDFanalysis():
                 # impact parameter method from CMS for decay into one pion
                 # we do know the higgs rest frame / recoil frame so we can use that instead of going around it with the visible taus
 
-                .Define("ZMF_p4",       "RecoH_p4")
+                .Define("ZMF_p4",       "RecoPiP_p4+RecoPiM_p4")
 
-                .Define("ZMF_RecoPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, TauP_p4)")
-                .Define("ZMF_ImpactP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, ChargedJetImpactP_p4)")
-
-                .Define("ZMF_RecoPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, TauM_p4)")
-                .Define("ZMF_ImpactM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, ChargedJetImpactM_p4)")
-
+                .Define("OP_ImpactP_p4",        "FCCAnalyses::ZHfunctions::ImpactFromIP(ChargedJEtImpactP_p4, RecoPiP_p4, RecoIP_p4)")
+                .Define("ZMF_RecoPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoPiP_p4)")
+                .Define("ZMF_RecoPi0P_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoPi0P_p4)")
+                .Define("ZMF_ImpactP_p4",    "(FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, OP_ImpactP_p4))")
                 .Define("ZMF_ImpactP_par",       "((ZMF_ImpactP_p4.Vect()).Dot((ZMF_RecoPiP_p4.Vect())))/((ZMF_RecoPiP_p4.Vect()).Mag2())*ZMF_RecoPiP_p4.Vect()")
                 .Define("ZMF_ImpactP_perp",      "(ZMF_ImpactP_p4.Vect() - ZMF_ImpactP_par).Unit()")
-                .Redefine("ZMF_ImpactP_par",       "(((ZMF_ImpactP_p4.Vect()).Dot((ZMF_RecoPiP_p4.Vect())))/((ZMF_RecoPiP_p4.Vect()).Mag2())*ZMF_RecoPiP_p4.Vect()).Unit()")
+                .Define("ZMF_RecoPi0P_par",       "((ZMF_RecoPi0P_p4.Vect()).Dot((ZMF_RecoPiP_p4.Vect())))/((ZMF_RecoPiP_p4.Vect()).Mag2())*ZMF_RecoPiP_p4.Vect()")
+                .Define("ZMF_RecoPi0P_perp",      "(ZMF_RecoPi0P_p4.Vect() - ZMF_RecoPi0P_par).Unit()")
 
+                .Define("OP_ImpactM_p4",        "FCCAnalyses::ZHfunctions::ImpactFromIP(ChargedJEtImpactM_p4, RecoPiM_p4, RecoIP_p4)")
+                .Define("ZMF_RecoPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoPiM_p4)")
+                .Define("ZMF_RecoPi0M_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, RecoPi0M_p4)")
+                .Define("ZMF_ImpactM_p4",    "(FCCAnalyses::ZHfunctions::boosted_p4_single(- ZMF_p4, OP_ImpactM_p4))")
                 .Define("ZMF_ImpactM_par",       "((ZMF_ImpactM_p4.Vect()).Dot((ZMF_RecoPiM_p4.Vect())))/((ZMF_RecoPiM_p4.Vect()).Mag2())*ZMF_RecoPiM_p4.Vect()")
-                .Define("ZMF_ImpactM_perp",      "(ZMF_ImpactP_p4.Vect() - ZMF_ImpactM_par).Unit()")
-                .Redefine("ZMF_ImpactM_par",       "(((ZMF_ImpactM_p4.Vect()).Dot((ZMF_RecoPiM_p4.Vect())))/((ZMF_RecoPiM_p4.Vect()).Mag2())*ZMF_RecoPiM_p4.Vect()).Unit()")
+                .Define("ZMF_ImpactM_perp",      "(ZMF_ImpactM_p4.Vect() - ZMF_ImpactM_par).Unit()")
+                .Define("ZMF_RecoPi0M_par",       "((ZMF_RecoPi0M_p4.Vect()).Dot((ZMF_RecoPiM_p4.Vect())))/((ZMF_RecoPiM_p4.Vect()).Mag2())*ZMF_RecoPiM_p4.Vect()")
+                .Define("ZMF_RecoPi0M_perp",      "(ZMF_RecoPi0M_p4.Vect() - ZMF_RecoPi0M_par).Unit()")
 
-                .Define("Phi_Recoil",       "acos(ZMF_ImpactP_perp.Dot(ZMF_ImpactM_perp))")
-                .Define("O_Recoil",         "((ZMF_RecoPiM_p4.Vect()).Unit()).Dot(ZMF_ImpactP_perp.Cross(ZMF_ImpactM_perp))")
+                .Define("Phi_Recoil",       "if (ZMF_RecoPi0P_p4.E()>0 && ZMF_RecoPi0M_p4.E()>0) return acos(ZMF_RecoPi0P_perp.Dot(ZMF_RecoPi0M_perp)); else return acos(ZMF_ImpactP_perp.Dot(ZMF_ImpactM_perp));")
+                .Define("y_plus",       "(RecoPiP_p4.E()-RecoPi0P_p4.E())/(RecoPiP_p4.E()+RecoPi0P_p4.E())")
+                .Define("y_min",       "(RecoPiM_p4.E()-RecoPi0M_p4.E())/(RecoPiM_p4.E()+RecoPi0M_p4.E())")
+                .Define("O_Recoil",         "if (ZMF_RecoPi0P_p4.E()>0 && ZMF_RecoPi0M_p4.E()>0) return (y_plus * y_min); else return ((ZMF_RecoPiM_p4.Vect()).Unit()).Dot(ZMF_ImpactP_perp.Cross(ZMF_ImpactM_perp));")
 
-                .Define("PhiCP_CMS",        "if (O_Recoil>=0) return Phi_Recoil; else return (2*3.1415 - Phi_Recoil);")
+                .Define("PhiCP_CMS",        "if (O_Recoil>=0) return Phi_Recoil; else return (- Phi_Recoil);")
 
                 ###########################################
 
                 #following ILC paper https://arxiv.org/pdf/1804.01241 and reference from d. Jeans https://arxiv.org/pdf/1507.01700
 
                 .Define("KinILC_Nu_p4",        "FCCAnalyses::ZHfunctions::build_nu_kin_ILC(RecoZ_p4, RecoPi_p4, RecoPi0_p4, Impact_p4, RecoIP_p4)")
-                #.Filter("KinILC_Nu_p4.at(0).Pt() > 0 && KinILC_Nu_p4.at(0).E() > 0 && KinILC_Nu_p4.at(1).Pt() > 0 && KinILC_Nu_p4.at(1).E() > 0")
+                .Define("ILC_Filter",       "if (KinILC_Nu_p4.at(0).Pt() > 0 && KinILC_Nu_p4.at(0).E() > 0 && KinILC_Nu_p4.at(1).Pt() > 0 && KinILC_Nu_p4.at(1).E() > 0) return int(1); else return int(0);")
 
                 .Define("KinILC_NuP_p4",       "KinILC_Nu_p4.at(0)")
                 .Define("KinILC_NuM_p4",       "KinILC_Nu_p4.at(1)")
@@ -385,6 +391,81 @@ class RDFanalysis():
                 .Define("DeltaPhiILC",     "atan2(SinDeltaPhiILC, CosDeltaPhiILC)") 
 
                 .Define("ILCRecoTotal",        "RecoZ_p4 + KinILC_TauP_p4 + KinILC_TauM_p4")
+
+                ############################
+                ########### Tau ############
+                ############################
+
+                .Define("RecoH_p4",         "KinILC_Higgs_p4")
+                .Define("RecoH_px",    "RecoH_p4.Px()")
+                .Define("RecoH_py",    "RecoH_p4.Py()")
+                .Define("RecoH_pz",    "RecoH_p4.Pz()")
+                .Define("RecoH_p",    "RecoH_p4.P()")
+                .Define("RecoH_pt",    "RecoH_p4.Pt()")
+                .Define("RecoH_e",     "RecoH_p4.E()")
+                .Define("RecoH_eta",    "RecoH_p4.Eta()")
+                .Define("RecoH_phi",    "RecoH_p4.Phi()")
+                .Define("RecoH_theta",    "RecoH_p4.Theta()")
+                .Define("RecoH_y",     "RecoH_p4.Rapidity()")
+                .Define("RecoH_mass",    "RecoH_p4.M()")
+                
+                .Define("RecoTauLead_p4",       "if (KinILC_TauP_p4.Pt()>KinILC_TauM_p4.Pt()) return KinILC_TauP_p4; else return KinILC_TauM_p4;")
+                .Define("RecoTauLead_px",    "RecoTauLead_p4.Px()")
+                .Define("RecoTauLead_py",    "RecoTauLead_p4.Py()")
+                .Define("RecoTauLead_pz",    "RecoTauLead_p4.Pz()")
+                .Define("RecoTauLead_p",    "RecoTauLead_p4.P()")
+                .Define("RecoTauLead_pt",    "RecoTauLead_p4.Pt()")
+                .Define("RecoTauLead_e",     "RecoTauLead_p4.E()")
+                .Define("RecoTauLead_eta",    "RecoTauLead_p4.Eta()")
+                .Define("RecoTauLead_phi",    "RecoTauLead_p4.Phi()")
+                .Define("RecoTauLead_theta",    "RecoTauLead_p4.Theta()")
+                .Define("RecoTauLead_y",     "RecoTauLead_p4.Rapidity()")
+                .Define("RecoTauLead_mass",    "RecoTauLead_p4.M()")
+
+                .Define("RecoTauSub_p4",       "if (KinILC_TauP_p4.Pt()>KinILC_TauP_p4.Pt()) return KinILC_TauM_p4; else return KinILC_TauP_p4;")
+                .Define("RecoTauSub_px",    "RecoTauSub_p4.Px()")
+                .Define("RecoTauSub_py",    "RecoTauSub_p4.Py()")
+                .Define("RecoTauSub_pz",    "RecoTauSub_p4.Pz()")
+                .Define("RecoTauSub_p",    "RecoTauSub_p4.P()")
+                .Define("RecoTauSub_pt",    "RecoTauSub_p4.Pt()")
+                .Define("RecoTauSub_e",     "RecoTauSub_p4.E()")
+                .Define("RecoTauSub_eta",    "RecoTauSub_p4.Eta()")
+                .Define("RecoTauSub_phi",    "RecoTauSub_p4.Phi()")
+                .Define("RecoTauSub_theta",    "RecoTauSub_p4.Theta()")
+                .Define("RecoTauSub_y",     "RecoTauSub_p4.Rapidity()")
+                .Define("RecoTauSub_mass",    "RecoTauSub_p4.M()")
+
+                .Define("RecoTauP_p4","KinILC_TauP_p4")
+                .Define("RecoTauP_px",    "RecoTauP_p4.Px()")
+                .Define("RecoTauP_py",    "RecoTauP_p4.Py()")
+                .Define("RecoTauP_pz",    "RecoTauP_p4.Pz()")
+                .Define("RecoTauP_p",    "RecoTauP_p4.P()")
+                .Define("RecoTauP_pt",    "RecoTauP_p4.Pt()")
+                .Define("RecoTauP_e",     "RecoTauP_p4.E()")
+                .Define("RecoTauP_eta",    "RecoTauP_p4.Eta()")
+                .Define("RecoTauP_phi",    "RecoTauP_p4.Phi()")
+                .Define("RecoTauP_theta",    "RecoTauP_p4.Theta()")
+                .Define("RecoTauP_y",     "RecoTauP_p4.Rapidity()")
+                .Define("RecoTauP_mass",    "RecoTauP_p4.M()")
+
+                .Define("RecoTauM_p4",       "KinILC_TauM_p4")
+                .Define("RecoTauM_px",    "RecoTauM_p4.Px()")
+                .Define("RecoTauM_py",    "RecoTauM_p4.Py()")
+                .Define("RecoTauM_pz",    "RecoTauM_p4.Pz()")
+                .Define("RecoTauM_p",    "RecoTauM_p4.P()")
+                .Define("RecoTauM_pt",    "RecoTauM_p4.Pt()")
+                .Define("RecoTauM_e",     "RecoTauM_p4.E()")
+                .Define("RecoTauM_eta",    "RecoTauM_p4.Eta()")
+                .Define("RecoTauM_phi",    "RecoTauM_p4.Phi()")
+                .Define("RecoTauM_theta",    "RecoTauM_p4.Theta()")
+                .Define("RecoTauM_y",     "RecoTauM_p4.Rapidity()")
+                .Define("RecoTauM_mass",    "RecoTauM_p4.M()")
+
+                .Define("RecoTau_DR",       "FCCAnalyses::ZHfunctions::deltaR(RecoTauLead_phi, RecoTauSub_phi, RecoTauLead_eta, RecoTauSub_eta)")
+                .Define("RecoTau_scalar",      "(RecoTauLead_px*RecoTauSub_px + RecoTauLead_py*RecoTauSub_py + RecoTauLead_pz*RecoTauSub_pz)")
+                .Define("RecoTau_cos",      "RecoTau_scalar/(RecoTauLead_p*RecoTauSub_p)")
+                .Define("RecoTau_DEta",    "(RecoTauLead_eta - RecoTauSub_eta)")
+                .Define("RecoTau_DPhi",     "FCCAnalyses::ZHfunctions::deltaPhi(RecoTauLead_phi, RecoTauSub_phi)")
 
         )
         return df2
@@ -1087,17 +1168,17 @@ class RDFanalysis():
             "RecoZM_y",    
             "RecoZM_mass", 
 
-            "RecoH_px",
-            "RecoH_py",
-            "RecoH_pz",
-            "RecoH_p",
-            "RecoH_pt",
-            "RecoH_e",
-            "RecoH_eta",
-            "RecoH_phi",
-            "RecoH_theta",
-            "RecoH_y",
-            "RecoH_mass",
+            "Higgs_px",
+            "Higgs_py",
+            "Higgs_pz",
+            "Higgs_p",
+            "Higgs_pt",
+            "Higgs_e",
+            "Higgs_eta",
+            "Higgs_phi",
+            "Higgs_theta",
+            "Higgs_y",
+            "Higgs_mass",
 
             "TauLead_px",    
             "TauLead_py",   
@@ -1192,7 +1273,73 @@ class RDFanalysis():
             "SinDeltaPhiILC", 
             "DeltaPhiILC",
             "KinILC_chi2",
+            "ILC_Filter", 
             "ILCRecoTotal",
+
+            "RecoH_px",
+            "RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            "RecoH_phi",
+            "RecoH_theta",
+            "RecoH_y",
+            "RecoH_mass",
+
+            "RecoTauLead_px",    
+            "RecoTauLead_py",   
+            "RecoTauLead_pz",   
+            "RecoTauLead_p",   
+            "RecoTauLead_pt",   
+            "RecoTauLead_e",    
+            "RecoTauLead_eta",    
+            "RecoTauLead_phi",    
+            "RecoTauLead_theta",    
+            "RecoTauLead_y",    
+            "RecoTauLead_mass",
+
+            "RecoTauSub_px",    
+            "RecoTauSub_py",   
+            "RecoTauSub_pz",   
+            "RecoTauSub_p",   
+            "RecoTauSub_pt",   
+            "RecoTauSub_e",    
+            "RecoTauSub_eta",    
+            "RecoTauSub_phi",    
+            "RecoTauSub_theta",    
+            "RecoTauSub_y",    
+            "RecoTauSub_mass",
+
+            "RecoTauP_px", 
+            "RecoTauP_py",   
+            "RecoTauP_pz",   
+            "RecoTauP_p",    
+            "RecoTauP_pt",   
+            "RecoTauP_e",    
+            "RecoTauP_eta",    
+            "RecoTauP_phi",    
+            "RecoTauP_theta",   
+            "RecoTauP_y",     
+            "RecoTauP_mass",   
+
+            "RecoTauM_px",    
+            "RecoTauM_py",   
+            "RecoTauM_pz",   
+            "RecoTauM_p",   
+            "RecoTauM_pt",  
+            "RecoTauM_e",     
+            "RecoTauM_eta",   
+            "RecoTauM_phi",   
+            "RecoTauM_theta",    
+            "RecoTauM_y",    
+            "RecoTauM_mass", 
+
+            "RecoTau_DR",
+            "RecoTau_cos",
+            "RecoTau_DEta", 
+            "RecoTau_DPhi",
         ]
 
         return branchList

@@ -3,11 +3,11 @@ import ROOT
 
 #Mandatory: List of processes
 processList = {
-    #'noISR_e+e-_noCuts_EWonly':{},
-    #'noISR_e+e-_noCuts_cehim_m1':{},
-    #'noISR_e+e-_noCuts_cehim_p1':{},
-    #'noISR_e+e-_noCuts_cehre_m1':{},
-    #'noISR_e+e-_noCuts_cehre_p1':{},
+    'noISR_e+e-_noCuts_EWonly':{},
+    'noISR_e+e-_noCuts_cehim_m1':{},
+    'noISR_e+e-_noCuts_cehim_p1':{},
+    'noISR_e+e-_noCuts_cehre_m1':{},
+    'noISR_e+e-_noCuts_cehre_p1':{},
     
     #'EWonly_taudecay_2Pi2Nu':{},
     #'cehim_m1_taudecay_2Pi2Nu':{},
@@ -15,7 +15,7 @@ processList = {
     #'cehre_m1_taudecay_2Pi2Nu':{},
     #'cehre_p1_taudecay_2Pi2Nu':{},
 
-    'EWonly_taudecay_PiPi0Nu':{},
+    #'EWonly_taudecay_PiPi0Nu':{},
     #'cehim_m1_taudecay_PiPi0Nu':{},
     #'cehim_p1_taudecay_PiPi0Nu':{},
     #'cehre_m1_taudecay_PiPi0Nu':{},
@@ -41,9 +41,9 @@ processList = {
     #'wzp6_ee_eeH_Htautau_ecm240': {},
 }
 
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_v3/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1/"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_gen_v3_nu/"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_gen/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -62,6 +62,8 @@ class RDFanalysis():
 
                 .Define("FSGenMuon_size",   "FSGenMuon_vertex_z[abs(FSGenMuon_parentPDG)!=15]")
                 .Define("n_FSGenMuon_sel",     "FSGenMuon_size.size()")
+
+                .Filter("GenPi0P2_e>0 && GenPi0M2_e>0")
                 
                 ######################
                 ##### FILTERING ######
@@ -75,6 +77,9 @@ class RDFanalysis():
                 #################
                 # Gen particles #
                 #################
+
+                .Define("GenPi0P_p4",        "GenPi0P1_p4+GenPi0P2_p4")
+                .Define("GenPi0M_p4",        "GenPi0M1_p4+GenPi0M2_p4")
 
                 .Define("GenZ_p4",     "(FSGenZDaughter_p4.at(0)+FSGenZDaughter_p4.at(1))")
                 .Define("GenZ_px",    "GenZ_p4.Px()")
@@ -223,7 +228,7 @@ class RDFanalysis():
 
                 .Define("GenPi_p4",      "FCCAnalyses::ZHfunctions::build_p4_class(GenPiP_p4.at(0), GenPiM_p4.at(0))")
                 .Define("GenNu_Impact_p4",      "FCCAnalyses::ZHfunctions::build_p4_class(GenNuP_Impact_p4.at(0), GenNuM_Impact_p4.at(0))")
-                .Define("GenPi0_p4",      "FCCAnalyses::ZHfunctions::build_p4_class(GenPi0P1_p4, GenPi0M1_p4)")
+                .Define("GenPi0_p4",      "FCCAnalyses::ZHfunctions::build_p4_class(GenPi0P_p4, GenPi0M_p4)")
                 .Define("GenHiggs_p4",      "TLorentzVector(GenHiggs_px.at(0), GenHiggs_py.at(0), GenHiggs_pz.at(0), GenHiggs_e.at(0))")
                 .Define("GenIP",        "TLorentzVector(FSGenElectron_vertex_x.at(0), FSGenElectron_vertex_y.at(0), FSGenElectron_vertex_z.at(0), 0.)")
                 
@@ -308,18 +313,18 @@ class RDFanalysis():
                 # ILC paper https://arxiv.org/pdf/1804.01241
 
                 .Define("TauPRF_GenPiP_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPiP_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPiP_p4.at(0));")
-                .Define("TauPRF_GenPi0P_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPi0P1_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPi0P1_p4);")
+                .Define("TauPRF_GenPi0P_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPi0P_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPi0P_p4);")
                 .Define("TauPRF_GenNuP_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenNuP_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenNuP_p4.at(0));")
 
                 .Define("TauMRF_GenPiM_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPiM_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPiM_p4.at(0));")
-                .Define("TauMRF_GenPi0M_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPi0M1_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPi0M1_p4);")
+                .Define("TauMRF_GenPi0M_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenPi0M_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenPi0M_p4);")
                 .Define("TauMRF_GenNuM_p4",    "if (HadGenTau_charge.at(0)==1) return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(1), GenNuM_p4.at(0)); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- HadGenTau_p4.at(0), GenNuM_p4.at(0));")
 
                 #.Define("GenhP_p3",        "TauPRF_GenPiP_p4.Vect()")
                 #.Define("GenhM_p3",        "TauMRF_GenPiM_p4.Vect()")
-                .Define("GenhP_p3",       "if (GenPi0P1_e>0) return (1.777 * (TauPRF_GenPiP_p4.E() - TauPRF_GenPi0P_p4.E()) * (TauPRF_GenPiP_p4.Vect() - TauPRF_GenPi0P_p4.Vect()) + 0.5 * (TauPRF_GenPiP_p4 + TauPRF_GenPi0P_p4).Mag2() * TauPRF_GenNuP_p4.Vect()); \
+                .Define("GenhP_p3",       "if (GenPi0P_p4.E()>0) return (1.777 * (TauPRF_GenPiP_p4.E() - TauPRF_GenPi0P_p4.E()) * (TauPRF_GenPiP_p4.Vect() - TauPRF_GenPi0P_p4.Vect()) + 0.5 * (TauPRF_GenPiP_p4 + TauPRF_GenPi0P_p4).Mag2() * TauPRF_GenNuP_p4.Vect()); \
                                         else return TauPRF_GenPiP_p4.Vect();")
-                .Define("GenhM_p3",       "if (GenPi0M1_e>0) return  (1.777 * (TauMRF_GenPiM_p4.E() - TauMRF_GenPi0M_p4.E()) * (TauMRF_GenPiM_p4.Vect() - TauMRF_GenPi0M_p4.Vect()) + 0.5 * (TauMRF_GenPiM_p4 + TauMRF_GenPi0M_p4).Mag2() * TauMRF_GenNuM_p4.Vect()); \
+                .Define("GenhM_p3",       "if (GenPi0M_p4.E()>0) return  (1.777 * (TauMRF_GenPiM_p4.E() - TauMRF_GenPi0M_p4.E()) * (TauMRF_GenPiM_p4.Vect() - TauMRF_GenPi0M_p4.Vect()) + 0.5 * (TauMRF_GenPiM_p4 + TauMRF_GenPi0M_p4).Mag2() * TauMRF_GenNuM_p4.Vect()); \
                                         else return TauMRF_GenPiM_p4.Vect();")
 
                 .Define("HRF_HadGenTau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- GenHiggs_p4, HadGenTau_p4)")
@@ -368,17 +373,17 @@ class RDFanalysis():
 
                 .Define("GenKinILC_chi2",      "GenKinILC_Nu_p4.at(2).X()")
 
-                .Define("GenKinILC_TauP_p4",      "GenKinILC_NuP_p4 + GenPiP_p4.at(0) + GenPi0P1_p4")
-                .Define("GenKinILC_TauM_p4",     "GenKinILC_NuM_p4 + GenPiM_p4.at(0) + GenPi0M1_p4")
+                .Define("GenKinILC_TauP_p4",      "GenKinILC_NuP_p4 + GenPiP_p4.at(0) + GenPi0P_p4")
+                .Define("GenKinILC_TauM_p4",     "GenKinILC_NuM_p4 + GenPiM_p4.at(0) + GenPi0M_p4")
 
                 .Define("GenKinILC_Higgs_p4",      "GenKinILC_TauP_p4 + GenKinILC_TauM_p4")
 
                 .Define("GenTauPRF_ILCPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenKinILC_TauP_p4, GenPiP_p4.at(0))")
-                .Define("GenTauPRF_ILCPi0P_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenKinILC_TauP_p4, GenPi0P1_p4)")
+                .Define("GenTauPRF_ILCPi0P_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenKinILC_TauP_p4, GenPi0P_p4)")
                 .Define("GenTauPRF_ILCNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenKinILC_TauP_p4, GenKinILC_NuP_p4)")
 
                 .Define("GenTauMRF_ILCPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenKinILC_TauM_p4,  GenPiM_p4.at(0))")
-                .Define("GenTauMRF_ILCPi0M_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenKinILC_TauM_p4,  GenPi0M1_p4)")
+                .Define("GenTauMRF_ILCPi0M_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenKinILC_TauM_p4,  GenPi0M_p4)")
                 .Define("GenTauMRF_ILCNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenKinILC_TauM_p4, GenKinILC_NuM_p4)")
                 
                 .Define("GenILChP_p3",       "if (GenTauPRF_ILCPi0P_p4.E()>0) return (1.777 * (GenTauPRF_ILCPiP_p4.E() - GenTauPRF_ILCPi0P_p4.E()) * (GenTauPRF_ILCPiP_p4.Vect() - GenTauPRF_ILCPi0P_p4.Vect()) + 0.5 * (GenTauPRF_ILCPiP_p4 + GenTauPRF_ILCPi0P_p4).Mag2() * GenTauPRF_ILCNuP_p4.Vect()); \
@@ -919,6 +924,8 @@ class RDFanalysis():
             "GenEmiss_eta", 
             "GenEmiss_phi",
             "GenEmiss_theta",
+
+            "GenPhi_decay",
 
             "GenCosDeltaPhi",
             "GenSinDeltaPhi",

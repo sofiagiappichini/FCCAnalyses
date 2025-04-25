@@ -87,31 +87,31 @@ processList = {
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
-prodTag     = "FCCee/winter2023/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
-#inputDir = "/ceph/sgiappic/HiggsCP/winter23"
+inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 #inputDir = "root://eospublic.cern.ch//eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-#outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
+outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
+#outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
 
 ### necessary to run on HTCondor ###
-eosType = "eosuser"
+#eosType = "eosuser"
 
 #Optional running on HTCondor, default is False
-runBatch = True
+#runBatch = True
 
-nCPUS = 6
+#nCPUS = 6
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+#batchQueue = "longlunch"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-compGroup = "group_u_FCC.local_gen"
+#compGroup = "group_u_FCC.local_gen"
 
 ## tagging -------------------------------
 ## latest particle transformer model, trained on 9M jets in winter2023 samples
@@ -123,8 +123,8 @@ url_preproc = "{}/{}.json".format(url_model_dir, model_name)
 url_model = "{}/{}.onnx".format(url_model_dir, model_name)
 
 ## model files locally stored on /eos
-#model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
-model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
+model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
+#model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
 
 local_preproc = "{}/{}.json".format(model_dir, model_name)
 local_model = "{}/{}.onnx".format(model_dir, model_name)
@@ -552,20 +552,40 @@ class RDFanalysis():
                 .Define("RecoPhoton_charge",  "ReconstructedParticle::get_charge(RecoPhotons)")
                 .Define("RecoPhoton_mass",  "ReconstructedParticle::get_mass(RecoPhotons)")
 
-                .Define("NeutralHadrons_cand",   "ReconstructedParticles[ReconstructedParticles.type != 22]") #this instead excludes all photons with type 22, type 0 is charged particles and then type 130 is K0 that we are interested in, pi0 always decay in gamma-gamma
-                .Define("NeutralHadrons",       "ReconstructedParticle::sel_charge(0, true) (NeutralHadrons_cand)")
-                .Define("n_NeutralHadrons",  "ReconstructedParticle::get_n(NeutralHadrons)") #count how many photons are in the event in total
-                .Define("NeutralHadrons_e",      "ReconstructedParticle::get_e(NeutralHadrons)")
-                .Define("NeutralHadrons_p",      "ReconstructedParticle::get_p(NeutralHadrons)")
-                .Define("NeutralHadrons_pt",      "ReconstructedParticle::get_pt(NeutralHadrons)")
-                .Define("NeutralHadrons_px",      "ReconstructedParticle::get_px(NeutralHadrons)")
-                .Define("NeutralHadrons_py",      "ReconstructedParticle::get_py(NeutralHadrons)")
-                .Define("NeutralHadrons_pz",      "ReconstructedParticle::get_pz(NeutralHadrons)")
-		        .Define("NeutralHadrons_eta",     "ReconstructedParticle::get_eta(NeutralHadrons)") #pseudorapidity eta
-                .Define("NeutralHadrons_theta",   "ReconstructedParticle::get_theta(NeutralHadrons)")
-		        .Define("NeutralHadrons_phi",     "ReconstructedParticle::get_phi(NeutralHadrons)") #polar angle in the transverse plane phi
-                .Define("NeutralHadrons_charge",  "ReconstructedParticle::get_charge(NeutralHadrons)")
-                .Define("NeutralHadrons_mass",  "ReconstructedParticle::get_mass(NeutralHadrons)")
+                .Define("NoMuons", "ReconstructedParticle::remove(ReconstructedParticles, RecoMuons)")
+                .Define("NoLeptons", "ReconstructedParticle::remove(NoMuons, RecoElectrons)")
+
+                .Define("ChargedHadron", "ReconstructedParticle::sel_charge(1, true) (NoLeptons)")
+                .Define("n_ChargedHadron",      "ReconstructedParticle::get_n(ChargedHadron)") 
+                .Define("ChargedHadron_e",      "ReconstructedParticle::get_e(ChargedHadron)")
+                .Define("ChargedHadron_p",      "ReconstructedParticle::get_p(ChargedHadron)")
+                .Define("ChargedHadron_pt",      "ReconstructedParticle::get_pt(ChargedHadron)")
+                .Define("ChargedHadron_px",      "ReconstructedParticle::get_px(ChargedHadron)")
+                .Define("ChargedHadron_py",      "ReconstructedParticle::get_py(ChargedHadron)")
+                .Define("ChargedHadron_pz",      "ReconstructedParticle::get_pz(ChargedHadron)")
+		        .Define("ChargedHadron_eta",     "ReconstructedParticle::get_eta(ChargedHadron)") #pseudorapidity eta
+                .Define("ChargedHadron_theta",   "ReconstructedParticle::get_theta(ChargedHadron)")
+		        .Define("ChargedHadron_phi",     "ReconstructedParticle::get_phi(ChargedHadron)") #polar angle in the transverse plane phi
+                .Define("ChargedHadron_charge",  "ReconstructedParticle::get_charge(ChargedHadron)")
+                .Define("ChargedHadron_mass",  "ReconstructedParticle::get_mass(ChargedHadron)")
+                .Define("ChargedHadron_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedHadron_px, ChargedHadron_py, ChargedHadron_pz, ChargedHadron_e)")
+
+                .Define("NeutralHadron_cand",   "ReconstructedParticles[ReconstructedParticles.type != 22]") #this instead excludes all photons with type 22, type 0 is charged particles and then type 130 is K0 that we are interested in, pi0 always decay in gamma-gamma
+                .Define("NeutralHadron",       "ReconstructedParticle::sel_charge(0, true) (NeutralHadron_cand)")
+                .Define("n_NeutralHadron",  "ReconstructedParticle::get_n(NeutralHadron)") #count how many photons are in the event in total
+                .Define("NeutralHadron_e",      "ReconstructedParticle::get_e(NeutralHadron)")
+                .Define("NeutralHadron_p",      "ReconstructedParticle::get_p(NeutralHadron)")
+                .Define("NeutralHadron_pt",      "ReconstructedParticle::get_pt(NeutralHadron)")
+                .Define("NeutralHadron_px",      "ReconstructedParticle::get_px(NeutralHadron)")
+                .Define("NeutralHadron_py",      "ReconstructedParticle::get_py(NeutralHadron)")
+                .Define("NeutralHadron_pz",      "ReconstructedParticle::get_pz(NeutralHadron)")
+		        .Define("NeutralHadron_eta",     "ReconstructedParticle::get_eta(NeutralHadron)") #pseudorapidity eta
+                .Define("NeutralHadron_theta",   "ReconstructedParticle::get_theta(NeutralHadron)")
+		        .Define("NeutralHadron_phi",     "ReconstructedParticle::get_phi(NeutralHadron)") #polar angle in the transverse plane phi
+                .Define("NeutralHadron_charge",  "ReconstructedParticle::get_charge(NeutralHadron)")
+                .Define("NeutralHadron_mass",  "ReconstructedParticle::get_mass(NeutralHadron)")
+                .Define("NeutralHadron_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralHadron_px, NeutralHadron_py, NeutralHadron_pz, NeutralHadron_e)")
+
 
                 # different definition of missing energy from fccanalysis classes instead of edm4hep
                 .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(240, ReconstructedParticles)") #ecm 
@@ -796,6 +816,76 @@ class RDFanalysis():
 		        .Define("TagJet_R5_sel_phi",     "TagJet_R5_phi[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
                 .Define("TagJet_R5_sel_mass",      "TagJet_R5_mass[TauFromJet_R5_type_sel<0 && TagJet_R5_cleanup==1]")
                 .Define("n_TagJet_R5_sel", "TagJet_R5_sel_e.size()")
+
+                #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
+                .Define("ChargedTau_R5_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Charged({})".format(jetClusteringHelper_R5.constituents))
+                .Define("ChargedTau_R5_type",      "ReconstructedParticle::get_type(ChargedTau_R5_all)") 
+                .Define("ChargedTau_R5",      "ChargedTau_R5_all[ChargedTau_R5_type>=0]") 
+                .Define("n_ChargedTau_R5",      "ReconstructedParticle::get_n(ChargedTau_R5)") 
+                .Define("ChargedTau_R5_e",      "ReconstructedParticle::get_e(ChargedTau_R5)")
+                .Define("ChargedTau_R5_p",      "ReconstructedParticle::get_p(ChargedTau_R5)")
+                .Define("ChargedTau_R5_pt",      "ReconstructedParticle::get_pt(ChargedTau_R5)")
+                .Define("ChargedTau_R5_px",      "ReconstructedParticle::get_px(ChargedTau_R5)")
+                .Define("ChargedTau_R5_py",      "ReconstructedParticle::get_py(ChargedTau_R5)")
+                .Define("ChargedTau_R5_pz",      "ReconstructedParticle::get_pz(ChargedTau_R5)")
+		        .Define("ChargedTau_R5_eta",     "ReconstructedParticle::get_eta(ChargedTau_R5)") #pseudorapidity eta
+                .Define("ChargedTau_R5_theta",   "ReconstructedParticle::get_theta(ChargedTau_R5)")
+		        .Define("ChargedTau_R5_phi",     "ReconstructedParticle::get_phi(ChargedTau_R5)") #polar angle in the transverse plane phi
+                .Define("ChargedTau_R5_charge",  "ReconstructedParticle::get_charge(ChargedTau_R5)")
+                .Define("ChargedTau_R5_mass",  "ReconstructedParticle::get_mass(ChargedTau_R5)")
+                .Define("ChargedTau_R5_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_R5_px, ChargedTau_R5_py, ChargedTau_R5_pz, ChargedTau_R5_e)")
+
+                #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralTau_R5_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Neutral({})".format(jetClusteringHelper_R5.constituents))
+                .Define("NeutralTau_R5_type",      "ReconstructedParticle::get_type(NeutralTau_R5_all)") 
+                .Define("NeutralTau_R5",      "NeutralTau_R5_all[NeutralTau_R5_type>=0]") 
+                .Define("n_NeutralTau_R5",      "ReconstructedParticle::get_n(NeutralTau_R5)") 
+                .Define("NeutralTau_R5_e",      "ReconstructedParticle::get_e(NeutralTau_R5)")
+                .Define("NeutralTau_R5_p",      "ReconstructedParticle::get_p(NeutralTau_R5)")
+                .Define("NeutralTau_R5_pt",      "ReconstructedParticle::get_pt(NeutralTau_R5)")
+                .Define("NeutralTau_R5_px",      "ReconstructedParticle::get_px(NeutralTau_R5)")
+                .Define("NeutralTau_R5_py",      "ReconstructedParticle::get_py(NeutralTau_R5)")
+                .Define("NeutralTau_R5_pz",      "ReconstructedParticle::get_pz(NeutralTau_R5)")
+		        .Define("NeutralTau_R5_eta",     "ReconstructedParticle::get_eta(NeutralTau_R5)") #pseudorapidity eta
+                .Define("NeutralTau_R5_theta",   "ReconstructedParticle::get_theta(NeutralTau_R5)")
+		        .Define("NeutralTau_R5_phi",     "ReconstructedParticle::get_phi(NeutralTau_R5)") #polar angle in the transverse plane phi
+                .Define("NeutralTau_R5_charge",  "ReconstructedParticle::get_charge(NeutralTau_R5)")
+                .Define("NeutralTau_R5_mass",  "ReconstructedParticle::get_mass(NeutralTau_R5)")
+                .Define("NeutralTau_R5_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralTau_R5_px, NeutralTau_R5_py, NeutralTau_R5_pz, NeutralTau_R5_e)") 
+
+                #get the leading charged particle in the jet, if only neutral particles are present then the particle is null
+                .Define("ChargedJet_R5_temp",      "FCCAnalyses::ZHfunctions::Jet_Charged({})".format(jetClusteringHelper_R5.constituents))
+                .Define("ChargedJet_R5",           "ChargedJet_R5_temp[TagJet_R5_cleanup==1]")
+                .Define("n_ChargedJet_R5",      "ReconstructedParticle::get_n(ChargedJet_R5)") 
+                .Define("ChargedJet_R5_e",      "ReconstructedParticle::get_e(ChargedJet_R5)")
+                .Define("ChargedJet_R5_p",      "ReconstructedParticle::get_p(ChargedJet_R5)")
+                .Define("ChargedJet_R5_pt",      "ReconstructedParticle::get_pt(ChargedJet_R5)")
+                .Define("ChargedJet_R5_px",      "ReconstructedParticle::get_px(ChargedJet_R5)")
+                .Define("ChargedJet_R5_py",      "ReconstructedParticle::get_py(ChargedJet_R5)")
+                .Define("ChargedJet_R5_pz",      "ReconstructedParticle::get_pz(ChargedJet_R5)")
+		        .Define("ChargedJet_R5_eta",     "ReconstructedParticle::get_eta(ChargedJet_R5)") #pseudorapidity eta
+                .Define("ChargedJet_R5_theta",   "ReconstructedParticle::get_theta(ChargedJet_R5)")
+		        .Define("ChargedJet_R5_phi",     "ReconstructedParticle::get_phi(ChargedJet_R5)") #polar angle in the transverse plane phi
+                .Define("ChargedJet_R5_charge",  "ReconstructedParticle::get_charge(ChargedJet_R5)")
+                .Define("ChargedJet_R5_mass",  "ReconstructedParticle::get_mass(ChargedJet_R5)")
+                .Define("ChargedJet_R5_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedJet_R5_px, ChargedJet_R5_py, ChargedJet_R5_pz, ChargedJet_R5_e)")
+
+                #get the neutral hadronic system for the jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralJet_R5_temp",      "FCCAnalyses::ZHfunctions::Jet_Neutral({})".format(jetClusteringHelper_R5.constituents))
+                .Define("NeutralJet_R5",           "NeutralJet_R5_temp[TagJet_R5_cleanup==1]")
+                .Define("n_NeutralJet_R5",      "ReconstructedParticle::get_n(NeutralJet_R5)") 
+                .Define("NeutralJet_R5_e",      "ReconstructedParticle::get_e(NeutralJet_R5)")
+                .Define("NeutralJet_R5_p",      "ReconstructedParticle::get_p(NeutralJet_R5)")
+                .Define("NeutralJet_R5_pt",      "ReconstructedParticle::get_pt(NeutralJet_R5)")
+                .Define("NeutralJet_R5_px",      "ReconstructedParticle::get_px(NeutralJet_R5)")
+                .Define("NeutralJet_R5_py",      "ReconstructedParticle::get_py(NeutralJet_R5)")
+                .Define("NeutralJet_R5_pz",      "ReconstructedParticle::get_pz(NeutralJet_R5)")
+		        .Define("NeutralJet_R5_eta",     "ReconstructedParticle::get_eta(NeutralJet_R5)") #pseudorapidity eta
+                .Define("NeutralJet_R5_theta",   "ReconstructedParticle::get_theta(NeutralJet_R5)")
+		        .Define("NeutralJet_R5_phi",     "ReconstructedParticle::get_phi(NeutralJet_R5)") #polar angle in the transverse plane phi
+                .Define("NeutralJet_R5_charge",  "ReconstructedParticle::get_charge(NeutralJet_R5)")
+                .Define("NeutralJet_R5_mass",  "ReconstructedParticle::get_mass(NeutralJet_R5)")
+                .Define("NeutralJet_R5_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralJet_R5_px, NeutralJet_R5_py, NeutralJet_R5_pz, NeutralJet_R5_e)") 
         )
 
         #EXCLUSIVE 4 JETS
@@ -874,6 +964,76 @@ class RDFanalysis():
 		        .Define("TagJet_kt4_sel_phi",     "TagJet_kt4_phi[TauFromJet_kt4_type_sel<0 && TagJet_kt4_cleanup==1]")
                 .Define("TagJet_kt4_sel_mass",      "TagJet_kt4_mass[TauFromJet_kt4_type_sel<0 && TagJet_kt4_cleanup==1]")
                 .Define("n_TagJet_kt4_sel", "TagJet_kt4_sel_e.size()")
+
+                #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
+                .Define("ChargedTau_kt4_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Charged({})".format(jetClusteringHelper_kt4.constituents))
+                .Define("ChargedTau_kt4_type",      "ReconstructedParticle::get_type(ChargedTau_kt4_all)") 
+                .Define("ChargedTau_kt4",      "ChargedTau_kt4_all[ChargedTau_kt4_type>=0]") 
+                .Define("n_ChargedTau_kt4",      "ReconstructedParticle::get_n(ChargedTau_kt4)") 
+                .Define("ChargedTau_kt4_e",      "ReconstructedParticle::get_e(ChargedTau_kt4)")
+                .Define("ChargedTau_kt4_p",      "ReconstructedParticle::get_p(ChargedTau_kt4)")
+                .Define("ChargedTau_kt4_pt",      "ReconstructedParticle::get_pt(ChargedTau_kt4)")
+                .Define("ChargedTau_kt4_px",      "ReconstructedParticle::get_px(ChargedTau_kt4)")
+                .Define("ChargedTau_kt4_py",      "ReconstructedParticle::get_py(ChargedTau_kt4)")
+                .Define("ChargedTau_kt4_pz",      "ReconstructedParticle::get_pz(ChargedTau_kt4)")
+		        .Define("ChargedTau_kt4_eta",     "ReconstructedParticle::get_eta(ChargedTau_kt4)") #pseudorapidity eta
+                .Define("ChargedTau_kt4_theta",   "ReconstructedParticle::get_theta(ChargedTau_kt4)")
+		        .Define("ChargedTau_kt4_phi",     "ReconstructedParticle::get_phi(ChargedTau_kt4)") #polar angle in the transverse plane phi
+                .Define("ChargedTau_kt4_charge",  "ReconstructedParticle::get_charge(ChargedTau_kt4)")
+                .Define("ChargedTau_kt4_mass",  "ReconstructedParticle::get_mass(ChargedTau_kt4)")
+                .Define("ChargedTau_kt4_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_kt4_px, ChargedTau_kt4_py, ChargedTau_kt4_pz, ChargedTau_kt4_e)")
+
+                #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralTau_kt4_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Neutral({})".format(jetClusteringHelper_kt4.constituents))
+                .Define("NeutralTau_kt4_type",      "ReconstructedParticle::get_type(NeutralTau_kt4_all)") 
+                .Define("NeutralTau_kt4",      "NeutralTau_kt4_all[NeutralTau_kt4_type>=0]") 
+                .Define("n_NeutralTau_kt4",      "ReconstructedParticle::get_n(NeutralTau_kt4)") 
+                .Define("NeutralTau_kt4_e",      "ReconstructedParticle::get_e(NeutralTau_kt4)")
+                .Define("NeutralTau_kt4_p",      "ReconstructedParticle::get_p(NeutralTau_kt4)")
+                .Define("NeutralTau_kt4_pt",      "ReconstructedParticle::get_pt(NeutralTau_kt4)")
+                .Define("NeutralTau_kt4_px",      "ReconstructedParticle::get_px(NeutralTau_kt4)")
+                .Define("NeutralTau_kt4_py",      "ReconstructedParticle::get_py(NeutralTau_kt4)")
+                .Define("NeutralTau_kt4_pz",      "ReconstructedParticle::get_pz(NeutralTau_kt4)")
+		        .Define("NeutralTau_kt4_eta",     "ReconstructedParticle::get_eta(NeutralTau_kt4)") #pseudorapidity eta
+                .Define("NeutralTau_kt4_theta",   "ReconstructedParticle::get_theta(NeutralTau_kt4)")
+		        .Define("NeutralTau_kt4_phi",     "ReconstructedParticle::get_phi(NeutralTau_kt4)") #polar angle in the transverse plane phi
+                .Define("NeutralTau_kt4_charge",  "ReconstructedParticle::get_charge(NeutralTau_kt4)")
+                .Define("NeutralTau_kt4_mass",  "ReconstructedParticle::get_mass(NeutralTau_kt4)")
+                .Define("NeutralTau_kt4_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralTau_kt4_px, NeutralTau_kt4_py, NeutralTau_kt4_pz, NeutralTau_kt4_e)") 
+
+                #get the leading charged particle in the jet, if only neutral particles are present then the particle is null
+                .Define("ChargedJet_kt4_temp",      "FCCAnalyses::ZHfunctions::Jet_Charged({})".format(jetClusteringHelper_kt4.constituents))
+                .Define("ChargedJet_kt4",           "ChargedJet_kt4_temp[TagJet_kt4_cleanup==1]")
+                .Define("n_ChargedJet_kt4",      "ReconstructedParticle::get_n(ChargedJet_kt4)") 
+                .Define("ChargedJet_kt4_e",      "ReconstructedParticle::get_e(ChargedJet_kt4)")
+                .Define("ChargedJet_kt4_p",      "ReconstructedParticle::get_p(ChargedJet_kt4)")
+                .Define("ChargedJet_kt4_pt",      "ReconstructedParticle::get_pt(ChargedJet_kt4)")
+                .Define("ChargedJet_kt4_px",      "ReconstructedParticle::get_px(ChargedJet_kt4)")
+                .Define("ChargedJet_kt4_py",      "ReconstructedParticle::get_py(ChargedJet_kt4)")
+                .Define("ChargedJet_kt4_pz",      "ReconstructedParticle::get_pz(ChargedJet_kt4)")
+		        .Define("ChargedJet_kt4_eta",     "ReconstructedParticle::get_eta(ChargedJet_kt4)") #pseudorapidity eta
+                .Define("ChargedJet_kt4_theta",   "ReconstructedParticle::get_theta(ChargedJet_kt4)")
+		        .Define("ChargedJet_kt4_phi",     "ReconstructedParticle::get_phi(ChargedJet_kt4)") #polar angle in the transverse plane phi
+                .Define("ChargedJet_kt4_charge",  "ReconstructedParticle::get_charge(ChargedJet_kt4)")
+                .Define("ChargedJet_kt4_mass",  "ReconstructedParticle::get_mass(ChargedJet_kt4)")
+                .Define("ChargedJet_kt4_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedJet_kt4_px, ChargedJet_kt4_py, ChargedJet_kt4_pz, ChargedJet_kt4_e)")
+
+                #get the neutral hadronic system for the jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralJet_kt4_temp",      "FCCAnalyses::ZHfunctions::Jet_Neutral({})".format(jetClusteringHelper_kt4.constituents))
+                .Define("NeutralJet_kt4",           "NeutralJet_kt4_temp[TagJet_kt4_cleanup==1]")
+                .Define("n_NeutralJet_kt4",      "ReconstructedParticle::get_n(NeutralJet_kt4)") 
+                .Define("NeutralJet_kt4_e",      "ReconstructedParticle::get_e(NeutralJet_kt4)")
+                .Define("NeutralJet_kt4_p",      "ReconstructedParticle::get_p(NeutralJet_kt4)")
+                .Define("NeutralJet_kt4_pt",      "ReconstructedParticle::get_pt(NeutralJet_kt4)")
+                .Define("NeutralJet_kt4_px",      "ReconstructedParticle::get_px(NeutralJet_kt4)")
+                .Define("NeutralJet_kt4_py",      "ReconstructedParticle::get_py(NeutralJet_kt4)")
+                .Define("NeutralJet_kt4_pz",      "ReconstructedParticle::get_pz(NeutralJet_kt4)")
+		        .Define("NeutralJet_kt4_eta",     "ReconstructedParticle::get_eta(NeutralJet_kt4)") #pseudorapidity eta
+                .Define("NeutralJet_kt4_theta",   "ReconstructedParticle::get_theta(NeutralJet_kt4)")
+		        .Define("NeutralJet_kt4_phi",     "ReconstructedParticle::get_phi(NeutralJet_kt4)") #polar angle in the transverse plane phi
+                .Define("NeutralJet_kt4_charge",  "ReconstructedParticle::get_charge(NeutralJet_kt4)")
+                .Define("NeutralJet_kt4_mass",  "ReconstructedParticle::get_mass(NeutralJet_kt4)")
+                .Define("NeutralJet_kt4_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralJet_kt4_px, NeutralJet_kt4_py, NeutralJet_kt4_pz, NeutralJet_kt4_e)") 
 
         )
 
@@ -954,6 +1114,76 @@ class RDFanalysis():
                 .Define("TagJet_kt3_sel_mass",      "TagJet_kt3_mass[TauFromJet_kt3_type_sel<0 && TagJet_kt3_cleanup==1]")
                 .Define("n_TagJet_kt3_sel", "TagJet_kt3_sel_e.size()")
 
+                #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
+                .Define("ChargedTau_kt3_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Charged({})".format(jetClusteringHelper_kt3.constituents))
+                .Define("ChargedTau_kt3_type",      "ReconstructedParticle::get_type(ChargedTau_kt3_all)") 
+                .Define("ChargedTau_kt3",      "ChargedTau_kt3_all[ChargedTau_kt3_type>=0]") 
+                .Define("n_ChargedTau_kt3",      "ReconstructedParticle::get_n(ChargedTau_kt3)") 
+                .Define("ChargedTau_kt3_e",      "ReconstructedParticle::get_e(ChargedTau_kt3)")
+                .Define("ChargedTau_kt3_p",      "ReconstructedParticle::get_p(ChargedTau_kt3)")
+                .Define("ChargedTau_kt3_pt",      "ReconstructedParticle::get_pt(ChargedTau_kt3)")
+                .Define("ChargedTau_kt3_px",      "ReconstructedParticle::get_px(ChargedTau_kt3)")
+                .Define("ChargedTau_kt3_py",      "ReconstructedParticle::get_py(ChargedTau_kt3)")
+                .Define("ChargedTau_kt3_pz",      "ReconstructedParticle::get_pz(ChargedTau_kt3)")
+		        .Define("ChargedTau_kt3_eta",     "ReconstructedParticle::get_eta(ChargedTau_kt3)") #pseudorapidity eta
+                .Define("ChargedTau_kt3_theta",   "ReconstructedParticle::get_theta(ChargedTau_kt3)")
+		        .Define("ChargedTau_kt3_phi",     "ReconstructedParticle::get_phi(ChargedTau_kt3)") #polar angle in the transverse plane phi
+                .Define("ChargedTau_kt3_charge",  "ReconstructedParticle::get_charge(ChargedTau_kt3)")
+                .Define("ChargedTau_kt3_mass",  "ReconstructedParticle::get_mass(ChargedTau_kt3)")
+                .Define("ChargedTau_kt3_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_kt3_px, ChargedTau_kt3_py, ChargedTau_kt3_pz, ChargedTau_kt3_e)")
+
+                #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralTau_kt3_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Neutral({})".format(jetClusteringHelper_kt3.constituents))
+                .Define("NeutralTau_kt3_type",      "ReconstructedParticle::get_type(NeutralTau_kt3_all)") 
+                .Define("NeutralTau_kt3",      "NeutralTau_kt3_all[NeutralTau_kt3_type>=0]") 
+                .Define("n_NeutralTau_kt3",      "ReconstructedParticle::get_n(NeutralTau_kt3)") 
+                .Define("NeutralTau_kt3_e",      "ReconstructedParticle::get_e(NeutralTau_kt3)")
+                .Define("NeutralTau_kt3_p",      "ReconstructedParticle::get_p(NeutralTau_kt3)")
+                .Define("NeutralTau_kt3_pt",      "ReconstructedParticle::get_pt(NeutralTau_kt3)")
+                .Define("NeutralTau_kt3_px",      "ReconstructedParticle::get_px(NeutralTau_kt3)")
+                .Define("NeutralTau_kt3_py",      "ReconstructedParticle::get_py(NeutralTau_kt3)")
+                .Define("NeutralTau_kt3_pz",      "ReconstructedParticle::get_pz(NeutralTau_kt3)")
+		        .Define("NeutralTau_kt3_eta",     "ReconstructedParticle::get_eta(NeutralTau_kt3)") #pseudorapidity eta
+                .Define("NeutralTau_kt3_theta",   "ReconstructedParticle::get_theta(NeutralTau_kt3)")
+		        .Define("NeutralTau_kt3_phi",     "ReconstructedParticle::get_phi(NeutralTau_kt3)") #polar angle in the transverse plane phi
+                .Define("NeutralTau_kt3_charge",  "ReconstructedParticle::get_charge(NeutralTau_kt3)")
+                .Define("NeutralTau_kt3_mass",  "ReconstructedParticle::get_mass(NeutralTau_kt3)")
+                .Define("NeutralTau_kt3_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralTau_kt3_px, NeutralTau_kt3_py, NeutralTau_kt3_pz, NeutralTau_kt3_e)") 
+
+                #get the leading charged particle in the jet, if only neutral particles are present then the particle is null
+                .Define("ChargedJet_kt3_temp",      "FCCAnalyses::ZHfunctions::Jet_Charged({})".format(jetClusteringHelper_kt3.constituents))
+                .Define("ChargedJet_kt3",           "ChargedJet_kt3_temp[TagJet_kt3_cleanup==1]")
+                .Define("n_ChargedJet_kt3",      "ReconstructedParticle::get_n(ChargedJet_kt3)") 
+                .Define("ChargedJet_kt3_e",      "ReconstructedParticle::get_e(ChargedJet_kt3)")
+                .Define("ChargedJet_kt3_p",      "ReconstructedParticle::get_p(ChargedJet_kt3)")
+                .Define("ChargedJet_kt3_pt",      "ReconstructedParticle::get_pt(ChargedJet_kt3)")
+                .Define("ChargedJet_kt3_px",      "ReconstructedParticle::get_px(ChargedJet_kt3)")
+                .Define("ChargedJet_kt3_py",      "ReconstructedParticle::get_py(ChargedJet_kt3)")
+                .Define("ChargedJet_kt3_pz",      "ReconstructedParticle::get_pz(ChargedJet_kt3)")
+		        .Define("ChargedJet_kt3_eta",     "ReconstructedParticle::get_eta(ChargedJet_kt3)") #pseudorapidity eta
+                .Define("ChargedJet_kt3_theta",   "ReconstructedParticle::get_theta(ChargedJet_kt3)")
+		        .Define("ChargedJet_kt3_phi",     "ReconstructedParticle::get_phi(ChargedJet_kt3)") #polar angle in the transverse plane phi
+                .Define("ChargedJet_kt3_charge",  "ReconstructedParticle::get_charge(ChargedJet_kt3)")
+                .Define("ChargedJet_kt3_mass",  "ReconstructedParticle::get_mass(ChargedJet_kt3)")
+                .Define("ChargedJet_kt3_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedJet_kt3_px, ChargedJet_kt3_py, ChargedJet_kt3_pz, ChargedJet_kt3_e)")
+
+                #get the neutral hadronic system for the jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralJet_kt3_temp",      "FCCAnalyses::ZHfunctions::Jet_Neutral({})".format(jetClusteringHelper_kt3.constituents))
+                .Define("NeutralJet_kt3",           "NeutralJet_kt3_temp[TagJet_kt3_cleanup==1]")
+                .Define("n_NeutralJet_kt3",      "ReconstructedParticle::get_n(NeutralJet_kt3)") 
+                .Define("NeutralJet_kt3_e",      "ReconstructedParticle::get_e(NeutralJet_kt3)")
+                .Define("NeutralJet_kt3_p",      "ReconstructedParticle::get_p(NeutralJet_kt3)")
+                .Define("NeutralJet_kt3_pt",      "ReconstructedParticle::get_pt(NeutralJet_kt3)")
+                .Define("NeutralJet_kt3_px",      "ReconstructedParticle::get_px(NeutralJet_kt3)")
+                .Define("NeutralJet_kt3_py",      "ReconstructedParticle::get_py(NeutralJet_kt3)")
+                .Define("NeutralJet_kt3_pz",      "ReconstructedParticle::get_pz(NeutralJet_kt3)")
+		        .Define("NeutralJet_kt3_eta",     "ReconstructedParticle::get_eta(NeutralJet_kt3)") #pseudorapidity eta
+                .Define("NeutralJet_kt3_theta",   "ReconstructedParticle::get_theta(NeutralJet_kt3)")
+		        .Define("NeutralJet_kt3_phi",     "ReconstructedParticle::get_phi(NeutralJet_kt3)") #polar angle in the transverse plane phi
+                .Define("NeutralJet_kt3_charge",  "ReconstructedParticle::get_charge(NeutralJet_kt3)")
+                .Define("NeutralJet_kt3_mass",  "ReconstructedParticle::get_mass(NeutralJet_kt3)")
+                .Define("NeutralJet_kt3_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralJet_kt3_px, NeutralJet_kt3_py, NeutralJet_kt3_pz, NeutralJet_kt3_e)") 
+
         )
         
         #EXCLUSIVE 2 JETS
@@ -1032,6 +1262,76 @@ class RDFanalysis():
 		        .Define("TagJet_kt2_sel_phi",     "TagJet_kt2_phi[TauFromJet_kt2_type_sel<0 && TagJet_kt2_cleanup==1]")
                 .Define("TagJet_kt2_sel_mass",      "TagJet_kt2_mass[TauFromJet_kt2_type_sel<0 && TagJet_kt2_cleanup==1]")
                 .Define("n_TagJet_kt2_sel", "TagJet_kt2_sel_e.size()")
+
+                #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
+                .Define("ChargedTau_kt2_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Charged({})".format(jetClusteringHelper_kt2.constituents))
+                .Define("ChargedTau_kt2_type",      "ReconstructedParticle::get_type(ChargedTau_kt2_all)") 
+                .Define("ChargedTau_kt2",      "ChargedTau_kt2_all[ChargedTau_kt2_type>=0]") 
+                .Define("n_ChargedTau_kt2",      "ReconstructedParticle::get_n(ChargedTau_kt2)") 
+                .Define("ChargedTau_kt2_e",      "ReconstructedParticle::get_e(ChargedTau_kt2)")
+                .Define("ChargedTau_kt2_p",      "ReconstructedParticle::get_p(ChargedTau_kt2)")
+                .Define("ChargedTau_kt2_pt",      "ReconstructedParticle::get_pt(ChargedTau_kt2)")
+                .Define("ChargedTau_kt2_px",      "ReconstructedParticle::get_px(ChargedTau_kt2)")
+                .Define("ChargedTau_kt2_py",      "ReconstructedParticle::get_py(ChargedTau_kt2)")
+                .Define("ChargedTau_kt2_pz",      "ReconstructedParticle::get_pz(ChargedTau_kt2)")
+		        .Define("ChargedTau_kt2_eta",     "ReconstructedParticle::get_eta(ChargedTau_kt2)") #pseudorapidity eta
+                .Define("ChargedTau_kt2_theta",   "ReconstructedParticle::get_theta(ChargedTau_kt2)")
+		        .Define("ChargedTau_kt2_phi",     "ReconstructedParticle::get_phi(ChargedTau_kt2)") #polar angle in the transverse plane phi
+                .Define("ChargedTau_kt2_charge",  "ReconstructedParticle::get_charge(ChargedTau_kt2)")
+                .Define("ChargedTau_kt2_mass",  "ReconstructedParticle::get_mass(ChargedTau_kt2)")
+                .Define("ChargedTau_kt2_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_kt2_px, ChargedTau_kt2_py, ChargedTau_kt2_pz, ChargedTau_kt2_e)")
+
+                #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralTau_kt2_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Neutral({})".format(jetClusteringHelper_kt2.constituents))
+                .Define("NeutralTau_kt2_type",      "ReconstructedParticle::get_type(NeutralTau_kt2_all)") 
+                .Define("NeutralTau_kt2",      "NeutralTau_kt2_all[NeutralTau_kt2_type>=0]") 
+                .Define("n_NeutralTau_kt2",      "ReconstructedParticle::get_n(NeutralTau_kt2)") 
+                .Define("NeutralTau_kt2_e",      "ReconstructedParticle::get_e(NeutralTau_kt2)")
+                .Define("NeutralTau_kt2_p",      "ReconstructedParticle::get_p(NeutralTau_kt2)")
+                .Define("NeutralTau_kt2_pt",      "ReconstructedParticle::get_pt(NeutralTau_kt2)")
+                .Define("NeutralTau_kt2_px",      "ReconstructedParticle::get_px(NeutralTau_kt2)")
+                .Define("NeutralTau_kt2_py",      "ReconstructedParticle::get_py(NeutralTau_kt2)")
+                .Define("NeutralTau_kt2_pz",      "ReconstructedParticle::get_pz(NeutralTau_kt2)")
+		        .Define("NeutralTau_kt2_eta",     "ReconstructedParticle::get_eta(NeutralTau_kt2)") #pseudorapidity eta
+                .Define("NeutralTau_kt2_theta",   "ReconstructedParticle::get_theta(NeutralTau_kt2)")
+		        .Define("NeutralTau_kt2_phi",     "ReconstructedParticle::get_phi(NeutralTau_kt2)") #polar angle in the transverse plane phi
+                .Define("NeutralTau_kt2_charge",  "ReconstructedParticle::get_charge(NeutralTau_kt2)")
+                .Define("NeutralTau_kt2_mass",  "ReconstructedParticle::get_mass(NeutralTau_kt2)")
+                .Define("NeutralTau_kt2_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralTau_kt2_px, NeutralTau_kt2_py, NeutralTau_kt2_pz, NeutralTau_kt2_e)") 
+
+                #get the leading charged particle in the jet, if only neutral particles are present then the particle is null
+                .Define("ChargedJet_kt2_temp",      "FCCAnalyses::ZHfunctions::Jet_Charged({})".format(jetClusteringHelper_kt2.constituents))
+                .Define("ChargedJet_kt2",           "ChargedJet_kt2_temp[TagJet_kt2_cleanup==1]")
+                .Define("n_ChargedJet_kt2",      "ReconstructedParticle::get_n(ChargedJet_kt2)") 
+                .Define("ChargedJet_kt2_e",      "ReconstructedParticle::get_e(ChargedJet_kt2)")
+                .Define("ChargedJet_kt2_p",      "ReconstructedParticle::get_p(ChargedJet_kt2)")
+                .Define("ChargedJet_kt2_pt",      "ReconstructedParticle::get_pt(ChargedJet_kt2)")
+                .Define("ChargedJet_kt2_px",      "ReconstructedParticle::get_px(ChargedJet_kt2)")
+                .Define("ChargedJet_kt2_py",      "ReconstructedParticle::get_py(ChargedJet_kt2)")
+                .Define("ChargedJet_kt2_pz",      "ReconstructedParticle::get_pz(ChargedJet_kt2)")
+		        .Define("ChargedJet_kt2_eta",     "ReconstructedParticle::get_eta(ChargedJet_kt2)") #pseudorapidity eta
+                .Define("ChargedJet_kt2_theta",   "ReconstructedParticle::get_theta(ChargedJet_kt2)")
+		        .Define("ChargedJet_kt2_phi",     "ReconstructedParticle::get_phi(ChargedJet_kt2)") #polar angle in the transverse plane phi
+                .Define("ChargedJet_kt2_charge",  "ReconstructedParticle::get_charge(ChargedJet_kt2)")
+                .Define("ChargedJet_kt2_mass",  "ReconstructedParticle::get_mass(ChargedJet_kt2)")
+                .Define("ChargedJet_kt2_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedJet_kt2_px, ChargedJet_kt2_py, ChargedJet_kt2_pz, ChargedJet_kt2_e)")
+
+                #get the neutral hadronic system for the jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralJet_kt2_temp",      "FCCAnalyses::ZHfunctions::Jet_Neutral({})".format(jetClusteringHelper_kt2.constituents))
+                .Define("NeutralJet_kt2",           "NeutralJet_kt2_temp[TagJet_kt2_cleanup==1]")
+                .Define("n_NeutralJet_kt2",      "ReconstructedParticle::get_n(NeutralJet_kt2)") 
+                .Define("NeutralJet_kt2_e",      "ReconstructedParticle::get_e(NeutralJet_kt2)")
+                .Define("NeutralJet_kt2_p",      "ReconstructedParticle::get_p(NeutralJet_kt2)")
+                .Define("NeutralJet_kt2_pt",      "ReconstructedParticle::get_pt(NeutralJet_kt2)")
+                .Define("NeutralJet_kt2_px",      "ReconstructedParticle::get_px(NeutralJet_kt2)")
+                .Define("NeutralJet_kt2_py",      "ReconstructedParticle::get_py(NeutralJet_kt2)")
+                .Define("NeutralJet_kt2_pz",      "ReconstructedParticle::get_pz(NeutralJet_kt2)")
+		        .Define("NeutralJet_kt2_eta",     "ReconstructedParticle::get_eta(NeutralJet_kt2)") #pseudorapidity eta
+                .Define("NeutralJet_kt2_theta",   "ReconstructedParticle::get_theta(NeutralJet_kt2)")
+		        .Define("NeutralJet_kt2_phi",     "ReconstructedParticle::get_phi(NeutralJet_kt2)") #polar angle in the transverse plane phi
+                .Define("NeutralJet_kt2_charge",  "ReconstructedParticle::get_charge(NeutralJet_kt2)")
+                .Define("NeutralJet_kt2_mass",  "ReconstructedParticle::get_mass(NeutralJet_kt2)")
+                .Define("NeutralJet_kt2_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralJet_kt2_px, NeutralJet_kt2_py, NeutralJet_kt2_pz, NeutralJet_kt2_e)") 
         )
 
         #EXCLUSIVE 1 JET
@@ -1110,6 +1410,76 @@ class RDFanalysis():
 		        .Define("TagJet_kt1_sel_phi",     "TagJet_kt1_phi[TauFromJet_kt1_type_sel<0 && TagJet_kt1_cleanup==1]")
                 .Define("TagJet_kt1_sel_mass",      "TagJet_kt1_mass[TauFromJet_kt1_type_sel<0 && TagJet_kt1_cleanup==1]")
                 .Define("n_TagJet_kt1_sel", "TagJet_kt1_sel_e.size()")
+
+                #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
+                .Define("ChargedTau_kt1_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Charged({})".format(jetClusteringHelper_kt1.constituents))
+                .Define("ChargedTau_kt1_type",      "ReconstructedParticle::get_type(ChargedTau_kt1_all)") 
+                .Define("ChargedTau_kt1",      "ChargedTau_kt1_all[ChargedTau_kt1_type>=0]") 
+                .Define("n_ChargedTau_kt1",      "ReconstructedParticle::get_n(ChargedTau_kt1)") 
+                .Define("ChargedTau_kt1_e",      "ReconstructedParticle::get_e(ChargedTau_kt1)")
+                .Define("ChargedTau_kt1_p",      "ReconstructedParticle::get_p(ChargedTau_kt1)")
+                .Define("ChargedTau_kt1_pt",      "ReconstructedParticle::get_pt(ChargedTau_kt1)")
+                .Define("ChargedTau_kt1_px",      "ReconstructedParticle::get_px(ChargedTau_kt1)")
+                .Define("ChargedTau_kt1_py",      "ReconstructedParticle::get_py(ChargedTau_kt1)")
+                .Define("ChargedTau_kt1_pz",      "ReconstructedParticle::get_pz(ChargedTau_kt1)")
+		        .Define("ChargedTau_kt1_eta",     "ReconstructedParticle::get_eta(ChargedTau_kt1)") #pseudorapidity eta
+                .Define("ChargedTau_kt1_theta",   "ReconstructedParticle::get_theta(ChargedTau_kt1)")
+		        .Define("ChargedTau_kt1_phi",     "ReconstructedParticle::get_phi(ChargedTau_kt1)") #polar angle in the transverse plane phi
+                .Define("ChargedTau_kt1_charge",  "ReconstructedParticle::get_charge(ChargedTau_kt1)")
+                .Define("ChargedTau_kt1_mass",  "ReconstructedParticle::get_mass(ChargedTau_kt1)")
+                .Define("ChargedTau_kt1_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_kt1_px, ChargedTau_kt1_py, ChargedTau_kt1_pz, ChargedTau_kt1_e)")
+
+                #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralTau_kt1_all",      "FCCAnalyses::ZHfunctions::findTauInJet_Neutral({})".format(jetClusteringHelper_kt1.constituents))
+                .Define("NeutralTau_kt1_type",      "ReconstructedParticle::get_type(NeutralTau_kt1_all)") 
+                .Define("NeutralTau_kt1",      "NeutralTau_kt1_all[NeutralTau_kt1_type>=0]") 
+                .Define("n_NeutralTau_kt1",      "ReconstructedParticle::get_n(NeutralTau_kt1)") 
+                .Define("NeutralTau_kt1_e",      "ReconstructedParticle::get_e(NeutralTau_kt1)")
+                .Define("NeutralTau_kt1_p",      "ReconstructedParticle::get_p(NeutralTau_kt1)")
+                .Define("NeutralTau_kt1_pt",      "ReconstructedParticle::get_pt(NeutralTau_kt1)")
+                .Define("NeutralTau_kt1_px",      "ReconstructedParticle::get_px(NeutralTau_kt1)")
+                .Define("NeutralTau_kt1_py",      "ReconstructedParticle::get_py(NeutralTau_kt1)")
+                .Define("NeutralTau_kt1_pz",      "ReconstructedParticle::get_pz(NeutralTau_kt1)")
+		        .Define("NeutralTau_kt1_eta",     "ReconstructedParticle::get_eta(NeutralTau_kt1)") #pseudorapidity eta
+                .Define("NeutralTau_kt1_theta",   "ReconstructedParticle::get_theta(NeutralTau_kt1)")
+		        .Define("NeutralTau_kt1_phi",     "ReconstructedParticle::get_phi(NeutralTau_kt1)") #polar angle in the transverse plane phi
+                .Define("NeutralTau_kt1_charge",  "ReconstructedParticle::get_charge(NeutralTau_kt1)")
+                .Define("NeutralTau_kt1_mass",  "ReconstructedParticle::get_mass(NeutralTau_kt1)")
+                .Define("NeutralTau_kt1_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralTau_kt1_px, NeutralTau_kt1_py, NeutralTau_kt1_pz, NeutralTau_kt1_e)") 
+
+                #get the leading charged particle in the jet, if only neutral particles are present then the particle is null
+                .Define("ChargedJet_kt1_temp",      "FCCAnalyses::ZHfunctions::Jet_Charged({})".format(jetClusteringHelper_kt1.constituents))
+                .Define("ChargedJet_kt1",           "ChargedJet_kt1_temp[TagJet_kt1_cleanup==1]")
+                .Define("n_ChargedJet_kt1",      "ReconstructedParticle::get_n(ChargedJet_kt1)") 
+                .Define("ChargedJet_kt1_e",      "ReconstructedParticle::get_e(ChargedJet_kt1)")
+                .Define("ChargedJet_kt1_p",      "ReconstructedParticle::get_p(ChargedJet_kt1)")
+                .Define("ChargedJet_kt1_pt",      "ReconstructedParticle::get_pt(ChargedJet_kt1)")
+                .Define("ChargedJet_kt1_px",      "ReconstructedParticle::get_px(ChargedJet_kt1)")
+                .Define("ChargedJet_kt1_py",      "ReconstructedParticle::get_py(ChargedJet_kt1)")
+                .Define("ChargedJet_kt1_pz",      "ReconstructedParticle::get_pz(ChargedJet_kt1)")
+		        .Define("ChargedJet_kt1_eta",     "ReconstructedParticle::get_eta(ChargedJet_kt1)") #pseudorapidity eta
+                .Define("ChargedJet_kt1_theta",   "ReconstructedParticle::get_theta(ChargedJet_kt1)")
+		        .Define("ChargedJet_kt1_phi",     "ReconstructedParticle::get_phi(ChargedJet_kt1)") #polar angle in the transverse plane phi
+                .Define("ChargedJet_kt1_charge",  "ReconstructedParticle::get_charge(ChargedJet_kt1)")
+                .Define("ChargedJet_kt1_mass",  "ReconstructedParticle::get_mass(ChargedJet_kt1)")
+                .Define("ChargedJet_kt1_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedJet_kt1_px, ChargedJet_kt1_py, ChargedJet_kt1_pz, ChargedJet_kt1_e)")
+
+                #get the neutral hadronic system for the jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
+                .Define("NeutralJet_kt1_temp",      "FCCAnalyses::ZHfunctions::Jet_Neutral({})".format(jetClusteringHelper_kt1.constituents))
+                .Define("NeutralJet_kt1",           "NeutralJet_kt1_temp[TagJet_kt1_cleanup==1]")
+                .Define("n_NeutralJet_kt1",      "ReconstructedParticle::get_n(NeutralJet_kt1)") 
+                .Define("NeutralJet_kt1_e",      "ReconstructedParticle::get_e(NeutralJet_kt1)")
+                .Define("NeutralJet_kt1_p",      "ReconstructedParticle::get_p(NeutralJet_kt1)")
+                .Define("NeutralJet_kt1_pt",      "ReconstructedParticle::get_pt(NeutralJet_kt1)")
+                .Define("NeutralJet_kt1_px",      "ReconstructedParticle::get_px(NeutralJet_kt1)")
+                .Define("NeutralJet_kt1_py",      "ReconstructedParticle::get_py(NeutralJet_kt1)")
+                .Define("NeutralJet_kt1_pz",      "ReconstructedParticle::get_pz(NeutralJet_kt1)")
+		        .Define("NeutralJet_kt1_eta",     "ReconstructedParticle::get_eta(NeutralJet_kt1)") #pseudorapidity eta
+                .Define("NeutralJet_kt1_theta",   "ReconstructedParticle::get_theta(NeutralJet_kt1)")
+		        .Define("NeutralJet_kt1_phi",     "ReconstructedParticle::get_phi(NeutralJet_kt1)") #polar angle in the transverse plane phi
+                .Define("NeutralJet_kt1_charge",  "ReconstructedParticle::get_charge(NeutralJet_kt1)")
+                .Define("NeutralJet_kt1_mass",  "ReconstructedParticle::get_mass(NeutralJet_kt1)")
+                .Define("NeutralJet_kt1_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralJet_kt1_px, NeutralJet_kt1_py, NeutralJet_kt1_pz, NeutralJet_kt1_e)") 
         )
 
         df2 = (df2
@@ -1202,6 +1572,54 @@ class RDFanalysis():
                 .Define("n_events_kt1tag",       "if (n_GenTau_had==n_TauTag_kt1_match && n_GenTau_had==1) return 1; else if (n_GenTau_had==n_TauTag_kt1_match && n_GenTau_had==2) return 2; else if (n_GenTau_had==n_TauTag_kt1_match && n_GenTau_had==0) return 0; else return -1;")
                 .Define("n_events_kt1masstag",       "if (n_GenTau_had==n_TauTag_kt1mass_match && n_GenTau_had==1) return 1; else if (n_GenTau_had==n_TauTag_kt1mass_match && n_GenTau_had==2) return 2;  else if (n_GenTau_had==n_TauTag_kt1mass_match && n_GenTau_had==0) return 0; else return -1;")
                 .Define("n_events_kt1excl",       "if (n_GenTau_had==n_TauFromJet_kt1_match && n_GenTau_had==1) return 1; else if (n_GenTau_had==n_TauFromJet_kt1_match && n_GenTau_had==2) return 2; else if (n_GenTau_had==n_TauFromJet_kt1_match && n_GenTau_had==0) return 0; else return -1;")
+
+                # varibales for the CP to save here in stage1
+
+                #first of all get the IP from the Z daughters
+
+                .Define("RecoElectronTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoElectrons, EFlowTrack_1)") ### EFlowTrack_1 contains all tracks, selecting a subset associated with certain particles ###
+                .Define("RecoMuonTracks",   "ReconstructedParticle2Track::getRP2TRK( RecoMuons, EFlowTrack_1)")
+                .Define("RecoLeptonTracks",   "ReconstructedTrack::Merge( RecoElectronTracks, RecoMuonTracks)")
+
+                .Define("RecoDecayVertexObjectZ",   "VertexFitterSimple::VertexFitter_Tk( 0, RecoElectronTracks)" ) ### reconstructing a vertex withour any request n=0 ###
+                .Define("RecoDecayVertexZ",  "VertexingUtils::get_VertexData( RecoDecayVertexObjectZ )")
+                .Define("RecoIP_p4",     "TLorentzVector(RecoDecayVertexZ.position.x, RecoDecayVertexZ.position.y, RecoDecayVertexZ.position.z, 0.)")
+
+                #hen get the impact vector from the new IP to the charged hadron track
+                #for now we use the collision point and the phi and vector of the particle at the origin as proxi for the IP, phi at d0 and vector at d0
+                
+                .Define("RecoChargedHadronTrack",   "ReconstructedParticle2Track::getRP2TRK( ChargedHadron, EFlowTrack_1)")
+                .Define("RecoChargedHadronTrack_D0", "ReconstructedParticle2Track::getRP2TRK_D0(ChargedHadron,EFlowTrack_1)")
+                .Define("RecoChargedHadronTrack_Z0", "ReconstructedParticle2Track::getRP2TRK_Z0(ChargedHadron,EFlowTrack_1)")
+                .Define("RecoChargedHadronTrack_charge", "ReconstructedParticle2Track::getRP2TRK_charge(ChargedHadron,EFlowTrack_1)")
+                .Define("RecoChargedHadronTrack_omega", "ReconstructedParticle2Track::getRP2TRK_omega(ChargedHadron,EFlowTrack_1)")
+
+                .Define("ChargedHadronImpact_p4",     "FCCAnalyses::ZHfunctions::ImpactVector(ChargedHadron_p4, RecoChargedHadronTrack_D0, RecoChargedHadronTrack_Z0)")
+
+                .Define("RecoChargedTauTrack",   "ReconstructedParticle2Track::getRP2TRK( ChargedTau, EFlowTrack_1)")
+                .Define("RecoChargedTauTrack_D0", "ReconstructedParticle2Track::getRP2TRK_D0(ChargedTau,EFlowTrack_1)")
+                .Define("RecoChargedTauTrack_Z0", "ReconstructedParticle2Track::getRP2TRK_Z0(ChargedTau,EFlowTrack_1)")
+                .Define("RecoChargedTauTrack_charge", "ReconstructedParticle2Track::getRP2TRK_charge(ChargedTau,EFlowTrack_1)")
+                .Define("RecoChargedTauTrack_omega", "ReconstructedParticle2Track::getRP2TRK_omega(ChargedTau,EFlowTrack_1)")
+
+                .Define("ChargedTauImpact_p4",     "FCCAnalyses::ZHfunctions::ImpactVector(ChargedTau_p4, RecoChargedTauTrack_D0, RecoChargedTauTrack_Z0)")
+                
+                .Define("RecoChargedJetTrack",   "ReconstructedParticle2Track::getRP2TRK( ChargedJet, EFlowTrack_1)")
+                .Define("RecoChargedJetTrack_D0", "ReconstructedParticle2Track::getRP2TRK_D0(ChargedJet,EFlowTrack_1)")
+                .Define("RecoChargedJetTrack_Z0", "ReconstructedParticle2Track::getRP2TRK_Z0(ChargedJet,EFlowTrack_1)")
+                .Define("RecoChargedJetTrack_charge", "ReconstructedParticle2Track::getRP2TRK_charge(ChargedJet,EFlowTrack_1)")
+                .Define("RecoChargedJetTrack_omega", "ReconstructedParticle2Track::getRP2TRK_omega(ChargedJet,EFlowTrack_1)")
+
+                .Define("ChargedJetImpact_p4",     "FCCAnalyses::ZHfunctions::ImpactVector(ChargedJet_p4, RecoChargedJetTrack_D0, RecoChargedJetTrack_Z0)")
+
+                ### LCFIPlus algorithm for secondary vertices ###
+                #find the DVs
+                #ROOT::VecOps::RVec<edm4hep::TrackState> np_tracks, ROOT::VecOps::RVec<edm4hep::TrackState> thetracks, VertexingUtils::FCCAnalysesVertex PV, bool V0_rej, double chi2_cut, double invM_cut, double chi2Tr_cut)
+                .Define("RecoDVs", "VertexFinderLCFIPlus::get_SV_event(RecoChargedHadronTrack, EFlowTrack_1, RecoDecayVertexObjectZ, true, 10., 5., 5.)")
+                #find number of DVs
+                .Define("n_RecoDVs", "VertexingUtils::get_n_SV(RecoDVs)")
+                # DV position in 3d (TVector3) from the origin
+                .Define("DV_p3", "VertexingUtils::get_position_SV(RecoDVs)")
         )
         return df2
     #__________________________________________________________
@@ -1494,6 +1912,19 @@ class RDFanalysis():
             "RecoPhoton_charge",
             "RecoPhoton_mass",
 
+            "n_ChargedHadron",
+            "ChargedHadron_e",
+            "ChargedHadron_p",
+            "ChargedHadron_pt",
+            "ChargedHadron_px",
+            "ChargedHadron_py",
+            "ChargedHadron_pz",
+            "ChargedHadron_eta",
+            "ChargedHadron_theta",
+            "ChargedHadron_phi",
+            "ChargedHadron_charge",
+            "ChargedHadron_mass",
+
             "n_NeutralHadrons",
             "NeutralHadrons_e",
             "NeutralHadrons_p",
@@ -1663,6 +2094,62 @@ class RDFanalysis():
             "TagJet_R5_sel_phi",     
             "TagJet_R5_sel_mass",      
             "n_TagJet_R5_sel", 
+
+            "n_ChargedTau_R5",
+            "ChargedTau_R5_e",
+            "ChargedTau_R5_p",
+            "ChargedTau_R5_pt",
+            "ChargedTau_R5_px",
+            "ChargedTau_R5_py",
+            "ChargedTau_R5_pz",
+            "ChargedTau_R5_eta",
+            "ChargedTau_R5_theta",
+            "ChargedTau_R5_phi",
+            "ChargedTau_R5_charge",
+            "ChargedTau_R5_mass",
+            "ChargedTau_R5_p4",
+
+            "n_NeutralTau_R5",
+            "NeutralTau_R5_e",
+            "NeutralTau_R5_p",
+            "NeutralTau_R5_pt",
+            "NeutralTau_R5_px",
+            "NeutralTau_R5_py",
+            "NeutralTau_R5_pz",
+            "NeutralTau_R5_eta",
+            "NeutralTau_R5_theta",
+            "NeutralTau_R5_phi",
+            "NeutralTau_R5_charge",
+            "NeutralTau_R5_mass",
+            "NeutralTau_R5_p4",
+
+            "n_ChargedJet_R5",
+            "ChargedJet_R5_e",
+            "ChargedJet_R5_p",
+            "ChargedJet_R5_pt",
+            "ChargedJet_R5_px",
+            "ChargedJet_R5_py",
+            "ChargedJet_R5_pz",
+            "ChargedJet_R5_eta",
+            "ChargedJet_R5_theta",
+            "ChargedJet_R5_phi",
+            "ChargedJet_R5_charge",
+            "ChargedJet_R5_mass",
+            "ChargedJet_R5_p4",
+
+            "n_NeutralJet_R5",
+            "NeutralJet_R5_e",
+            "NeutralJet_R5_p",
+            "NeutralJet_R5_pt",
+            "NeutralJet_R5_px",
+            "NeutralJet_R5_py",
+            "NeutralJet_R5_pz",
+            "NeutralJet_R5_eta",
+            "NeutralJet_R5_theta",
+            "NeutralJet_R5_phi",
+            "NeutralJet_R5_charge",
+            "NeutralJet_R5_mass",
+            "NeutralJet_R5_p4",
             
             "TagJet_kt4_px", 
             "TagJet_kt4_py",    
@@ -1717,6 +2204,62 @@ class RDFanalysis():
             "TagJet_kt4_sel_mass",      
             "n_TagJet_kt4_sel",
 
+            "n_ChargedTau_kt4",
+            "ChargedTau_kt4_e",
+            "ChargedTau_kt4_p",
+            "ChargedTau_kt4_pt",
+            "ChargedTau_kt4_px",
+            "ChargedTau_kt4_py",
+            "ChargedTau_kt4_pz",
+            "ChargedTau_kt4_eta",
+            "ChargedTau_kt4_theta",
+            "ChargedTau_kt4_phi",
+            "ChargedTau_kt4_charge",
+            "ChargedTau_kt4_mass",
+            "ChargedTau_kt4_p4",
+
+            "n_NeutralTau_kt4",
+            "NeutralTau_kt4_e",
+            "NeutralTau_kt4_p",
+            "NeutralTau_kt4_pt",
+            "NeutralTau_kt4_px",
+            "NeutralTau_kt4_py",
+            "NeutralTau_kt4_pz",
+            "NeutralTau_kt4_eta",
+            "NeutralTau_kt4_theta",
+            "NeutralTau_kt4_phi",
+            "NeutralTau_kt4_charge",
+            "NeutralTau_kt4_mass",
+            "NeutralTau_kt4_p4",
+
+            "n_ChargedJet_kt4",
+            "ChargedJet_kt4_e",
+            "ChargedJet_kt4_p",
+            "ChargedJet_kt4_pt",
+            "ChargedJet_kt4_px",
+            "ChargedJet_kt4_py",
+            "ChargedJet_kt4_pz",
+            "ChargedJet_kt4_eta",
+            "ChargedJet_kt4_theta",
+            "ChargedJet_kt4_phi",
+            "ChargedJet_kt4_charge",
+            "ChargedJet_kt4_mass",
+            "ChargedJet_kt4_p4",
+
+            "n_NeutralJet_kt4",
+            "NeutralJet_kt4_e",
+            "NeutralJet_kt4_p",
+            "NeutralJet_kt4_pt",
+            "NeutralJet_kt4_px",
+            "NeutralJet_kt4_py",
+            "NeutralJet_kt4_pz",
+            "NeutralJet_kt4_eta",
+            "NeutralJet_kt4_theta",
+            "NeutralJet_kt4_phi",
+            "NeutralJet_kt4_charge",
+            "NeutralJet_kt4_mass",
+            "NeutralJet_kt4_p4",
+
             "TagJet_kt3_px", 
             "TagJet_kt3_py",    
             "TagJet_kt3_pz",      
@@ -1769,6 +2312,62 @@ class RDFanalysis():
             "TagJet_kt3_sel_phi",     
             "TagJet_kt3_sel_mass",      
             "n_TagJet_kt3_sel",
+
+            "n_ChargedTau_kt3",
+            "ChargedTau_kt3_e",
+            "ChargedTau_kt3_p",
+            "ChargedTau_kt3_pt",
+            "ChargedTau_kt3_px",
+            "ChargedTau_kt3_py",
+            "ChargedTau_kt3_pz",
+            "ChargedTau_kt3_eta",
+            "ChargedTau_kt3_theta",
+            "ChargedTau_kt3_phi",
+            "ChargedTau_kt3_charge",
+            "ChargedTau_kt3_mass",
+            "ChargedTau_kt3_p4",
+
+            "n_NeutralTau_kt3",
+            "NeutralTau_kt3_e",
+            "NeutralTau_kt3_p",
+            "NeutralTau_kt3_pt",
+            "NeutralTau_kt3_px",
+            "NeutralTau_kt3_py",
+            "NeutralTau_kt3_pz",
+            "NeutralTau_kt3_eta",
+            "NeutralTau_kt3_theta",
+            "NeutralTau_kt3_phi",
+            "NeutralTau_kt3_charge",
+            "NeutralTau_kt3_mass",
+            "NeutralTau_kt3_p4",
+
+            "n_ChargedJet_kt3",
+            "ChargedJet_kt3_e",
+            "ChargedJet_kt3_p",
+            "ChargedJet_kt3_pt",
+            "ChargedJet_kt3_px",
+            "ChargedJet_kt3_py",
+            "ChargedJet_kt3_pz",
+            "ChargedJet_kt3_eta",
+            "ChargedJet_kt3_theta",
+            "ChargedJet_kt3_phi",
+            "ChargedJet_kt3_charge",
+            "ChargedJet_kt3_mass",
+            "ChargedJet_kt3_p4",
+
+            "n_NeutralJet_kt3",
+            "NeutralJet_kt3_e",
+            "NeutralJet_kt3_p",
+            "NeutralJet_kt3_pt",
+            "NeutralJet_kt3_px",
+            "NeutralJet_kt3_py",
+            "NeutralJet_kt3_pz",
+            "NeutralJet_kt3_eta",
+            "NeutralJet_kt3_theta",
+            "NeutralJet_kt3_phi",
+            "NeutralJet_kt3_charge",
+            "NeutralJet_kt3_mass",
+            "NeutralJet_kt3_p4",
 
             "TagJet_kt2_px", 
             "TagJet_kt2_py",    
@@ -1823,6 +2422,62 @@ class RDFanalysis():
             "TagJet_kt2_sel_mass",      
             "n_TagJet_kt2_sel",
 
+            "n_ChargedTau_kt2",
+            "ChargedTau_kt2_e",
+            "ChargedTau_kt2_p",
+            "ChargedTau_kt2_pt",
+            "ChargedTau_kt2_px",
+            "ChargedTau_kt2_py",
+            "ChargedTau_kt2_pz",
+            "ChargedTau_kt2_eta",
+            "ChargedTau_kt2_theta",
+            "ChargedTau_kt2_phi",
+            "ChargedTau_kt2_charge",
+            "ChargedTau_kt2_mass",
+            "ChargedTau_kt2_p4",
+
+            "n_NeutralTau_kt2",
+            "NeutralTau_kt2_e",
+            "NeutralTau_kt2_p",
+            "NeutralTau_kt2_pt",
+            "NeutralTau_kt2_px",
+            "NeutralTau_kt2_py",
+            "NeutralTau_kt2_pz",
+            "NeutralTau_kt2_eta",
+            "NeutralTau_kt2_theta",
+            "NeutralTau_kt2_phi",
+            "NeutralTau_kt2_charge",
+            "NeutralTau_kt2_mass",
+            "NeutralTau_kt2_p4",
+
+            "n_ChargedJet_kt2",
+            "ChargedJet_kt2_e",
+            "ChargedJet_kt2_p",
+            "ChargedJet_kt2_pt",
+            "ChargedJet_kt2_px",
+            "ChargedJet_kt2_py",
+            "ChargedJet_kt2_pz",
+            "ChargedJet_kt2_eta",
+            "ChargedJet_kt2_theta",
+            "ChargedJet_kt2_phi",
+            "ChargedJet_kt2_charge",
+            "ChargedJet_kt2_mass",
+            "ChargedJet_kt2_p4",
+
+            "n_NeutralJet_kt2",
+            "NeutralJet_kt2_e",
+            "NeutralJet_kt2_p",
+            "NeutralJet_kt2_pt",
+            "NeutralJet_kt2_px",
+            "NeutralJet_kt2_py",
+            "NeutralJet_kt2_pz",
+            "NeutralJet_kt2_eta",
+            "NeutralJet_kt2_theta",
+            "NeutralJet_kt2_phi",
+            "NeutralJet_kt2_charge",
+            "NeutralJet_kt2_mass",
+            "NeutralJet_kt2_p4",
+
             "TagJet_kt1_px", 
             "TagJet_kt1_py",    
             "TagJet_kt1_pz",      
@@ -1875,6 +2530,62 @@ class RDFanalysis():
             "TagJet_kt1_sel_phi",     
             "TagJet_kt1_sel_mass",      
             "n_TagJet_kt1_sel",
+
+            "n_ChargedTau_kt1",
+            "ChargedTau_kt1_e",
+            "ChargedTau_kt1_p",
+            "ChargedTau_kt1_pt",
+            "ChargedTau_kt1_px",
+            "ChargedTau_kt1_py",
+            "ChargedTau_kt1_pz",
+            "ChargedTau_kt1_eta",
+            "ChargedTau_kt1_theta",
+            "ChargedTau_kt1_phi",
+            "ChargedTau_kt1_charge",
+            "ChargedTau_kt1_mass",
+            "ChargedTau_kt1_p4",
+
+            "n_NeutralTau_kt1",
+            "NeutralTau_kt1_e",
+            "NeutralTau_kt1_p",
+            "NeutralTau_kt1_pt",
+            "NeutralTau_kt1_px",
+            "NeutralTau_kt1_py",
+            "NeutralTau_kt1_pz",
+            "NeutralTau_kt1_eta",
+            "NeutralTau_kt1_theta",
+            "NeutralTau_kt1_phi",
+            "NeutralTau_kt1_charge",
+            "NeutralTau_kt1_mass",
+            "NeutralTau_kt1_p4",
+
+            "n_ChargedJet_kt1",
+            "ChargedJet_kt1_e",
+            "ChargedJet_kt1_p",
+            "ChargedJet_kt1_pt",
+            "ChargedJet_kt1_px",
+            "ChargedJet_kt1_py",
+            "ChargedJet_kt1_pz",
+            "ChargedJet_kt1_eta",
+            "ChargedJet_kt1_theta",
+            "ChargedJet_kt1_phi",
+            "ChargedJet_kt1_charge",
+            "ChargedJet_kt1_mass",
+            "ChargedJet_kt1_p4",
+
+            "n_NeutralJet_kt1",
+            "NeutralJet_kt1_e",
+            "NeutralJet_kt1_p",
+            "NeutralJet_kt1_pt",
+            "NeutralJet_kt1_px",
+            "NeutralJet_kt1_py",
+            "NeutralJet_kt1_pz",
+            "NeutralJet_kt1_eta",
+            "NeutralJet_kt1_theta",
+            "NeutralJet_kt1_phi",
+            "NeutralJet_kt1_charge",
+            "NeutralJet_kt1_mass",
+            "NeutralJet_kt1_p4",
 
             "n_GenTau_had", 
             "n_TauTag_R5_match",  

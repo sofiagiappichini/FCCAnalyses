@@ -32,26 +32,27 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_v3/"
+DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_new/"
 
 #directory where you want your plots to go
 DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Reco_explicit/' 
 #list of cuts you want to plot
 CUTS = [
-    "selReco_20chi",
-    #"selReco",
+    "selReco_ILC20chi",
+    #"selReco_CMS",
     #"selDPhi",
  ] 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
-    "selReco_20chi": "p_{T,miss} (#chi^{2})<20 GeV",
+    "selReco_ILC20chi": "p_{T,miss} (#chi^{2})<20 GeV",
     "selGen": "No additional selection",
-    "selDPhi":"KinGen_hh_norm_DPhi<0.5"
+    "selReco_CMS":"No additional selection",
+    "selDPhi":"KinGen_hh_norm_DPhi<0.5",
  }
 
 label = ""
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (#pi#nu and #pi#pi^{0}#nu)"
+ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau " #(#pi#pi^{0}#nu)
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
@@ -775,12 +776,22 @@ VARIABLES_CP = [
             "RecoZDaughter_DEta", 
             "RecoZDaughter_DPhi", 
 
-            ########## cp 
+            
+]
+
+VARIABLES_CMS = [
+    "Phi_ZMF",
+    "O_ZMF",
+    "y_tau",
+    "PhiCP_CMS",
+]
+
+VARIABLES_ILC = [
             "CosDeltaPhiILC", 
             "SinDeltaPhiILC", 
             "DeltaPhiILC",
             "KinILC_chi2",
-
+            
             "RecoH_px",
             "RecoH_py",
             "RecoH_pz",
@@ -845,7 +856,6 @@ VARIABLES_CP = [
             "RecoTau_cos",
             "RecoTau_DEta", 
             "RecoTau_DPhi",
-
 ]
 
 VARIABLES_TAG = [
@@ -1044,11 +1054,11 @@ signals_old = [
     #'cehre_m1_taudecay_2Pi2Nu',
     #'cehre_p1_taudecay_2Pi2Nu',
 
-    'EWonly_taudecay_PiPi0Nu',
-    'cehim_m1_taudecay_PiPi0Nu',
-    'cehim_p1_taudecay_PiPi0Nu',
-    'cehre_m1_taudecay_PiPi0Nu',
-    'cehre_p1_taudecay_PiPi0Nu',
+    #'EWonly_taudecay_PiPi0Nu',
+    #'cehim_m1_taudecay_PiPi0Nu',
+    #'cehim_p1_taudecay_PiPi0Nu',
+    #'cehre_m1_taudecay_PiPi0Nu',
+    #'cehre_p1_taudecay_PiPi0Nu',
 
     #'cehim_m5_taudecay_2Pi2Nu',
     #'cehim_p5_taudecay_2Pi2Nu',
@@ -1178,7 +1188,7 @@ scolors = {
 
 for cut in CUTS:
     #VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
-    VARIABLES = VARIABLES_RECO + VARIABLES_CP 
+    VARIABLES = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
     for variable in VARIABLES:
 
         canvas = ROOT.TCanvas("", "", 1000, 1000)
@@ -1214,7 +1224,7 @@ for cut in CUTS:
         for s in signals:
             fin = f"{DIRECTORY}{s}_{cut}_histo.root"
             with ROOT.TFile(fin) as tf:
-                h = tf.Get(s + "_" + variable)
+                h = tf.Get(s + "_" + variable) #s + "_" + variable
                 hh = copy.deepcopy(h)
                 hh.SetDirectory(0)
             histos.append(hh)
@@ -1222,7 +1232,11 @@ for cut in CUTS:
             leg.AddEntry(histos[-1], slegend[s], "l")
 
         # add the signal histograms
-
+        for i in range(nsig):
+            h = histos[i]
+            max = 0 
+            if h.GetMaximum() > max :
+                max = h.GetMaximum() 
         for i in range(nsig):
             h = histos[i]
             h.SetLineWidth(3)
@@ -1230,12 +1244,11 @@ for cut in CUTS:
             if i == 0:
                 h.Draw("HIST")
                 h.GetYaxis().SetTitle("Events")
-                #h.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
+                h.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
                 #h.GetXaxis().SetTitleOffset(1.2)
                 #if h.Integral()>0:
                     #h.Scale(1./(h.Integral()))
-                max_y = h.GetMaximum() 
-                h.GetYaxis().SetRangeUser(0, max_y*2)
+                h.GetYaxis().SetRangeUser(0, max*2)
             else: 
                 #if h.Integral()>0:
                     #h.Scale(1./(h.Integral()))
