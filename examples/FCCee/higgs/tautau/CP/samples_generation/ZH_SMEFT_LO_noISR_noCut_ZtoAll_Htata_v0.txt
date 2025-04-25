@@ -1,0 +1,96 @@
+#---------------------------------------------------------------------------------------------------#
+#   here we include all Z decays (to ee, mumu, qqbar) and the two tau decays Pi2Nu,Pi+-Pi0Nu        #
+#---------------------------------------------------------------------------------------------------#
+
+set nb_core 35 # probably unused option when running on batch 
+
+import model SMEFTsim_topU3l_MwScheme_UFO__taudecay_UFO
+
+define lep = e+ e- mu+ mu- ta+ ta-
+define nu = vl vl~ 
+
+#-----------------------------------------------#
+#     run1: SM process from EFT model           #
+#-----------------------------------------------#
+generate e+ e- > e+ e- h,      h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi+ pi0 vt pi- vt~   QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi- pi0 vt~ pi+ vt   QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi- vt~ pi+ vt       QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi+ pi0 vt pi- vt~      QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi- pi0 vt~ pi+ vt      QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi- vt~ pi+ vt          QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi+ pi0 vt pi- vt~      QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi- pi0 vt~ pi+ vt      QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi- vt~ pi+ vt          QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+output ZH_SMEFT_prod/noISR_noCuts_EWonly_taudecay_v0
+launch ZH_SMEFT_prod/noISR_noCuts_EWonly_taudecay_v0
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
+
+###-----------------------------------------------#
+###   run2: cehim=1
+###-----------------------------------------------#
+generate e+ e- > e+ e- h,      h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi+ pi0 vt pi- vt~   QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi- pi0 vt~ pi+ vt   QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi- vt~ pi+ vt       QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi+ pi0 vt pi- vt~      QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi- pi0 vt~ pi+ vt      QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi- vt~ pi+ vt          QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi+ pi0 vt pi- vt~      QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi- pi0 vt~ pi+ vt      QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi- vt~ pi+ vt          QCD=0 NP=1 SMHLOOP=0 
+output ZH_SMEFT_prod/noISR_noCuts_cehim_p1_taudecay_v0
+launch ZH_SMEFT_prod/noISR_noCuts_cehim_p1_taudecay_v0
+set smeftcpv 45 1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
+
+###-----------------------------------------------#
+###   run3: cehim=-1
+###-----------------------------------------------#
+generate e+ e- > e+ e- h,      h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi+ pi0 vt pi- vt~   QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi- pi0 vt~ pi+ vt   QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      h > pi- vt~ pi+ vt       QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi+ pi0 vt pi- vt~      QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi- pi0 vt~ pi+ vt      QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h, h > pi- vt~ pi+ vt          QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi+ pi0 vt pi- pi0 vt~  QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi+ pi0 vt pi- vt~      QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi- pi0 vt~ pi+ vt      QCD=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,     h > pi- vt~ pi+ vt          QCD=0 NP=1 SMHLOOP=0  
+output ZH_SMEFT_prod/noISR_noCuts_cehim_m1_taudecay_v0
+launch ZH_SMEFT_prod/noISR_noCuts_cehim_m1_taudecay_v0
+set smeftcpv 45 -1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 100000
+set use_syst False
+done
