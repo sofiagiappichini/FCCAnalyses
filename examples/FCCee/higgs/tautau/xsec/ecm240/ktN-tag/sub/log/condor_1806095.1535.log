@@ -1,0 +1,115 @@
+000 (1806095.1535.000) 2025-04-29 16:19:17 Job submitted from host: <129.13.101.151:9618?addrs=129.13.101.151-9618+[2a00-1398-5-fe01-ec4-7aff-fede-e4ae]-9618&alias=bms3.etp.kit.edu&noUDP&sock=schedd_2157_19df>
+...
+040 (1806095.1535.000) 2025-04-29 17:28:10 Finished transferring input files
+...
+001 (1806095.1535.000) 2025-04-29 17:28:11 Job executing on host: <129.13.101.129:9618?addrs=129.13.101.129-9618+[2a00-1398-5-fe01-ae1f-6bff-febb-bf0c]-9618&alias=ms02.etp.kit.edu&noUDP&sock=startd_230517_1120>
+	SlotName: slot1_6@ms02.etp.kit.edu
+	CondorScratchDir = "/var/lib/condor/execute/dir_1687158"
+	Cpus = 4
+	Disk = 1001472
+	GPUs = 0
+	Memory = 10112
+...
+006 (1806095.1535.000) 2025-04-29 17:28:20 Image size of job updated: 112
+	112  -  MemoryUsage of job (MB)
+	114868  -  ResidentSetSize of job (KB)
+...
+006 (1806095.1535.000) 2025-04-29 17:28:21 Image size of job updated: 301
+	301  -  MemoryUsage of job (MB)
+	308272  -  ResidentSetSize of job (KB)
+...
+040 (1806095.1535.000) 2025-04-29 17:28:22 Started transferring output files
+...
+040 (1806095.1535.000) 2025-04-29 17:28:22 Finished transferring output files
+...
+004 (1806095.1535.000) 2025-04-29 17:28:22 Job was evicted.
+	(0) Job terminated and was requeued
+		Usr 0 00:00:04, Sys 0 00:00:02  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	2677  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	(1) Normal termination (return value 3)
+	The job attribute OnExitRemove expression 'NumJobCompletions > JobMaxRetries || ExitCode =?= 0' evaluated to FALSE
+...
+040 (1806095.1535.000) 2025-04-29 17:29:18 Finished transferring input files
+...
+001 (1806095.1535.000) 2025-04-29 17:29:19 Job executing on host: <129.13.101.152:9618?addrs=129.13.101.152-9618+[2a00-1398-5-fe01-1b-93ff-fe49-8b61]-9618&alias=mdm1.etp.kit.edu&noUDP&sock=startd_2426403_3788>
+	SlotName: slot1_30@mdm1.etp.kit.edu
+	CondorScratchDir = "/local/scratch/ssd/condor/execute/dir_2941001"
+	Cpus = 4
+	Disk = 1005502
+	GPUs = 0
+	Memory = 10112
+...
+040 (1806095.1535.000) 2025-04-29 17:29:31 Started transferring output files
+...
+040 (1806095.1535.000) 2025-04-29 17:29:31 Finished transferring output files
+...
+004 (1806095.1535.000) 2025-04-29 17:29:31 Job was evicted.
+	(0) Job terminated and was requeued
+		Usr 0 00:00:04, Sys 0 00:00:04  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	2677  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	(1) Normal termination (return value 3)
+	The job attribute OnExitRemove expression 'NumJobCompletions > JobMaxRetries || ExitCode =?= 0' evaluated to FALSE
+...
+040 (1806095.1535.000) 2025-04-29 17:29:42 Finished transferring input files
+...
+001 (1806095.1535.000) 2025-04-29 17:29:43 Job executing on host: <129.13.101.152:9618?addrs=129.13.101.152-9618+[2a00-1398-5-fe01-1b-93ff-fe49-8b61]-9618&alias=mdm1.etp.kit.edu&noUDP&sock=startd_2426403_3788>
+	SlotName: slot1_22@mdm1.etp.kit.edu
+	CondorScratchDir = "/local/scratch/ssd/condor/execute/dir_2944094"
+	Cpus = 4
+	Disk = 1005502
+	GPUs = 0
+	Memory = 10112
+...
+040 (1806095.1535.000) 2025-04-29 17:29:55 Started transferring output files
+...
+040 (1806095.1535.000) 2025-04-29 17:29:55 Finished transferring output files
+...
+004 (1806095.1535.000) 2025-04-29 17:29:55 Job was evicted.
+	(0) Job terminated and was requeued
+		Usr 0 00:00:03, Sys 0 00:00:04  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	2677  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	(1) Normal termination (return value 3)
+	The job attribute OnExitRemove expression 'NumJobCompletions > JobMaxRetries || ExitCode =?= 0' evaluated to FALSE
+...
+040 (1806095.1535.000) 2025-04-29 17:32:19 Finished transferring input files
+...
+001 (1806095.1535.000) 2025-04-29 17:32:20 Job executing on host: <129.13.101.131:9618?addrs=129.13.101.131-9618+[2a00-1398-5-fe01-ae1f-6bff-febb-c016]-9618&alias=ms04.etp.kit.edu&noUDP&sock=startd_2207239_f134>
+	SlotName: slot1_7@ms04.etp.kit.edu
+	CondorScratchDir = "/var/lib/condor/execute/dir_2114780"
+	Cpus = 4
+	Disk = 1001472
+	GPUs = 0
+	Memory = 10112
+...
+006 (1806095.1535.000) 2025-04-29 17:32:31 Image size of job updated: 346
+	346  -  MemoryUsage of job (MB)
+	354500  -  ResidentSetSize of job (KB)
+...
+040 (1806095.1535.000) 2025-04-29 17:32:31 Started transferring output files
+...
+040 (1806095.1535.000) 2025-04-29 17:32:31 Finished transferring output files
+...
+005 (1806095.1535.000) 2025-04-29 17:32:32 Job terminated.
+	(1) Normal termination (return value 3)
+		Usr 0 00:00:04, Sys 0 00:00:02  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:15, Sys 0 00:00:12  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	2677  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	10708  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        4         4 
+	   Disk (KB)            :       27  1000000   1001472 
+	   GPUs                 :                           0 
+	   Memory (MB)          :      346    10000     10112 
+
+	Job terminated of its own accord at 2025-04-29T15:32:31Z with exit-code 3.
+...

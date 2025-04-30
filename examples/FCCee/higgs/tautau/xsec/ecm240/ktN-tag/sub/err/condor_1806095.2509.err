@@ -1,0 +1,22 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-tag/QQ/analysis_stage2_QQLH.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+Error in <TFile::ReadBuffer>: error reading all requested bytes from file /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_bbH_Hcc_ecm240/docker_stderror, got 128 of 300
+Error in <TFile::Init>: /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_bbH_Hcc_ecm240/docker_stderror failed to read the file type data.
+Traceback (most recent call last):
+  File "/work/awiedl/FCCAnalyses/install/bin/fccanalysis", line 102, in <module>
+    main()
+  File "/work/awiedl/FCCAnalyses/install/bin/fccanalysis", line 98, in main
+    run(parser)
+  File "/work/awiedl/FCCAnalyses/install/python/run_analysis.py", line 941, in run
+    run_stages(args, rdf_module, anapath)
+  File "/work/awiedl/FCCAnalyses/install/python/run_analysis.py", line 601, in run_stages
+    run_local(rdf_module, args.files_list, args)
+  File "/work/awiedl/FCCAnalyses/install/python/run_analysis.py", line 474, in run_local
+    infile = ROOT.TFile.Open(filepath, 'READ')
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/root/6.28.06-uz62dl/lib/root/ROOT/_pythonization/_tfile.py", line 103, in _TFileOpen
+    raise OSError('Failed to open file {}'.format(str(args[0])))
+OSError: Failed to open file /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_bbH_Hcc_ecm240/docker_stderror

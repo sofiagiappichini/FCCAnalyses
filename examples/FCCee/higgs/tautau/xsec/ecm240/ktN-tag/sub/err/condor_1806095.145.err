@@ -1,0 +1,32 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-tag/QQ/analysis_stage2_QQHH.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_10.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_2.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_5.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_1.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_3.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_11.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_4.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_6.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_8.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_nunuH_Hgg_ecm240/chunk_7.root	
+
+----> INFO: Number of events:
+            	- original: 855,845
+            	- local:    855,845
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/ecm240/ktN-tag/stage2/QQ/HH/wzp6_ee_nunuH_Hgg_ecm240/chunk_0.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:27
+            Events processed/second: 31,386
+            Total events processed:  855,845
+            No. result events:       675
+            Reduction factor local:  0.0007886942144897732
+            Reduction factor total:  0.0007886942144897732
+            ================================================================================
+

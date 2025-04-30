@@ -1,0 +1,45 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-tag/QQ/analysis_stage2_QQHH.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_2928.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_2147.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_1868.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_2961.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_1489.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_105.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_284.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_231.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_132.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/p8_ee_WW_ecm240/chunk_1051.root	
+
+----> INFO: Number of events:
+            	- original: 1,000,000
+            	- local:    1,000,000
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/ecm240/ktN-tag/stage2/QQ/HH/p8_ee_WW_ecm240/chunk_356.root
+Error in <TTreeReaderArrayBase::GetBranchAndLeaf()>: The tree does not have a branch called TagJet_kt4_cleanup. You could check with TTree::Print() for available branches.
+Error in <TTreeReaderArrayBase::GetBranchAndLeaf()>: The tree does not have a branch called TagJet_kt4_cleanup. You could check with TTree::Print() for available branches.
+Error in <TTreeReaderArrayBase::GetBranchAndLeaf()>: The tree does not have a branch called TagJet_kt4_cleanup. You could check with TTree::Print() for available branches.
+Error in <TTreeReaderArrayBase::GetBranchAndLeaf()>: The tree does not have a branch called TagJet_kt4_cleanup. You could check with TTree::Print() for available branches.
+Error in <TTreeReaderArrayBase::GetBranchAndLeaf()>: The tree does not have a branch called TagJet_kt4_cleanup. You could check with TTree::Print() for available branches.
+Error in <TTreeReaderArrayBase::GetBranchAndLeaf()>: The tree does not have a branch called TagJet_kt4_cleanup. You could check with TTree::Print() for available branches.
+Error in <TTreeReaderArrayBase::GetBranchAndLeaf()>: The tree does not have a branch called TagJet_kt4_cleanup. You could check with TTree::Print() for available branches.
+Error in <TTreeReaderArrayBase::GetBranchAndLeaf()>: The tree does not have a branch called TagJet_kt4_cleanup. You could check with TTree::Print() for available branches.
+----> ERROR: During the execution of the analysis file exception occurred:
+             Template method resolution failed:
+               none of the 3 overloaded methods succeeded. Full details:
+               ROOT::RDF::RResultPtr<ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void> > ROOT::RDF::RInterface<ROOT::Detail::RDF::RJittedFilter,void>::Snapshot(basic_string_view<char,char_traits<char> > treename, basic_string_view<char,char_traits<char> > filename, initializer_list<string> columnList, const ROOT::RDF::RSnapshotOptions& options = ROOT::RDF::RSnapshotOptions()) =>
+                 TypeError: could not convert argument 3
+               ROOT::RDF::RResultPtr<ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void> > ROOT::RDF::RInterface<ROOT::Detail::RDF::RJittedFilter,void>::Snapshot(basic_string_view<char,char_traits<char> > treename, basic_string_view<char,char_traits<char> > filename, const vector<string>& columnList, const ROOT::RDF::RSnapshotOptions& options = ROOT::RDF::RSnapshotOptions()) =>
+                 runtime_error: An error was encountered while processing the data. TTreeReader status code is: 6
+               ROOT::RDF::RResultPtr<ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void> > ROOT::RDF::RInterface<ROOT::Detail::RDF::RJittedFilter,void>::Snapshot(basic_string_view<char,char_traits<char> > treename, basic_string_view<char,char_traits<char> > filename, basic_string_view<char,char_traits<char> > columnNameRegexp = "", const ROOT::RDF::RSnapshotOptions& options = ROOT::RDF::RSnapshotOptions()) =>
+                 TypeError: could not convert argument 3
+               ROOT::RDF::RResultPtr<ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void> > ROOT::RDF::RInterface<ROOT::Detail::RDF::RJittedFilter,void>::Snapshot(basic_string_view<char,char_traits<char> > treename, basic_string_view<char,char_traits<char> > filename, const vector<string>& columnList, const ROOT::RDF::RSnapshotOptions& options = ROOT::RDF::RSnapshotOptions()) =>
+                 runtime_error: An error was encountered while processing the data. TTreeReader status code is: 6
+               Failed to instantiate "Snapshot(std::string,std::string,std::vector<string>*)"
+               ROOT::RDF::RResultPtr<ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void> > ROOT::RDF::RInterface<ROOT::Detail::RDF::RJittedFilter,void>::Snapshot(basic_string_view<char,char_traits<char> > treename, basic_string_view<char,char_traits<char> > filename, const vector<string>& columnList, const ROOT::RDF::RSnapshotOptions& options = ROOT::RDF::RSnapshotOptions()) =>
+                 runtime_error: An error was encountered while processing the data. TTreeReader status code is: 6

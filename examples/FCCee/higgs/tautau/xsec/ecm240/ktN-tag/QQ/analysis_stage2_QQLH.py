@@ -88,26 +88,26 @@ processList = {
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ktN-tag/stage2_241202_cut/QQ/LH"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/ecm240/ktN-tag/stage2/QQ/LH/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
 
 ### necessary to run on HTCondor ###
-eosType = "eosuser"
+#eosType = "eosuser"
 
 #Optional running on HTCondor, default is False
-runBatch = True
+#runBatch = True
 
-nCPUS = 6
+#nCPUS = 6
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "microcentury"
+#batchQueue = "microcentury"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-compGroup = "group_u_FCC.local_gen"
+#compGroup = "group_u_FCC.local_gen"
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -190,6 +190,8 @@ class RDFanalysis():
                 .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(QuarkTag_px.at(0), QuarkTag_py.at(0), QuarkTag_pz.at(0), QuarkTag_e.at(0))")
                 .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(QuarkTag_px.at(1), QuarkTag_py.at(1), QuarkTag_pz.at(1), QuarkTag_e.at(1))")
                 
+        )
+        df2 = (df2
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
                 .Define("RecoZLead_py",    "RecoZLead_p4.Py()")
@@ -317,8 +319,13 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "RecoH_mass/sqrt(f0*f1)")
-
-                .Filter("Collinear_mass>100 && Collinear_mass<150")
+                
+                .Define("txt2",       "(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)*(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)+(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)*(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)+(TauLead_px*TauSub_py-TauLead_py*TauSub_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("txttxp",     "(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)*(TauLead_py*RecoEmiss_pz-TauLead_pz*RecoEmiss_py)+(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)*(TauLead_pz*RecoEmiss_px-TauLead_px*RecoEmiss_pz)+(TauLead_px*RecoEmiss_py-TauLead_py*RecoEmiss_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("pxttxt",     "(RecoEmiss_py*TauSub_pz-RecoEmiss_pz*TauSub_py)*(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)+(RecoEmiss_pz*TauSub_px-RecoEmiss_px*TauSub_pz)*(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)+(RecoEmiss_px*TauSub_py-RecoEmiss_py*TauSub_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("pxttxp",     "(RecoEmiss_py*TauSub_pz-RecoEmiss_pz*TauSub_py)*(TauLead_py*RecoEmiss_pz-TauLead_pz*RecoEmiss_py)+(RecoEmiss_pz*TauSub_px-RecoEmiss_px*TauSub_pz)*(TauLead_pz*RecoEmiss_px-TauLead_px*RecoEmiss_pz)+(RecoEmiss_px*TauSub_py-RecoEmiss_py*TauSub_px)*(TauLead_px*RecoEmiss_py-TauLead_py*RecoEmiss_px)")
+                .Define("Collinear_mass_3d",    "RecoH_mass/sqrt(txt2/(txt2+txttxp+pxttxt+pxttxp))")
+                #.Filter("Collinear_mass>100 && Collinear_mass<150")
 
         )
         return df2
@@ -1156,6 +1163,7 @@ class RDFanalysis():
 
             "Recoil",
             "Collinear_mass", 
+            "Collinear_mass_3d",
         
             "Tau_DR",
             "Tau_cos",

@@ -1,0 +1,27 @@
+----> INFO: Loading analyzers from libFCCAnalyses...
+----> INFO: Loading analysis file:
+            /work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-tag/QQ/analysis_stage2_QQHH.py
+----> INFO: Multithreading enabled. Running over 4 threads
+----> INFO: Loading functions.h...
+----> INFO: Running over files provided in command line argument...
+----> INFO: Creating dataframe object from files:
+            	- /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_qqH_Hbb_ecm240/chunk_2.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_qqH_Hbb_ecm240/chunk_1.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_qqH_Hbb_ecm240/chunk_3.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_qqH_Hbb_ecm240/chunk_4.root	
+            - /ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/wzp6_ee_qqH_Hbb_ecm240/chunk_0.root	
+
+----> INFO: Number of events:
+            	- original: 500,000
+            	- local:    500,000
+----> INFO: Output file path:
+            /ceph/awiedl/FCCee/HiggsCP/ecm240/ktN-tag/stage2/QQ/HH/wzp6_ee_qqH_Hbb_ecm240/chunk_0.root
+----> INFO: =================================== SUMMARY ====================================
+            Elapsed time (H:M:S):    00:00:53
+            Events processed/second: 9,432
+            Total events processed:  500,000
+            No. result events:       8
+            Reduction factor local:  1.6e-05
+            Reduction factor total:  1.6e-05
+            ================================================================================
+

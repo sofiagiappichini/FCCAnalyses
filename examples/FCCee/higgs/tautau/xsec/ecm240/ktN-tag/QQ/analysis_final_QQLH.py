@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/ktN-tag/stage2_241202/QQ/LH"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/ecm240/ktN-tag/stage2/QQ/LH"
 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/ktN-tag/final_241202/QQ/LH"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/ecm240/ktN-tag/final/QQ/LH"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -117,7 +117,7 @@ procDictAdd = {}
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    #"selReco": "true",
+    "selReco": "true",
     #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
     #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
     #"selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2",
@@ -793,4 +793,5 @@ histoList = {
 
     "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
     "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
+    "Collinear_mass_3d":           {"name":"Collinear_mass_3d",           "title":"M_{collinear_3d} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
 }

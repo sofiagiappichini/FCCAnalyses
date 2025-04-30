@@ -1281,6 +1281,20 @@ TVector3 ProjectOntoPlane(const TVector3& v, const TVector3& a, const TVector3& 
     return v_parallel;
 }
 
+ROOT::VecOps::RVec<float> get_momentum_resolution(ROOT::VecOps::RVec<float> gen_p, ROOT::VecOps::RVec<float> reco_p, int upper, int lower) {
+    ROOT::VecOps::RVec<float> result; //returns vectors of indices of pairs of jets passing the selection
+    for (size_t i = 0; i < gen_p.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
+        if(reco_p[i] >= lower && reco_p[i] < upper){
+            if(i < gen_p.size()){
+                float reso = (gen_p[i] - reco_p[i])/gen_p[i];
+                result.emplace_back(reso);
+            }
+        }
+    }
+    return result; //result.size() will give the number of pairs/rows passing the selection
+}
+
+
 //begin of minimizer function following ILC paper https://arxiv.org/pdf/1804.01241 and reference from d. Jeans https://arxiv.org/pdf/1507.01700
 //returns neutrinos in lab frame
 class NuKinFunctor : public ROOT::Minuit2::FCNBase {
