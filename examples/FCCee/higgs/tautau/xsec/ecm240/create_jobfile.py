@@ -34,7 +34,7 @@ def create_condor_config(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "longlunch"\n'
+    cfg += '+JobFlavour      = "espresso"\n'
 
     cfg += 'request_memory   = '+str(memory)+' MB\n'
 
@@ -74,7 +74,7 @@ def create_subjob_script(local_dir: str,
     make_dir_if_not_exists(output_dir+"log")
     make_dir_if_not_exists(output_dir+"err")
 
-    for process in os.listdir(input_dir):
+    for process in processList:
         #print(process)
         i = 0
         j = 0
@@ -98,7 +98,7 @@ def create_subjob_script(local_dir: str,
     print("done")
              
 
-processList = {
+processList_ = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -183,34 +183,37 @@ processList = {
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
 }
 
-processList_ = {
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':1},
+processList = {
+    'p8_ee_WW_ecm240':{'chunks':100},
+    'p8_ee_Zqq_ecm240':{'chunks':100},
+    'p8_ee_ZZ_ecm240':{'chunks':100},
+    
+    'wzp6_ee_tautau_ecm240':{'chunks':100},
+    'wzp6_ee_mumu_ecm240':{'chunks':100},
+    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
+    
     'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
     'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_ccH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_ssH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':1},
 }
 
 #inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage1_241202_nojets/'
-output = '/work/sgiappic/HTCondor/stage2_nojets/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_241202_nojets/' ##output directory of stage2 samples
-localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ktN-explicit/'
+inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/'
+output = '/work/sgiappic/HTCondor/stage2_tutorial/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_tutorial/' ##output directory of stage2 samples
+localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-explicit/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename_path = 'analysis_stage2_'
 SUBDIR = [
     'LL',
-    #'LH',
-    #'HH',
+    'LH',
+    'HH',
 ]
 CAT = [
     #"QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
-nCPUS = 4
+nCPUS = 1
 Memory = 10000
 for cat in CAT:
     for sub in SUBDIR:
@@ -223,7 +226,7 @@ for cat in CAT:
         else:
             inputDir = inputDir_path + cat + "/" + sub + "/"
         outputDir = outputDir_path + cat + "/" + sub + "/"
-        Filename = Filename_path + cat + sub + "_nojets.py"
+        Filename = Filename_path + cat + sub + ".py"
         create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output, outputDir, Filename)
 
 create_condor_config(nCPUS, Memory, output)

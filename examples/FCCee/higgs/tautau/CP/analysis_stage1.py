@@ -9,7 +9,7 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    'EWonly_taudecay_2Pi2Nu':{},
+    #'EWonly_taudecay_2Pi2Nu':{},
     #'cehim_m1_taudecay_2Pi2Nu':{},
     #'cehim_p1_taudecay_2Pi2Nu':{},
     #'cehre_m1_taudecay_2Pi2Nu':{},
@@ -39,6 +39,8 @@ processList = {
     #'cehim_p10_taudecay_2Pi2Nu':{},
     #'cehim_m10_taudecay_2Pi2Nu':{},
 
+    "e+e-_eeH_H3PiNu":{},
+
     #'wzp6_ee_eeH_Htautau_ecm240': {},
     #'p8_ee_ZZ_ecm240':{'chunks':100},
 }
@@ -46,8 +48,8 @@ processList = {
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/winter2023/IDEA/"
 
-inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
-#inputDir = '/ceph/sgiappic/HiggsCP'
+#inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
+inputDir = '/ceph/sgiappic/HiggsCP'
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 
 outputDir = "/ceph/sgiappic/HiggsCP/CPtest/stage1"
@@ -257,9 +259,9 @@ class RDFanalysis():
 
                 ###############################
 
-                .Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
-                .Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPtoENuNu_idx.size()>0 || TauPtoMuNuNu_idx.size()>0 || TauPto2Pi0Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
-                .Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
+                #.Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
+                #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPtoENuNu_idx.size()>0 || TauPtoMuNuNu_idx.size()>0 || TauPto2Pi0Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
+                #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
                 #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPto2Pi0Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
                 #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
                 
@@ -1220,18 +1222,16 @@ class RDFanalysis():
             "PathLength": "EFlowTrack_L",
             "Bz": "magFieldBz",
         }
-        collections_noleps = copy.deepcopy(collections)
-        collections_noleps["PFParticles"] = "ReconstructedParticlesJET"
 
         ## def __init__(self, coll, njets, tag="")
         jetClusteringHelper_R5  = InclusiveJetClusteringHelper(
-            collections_noleps["PFParticles"], 0.5, 2, "R5"
+            collections["PFParticles"], 0.5, 2, "R5"
         )
         df2 = jetClusteringHelper_R5.define(df2)
 
         ## define jet flavour tagging parameters
         jetFlavourHelper_R5 = JetFlavourHelper(
-            collections_noleps,
+            collections,
             jetClusteringHelper_R5.jets,
             jetClusteringHelper_R5.constituents,
             "R5",
@@ -1510,7 +1510,7 @@ class RDFanalysis():
     #__________________________________________________________
     #Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
-        branchList = [
+        '''branchList = [
             ######## Monte-Carlo particles #######
             "n_FSGenElectron",
             "FSGenElectron_e",
@@ -1905,8 +1905,8 @@ class RDFanalysis():
             "HadGenTau_charge",
             "HadGenTau_mass",
 
-        ]
-        branchList +=[
+        ]'''
+        branchList =[
 
         ######## Reconstructed particles #######
             #"RecoMC_PID",

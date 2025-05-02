@@ -1,8 +1,10 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/" 
+#inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/" 
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/"
 
 #Optional: output directory, default is local running directory
-outputDir   = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/efficiency/jet/" 
+#outputDir   = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/efficiency/jet/" 
+outputDir = "/ceph/sgiappic/HiggsCP/ecm240/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -15,19 +17,19 @@ doScale = False
 saveTabular = True
 
 #Number of CPUs to use
-nCPUS = 4
+nCPUS = 1
 
 #produces ROOT TTrees, default is False
 doTree = False
 
 processList = {
     'wzp6_ee_nunuH_Htautau_ecm240': {},
-    #'wzp6_ee_eeH_Htautau_ecm240': {},
-    #wzp6_ee_mumuH_Htautau_ecm240': {},
-    #'wzp6_ee_bbH_Htautau_ecm240': {},
-    #'wzp6_ee_ccH_Htautau_ecm240': {},
-    #'wzp6_ee_ssH_Htautau_ecm240': {},
-    #'wzp6_ee_qqH_Htautau_ecm240': {},
+    'wzp6_ee_eeH_Htautau_ecm240': {},
+    'wzp6_ee_mumuH_Htautau_ecm240': {},
+    'wzp6_ee_bbH_Htautau_ecm240': {},
+    'wzp6_ee_ccH_Htautau_ecm240': {},
+    'wzp6_ee_ssH_Htautau_ecm240': {},
+    'wzp6_ee_qqH_Htautau_ecm240': {},
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -44,21 +46,17 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selNone":"true",
-    
-    "selTag1-5":"n_events_R5tag==1 && TagJet_R5_e[TagJet_R5_cleanup==0].size()==1",
+
     "selTag2-5":"n_events_R5tag==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==2",
-    "selTag0-5":"n_events_R5tag==0 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==0",
 
-    "selTag1-5m":"n_events_R5masstag==1 && TagJet_R5_e[TagJet_R5_cleanup==0].size()==1",
-    "selTag2-5m":"n_events_R5masstag==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==2",
-    "selTag0-5m":"n_events_R5masstag==0 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==0",
-
-    "selTag1-5e":"n_events_R5excl==1 && TagJet_R5_e[TagJet_R5_cleanup==0].size()==1",
     "selTag2-5e":"n_events_R5excl==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==2",
-    "selTag0-5e":"n_events_R5excl==0 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==0",
+
+    "selTag2-54":"n_events_R5tag==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==4",
+
+    "selTag2-54e":"n_events_R5excl==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==4",
 
     #"selTag1-4":"n_events_kt4tag==1",
-    #"selTag2-4":"n_events_kt4tag==2",
+    "selTag2-4":"n_events_kt4tag==2 && TagJet_kt4_e[TagJet_kt4_cleanup==1].size()==4",
     #"selTag0-4":"n_events_kt4tag==0",
 
     #"selTag1-4m":"n_events_kt4masstag==1",
@@ -66,11 +64,11 @@ cutList = {
     #"selTag0-4m":"n_events_kt4masstag==0",
 
     #"selTag1-4e":"n_events_kt4excl==1",
-    #"selTag2-4e":"n_events_kt4excl==2",
+    "selTag2-4e":"n_events_kt4excl==2 && TagJet_kt4_e[TagJet_kt4_cleanup==1].size()==4",
     #"selTag0-4e":"n_events_kt4excl==0",
 
     #"selTag1-3":"n_events_kt3tag==1",
-    #"selTag2-3":"n_events_kt3tag==2",
+    #"selTag2-3":"n_events_kt3tag==2 && TagJet_kt4_e[TagJet_kt3_cleanup==1].size()==3",
     #"selTag0-3":"n_events_kt3tag==0",
 
     #"selTag1-3m":"n_events_kt3masstag==1",
@@ -82,32 +80,25 @@ cutList = {
     #"selTag0-3e":"n_events_kt3excl==0",
 
     #"selTag1-2":"n_events_kt2tag==1",
-    "selTag2-2":"n_events_kt2tag==2",
+    "selTag2-2":"n_events_kt2tag==2 && TagJet_kt2_e[TagJet_kt2_cleanup==1].size()==2",
     #"selTag0-2":"n_events_kt2tag==0",
 
-    #"selTag1-2m":"n_events_kt2masstag==1",
-    "selTag2-2m":"n_events_kt2masstag==2",
-    #"selTag0-2m":"n_events_kt2masstag==0",
 
     #"selTag1-2e":"n_events_kt2excl==1",
-    "selTag2-2e":"n_events_kt2excl==2",
+    "selTag2-2e":"n_events_kt2excl==2 && TagJet_kt2_e[TagJet_kt2_cleanup==1].size()==2",
     #"selTag0-2e":"n_events_kt2excl==0",
 
-    "selTag1-1":"n_events_kt1tag==1",
+    #"selTag1-1":"n_events_kt1tag==1",
     #"selTag2-1":"n_events_kt1tag==2",
     #"selTag0-1":"n_events_kt1tag==0",
 
-    "selTag1-1m":"n_events_kt1masstag==1",
-    #"selTag2-1m":"n_events_kt1masstag==2",
-    #"selTag0-1m":"n_events_kt1masstag==0",
-
-    "selTag1-1e":"n_events_kt1excl==1",
+    #"selTag1-1e":"n_events_kt1excl==1",
     #"selTag2-1e":"n_events_kt1excl==2",
     #"selTag0-1e":"n_events_kt1excl==0",
 
-    "selGen1":"n_GenTau_had==1",
+    #"selGen1":"n_GenTau_had==1",
     "selGen2":"n_GenTau_had==2",
-    "selGen0":"n_GenTau_had==0",
+    #"selGen0":"n_GenTau_had==0",
 }
 
 # Dictionary for prettier names of cuts (optional)

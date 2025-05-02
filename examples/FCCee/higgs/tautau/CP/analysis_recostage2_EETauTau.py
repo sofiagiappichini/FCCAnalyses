@@ -2,17 +2,19 @@ import os, copy # tagging
 import ROOT
 
 processList = {
-    'noISR_e+e-_noCuts_EWonly':{},
-    'noISR_e+e-_noCuts_cehim_m1':{},
-    'noISR_e+e-_noCuts_cehim_p1':{},
-    'noISR_e+e-_noCuts_cehre_m1':{},
-    'noISR_e+e-_noCuts_cehre_p1':{},
+    #'noISR_e+e-_noCuts_EWonly':{},
+    #'noISR_e+e-_noCuts_cehim_m1':{},
+    #'noISR_e+e-_noCuts_cehim_p1':{},
+    #'noISR_e+e-_noCuts_cehre_m1':{},
+    #'noISR_e+e-_noCuts_cehre_p1':{},
+
+    "e+e-_eeH_H3PiNu":{},
     
 }
 
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_newer/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_new/"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_newer/"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_new/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]

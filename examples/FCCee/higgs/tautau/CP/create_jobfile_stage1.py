@@ -137,7 +137,7 @@ def submit_jobs(output_dir: str):
         #print(f"GOOD SUBMISSION: {process} with {num_files} chunks")
              
 
-processList = {
+processList_ = {
     'noISR_e+e-_noCuts_EWonly':{},
     'noISR_e+e-_noCuts_cehim_m1':{},
     'noISR_e+e-_noCuts_cehim_p1':{},
@@ -181,15 +181,21 @@ processList = {
     #'p8_ee_ZZ_ecm240':{'chunks':100},
 }
 
+processList = {
+    'e+e-_eeH_H3PiNu':{},
+    #'wzp6_ee_bbH_Htautau_ecm240':{},
+}
+
 if "ZZ" in processList:
     chunks = True
 
 chunks = False
 
-inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/"
+#inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/"
 #inputDir = "/ceph/sgiappic/HiggsCP/"
-output = '/work/sgiappic/HTCondor/stage1_CPnewer/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_newer/" ##output directory of stage2 samples
+inputDir = "/ceph/sgiappic/HiggsCP/winter2023/"
+output = '/work/sgiappic/HTCondor/stage1_CPnew/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_new/" ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename = 'analysis_stage1.py'

@@ -91,9 +91,11 @@ def submit_jobs(output_dir: str):
         os.system(f"condor_submit {dir}/job_submit.cfg")
         print(f"GOOD SUBMISSION: {process} with {num_files} chunks")
 
-             
-
 processList = {
+    'wzp6_ee_bbH_Htautau_ecm240',
+} 
+
+processList_ = {
     'p8_ee_WW_ecm240',
     'p8_ee_Zqq_ecm240',
     'p8_ee_ZZ_ecm240',
@@ -179,8 +181,8 @@ processList = {
 }
 
 inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
-output = '/work/sgiappic/HTCondor/stage1_250414/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = '/ceph/sgiappic/HiggsCP/stage1_250414/' ##output directory of stage2 samples
+output = '/work/sgiappic/HTCondor/stage1_test/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = '/ceph/sgiappic/HiggsCP/stage1_ecm240_test/' ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename = 'analysis_stage1.py'

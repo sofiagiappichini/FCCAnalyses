@@ -1141,7 +1141,7 @@ slegend = {
 
 scolors = {
     'noISR_e+e-_noCuts_EWonly':ROOT.kRed-9,
-    'noISR_e+e-_noCuts_cehim_m1':ROOT.kBlue-9,
+    'noISR_e+e-_noCuts_cehim_m1':ROOT.kCyan-6,
     'noISR_e+e-_noCuts_cehim_p1':ROOT.kBlue-7,
     'noISR_e+e-_noCuts_cehre_m1':ROOT.kGreen-8,
     'noISR_e+e-_noCuts_cehre_p1':ROOT.kGreen-6,
@@ -1150,39 +1150,39 @@ scolors = {
     'wzp6_ee_eeH_Htautau_ecm240':ROOT.kGray+2,
 
     'EWonly_taudecay_2Pi2Nu':ROOT.kRed-9,
-    'cehim_m1_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_m1_taudecay_2Pi2Nu':ROOT.kCyan-6,
     'cehim_p1_taudecay_2Pi2Nu':ROOT.kBlue-7,
     'cehre_m1_taudecay_2Pi2Nu':ROOT.kGreen-8,
     'cehre_p1_taudecay_2Pi2Nu':ROOT.kGreen-6,
 
     'EWonly_taudecay_PiPi0Nu':ROOT.kRed-9,
-    'cehim_m1_taudecay_PiPi0Nu':ROOT.kBlue-9,
+    'cehim_m1_taudecay_PiPi0Nu':ROOT.kCyan-6,
     'cehim_p1_taudecay_PiPi0Nu':ROOT.kBlue-7,
     'cehre_m1_taudecay_PiPi0Nu':ROOT.kGreen-8,
     'cehre_p1_taudecay_PiPi0Nu':ROOT.kGreen-6,
 
     'sm':ROOT.kRed-9,
-    'sm_lin_quad_cehim_m1':ROOT.kBlue-9,
+    'sm_lin_quad_cehim_m1':ROOT.kCyan-6,
     'sm_lin_quad_cehim':ROOT.kBlue-7,
     'sm_lin_quad_cehre_m1':ROOT.kGreen-8,
     'sm_lin_quad_cehre_p1':ROOT.kGreen-6,
 
-    'cehim_m5_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_m5_taudecay_2Pi2Nu':ROOT.kCyan-6,
     'cehim_p5_taudecay_2Pi2Nu':ROOT.kBlue-7,
     'cehre_m5_taudecay_2Pi2Nu':ROOT.kGreen-8,
     'cehre_p5_taudecay_2Pi2Nu':ROOT.kGreen-6,
 
-    'cehim_m2_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_m2_taudecay_2Pi2Nu':ROOT.kCyan-6,
     'cehim_p2_taudecay_2Pi2Nu':ROOT.kBlue-7,
     'cehre_m2_taudecay_2Pi2Nu':ROOT.kGreen-8,
     'cehre_p2_taudecay_2Pi2Nu':ROOT.kGreen-6,
 
-    'cehim_m0p1_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_m0p1_taudecay_2Pi2Nu':ROOT.kCyan-6,
     'cehim_p0p1_taudecay_2Pi2Nu':ROOT.kBlue-7,
     'cehre_m0p1_taudecay_2Pi2Nu':ROOT.kGreen-8,
     'cehre_p0p1_taudecay_2Pi2Nu':ROOT.kGreen-6,
 
-    'cehim_m10_taudecay_2Pi2Nu':ROOT.kBlue-9,
+    'cehim_m10_taudecay_2Pi2Nu':ROOT.kCyan-6,
     'cehim_p10_taudecay_2Pi2Nu':ROOT.kBlue-7,
 }
 

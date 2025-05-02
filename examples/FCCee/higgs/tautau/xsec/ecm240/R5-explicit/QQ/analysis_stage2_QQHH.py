@@ -90,7 +90,7 @@ processList = {
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/R5-explicit/stage2_241202_cut/QQ/HH"
+#outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/R5-explicit/stage2_241202_cut/QQ/HH"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -99,9 +99,9 @@ includePaths = ["functions.h"]
 eosType = "eosuser"
 
 #Optional running on HTCondor, default is False
-runBatch = True
+#runBatch = True
 
-nCPUS = 6
+#nCPUS = 6
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "microcentury"
@@ -130,15 +130,15 @@ class RDFanalysis():
                 # Reco particles #
                 ##################
 
-                .Define("RecoEmiss_p4",  "FCCAnalyses::ZHfunctions::build_p4_single(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
-                .Define("RecoEmiss_eta",    "RecoEmiss_p4.Eta()")
-                .Define("RecoEmiss_phi",    "RecoEmiss_p4.Phi()")
-                .Define("RecoEmiss_theta",    "RecoEmiss_p4.Theta()")
-                .Define("RecoEmiss_y",    "RecoEmiss_p4.Rapidity()")
-                .Define("RecoEmiss_costheta",   "abs(std::cos(RecoEmiss_theta))")
+                .Define("RecoEmiss_p4",  "TLorentzVector(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
+                #.Define("RecoEmiss_eta",    "RecoEmiss_p4.Eta()")
+                #.Define("RecoEmiss_phi",    "RecoEmiss_p4.Phi()")
+                #.Define("RecoEmiss_theta",    "RecoEmiss_p4.Theta()")
+                #.Define("RecoEmiss_y",    "RecoEmiss_p4.Rapidity()")
+                #.Define("RecoEmiss_costheta",   "abs(std::cos(RecoEmiss_theta))")
 
-                .Define("RecoZ1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TagJet_R5_sel_px.at(0), TagJet_R5_sel_py.at(0), TagJet_R5_sel_pz.at(0), TagJet_R5_sel_e.at(0))")
-                .Define("RecoZ2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TagJet_R5_sel_px.at(1), TagJet_R5_sel_py.at(1), TagJet_R5_sel_pz.at(1), TagJet_R5_sel_e.at(1))")
+                .Define("RecoZ1_p4",      "TLorentzVector(TagJet_R5_sel_px.at(0), TagJet_R5_sel_py.at(0), TagJet_R5_sel_pz.at(0), TagJet_R5_sel_e.at(0))")
+                .Define("RecoZ2_p4",      "TLorentzVector(TagJet_R5_sel_px.at(1), TagJet_R5_sel_py.at(1), TagJet_R5_sel_pz.at(1), TagJet_R5_sel_e.at(1))")
                 
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
@@ -179,8 +179,8 @@ class RDFanalysis():
                 .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
                 .Define("RecoZ_mass",    "RecoZ_p4.M()")
 
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
+                .Define("RecoTau1_p4",      "TLorentzVector(TauFromJet_R5_px.at(0), TauFromJet_R5_py.at(0), TauFromJet_R5_pz.at(0), TauFromJet_R5_e.at(0))")
+                .Define("RecoTau2_p4",      "TLorentzVector(TauFromJet_R5_px.at(1), TauFromJet_R5_py.at(1), TauFromJet_R5_pz.at(1), TauFromJet_R5_e.at(1))")
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
                 .Define("RecoH_py",    "RecoH_p4.Py()")
@@ -258,7 +258,7 @@ class RDFanalysis():
                 .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
                 .Define("RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(RecoZLead_phi, RecoZSub_phi)")
 
-                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,0.,240.)")
+                .Define("Total_p4",     "TLorentzVector(0.,0.,0.,240.)")
                 .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
 
                 .Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")
@@ -276,7 +276,7 @@ class RDFanalysis():
     #Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
         #branches from stage1 to be kept for histogram booking in final and plotting
-        branchList = [
+        '''branchList = [
             ######## Monte-Carlo particles #######
             "n_FSGenElectron",
             "FSGenElectron_e",
@@ -972,10 +972,10 @@ class RDFanalysis():
             "n_events_kt1masstag",
             "n_events_kt1excl",  
 
-        ]
+        ]'''
         
         #complex variables added here at stage2
-        branchList += [
+        branchList = [
             "RecoEmiss_eta",
             "RecoEmiss_phi",
             "RecoEmiss_theta",

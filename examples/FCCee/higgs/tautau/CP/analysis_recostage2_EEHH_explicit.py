@@ -8,8 +8,8 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    'EWonly_taudecay_2Pi2Nu':{},
-    'cehim_m1_taudecay_2Pi2Nu':{},
+    #'EWonly_taudecay_2Pi2Nu':{},
+    #'cehim_m1_taudecay_2Pi2Nu':{},
     #'cehim_p1_taudecay_2Pi2Nu':{},
     #'cehre_m1_taudecay_2Pi2Nu':{},
     #'cehre_p1_taudecay_2Pi2Nu':{},
@@ -30,12 +30,14 @@ processList = {
     #'cehre_m2_taudecay_2Pi2Nu':{},
     #'cehre_p2_taudecay_2Pi2Nu':{},
 
-    #'wzp6_ee_eeH_Htautau_ecm240': {},
+    #'wzp6_ee_bbH_Htautau_ecm240': {},
+    "e+e-_eeH_H3PiNu":{},
+    "e+e-_eeH_HPi2Pi0Nu":{},
 }
 
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_gen/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_new/"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_DNN/"
+outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_new/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -53,7 +55,7 @@ class RDFanalysis():
                 ######################
                 .Define("OnePair",     "((n_RecoElectrons==2 and n_RecoMuons==0 and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0)")
 
-                .Filter("OnePair==1 && n_TauFromJet_R5==2 && n_TagJet_R5_sel==0")
+                .Filter("OnePair==1 && n_TauFromJet_R5==4 && n_TagJet_R5_sel==0")
 
                 .Filter("(TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0")
 
@@ -314,30 +316,6 @@ class RDFanalysis():
                 ##### CP angle #######
                 #####################
 
-                .Define("GenHiggs_p4",      "TLorentzVector(GenHiggs_px.at(0), GenHiggs_py.at(0), GenHiggs_pz.at(0), GenHiggs_e.at(0))")
-                .Define("HiggsGenTau_p4",     "FCCAnalyses::ZHfunctions::build_p4(HiggsGenTau_px, HiggsGenTau_py, HiggsGenTau_pz, HiggsGenTau_e)")
-
-                .Define("HRF_GenTau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- GenHiggs_p4, HiggsGenTau_p4)")
-                .Define("HRF_GenTauP_p4",     "if (HiggsGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(0); else return HRF_GenTau_p4.at(1);")
-                .Define("HRF_GenTauM_p4",     "if (HiggsGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(1); else return HRF_GenTau_p4.at(0);")
-
-                .Define("HRF_GenNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenNuP_p4.at(0))")
-                .Define("HRF_GenNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenNuM_p4.at(0))")
-
-                .Define("HRF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenPiP_p4.at(0))")
-                .Define("HRF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenPiM_p4.at(0))")
-                #defined ad pi+pi0 so when there is no pi0 it's just pi so it works for both
-                .Define("HRF_GenRhoP_p4",    "if (GenPi0P1_e>0) return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, -GenRhoP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenPiP_p4.at(0));")
-                .Define("HRF_GenRhoM_p4",    "if (GenPi0M1_e>0) return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, -GenRhoM_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenPiM_p4.at(0));")
-
-                .Define("HRF_Pnorm",        "((( HRF_GenTauM_p4.Vect() ).Cross( HRF_GenPiP_p4.Vect() )).Unit());")
-                .Define("HRF_Mnorm",        "((( HRF_GenTauM_p4.Vect() ).Cross( HRF_GenPiM_p4.Vect() )).Unit());")
-
-                .Define("Cross_norm",       "HRF_Pnorm.Cross(HRF_Mnorm)")
-                .Define("CosPhi",        "HRF_Pnorm.Dot(HRF_Mnorm)")
-                .Define("SinPhi",       "Cross_norm.Dot( (HRF_GenTauM_p4.Vect()).Unit() )")
-                .Define("GenPhi_decay",     "atan2(SinPhi, CosPhi)")
-
                 ######################################
 
                 # impact parameter method from CMS for decay into one pion
@@ -532,6 +510,30 @@ class RDFanalysis():
 
         )
         return df2
+
+        '''.Define("GenHiggs_p4",      "TLorentzVector(GenHiggs_px.at(0), GenHiggs_py.at(0), GenHiggs_pz.at(0), GenHiggs_e.at(0))")
+                .Define("HiggsGenTau_p4",     "FCCAnalyses::ZHfunctions::build_p4(HiggsGenTau_px, HiggsGenTau_py, HiggsGenTau_pz, HiggsGenTau_e)")
+
+                .Define("HRF_GenTau_p4",    "FCCAnalyses::ZHfunctions::boosted_p4(- GenHiggs_p4, HiggsGenTau_p4)")
+                .Define("HRF_GenTauP_p4",     "if (HiggsGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(0); else return HRF_GenTau_p4.at(1);")
+                .Define("HRF_GenTauM_p4",     "if (HiggsGenTau_charge.at(0)==1) return HRF_GenTau_p4.at(1); else return HRF_GenTau_p4.at(0);")
+
+                .Define("HRF_GenNuP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenNuP_p4.at(0))")
+                .Define("HRF_GenNuM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenNuM_p4.at(0))")
+
+                .Define("HRF_GenPiP_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenPiP_p4.at(0))")
+                .Define("HRF_GenPiM_p4",    "FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenPiM_p4.at(0))")
+                #defined ad pi+pi0 so when there is no pi0 it's just pi so it works for both
+                .Define("HRF_GenRhoP_p4",    "if (GenPi0P1_e>0) return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, -GenRhoP_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenPiP_p4.at(0));")
+                .Define("HRF_GenRhoM_p4",    "if (GenPi0M1_e>0) return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, -GenRhoM_p4); else return FCCAnalyses::ZHfunctions::boosted_p4_single(- GenHiggs_p4, GenPiM_p4.at(0));")
+
+                .Define("HRF_Pnorm",        "((( HRF_GenTauM_p4.Vect() ).Cross( HRF_GenPiP_p4.Vect() )).Unit());")
+                .Define("HRF_Mnorm",        "((( HRF_GenTauM_p4.Vect() ).Cross( HRF_GenPiM_p4.Vect() )).Unit());")
+
+                .Define("Cross_norm",       "HRF_Pnorm.Cross(HRF_Mnorm)")
+                .Define("CosPhi",        "HRF_Pnorm.Dot(HRF_Mnorm)")
+                .Define("SinPhi",       "Cross_norm.Dot( (HRF_GenTauM_p4.Vect()).Unit() )")
+                .Define("GenPhi_decay",     "atan2(SinPhi, CosPhi)")'''
 
     #__________________________________________________________
     #Mandatory: output function, please make sure you return the branchlist as a python list
@@ -1307,10 +1309,6 @@ class RDFanalysis():
             "RecoZDaughter_DPhi", 
 
             ########## cp
-            ## DNN features
-            "CosPhi",
-            "SinPhi",
-            "GenPhi_decay",
 
             "RecoPiP_p4",
             "RecoPiP_px",

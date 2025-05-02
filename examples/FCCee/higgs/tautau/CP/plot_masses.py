@@ -51,7 +51,7 @@ LABELS = {
     "selDPhi":"KinGen_hh_norm_DPhi<0.5",
  }
 
-label = "_QQpinu_SM"
+label = "_QQPiNu_SM"
 ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (#pi#nu), SM"
 energy         = 240
 collider       = 'FCC-ee'
@@ -228,7 +228,6 @@ leg.SetTextFont(42)
 histos = []
 colors = []
 legend = []
-style = []
 
 #loop over files for signals and backgrounds and assign corresponding colors and titles
 for s in signals_old:
@@ -238,8 +237,7 @@ for s in signals_old:
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kBlack)
-    style.append(1)
+    colors.append(ROOT.kBlue-7)
     leg.AddEntry(histos[-1], "Reconstructed", "l")
 
 for s in signals_old:
@@ -249,8 +247,7 @@ for s in signals_old:
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kRed)
-    style.append(3)
+    colors.append(ROOT.kRed-9)
     leg.AddEntry(histos[-1], "Visible", "l")
 
 for s in signals_old:
@@ -260,8 +257,7 @@ for s in signals_old:
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kBlue)
-    style.append(4)
+    colors.append(ROOT.kCyan-6)
     leg.AddEntry(histos[-1], "Collinear", "l")
 
 for s in signals_old:
@@ -271,8 +267,7 @@ for s in signals_old:
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kGreen)
-    style.append(2)
+    colors.append(ROOT.kGreen-6)
     leg.AddEntry(histos[-1], "Recoil", "l")
 
 # add the signal histograms
@@ -286,12 +281,12 @@ for i in range(nsig):
     h = histos[i]
     h.SetLineWidth(3)
     h.SetLineColor(colors[i])
-    h.SetLineStyle(style[i])  # 1 = solid, 2 = dashed, 3 = dotted, etc.
+    #h.SetLineStyle(style[i])  # 1 = solid, 2 = dashed, 3 = dotted, etc.
     if i == 0:
         h.Draw("HIST")
         h.GetYaxis().SetTitle("Events (normalised)")
         h.GetXaxis().SetTitle("M_{H} [GeV]")
-        h.GetYaxis().SetTitleOffset(1.2)
+        h.GetYaxis().SetTitleOffset(1.4)
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))
         max = h.GetMaximum()
@@ -334,9 +329,10 @@ dir = DIR_PLOTS + "/"
 make_dir_if_not_exists(dir)
 
 if (LOGY == True):
+    canvas.SetLogy()
 
-    canvas.SaveAs(dir + "log/" + variable + ".png")
-    canvas.SaveAs(dir + "log/" + variable + ".pdf")
+    canvas.SaveAs(dir + "Masses" + label + ".png")
+    canvas.SaveAs(dir + "Masses" + label + ".pdf")
 
 else:
 

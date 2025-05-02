@@ -129,7 +129,7 @@ class RDFanalysis():
                 # Reco particles #
                 ##################
 
-                .Define("RecoEmiss_p4",  "FCCAnalyses::ZHfunctions::build_p4_single(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
+                .Define("RecoEmiss_p4",  "TLorentzVector(RecoEmiss_px, RecoEmiss_py, RecoEmiss_pz, RecoEmiss_e)")
                 .Define("RecoEmiss_eta",    "RecoEmiss_p4.Eta()")
                 .Define("RecoEmiss_phi",    "RecoEmiss_p4.Phi()")
                 .Define("RecoEmiss_theta",    "RecoEmiss_p4.Theta()")
@@ -181,6 +181,7 @@ class RDFanalysis():
                 .Define("RecoZP_theta",    "RecoZP_p4.Theta()")
                 .Define("RecoZP_y",     "RecoZP_p4.Rapidity()")
                 .Define("RecoZP_mass",    "RecoZP_p4.M()")
+                .Define("RecoZP_PID",      "if (n_RecoElectrons==2) return (-11); else return (-13);")
 
                 .Define("RecoZM_p4",      "if (RecoLepton_charge.at(0)==1) return RecoZ2_p4; else return RecoZ1_p4;")
                 .Define("RecoZM_px",    "RecoZM_p4.Px()")
@@ -194,6 +195,7 @@ class RDFanalysis():
                 .Define("RecoZM_theta",    "RecoZM_p4.Theta()")
                 .Define("RecoZM_y",     "RecoZM_p4.Rapidity()")
                 .Define("RecoZM_mass",    "RecoZM_p4.M()")
+                .Define("RecoZM_PID",      "if (n_RecoElectrons==2) return (11); else return (13);")
 
                 .Define("RecoZ_p4",          "RecoZLead_p4+RecoZ2_p4")
                 .Define("RecoZ_px",    "RecoZ_p4.Px()")
@@ -208,8 +210,11 @@ class RDFanalysis():
                 .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
                 .Define("RecoZ_mass",    "RecoZ_p4.M()")
                 
-                .Define("RecoTau1_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_kt2_px.at(0), TauFromJet_kt2_py.at(0), TauFromJet_kt2_pz.at(0), TauFromJet_kt2_e.at(0))")
-                .Define("RecoTau2_p4",      "FCCAnalyses::ZHfunctions::build_p4_single(TauFromJet_kt2_px.at(1), TauFromJet_kt2_py.at(1), TauFromJet_kt2_pz.at(1), TauFromJet_kt2_e.at(1))")
+                .Define("RecoTau1_p4",      "TLorentzVector(TauFromJet_kt2_px.at(0), TauFromJet_kt2_py.at(0), TauFromJet_kt2_pz.at(0), TauFromJet_kt2_e.at(0))")
+                .Define("RecoTau2_p4",      "TLorentzVector(TauFromJet_kt2_px.at(1), TauFromJet_kt2_py.at(1), TauFromJet_kt2_pz.at(1), TauFromJet_kt2_e.at(1))")
+                .Define("RecoTau1_type",        "TauFromJet_kt2_type.at(0)")
+                .Define("RecoTau2_type",       "TauFromJet_kt2_type.at(1)")
+
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
                 .Define("RecoH_py",    "RecoH_p4.Py()")
@@ -261,6 +266,7 @@ class RDFanalysis():
                 .Define("TauP_theta",    "TauP_p4.Theta()")
                 .Define("TauP_y",     "TauP_p4.Rapidity()")
                 .Define("TauP_mass",    "TauP_p4.M()")
+                .Define("TauP_DM",     "if (TauFromJet_kt2_charge.at(0)==1) return RecoTau1_type; else return RecoTau2_type;")
 
                 .Define("TauM_p4",       "if (TauFromJet_kt2_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauM_px",    "TauM_p4.Px()")
@@ -274,6 +280,7 @@ class RDFanalysis():
                 .Define("TauM_theta",    "TauM_p4.Theta()")
                 .Define("TauM_y",     "TauM_p4.Rapidity()")
                 .Define("TauM_mass",    "TauM_p4.M()")
+                .Define("TauM_DM",     "if (TauFromJet_kt2_charge.at(0)==1) return RecoTau2_type; else return RecoTau1_type;")
 
                 .Define("Tau_DR",       "FCCAnalyses::ZHfunctions::deltaR(TauLead_phi, TauSub_phi, TauLead_eta, TauSub_eta)")
                 .Define("Tau_scalar",      "(TauLead_px*TauSub_px + TauLead_py*TauSub_py + TauLead_pz*TauSub_pz)")
@@ -287,7 +294,7 @@ class RDFanalysis():
                 .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
                 .Define("RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(RecoZLead_phi, RecoZSub_phi)")
 
-                .Define("Total_p4",     "FCCAnalyses::ZHfunctions::build_p4_single(0.,0.,1.,240.)")
+                .Define("Total_p4",     "TLorentzVector(0.,0.,1.,240.)")
                 .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
 
                 .Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")
@@ -1056,7 +1063,8 @@ class RDFanalysis():
             "RecoZP_phi",    
             "RecoZP_theta",   
             "RecoZP_y",     
-            "RecoZP_mass",   
+            "RecoZP_mass",  
+            "RecoZP_PID", 
 
             "RecoZM_px",    
             "RecoZM_py",   
@@ -1069,6 +1077,7 @@ class RDFanalysis():
             "RecoZM_theta",    
             "RecoZM_y",    
             "RecoZM_mass", 
+            "RecoZM_PID",
 
             "RecoH_px",
             "RecoH_py",
@@ -1117,6 +1126,7 @@ class RDFanalysis():
             "TauP_theta",    
             "TauP_y",    
             "TauP_mass",
+            "TauP_DM",
 
             "TauM_px",    
             "TauM_py",   
@@ -1129,6 +1139,7 @@ class RDFanalysis():
             "TauM_theta",    
             "TauM_y",    
             "TauM_mass",
+            "TauM_DM",
 
             "Recoil",
             "Collinear_mass", 
