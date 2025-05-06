@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/aa/"
 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/aa/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -20,9 +20,9 @@ saveTabular = True
 doTree = False
 
 processList = {
-    'IDEA_events_050238459': {},
-    'CMS_Phase2_events_050238459': {},
-    'CMS_Phase1_events_050238459': {},
+    'IDEA_events_032982526': {},
+    'CMS_Phase2_events_032982526': {},
+    'CMS_Phase1_events_032982526': {},
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -34,9 +34,9 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add provate samples as it is not an offical process
 procDictAdd = {
-    "IDEA_events_050238459":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.005e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "CMS_Phase2_events_050238459":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.005e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "CMS_Phase1_events_050238459":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.005e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'IDEA_events_032982526':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0001049, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'CMS_Phase2_events_032982526':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0001049, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'CMS_Phase1_events_032982526':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0001049, "kfactor": 1.0, "matchingEfficiency": 1.0},
 }
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
@@ -126,11 +126,6 @@ histoList = {
     "RecoMuon_phi":                 {"name":"RecoMuon_phi",                 "title":"Reco muon #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoMuon_charge":              {"name":"RecoMuon_charge",              "title":"Reco muon charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "RecoMuon_mass":                {"name":"RecoMuon_mass",                "title":"Reco muon mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "Muon_p_res_0_20":              {"name":"Muon_p_res_0_20",              "title":"Momentum resolution 0 < p_{gen} < 20 GeV", "bin":50, "xmin":-1., "xmax":1.}, 
-    "Muon_p_res_20_40":             {"name":"Muon_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":50, "xmin":-1., "xmax":1.},
-    "Muon_p_res_40_60":             {"name":"Muon_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":50, "xmin":-1., "xmax":1.},
-    "Muon_p_res_60_higher":         {"name":"Muon_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":50, "xmin":-1., "xmax":1.}, 
-    "Muon_p_res_total":             {"name":"Muon_p_res_total",             "title":"Momentum resolution",    "bin":50, "xmin":-1., "xmax":1.}, 
 
     "n_RecoPhotons":            {"name":"n_RecoPhotons",                  "title":"Number of reco photons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "RecoPhoton_e":             {"name":"RecoPhoton_e",                   "title":"Reco photon energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
@@ -145,4 +140,9 @@ histoList = {
     "RecoPhoton_phi":           {"name":"RecoPhoton_phi",                 "title":"Reco photon #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoPhoton_charge":        {"name":"RecoPhoton_charge",              "title":"Reco photon charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "RecoPhoton_mass":          {"name":"RecoPhoton_mass",                 "title":"Reco photon mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+    "Photon_p_res_0_20":              {"name":"Photon_p_res_0_20",              "title":"Momentum resolution 0 < p_{gen} < 20 GeV", "bin":200, "xmin":-0.2, "xmax":0.2}, 
+    "Photon_p_res_20_40":             {"name":"Photon_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
+    "Photon_p_res_40_60":             {"name":"Photon_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
+    "Photon_p_res_60_higher":         {"name":"Photon_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
+    "Photon_p_res_total":             {"name":"Photon_p_res_total",             "title":"Momentum resolution",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
 }

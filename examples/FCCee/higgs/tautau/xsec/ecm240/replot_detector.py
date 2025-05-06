@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/"
+directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/dd/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -59,215 +59,175 @@ CUTS = [
 #now you can list all the histograms that you want to plot
 VARIABLES = [
     ######## Monte-Carlo particles #######
-    "n_FSGenElectron",
-    "FSGenElectron_e",
-    "FSGenElectron_p",
-    "FSGenElectron_pt",
-    "FSGenElectron_px",
-    "FSGenElectron_py",
-    "FSGenElectron_pz",
-    "FSGenElectron_y",
-    "FSGenElectron_eta",
-    "FSGenElectron_theta",
-    "FSGenElectron_phi",
-    "FSGenElectron_charge",
-    "FSGenElectron_mass",
+   
+    #"n_FSGenElectron",
+    #"FSGenElectron_e",
+    #"FSGenElectron_p",
+    #"FSGenElectron_pt",
+    #"FSGenElectron_px",
+    #"FSGenElectron_py",
+    #"FSGenElectron_pz",
+    #"FSGenElectron_y",
+    #"FSGenElectron_eta",
+    #"FSGenElectron_theta",
+    #"FSGenElectron_phi",
+    #"FSGenElectron_charge",
+    #"FSGenElectron_mass",
 
-    "n_FSGenMuon",
-    "FSGenMuon_e",
-    "FSGenMuon_p",
-    "FSGenMuon_pt",
-    "FSGenMuon_px",
-    "FSGenMuon_py",
-    "FSGenMuon_pz",
-    "FSGenMuon_y",
-    "FSGenMuon_eta",
-    "FSGenMuon_theta",
-    "FSGenMuon_phi",
-    "FSGenMuon_charge",
-    "FSGenMuon_mass",
-    "Muon_p_res_0_20",
-    "Muon_p_res_20_40",
-    "Muon_p_res_40_60",
-    "Muon_p_res_60_higher", 
-    "Muon_p_res_total", 
+    #"n_FSGenMuon",
+    #"FSGenMuon_e",
+    #"FSGenMuon_p",
+    #"FSGenMuon_pt",
+    #"FSGenMuon_px",
+    #"FSGenMuon_py",
+    #"FSGenMuon_pz",
+    #"FSGenMuon_y",
+    #"FSGenMuon_eta",
+    #"FSGenMuon_theta",
+    #"FSGenMuon_phi",
+    #"FSGenMuon_charge",
+    #"FSGenMuon_mass",
 
+    #"n_FSGenPhoton",
+    #"FSGenPhoton_e",
+    #"FSGenPhoton_p",
+    #"FSGenPhoton_pt",
+    #"FSGenPhoton_px",
+    #"FSGenPhoton_py",
+    #"FSGenPhoton_pz",
+    #"FSGenPhoton_y",
+    #"FSGenPhoton_eta",
+    #"FSGenPhoton_theta",
+    #"FSGenPhoton_phi",
+    #"FSGenPhoton_charge",
 
-    "n_FSGenPhoton",
-    "FSGenPhoton_e",
-    "FSGenPhoton_p",
-    "FSGenPhoton_pt",
-    "FSGenPhoton_px",
-    "FSGenPhoton_py",
-    "FSGenPhoton_pz",
-    "FSGenPhoton_y",
-    "FSGenPhoton_eta",
-    "FSGenPhoton_theta",
-    "FSGenPhoton_phi",
-    "FSGenPhoton_charge",
+    #"n_RecoElectrons",
+    #"RecoElectron_e",
+    #"RecoElectron_p",
+    #"RecoElectron_pt",
+    #"RecoElectron_px",
+    #"RecoElectron_py",
+    #"RecoElectron_pz",
+    #"RecoElectron_y",
+    #"RecoElectron_eta",
+    #"RecoElectron_theta",
+    #"RecoElectron_phi",
+    #"RecoElectron_charge",
+    #"RecoElectron_mass",
+    #"Electron_p_res_0_20",
+    #"Electron_p_res_20_40",
+    #"Electron_p_res_40_60",
+    #"Electron_p_res_60_higher", 
+    #"Electron_p_res_total",
 
-    "n_RecoElectrons",
-    "RecoElectron_e",
-    "RecoElectron_p",
-    "RecoElectron_pt",
-    "RecoElectron_px",
-    "RecoElectron_py",
-    "RecoElectron_pz",
-    "RecoElectron_y",
-    "RecoElectron_eta",
-    "RecoElectron_theta",
-    "RecoElectron_phi",
-    "RecoElectron_charge",
-    "RecoElectron_mass",
+    #"n_RecoMuons",
+    #"RecoMuon_e",
+    #"RecoMuon_p",
+    #"RecoMuon_pt",
+    #"RecoMuon_px",
+    #"RecoMuon_py",
+    #"RecoMuon_pz",
+    #"RecoMuon_y",
+    #"RecoMuon_eta",
+    #"RecoMuon_theta",
+    #"RecoMuon_phi",
+    #"RecoMuon_charge",
+    #"RecoMuon_mass",
+    #"Muon_p_res_0_20",
+    #"Muon_p_res_20_40",
+    #"Muon_p_res_40_60",
+    #"Muon_p_res_60_higher", 
+    #"Muon_p_res_total",
 
-    "n_RecoMuons",
-    "RecoMuon_e",
-    "RecoMuon_p",
-    "RecoMuon_pt",
-    "RecoMuon_px",
-    "RecoMuon_py",
-    "RecoMuon_pz",
-    "RecoMuon_y",
-    "RecoMuon_eta",
-    "RecoMuon_theta",
-    "RecoMuon_phi",
-    "RecoMuon_charge",
-    "RecoMuon_mass",
+    #"n_RecoPhotons",
+    #"RecoPhoton_e",
+    #"RecoPhoton_p",
+    #"RecoPhoton_pt",
+    #"RecoPhoton_px",
+    #"RecoPhoton_py",
+    #"RecoPhoton_pz",
+    #"RecoPhoton_y",
+    #"RecoPhoton_eta",
+    #"RecoPhoton_theta",
+    #"RecoPhoton_phi",
+    #"RecoPhoton_charge",
+    #"RecoPhoton_mass",
+    #"Photon_p_res_0_20",
+    #"Photon_p_res_20_40",
+    #"Photon_p_res_40_60",
+    #"Photon_p_res_60_higher", 
+    #"Photon_p_res_total",
 
-    "n_RecoPhotons",
-    "RecoPhoton_e",
-    "RecoPhoton_p",
-    "RecoPhoton_pt",
-    "RecoPhoton_px",
-    "RecoPhoton_py",
-    "RecoPhoton_pz",
-    "RecoPhoton_y",
-    "RecoPhoton_eta",
-    "RecoPhoton_theta",
-    "RecoPhoton_phi",
-    "RecoPhoton_charge",
-    "RecoPhoton_mass",
+    "n_GenDown",
+    "GenDown_e",
+    "GenDown_p",
+    "GenDown_pt",
+    "GenDown_px",
+    "GenDown_py",
+    "GenDown_pz",
+    "GenDown_y",
+    "GenDown_eta",
+    "GenDown_theta",
+    "GenDown_phi",
+    "GenDown_charge",
+    "GenDown_mass",
+
+    "n_TagJet_kt2",
+    "TagJet_kt2_px", 
+    "TagJet_kt2_py",    
+    "TagJet_kt2_pz",      
+    "TagJet_kt2_p",  
+    "TagJet_kt2_pt",    
+    "TagJet_kt2_phi", 
+    "TagJet_kt2_eta",     
+    "TagJet_kt2_theta",          
+    "TagJet_kt2_e",     
+    "TagJet_kt2_mass",        
+    "TagJet_kt2_charge",  
+
+    "Down_p_res_0_20",
+    "Down_p_res_20_40",
+    "Down_p_res_40_60",
+    "Down_p_res_60_higher",
+    "Down_p_res_total",
 ]
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/awiedl/public_html/detector/mumu/' 
+DIR_PLOTS = '/web/awiedl/public_html/detector/dd/' 
 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
-    "selReco_100Coll150": "100<M_{collinear}<150 GeV",
-    "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
-    "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
-
-    "selReco_100Coll150_115Rec160_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>10 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>10 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.96, 80<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV}",
-    
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 84<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 84<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.88, 84<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV}",
-    
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_40Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>40 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>40 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>40 GeV, p_{Z}<54 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.9, 80<M_{Z}<100 GeV, E_{miss}>40 GeV, p_{Z}<54 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<52 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.86, 70<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<52 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 75<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 75<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<52 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.86, 75<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<52 GeV}",
-    
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>36 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 75<M_{Z}<100 GeV, E_{miss}>36 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 75<M_{Z}<100 GeV, E_{miss}>36 GeV, p_{Z}<52 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>52 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>52 GeV, p_{Z}<52 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.92, 70<M_{Z}<100 GeV, E_{miss}>52 GeV, p_{Z}<52 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 86<M_{Z}<100 GeV, E_{miss}>4 GeV",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 86<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.96, 86<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV",
-
-    #cuts for LL
-    "selReco_100Coll150_115Rec160_10Me_70Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV}",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2}",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0.6": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6}",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98}",
-
-    #cuts for QQ
-    "selReco_100Coll150_115Rec160_10Me_80Z95": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV}",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2}",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6}",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98}",
-    
-    "selReco_0.5BDT":"100<M_{collinear}<150 GeV, BDT score>0.5",
-    "selReco_0.6BDT":"100<M_{collinear}<150 GeV, BDT score>0.6",
-    "selReco_0.7BDT":"100<M_{collinear}<150 GeV, BDT score>0.7",
-
-    #cuts for NuNu
-    "selReco_100Me": "E_{miss}>100 GeV",
-    "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
-    "selReco_100Me_TauDPhi3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.88, |y_{miss}|<1",
-     
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.94, |y_{miss}|<1",
-
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.92, |y_{miss}|<1",
-
-    #"selReco_0.5BDT":"E_{miss}>100 GeV, BDT score>0.5",
-    #"selReco_0.6BDT":"E_{miss}>100 GeV, BDT score>0.6",
-    #"selReco_0.7BDT":"E_{miss}>100 GeV, BDT score>0.7",
-
  }
 
-ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow #mu #mu "
+ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow d d "
 
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = True
+LOGY = False
 
 #list of backgorunds, then legend and colors to be assigned to them
 backgrounds_all = [
 ]
 
 legend = {
-    'IDEA_events_050238459':'IDEA',
-    'CMS_Phase2_events_050238459':'CMS Phase2',
-    'CMS_Phase1_events_050238459':'CMS Phase1',
+    'IDEA_events_000421007':'IDEA',
+    'CMS_Phase2_events_000421007':'CMS Phase2',
+    'CMS_Phase1_events_000421007':'CMS Phase1',
 }
 
 legcolors = {
-    'IDEA_events_050238459':ROOT.kGreen,
-    'CMS_Phase2_events_050238459':ROOT.kCyan,
-    'CMS_Phase1_events_050238459':ROOT.kBlue,
+    'IDEA_events_000421007':ROOT.kGreen,
+    'CMS_Phase2_events_000421007':ROOT.kCyan,
+    'CMS_Phase1_events_000421007':ROOT.kBlue,
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    'IDEA_events_050238459',
-    'CMS_Phase2_events_050238459',
-    'CMS_Phase1_events_050238459',
+    'IDEA_events_000421007',
+    'CMS_Phase2_events_000421007',
+    'CMS_Phase1_events_000421007',
 ]
 
 for cut in CUTS:
@@ -394,6 +354,7 @@ for cut in CUTS:
                 h = histos[i]
                 h.SetLineWidth(3)
                 h.SetLineColor(colors[i])
+                
                 if i == 0:
                     h.Draw("HIST")
                     h.GetYaxis().SetTitle("Events")
@@ -479,3 +440,19 @@ for cut in CUTS:
 
             canvas.SaveAs(dir + variable + ".png")
             canvas.SaveAs(dir + variable + ".pdf")
+
+        # fitting resolution
+        if('res' in variable):
+            for i in range(nsig):
+                h = histos[i]
+                gaussFit = ROOT.TF1("gaussfit","gaus",-0.2,0.2) 
+                h.Fit(gaussFit, "EV")
+                mean = gaussFit.GetParameter(1)
+                sigma = gaussFit.GetParameter(2)
+                FWHM = sigma * 2.3548
+                with open('/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/output.txt', "a") as file:
+                    file.write(f"{variable}\n")
+                    file.write(f"{signals[i]}\n")
+                    file.write(f"Mean: {mean}\n")
+                    file.write(f"Sigma: {sigma}\n")
+                    file.write(f"FWHM: {FWHM}\n\n")

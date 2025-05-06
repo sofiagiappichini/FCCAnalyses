@@ -1281,13 +1281,60 @@ TVector3 ProjectOntoPlane(const TVector3& v, const TVector3& a, const TVector3& 
     return v_parallel;
 }
 
-ROOT::VecOps::RVec<float> get_momentum_resolution(ROOT::VecOps::RVec<float> gen_p, ROOT::VecOps::RVec<float> reco_p, int upper, int lower) {
-    ROOT::VecOps::RVec<float> result; //returns vectors of indices of pairs of jets passing the selection
-    for (size_t i = 0; i < gen_p.size(); ++i) { //this is meant to work after sel_dijet_score so it's already organised in pairs of jets with one index sampling the rows
-        if(reco_p[i] >= lower && reco_p[i] < upper){
-            if(i < gen_p.size()){
-                float reso = (gen_p[i] - reco_p[i])/gen_p[i];
+ROOT::VecOps::RVec<float> reso_p_pdg(ROOT::VecOps::RVec<int> recind,
+				    ROOT::VecOps::RVec<int> mcind,
+				    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> reco,
+				    ROOT::VecOps::RVec<edm4hep::MCParticleData> mc,
+                    int pdg,
+                    float upper,
+                    float lower) {
+
+    ROOT::VecOps::RVec<float> result;
+
+    for (unsigned int i=0; i<recind.size();i++) {
+        int reco_idx = recind.at(i);
+        int mc_idx = mcind.at(i);
+        int mc_pdg = mc.at(mc_idx).PDG;
+
+        if(std::fabs(mc_pdg) == pdg){
+
+            TLorentzVector mc_tlv;
+            TLorentzVector reco_tlv;
+            mc_tlv.SetXYZM(mc.at(mc_idx).momentum.x,mc.at(mc_idx).momentum.y,mc.at(mc_idx).momentum.z,mc.at(mc_idx).mass);
+            float mc_p = mc_tlv.P();
+            reco_tlv.SetXYZM(reco.at(reco_idx).momentum.x,reco.at(reco_idx).momentum.y,reco.at(reco_idx).momentum.z,reco.at(reco_idx).mass);
+            float reco_p = reco_tlv.P();
+
+            if(reco_p >= lower && reco_p < upper){
+                float reso = (reco_p - mc_p)/mc_p;
                 result.emplace_back(reso);
+            }
+        }
+    }
+    return result;
+}
+
+ROOT::VecOps::RVec<float> reso_p_jets(
+    ROOT::VecOps::RVec<float> gen_p, 
+    ROOT::VecOps::RVec<float> reco_p,
+    ROOT::VecOps::RVec<float> gen_charge, 
+    ROOT::VecOps::RVec<float> reco_charge, 
+    int upper, 
+    int lower) {
+
+    ROOT::VecOps::RVec<float> result; 
+
+    for (size_t i = 0; i < reco_p.size(); ++i) {
+
+        if(reco_p[i] >= lower && reco_p[i] < upper){
+
+            for (size_t j = 0; j < gen_p.size(); ++j){
+
+                if(reco_charge.at(i) == gen_charge.at(j)){
+                    
+                    float reso = (reco_p[i] - gen_p[j])/gen_p[j];
+                    result.emplace_back(reso);
+                }
             }
         }
     }

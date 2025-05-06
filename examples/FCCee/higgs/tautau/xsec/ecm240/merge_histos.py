@@ -32,23 +32,23 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm240/"
 TAG = [
     #"R5-explicit",
     #"R5-tag",
     #"ktN-explicit",
-    #"ktN-tag",
-    "",
+    "ktN-tag",
+    #"",
 ]
 SUBDIR = [
     'LL',
-    #'LH',
-    #'HH',
+    'LH',
+    'HH',
 ]
 #category to plot
 CAT = [
-    #"QQ",
-    "LL",
+    "QQ",
+    #"LL",
     #"NuNu",
 ]
 #list of cuts you want to plot
@@ -95,42 +95,42 @@ CUTS_LLLL = [
 ]
 
 CUTS_QQHH = [
-    #"selReco",
+    "selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
 ]
 
 CUTS_QQLH = [
-    #"selReco",
+    "selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
 ]
 
 CUTS_QQLL = [
-    #"selReco",
+    "selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_2DR",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss_Zp52",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss_Zp52",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
 ]
     
 CUTS_NuNuHH = [
@@ -1128,6 +1128,7 @@ VARIABLES_QQ = [
 
     "Recoil",
     "Collinear_mass", 
+    "Collinear_mass_3d",
 
     "Tau_DR",
     "Tau_cos",
@@ -1472,32 +1473,32 @@ for tag in TAG:
 
             if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
                 CUT = [
-                    #"selReco",
+                    "selReco",
                     #"selReco_100Coll150",
                     #"selReco_100Coll150_115Rec160",
                     #"selReco_100Coll150_115Rec160_2DR",
                     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
                     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
                     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
+                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
+                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
+                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
+                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
                 ]
 
             if "tag" in tag and "QQ" in cat and "HH" in sub:
                 CUT = [
-                    #"selReco",
+                    "selReco",
                     #"selReco_100Coll150",
                     #"selReco_100Coll150_115Rec160",
                     #"selReco_100Coll150_115Rec160_2DR",
                     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
                     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
                     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
-                    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
+                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
+                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
+                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
+                    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
                 ]
 
             for cut in CUT:
@@ -1507,7 +1508,7 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/final_241202_nojets/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final/" + cat + "/" + sub + "/"
             
                 for num in range(1,28):
                     output = f"{directory}{legend[num]}_{cut}_histo.root"

@@ -22,7 +22,7 @@ inputDir = "/ceph/xzuo/FCC_samples_alternative_detectors/ecm240/EDM4HEP/wzp6_ee_
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/mumu/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -92,6 +92,12 @@ class RDFanalysis():
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+
+                .Define("Muon_p_res_0_20", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,13, 20., 0.)")
+                .Define("Muon_p_res_20_40", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,13, 40., 20.)")
+                .Define("Muon_p_res_40_60", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,13, 60., 40.)")
+                .Define("Muon_p_res_60_higher", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,13, 1000., 60.)")
+                .Define("Muon_p_res_total", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,13, 1000., 0.)")
 
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")
@@ -192,11 +198,6 @@ class RDFanalysis():
                 .Define("RecoMuon_phi",     "ReconstructedParticle::get_phi(RecoMuons)") #polar angle in the transverse plane phi
                 .Define("RecoMuon_charge",  "ReconstructedParticle::get_charge(RecoMuons)")
                 .Define("RecoMuon_mass",     "ReconstructedParticle::get_mass(RecoMuons)")
-                .Define("Muon_p_res_0_20", "FCCAnalyses::ZHfunctions::get_momentum_resolution(FSGenMuon_p, RecoMuon_p, 20., 0.)")
-                .Define("Muon_p_res_20_40", "FCCAnalyses::ZHfunctions::get_momentum_resolution(FSGenMuon_p, RecoMuon_p, 40., 20.)")
-                .Define("Muon_p_res_40_60", "FCCAnalyses::ZHfunctions::get_momentum_resolution(FSGenMuon_p, RecoMuon_p, 60., 40.)")
-                .Define("Muon_p_res_60_higher", "FCCAnalyses::ZHfunctions::get_momentum_resolution(FSGenMuon_p, RecoMuon_p, 1000., 60.)")
-                .Define("Muon_p_res_total", "FCCAnalyses::ZHfunctions::get_momentum_resolution(FSGenMuon_p, RecoMuon_p, 1000., 0.)")
 
 
                 #PHOTONS
