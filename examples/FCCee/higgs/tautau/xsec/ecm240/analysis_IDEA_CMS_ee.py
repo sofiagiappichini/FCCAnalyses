@@ -1,10 +1,12 @@
 import os, copy # tagging
 import ROOT
 import urllib.request
+from copy import deepcopy
+
 processList = {
     'IDEA_events_041153094': {},
-    'CMS_Phase2_events_041153094': {},
-    'CMS_Phase1_events_041153094': {},
+    #'CMS_Phase2_events_041153094': {},
+    #'CMS_Phase1_events_041153094': {},
     #'wzp6_ee_nunuH_Htautau_ecm240': {},
     #'wzp6_ee_nunuH_Hbb_ecm240': {},
     #'wzp6_ee_nunuH_Hdd_ecm240': {},
@@ -22,7 +24,7 @@ inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/EDM4HEP/wzp6_ee_n
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/ee/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1_res/ee/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -83,21 +85,42 @@ class RDFanalysis():
     #Mandatory: analysers funtion to define the analysers to process, please make sure you return the last dataframe, in this example it is df2
     def analysers(df):
         df2 = (df
-
-                #################
-                # Gen particles #
-                #################
-
                 .Alias("Particle0", "Particle#0.index")
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+        )
 
-                .Define("Electron_p_res_0_20", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,11, 20., 0.)")
-                .Define("Electron_p_res_20_40", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,11, 40., 20.)")
-                .Define("Electron_p_res_40_60", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,11, 60., 40.)")
-                .Define("Electron_p_res_60_higher", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,11, 1000., 60.)")
-                .Define("Electron_p_res_total", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,11, 1000., 0.)")
+        collections = {
+            "GenParticles": "Particle",
+            "MCRecoMap": "MCRecoAssociations",
+            "PFParticles": "ReconstructedParticles",
+            "PFTracks": "EFlowTrack",
+            "PFPhotons": "EFlowPhoton",
+            "PFNeutralHadrons": "EFlowNeutralHadron",
+            "TrackState": "EFlowTrack_1",
+            "TrackerHits": "TrackerHits",
+            "CalorimeterHits": "CalorimeterHits",
+            "dNdx": "EFlowTrack_2",
+            "PathLength": "EFlowTrack_L",
+            "Bz": "magFieldBz",
+        }
+        
+        collections_res = deepcopy(collections)
+        collections_res["PFParticles"] = "ReconstructedParticles_ee"
+
+        df2 = (df2
+                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
+                .Define(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(24.6666666666666, 11, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]])         
+        )
+
+        df2 = (df2
+               
+                .Define("Electron_p_res_0_20", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle,11, 20., 0.)".format(collections_res["PFParticles"]))
+                .Define("Electron_p_res_20_40", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle,11, 40., 20.)".format(collections_res["PFParticles"]))
+                .Define("Electron_p_res_40_60", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle,11, 60., 40.)".format(collections_res["PFParticles"]))
+                .Define("Electron_p_res_60_higher", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle,11, 1000., 60.)".format(collections_res["PFParticles"]))
+                .Define("Electron_p_res_total", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle,11, 1000., 0.)".format(collections_res["PFParticles"]))
 
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")
@@ -167,7 +190,7 @@ class RDFanalysis():
                 
                 #ELECTRONS 
                 .Alias("Electron0", "Electron#0.index")
-                .Define("RecoElectrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles)")
+                .Define("RecoElectrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles_ee)")
                 .Define("n_RecoElectrons",  "ReconstructedParticle::get_n(RecoElectrons)") #count how many electrons are in the event in total
                 .Define("RecoElectron_e",      "ReconstructedParticle::get_e(RecoElectrons)")
                 .Define("RecoElectron_p",      "ReconstructedParticle::get_p(RecoElectrons)")
@@ -184,7 +207,7 @@ class RDFanalysis():
 
                 # MUONS
                 .Alias("Muon0", "Muon#0.index")
-                .Define("RecoMuons",  "ReconstructedParticle::get(Muon0, ReconstructedParticles)")
+                .Define("RecoMuons",  "ReconstructedParticle::get(Muon0, {})".format(collections_res["PFParticles"]))
                 .Define("n_RecoMuons",  "ReconstructedParticle::get_n(RecoMuons)") #count how many muons are in the event in total
                 .Define("RecoMuon_e",      "ReconstructedParticle::get_e(RecoMuons)")
                 .Define("RecoMuon_p",      "ReconstructedParticle::get_p(RecoMuons)")
@@ -201,7 +224,7 @@ class RDFanalysis():
 
                 #PHOTONS
                 .Alias("Photon0", "Photon#0.index") 
-                .Define("RecoPhotons",  "ReconstructedParticle::get(Photon0, ReconstructedParticles)")
+                .Define("RecoPhotons",  "ReconstructedParticle::get(Photon0, {})".format(collections_res["PFParticles"]))
                 .Define("n_RecoPhotons",  "ReconstructedParticle::get_n(RecoPhotons)") #count how many photons are in the event in total
                 .Define("RecoPhoton_e",      "ReconstructedParticle::get_e(RecoPhotons)")
                 .Define("RecoPhoton_p",      "ReconstructedParticle::get_p(RecoPhotons)")
@@ -215,6 +238,8 @@ class RDFanalysis():
 		        .Define("RecoPhoton_phi",     "ReconstructedParticle::get_phi(RecoPhotons)") #polar angle in the transverse plane phi
                 .Define("RecoPhoton_charge",  "ReconstructedParticle::get_charge(RecoPhotons)")
                 .Define("RecoPhoton_mass",  "ReconstructedParticle::get_mass(RecoPhotons)")
+
+
         )
         return df2
     #__________________________________________________________

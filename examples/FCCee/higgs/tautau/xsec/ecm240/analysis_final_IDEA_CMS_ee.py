@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/ee/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1_res/ee/"
 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/ee/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final_res/ee/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -21,8 +21,8 @@ doTree = False
 
 processList = {
     'IDEA_events_041153094': {},
-    'CMS_Phase2_events_041153094': {},
-    'CMS_Phase1_events_041153094': {},
+    #'CMS_Phase2_events_041153094': {},
+    #'CMS_Phase1_events_041153094': {},
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -112,11 +112,11 @@ histoList = {
     "RecoElectron_phi":                 {"name":"RecoElectron_phi",                 "title":"Reco electron #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoElectron_charge":              {"name":"RecoElectron_charge",              "title":"Reco electron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "RecoElectron_mass":                {"name":"RecoElectron_mass",                "title":"Reco electron mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "Electron_p_res_0_20":              {"name":"Electron_p_res_0_20",              "title":"Momentum resolution 0 < p_{gen} < 20 GeV", "bin":200, "xmin":-0.2, "xmax":0.2}, 
-    "Electron_p_res_20_40":             {"name":"Electron_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
-    "Electron_p_res_40_60":             {"name":"Electron_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
-    "Electron_p_res_60_higher":         {"name":"Electron_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
-    "Electron_p_res_total":             {"name":"Electron_p_res_total",             "title":"Momentum resolution",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
+    "Electron_p_res_0_20":              {"name":"Electron_p_res_0_20",              "title":"Momentum resolution 0 < p_{gen} < 20 GeV", "bin":200, "xmin":-0.08, "xmax":0.08}, 
+    "Electron_p_res_20_40":             {"name":"Electron_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":200, "xmin":-0.08, "xmax":0.08},
+    "Electron_p_res_40_60":             {"name":"Electron_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":200, "xmin":-0.08, "xmax":0.08},
+    "Electron_p_res_60_higher":         {"name":"Electron_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":200, "xmin":-0.08, "xmax":0.08}, 
+    "Electron_p_res_total":             {"name":"Electron_p_res_total",             "title":"Momentum resolution",    "bin":200, "xmin":-0.08, "xmax":0.08}, 
 
     "n_RecoMuons":                  {"name":"n_RecoMuons",                  "title":"Number of reco muons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "RecoMuon_e":                   {"name":"RecoMuon_e",                   "title":"Reco muon energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},

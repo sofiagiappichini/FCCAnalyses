@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/dd/"
+directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/ee/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -60,147 +60,147 @@ CUTS = [
 VARIABLES = [
     ######## Monte-Carlo particles #######
    
-    #"n_FSGenElectron",
-    #"FSGenElectron_e",
-    #"FSGenElectron_p",
-    #"FSGenElectron_pt",
-    #"FSGenElectron_px",
-    #"FSGenElectron_py",
-    #"FSGenElectron_pz",
-    #"FSGenElectron_y",
-    #"FSGenElectron_eta",
-    #"FSGenElectron_theta",
-    #"FSGenElectron_phi",
-    #"FSGenElectron_charge",
-    #"FSGenElectron_mass",
+    "n_FSGenElectron",
+    "FSGenElectron_e",
+    "FSGenElectron_p",
+    "FSGenElectron_pt",
+    "FSGenElectron_px",
+    "FSGenElectron_py",
+    "FSGenElectron_pz",
+    "FSGenElectron_y",
+    "FSGenElectron_eta",
+    "FSGenElectron_theta",
+    "FSGenElectron_phi",
+    "FSGenElectron_charge",
+    "FSGenElectron_mass",
 
-    #"n_FSGenMuon",
-    #"FSGenMuon_e",
-    #"FSGenMuon_p",
-    #"FSGenMuon_pt",
-    #"FSGenMuon_px",
-    #"FSGenMuon_py",
-    #"FSGenMuon_pz",
-    #"FSGenMuon_y",
-    #"FSGenMuon_eta",
-    #"FSGenMuon_theta",
-    #"FSGenMuon_phi",
-    #"FSGenMuon_charge",
-    #"FSGenMuon_mass",
+    "n_FSGenMuon",
+    "FSGenMuon_e",
+    "FSGenMuon_p",
+    "FSGenMuon_pt",
+    "FSGenMuon_px",
+    "FSGenMuon_py",
+    "FSGenMuon_pz",
+    "FSGenMuon_y",
+    "FSGenMuon_eta",
+    "FSGenMuon_theta",
+    "FSGenMuon_phi",
+    "FSGenMuon_charge",
+    "FSGenMuon_mass",
 
-    #"n_FSGenPhoton",
-    #"FSGenPhoton_e",
-    #"FSGenPhoton_p",
-    #"FSGenPhoton_pt",
-    #"FSGenPhoton_px",
-    #"FSGenPhoton_py",
-    #"FSGenPhoton_pz",
-    #"FSGenPhoton_y",
-    #"FSGenPhoton_eta",
-    #"FSGenPhoton_theta",
-    #"FSGenPhoton_phi",
-    #"FSGenPhoton_charge",
+    "n_FSGenPhoton",
+    "FSGenPhoton_e",
+    "FSGenPhoton_p",
+    "FSGenPhoton_pt",
+    "FSGenPhoton_px",
+    "FSGenPhoton_py",
+    "FSGenPhoton_pz",
+    "FSGenPhoton_y",
+    "FSGenPhoton_eta",
+    "FSGenPhoton_theta",
+    "FSGenPhoton_phi",
+    "FSGenPhoton_charge",
 
-    #"n_RecoElectrons",
-    #"RecoElectron_e",
-    #"RecoElectron_p",
-    #"RecoElectron_pt",
-    #"RecoElectron_px",
-    #"RecoElectron_py",
-    #"RecoElectron_pz",
-    #"RecoElectron_y",
-    #"RecoElectron_eta",
-    #"RecoElectron_theta",
-    #"RecoElectron_phi",
-    #"RecoElectron_charge",
-    #"RecoElectron_mass",
-    #"Electron_p_res_0_20",
-    #"Electron_p_res_20_40",
-    #"Electron_p_res_40_60",
-    #"Electron_p_res_60_higher", 
-    #"Electron_p_res_total",
+    "n_RecoElectrons",
+    "RecoElectron_e",
+    "RecoElectron_p",
+    "RecoElectron_pt",
+    "RecoElectron_px",
+    "RecoElectron_py",
+    "RecoElectron_pz",
+    "RecoElectron_y",
+    "RecoElectron_eta",
+    "RecoElectron_theta",
+    "RecoElectron_phi",
+    "RecoElectron_charge",
+    "RecoElectron_mass",
+    "Electron_p_res_0_20",
+    "Electron_p_res_20_40",
+    "Electron_p_res_40_60",
+    "Electron_p_res_60_higher", 
+    "Electron_p_res_total",
 
-    #"n_RecoMuons",
-    #"RecoMuon_e",
-    #"RecoMuon_p",
-    #"RecoMuon_pt",
-    #"RecoMuon_px",
-    #"RecoMuon_py",
-    #"RecoMuon_pz",
-    #"RecoMuon_y",
-    #"RecoMuon_eta",
-    #"RecoMuon_theta",
-    #"RecoMuon_phi",
-    #"RecoMuon_charge",
-    #"RecoMuon_mass",
+    "n_RecoMuons",
+    "RecoMuon_e",
+    "RecoMuon_p",
+    "RecoMuon_pt",
+    "RecoMuon_px",
+    "RecoMuon_py",
+    "RecoMuon_pz",
+    "RecoMuon_y",
+    "RecoMuon_eta",
+    "RecoMuon_theta",
+    "RecoMuon_phi",
+    "RecoMuon_charge",
+    "RecoMuon_mass",
     #"Muon_p_res_0_20",
     #"Muon_p_res_20_40",
     #"Muon_p_res_40_60",
     #"Muon_p_res_60_higher", 
     #"Muon_p_res_total",
 
-    #"n_RecoPhotons",
-    #"RecoPhoton_e",
-    #"RecoPhoton_p",
-    #"RecoPhoton_pt",
-    #"RecoPhoton_px",
-    #"RecoPhoton_py",
-    #"RecoPhoton_pz",
-    #"RecoPhoton_y",
-    #"RecoPhoton_eta",
-    #"RecoPhoton_theta",
-    #"RecoPhoton_phi",
-    #"RecoPhoton_charge",
-    #"RecoPhoton_mass",
+    "n_RecoPhotons",
+    "RecoPhoton_e",
+    "RecoPhoton_p",
+    "RecoPhoton_pt",
+    "RecoPhoton_px",
+    "RecoPhoton_py",
+    "RecoPhoton_pz",
+    "RecoPhoton_y",
+    "RecoPhoton_eta",
+    "RecoPhoton_theta",
+    "RecoPhoton_phi",
+    "RecoPhoton_charge",
+    "RecoPhoton_mass",
     #"Photon_p_res_0_20",
     #"Photon_p_res_20_40",
     #"Photon_p_res_40_60",
     #"Photon_p_res_60_higher", 
     #"Photon_p_res_total",
 
-    "n_GenDown",
-    "GenDown_e",
-    "GenDown_p",
-    "GenDown_pt",
-    "GenDown_px",
-    "GenDown_py",
-    "GenDown_pz",
-    "GenDown_y",
-    "GenDown_eta",
-    "GenDown_theta",
-    "GenDown_phi",
-    "GenDown_charge",
-    "GenDown_mass",
+    #"n_GenDown",
+    #"GenDown_e",
+    #"GenDown_p",
+    #"GenDown_pt",
+    #"GenDown_px",
+    #"GenDown_py",
+    #"GenDown_pz",
+    #"GenDown_y",
+    #"GenDown_eta",
+    #"GenDown_theta",
+    #"GenDown_phi",
+    #"GenDown_charge",
+    #"GenDown_mass",
 
-    "n_TagJet_kt2",
-    "TagJet_kt2_px", 
-    "TagJet_kt2_py",    
-    "TagJet_kt2_pz",      
-    "TagJet_kt2_p",  
-    "TagJet_kt2_pt",    
-    "TagJet_kt2_phi", 
-    "TagJet_kt2_eta",     
-    "TagJet_kt2_theta",          
-    "TagJet_kt2_e",     
-    "TagJet_kt2_mass",        
-    "TagJet_kt2_charge",  
+    #"n_TagJet_kt2",
+    #"TagJet_kt2_px", 
+    #"TagJet_kt2_py",    
+    #"TagJet_kt2_pz",      
+    #"TagJet_kt2_p",  
+    #"TagJet_kt2_pt",    
+    #"TagJet_kt2_phi", 
+    #"TagJet_kt2_eta",     
+    #"TagJet_kt2_theta",          
+    #"TagJet_kt2_e",     
+    #"TagJet_kt2_mass",        
+    #"TagJet_kt2_charge",  
 
-    "Down_p_res_0_20",
-    "Down_p_res_20_40",
-    "Down_p_res_40_60",
-    "Down_p_res_60_higher",
-    "Down_p_res_total",
+    #"Down_p_res_0_20",
+    #"Down_p_res_20_40",
+    #"Down_p_res_40_60",
+    #"Down_p_res_60_higher",
+    #"Down_p_res_total",
 ]
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/awiedl/public_html/detector/dd/' 
+DIR_PLOTS = '/web/awiedl/public_html/detector/ee/' 
 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
  }
 
-ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow d d "
+ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow e e "
 
 energy         = 240
 collider       = 'FCC-ee'
@@ -212,22 +212,28 @@ backgrounds_all = [
 ]
 
 legend = {
-    'IDEA_events_000421007':'IDEA',
-    'CMS_Phase2_events_000421007':'CMS Phase2',
-    'CMS_Phase1_events_000421007':'CMS Phase1',
+    'IDEA_events_041153094':'IDEA',
+    'CMS_Phase2_events_041153094':'CMS Phase2',
+    'CMS_Phase1_events_041153094':'CMS Phase1',
+    'IDEA_CMS2':'IDEA sf=~21',
+    'IDEA_CMS1':'IDEA sf=~24',
 }
 
 legcolors = {
-    'IDEA_events_000421007':ROOT.kGreen,
-    'CMS_Phase2_events_000421007':ROOT.kCyan,
-    'CMS_Phase1_events_000421007':ROOT.kBlue,
+    'IDEA_events_041153094':ROOT.kGreen,
+    'CMS_Phase2_events_041153094':ROOT.kCyan,
+    'CMS_Phase1_events_041153094':ROOT.kBlue,
+    'IDEA_CMS2':ROOT.kOrange,
+    'IDEA_CMS1':ROOT.kBlack,
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    'IDEA_events_000421007',
-    'CMS_Phase2_events_000421007',
-    'CMS_Phase1_events_000421007',
+    'IDEA_events_041153094',
+    'CMS_Phase2_events_041153094',
+    'CMS_Phase1_events_041153094',
+    'IDEA_CMS2',
+    'IDEA_CMS1',
 ]
 
 for cut in CUTS:
@@ -278,7 +284,13 @@ for cut in CUTS:
                 hh.SetDirectory(0)
                 histos.append(hh)
                 colors.append(legcolors[s])
-                leg.AddEntry(histos[-1], legend[s], "l")
+                if('res' in variable):
+                    bin1 = hh.FindFirstBinAbove(hh.GetMaximum()/2)
+                    bin2 = hh.FindLastBinAbove(hh.GetMaximum()/2)
+                    FWHM = hh.GetBinCenter(bin2) - hh.GetBinCenter(bin1)
+                    leg.AddEntry(histos[-1], legend[s] + ', FWHM: ' + str(FWHM), "l")
+                else:
+                    leg.AddEntry(histos[-1], legend[s], "l")
                 leg_bkg.append(0)
         nsig=len(histos)
 
@@ -354,6 +366,21 @@ for cut in CUTS:
                 h = histos[i]
                 h.SetLineWidth(3)
                 h.SetLineColor(colors[i])
+                #if('res' in variable):
+                    #bin1 = h.FindFirstBinAbove(h.GetMaximum()/2)
+                    #bin2 = h.FindLastBinAbove(h.GetMaximum()/2)
+                    #FWHM = h.GetBinCenter(bin2) - h.GetBinCenter(bin1)
+                    #gaussFit = ROOT.TF1("gaussfit","gaus") 
+                    #h.Fit(gaussFit, "E")
+                    #mean = gaussFit.GetParameter(1)
+                    #sigma = gaussFit.GetParameter(2)
+                    #with open('/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/output.txt', "a") as file:
+                    #    file.write(f"{variable}\n")
+                    #    file.write(f"{signals[i]}\n")
+                    #    file.write(f"Mean: {mean}\n")
+                    #    file.write(f"Sigma: {sigma}\n")
+                    #    file.write(f"FWHM: {FWHM}\n\n")
+
                 
                 if i == 0:
                     h.Draw("HIST")
@@ -445,7 +472,7 @@ for cut in CUTS:
         if('res' in variable):
             for i in range(nsig):
                 h = histos[i]
-                gaussFit = ROOT.TF1("gaussfit","gaus",-0.2,0.2) 
+                gaussFit = ROOT.TF1("gaussfit","gaus",-0.05,0.05) 
                 h.Fit(gaussFit, "EV")
                 mean = gaussFit.GetParameter(1)
                 sigma = gaussFit.GetParameter(2)
