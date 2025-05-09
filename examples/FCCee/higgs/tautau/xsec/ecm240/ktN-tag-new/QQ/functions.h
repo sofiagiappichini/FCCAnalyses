@@ -1169,6 +1169,38 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (con
 
 }
 
+//to use for tagged jets instead of explicit tau reconstruction but the idea of what I want is the same
+ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> Jet_LeadingCharged(const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
+    ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> result;
+    for (int i = 0; i < jets.size(); ++i){
+
+        edm4hep::ReconstructedParticleData partMod;
+        FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
+        TLorentzVector lead;
+        int chargeLead=0;
+        int track=0;
+        
+        for (const auto &jc : jcs){
+            if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
+            lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
+            chargeLead=jc.charge;
+            track = jc.tracks_begin;
+        }
+        }
+
+        partMod.momentum.x=lead.Px();
+        partMod.momentum.y=lead.Py();
+        partMod.momentum.z=lead.Pz();
+        partMod.mass= lead.M();
+        partMod.energy= lead.E();
+        partMod.charge= chargeLead;
+        partMod.tracks_begin = track;
+        
+        result.push_back(partMod);
+    }
+    return result;
+}
+
 //find the leading particle in a collection, returns the particle
 ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> Find_Leading(const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& in){
     ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> result;
@@ -1220,38 +1252,6 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> Find_LeadingPair(const RO
         result.push_back(sub);
     }
 
-    return result;
-}
-
-//to use for tagged jets instead of explicit tau reconstruction but the idea of what I want is the same
-ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> Jet_LeadingCharged(const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
-    ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> result;
-    for (int i = 0; i < jets.size(); ++i){
-
-        edm4hep::ReconstructedParticleData partMod;
-        FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
-        TLorentzVector lead;
-        int chargeLead=0;
-        int track=0;
-        
-        for (const auto &jc : jcs){
-            if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
-            lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
-            chargeLead=jc.charge;
-            track = jc.tracks_begin;
-        }
-        }
-
-        partMod.momentum.x=lead.Px();
-        partMod.momentum.y=lead.Py();
-        partMod.momentum.z=lead.Pz();
-        partMod.mass= lead.M();
-        partMod.energy= lead.E();
-        partMod.charge= chargeLead;
-        partMod.tracks_begin = track;
-        
-        result.push_back(partMod);
-    }
     return result;
 }
 

@@ -2,10 +2,10 @@ import ROOT
 import os
 
 DIRECTORIES = [
-    "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/R5-explicit/",
-    "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/R5-tag/",
-    "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ktN-explicit/",
-    "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ktN-tag/",
+    #"/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/R5-explicit/",
+    #"/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/R5-tag/",
+    "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-explicit-new/",
+    #"/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-tag/",
 ]
 SUBDIR = [
     'LL',
@@ -15,7 +15,7 @@ SUBDIR = [
 #category to plot
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
 

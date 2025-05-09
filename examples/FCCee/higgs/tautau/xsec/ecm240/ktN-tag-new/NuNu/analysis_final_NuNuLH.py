@@ -1,35 +1,107 @@
 #Input directory where the files produced at the stage1 level are
-#inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/" 
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/ktN-tag/stage2_241202/NuNu/LH"
 
-#Optional: output directory, default is local running directory
-#outputDir   = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/efficiency/jet/" 
-outputDir = "/ceph/sgiappic/HiggsCP/ecm240/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/ktN-tag/final_241202/NuNu/LH"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
 
 #Scale event yields by intLumi and cross section (optional)
 # if scaling, both the number of events in the table and in the histograms will be scaled
-doScale = False
+doScale = True
 
 #Save event yields in a table (optional)
-saveTabular = True
+saveTabular = False
 
 #Number of CPUs to use
-nCPUS = 1
+#nCPUs = 6
 
 #produces ROOT TTrees, default is False
 doTree = False
 
 processList = {
+    'p8_ee_WW_ecm240':{},
+    'p8_ee_Zqq_ecm240':{},
+    'p8_ee_ZZ_ecm240':{},
+    
+    'wzp6_ee_tautau_ecm240':{},
+    'wzp6_ee_mumu_ecm240':{},
+    'wzp6_ee_ee_Mee_30_150_ecm240':{},
+
+    'wzp6_ee_tautauH_Htautau_ecm240': {},
+    'wzp6_ee_tautauH_Hbb_ecm240': {},
+    'wzp6_ee_tautauH_Hcc_ecm240': {},
+    'wzp6_ee_tautauH_Hss_ecm240': {},
+    'wzp6_ee_tautauH_Hgg_ecm240': {},
+    'wzp6_ee_tautauH_HWW_ecm240': {},
+    'wzp6_ee_tautauH_HZZ_ecm240': {},
+
+    'wzp6_egamma_eZ_Zmumu_ecm240': {},
+    'wzp6_egamma_eZ_Zee_ecm240': {},
+    'wzp6_gammae_eZ_Zmumu_ecm240': {},
+    'wzp6_gammae_eZ_Zee_ecm240': {},
+
+    'wzp6_gaga_tautau_60_ecm240': {},
+    'wzp6_gaga_mumu_60_ecm240': {},
+    'wzp6_gaga_ee_60_ecm240': {},
+
+    'wzp6_ee_nuenueZ_ecm240': {},
+
     'wzp6_ee_nunuH_Htautau_ecm240': {},
+    'wzp6_ee_nunuH_Hbb_ecm240': {},
+    'wzp6_ee_nunuH_Hcc_ecm240': {},
+    'wzp6_ee_nunuH_Hss_ecm240': {},
+    'wzp6_ee_nunuH_Hgg_ecm240': {},
+    'wzp6_ee_nunuH_HWW_ecm240': {},
+    'wzp6_ee_nunuH_HZZ_ecm240': {},
+
     'wzp6_ee_eeH_Htautau_ecm240': {},
+    'wzp6_ee_eeH_Hbb_ecm240': {},
+    'wzp6_ee_eeH_Hcc_ecm240': {},
+    'wzp6_ee_eeH_Hss_ecm240': {},
+    'wzp6_ee_eeH_Hgg_ecm240': {},
+    'wzp6_ee_eeH_HWW_ecm240': {},
+    'wzp6_ee_eeH_HZZ_ecm240': {},
+
     'wzp6_ee_mumuH_Htautau_ecm240': {},
+    'wzp6_ee_mumuH_Hbb_ecm240': {},
+    'wzp6_ee_mumuH_Hcc_ecm240': {},
+    'wzp6_ee_mumuH_Hss_ecm240': {},
+    'wzp6_ee_mumuH_Hgg_ecm240': {},
+    'wzp6_ee_mumuH_HWW_ecm240': {},
+    'wzp6_ee_mumuH_HZZ_ecm240': {},
+
     'wzp6_ee_bbH_Htautau_ecm240': {},
+    'wzp6_ee_bbH_Hbb_ecm240': {},
+    'wzp6_ee_bbH_Hcc_ecm240': {},
+    'wzp6_ee_bbH_Hss_ecm240': {},
+    'wzp6_ee_bbH_Hgg_ecm240': {},
+    'wzp6_ee_bbH_HWW_ecm240': {},
+    'wzp6_ee_bbH_HZZ_ecm240': {},
+
     'wzp6_ee_ccH_Htautau_ecm240': {},
+    'wzp6_ee_ccH_Hbb_ecm240': {},
+    'wzp6_ee_ccH_Hcc_ecm240': {},
+    'wzp6_ee_ccH_Hss_ecm240': {},
+    'wzp6_ee_ccH_Hgg_ecm240': {},
+    'wzp6_ee_ccH_HWW_ecm240': {},
+    'wzp6_ee_ccH_HZZ_ecm240': {},
+
     'wzp6_ee_ssH_Htautau_ecm240': {},
+    'wzp6_ee_ssH_Hbb_ecm240': {},
+    'wzp6_ee_ssH_Hcc_ecm240': {},
+    'wzp6_ee_ssH_Hss_ecm240': {},
+    'wzp6_ee_ssH_Hgg_ecm240': {},
+    'wzp6_ee_ssH_HWW_ecm240': {},
+    'wzp6_ee_ssH_HZZ_ecm240': {},
+
     'wzp6_ee_qqH_Htautau_ecm240': {},
+    'wzp6_ee_qqH_Hbb_ecm240': {},
+    'wzp6_ee_qqH_Hcc_ecm240': {},
+    'wzp6_ee_qqH_Hss_ecm240': {},
+    'wzp6_ee_qqH_Hgg_ecm240': {},
+    'wzp6_ee_qqH_HWW_ecm240': {},
+    'wzp6_ee_qqH_HZZ_ecm240': {},
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -45,128 +117,28 @@ procDictAdd = {}
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selNone":"true",
-
-    "selTag2-5":"n_events_R5tag==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==2",
-
-    "selTag2-5e":"n_events_R5excl==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==2",
-
-    "selTag2-54":"n_events_R5tag==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==4",
-
-    "selTag2-54e":"n_events_R5excl==2 && TagJet_R5_e[TagJet_R5_cleanup==1].size()==4",
-
-    #"selTag1-4":"n_events_kt4tag==1",
-    "selTag2-4":"n_events_kt4tag==2 && TagJet_kt4_e[TagJet_kt4_cleanup==1].size()==4",
-    #"selTag0-4":"n_events_kt4tag==0",
-
-    #"selTag1-4m":"n_events_kt4masstag==1",
-    #"selTag2-4m":"n_events_kt4masstag==2",
-    #"selTag0-4m":"n_events_kt4masstag==0",
-
-    #"selTag1-4e":"n_events_kt4excl==1",
-    "selTag2-4e":"n_events_kt4excl==2 && TagJet_kt4_e[TagJet_kt4_cleanup==1].size()==4",
-    #"selTag0-4e":"n_events_kt4excl==0",
-
-    #"selTag1-3":"n_events_kt3tag==1",
-    #"selTag2-3":"n_events_kt3tag==2 && TagJet_kt4_e[TagJet_kt3_cleanup==1].size()==3",
-    #"selTag0-3":"n_events_kt3tag==0",
-
-    #"selTag1-3m":"n_events_kt3masstag==1",
-    #"selTag2-3m":"n_events_kt3masstag==2",
-    #"selTag0-3m":"n_events_kt3masstag==0",
-
-    #"selTag1-3e":"n_events_kt3excl==1",
-    #"selTag2-3e":"n_events_kt3excl==2",
-    #"selTag0-3e":"n_events_kt3excl==0",
-
-    #"selTag1-2":"n_events_kt2tag==1",
-    "selTag2-2":"n_events_kt2tag==2 && TagJet_kt2_e[TagJet_kt2_cleanup==1].size()==2",
-    #"selTag0-2":"n_events_kt2tag==0",
-
-
-    #"selTag1-2e":"n_events_kt2excl==1",
-    "selTag2-2e":"n_events_kt2excl==2 && TagJet_kt2_e[TagJet_kt2_cleanup==1].size()==2",
-    #"selTag0-2e":"n_events_kt2excl==0",
-
-    #"selTag1-1":"n_events_kt1tag==1",
-    #"selTag2-1":"n_events_kt1tag==2",
-    #"selTag0-1":"n_events_kt1tag==0",
-
-    #"selTag1-1e":"n_events_kt1excl==1",
-    #"selTag2-1e":"n_events_kt1excl==2",
-    #"selTag0-1e":"n_events_kt1excl==0",
-
-    #"selGen1":"n_GenTau_had==1",
-    "selGen2":"n_GenTau_had==2",
-    #"selGen0":"n_GenTau_had==0",
+    #"selReco": "true",
+    #"selReco_100Me": "RecoEmiss_e>100",
+    #"selReco_100Me_TauDPhi3": "RecoEmiss_e>100 && abs(Tau_DPhi)<3",
+    #"selReco_100Me_TauDPhi3_2DR": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2",
+    #"selReco_100Me_TauDPhi3_2DR_cos0.4": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4",
+    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98",
+    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
+    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "RecoEmiss_e>140 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
+    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1": "RecoEmiss_e>140 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.94 && abs(RecoEmiss_y)<1",
+    
 }
 
 # Dictionary for prettier names of cuts (optional)
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
 cutLabels = {
-    "selTag1-5":"Events with one R5 taus (score$>$0.5)",
-    "selTag2-5":"Events with two R5 taus (score$>$0.5)",
-    "selTag0-5":"Events with zero R5 taus (score$>$0.5)",
-
-    "selTag1-5m":"Events with one R5 taus (score$>$0.5, m<3 GeV)",
-    "selTag2-5m":"Events with two R5 taus (score$>$0.5, m<3 GeV)",
-    "selTag0-5m":"Events with zero R5 taus (score$>$0.5, m<3 GeV)",
-
-    "selTag1-5excl":"Events with one explicit R5 taus",
-    "selTag2-5excl":"Events with two explicit R5 taus",
-    "selTag0-5excl":"Events with zero explicit R5 taus",
-
-    #"selTag1-4":"Events with one kt4 taus (score$>$0.5)",
-    #"selTag2-4":"Events with two kt4 taus (score$>$0.5)",
-    #"selTag0-4":"Events with zero kt4 taus (score$>$0.5)",
-
-    #"selTag1-4m":"Events with one kt4 taus (score$>$0.5, m<3 GeV)",
-    #"selTag2-4m":"Events with two kt4 taus (score$>$0.5, m<3 GeV)",
-    #"selTag0-4m":"Events with zero kt4 taus (score$>$0.5, m<3 GeV)",
-
-    #"selTag1-4excl":"Events with one explicit kt4 taus",
-    #"selTag2-4excl":"Events with two explicit kt4 taus",
-    #"selTag0-4excl":"Events with zero explicit kt4 taus",
-
-    #"selTag1-3":"Events with one kt3 taus (score$>$0.5)",
-    #"selTag2-3":"Events with two kt3 taus (score$>$0.5)",
-    #"selTag0-3":"Events with zero kt3 taus (score$>$0.5)",
-
-    #"selTag1-3m":"Events with one kt3 taus (score$>$0.5, m<3 GeV)",
-    #"selTag2-3m":"Events with two kt3 taus (score$>$0.5, m<3 GeV)",
-    #"selTag0-3m":"Events with zero kt3 taus (score$>$0.5, m<3 GeV)",
-
-    #"selTag1-3excl":"Events with one explicit kt3 taus",
-    #"selTag2-3excl":"Events with two explicit kt3 taus",
-    #"selTag0-3excl":"Events with zero explicit kt3 taus",
-
-    #"selTag1-2":"Events with one kt2 taus (score$>$0.5)",
-    "selTag2-2":"Events with two kt2 taus (score$>$0.5)",
-    #"selTag0-2":"Events with zero kt2 taus (score$>$0.5)",
-
-    #"selTag1-2m":"Events with one kt2 taus (score$>$0.5, m<3 GeV)",
-    "selTag2-2m":"Events with two kt2 taus (score$>$0.5, m<3 GeV)",
-    #"selTag0-2m":"Events with zero kt2 taus (score$>$0.5, m<3 GeV)",
-
-    #"selTag1-2excl":"Events with one explicit kt2 taus",
-    "selTag2-2excl":"Events with two explicit kt2 taus",
-    #"selTag0-2excl":"Events with zero explicit kt2 taus",
-
-    "selTag1-1":"Events with one kt1 taus (score$>$0.5)",
-    #"selTag2-1":"Events with two kt1 taus (score$>$0.5)",
-    #"selTag0-1":"Events with zero kt1 taus (score$>$0.5)",
-
-    "selTag1-1m":"Events with one kt1 taus (score$>$0.5, m<3 GeV)",
-    #"selTag2-1m":"Events with two kt1 taus (score$>$0.5, m<3 GeV)",
-    #"selTag0-1m":"Events with zero kt1 taus (score$>$0.5, m<3 GeV)",
-
-    "selTag1-1excl":"Events with one explicit kt1 taus",
-    #"selTag2-1excl":"Events with two explicit kt1 taus",
-    #"selTag0-1excl":"Events with zero explicit kt1 taus",
-
-    "selGen1":"Events with one gen tau",
-    "selGen2":"Events with two gen taus",
-    "selGen0":"Events with zero gen taus",
+    "selReco": "No additional selection",
+    "selReco_100Me": "E_{miss}>100 GeV",
+    "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
+    "selReco_100Me_TauDPhi3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4}",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4}, |cos#theta_{miss}|<0.98}",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4}, |cos#theta_{miss}|<0.98} && |y_{miss}|<1",
 }
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
@@ -225,40 +197,6 @@ histoList = {
     "HiggsGenTau_vertex_x":               {"name":"HiggsGenTau_vertex_x", "title":"Final state gen #tau^{#font[122]{\55}} production vertex x [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
     "HiggsGenTau_vertex_y":               {"name":"HiggsGenTau_vertex_y", "title":"Final state gen #tau^{#font[122]{\55}} production vertex y [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
     "HiggsGenTau_vertex_z":               {"name":"HiggsGenTau_vertex_z", "title":"Final state gen #tau^{#font[122]{\55}} production vertex z [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
-
-    "n_TauNeg_MuNuNu":                  {"name":"n_TauNeg_MuNuNu",          "title":"Number of #tau^{-} decays into #mu #nu #nu per events",            "bin":2, "xmin":-0.5, "xmax":1.5}, 
-    "n_TauNeg_MuNuNu_Phot":             {"name":"n_TauNeg_MuNuNu_Phot",     "title":"Number of #tau^{-} decays into #mu #nu #nu #gamma per events",     "bin":2, "xmin":-0.5, "xmax":1.5}, 
-    "n_TauNeg_ENuNu":                   {"name":"n_TauNeg_ENuNu",           "title":"Number of #tau^{-} decays into e #nu #nu per events",              "bin":2, "xmin":-0.5, "xmax":1.5}, 
-    "n_TauNeg_ENuNu_Phot":              {"name":"n_TauNeg_ENuNu_Phot",      "title":"Number of #tau^{-} decays into e #nu #nu #gamma per events",       "bin":2, "xmin":-0.5, "xmax":1.5}, 
-    "n_TauNeg_PiNu":                    {"name":"n_TauNeg_PiNu",            "title":"Number of #tau^{-} decays into #pi #nu per events",                "bin":2, "xmin":-0.5, "xmax":1.5}, 
-    "n_TauNeg_PiNu_Phot":               {"name":"n_TauNeg_PiNu_Phot",       "title":"Number of #tau^{-} decays into #pi #nu #gamma per events",         "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauNeg_KNu":                     {"name":"n_TauNeg_KNu",             "title":"Number of #tau^{-} decays into K #nu per events",                  "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauNeg_KNu_Phot":                {"name":"n_TauNeg_KNu_Phot",        "title":"Number of #tau^{-} decays into K #nu #gamma per events",           "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauNeg_PiK0Nu":                  {"name":"n_TauNeg_PiK0Nu",          "title":"Number of #tau^{-} decays into #pi K^{0} #nu per events",          "bin":2, "xmin":-0.5, "xmax":1.5}, 
-    "n_TauNeg_PiK0Nu_Phot":             {"name":"n_TauNeg_PiK0Nu_Phot",     "title":"Number of #tau^{-} decays into #pi K^{0} #nu #gamma per events",   "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauNeg_KK0Nu":                   {"name":"n_TauNeg_KK0Nu",           "title":"Number of #tau^{-} decays into K K^{0} #nu per events",            "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauNeg_KK0Nu_Phot":              {"name":"n_TauNeg_KK0Nu_Phot",      "title":"Number of #tau^{-} decays into K K^{0} #nu #gamma per events",     "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauNeg_3PiNu":                   {"name":"n_TauNeg_3PiNu",           "title":"Number of #tau^{-} decays into 3 #pi #nu per events",              "bin":2, "xmin":-0.5, "xmax":1.5}, 
-    "n_TauNeg_3PiNu_Phot":              {"name":"n_TauNeg_3PiNu_Phot",      "title":"Number of #tau^{-} decays into 3 #pi #nu #gamma per events",       "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauNeg_PiKKNu":                  {"name":"n_TauNeg_PiKKNu",          "title":"Number of #tau^{-} decays into #pi K K #nu per events",            "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauNeg_PiKKNu_Phot":             {"name":"n_TauNeg_PiKKNu_Phot",     "title":"Number of #tau^{-} decays into #pi K K #nu #gamma per events",     "bin":2, "xmin":-0.5, "xmax":1.5},
-
-    "n_TauPos_MuNuNu":                  {"name":"n_TauPos_MuNuNu",          "title":"Number of #tau^{+} decays into #mu #nu #nu per events",            "bin":2, "xmin":-0.5, "xmax":1.5}, 
-    "n_TauPos_MuNuNu_Phot":             {"name":"n_TauPos_MuNuNu_Phot",     "title":"Number of #tau^{+} decays into #mu #nu #nu #gamma per events",     "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_ENuNu":                   {"name":"n_TauPos_ENuNu",           "title":"Number of #tau^{+} decays into e #nu #nu per events",              "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_ENuNu_Phot":              {"name":"n_TauPos_ENuNu_Phot",      "title":"Number of #tau^{+} decays into e #nu #nu #gamma per events",       "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_PiNu":                    {"name":"n_TauPos_PiNu",            "title":"Number of #tau^{+} decays into #pi #nu per events",                "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_PiNu_Phot":               {"name":"n_TauPos_PiNu_Phot",       "title":"Number of #tau^{+} decays into #pi #nu #gamma per events",         "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_KNu":                     {"name":"n_TauPos_KNu",             "title":"Number of #tau^{+} decays into K #nu per events",                  "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_KNu_Phot":                {"name":"n_TauPos_KNu_Phot",        "title":"Number of #tau^{+} decays into K #nu #gamma per events",           "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_PiK0Nu":                  {"name":"n_TauPos_PiK0Nu",          "title":"Number of #tau^{+} decays into #pi K^{0} #nu per events",          "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_PiK0Nu_Phot":             {"name":"n_TauPos_PiK0Nu_Phot",     "title":"Number of #tau^{+} decays into #pi K^{0} #nu #gamma per events",   "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_KK0Nu":                   {"name":"n_TauPos_KK0Nu",           "title":"Number of #tau^{+} decays into K K^{0} #nu per events",            "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_KK0Nu_Phot":              {"name":"n_TauPos_KK0Nu_Phot",      "title":"Number of #tau^{+} decays into K K^{0} #nu #gamma per events",     "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_3PiNu":                   {"name":"n_TauPos_3PiNu",           "title":"Number of #tau^{+} decays into 3 #pi #nu per events",              "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_3PiNu_Phot":              {"name":"n_TauPos_3PiNu_Phot",      "title":"Number of #tau^{+} decays into 3 #pi #nu #gamma per events",       "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_PiKKNu":                  {"name":"n_TauPos_PiKKNu",          "title":"Number of #tau^{+} decays into #pi K K #nu per events",            "bin":2, "xmin":-0.5, "xmax":1.5},
-    "n_TauPos_PiKKNu_Phot":             {"name":"n_TauPos_PiKKNu_Phot",     "title":"Number of #tau^{+} decays into #pi K K #nu #gamma per events",     "bin":2, "xmin":-0.5, "xmax":1.5},
 
     "n_FSGenNeutrino":                  {"name":"n_FSGenNeutrino",                  "title":"Number of final state gen neutrinos",              "bin":5, "xmin":-0.5, "xmax":4.5},
     "FSGenNeutrino_e":                  {"name":"FSGenNeutrino_e",                  "title":"Final state gen neutrinos energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
@@ -434,7 +372,21 @@ histoList = {
     "RecoPhoton_theta":         {"name":"RecoPhoton_theta",               "title":"Reco photon #theta",                         "bin":16, "xmin":0,"xmax":3.2},
     "RecoPhoton_phi":           {"name":"RecoPhoton_phi",                 "title":"Reco photon #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoPhoton_charge":        {"name":"RecoPhoton_charge",              "title":"Reco photon charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    #"RecoPhoton_mass":          {"name":"RecoPhoton_mass",                 "title":"Reco photon mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+    "RecoPhoton_mass":          {"name":"RecoPhoton_mass",                 "title":"Reco photon mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
+
+    "n_NeutralHadrons":            {"name":"n_NeutralHadrons",                  "title":"Number of reco neutral hadrons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    "NeutralHadrons_e":             {"name":"NeutralHadrons_e",                   "title":"Neutral hadron energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralHadrons_p":             {"name":"NeutralHadrons_p",                   "title":"Neutral hadron p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralHadrons_pt":            {"name":"NeutralHadrons_pt",                  "title":"Neutral hadron p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "NeutralHadrons_px":            {"name":"NeutralHadrons_px",                  "title":"Neutral hadron p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralHadrons_py":            {"name":"NeutralHadrons_py",                  "title":"Neutral hadron p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "NeutralHadrons_pz":            {"name":"NeutralHadrons_pz",                  "title":"Neutral hadron p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+
+    "NeutralHadrons_eta":           {"name":"NeutralHadrons_eta",                 "title":"Neutral hadron #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "NeutralHadrons_theta":         {"name":"NeutralHadrons_theta",               "title":"Neutral hadron #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "NeutralHadrons_phi":           {"name":"NeutralHadrons_phi",                 "title":"Neutral hadron #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "NeutralHadrons_charge":        {"name":"NeutralHadrons_charge",              "title":"Neutral hadron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    "NeutralHadrons_mass":          {"name":"NeutralHadrons_mass",                 "title":"Neutral hadron mass [GeV]",                         "bin":50, "xmin":0,"xmax":10},
 
     "RecoEmiss_px":             {"name":"RecoEmiss_px",                  "title":"Reco missing energy p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
     "RecoEmiss_py":             {"name":"RecoEmiss_py",                  "title":"Reco missing energy p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
@@ -442,6 +394,11 @@ histoList = {
     "RecoEmiss_pt":             {"name":"RecoEmiss_pt",                  "title":"Reco missing energy p_{T} [GeV]",                    "bin":60,"xmin":0 ,"xmax":120},
     "RecoEmiss_p":              {"name":"RecoEmiss_p",                   "title":"Reco missing energy p [GeV]",                        "bin":60,"xmin":0 ,"xmax":120},
     "RecoEmiss_e":              {"name":"RecoEmiss_e",                   "title":"Reco missing energy energy [GeV]",                   "bin":60,"xmin":0 ,"xmax":240},
+    "RecoEmiss_eta":            {"name":"RecoEmiss_eta",                 "title":"Reco missing energy #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoEmiss_phi":            {"name":"RecoEmiss_phi",                 "title":"Reco missing energy #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoEmiss_theta":          {"name":"RecoEmiss_theta",               "title":"Reco missing energy #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "RecoEmiss_y":              {"name":"RecoEmiss_y",                   "title":"Reco missing energy rapidity",                       "bin":40, "xmin":-4., "xmax":4.},
+    "RecoEmiss_costheta":       {"name":"RecoEmiss_costheta",               "title":"Reco missing energy |cos(#theta)|",                 "bin":50, "xmin":0,"xmax":1.},
 
     "TagJet_R5_e":                {"name":"TagJet_R5_e",                   "title":"R5 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_R5_p":                {"name":"TagJet_R5_p",                   "title":"R5 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
@@ -452,7 +409,7 @@ histoList = {
     "TagJet_R5_eta":              {"name":"TagJet_R5_eta",                 "title":"R5 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TagJet_R5_theta":            {"name":"TagJet_R5_theta",               "title":"R5 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
     "TagJet_R5_phi":              {"name":"TagJet_R5_phi",                 "title":"R5 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_R5_mass":             {"name":"TagJet_R5_mass",                "title":"R5 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
+    "TagJet_R5_mass":             {"name":"TagJet_R5_mass",                "title":"R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "TagJet_R5_charge":             {"name":"TagJet_R5_charge",                "title":"R5 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
     "n_TagJet_R5":                {"name":"n_TagJet_R5",                   "title":"Number of R5 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "n_TagJet_R5_constituents":             {"name":"n_TagJet_R5_constituents",               "title":"R5 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
@@ -482,18 +439,18 @@ histoList = {
     "TauFromJet_R5_mass":       {"name":"TauFromJet_R5_mass",                "title":"#tau from R5 jet mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
     "n_TauFromJet_R5":          {"name":"n_TauFromJet_R5",                   "title":"Number of #tau from R5 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
 
-    "TagJet_R5_sel_e":                {"name":"TagJet_R5_sel_e",                   "title":"Quark R5 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_R5_sel_p":                {"name":"TagJet_R5_sel_p",                   "title":"Quark R5 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_R5_sel_pt":               {"name":"TagJet_R5_sel_pt",                  "title":"Quark R5 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_R5_sel_px":               {"name":"TagJet_R5_sel_px",                  "title":"Quark R5 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_sel_py":               {"name":"TagJet_R5_sel_py",                  "title":"Quark R5 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_sel_pz":               {"name":"TagJet_R5_sel_pz",                  "title":"Quark R5 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_sel_eta":              {"name":"TagJet_R5_sel_eta",                 "title":"Quark R5 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_R5_sel_theta":            {"name":"TagJet_R5_sel_theta",               "title":"Quark R5 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_R5_sel_phi":              {"name":"TagJet_R5_sel_phi",                 "title":"Quark R5 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_R5_sel_mass":             {"name":"TagJet_R5_sel_mass",                "title":"Quark R5 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
-    "n_TagJet_R5_sel":                {"name":"n_TagJet_R5_sel",                   "title":"Number of quark R5 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    
+    "TagJet_R5_sel_e":            {"name":"TagJet_R5_sel_e",                   "title":"Quark/gluon R5 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
+    "TagJet_R5_sel_p":            {"name":"TagJet_R5_sel_p",                   "title":"Quark/gluon R5 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_R5_sel_pt":           {"name":"TagJet_R5_sel_pt",                  "title":"Quark/gluon R5 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_R5_sel_px":           {"name":"TagJet_R5_sel_px",                  "title":"Quark/gluon R5 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_R5_sel_py":           {"name":"TagJet_R5_sel_py",                  "title":"Quark/gluon R5 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_R5_sel_pz":           {"name":"TagJet_R5_sel_pz",                  "title":"Quark/gluon R5 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_R5_sel_eta":          {"name":"TagJet_R5_sel_eta",                 "title":"Quark/gluon R5 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_R5_sel_theta":        {"name":"TagJet_R5_sel_theta",               "title":"Quark/gluon R5 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "TagJet_R5_sel_phi":          {"name":"TagJet_R5_sel_phi",                 "title":"Quark/gluon R5 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_R5_sel_mass":         {"name":"TagJet_R5_sel_mass",                "title":"Quark/gluon R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    "n_TagJet_R5_sel":            {"name":"n_TagJet_R5_sel",                   "title":"Number of Quark/gluon R5 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
+
     "TagJet_kt4_e":                {"name":"TagJet_kt4_e",                   "title":"kt4 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_kt4_p":                {"name":"TagJet_kt4_p",                   "title":"kt4 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
     "TagJet_kt4_pt":               {"name":"TagJet_kt4_pt",                  "title":"kt4 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
@@ -503,7 +460,7 @@ histoList = {
     "TagJet_kt4_eta":              {"name":"TagJet_kt4_eta",                 "title":"kt4 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TagJet_kt4_theta":            {"name":"TagJet_kt4_theta",               "title":"kt4 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
     "TagJet_kt4_phi":              {"name":"TagJet_kt4_phi",                 "title":"kt4 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_mass":             {"name":"TagJet_kt4_mass",                "title":"kt4 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
+    "TagJet_kt4_mass":             {"name":"TagJet_kt4_mass",                "title":"kt4 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "TagJet_kt4_charge":             {"name":"TagJet_kt4_charge",                "title":"kt4 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
     "n_TagJet_kt4":                {"name":"n_TagJet_kt4",                   "title":"Number of kt4 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "n_TagJet_kt4_constituents":             {"name":"n_TagJet_kt4_constituents",               "title":"kt4 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
@@ -533,18 +490,18 @@ histoList = {
     "TauFromJet_kt4_mass":       {"name":"TauFromJet_kt4_mass",                "title":"#tau from kt4 jet mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
     "n_TauFromJet_kt4":          {"name":"n_TauFromJet_kt4",                   "title":"Number of #tau from kt4 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
 
-    "TagJet_kt4_sel_e":                {"name":"TagJet_kt4_sel_e",                   "title":"Quark kt4 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt4_sel_p":                {"name":"TagJet_kt4_sel_p",                   "title":"Quark kt4 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt4_sel_pt":               {"name":"TagJet_kt4_sel_pt",                  "title":"Quark kt4 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt4_sel_px":               {"name":"TagJet_kt4_sel_px",                  "title":"Quark kt4 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_sel_py":               {"name":"TagJet_kt4_sel_py",                  "title":"Quark kt4 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_sel_pz":               {"name":"TagJet_kt4_sel_pz",                  "title":"Quark kt4 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_sel_eta":              {"name":"TagJet_kt4_sel_eta",                 "title":"Quark kt4 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_sel_theta":            {"name":"TagJet_kt4_sel_theta",               "title":"Quark kt4 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt4_sel_phi":              {"name":"TagJet_kt4_sel_phi",                 "title":"Quark kt4 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_sel_mass":             {"name":"TagJet_kt4_sel_mass",                "title":"Quark kt4 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
-    "n_TagJet_kt4_sel":                {"name":"n_TagJet_kt4_sel",                   "title":"Number of quark kt4 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    
+    "TagJet_kt4_sel_e":            {"name":"TagJet_kt4_sel_e",                   "title":"Quark/gluon kt4 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
+    "TagJet_kt4_sel_p":            {"name":"TagJet_kt4_sel_p",                   "title":"Quark/gluon kt4 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt4_sel_pt":           {"name":"TagJet_kt4_sel_pt",                  "title":"Quark/gluon kt4 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt4_sel_px":           {"name":"TagJet_kt4_sel_px",                  "title":"Quark/gluon kt4 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt4_sel_py":           {"name":"TagJet_kt4_sel_py",                  "title":"Quark/gluon kt4 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt4_sel_pz":           {"name":"TagJet_kt4_sel_pz",                  "title":"Quark/gluon kt4 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt4_sel_eta":          {"name":"TagJet_kt4_sel_eta",                 "title":"Quark/gluon kt4 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt4_sel_theta":        {"name":"TagJet_kt4_sel_theta",               "title":"Quark/gluon kt4 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "TagJet_kt4_sel_phi":          {"name":"TagJet_kt4_sel_phi",                 "title":"Quark/gluon kt4 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt4_sel_mass":         {"name":"TagJet_kt4_sel_mass",                "title":"Quark/gluon kt4 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    "n_TagJet_kt4_sel":            {"name":"n_TagJet_kt4_sel",                   "title":"Number of Quark/gluon kt4 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
+
     "TagJet_kt3_e":                {"name":"TagJet_kt3_e",                   "title":"kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_kt3_p":                {"name":"TagJet_kt3_p",                   "title":"kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
     "TagJet_kt3_pt":               {"name":"TagJet_kt3_pt",                  "title":"kt3 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
@@ -554,7 +511,7 @@ histoList = {
     "TagJet_kt3_eta":              {"name":"TagJet_kt3_eta",                 "title":"kt3 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TagJet_kt3_theta":            {"name":"TagJet_kt3_theta",               "title":"kt3 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
     "TagJet_kt3_phi":              {"name":"TagJet_kt3_phi",                 "title":"kt3 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt3_mass":             {"name":"TagJet_kt3_mass",                "title":"kt3 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
+    "TagJet_kt3_mass":             {"name":"TagJet_kt3_mass",                "title":"kt3 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "TagJet_kt3_charge":             {"name":"TagJet_kt3_charge",                "title":"kt3 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
     "n_TagJet_kt3":                {"name":"n_TagJet_kt3",                   "title":"Number of kt3 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "n_TagJet_kt3_constituents":             {"name":"n_TagJet_kt3_constituents",               "title":"kt3 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
@@ -584,18 +541,18 @@ histoList = {
     "TauFromJet_kt3_mass":       {"name":"TauFromJet_kt3_mass",                "title":"#tau from kt3 jet mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
     "n_TauFromJet_kt3":          {"name":"n_TauFromJet_kt3",                   "title":"Number of #tau from kt3 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
 
-    "TagJet_kt3_sel_e":                {"name":"TagJet_kt3_sel_e",                   "title":"Quark kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt3_sel_p":                {"name":"TagJet_kt3_sel_p",                   "title":"Quark kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt3_sel_pt":               {"name":"TagJet_kt3_sel_pt",                  "title":"Quark kt3 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt3_sel_px":               {"name":"TagJet_kt3_sel_px",                  "title":"Quark kt3 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt3_sel_py":               {"name":"TagJet_kt3_sel_py",                  "title":"Quark kt3 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt3_sel_pz":               {"name":"TagJet_kt3_sel_pz",                  "title":"Quark kt3 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt3_sel_eta":              {"name":"TagJet_kt3_sel_eta",                 "title":"Quark kt3 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt3_sel_theta":            {"name":"TagJet_kt3_sel_theta",               "title":"Quark kt3 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt3_sel_phi":              {"name":"TagJet_kt3_sel_phi",                 "title":"Quark kt3 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt3_sel_mass":             {"name":"TagJet_kt3_sel_mass",                "title":"Quark kt3 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
-    "n_TagJet_kt3_sel":                {"name":"n_TagJet_kt3_sel",                   "title":"Number of quark kt3 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    
+    "TagJet_kt3_sel_e":            {"name":"TagJet_kt3_sel_e",                   "title":"Quark/gluon kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
+    "TagJet_kt3_sel_p":            {"name":"TagJet_kt3_sel_p",                   "title":"Quark/gluon kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt3_sel_pt":           {"name":"TagJet_kt3_sel_pt",                  "title":"Quark/gluon kt3 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt3_sel_px":           {"name":"TagJet_kt3_sel_px",                  "title":"Quark/gluon kt3 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt3_sel_py":           {"name":"TagJet_kt3_sel_py",                  "title":"Quark/gluon kt3 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt3_sel_pz":           {"name":"TagJet_kt3_sel_pz",                  "title":"Quark/gluon kt3 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt3_sel_eta":          {"name":"TagJet_kt3_sel_eta",                 "title":"Quark/gluon kt3 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt3_sel_theta":        {"name":"TagJet_kt3_sel_theta",               "title":"Quark/gluon kt3 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "TagJet_kt3_sel_phi":          {"name":"TagJet_kt3_sel_phi",                 "title":"Quark/gluon kt3 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt3_sel_mass":         {"name":"TagJet_kt3_sel_mass",                "title":"Quark/gluon kt3 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    "n_TagJet_kt3_sel":            {"name":"n_TagJet_kt3_sel",                   "title":"Number of Quark/gluon kt3 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
+
     "TagJet_kt2_e":                {"name":"TagJet_kt2_e",                   "title":"kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_kt2_p":                {"name":"TagJet_kt2_p",                   "title":"kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
     "TagJet_kt2_pt":               {"name":"TagJet_kt2_pt",                  "title":"kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
@@ -605,7 +562,7 @@ histoList = {
     "TagJet_kt2_eta":              {"name":"TagJet_kt2_eta",                 "title":"kt2 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TagJet_kt2_theta":            {"name":"TagJet_kt2_theta",               "title":"kt2 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
     "TagJet_kt2_phi":              {"name":"TagJet_kt2_phi",                 "title":"kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt2_mass":             {"name":"TagJet_kt2_mass",                "title":"kt2 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
+    "TagJet_kt2_mass":             {"name":"TagJet_kt2_mass",                "title":"kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "TagJet_kt2_charge":             {"name":"TagJet_kt2_charge",                "title":"kt2 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
     "n_TagJet_kt2":                {"name":"n_TagJet_kt2",                   "title":"Number of kt2 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "n_TagJet_kt2_constituents":             {"name":"n_TagJet_kt2_constituents",               "title":"kt2 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
@@ -635,18 +592,18 @@ histoList = {
     "TauFromJet_kt2_mass":       {"name":"TauFromJet_kt2_mass",                "title":"#tau from kt2 jet mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
     "n_TauFromJet_kt2":          {"name":"n_TauFromJet_kt2",                   "title":"Number of #tau from kt2 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
 
-    "TagJet_kt2_sel_e":                {"name":"TagJet_kt2_sel_e",                   "title":"Quark kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt2_sel_p":                {"name":"TagJet_kt2_sel_p",                   "title":"Quark kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt2_sel_pt":               {"name":"TagJet_kt2_sel_pt",                  "title":"Quark kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt2_sel_px":               {"name":"TagJet_kt2_sel_px",                  "title":"Quark kt2 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_sel_py":               {"name":"TagJet_kt2_sel_py",                  "title":"Quark kt2 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_sel_pz":               {"name":"TagJet_kt2_sel_pz",                  "title":"Quark kt2 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_sel_eta":              {"name":"TagJet_kt2_sel_eta",                 "title":"Quark kt2 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt2_sel_theta":            {"name":"TagJet_kt2_sel_theta",               "title":"Quark kt2 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt2_sel_phi":              {"name":"TagJet_kt2_sel_phi",                 "title":"Quark kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt2_sel_mass":             {"name":"TagJet_kt2_sel_mass",                "title":"Quark kt2 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
-    "n_TagJet_kt2_sel":                {"name":"n_TagJet_kt2_sel",                   "title":"Number of quark kt2 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    
+    "TagJet_kt2_sel_e":            {"name":"TagJet_kt2_sel_e",                   "title":"Quark/gluon kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
+    "TagJet_kt2_sel_p":            {"name":"TagJet_kt2_sel_p",                   "title":"Quark/gluon kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt2_sel_pt":           {"name":"TagJet_kt2_sel_pt",                  "title":"Quark/gluon kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt2_sel_px":           {"name":"TagJet_kt2_sel_px",                  "title":"Quark/gluon kt2 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt2_sel_py":           {"name":"TagJet_kt2_sel_py",                  "title":"Quark/gluon kt2 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt2_sel_pz":           {"name":"TagJet_kt2_sel_pz",                  "title":"Quark/gluon kt2 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt2_sel_eta":          {"name":"TagJet_kt2_sel_eta",                 "title":"Quark/gluon kt2 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt2_sel_theta":        {"name":"TagJet_kt2_sel_theta",               "title":"Quark/gluon kt2 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "TagJet_kt2_sel_phi":          {"name":"TagJet_kt2_sel_phi",                 "title":"Quark/gluon kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt2_sel_mass":         {"name":"TagJet_kt2_sel_mass",                "title":"Quark/gluon kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    "n_TagJet_kt2_sel":            {"name":"n_TagJet_kt2_sel",                   "title":"Number of Quark/gluon kt2 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
+
     "TagJet_kt1_e":                {"name":"TagJet_kt1_e",                   "title":"kt1 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_kt1_p":                {"name":"TagJet_kt1_p",                   "title":"kt1 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
     "TagJet_kt1_pt":               {"name":"TagJet_kt1_pt",                  "title":"kt1 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
@@ -656,7 +613,7 @@ histoList = {
     "TagJet_kt1_eta":              {"name":"TagJet_kt1_eta",                 "title":"kt1 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TagJet_kt1_theta":            {"name":"TagJet_kt1_theta",               "title":"kt1 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
     "TagJet_kt1_phi":              {"name":"TagJet_kt1_phi",                 "title":"kt1 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt1_mass":             {"name":"TagJet_kt1_mass",                "title":"kt1 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
+    "TagJet_kt1_mass":             {"name":"TagJet_kt1_mass",                "title":"kt1 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "TagJet_kt1_charge":             {"name":"TagJet_kt1_charge",                "title":"kt1 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
     "n_TagJet_kt1":                {"name":"n_TagJet_kt1",                   "title":"Number of kt1 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "n_TagJet_kt1_constituents":             {"name":"n_TagJet_kt1_constituents",               "title":"kt1 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
@@ -686,16 +643,107 @@ histoList = {
     "TauFromJet_kt1_mass":       {"name":"TauFromJet_kt1_mass",                "title":"#tau from kt1 jet mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
     "n_TauFromJet_kt1":          {"name":"n_TauFromJet_kt1",                   "title":"Number of #tau from kt1 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
 
-    "TagJet_kt1_sel_e":                {"name":"TagJet_kt1_sel_e",                   "title":"Quark kt1 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt1_sel_p":                {"name":"TagJet_kt1_sel_p",                   "title":"Quark kt1 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt1_sel_pt":               {"name":"TagJet_kt1_sel_pt",                  "title":"Quark kt1 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt1_sel_px":               {"name":"TagJet_kt1_sel_px",                  "title":"Quark kt1 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_sel_py":               {"name":"TagJet_kt1_sel_py",                  "title":"Quark kt1 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_sel_pz":               {"name":"TagJet_kt1_sel_pz",                  "title":"Quark kt1 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_sel_eta":              {"name":"TagJet_kt1_sel_eta",                 "title":"Quark kt1 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt1_sel_theta":            {"name":"TagJet_kt1_sel_theta",               "title":"Quark kt1 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt1_sel_phi":              {"name":"TagJet_kt1_sel_phi",                 "title":"Quark kt1 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt1_sel_mass":             {"name":"TagJet_kt1_sel_mass",                "title":"Quark kt1 jet mass [GeV]",                     "bin":100, "xmin":0., "xmax":100.},
-    "n_TagJet_kt1_sel":                {"name":"n_TagJet_kt1_sel",                   "title":"Number of quark kt1 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    
+    "TagJet_kt1_sel_e":            {"name":"TagJet_kt1_sel_e",                   "title":"Quark/gluon kt1 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
+    "TagJet_kt1_sel_p":            {"name":"TagJet_kt1_sel_p",                   "title":"Quark/gluon kt1 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt1_sel_pt":           {"name":"TagJet_kt1_sel_pt",                  "title":"Quark/gluon kt1 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt1_sel_px":           {"name":"TagJet_kt1_sel_px",                  "title":"Quark/gluon kt1 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt1_sel_py":           {"name":"TagJet_kt1_sel_py",                  "title":"Quark/gluon kt1 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt1_sel_pz":           {"name":"TagJet_kt1_sel_pz",                  "title":"Quark/gluon kt1 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt1_sel_eta":          {"name":"TagJet_kt1_sel_eta",                 "title":"Quark/gluon kt1 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt1_sel_theta":        {"name":"TagJet_kt1_sel_theta",               "title":"Quark/gluon kt1 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "TagJet_kt1_sel_phi":          {"name":"TagJet_kt1_sel_phi",                 "title":"Quark/gluon kt1 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt1_sel_mass":         {"name":"TagJet_kt1_sel_mass",                "title":"Quark/gluon kt1 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    "n_TagJet_kt1_sel":            {"name":"n_TagJet_kt1_sel",                   "title":"Number of Quark/gluon kt1 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
+
+    ####################
+
+    "TauTag_e":                {"name":"TauTag_e",                   "title":"#tau from tagged jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
+    "TauTag_p":                {"name":"TauTag_p",                   "title":"#tau from tagged jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "TauTag_pt":               {"name":"TauTag_pt",                  "title":"#tau from tagged jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "TauTag_px":               {"name":"TauTag_px",                  "title":"#tau from tagged jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TauTag_py":               {"name":"TauTag_py",                  "title":"#tau from tagged jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TauTag_pz":               {"name":"TauTag_pz",                  "title":"#tau from tagged jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TauTag_eta":              {"name":"TauTag_eta",                 "title":"#tau from tagged jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauTag_theta":            {"name":"TauTag_theta",               "title":"#tau from tagged jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "TauTag_phi":              {"name":"TauTag_phi",                 "title":"#tau from tagged jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauTag_mass":             {"name":"TauTag_mass",                "title":"#tau from tagged jet mass [GeV]",                     "bin":60, "xmin":0., "xmax":30.},
+    "n_TauTag":                {"name":"n_TauTag",                   "title":"Number of #tau from tagged jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+
+    "TauTag_isG":             {"name":"TauTag_isG",                "title":"#tau from tagged jet G score",                     "bin":100, "xmin":0., "xmax":1.},
+    "TauTag_isU":             {"name":"TauTag_isU",                "title":"#tau from tagged jet U score",                     "bin":100, "xmin":0., "xmax":1.},
+    "TauTag_isD":             {"name":"TauTag_isD",                "title":"#tau from tagged jet D score",                     "bin":100, "xmin":0., "xmax":1.},
+    "TauTag_isC":             {"name":"TauTag_isC",                "title":"#tau from tagged jet C score",                     "bin":100, "xmin":0., "xmax":1.},
+    "TauTag_isS":             {"name":"TauTag_isS",                "title":"#tau from tagged jet S score",                     "bin":100, "xmin":0., "xmax":1.},
+    "TauTag_isB":             {"name":"TauTag_isB",                "title":"#tau from tagged jet B score",                     "bin":100, "xmin":0., "xmax":1.},
+    "TauTag_isTAU":             {"name":"TauTag_isTAU",                "title":"#tau from tagged jet TAU score",                     "bin":100, "xmin":0., "xmax":1.},
+
+    "QuarkTag_e":                {"name":"QuarkTag_e",                   "title":"Quark jet from tagged jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
+    "QuarkTag_p":                {"name":"QuarkTag_p",                   "title":"Quark jet from tagged jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "QuarkTag_pt":               {"name":"QuarkTag_pt",                  "title":"Quark jet from tagged jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "QuarkTag_px":               {"name":"QuarkTag_px",                  "title":"Quark jet from tagged jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "QuarkTag_py":               {"name":"QuarkTag_py",                  "title":"Quark jet from tagged jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "QuarkTag_pz":               {"name":"QuarkTag_pz",                  "title":"Quark jet from tagged jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "QuarkTag_eta":              {"name":"QuarkTag_eta",                 "title":"Quark jet from tagged jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "QuarkTag_theta":            {"name":"QuarkTag_theta",               "title":"Quark jet from tagged jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "QuarkTag_phi":              {"name":"QuarkTag_phi",                 "title":"Quark jet from tagged jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "QuarkTag_mass":             {"name":"QuarkTag_mass",                "title":"Quark jet from tagged jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    "n_QuarkTag":                {"name":"n_QuarkTag",                   "title":"Number of Quark jet from tagged jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+
+    "QuarkTag_isG":             {"name":"QuarkTag_isG",                "title":"Quark jet from tagged jet G score",                     "bin":100, "xmin":0., "xmax":1.},
+    "QuarkTag_isU":             {"name":"QuarkTag_isU",                "title":"Quark jet from tagged jet U score",                     "bin":100, "xmin":0., "xmax":1.},
+    "QuarkTag_isD":             {"name":"QuarkTag_isD",                "title":"Quark jet from tagged jet D score",                     "bin":100, "xmin":0., "xmax":1.},
+    "QuarkTag_isC":             {"name":"QuarkTag_isC",                "title":"Quark jet from tagged jet C score",                     "bin":100, "xmin":0., "xmax":1.},
+    "QuarkTag_isS":             {"name":"QuarkTag_isS",                "title":"Quark jet from tagged jet S score",                     "bin":100, "xmin":0., "xmax":1.},
+    "QuarkTag_isB":             {"name":"QuarkTag_isB",                "title":"Quark jet from tagged jet B score",                     "bin":100, "xmin":0., "xmax":1.},
+    "QuarkTag_isTAU":             {"name":"QuarkTag_isTAU",                "title":"Quark jet from tagged jet TAU score",                     "bin":100, "xmin":0., "xmax":1.},
+                            
+    "RecoH_px":                 {"name":"RecoH_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoH_py":                 {"name":"RecoH_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoH_pz":                 {"name":"RecoH_pz",                 "title":"Reco H p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "RecoH_p":                  {"name":"RecoH_p",                  "title":"Reco H p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_pt":                 {"name":"RecoH_pt",                 "title":"Reco H p_{T} [GeV]",            "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_e":                  {"name":"RecoH_e",                  "title":"Reco H energy [GeV]",           "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_eta":                {"name":"RecoH_eta",                "title":"Reco H #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoH_phi":                {"name":"RecoH_phi",                "title":"Reco H #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "RecoH_theta":              {"name":"RecoH_theta",              "title":"Reco H #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "RecoH_y":                  {"name":"RecoH_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
+    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
+
+    "TauLead_px":               {"name":"TauLead_px",                 "title":"#tau_{leading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauLead_py":               {"name":"TauLead_py",                 "title":"#tau_{leading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauLead_pz":               {"name":"TauLead_pz",                 "title":"#tau_{leading} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
+    "TauLead_p":                {"name":"TauLead_p",                  "title":"#tau_{leading} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "TauLead_pt":               {"name":"TauLead_pt",                 "title":"#tau_{leading} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "TauLead_e":                {"name":"TauLead_e",                  "title":"#tau_{leading} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "TauLead_eta":              {"name":"TauLead_eta",                "title":"#tau_{leading} #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauLead_phi":              {"name":"TauLead_phi",                "title":"#tau_{leading} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauLead_theta":            {"name":"TauLead_theta",              "title":"#tau_{leading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "TauLead_y":                {"name":"TauLead_y",                  "title":"#tau_{leading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "TauLead_mass":             {"name":"TauLead_mass",               "title":"#tau_{leading} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    "TauLead_type":             {"name":"TauLead_type",               "title":"#tau_{leading} type",                   "bin":113, "xmin":-0.13, "xmax":1.},
+    "n_TauLead_constituents":             {"name":"n_TauLead_constituents",               "title":"#tau_{leading} constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "n_TauLead_charged_constituents":             {"name":"n_TauLead_charged_constituents",               "title":"#tau_{leading} charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "n_TauLead_neutral_constituents":             {"name":"n_TauLead_neutral_constituents",               "title":"#tau_{leading} neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
+
+    "TauSub_px":                {"name":"TauSub_px",                 "title":"#tau_{subleading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauSub_py":                {"name":"TauSub_py",                 "title":"#tau_{subleading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauSub_pz":                {"name":"TauSub_pz",                 "title":"#tau_{subleading} p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100}, 
+    "TauSub_p":                 {"name":"TauSub_p",                  "title":"#tau_{subleading} p [GeV]",                "bin":50,"xmin":0 ,"xmax":100},
+    "TauSub_pt":                {"name":"TauSub_pt",                 "title":"#tau_{subleading} p_{T} [GeV]",            "bin":50,"xmin":0 ,"xmax":100},
+    "TauSub_e":                 {"name":"TauSub_e",                  "title":"#tau_{subleading} energy [GeV]",           "bin":50, "xmin":0, "xmax":100},
+    "TauSub_eta":               {"name":"TauSub_eta",                "title":"#tau_{subleading} #eta",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauSub_phi":               {"name":"TauSub_phi",                "title":"#tau_{subleading} #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TauSub_theta":             {"name":"TauSub_theta",              "title":"#tau_{subleading} #theta",                 "bin":16, "xmin":0,"xmax":3.2},
+    "TauSub_y":                 {"name":"TauSub_y",                  "title":"#tau_{subleading} rapidity",               "bin":80, "xmin":-4., "xmax":4.},
+    "TauSub_mass":              {"name":"TauSub_mass",               "title":"#tau_{subleading} mass",                   "bin":30, "xmin":0., "xmax":3.},
+    "TauSub_type":              {"name":"TauSub_type",               "title":"#tau_{subleading} type",                   "bin":113, "xmin":-0.13, "xmax":1.},
+    "n_TauSub_constituents":             {"name":"n_TauSub_constituents",               "title":"#tau_{subleading} constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "n_TauSub_charged_constituents":             {"name":"n_TauSub_charged_constituents",               "title":"#tau_{subleading} charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "n_TauSub_neutral_constituents":             {"name":"n_TauSub_neutral_constituents",               "title":"#tau_{subleading} neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
+
+    "Tau_DPhi":         {"name":"Tau_DPhi",           "title":"#Delta#phi(#tau#tau)",                "bin":32, "xmin":-3.2,"xmax":3.2},
+    "Tau_DR":                   {"name":"Tau_DR",                     "title":"#Delta R(#tau#tau)",                  "bin":70, "xmin":0,"xmax":7},
+    "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
+    "Tau_DEta":                             {"name":"Tau_DEta",           "title":"Reco di-#tau #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
+    "Visible_mass":               {"name":"Visible_mass",               "title":"Visible mass",                   "bin":75, "xmin":0 ,"xmax":150},
 }
