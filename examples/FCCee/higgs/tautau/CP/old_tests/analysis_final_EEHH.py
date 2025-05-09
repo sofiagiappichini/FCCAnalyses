@@ -1,5 +1,5 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_new/"
+inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explcit_new/"
 
 #Optional: output directory, default is local running directory
 outputDir = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_new/"
@@ -28,7 +28,7 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    #'EWonly_taudecay_2Pi2Nu':{},
+    'EWonly_taudecay_2Pi2Nu':{},
     #'cehim_m1_taudecay_2Pi2Nu':{},
     #'cehim_p1_taudecay_2Pi2Nu':{},
     #'cehre_m1_taudecay_2Pi2Nu':{},
@@ -45,7 +45,7 @@ processList = {
     #'cehre_m1_taudecay_PiPi0Nu':{},
     #'cehre_p1_taudecay_PiPi0Nu':{},
 
-    "e+e-_qqH_H2Pi2Nu":{},
+    #"e+e-_qqH_H2Pi2Nu":{},
 
     #'cehim_p0p1_taudecay_2Pi2Nu':{},
     #'cehim_m0p1_taudecay_2Pi2Nu':{},
@@ -60,6 +60,7 @@ processList = {
     #'cehre_p2_taudecay_2Pi2Nu':{},
 
     #'wzp6_ee_eeH_Htautau_ecm240': {},
+    "p8_ee_llH_Hpinu_even":{},
 }
 ###Dictionary for prettier names of processes (optional)
 #change them if you want but they don't do anything
@@ -103,7 +104,7 @@ procDictAdd = {
     'cehre_m1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 3.193361184321185e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'cehre_p1_taudecay_PiPi0Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.5052618455527882e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'e+e-_qqH_H2Pi2Nu':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 5.674e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
-
+    'p8_ee_llH_Hpinu_even':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 7.033e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
 }
 
@@ -436,7 +437,7 @@ histoList = {
     "RecoZSub_y":                 {"name":"RecoZSub_y",                  "title":"Reco subleading Z daughter rapidity",               "bin":80, "xmin":-4., "xmax":4.},
     "RecoZSub_mass":              {"name":"RecoZSub_mass",               "title":"Reco subleading Z daughter mass",                   "bin":30, "xmin":0., "xmax":3.},
 
-      "Higgs_px":                 {"name":"Higgs_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
+    "Higgs_px":                 {"name":"Higgs_px",                 "title":"Reco H p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "Higgs_py":                 {"name":"Higgs_py",                 "title":"Reco H p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "Higgs_pz":                 {"name":"Higgs_pz",                 "title":"Reco H p_{z} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
     "Higgs_p":                  {"name":"Higgs_p",                  "title":"Reco H p [GeV]",                "bin":75, "xmin":0 ,"xmax":150},
@@ -508,8 +509,9 @@ histoList = {
     "RecoZDaughter_cos":                  {"name":"RecoZDaughter_cos",                    "title":"cos#theta(ll)",                 "bin":100, "xmin":-1.,"xmax":1.},
     "RecoZDaughter_DEta":                   {"name":"RecoZDaughter_DEta",           "title":"Reco Z daughters #Delta#eta",                                  "bin":128, "xmin":-6.4,"xmax":6.4},
 
-    "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":100, "xmin":0., "xmax":200.},
+    "Recoil_mass":                   {"name":"Recoil_mass",                   "title":"M_{recoil} [GeV]",                     "bin":100, "xmin":0., "xmax":200.},
     "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":100, "xmin":0., "xmax":200.},
+    "Collinear_mass_3d":           {"name":"Collinear_mass_3d",           "title":"M_{collinear} 3D [GeV]",                  "bin":100, "xmin":0., "xmax":200.},
 
     #### CP variables
 
@@ -592,53 +594,3 @@ histoList = {
 
 
 }
-
-'''
-
-"TauTag_e":                {"name":"TauTag_e",                   "title":"#tau from tagged jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TauTag_p":                {"name":"TauTag_p",                   "title":"#tau from tagged jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TauTag_pt":               {"name":"TauTag_pt",                  "title":"#tau from tagged jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TauTag_px":               {"name":"TauTag_px",                  "title":"#tau from tagged jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TauTag_py":               {"name":"TauTag_py",                  "title":"#tau from tagged jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TauTag_pz":               {"name":"TauTag_pz",                  "title":"#tau from tagged jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TauTag_eta":              {"name":"TauTag_eta",                 "title":"#tau from tagged jet #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
-    "TauTag_theta":            {"name":"TauTag_theta",               "title":"#tau from tagged jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TauTag_phi":              {"name":"TauTag_phi",                 "title":"#tau from tagged jet #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
-    "TauTag_mass":             {"name":"TauTag_mass",                "title":"#tau from tagged jet mass [GeV]",                     "bin":60, "xmin":0., "xmax":30.},
-    "n_TauTag":                {"name":"n_TauTag",                   "title":"Number of #tau from tagged jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-
-    "TauTag_isG":             {"name":"TauTag_isG",                "title":"#tau from tagged jet G score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TauTag_isU":             {"name":"TauTag_isU",                "title":"#tau from tagged jet U score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TauTag_isD":             {"name":"TauTag_isD",                "title":"#tau from tagged jet D score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TauTag_isC":             {"name":"TauTag_isC",                "title":"#tau from tagged jet C score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TauTag_isS":             {"name":"TauTag_isS",                "title":"#tau from tagged jet S score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TauTag_isB":             {"name":"TauTag_isB",                "title":"#tau from tagged jet B score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TauTag_isTAU":             {"name":"TauTag_isTAU",                "title":"#tau from tagged jet TAU score",                     "bin":100, "xmin":0., "xmax":1.},
-
-    "QuarkTag_e":                {"name":"QuarkTag_e",                   "title":"Quark jet from tagged jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "QuarkTag_p":                {"name":"QuarkTag_p",                   "title":"Quark jet from tagged jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "QuarkTag_pt":               {"name":"QuarkTag_pt",                  "title":"Quark jet from tagged jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "QuarkTag_px":               {"name":"QuarkTag_px",                  "title":"Quark jet from tagged jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "QuarkTag_py":               {"name":"QuarkTag_py",                  "title":"Quark jet from tagged jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "QuarkTag_pz":               {"name":"QuarkTag_pz",                  "title":"Quark jet from tagged jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "QuarkTag_eta":              {"name":"QuarkTag_eta",                 "title":"Quark jet from tagged jet #eta",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
-    "QuarkTag_theta":            {"name":"QuarkTag_theta",               "title":"Quark jet from tagged jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "QuarkTag_phi":              {"name":"QuarkTag_phi",                 "title":"Quark jet from tagged jet #phi",                                           "bin":128, "xmin":-6.4,"xmax":6.4},
-    "QuarkTag_mass":             {"name":"QuarkTag_mass",                "title":"Quark jet from tagged jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "n_QuarkTag":                {"name":"n_QuarkTag",                   "title":"Number of Quark jet from tagged jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-
-    "QuarkTag_isG":             {"name":"QuarkTag_isG",                "title":"Quark jet from tagged jet G score",                     "bin":100, "xmin":0., "xmax":1.},
-    "QuarkTag_isU":             {"name":"QuarkTag_isU",                "title":"Quark jet from tagged jet U score",                     "bin":100, "xmin":0., "xmax":1.},
-    "QuarkTag_isD":             {"name":"QuarkTag_isD",                "title":"Quark jet from tagged jet D score",                     "bin":100, "xmin":0., "xmax":1.},
-    "QuarkTag_isC":             {"name":"QuarkTag_isC",                "title":"Quark jet from tagged jet C score",                     "bin":100, "xmin":0., "xmax":1.},
-    "QuarkTag_isS":             {"name":"QuarkTag_isS",                "title":"Quark jet from tagged jet S score",                     "bin":100, "xmin":0., "xmax":1.},
-    "QuarkTag_isB":             {"name":"QuarkTag_isB",                "title":"Quark jet from tagged jet B score",                     "bin":100, "xmin":0., "xmax":1.},
-    "QuarkTag_isTAU":             {"name":"QuarkTag_isTAU",                "title":"Quark jet from tagged jet TAU score",                     "bin":100, "xmin":0., "xmax":1.},
-
-
-    "CosDeltaPhi":                          {"name": "CosDeltaPhi", "title": "cos(#Delta#phi_{CP}) Belle", "bin": 50, "xmin": -1, "xmax": 1},
-    "SinDeltaPhi":                          {"name": "SinDeltaPhi", "title": "sin(#Delta#phi_{CP}) Belle", "bin": 50, "xmin": -1, "xmax": 1},
-    "DeltaPhi":                             {"name":"DeltaPhi",           "title":"#Delta#Phi_{CP} Belle",                  "bin":32, "xmin":-3.14,"xmax":3.14},
-
-    
-    '''

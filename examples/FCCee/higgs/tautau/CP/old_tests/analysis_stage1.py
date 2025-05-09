@@ -264,6 +264,7 @@ class RDFanalysis():
                 #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
                 #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPto2Pi0Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
                 #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
+                #c.Filter("TauMtoPiNu_idx.size()>0 && TauPtoPiNu_idx.size()>0")
                 
                 ###############################
 
@@ -1211,7 +1212,7 @@ class RDFanalysis():
         ## name of collections in EDM root files
         collections = {
             "GenParticles": "Particle",
-            "PFParticles": "ReconstructedParticles",
+            "PFParticles": "ReconstructedParticlesJET",
             "PFTracks": "EFlowTrack",
             "PFPhotons": "EFlowPhoton",
             "PFNeutralHadrons": "EFlowNeutralHadron",

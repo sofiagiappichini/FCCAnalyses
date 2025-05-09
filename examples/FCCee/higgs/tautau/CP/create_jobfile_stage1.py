@@ -17,59 +17,42 @@ def create_condor_config(nCPUs: int,
     '''
     Creates contents of condor configuration file.
     '''
-    cfg = 'Universe          = docker\n'
-
-    cfg += 'docker_image     = cverstege/alma9-gridjob\n'
-
-    cfg += 'accounting_group = cms.higgs \n'
-
-    cfg += 'output_dir       = '+output_dir+'\n'
-
-    cfg += 'executable       = $(filename)\n'
-
-    cfg += 'log              = $(output_dir)log/condor_$(ClusterId).$(ProcId).log\n'
-
-    cfg += 'output           = $(output_dir)out/condor_$(ClusterId).$(ProcId).out\n'
-
-    cfg += 'error            = $(output_dir)err/condor_$(ClusterId).$(ProcId).err\n'
-
-    cfg += 'max_retries      = 3\n'
-
-    #cfg += '+RequestWalltime = 180\n'
-
-    cfg += '+JobFlavor = "espresso"\n'
-
-    cfg += 'request_memory   = '+str(memory)+' MB\n'
-
-    cfg += 'request_cpus     = '+str(nCPUs)+'\n'
-
-    cfg += 'requirements     = (TARGET.ProvidesCPU && TARGET.ProvidesEKPResources)\n'
-
-    cfg += 'should_transfer_files   = IF_NEEDED\n'
-
-    cfg += 'when_to_transfer_output  = ON_EXIT\n'
-
-    cfg += 'queue filename matching files'
+    base_cfg = 'Universe          = docker\n'
+    base_cfg += 'docker_image     = cverstege/alma9-gridjob\n'
+    base_cfg += 'accounting_group = cms.higgs\n'
+    base_cfg += 'output_dir       = ' + output_dir + '\n'
+    base_cfg += 'executable       = $(filename)\n'
+    base_cfg += 'log              = $(output_dir)log/condor_$(ClusterId).$(ProcId).log\n'
+    base_cfg += 'output           = $(output_dir)out/condor_$(ClusterId).$(ProcId).out\n'
+    base_cfg += 'error            = $(output_dir)err/condor_$(ClusterId).$(ProcId).err\n'
+    base_cfg += 'max_retries      = 3\n'
+    base_cfg += '+JobFlavor       = "espresso"\n'
+    base_cfg += 'request_memory   = ' + str(memory) + ' MB\n'
+    base_cfg += 'request_cpus     = ' + str(nCPUs) + '\n'
+    base_cfg += 'requirements     = (TARGET.ProvidesCPU && TARGET.ProvidesEKPResources)\n'
+    base_cfg += 'should_transfer_files   = IF_NEEDED\n'
+    base_cfg += 'when_to_transfer_output = ON_EXIT\n\n'
 
     if chunks:
-
         for process in processList:
-            with open(output_dir + process + '/job_submit.cfg', 'w') as sub:
-                sub.write(cfg)
-                for file in os.listdir(output_dir + process):
-                    filename = os.fsdecode(file)
-                    if filename.endswith('.sh'):
-                        sub.write(f' ' + output_dir + process + '/' + filename)
+            job_cfg = base_cfg
+            job_dir = output_dir + process + '/'
+            sh_files = [f for f in os.listdir(job_dir) if f.endswith('.sh')]
+            job_cfg += 'queue filename from (\n'
+            job_cfg += '\n'.join(['  ' + job_dir + f for f in sh_files])
+            job_cfg += '\n)\n'
 
+            with open(job_dir + 'job_submit.cfg', 'w') as sub:
+                sub.write(job_cfg)
     else:
- 
-        with open(output_dir+'job_submit.cfg', 'w') as sub:
-            sub.write(cfg)
-            for file in os.listdir(output_dir):
-                #if "NuNuLL" in file:
-                    filename = os.fsdecode(file)
-                    if filename.endswith('.sh'):
-                        sub.write(f' ' + output_dir + filename)
+        job_cfg = base_cfg
+        sh_files = [f for f in os.listdir(output_dir) if f.endswith('.sh')]
+        job_cfg += 'queue filename from (\n'
+        job_cfg += '\n'.join(['  ' + output_dir + f for f in sh_files])
+        job_cfg += '\n)\n'
+
+        with open(output_dir + 'job_submit.cfg', 'w') as sub:
+            sub.write(job_cfg)
 
 # _____________________________________________________________________________
 def create_subjob_script(local_dir: str,
@@ -129,8 +112,8 @@ def create_subjob_script(local_dir: str,
         print("done")
 
 def submit_jobs(output_dir: str):
-    #for process in processList:
-        dir = output_dir #+ process 
+    for process in processList:
+        dir = output_dir + process 
         num_files = len(os.listdir(dir))-1
         os.system(f"chmod -R +x {dir}")
         os.system(f"condor_submit {dir}/job_submit.cfg")
@@ -138,11 +121,11 @@ def submit_jobs(output_dir: str):
              
 
 processList_ = {
-    'noISR_e+e-_noCuts_EWonly':{},
-    'noISR_e+e-_noCuts_cehim_m1':{},
-    'noISR_e+e-_noCuts_cehim_p1':{},
-    'noISR_e+e-_noCuts_cehre_m1':{},
-    'noISR_e+e-_noCuts_cehre_p1':{},
+    #'noISR_e+e-_noCuts_EWonly':{},
+    #'noISR_e+e-_noCuts_cehim_m1':{},
+    #'noISR_e+e-_noCuts_cehim_p1':{},
+    #'noISR_e+e-_noCuts_cehre_m1':{},
+    #'noISR_e+e-_noCuts_cehre_p1':{},
     
     'EWonly_taudecay_2Pi2Nu':{},
     'cehim_m1_taudecay_2Pi2Nu':{},
@@ -162,7 +145,7 @@ processList_ = {
     'cehre_p1_taudecay_PiPi0Nu':{},
 
     #"e+e-_qqH_Htautau":{},
-    #"e+e-_qqH_H2Pi2Nu":{},
+    "e+e-_qqH_H2Pi2Nu":{},
 
     #'cehim_m2_taudecay_2Pi2Nu':{},
     #'cehim_p2_taudecay_2Pi2Nu':{},
@@ -182,20 +165,21 @@ processList_ = {
 }
 
 processList = {
-    'e+e-_eeH_H3PiNu':{},
+    #'e+e-_eeH_H3PiNu':{},
     #'wzp6_ee_bbH_Htautau_ecm240':{},
+    #'EWonly_taudecay_CPodd_2Pi2Nu':{},
+    'p8_ee_ZZ_ecm240'
+    #"p8_ee_llH_Hpinu_even":{},
+    #"p8_ee_llH_Hpinu_odd":{},
 }
 
-if "ZZ" in processList:
-    chunks = True
-
-chunks = False
+chunks = True
 
 #inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele/"
 #inputDir = "/ceph/sgiappic/HiggsCP/"
-inputDir = "/ceph/sgiappic/HiggsCP/winter2023/"
-output = '/work/sgiappic/HTCondor/stage1_CPnew/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_new/" ##output directory of stage2 samples
+inputDir = "/ceph/sgiappic/HiggsCP/winter23/"
+output = '/work/sgiappic/HTCondor/stage1_CPnew_ZZ/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir = "/ceph/sgiappic/HiggsCP/tutorial/stage1/" ##output directory of stage2 samples
 localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/'
 sourceDir = '/ceph/sgiappic/FCCAnalyses/'
 Filename = 'analysis_stage1.py'

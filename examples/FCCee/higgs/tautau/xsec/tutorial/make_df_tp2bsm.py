@@ -1,15 +1,10 @@
 import uproot
 import awkward as ak
 import numpy as np
-import torch
-from torch.utils.data import Dataset, DataLoader
-import torch.nn as nn
-import torch.optim as optim
 from sklearn.model_selection import train_test_split
 import csv
 import matplotlib.pyplot as plt
 import os
-import torch.nn.functional as F
 import glob
 import pprint
 import pandas as pd
@@ -57,12 +52,16 @@ vars_list = ["RecoEmiss_px",
             "TauP_py",   
             "TauP_pz",   
             "TauP_e", 
-            "TauP_DM",
+            #"OP_ImpactP_px",
+            #"OP_ImpactP_py",
+            #"OP_ImpactP_pz",
             "TauM_px",    
             "TauM_py",   
             "TauM_pz",   
             "TauM_e", 
-            "TauM_DM",
+            #"OP_ImpactM_px",
+            #"OP_ImpactM_py",
+            #"OP_ImpactM_pz",
             ]
 
 sigs = ['wzp6_ee_mumuH_Htautau_ecm240',
@@ -147,11 +146,20 @@ xsec = {'p8_ee_WW_ecm240':16.4385,
         "wzp6_ee_mumuH_Htautau_ecm240":0.0004243,
         "wzp6_ee_tautauH_Htautau_ecm240":0.0004235,
         "wzp6_ee_nunuH_Htautau_ecm240":0.002897,
+        "p8_ee_llH_Hpinu_even":7.033e-06,
+        "p8_ee_llH_Hpinu_odd":7.033e-06,
 }
 
-path = "/ceph/awiedl/FCCee/HiggsCP/stage2_tutorial/LL/HH/"
+sig_CP = [
+    "p8_ee_llH_Hpinu_even",
+    "p8_ee_llH_Hpinu_odd",
+]
 
-output_file = "/ceph/sgiappic/HiggsCP/tutorial/signal_Htautau.pkl"
+path = "/ceph/awiedl/FCCee/HiggsCP/stage2_tutorial/LL/HH/"
+#path = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_new/"
+#path = "/ceph/sgiappic/HiggsCP/tutorial/stage2/"
+
+output_file = "/ceph/sgiappic/HiggsCP/tutorial/dataframe.pkl"
 
 N = {}
 N_gen = {}
@@ -167,7 +175,7 @@ eff_tot_sig = 0
 eff_tot_bkg = 0
 #get gen number of events for each signal and backgorund file
 for i in sigs+bkgs:
-    files = glob.glob(path + i + '/chunk_*.root')
+    files = glob.glob(path + i + '/chunk_*.root')  
     N[i] = 0
     N_gen[i] = 0
     eff[i] = 0
@@ -237,10 +245,12 @@ for q in sigs:
                 tree = f["events"]
                 temp_df = tree.arrays(expressions=vars_list, library="pd")
                 temp_df["Process"] = f"{q}"
-                temp_df["N_gen"] = f"{N_gen[q]}"
-                temp_df["CrossSection"] = f"{xsec[q]}"
+                temp_df["N_gen"] = N_gen[q]
+                temp_df["CrossSection"] = xsec[q]
                 temp_df["Tau1_charge"] = 1
                 temp_df["Tau2_charge"] = -1
+                #temp_df["Tau1_DM"] = 0
+                #temp_df["Tau2_DM"] = 0
                 df = pd.concat([df, temp_df])
 
             # Check if we have enough events to meet the target
@@ -275,10 +285,12 @@ for q in bkgs:
                 tree = f["events"]
                 temp_df = tree.arrays(expressions=vars_list, library="pd")
                 temp_df["Process"] = f"{q}"
-                temp_df["N_gen"] = f"{N_gen[q]}"
-                temp_df["CrossSection"] = f"{xsec[q]}"
+                temp_df["N_gen"] = N_gen[q]
+                temp_df["CrossSection"] = xsec[q]
                 temp_df["Tau1_charge"] = 1
                 temp_df["Tau2_charge"] = -1
+                #temp_df["Tau1_DM"] = 0
+                #temp_df["Tau2_DM"] = 0
                 df = pd.concat([df, temp_df])
 
             # Check if we have enough events to meet the target
@@ -305,6 +317,6 @@ df = pd.concat([df_sig,df_bkg])
 #shuffle the rows so they are mixed between signal and background
 df = df.sample(frac=1)
 
-df.columns = [col.replace("TauP_", "Tau1_").replace("TauM_", "Tau2_").replace("RecoZP_", "Lep1_").replace("RecoZM_", "Lep2_").replace("RecoEmiss", "MissE") for col in df.columns]
+df.columns = [col.replace("TauP_", "Tau1_").replace("TauM_", "Tau2_").replace("OP_ImpactP_p", "Tau1_d").replace("OP_ImpactM_p", "Tau2_d").replace("RecoZP_", "Lep1_").replace("RecoZM_", "Lep2_").replace("RecoEmiss", "MissE") for col in df.columns]
 
 df.to_pickle(output_file)

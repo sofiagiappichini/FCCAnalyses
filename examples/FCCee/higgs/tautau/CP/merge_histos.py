@@ -661,30 +661,6 @@ VARIABLES_CP = [
             "RecoZSub_y",    
             "RecoZSub_mass",   
 
-            "RecoZP_px", 
-            "RecoZP_py",   
-            "RecoZP_pz",   
-            "RecoZP_p",    
-            "RecoZP_pt",   
-            "RecoZP_e",    
-            "RecoZP_eta",    
-            "RecoZP_phi",    
-            "RecoZP_theta",   
-            "RecoZP_y",     
-            "RecoZP_mass",   
-
-            "RecoZM_px",    
-            "RecoZM_py",   
-            "RecoZM_pz",   
-            "RecoZM_p",   
-            "RecoZM_pt",  
-            "RecoZM_e",     
-            "RecoZM_eta",   
-            "RecoZM_phi",   
-            "RecoZM_theta",    
-            "RecoZM_y",    
-            "RecoZM_mass", 
-
             "Higgs_px",
             "Higgs_py",
             "Higgs_pz",
@@ -721,6 +697,7 @@ VARIABLES_CP = [
             "TauSub_y",    
             "TauSub_mass",
 
+
             "TauP_px", 
             "TauP_py",   
             "TauP_pz",   
@@ -745,7 +722,7 @@ VARIABLES_CP = [
             "TauM_y",    
             "TauM_mass", 
 
-            "Recoil",
+            "Recoil_mass",
             "Collinear_mass", 
         
             "Tau_DR",
@@ -940,7 +917,7 @@ list = {
     5:CEHRE_P1,
 }
 
-for cut in CUT:
+'''for cut in CUT:
 
     variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
 
@@ -998,4 +975,34 @@ for cut in CUT:
         quad_file.cd()
         quad_histo.Write()
 
-    quad_file.Close()
+    quad_file.Close()'''
+
+for cut in CUT:
+
+    variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
+    outFile = ROOT.TFile.Open(DIRECTORY+'MG_P8_diff' + "_" + cut + "_histo.root", "RECREATE")
+    for var in variables:
+        #loop to merge different sources into one histograms 
+        j = 0
+        hh = None
+        for b in ['EWonly_taudecay_2Pi2Nu', "p8_ee_llH_Hpinu_even"]:
+            file = f"{DIRECTORY}{b}_{cut}_histo.root"
+            if file_exists(file):
+                tf = ROOT.TFile.Open(file, "READ")
+                print(j)
+                if (j==0):
+                    h = tf.Get(var)
+                    hh = copy.deepcopy(h)
+                    hh.SetDirectory(0)
+                else:
+                    h = tf.Get(var)
+                    hh1 = copy.deepcopy(h)
+                    hh1.SetDirectory(0)
+                    hh.Add(hh1, -1.)
+                j += 1
+                tf.Close()
+        #write the histogram in the file   
+        outFile.cd()
+        hh.Write()
+        print(f"{var}")
+    outFile.Close()

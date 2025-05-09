@@ -258,7 +258,7 @@ for s in signals_old:
         hh.SetDirectory(0)
     histos.append(hh)
     colors.append(ROOT.kCyan-6)
-    leg.AddEntry(histos[-1], "Collinear", "l")
+    leg.AddEntry(histos[-1], "Collinear xy", "l")
 
 for s in signals_old:
     fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
@@ -269,6 +269,16 @@ for s in signals_old:
     histos.append(hh)
     colors.append(ROOT.kGreen-6)
     leg.AddEntry(histos[-1], "Recoil", "l")
+
+for s in signals_old:
+    fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
+    with ROOT.TFile(fin) as tf:
+        h = tf.Get("Collinear_mass_3d")#s + "_" + variable
+        hh = copy.deepcopy(h)
+        hh.SetDirectory(0)
+    histos.append(hh)
+    colors.append(ROOT.kSpring-6)
+    leg.AddEntry(histos[-1], "Collinear xyz", "l")
 
 # add the signal histograms
 max = 0

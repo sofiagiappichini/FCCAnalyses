@@ -200,6 +200,12 @@ class RDFanalysis():
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "Higgs_mass/sqrt(f0*f1)")
 
+                .Define("txt2",       "(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)*(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)+(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)*(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)+(TauLead_px*TauSub_py-TauLead_py*TauSub_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("txttxp",     "(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)*(TauLead_py*RecoEmiss_pz-TauLead_pz*RecoEmiss_py)+(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)*(TauLead_pz*RecoEmiss_px-TauLead_px*RecoEmiss_pz)+(TauLead_px*RecoEmiss_py-TauLead_py*RecoEmiss_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("pxttxt",     "(RecoEmiss_py*TauSub_pz-RecoEmiss_pz*TauSub_py)*(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)+(RecoEmiss_pz*TauSub_px-RecoEmiss_px*TauSub_pz)*(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)+(RecoEmiss_px*TauSub_py-RecoEmiss_py*TauSub_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("pxttxp",     "(RecoEmiss_py*TauSub_pz-RecoEmiss_pz*TauSub_py)*(TauLead_py*RecoEmiss_pz-TauLead_pz*RecoEmiss_py)+(RecoEmiss_pz*TauSub_px-RecoEmiss_px*TauSub_pz)*(TauLead_pz*RecoEmiss_px-TauLead_px*RecoEmiss_pz)+(RecoEmiss_px*TauSub_py-RecoEmiss_py*TauSub_px)*(TauLead_px*RecoEmiss_py-TauLead_py*RecoEmiss_px)")
+                .Define("Collinear_mass_3d",    "Higgs_mass/sqrt(txt2/(txt2+txttxp+pxttxt+pxttxp))")
+
                 #.Filter("Collinear_mass>100 && Collinear_mass<150")
 
                 ######################

@@ -8,7 +8,7 @@ processList = {
     #'noISR_e+e-_noCuts_cehre_m1':{},
     #'noISR_e+e-_noCuts_cehre_p1':{},
     
-    #'EWonly_taudecay_2Pi2Nu':{},
+    'EWonly_taudecay_2Pi2Nu':{},
     #'cehim_m1_taudecay_2Pi2Nu':{},
     #'cehim_p1_taudecay_2Pi2Nu':{},
     #'cehre_m1_taudecay_2Pi2Nu':{},
@@ -31,11 +31,14 @@ processList = {
     #'cehre_p2_taudecay_2Pi2Nu':{},
 
     #'wzp6_ee_bbH_Htautau_ecm240': {},
-    "e+e-_eeH_H3PiNu":{},
-    "e+e-_eeH_HPi2Pi0Nu":{},
+    #"e+e-_eeH_H3PiNu":{},
+    #"e+e-_eeH_HPi2Pi0Nu":{},
+    #"p8_ee_llH_Hpinu_even":{},
+    #"p8_ee_llH_Hpinu_odd":{},
+    #"p8_ee_ZZ_ecm240":{}
 }
 
-inputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage1_new/"
+inputDir = "/ceph/sgiappic/HiggsCP/tutorial/stage1/"
 
 outputDir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_new/"
 
@@ -53,9 +56,9 @@ class RDFanalysis():
                 ######################
                 ##### FILTERING ######
                 ######################
-                .Define("OnePair",     "((n_RecoElectrons==2 and n_RecoMuons==0 and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0)")
+                .Define("OnePair",     "((((n_RecoElectrons==2 and n_RecoMuons==0) or (n_RecoElectrons==0 and n_RecoMuons==2)) and (RecoLepton_charge.at(0) + RecoLepton_charge.at(1))==0)*1.0)")
 
-                .Filter("OnePair==1 && n_TauFromJet_R5==4 && n_TagJet_R5_sel==0")
+                .Filter("OnePair==1 && n_TauFromJet_R5==2 && n_TagJet_R5_sel==0")
 
                 .Filter("(TauFromJet_R5_charge.at(0) + TauFromJet_R5_charge.at(1))==0")
 
@@ -75,6 +78,8 @@ class RDFanalysis():
                 .Define("ChargedTauImpactP_p4",       "if (RecoChargedTauTrack_charge.at(0)==1) return ChargedTauImpact_p4.at(0); else return ChargedTauImpact_p4.at(1);")
                 .Define("RecoPiP_D0",       "if (RecoChargedTauTrack_charge.at(0)==1) return RecoChargedTauTrack_D0.at(0); else return RecoChargedTauTrack_D0.at(1);")
                 .Define("RecoPiP_Z0",       "if (RecoChargedTauTrack_charge.at(0)==1) return RecoChargedTauTrack_Z0.at(0); else return RecoChargedTauTrack_Z0.at(1);")
+                .Define("RecoPiP_D0sig",       "if (RecoChargedTauTrack_charge.at(0)==1) return RecoChargedTauTrack_D0sig.at(0); else return RecoChargedTauTrack_D0sig.at(1);")
+                .Define("RecoPiP_Z0sig",       "if (RecoChargedTauTrack_charge.at(0)==1) return RecoChargedTauTrack_Z0sig.at(0); else return RecoChargedTauTrack_Z0sig.at(1);")
                 .Define("RecoPiP_dx",        "ChargedTauImpactP_p4.Px()")
                 .Define("RecoPiP_dy",        "ChargedTauImpactP_p4.Py()")
                 .Define("RecoPiP_dz",        "ChargedTauImpactP_p4.Pz()")
@@ -82,6 +87,8 @@ class RDFanalysis():
                 .Define("ChargedTauImpactM_p4",       "if (RecoChargedTauTrack_charge.at(0)==1) return ChargedTauImpact_p4.at(1); else return ChargedTauImpact_p4.at(0);")
                 .Define("RecoPiM_D0",       "if (RecoChargedTauTrack_charge.at(0)==1) return RecoChargedTauTrack_D0.at(1); else return RecoChargedTauTrack_D0.at(0);")
                 .Define("RecoPiM_Z0",       "if (RecoChargedTauTrack_charge.at(0)==1) return RecoChargedTauTrack_Z0.at(1); else return RecoChargedTauTrack_Z0.at(0);")
+                .Define("RecoPiM_D0sig",       "if (RecoChargedTauTrack_charge.at(0)==1) return RecoChargedTauTrack_D0sig.at(1); else return RecoChargedTauTrack_D0sig.at(0);")
+                .Define("RecoPiM_Z0sig",       "if (RecoChargedTauTrack_charge.at(0)==1) return RecoChargedTauTrack_Z0sig.at(1); else return RecoChargedTauTrack_Z0sig.at(0);")
                 .Define("RecoPiM_dx",        "ChargedTauImpactM_p4.Px()")
                 .Define("RecoPiM_dy",        "ChargedTauImpactM_p4.Py()")
                 .Define("RecoPiM_dz",        "ChargedTauImpactM_p4.Pz()")
@@ -96,6 +103,7 @@ class RDFanalysis():
                 .Define("RecoPiP_py",        "RecoPiP_p4.Py()")
                 .Define("RecoPiP_pz",        "RecoPiP_p4.Pz()")
                 .Define("RecoPiP_e",        "RecoPiP_p4.E()")
+                .Define("RecoPiP_p",        "RecoPiP_p4.P()")
                 .Define("RecoPiP_phi",        "RecoPiP_p4.Phi()")
                 .Define("RecoPiP_eta",        "RecoPiP_p4.Eta()")
                 .Define("RecoPiP_theta",        "RecoPiP_p4.Theta()")
@@ -105,6 +113,7 @@ class RDFanalysis():
                 .Define("RecoPiM_py",        "RecoPiM_p4.Py()")
                 .Define("RecoPiM_pz",        "RecoPiM_p4.Pz()")
                 .Define("RecoPiM_e",        "RecoPiM_p4.E()")
+                .Define("RecoPiM_p",        "RecoPiM_p4.P()")
                 .Define("RecoPiM_phi",        "RecoPiM_p4.Phi()")
                 .Define("RecoPiM_eta",        "RecoPiM_p4.Eta()")
                 .Define("RecoPiM_theta",        "RecoPiM_p4.Theta()")
@@ -175,6 +184,7 @@ class RDFanalysis():
                 .Define("RecoZP_theta",    "RecoZP_p4.Theta()")
                 .Define("RecoZP_y",     "RecoZP_p4.Rapidity()")
                 .Define("RecoZP_mass",    "RecoZP_p4.M()")
+                .Define("RecoZP_PID",       "if (RecoZP_mass<0.05) return (-11); else return (-13);")
 
                 .Define("RecoZM_p4",      "if (RecoLepton_charge.at(0)==1) return RecoZ2_p4; else return RecoZ1_p4;")
                 .Define("RecoZM_px",    "RecoZM_p4.Px()")
@@ -188,6 +198,7 @@ class RDFanalysis():
                 .Define("RecoZM_theta",    "RecoZM_p4.Theta()")
                 .Define("RecoZM_y",     "RecoZM_p4.Rapidity()")
                 .Define("RecoZM_mass",    "RecoZM_p4.M()")
+                .Define("RecoZM_PID",       "if (RecoZM_mass<0.05) return (11); else return (13);")
 
                 .Define("RecoZ_p4",          "RecoZ1_p4+RecoZ2_p4")
                 .Define("RecoZ_px",    "RecoZ_p4.Px()")
@@ -309,6 +320,12 @@ class RDFanalysis():
                 .Define("r1",       "abs((RecoEmiss_py*TauSub_px-RecoEmiss_px*TauSub_py)/p12)")
                 .Define("f1",       "1./(1.+r1)")
                 .Define("Collinear_mass",       "Higgs_mass/sqrt(f0*f1)")
+
+                .Define("txt2",       "(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)*(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)+(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)*(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)+(TauLead_px*TauSub_py-TauLead_py*TauSub_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("txttxp",     "(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)*(TauLead_py*RecoEmiss_pz-TauLead_pz*RecoEmiss_py)+(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)*(TauLead_pz*RecoEmiss_px-TauLead_px*RecoEmiss_pz)+(TauLead_px*RecoEmiss_py-TauLead_py*RecoEmiss_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("pxttxt",     "(RecoEmiss_py*TauSub_pz-RecoEmiss_pz*TauSub_py)*(TauLead_py*TauSub_pz-TauLead_pz*TauSub_py)+(RecoEmiss_pz*TauSub_px-RecoEmiss_px*TauSub_pz)*(TauLead_pz*TauSub_px-TauLead_px*TauSub_pz)+(RecoEmiss_px*TauSub_py-RecoEmiss_py*TauSub_px)*(TauLead_px*TauSub_py-TauLead_py*TauSub_px)")
+                .Define("pxttxp",     "(RecoEmiss_py*TauSub_pz-RecoEmiss_pz*TauSub_py)*(TauLead_py*RecoEmiss_pz-TauLead_pz*RecoEmiss_py)+(RecoEmiss_pz*TauSub_px-RecoEmiss_px*TauSub_pz)*(TauLead_pz*RecoEmiss_px-TauLead_px*RecoEmiss_pz)+(RecoEmiss_px*TauSub_py-RecoEmiss_py*TauSub_px)*(TauLead_px*RecoEmiss_py-TauLead_py*RecoEmiss_px)")
+                .Define("Collinear_mass_3d",    "Higgs_mass/sqrt(txt2/(txt2+txttxp+pxttxt+pxttxp))")
 
                 #.Filter("Collinear_mass>100 && Collinear_mass<150")
 
@@ -1223,6 +1240,7 @@ class RDFanalysis():
             "RecoZP_theta",   
             "RecoZP_y",     
             "RecoZP_mass",   
+            "RecoZP_PID",
 
             "RecoZM_px",    
             "RecoZM_py",   
@@ -1235,6 +1253,7 @@ class RDFanalysis():
             "RecoZM_theta",    
             "RecoZM_y",    
             "RecoZM_mass", 
+            "RecoZM_PID",
 
             "Higgs_px",
             "Higgs_py",
@@ -1297,6 +1316,7 @@ class RDFanalysis():
             "TauM_mass", 
 
             "Collinear_mass", 
+            "Collinear_mass_3d",
         
             "Tau_DR",
             "Tau_cos",
@@ -1323,6 +1343,9 @@ class RDFanalysis():
             "RecoPiP_dz",
             "RecoPiP_D0",
             "RecoPiP_Z0",
+            "RecoPiP_p",
+            "RecoPiP_D0sig",
+            "RecoPiP_Z0sig",
             "RecoPiP_charge",
 
             "RecoPiM_p4",
@@ -1333,11 +1356,14 @@ class RDFanalysis():
             "RecoPiM_dy",
             "RecoPiM_dz",
             "RecoPiM_e",
+            "RecoPiM_p",
             "RecoPiM_phi",
             "RecoPiM_eta",
             "RecoPiM_theta",
             "RecoPiM_D0",
             "RecoPiM_Z0",
+            "RecoPiM_D0sig",
+            "RecoPiM_Z0sig",
             "RecoPiM_charge",
 
             "RecoPi0P_p4",
@@ -1418,6 +1444,8 @@ class RDFanalysis():
             "ZMF_LambdaM_perp_z",
 
             "y_tau",
+            "y_plus",
+            "y_min",
             "Phi_ZMF",
             "O_ZMF",   
             "PhiCP_y",   
