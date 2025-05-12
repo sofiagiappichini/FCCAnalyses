@@ -1284,30 +1284,178 @@ TVector3 ProjectOntoPlane(const TVector3& v, const TVector3& a, const TVector3& 
 ROOT::VecOps::RVec<float> reso_p_pdg(ROOT::VecOps::RVec<int> recind,
 				    ROOT::VecOps::RVec<int> mcind,
 				    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> reco,
+                    ROOT::VecOps::RVec<int> ind,
 				    ROOT::VecOps::RVec<edm4hep::MCParticleData> mc,
                     int pdg,
+                    int parID,
                     float upper,
                     float lower) {
 
     ROOT::VecOps::RVec<float> result;
+    result.reserve(reco.size());
 
-    for (unsigned int i=0; i<recind.size();i++) {
+    for (unsigned int i=0; i<recind.size();i++){
         int reco_idx = recind.at(i);
         int mc_idx = mcind.at(i);
         int mc_pdg = mc.at(mc_idx).PDG;
 
         if(std::fabs(mc_pdg) == pdg){
+            
+            int par_idx = mc.at(mc_idx).parents_begin;
+            int index = ind.at(par_idx);
+            int parPDG = mc.at(index).PDG;
+            
+            if(parPDG == parID){
 
-            TLorentzVector mc_tlv;
-            TLorentzVector reco_tlv;
-            mc_tlv.SetXYZM(mc.at(mc_idx).momentum.x,mc.at(mc_idx).momentum.y,mc.at(mc_idx).momentum.z,mc.at(mc_idx).mass);
-            float mc_p = mc_tlv.P();
-            reco_tlv.SetXYZM(reco.at(reco_idx).momentum.x,reco.at(reco_idx).momentum.y,reco.at(reco_idx).momentum.z,reco.at(reco_idx).mass);
-            float reco_p = reco_tlv.P();
+                TLorentzVector mc_tlv;
+                TLorentzVector reco_tlv;
+                mc_tlv.SetXYZM(mc.at(mc_idx).momentum.x,mc.at(mc_idx).momentum.y,mc.at(mc_idx).momentum.z,mc.at(mc_idx).mass);
+                float mc_p = mc_tlv.P();
+                reco_tlv.SetXYZM(reco.at(reco_idx).momentum.x,reco.at(reco_idx).momentum.y,reco.at(reco_idx).momentum.z,reco.at(reco_idx).mass);
+                float reco_p = reco_tlv.P();
 
-            if(reco_p >= lower && reco_p < upper){
-                float reso = (reco_p - mc_p)/mc_p;
-                result.emplace_back(reso);
+                if(reco_p >= lower && reco_p < upper){
+                    float reso = (reco_p - mc_p)/mc_p;
+                    result.emplace_back(reso);
+                }
+            }
+        }
+    }
+    return result;
+}
+
+ROOT::VecOps::RVec<float> check_matching(ROOT::VecOps::RVec<int> recind,
+				    ROOT::VecOps::RVec<int> mcind,
+				    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> reco,
+                    ROOT::VecOps::RVec<int> ind,
+				    ROOT::VecOps::RVec<edm4hep::MCParticleData> mc,
+                    int pdg,
+                    int parID,
+                    float upper,
+                    float lower) {
+
+    ROOT::VecOps::RVec<float> result;
+    result.reserve(reco.size());
+
+    for (unsigned int i=0; i<recind.size();i++){
+        int reco_idx = recind.at(i);
+        int mc_idx = mcind.at(i);
+        int mc_pdg = mc.at(mc_idx).PDG;
+
+        if(std::fabs(mc_pdg) == pdg){
+            
+            int par_idx = mc.at(mc_idx).parents_begin;
+            int index = ind.at(par_idx);
+            int parPDG = mc.at(index).PDG;
+            
+            if(parPDG == parID){
+
+                TLorentzVector mc_tlv;
+                TLorentzVector reco_tlv;
+                mc_tlv.SetXYZM(mc.at(mc_idx).momentum.x,mc.at(mc_idx).momentum.y,mc.at(mc_idx).momentum.z,mc.at(mc_idx).mass);
+                float mc_p = mc_tlv.P();
+                reco_tlv.SetXYZM(reco.at(reco_idx).momentum.x,reco.at(reco_idx).momentum.y,reco.at(reco_idx).momentum.z,reco.at(reco_idx).mass);
+                float reco_p = reco_tlv.P();
+
+                if(reco_p >= lower && reco_p < upper){
+                    float dR = mc_tlv.DeltaR(reco_tlv);
+                    result.emplace_back(dR);
+                }
+            }
+        }
+    }
+    return result;
+}
+
+ROOT::VecOps::RVec<float> check_parents(ROOT::VecOps::RVec<int> recind,
+				    ROOT::VecOps::RVec<int> mcind,
+				    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> reco,
+                    ROOT::VecOps::RVec<int> ind,
+				    ROOT::VecOps::RVec<edm4hep::MCParticleData> mc,
+                    int pdg) {
+
+    ROOT::VecOps::RVec<float> result;
+    result.reserve(reco.size());
+
+    for (unsigned int i=0; i<recind.size();i++){
+        int reco_idx = recind.at(i);
+        int mc_idx = mcind.at(i);
+        int mc_pdg = mc.at(mc_idx).PDG;
+
+        if(std::fabs(mc_pdg) == pdg){
+            
+            int par_idx = mc.at(mc_idx).parents_begin;
+            int index = ind.at(par_idx);
+            int parPDG = mc.at(index).PDG;
+            result.emplace_back(parPDG);
+        }
+    }
+    return result;
+}
+
+ROOT::VecOps::RVec<float> smeared_p(
+				    ROOT::VecOps::RVec<int> mcind,
+				    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> reco,
+                    ROOT::VecOps::RVec<int> ind,
+				    ROOT::VecOps::RVec<edm4hep::MCParticleData> mc,
+                    int pdg,
+                    int parID,
+                    double sf
+                ) {
+
+    ROOT::VecOps::RVec<float> result;
+
+    for (unsigned int i=0; i<mcind.size();i++) {
+        int mc_idx = mcind.at(i);
+        int mc_pdg = mc.at(mc_idx).PDG;
+
+        if(std::fabs(mc_pdg) == pdg){
+            
+            int par_idx = mc.at(mc_idx).parents_begin;
+            int index = ind.at(par_idx);
+            int parPDG = mc.at(index).PDG;
+            
+            if(parPDG == parID){
+
+                TLorentzVector mc_tlv;
+                TLorentzVector reco_tlv;
+                mc_tlv.SetXYZM(mc.at(mc_idx).momentum.x,mc.at(mc_idx).momentum.y,mc.at(mc_idx).momentum.z,mc.at(mc_idx).mass);
+                float mc_p = mc_tlv.P();
+                reco_tlv.SetXYZM(reco.at(i).momentum.x,reco.at(i).momentum.y,reco.at(i).momentum.z,reco.at(i).mass);
+                float reco_p = reco_tlv.P();
+
+                float smeared_p = mc_p + sf * (reco_p - mc_p);
+                if(smeared_p >=0){
+                    result.emplace_back(10);
+                }
+                else{
+                    result.emplace_back(-10);
+                }
+            }
+        }
+    }
+    return result;
+}
+
+ROOT::VecOps::RVec<int> missing_matches_pdg(
+				    ROOT::VecOps::RVec<int> mcind,
+				    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> reco,
+				    ROOT::VecOps::RVec<edm4hep::MCParticleData> mc,
+                    int pdg
+                ) {
+
+    ROOT::VecOps::RVec<int> result;
+
+    for (unsigned int i=0; i<reco.size();i++) {
+        int mc_idx = mcind.at(i);
+        int mc_pdg = mc.at(mc_idx).PDG;
+
+        if(std::fabs(mc_pdg) == pdg){
+            if(mc_idx >= 0 and mc_idx < mc.size()){
+                result.emplace_back(1);
+            }
+            else{
+                result.emplace_back(0);
             }
         }
     }

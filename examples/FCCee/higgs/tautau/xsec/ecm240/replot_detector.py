@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/ee/"
+directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final_res/mumu/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -114,11 +114,11 @@ VARIABLES = [
     "RecoElectron_phi",
     "RecoElectron_charge",
     "RecoElectron_mass",
-    "Electron_p_res_0_20",
-    "Electron_p_res_20_40",
-    "Electron_p_res_40_60",
-    "Electron_p_res_60_higher", 
-    "Electron_p_res_total",
+    #"Electron_p_res_0_20",
+    #"Electron_p_res_20_40",
+    #"Electron_p_res_40_60",
+    #"Electron_p_res_60_higher", 
+    #"Electron_p_res_total",
 
     "n_RecoMuons",
     "RecoMuon_e",
@@ -133,11 +133,11 @@ VARIABLES = [
     "RecoMuon_phi",
     "RecoMuon_charge",
     "RecoMuon_mass",
-    #"Muon_p_res_0_20",
-    #"Muon_p_res_20_40",
-    #"Muon_p_res_40_60",
-    #"Muon_p_res_60_higher", 
-    #"Muon_p_res_total",
+    "Muon_p_res_0_20",
+    "Muon_p_res_20_40",
+    "Muon_p_res_40_60",
+    "Muon_p_res_60_higher", 
+    "Muon_p_res_total",
 
     "n_RecoPhotons",
     "RecoPhoton_e",
@@ -193,14 +193,14 @@ VARIABLES = [
 ]
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/awiedl/public_html/detector/ee/' 
+DIR_PLOTS = '/web/awiedl/public_html/detector_res/mumu/' 
 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
  }
 
-ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow e e "
+ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow #mu #mu "
 
 energy         = 240
 collider       = 'FCC-ee'
@@ -212,28 +212,28 @@ backgrounds_all = [
 ]
 
 legend = {
-    'IDEA_events_041153094':'IDEA',
-    'CMS_Phase2_events_041153094':'CMS Phase2',
-    'CMS_Phase1_events_041153094':'CMS Phase1',
-    'IDEA_CMS2':'IDEA sf=~21',
-    'IDEA_CMS1':'IDEA sf=~24',
+    'IDEA_events_050238459':'IDEA',
+    'CMS_Phase2_events_050238459':'CMS Phase2',
+    'CMS_Phase1_events_050238459':'CMS Phase1',
+    'IDEA_CMS2':'IDEA sf=~7',
+    'IDEA_CMS1':'IDEA sf=~15',
 }
 
 legcolors = {
-    'IDEA_events_041153094':ROOT.kGreen,
-    'CMS_Phase2_events_041153094':ROOT.kCyan,
-    'CMS_Phase1_events_041153094':ROOT.kBlue,
+    'IDEA_events_050238459':ROOT.kGreen,
+    'CMS_Phase2_events_050238459':ROOT.kCyan,
+    'CMS_Phase1_events_050238459':ROOT.kBlue,
     'IDEA_CMS2':ROOT.kOrange,
     'IDEA_CMS1':ROOT.kBlack,
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    'IDEA_events_041153094',
-    'CMS_Phase2_events_041153094',
-    'CMS_Phase1_events_041153094',
+    'IDEA_events_050238459',
     'IDEA_CMS2',
     'IDEA_CMS1',
+    'CMS_Phase2_events_050238459',
+    'CMS_Phase1_events_050238459',
 ]
 
 for cut in CUTS:
@@ -366,10 +366,10 @@ for cut in CUTS:
                 h = histos[i]
                 h.SetLineWidth(3)
                 h.SetLineColor(colors[i])
-                #if('res' in variable):
-                    #bin1 = h.FindFirstBinAbove(h.GetMaximum()/2)
-                    #bin2 = h.FindLastBinAbove(h.GetMaximum()/2)
-                    #FWHM = h.GetBinCenter(bin2) - h.GetBinCenter(bin1)
+                if('res' in variable):
+                    bin1 = h.FindFirstBinAbove(h.GetMaximum()/2)
+                    bin2 = h.FindLastBinAbove(h.GetMaximum()/2)
+                    FWHM = h.GetBinCenter(bin2) - h.GetBinCenter(bin1)
                     #gaussFit = ROOT.TF1("gaussfit","gaus") 
                     #h.Fit(gaussFit, "E")
                     #mean = gaussFit.GetParameter(1)
@@ -469,17 +469,17 @@ for cut in CUTS:
             canvas.SaveAs(dir + variable + ".pdf")
 
         # fitting resolution
-        if('res' in variable):
-            for i in range(nsig):
-                h = histos[i]
-                gaussFit = ROOT.TF1("gaussfit","gaus",-0.05,0.05) 
-                h.Fit(gaussFit, "EV")
-                mean = gaussFit.GetParameter(1)
-                sigma = gaussFit.GetParameter(2)
-                FWHM = sigma * 2.3548
-                with open('/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/output.txt', "a") as file:
-                    file.write(f"{variable}\n")
-                    file.write(f"{signals[i]}\n")
-                    file.write(f"Mean: {mean}\n")
-                    file.write(f"Sigma: {sigma}\n")
-                    file.write(f"FWHM: {FWHM}\n\n")
+        #if('res' in variable):
+        #    for i in range(nsig):
+        #        h = histos[i]
+         #       gaussFit = ROOT.TF1("gaussfit","gaus",-0.05,0.05) 
+        #        h.Fit(gaussFit, "EV")
+        #        mean = gaussFit.GetParameter(1)
+        #        sigma = gaussFit.GetParameter(2)
+        #        FWHM = sigma * 2.3548
+        #        with open('/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/output.txt', "a") as file:
+        #            file.write(f"{variable}\n")
+        #            file.write(f"{signals[i]}\n")
+        #            file.write(f"Mean: {mean}\n")
+        #            file.write(f"Sigma: {sigma}\n")
+        #            file.write(f"FWHM: {FWHM}\n\n")

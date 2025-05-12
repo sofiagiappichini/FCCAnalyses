@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/mumu/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1_res/mumu/"
 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final/mumu/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final_res/mumu/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
