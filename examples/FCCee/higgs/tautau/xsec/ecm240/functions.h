@@ -1281,6 +1281,49 @@ TVector3 ProjectOntoPlane(const TVector3& v, const TVector3& a, const TVector3& 
     return v_parallel;
 }
 
+Vec_i getIndex(Vec_rp in, Vec_rp reco, bool verbose=false) {
+    Vec_i result;
+    if(verbose) cout << "GET INDEX" << endl;
+    for(auto & p: in) {
+        if(verbose) cout << " TARGET " << p.energy << endl;
+        for(int i = 0; i < reco.size(); ++i) {
+            if(verbose) cout << "   PROBE " << reco[i].energy << endl;
+            // match on energy, for charged particles can match on track index
+            if(reco[i].energy == p.energy) {
+                //cout << i << " " << reco[i].energy << " " <<  p.energy << " " << endl;
+                result.push_back(i);
+                if(verbose) cout << "   FOUND " << i << endl;
+                break;
+            }
+        }
+    }
+    return result;
+}
+
+Vec_f particleResolution(Vec_rp in, Vec_i in_idx, Vec_i recind, Vec_i mcind, Vec_rp reco, Vec_mc mc, int mode=0){
+    Vec_f result;
+
+    // avoid events that have the extra soft photon and screws up the MC/RECO collections
+    if(reco.size() != recind.size()) return result;
+
+    result.reserve(in.size());
+
+    for(int i = 0; i < in.size(); ++i) {
+        TLorentzVector reco_p4;
+        reco_p4.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+        int mc_index = mcind[recind[in_idx[i]]];
+        if(mc_index >= 0 && mc_index < (int)mc.size()) {
+            TLorentzVector mc_;
+            mc_.SetXYZM(mc.at(mc_index).momentum.x, mc.at(mc_index).momentum.y, mc.at(mc_index).momentum.z, mc.at(mc_index).mass);
+            //cout << reco_p4.P() << " " << mc_.P()<< " "  << reco_p4.Theta() << " " << mc_.Theta() << " "  << reco_p4.Phi() << " " << mc_.Phi() << endl;
+            if(mode == 0) result.emplace_back((reco_p4.P()-mc_.P())/mc_.P());
+            else if(mode == 1) result.push_back(reco_p4.Theta()/mc_.Theta());
+            else if(mode == 2) result.push_back(reco_p4.Phi()/mc_.Phi());
+        }
+    } 
+    return result;
+}
+
 ROOT::VecOps::RVec<float> reso_p_pdg(ROOT::VecOps::RVec<int> recind,
 				    ROOT::VecOps::RVec<int> mcind,
 				    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> reco,
@@ -1294,9 +1337,9 @@ ROOT::VecOps::RVec<float> reso_p_pdg(ROOT::VecOps::RVec<int> recind,
     ROOT::VecOps::RVec<float> result;
     result.reserve(reco.size());
 
-    for (unsigned int i=0; i<recind.size();i++){
+    for (unsigned int i=0; i<reco.size();i++){
         int reco_idx = recind.at(i);
-        int mc_idx = mcind.at(i);
+        int mc_idx = mcind.at(reco_idx);
         int mc_pdg = mc.at(mc_idx).PDG;
 
         if(std::fabs(mc_pdg) == pdg){
@@ -1311,7 +1354,7 @@ ROOT::VecOps::RVec<float> reso_p_pdg(ROOT::VecOps::RVec<int> recind,
                 TLorentzVector reco_tlv;
                 mc_tlv.SetXYZM(mc.at(mc_idx).momentum.x,mc.at(mc_idx).momentum.y,mc.at(mc_idx).momentum.z,mc.at(mc_idx).mass);
                 float mc_p = mc_tlv.P();
-                reco_tlv.SetXYZM(reco.at(reco_idx).momentum.x,reco.at(reco_idx).momentum.y,reco.at(reco_idx).momentum.z,reco.at(reco_idx).mass);
+                reco_tlv.SetXYZM(reco.at(i).momentum.x,reco.at(i).momentum.y,reco.at(i).momentum.z,reco.at(i).mass);
                 float reco_p = reco_tlv.P();
 
                 if(reco_p >= lower && reco_p < upper){
@@ -1337,7 +1380,7 @@ ROOT::VecOps::RVec<float> check_matching(ROOT::VecOps::RVec<int> recind,
     ROOT::VecOps::RVec<float> result;
     result.reserve(reco.size());
 
-    for (unsigned int i=0; i<recind.size();i++){
+    for (unsigned int i=0; i<reco.size();i++){
         int reco_idx = recind.at(i);
         int mc_idx = mcind.at(i);
         int mc_pdg = mc.at(mc_idx).PDG;

@@ -5,8 +5,8 @@ from copy import deepcopy
 
 processList = {
     'IDEA_events_041153094': {},
-    'CMS_Phase2_events_041153094': {},
-    'CMS_Phase1_events_041153094': {},
+    #'CMS_Phase2_events_041153094': {},
+    #'CMS_Phase1_events_041153094': {},
     #'wzp6_ee_nunuH_Htautau_ecm240': {},
     #'wzp6_ee_nunuH_Hbb_ecm240': {},
     #'wzp6_ee_nunuH_Hdd_ecm240': {},
@@ -24,7 +24,7 @@ inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/EDM4HEP/wzp6_ee_n
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/ee/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1_res/ee/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -89,6 +89,10 @@ class RDFanalysis():
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+                .Alias("Electron_0", "Electron#0.index")
+                .Define("electron", "FCCAnalyses::ReconstructedParticle::get(Electron_0, ReconstructedParticles)")
+                .Define("electron_idx", "FCCAnalyses::ZHfunctions::getIndex(electron, ReconstructedParticles)")
+                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
         )
 
         collections = {
@@ -110,20 +114,19 @@ class RDFanalysis():
         collections_res["PFParticles"] = "ReconstructedParticles_ee"
 
         df2 = (df2
-                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
-                .Define(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(67., 11, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]])         
-        )
-
-        df2 = (df2
-                .Define("missmatch", "FCCAnalyses::ZHfunctions::missing_matches_pdg(reco_mc_index,{},Particle,11)".format(collections["PFParticles"]))
-                .Define("dR_matching", "FCCAnalyses::ZHfunctions::check_matching(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 1000., 0.)".format(collections["PFParticles"]))
-                .Define("parents", "FCCAnalyses::ZHfunctions::check_parents(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11)".format(collections["PFParticles"]))
-                .Define("smeared_p", "FCCAnalyses::ZHfunctions::smeared_p(reco_mc_index,{},Particle0,Particle,11,15,67.)".format(collections["PFParticles"]))
-                .Define("Electron_p_res_0_20", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 20., 0.)".format(collections["PFParticles"]))
-                .Define("Electron_p_res_20_40", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 40., 20.)".format(collections["PFParticles"]))
-                .Define("Electron_p_res_40_60", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 60., 40.)".format(collections["PFParticles"]))
-                .Define("Electron_p_res_60_higher", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 1000., 60.)".format(collections["PFParticles"]))
-                .Define("Electron_p_res_total", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 1000., 0.)".format(collections["PFParticles"]))
+                .Define(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 11, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]])
+                .Define("smeared_electron", "FCCAnalyses::ReconstructedParticle::get(Electron_0, {})".format(collections_res["PFParticles"]))
+                .Define("smeared_electron_idx", "FCCAnalyses::ZHfunctions::getIndex(smeared_electron, {})".format(collections_res["PFParticles"]))
+                #.Define("missmatch", "FCCAnalyses::ZHfunctions::missing_matches_pdg(reco_mc_index,{},Particle,11)".format(collections["PFParticles"]))
+                #.Define("dR_matching", "FCCAnalyses::ZHfunctions::check_matching(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 1000., 0.)".format(collections["PFParticles"]))
+                #.Define("parents", "FCCAnalyses::ZHfunctions::check_parents(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11)".format(collections["PFParticles"]))
+                #.Define("smeared_p", "FCCAnalyses::ZHfunctions::smeared_p(reco_mc_index,{},Particle0,Particle,11,15,67.)".format(collections["PFParticles"]))
+                #.Define("Electron_p_res_0_20", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 20., 0.)".format(collections["PFParticles"]))
+                #.Define("Electron_p_res_20_40", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 40., 20.)".format(collections["PFParticles"]))
+                #.Define("Electron_p_res_40_60", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 60., 40.)".format(collections["PFParticles"]))
+                #.Define("Electron_p_res_60_higher", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,11,15, 1000., 60.)".format(collections["PFParticles"]))
+                #.Define("Electron_p_res_total", "FCCAnalyses::ZHfunctions::particleResolution(electron, electron_idx, MCRecoAssociations0, MCRecoAssociations1, {}, Particle, 0)".format(collections["PFParticles"]))
+                .Define("Electron_p_res_total", "FCCAnalyses::ZHfunctions::particleResolution(smeared_electron, smeared_electron_idx, MCRecoAssociations0, MCRecoAssociations1, {}, Particle, 0)".format(collections_res["PFParticles"]))
 
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")
@@ -250,10 +253,10 @@ class RDFanalysis():
     def output():
         branchList = [
             ######## Monte-Carlo particles #######
-            "parents",
-            "dR_matching",
-            "missmatch",
-            "smeared_p",
+            #"parents",
+            #"dR_matching",
+            #"missmatch",
+            #"smeared_p",
 
             "n_FSGenElectron",
             "FSGenElectron_e",
@@ -313,10 +316,10 @@ class RDFanalysis():
             "RecoElectron_phi",
             "RecoElectron_charge",
             "RecoElectron_mass",
-            "Electron_p_res_0_20",
-            "Electron_p_res_20_40",
-            "Electron_p_res_40_60",
-            "Electron_p_res_60_higher", 
+            #"Electron_p_res_0_20",
+            #"Electron_p_res_20_40",
+            #"Electron_p_res_40_60",
+            #"Electron_p_res_60_higher", 
             "Electron_p_res_total", 
 
             "n_RecoMuons",
