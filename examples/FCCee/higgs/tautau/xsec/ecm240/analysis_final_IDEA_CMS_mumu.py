@@ -21,6 +21,8 @@ doTree = False
 
 processList = {
     'IDEA_events_050238459': {},
+    'IDEA_CMS2': {},
+    'IDEA_CMS1': {},
     'CMS_Phase2_events_050238459': {},
     'CMS_Phase1_events_050238459': {},
 }
@@ -37,6 +39,8 @@ procDictAdd = {
     "IDEA_events_050238459":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.005e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "CMS_Phase2_events_050238459":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.005e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "CMS_Phase1_events_050238459":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.005e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'IDEA_CMS2': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.005e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'IDEA_CMS1': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.005e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
 }
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
@@ -126,10 +130,10 @@ histoList = {
     "RecoMuon_phi":                 {"name":"RecoMuon_phi",                 "title":"Reco muon #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoMuon_charge":              {"name":"RecoMuon_charge",              "title":"Reco muon charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "RecoMuon_mass":                {"name":"RecoMuon_mass",                "title":"Reco muon mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "Muon_p_res_0_20":              {"name":"Muon_p_res_0_20",              "title":"Momentum resolution 0 < p_{gen} < 20 GeV", "bin":200, "xmin":-0.2, "xmax":0.2}, 
-    "Muon_p_res_20_40":             {"name":"Muon_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
-    "Muon_p_res_40_60":             {"name":"Muon_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
-    "Muon_p_res_60_higher":         {"name":"Muon_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
+    #"Muon_p_res_0_20":              {"name":"Muon_p_res_0_20",              "title":"Momentum resolution 0 < p_{gen} < 20 GeV", "bin":200, "xmin":-0.2, "xmax":0.2}, 
+    #"Muon_p_res_20_40":             {"name":"Muon_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
+    #"Muon_p_res_40_60":             {"name":"Muon_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
+    #"Muon_p_res_60_higher":         {"name":"Muon_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
     "Muon_p_res_total":             {"name":"Muon_p_res_total",             "title":"Momentum resolution",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
 
     "n_RecoPhotons":            {"name":"n_RecoPhotons",                  "title":"Number of reco photons",                     "bin":5, "xmin":-0.5, "xmax":4.5},

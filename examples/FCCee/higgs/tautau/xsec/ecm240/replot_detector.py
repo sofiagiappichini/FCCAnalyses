@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final_res/ee/"
+directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final_res/had/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -118,7 +118,7 @@ VARIABLES = [
     #"Electron_p_res_20_40",
     #"Electron_p_res_40_60",
     #"Electron_p_res_60_higher", 
-    "Electron_p_res_total",
+    #"Electron_p_res_total",
 
     #"n_RecoMuons",
     #"RecoMuon_e",
@@ -190,17 +190,19 @@ VARIABLES = [
     #"Down_p_res_40_60",
     #"Down_p_res_60_higher",
     #"Down_p_res_total",
+    #"NHadron_p_res_total",
+    "CHadron_p_res_total",
 ]
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/awiedl/public_html/detector_res/ee/' 
+DIR_PLOTS = '/web/awiedl/public_html/detector_res/had/' 
 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
  }
 
-ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow e e"
+ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow b b "
 
 energy         = 240
 collider       = 'FCC-ee'
@@ -212,28 +214,28 @@ backgrounds_all = [
 ]
 
 legend = {
-    'IDEA_events_041153094':'IDEA',
-    'CMS_Phase2_events_041153094':'CMS Phase2',
-    'CMS_Phase1_events_041153094':'CMS Phase1',
-    'IDEA_CMS2':'IDEA sf=~15.73697',
-    'IDEA_CMS1':'IDEA sf=~19.93407',
+    'IDEA_events_002119867':'IDEA',
+    'CMS_Phase2_events_002119867':'CMS Phase2',
+    'CMS_Phase1_events_002119867':'CMS Phase1',
+    'IDEA_CMS2':'IDEA sf=~15.68643',
+    'IDEA_CMS1':'IDEA sf=~190.50382',
 }
 
 legcolors = {
-    'IDEA_events_041153094':ROOT.kGreen,
-    'CMS_Phase2_events_041153094':ROOT.kCyan,
-    'CMS_Phase1_events_041153094':ROOT.kBlue,
+    'IDEA_events_002119867':ROOT.kGreen,
+    'CMS_Phase2_events_002119867':ROOT.kCyan,
+    'CMS_Phase1_events_002119867':ROOT.kBlue,
     'IDEA_CMS2':ROOT.kOrange,
     'IDEA_CMS1':ROOT.kBlack,
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    #'IDEA_events_041153094',
+    #'IDEA_events_002119867',
     'IDEA_CMS2',
     'IDEA_CMS1',
-    'CMS_Phase2_events_041153094',
-    'CMS_Phase1_events_041153094',
+    'CMS_Phase2_events_002119867',
+    'CMS_Phase1_events_002119867',
 ]
 
 for cut in CUTS:

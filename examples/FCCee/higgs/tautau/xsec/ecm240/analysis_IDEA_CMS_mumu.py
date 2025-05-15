@@ -5,8 +5,8 @@ from copy import deepcopy
 
 processList = {
     'IDEA_events_050238459': {},
-    'CMS_Phase2_events_050238459': {},
-    'CMS_Phase1_events_050238459': {},
+    #'CMS_Phase2_events_050238459': {},
+    #'CMS_Phase1_events_050238459': {},
     #'wzp6_ee_nunuH_Htautau_ecm240': {},
     #'wzp6_ee_nunuH_Hbb_ecm240': {},
     #'wzp6_ee_nunuH_Hdd_ecm240': {},
@@ -24,7 +24,7 @@ inputDir = "/ceph/xzuo/FCC_samples_alternative_detectors/ecm240/EDM4HEP/wzp6_ee_
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/mumu/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1_res/mumu/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -119,7 +119,7 @@ class RDFanalysis():
         collections_res["PFParticles"] = "ReconstructedParticles_ee"
 
         df2 = (df2
-                .Define(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(7., 13, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]])
+                .Define(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(6.63972, 13, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]])
                 .Define("smeared_muon", "FCCAnalyses::ReconstructedParticle::get(Muon_0, {})".format(collections_res["PFParticles"]))
                 .Define("smeared_muon_idx", "FCCAnalyses::ZHfunctions::getIndex(smeared_muon, {})".format(collections_res["PFParticles"])) 
                 #.Define("missmatch", "FCCAnalyses::ZHfunctions::missing_matches_pdg(reco_mc_index,{},Particle,13)".format(collections_res["PFParticles"]))
@@ -130,8 +130,8 @@ class RDFanalysis():
                 #.Define("Muon_p_res_20_40", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13,13, 40., 20.)".format(collections_res["PFParticles"]))
                 #.Define("Muon_p_res_40_60", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13,13, 60., 40.)".format(collections_res["PFParticles"]))
                 #.Define("Muon_p_res_60_higher", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13,13, 1000., 60.)".format(collections_res["PFParticles"]))
-                .Define("Muon_p_res_total", "FCCAnalyses::ZHfunctions::particleResolution(muon, muon_idx, MCRecoAssociations0, MCRecoAssociations1, {}, Particle, 0)".format(collections["PFParticles"]))
-                #.Define("Muon_p_res_total", "FCCAnalyses::ZHfunctions::particleResolution(smeared_muon, smeared_muon_idx, MCRecoAssociations0, MCRecoAssociations1, {}, Particle, 0)".format(collections_res["PFParticles"]))
+                #.Define("Muon_p_res_total", "FCCAnalyses::ZHfunctions::particleResolution(muon, muon_idx, MCRecoAssociations0, MCRecoAssociations1, {}, Particle, 0)".format(collections["PFParticles"]))
+                .Define("Muon_p_res_total", "FCCAnalyses::ZHfunctions::particleResolution(smeared_muon, smeared_muon_idx, MCRecoAssociations0, MCRecoAssociations1, {}, Particle, 0)".format(collections_res["PFParticles"]))
 
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")

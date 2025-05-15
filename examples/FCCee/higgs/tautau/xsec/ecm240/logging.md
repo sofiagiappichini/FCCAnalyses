@@ -19,6 +19,9 @@
 - check on muon parents: all muons come from muons???
 - smearing for muons: much better, but based on FWHM overshoots https://etpwww.etp.kit.edu/~awiedl/detector_res/mumu/Muon_p_res_total.png
 - Monday-Meeting with Xunwu:
-    - new calculation for FWHM: 1. GaussFit between -2*sigma to 2*sigma
+    - new calculation for FWHM: 1. GaussFit between -2sigma to 2sigma
                                 2. 1000 bins, scan in 5 bin steps for the integral within 2*sigma around the maximum, for half maximum
     - MC-Electrons are reconstructed as Photons for IDEA -> solution: read in RecoElectrons
+- fitting resolution for e, mu and gamma works quite solid now, only small deviations
+- for IDEA many neural hadrons are mismatched, also small shift for CMS1 + 2
+- charged hadrons work ok for CMS2, but also small shift for CMS1 and not enough smearing  

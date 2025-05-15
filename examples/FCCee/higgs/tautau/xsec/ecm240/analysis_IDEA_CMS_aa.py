@@ -1,10 +1,12 @@
 import os, copy # tagging
 import ROOT
 import urllib.request
+from copy import deepcopy
+
 processList = {
     'IDEA_events_032982526': {},
-    'CMS_Phase2_events_032982526': {},
-    'CMS_Phase1_events_032982526': {},
+    #'CMS_Phase2_events_032982526': {},
+    #'CMS_Phase1_events_032982526': {},
     #'wzp6_ee_nunuH_Htautau_ecm240': {},
     #'wzp6_ee_nunuH_Hbb_ecm240': {},
     #'wzp6_ee_nunuH_Hdd_ecm240': {},
@@ -22,7 +24,7 @@ inputDir = "/ceph/xzuo/FCC_samples_alternative_detectors/ecm240/EDM4HEP/wzp6_ee_
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1/aa/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/stage1_res/aa/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -92,12 +94,44 @@ class RDFanalysis():
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+                .Alias("Photon_0", "Photon#0.index")
+                .Define("photon", "FCCAnalyses::ReconstructedParticle::get(Photon_0, ReconstructedParticles)")
+                .Define("photon_idx", "FCCAnalyses::ZHfunctions::getIndex(photon, ReconstructedParticles)")
+                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
+        )
 
-                .Define("Photon_p_res_0_20", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,22, 20., 0.)")
-                .Define("Photon_p_res_20_40", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,22, 40., 20.)")
-                .Define("Photon_p_res_40_60", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,22, 60., 40.)")
-                .Define("Photon_p_res_60_higher", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,22, 1000., 60.)")
-                .Define("Photon_p_res_total", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles,Particle,22, 1000., 0.)")
+        collections = {
+            "GenParticles": "Particle",
+            "MCRecoMap": "MCRecoAssociations",
+            "PFParticles": "ReconstructedParticles",
+            "PFTracks": "EFlowTrack",
+            "PFPhotons": "EFlowPhoton",
+            "PFNeutralHadrons": "EFlowNeutralHadron",
+            "TrackState": "EFlowTrack_1",
+            "TrackerHits": "TrackerHits",
+            "CalorimeterHits": "CalorimeterHits",
+            "dNdx": "EFlowTrack_2",
+            "PathLength": "EFlowTrack_L",
+            "Bz": "magFieldBz",
+        }
+        
+        collections_res = deepcopy(collections)
+        collections_res["PFParticles"] = "ReconstructedParticles_ee"
+
+        df2 = (df2
+                .Define(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(1.24322, 22, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]])
+                .Define("smeared_photon", "FCCAnalyses::ReconstructedParticle::get(Photon_0, {})".format(collections_res["PFParticles"]))
+                .Define("smeared_photon_idx", "FCCAnalyses::ZHfunctions::getIndex(smeared_photon, {})".format(collections_res["PFParticles"])) 
+                #.Define("missmatch", "FCCAnalyses::ZHfunctions::missing_matches_pdg(reco_mc_index,{},Particle,13)".format(collections_res["PFParticles"]))
+                #.Define("dR_matching", "FCCAnalyses::ZHfunctions::check_matching(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13,13, 1000., 0.)".format(collections_res["PFParticles"]))
+                #.Define("parents", "FCCAnalyses::ZHfunctions::check_parents(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13)".format(collections_res["PFParticles"]))
+                #.Define("smeared_p", "FCCAnalyses::ZHfunctions::smeared_p(reco_mc_index,{},Particle0,Particle,13,13,7.)".format(collections_res["PFParticles"]))
+                #.Define("Muon_p_res_0_20", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13,13, 20., 0.)".format(collections_res["PFParticles"]))
+                #.Define("Muon_p_res_20_40", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13,13, 40., 20.)".format(collections_res["PFParticles"]))
+                #.Define("Muon_p_res_40_60", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13,13, 60., 40.)".format(collections_res["PFParticles"]))
+                #.Define("Muon_p_res_60_higher", "FCCAnalyses::ZHfunctions::reso_p_pdg(MCRecoAssociations0,MCRecoAssociations1,{},Particle0,Particle,13,13, 1000., 60.)".format(collections_res["PFParticles"]))
+                #.Define("Photon_p_res_total", "FCCAnalyses::ZHfunctions::particleResolution(photon, photon_idx, MCRecoAssociations0, MCRecoAssociations1, {}, Particle, 0)".format(collections["PFParticles"]))
+                .Define("Photon_p_res_total", "FCCAnalyses::ZHfunctions::particleResolution(smeared_photon, smeared_photon_idx, MCRecoAssociations0, MCRecoAssociations1, {}, Particle, 0)".format(collections_res["PFParticles"]))
 
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")
@@ -308,10 +342,10 @@ class RDFanalysis():
             "RecoPhoton_phi",
             "RecoPhoton_charge",
             "RecoPhoton_mass",
-            "Photon_p_res_0_20",
-            "Photon_p_res_20_40",
-            "Photon_p_res_40_60",
-            "Photon_p_res_60_higher", 
+            #"Photon_p_res_0_20",
+            #"Photon_p_res_20_40",
+            #"Photon_p_res_40_60",
+            #"Photon_p_res_60_higher", 
             "Photon_p_res_total", 
         ]
 
