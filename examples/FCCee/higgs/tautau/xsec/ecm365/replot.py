@@ -23,20 +23,20 @@ def sorted_dict_values(dic: dict) -> list:
 def make_dir_if_not_exists(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
-        os.system("cp /web/sgiappic/public_html/index.php {}".format(directory)) #copy index to show plots in web page automatically
-        print(f"Directory created successfully.")
-    else:
-        print(f"Directory already exists.")
+        os.system("cp /eos/user/s/sgiappic/www/index.php {}".format(directory)) #copy index to show plots in web page automatically
+        #print(f"Directory created successfully.")
+    #else:
+        #print(f"Directory already exists.")
 
 def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/final_250502/"
 TAG = [
     #"R5-explicit",
     #"R5-tag",
-    #"ktN-explicit",
+    "ktN-explicit",
     "ktN-tag",
 ]
 SUBDIR = [
@@ -46,19 +46,19 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    #"QQ",
-    #"LL",
+    "QQ",
+    "LL",
     "NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_1DR",
-    #"selReco_100Coll150_115Rec160_1DR_cos0.25",
-    #"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100",
+    "selReco",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_1DR",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100",
 ]
 CUTS_NuNu = [
     "selReco",
@@ -74,18 +74,6 @@ CUTS = {
     'LL':CUTS_LL,
     'QQ':CUTS_LL,
     'NuNu':CUTS_NuNu,
-}
-
-CUTS_simple = {
-    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-}
-
-VARIABLES_simple = {
-    'LL':"Collinear_mass",
-    'QQ':"Collinear_mass",
-    #'NuNu':"Visible_mass",
 }
 
 #now you can list all the histograms that you want to plot
@@ -345,296 +333,13 @@ VARIABLES = [
     "RecoPhoton_charge",
     "RecoPhoton_mass",
 
-    "n_NeutralHadrons",
-    "NeutralHadrons_e",
-    "NeutralHadrons_p",
-    "NeutralHadrons_pt",
-    "NeutralHadrons_px",
-    "NeutralHadrons_py",
-    "NeutralHadrons_pz",
-    "NeutralHadrons_eta",
-    "NeutralHadrons_theta",
-    "NeutralHadrons_phi",
-    "NeutralHadrons_charge",
-    "NeutralHadrons_mass",
-
-    #"n_NoEfficiency",
-    #"NoEfficiency_e",
-    #"NoEfficiency_p",
-    #"NoEfficiency_pt",
-    #"NoEfficiency_px",
-    #"NoEfficiency_py",
-    #"NoEfficiency_pz",
-    #"NoEfficiency_eta",
-    #"NoEfficiency_theta",
-    #"NoEfficiency_phi",
-    #"NoEfficiency_charge",
-    #"NoEfficiency_type",
-    #"NoEfficiency_mass",
-
     "RecoEmiss_px",
     "RecoEmiss_py",
     "RecoEmiss_pz",
     "RecoEmiss_pt",
     "RecoEmiss_p",
     "RecoEmiss_e",
-    "RecoEmiss_mass",
-
-    #"TagJet_R5_px", 
-    #"TagJet_R5_py",    
-    #"TagJet_R5_pz",      
-    #"TagJet_R5_p",  
-    #"TagJet_R5_pt",    
-    #"TagJet_R5_phi", 
-    #"TagJet_R5_eta",     
-    #"TagJet_R5_theta",          
-    #"TagJet_R5_e",     
-    #"TagJet_R5_mass",        
-    #"TagJet_R5_charge",  
-    #"n_TagJet_R5_constituents",   
-    #"n_TagJet_R5_charged_constituents",   
-    #"n_TagJet_R5_neutral_constituents",   
-    #"n_TagJet_R5",           
-
-    #"TagJet_R5_isG",  
-    #"TagJet_R5_isU",
-    #"TagJet_R5_isD",   
-    #"TagJet_R5_isS",  
-    #"TagJet_R5_isC",
-    #"TagJet_R5_isB",  
-    #"TagJet_R5_isTAU",
-
-    #"TauFromJet_R5_p",
-    #"TauFromJet_R5_pt",
-    #"TauFromJet_R5_px",
-    #"TauFromJet_R5_py",
-    #"TauFromJet_R5_pz",
-    #"TauFromJet_R5_theta",
-    #"TauFromJet_R5_phi",
-    #"TauFromJet_R5_e",
-    #"TauFromJet_R5_eta",
-    #"TauFromJet_R5_y",
-    #"TauFromJet_R5_charge",
-    #"TauFromJet_R5_type",
-    #"TauFromJet_R5_mass",
-    #"n_TauFromJet_R5",
-
-    #"TagJet_R5_sel_e",     
-    #"TagJet_R5_sel_p",     
-    #"TagJet_R5_sel_pt",     
-    #"TagJet_R5_sel_px",   
-    #"TagJet_R5_sel_py",   
-    #"TagJet_R5_sel_pz",     
-    #"TagJet_R5_sel_eta",    
-    #"TagJet_R5_sel_theta",   
-    #"TagJet_R5_sel_phi",     
-    #"TagJet_R5_sel_mass",      
-    #"n_TagJet_R5_sel", 
-    
-    #"TagJet_kt4_px", 
-    #"TagJet_kt4_py",    
-    #"TagJet_kt4_pz",      
-    #"TagJet_kt4_p",  
-    #"TagJet_kt4_pt",    
-    #"TagJet_kt4_phi", 
-    #"TagJet_kt4_eta",     
-    #"TagJet_kt4_theta",          
-    #"TagJet_kt4_e",     
-    #"TagJet_kt4_mass",        
-    #"TagJet_kt4_charge",  
-    #"n_TagJet_kt4_constituents",   
-    #"n_TagJet_kt4_charged_constituents",   
-    #"n_TagJet_kt4_neutral_constituents",   
-    #"n_TagJet_kt4",          
-
-    #"TagJet_kt4_isG",  
-    #"TagJet_kt4_isU",
-    #"TagJet_kt4_isD",   
-    #"TagJet_kt4_isS",  
-    #"TagJet_kt4_isC",
-    #"TagJet_kt4_isB",  
-    #"TagJet_kt4_isTAU",
-
-    #"TauFromJet_kt4_p",
-    #"TauFromJet_kt4_pt",
-    #"TauFromJet_kt4_px",
-    #"TauFromJet_kt4_py",
-    #"TauFromJet_kt4_pz",
-    #"TauFromJet_kt4_theta",
-    #"TauFromJet_kt4_phi",
-    #"TauFromJet_kt4_e",
-    #"TauFromJet_kt4_eta",
-    #"TauFromJet_kt4_y",
-    #"TauFromJet_kt4_charge",
-    #"TauFromJet_kt4_type",
-    #"TauFromJet_kt4_mass",
-    #"n_TauFromJet_kt4",
-
-    #"TagJet_kt4_sel_e",     
-    #"TagJet_kt4_sel_p",     
-    #"TagJet_kt4_sel_pt",     
-    #"TagJet_kt4_sel_px",   
-    #"TagJet_kt4_sel_py",   
-    #"TagJet_kt4_sel_pz",     
-    #"TagJet_kt4_sel_eta",    
-    #"TagJet_kt4_sel_theta",   
-    #"TagJet_kt4_sel_phi",     
-    #"TagJet_kt4_sel_mass",      
-    #"n_TagJet_kt4_sel",
-
-    #"TagJet_kt3_px", 
-    #"TagJet_kt3_py",    
-    #"TagJet_kt3_pz",      
-    #"TagJet_kt3_p",  
-    #"TagJet_kt3_pt",    
-    #"TagJet_kt3_phi", 
-    #"TagJet_kt3_eta",     
-    #"TagJet_kt3_theta",          
-    #"TagJet_kt3_e",     
-    #"TagJet_kt3_mass",        
-    #"TagJet_kt3_charge",       
-    #"n_TagJet_kt3_constituents",   
-    #"n_TagJet_kt3_charged_constituents",   
-    #"n_TagJet_kt3_neutral_constituents",   
-    #"n_TagJet_kt3",          
-
-    #"TagJet_kt3_isG",  
-    #"TagJet_kt3_isU",
-    #"TagJet_kt3_isD",   
-    #"TagJet_kt3_isS",  
-    #"TagJet_kt3_isC",
-    #"TagJet_kt3_isB",  
-    #"TagJet_kt3_isTAU",
-
-    #"TauFromJet_kt3_p",
-    #"TauFromJet_kt3_pt",
-    #"TauFromJet_kt3_px",
-    #"TauFromJet_kt3_py",
-    #"TauFromJet_kt3_pz",
-    #"TauFromJet_kt3_theta",
-    #"TauFromJet_kt3_phi",
-    #"TauFromJet_kt3_e",
-    #"TauFromJet_kt3_eta",
-    #"TauFromJet_kt3_y",
-    #"TauFromJet_kt3_charge",
-    #"TauFromJet_kt3_type",
-    #"TauFromJet_kt3_mass",
-    #"n_TauFromJet_kt3",
-
-    #"TagJet_kt3_sel_e",     
-    #"TagJet_kt3_sel_p",     
-    #"TagJet_kt3_sel_pt",     
-    #"TagJet_kt3_sel_px",   
-    #"TagJet_kt3_sel_py",   
-    #"TagJet_kt3_sel_pz",     
-    #"TagJet_kt3_sel_eta",    
-    #"TagJet_kt3_sel_theta",   
-    #"TagJet_kt3_sel_phi",     
-    #"TagJet_kt3_sel_mass",      
-    #"n_TagJet_kt3_sel",
-
-    #"TagJet_kt2_px", 
-    #"TagJet_kt2_py",    
-    #"TagJet_kt2_pz",      
-    #"TagJet_kt2_p",  
-    #"TagJet_kt2_pt",    
-    #"TagJet_kt2_phi", 
-    #"TagJet_kt2_eta",     
-    #"TagJet_kt2_theta",          
-    #"TagJet_kt2_e",     
-    #"TagJet_kt2_mass",        
-    #"TagJet_kt2_charge",    
-    #"n_TagJet_kt2_constituents",   
-    #"n_TagJet_kt2_charged_constituents",   
-    #"n_TagJet_kt2_neutral_constituents",   
-    #"n_TagJet_kt2",          
-
-    #"TagJet_kt2_isG",  
-    #"TagJet_kt2_isU",
-    #"TagJet_kt2_isD",   
-    #"TagJet_kt2_isS",  
-    #"TagJet_kt2_isC",
-    #"TagJet_kt2_isB",  
-    #"TagJet_kt2_isTAU",
-
-    #"TauFromJet_kt2_p",
-    #"TauFromJet_kt2_pt",
-    #"TauFromJet_kt2_px",
-    #"TauFromJet_kt2_py",
-    #"TauFromJet_kt2_pz",
-    #"TauFromJet_kt2_theta",
-    #"TauFromJet_kt2_phi",
-    #"TauFromJet_kt2_e",
-    #"TauFromJet_kt2_eta",
-    #"TauFromJet_kt2_y",
-    #"TauFromJet_kt2_charge",
-    #"TauFromJet_kt2_type",
-    #"TauFromJet_kt2_mass",
-    #"n_TauFromJet_kt2",
-
-    #"TagJet_kt2_sel_e",     
-    #"TagJet_kt2_sel_p",     
-    #"TagJet_kt2_sel_pt",     
-    #"TagJet_kt2_sel_px",   
-    #"TagJet_kt2_sel_py",   
-    #"TagJet_kt2_sel_pz",     
-    #"TagJet_kt2_sel_eta",    
-    #"TagJet_kt2_sel_theta",   
-    #"TagJet_kt2_sel_phi",     
-    #"TagJet_kt2_sel_mass",      
-    #"n_TagJet_kt2_sel",
-
-    #"TagJet_kt1_px", 
-    #"TagJet_kt1_py",    
-    #"TagJet_kt1_pz",      
-    #"TagJet_kt1_p",  
-    #"TagJet_kt1_pt",    
-    #"TagJet_kt1_phi", 
-    #"TagJet_kt1_eta",     
-    #"TagJet_kt1_theta",          
-    #"TagJet_kt1_e",     
-    #"TagJet_kt1_mass",        
-    #"TagJet_kt1_charge",   
-    #"n_TagJet_kt1_constituents",   
-    #"n_TagJet_kt1_charged_constituents",   
-    #"n_TagJet_kt1_neutral_constituents",   
-    #"n_TagJet_kt1",          
-
-    #"TagJet_kt1_isG",  
-    #"TagJet_kt1_isU",
-    #"TagJet_kt1_isD",   
-    #"TagJet_kt1_isS",  
-    #"TagJet_kt1_isC",
-    #"TagJet_kt1_isB",  
-    #"TagJet_kt1_isTAU",
-
-    #"TauFromJet_kt1_p",
-    #"TauFromJet_kt1_pt",
-    #"TauFromJet_kt1_px",
-    #"TauFromJet_kt1_py",
-    #"TauFromJet_kt1_pz",
-    #"TauFromJet_kt1_theta",
-    #"TauFromJet_kt1_phi",
-    #"TauFromJet_kt1_e",
-    #"TauFromJet_kt1_eta",
-    #"TauFromJet_kt1_y",
-    #"TauFromJet_kt1_charge",
-    #"TauFromJet_kt1_type",
-    #"TauFromJet_kt1_mass",
-    #"n_TauFromJet_kt1",
-
-    #"TagJet_kt1_sel_e",     
-    #"TagJet_kt1_sel_p",     
-    #"TagJet_kt1_sel_pt",     
-    #"TagJet_kt1_sel_px",   
-    #"TagJet_kt1_sel_py",   
-    #"TagJet_kt1_sel_pz",     
-    #"TagJet_kt1_sel_eta",    
-    #"TagJet_kt1_sel_theta",   
-    #"TagJet_kt1_sel_phi",     
-    #"TagJet_kt1_sel_mass",      
-    #"n_TagJet_kt1_sel",
-
+    #"RecoEmiss_mass",
     "RecoEmiss_eta",
     "RecoEmiss_phi",
     "RecoEmiss_theta",
@@ -1046,18 +751,18 @@ LIST_VAR = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/ecm365/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_xsec/ecm365/' 
 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
     "selReco_100Coll150": "100<M_{collinear}<150 GeV",
     "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
-    "selReco_100Coll150_115Rec160_1DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2",
+    "selReco_100Coll150_115Rec160_1DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1",
     "selReco_100Coll150_115Rec160_1DR_cos0.25": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25",
     "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25,}{|cos#theta_{miss}|<0.98}",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV}",
-
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>1, cos#theta_{#tau}<0.25,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV}",
+    
     #cuts for NuNu
     "selReco_180Me": "E_{miss}>180 GeV",
     "selReco_180Me_TauDPhi3": "E_{miss}>180 GeV, |#Delta#phi_{#tau}|<3",
@@ -1088,6 +793,7 @@ LOGY = True
 #list of backgorunds, then legend and colors to be assigned to them
 backgrounds_all = [
     "p8_ee_WW_ecm365",
+    "p8_ee_WW_tautau_ecm365",
     "p8_ee_ZQQ_ecm365",
     "p8_ee_ZZ_ecm365",
     'p8_ee_tt_ecm365',
@@ -1108,13 +814,13 @@ backgrounds_all = [
     "wzp6_ee_tautauH_HVV_ecm365",
 
     #"wzp6_ee_nunuH_Htautau_ecm365",
-    "wzp6_ee_VBFnunu_HQQ_ecm365",
-    "wzp6_ee_VBFnunu_Hgg_ecm365",
-    "wzp6_ee_VBFnunu_HVV_ecm365",
+    "wzp6_ee_VBF_nunuH_HQQ_ecm365",
+    "wzp6_ee_VBF_nunuH_Hgg_ecm365",
+    "wzp6_ee_VBF_nunuH_HVV_ecm365",
 
-    "wzp6_ee_ZH_Znunu_HQQ_ecm365",
-    "wzp6_ee_ZH_Znunu_Hgg_ecm365",
-    "wzp6_ee_ZH_Znunu_HVV_ecm365",
+    "wzp6_ee_ZH_nunuH_HQQ_ecm365",
+    "wzp6_ee_ZH_nunuH_Hgg_ecm365",
+    "wzp6_ee_ZH_nunuH_HVV_ecm365",
 
     #"wzp6_ee_LLH_Htautau_ecm365",
     "wzp6_ee_LLH_HQQ_ecm365",
@@ -1149,6 +855,7 @@ backgrounds_all = [
 
 legend = {
     'p8_ee_WW_ecm365':"WW",
+    "p8_ee_WW_tautau_ecm365":"WW #rightarrow #tau#tau",
     'p8_ee_ZQQ_ecm365':"Z #rightarrow QQ",
     'p8_ee_ZZ_ecm365':"ZZ",
     'p8_ee_tt_ecm365':"tt",
@@ -1168,15 +875,15 @@ legend = {
     "wzp6_ee_tautauH_Hgg_ecm365":"Z(#tau#tau)H(gg)",
     "wzp6_ee_tautauH_HVV_ecm365":"Z(#tau#tau)H(VV)",
 
-    'wzp6_ee_VBFnunu_Htautau_ecm365':"VBF #nu#nu H(#tau#tau)",
-    "wzp6_ee_VBFnunu_HQQ_ecm365":"VBF #nu#nu H(QQ)",
-    "wzp6_ee_VBFnunu_Hgg_ecm365":"VBF #nu#nu H(gg)",
-    "wzp6_ee_VBFnunu_HVV_ecm365":"VBF #nu#nu H(VV)",
+    'wzp6_ee_VBF_nunuH_Htautau_ecm365':"VBF #nu#nu H(#tau#tau)",
+    "wzp6_ee_VBF_nunuH_HQQ_ecm365":"VBF #nu#nu H(QQ)",
+    "wzp6_ee_VBF_nunuH_Hgg_ecm365":"VBF #nu#nu H(gg)",
+    "wzp6_ee_VBF_nunuH_HVV_ecm365":"VBF #nu#nu H(VV)",
 
-    'wzp6_ee_ZH_Znunu_Htautau_ecm365':"Z(#nu#nu)H(#tau#tau)",
-    "wzp6_ee_ZH_Znunu_HQQ_ecm365":"Z(#nu#nu)H(QQ)",
-    "wzp6_ee_ZH_Znunu_Hgg_ecm365":"Z(#nu#nu)H(gg)",
-    "wzp6_ee_ZH_Znunu_HVV_ecm365":"Z(#nu#nu)H(VV)",
+    'wzp6_ee_ZH_nunuH_Htautau_ecm365':"Z(#nu#nu)H(#tau#tau)",
+    "wzp6_ee_ZH_nunuH_HQQ_ecm365":"Z(#nu#nu)H(QQ)",
+    "wzp6_ee_ZH_nunuH_Hgg_ecm365":"Z(#nu#nu)H(gg)",
+    "wzp6_ee_ZH_nunuH_HVV_ecm365":"Z(#nu#nu)H(VV)",
 
     'wzp6_ee_eeH_Htautau_ecm365':"Z(ee)H(#tau#tau)",
     "wzp6_ee_eeH_HQQ_ecm365":"Z(ee)H(QQ)",
@@ -1211,6 +918,7 @@ legend = {
 
 legcolors = {
     'p8_ee_WW_ecm365':ROOT.kSpring+2,
+    "p8_ee_WW_tautau_ecm365":ROOT.kSpring-7,
     'p8_ee_ZQQ_ecm365':ROOT.kMagenta-8,
     'p8_ee_ZZ_ecm365':ROOT.kSpring+3,
     'p8_ee_tt_ecm365':ROOT.kTeal-9,
@@ -1230,15 +938,15 @@ legcolors = {
     "wzp6_ee_tautauH_Hgg_ecm365":ROOT.kViolet-4,
     "wzp6_ee_tautauH_HVV_ecm365":ROOT.kViolet+1,
 
-    'wzp6_ee_VBFnunu_Htautau_ecm365':ROOT.kGreen-3,
-    "wzp6_ee_VBFnunu_HQQ_ecm365":ROOT.kGreen-5,
-    "wzp6_ee_VBFnunu_Hgg_ecm365":ROOT.kGreen-8,
-    "wzp6_ee_VBFnunu_HVV_ecm365":ROOT.kGreen-10,
+    'wzp6_ee_VBF_nunuH_Htautau_ecm365':ROOT.kGreen-3,
+    "wzp6_ee_VBF_nunuH_HQQ_ecm365":ROOT.kGreen-5,
+    "wzp6_ee_VBF_nunuH_Hgg_ecm365":ROOT.kGreen-8,
+    "wzp6_ee_VBF_nunuH_HVV_ecm365":ROOT.kGreen-10,
 
-    'wzp6_ee_ZH_Znunu_Htautau_ecm365':ROOT.kRed-3,
-    "wzp6_ee_ZH_Znunu_HQQ_ecm365":ROOT.kRed-5,
-    "wzp6_ee_ZH_Znunu_Hgg_ecm365":ROOT.kRed-8,
-    "wzp6_ee_ZH_Znunu_HVV_ecm365":ROOT.kRed-10,
+    'wzp6_ee_ZH_nunuH_Htautau_ecm365':ROOT.kRed-3,
+    "wzp6_ee_ZH_nunuH_HQQ_ecm365":ROOT.kRed-5,
+    "wzp6_ee_ZH_nunuH_Hgg_ecm365":ROOT.kRed-8,
+    "wzp6_ee_ZH_nunuH_HVV_ecm365":ROOT.kRed-10,
 
     'wzp6_ee_eeH_Htautau_ecm365':ROOT.kBlue-9,
     "wzp6_ee_eeH_HQQ_ecm365":ROOT.kCyan-5,
@@ -1280,8 +988,8 @@ signals = [
     #'wzp6_ee_eeH_Htautau_ecm365',
     #'wzp6_ee_mumuH_Htautau_ecm365',
     'wzp6_ee_LLH_Htautau_ecm365',
-    'wzp6_ee_VBFnunu_Htautau_ecm365',
-    'wzp6_ee_ZH_Znunu_Htautau_ecm365',
+    'wzp6_ee_VBF_nunuH_Htautau_ecm365',
+    'wzp6_ee_ZH_nunuH_Htautau_ecm365',
 ]
 
 for tag in TAG:
@@ -1298,15 +1006,14 @@ for tag in TAG:
                 variables = VARIABLES +LIST_VAR[cat] #+ ["BDT_score_bkg", "BDT_score_VBF", "BDT_score_ZH",]
 
         for sub in SUBDIR:
-                    directory = DIRECTORY + tag + "/final_280125_BDT/" + cat + "/" + sub + "/"
+                    directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
 
-                    CUT = ["selReco",]
-                    #CUT = CUTS[cat]
+                    CUT = CUTS[cat]
 
                     for cut in CUT:
-                        for variable in ["BDT_score_VBF",]:
+                        for variable in variables:
 
-                            print(tag, cat, sub, cut, variable)
+                            #print(tag, cat, sub, cut, variable)
 
                             canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1417,7 +1124,7 @@ for tag in TAG:
                                     hStackBkg.Add(h)
 
                                 if LOGY==True :
-                                    hStackBkg.SetMinimum(1e-1) #change the range to be plotted
+                                    hStackBkg.SetMinimum(1e-5) #change the range to be plotted
                                     hStackBkg.SetMaximum(1e10) #leave some space on top for the legend
                                 else:
                                     #h = hStackBkg.GetHists() #list of histograms 
@@ -1471,7 +1178,6 @@ for tag in TAG:
 
                             #labels around the plot
                             extralab = LABELS[cut]
-                            extralab = "E_{miss}>180 GeV"
 
                             if 'ee' in collider:
                                 leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
@@ -1520,7 +1226,12 @@ for tag in TAG:
                                 canvas.Modified()
                                 canvas.Update()
 
-                                dir = DIR_PLOTS + tag +  "/"# + cat + "/" + sub + "/log/" + cut + "/"
+                                dir = DIR_PLOTS + tag + "/" + cat + "/" + sub + "/log/" + cut + "/"
+                                make_dir_if_not_exists(DIR_PLOTS + tag)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/log/")
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/log/" + cut)
                                 make_dir_if_not_exists(dir)
 
                                 canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
@@ -1535,7 +1246,12 @@ for tag in TAG:
                                 canvas.Modified()
                                 canvas.Update()
 
-                                dir = DIR_PLOTS + tag + "/"# + cat + "/" + sub + "/lin/" + cut + "/"
+                                dir = DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut + "/"
+                                make_dir_if_not_exists(DIR_PLOTS + tag)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/")
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut)
                                 make_dir_if_not_exists(dir)
 
                                 canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")

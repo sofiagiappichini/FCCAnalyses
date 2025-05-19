@@ -627,11 +627,11 @@ ROOT::VecOps::RVec<int> deltaR_sel_idx_v2(ROOT::VecOps::RVec<float> phi1, ROOT::
     ROOT::VecOps::RVec<int> result;
     std::vector<bool> matches(phi2.size(), false);
 
-    for (size_t i = 0; i < phi1.size(); ++i) { //run over first vector of particles
-        size_t check = -1;
+    for (int i = 0; i < phi1.size(); ++i) { //run over first vector of particles (aka reco tau)
+        int check = -1;
         float DR_min = min_delta; //value to start with comparing the matches with the second particles, reset for next first particle
 
-        for (size_t j = 0; j < phi2.size(); ++j) {  //run over second vector of particles
+        for (int j = 0; j < phi2.size(); ++j) {  //run over second vector of particles (aka gen tau)
             if (matches[j]) continue; //skip if the second particle has already a match
 
             float DR = sqrt(deltaEta(eta1[i],eta2[j])*deltaEta(eta1[i],eta2[j]) + deltaPhi(phi1[i],phi2[j])*deltaPhi(phi1[i],phi2[j]));
@@ -649,6 +649,36 @@ ROOT::VecOps::RVec<int> deltaR_sel_idx_v2(ROOT::VecOps::RVec<float> phi1, ROOT::
     }
     return result;
   }
+
+ROOT::VecOps::RVec<float> deltaR_sel_diff(ROOT::VecOps::RVec<float> pt1, ROOT::VecOps::RVec<float> pt2, ROOT::VecOps::RVec<float> phi1, ROOT::VecOps::RVec<float> phi2, ROOT::VecOps::RVec<float> eta1, ROOT::VecOps::RVec<float> eta2,float min_delta) 
+{ //same thing as before but save the difference in pt or somethign else instead of the index 
+    ROOT::VecOps::RVec<float> result;
+    std::vector<bool> matches(phi2.size(), false);
+
+    for (int i = 0; i < phi1.size(); ++i) {
+        int check = -1;
+        float DR_min = min_delta;
+
+        for (int j = 0; j < phi2.size(); ++j) {
+            if (matches[j]) continue;
+
+            float DR = sqrt(deltaEta(eta1[i],eta2[j])*deltaEta(eta1[i],eta2[j]) + deltaPhi(phi1[i],phi2[j])*deltaPhi(phi1[i],phi2[j]));
+            
+            if (DR<DR_min) { //fisr iteration is min_delta, then new minumum to match
+                DR_min = DR; 
+                check = j;
+            } 
+        }
+
+        if (check !=-1) {
+            result.push_back(pt1[i] - pt2[check]);
+            matches[check] = true;
+        }
+    }
+
+    return result;
+}
+
 
 ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_All (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets, int request){
 

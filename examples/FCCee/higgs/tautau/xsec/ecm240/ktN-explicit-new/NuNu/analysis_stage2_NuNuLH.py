@@ -96,7 +96,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/stage1_250302/ktN-explicit/NuNu/LH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-explicit/NuNu/LH/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -720,7 +720,7 @@ class RDFanalysis():
                 .Define("RecoTau1_p4",      "RecoLepton_p4.at(0)")
                 .Define("RecoTau2_p4",      "TLorentzVector(TauFromJet_kt1_px.at(0), TauFromJet_kt1_py.at(0), TauFromJet_kt1_pz.at(0), TauFromJet_kt1_e.at(0))")
                 .Define("RecoTau1_type",        "if (RecoLepton_mass.at(0)<0.05) return float(-0.11); else return float(-0.13);")
-                .Define("RecoTau2_type",        "TauFromJet_kt1_type.at(0)")
+                .Define("RecoTau2_type",        "float(TauFromJet_kt1_type.at(0))")
 
                 .Define("TauLepton_type",        "if (RecoLepton_mass.at(0)<0.05) return float(-0.11); else return float(-0.13);")
                 .Define("TauHadron_type",        "float(TauFromJet_kt1_type.at(0))")

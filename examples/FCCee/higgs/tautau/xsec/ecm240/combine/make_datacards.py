@@ -44,7 +44,7 @@ def get_combined_unc(name, procs, bkg_procs):
     line = f"unc_{name}      lnN     "
     for p in procs:
         if name in p and p in bkg_procs:
-            line += f"{'1.20':{' '}{'<'}{lspace}}"
+            line += f"{'1.01':{' '}{'<'}{lspace}}"
         else:
             line += f"{'-':{' '}{'<'}{lspace}}"
     line += "\n"
@@ -54,22 +54,22 @@ def get_combined_unc_v2(name, sub_proc, procs, bkg_procs):
     line = f"unc_{name}      lnN     "
     for p in procs:
         if p in sub_proc and p in bkg_procs:
-            line += f"{'1.20':{' '}{'<'}{lspace}}"
+            line += f"{'1.01':{' '}{'<'}{lspace}}"
         else:
             line += f"{'-':{' '}{'<'}{lspace}}"
     line += "\n"
     return line
 
-os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
-os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
-os.system("cmsenv")
+#os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
+#os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
+#os.system("cmsenv")
 
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/old_cuts_final/"
+outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/new_250502_1per_noMC/"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm240/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/"
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
@@ -85,18 +85,9 @@ CAT = [
     "NuNu",
 ]
 CUTS = {
-    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
     'NuNu':"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
-    #'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
-    #'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
-    #'QQ/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
-    #'QQ/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
-    #'QQ/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
-    #'NuNu/HH':"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
-    #'NuNu/LH':"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
-    #'NuNu/LL':"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
 }
 VARIABLE = {
     'LL':"Recoil",
@@ -191,7 +182,7 @@ if make_card:
                 dc += f"kmax    * number of nuisance parameters\n"
                 dc += f"--------------------------------------------------------------------------------\n"
                 
-                directory = DIRECTORY + tag + "/final_241202/" + cat  + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/" + cat  + "/" + sub + "/"
 
                 #if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
                 #    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54"
@@ -293,7 +284,7 @@ if make_card:
                     dc += f"unc_{proc}      lnN     "
                     for p in procs:
                         if p == proc:
-                            dc += f"{'1.20':{' '}{'<'}{lspace}}"
+                            dc += f"{'1.01':{' '}{'<'}{lspace}}"
                         else:
                             dc += f"{'-':{' '}{'<'}{lspace}}"
                     dc += "\n"
@@ -316,10 +307,10 @@ if make_card:
                     if all(substring not in proc for substring in ["nunuH", "LLH", "QQH", "tautauH", "_ee_tautau_", "_ee_LL_", "_ee_Zqq_"]):
                         dc += f"unc_{proc}      lnN     "
                         for p in procs:
-                            if p == proc and ('p8_ee_ZZ_ecm240' in proc or 'p8_ee_WW_ecm240' in proc):
-                                dc += f"{'1.02':<{lspace}}"
-                            elif p == proc:
-                                dc += f"{'1.20':<{lspace}}"
+                            #if p == proc and ('p8_ee_ZZ_ecm240' in proc or 'p8_ee_WW_ecm240' in proc):
+                            #    dc += f"{'1.02':<{lspace}}"
+                            if p == proc:
+                                dc += f"{'1.01':<{lspace}}"
                             else:
                                 dc += f"{'-':<{lspace}}"
                         dc += "\n"
@@ -327,7 +318,7 @@ if make_card:
                 dc += "\n\n" 
 
 
-                dc += "* autoMCStats 1 1"
+                #dc += "* autoMCStats 1 1"
 
                 # write cards
                 if not os.path.exists(f"{outputDir}/{tag}/{cat}/{sub}"):

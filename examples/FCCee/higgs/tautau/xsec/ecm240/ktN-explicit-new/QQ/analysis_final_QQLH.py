@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250302/ktN-explicit/QQ/LH/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-explicit/QQ/LH/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250302/ktN-explicit/QQ/LH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/ktN-explicit/QQ/LH/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -343,22 +343,6 @@ histoList = {
     "TagJet_R5_sel_phi":          {"name":"TagJet_R5_sel_phi",                 "title":"Quark/gluon R5 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TagJet_R5_sel_mass":         {"name":"TagJet_R5_sel_mass",                "title":"Quark/gluon R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "n_TagJet_R5_sel":            {"name":"n_TagJet_R5_sel",                   "title":"Number of Quark/gluon R5 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
-
-    "TagJet_kt4_e":                {"name":"TagJet_kt4_e",                   "title":"kt4 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt4_p":                {"name":"TagJet_kt4_p",                   "title":"kt4 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt4_pt":               {"name":"TagJet_kt4_pt",                  "title":"kt4 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt4_px":               {"name":"TagJet_kt4_px",                  "title":"kt4 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_py":               {"name":"TagJet_kt4_py",                  "title":"kt4 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_pz":               {"name":"TagJet_kt4_pz",                  "title":"kt4 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_eta":              {"name":"TagJet_kt4_eta",                 "title":"kt4 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_theta":            {"name":"TagJet_kt4_theta",               "title":"kt4 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt4_phi":              {"name":"TagJet_kt4_phi",                 "title":"kt4 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_mass":             {"name":"TagJet_kt4_mass",                "title":"kt4 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "TagJet_kt4_charge":             {"name":"TagJet_kt4_charge",                "title":"kt4 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
-    "n_TagJet_kt4":                {"name":"n_TagJet_kt4",                   "title":"Number of kt4 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_TagJet_kt4_constituents":             {"name":"n_TagJet_kt4_constituents",               "title":"kt4 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt4_charged_constituents":             {"name":"n_TagJet_kt4_charged_constituents",               "title":"kt4 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt4_neutral_constituents":             {"name":"n_TagJet_kt4_neutral_constituents",               "title":"kt4 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
 
     "TagJet_kt3_e":                {"name":"TagJet_kt3_e",                   "title":"kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_kt3_p":                {"name":"TagJet_kt3_p",                   "title":"kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},

@@ -96,7 +96,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/stage1_250302/ktN-explicit/NuNu/LL/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-explicit/NuNu/LL/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -105,7 +105,7 @@ includePaths = ["functions.h"]
 eosType = "eosuser"
 
 #Optional running on HTCondor, default is False
-runBatch = True
+runBatch = False
 
 nCPUS = 6
 
@@ -662,7 +662,7 @@ class RDFanalysis():
                 .Define("TauP_theta",    "TauP_p4.Theta()")
                 .Define("TauP_y",     "TauP_p4.Rapidity()")
                 .Define("TauP_mass",    "TauP_p4.M()")
-                .Define("TauP_type",     "if (RecoLepton_charge.at(0) return RecoTau1_type; else return RecoTau2_type;")
+                .Define("TauP_type",     "if (RecoLepton_charge.at(0)==1) return RecoTau1_type; else return RecoTau2_type;")
 
                 .Define("TauM_p4",       "if (RecoLepton_charge.at(0)==1) return RecoTau2_p4; else return RecoTau1_p4;")
                 .Define("TauM_px",    "TauM_p4.Px()")

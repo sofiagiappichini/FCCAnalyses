@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250302/ktN-tag/LL/LL/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-tag/LL/LL/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250302/ktN-tag/LL/LL/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/ktN-tag/LL/LL/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -118,12 +118,12 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
+    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0 ",
+    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0 ",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
 }
 
 # Dictionary for prettier names of cuts (optional)

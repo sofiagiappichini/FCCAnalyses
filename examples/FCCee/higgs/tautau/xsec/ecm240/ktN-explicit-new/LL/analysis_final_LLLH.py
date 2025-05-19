@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250302/ktN-explicit/LL/LH/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-explicit/LL/LH/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250302/ktN-explicit/LL/LH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/ktN-explicit/LL/LH/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -277,20 +277,6 @@ histoList = {
     "RecoPhoton_phi":           {"name":"RecoPhoton_phi",                 "title":"Reco photon #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoPhoton_charge":        {"name":"RecoPhoton_charge",              "title":"Reco photon charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "RecoPhoton_mass":          {"name":"RecoPhoton_mass",                 "title":"Reco photon mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
-
-    "n_NeutralHadrons":            {"name":"n_NeutralHadrons",                  "title":"Number of reco neutral hadrons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "NeutralHadrons_e":             {"name":"NeutralHadrons_e",                   "title":"Neutral hadron energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_p":             {"name":"NeutralHadrons_p",                   "title":"Neutral hadron p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_pt":            {"name":"NeutralHadrons_pt",                  "title":"Neutral hadron p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_px":            {"name":"NeutralHadrons_px",                  "title":"Neutral hadron p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadrons_py":            {"name":"NeutralHadrons_py",                  "title":"Neutral hadron p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadrons_pz":            {"name":"NeutralHadrons_pz",                  "title":"Neutral hadron p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-
-    "NeutralHadrons_eta":           {"name":"NeutralHadrons_eta",                 "title":"Neutral hadron #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "NeutralHadrons_theta":         {"name":"NeutralHadrons_theta",               "title":"Neutral hadron #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "NeutralHadrons_phi":           {"name":"NeutralHadrons_phi",                 "title":"Neutral hadron #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "NeutralHadrons_charge":        {"name":"NeutralHadrons_charge",              "title":"Neutral hadron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    "NeutralHadrons_mass":          {"name":"NeutralHadrons_mass",                 "title":"Neutral hadron mass [GeV]",                         "bin":50, "xmin":0,"xmax":10},
 
     "RecoEmiss_px":             {"name":"RecoEmiss_px",                  "title":"Reco missing energy p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
     "RecoEmiss_py":             {"name":"RecoEmiss_py",                  "title":"Reco missing energy p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},

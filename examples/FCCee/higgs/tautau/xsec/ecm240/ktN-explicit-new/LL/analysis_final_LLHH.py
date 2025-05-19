@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250302/ktN-explicit/LL/HH/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-explicit/LL/HH/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250302/ktN-explicit/LL/HH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/ktN-explicit/LL/HH/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -278,20 +278,6 @@ histoList = {
     "RecoPhoton_charge":        {"name":"RecoPhoton_charge",              "title":"Reco photon charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "RecoPhoton_mass":          {"name":"RecoPhoton_mass",                 "title":"Reco photon mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
 
-    "n_NeutralHadrons":            {"name":"n_NeutralHadrons",                  "title":"Number of reco neutral hadrons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "NeutralHadrons_e":             {"name":"NeutralHadrons_e",                   "title":"Neutral hadron energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_p":             {"name":"NeutralHadrons_p",                   "title":"Neutral hadron p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_pt":            {"name":"NeutralHadrons_pt",                  "title":"Neutral hadron p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_px":            {"name":"NeutralHadrons_px",                  "title":"Neutral hadron p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadrons_py":            {"name":"NeutralHadrons_py",                  "title":"Neutral hadron p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadrons_pz":            {"name":"NeutralHadrons_pz",                  "title":"Neutral hadron p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-
-    "NeutralHadrons_eta":           {"name":"NeutralHadrons_eta",                 "title":"Neutral hadron #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "NeutralHadrons_theta":         {"name":"NeutralHadrons_theta",               "title":"Neutral hadron #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "NeutralHadrons_phi":           {"name":"NeutralHadrons_phi",                 "title":"Neutral hadron #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "NeutralHadrons_charge":        {"name":"NeutralHadrons_charge",              "title":"Neutral hadron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    "NeutralHadrons_mass":          {"name":"NeutralHadrons_mass",                 "title":"Neutral hadron mass [GeV]",                         "bin":50, "xmin":0,"xmax":10},
-
     "RecoEmiss_px":             {"name":"RecoEmiss_px",                  "title":"Reco missing energy p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
     "RecoEmiss_py":             {"name":"RecoEmiss_py",                  "title":"Reco missing energy p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
     "RecoEmiss_pz":             {"name":"RecoEmiss_pz",                  "title":"Reco missing energy p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
@@ -405,22 +391,6 @@ histoList = {
     "TagJet_kt2_sel_phi":          {"name":"TagJet_kt2_sel_phi",                 "title":"Quark/gluon kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TagJet_kt2_sel_mass":         {"name":"TagJet_kt2_sel_mass",                "title":"Quark/gluon kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "n_TagJet_kt2_sel":            {"name":"n_TagJet_kt2_sel",                   "title":"Number of Quark/gluon kt2 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
-
-    "TagJet_kt1_e":                {"name":"TagJet_kt1_e",                   "title":"kt1 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt1_p":                {"name":"TagJet_kt1_p",                   "title":"kt1 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt1_pt":               {"name":"TagJet_kt1_pt",                  "title":"kt1 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt1_px":               {"name":"TagJet_kt1_px",                  "title":"kt1 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_py":               {"name":"TagJet_kt1_py",                  "title":"kt1 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_pz":               {"name":"TagJet_kt1_pz",                  "title":"kt1 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_eta":              {"name":"TagJet_kt1_eta",                 "title":"kt1 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt1_theta":            {"name":"TagJet_kt1_theta",               "title":"kt1 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt1_phi":              {"name":"TagJet_kt1_phi",                 "title":"kt1 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt1_mass":             {"name":"TagJet_kt1_mass",                "title":"kt1 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "TagJet_kt1_charge":             {"name":"TagJet_kt1_charge",                "title":"kt1 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
-    "n_TagJet_kt1":                {"name":"n_TagJet_kt1",                   "title":"Number of kt1 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_TagJet_kt1_constituents":             {"name":"n_TagJet_kt1_constituents",               "title":"kt1 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt1_charged_constituents":             {"name":"n_TagJet_kt1_charged_constituents",               "title":"kt1 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt1_neutral_constituents":             {"name":"n_TagJet_kt1_neutral_constituents",               "title":"kt1 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
 
     ####################
 

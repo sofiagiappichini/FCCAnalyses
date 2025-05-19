@@ -96,7 +96,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/stage1_250302/LL/HH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/LL/HH/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]

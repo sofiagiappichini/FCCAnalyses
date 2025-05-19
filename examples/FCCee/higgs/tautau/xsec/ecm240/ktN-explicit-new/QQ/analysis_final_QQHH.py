@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250302/ktN-explicit/QQ/HH/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-explicit/QQ/HH/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250302/ktN-explicit/QQ/HH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/ktN-explicit/QQ/HH/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev

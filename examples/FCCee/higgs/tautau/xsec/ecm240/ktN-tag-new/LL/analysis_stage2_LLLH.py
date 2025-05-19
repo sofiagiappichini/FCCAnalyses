@@ -96,7 +96,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/stage1_250302/LL/LH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-tag/LL/LH/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -795,7 +795,7 @@ class RDFanalysis():
 
                 .Define("RecoTau1_p4",      "RecoLepton_p4.at(RecoZH_idx[2])")
                 .Define("RecoTau2_p4",      "TLorentzVector(TauTag_px.at(0), TauTag_py.at(0), TauTag_pz.at(0), TauTag_e.at(0))")
-                .Define("RecoTau1_type",        "if (RecoLepton_sel_mass.at(RecoZH_idx[2])<0.05) return float(-0.11); else return float(-0.13);")
+                .Define("RecoTau1_type",        "if (RecoLepton_mass.at(RecoZH_idx[2])<0.05) return float(-0.11); else return float(-0.13);")
                 .Define("RecoTau2_type",        "TauTag_isTAU.at(0)")
                 .Define("n_RecoTau1_constituents",        "return float(1);")
                 .Define("n_RecoTau2_constituents",        "n_TauTag_constituents.at(0)")
@@ -804,7 +804,7 @@ class RDFanalysis():
                 .Define("n_RecoTau1_neutral_constituents",        "return float(0);")
                 .Define("n_RecoTau2_neutral_constituents",        "n_TauTag_neutral_constituents.at(0)")
 
-                .Define("TauLepton_type",        "if (RecoLepton_sel_mass.at(0)<0.05) return float(-0.11); else return float(-0.13);")
+                .Define("TauLepton_type",        "if (RecoLepton_mass.at(0)<0.05) return float(-0.11); else return float(-0.13);")
                 .Define("TauHadron_type",        "TauTag_isTAU.at(0)")
                 .Define("n_TauLepton_constituents",        "return float(1);")
                 .Define("n_TauHadron_constituents",        "n_TauTag_constituents.at(0)")

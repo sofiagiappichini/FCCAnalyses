@@ -131,8 +131,8 @@ def do_combine_alt_simple(outdir, file):
     return content_of_row
 
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
@@ -148,12 +148,12 @@ SUBDIR = [
 ]
 
 #load combine from CMSSW
-os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
-os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
-os.system("cmsenv")
+#os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
+#os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
+#os.system("cmsenv")
 
 input_file = "significance.txt"
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/"
+outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/new_250502_20per/"
 output_file = outputDir + "output_xsec.csv"
 
 tab = []
@@ -206,7 +206,7 @@ for k, tag in enumerate(TAG):
             else:
                 content_of_row = do_combine_simple(dir, file_read)
 
-                if "+19" or "-11" in content_of_row:
+                if "+19" or "+19.001" or "-11" in content_of_row:
                     print("REPORCESSING")
                     content_of_row = do_combine_alt_simple(dir, file_read)
                     

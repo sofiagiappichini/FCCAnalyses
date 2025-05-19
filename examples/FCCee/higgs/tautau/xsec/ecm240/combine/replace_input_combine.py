@@ -76,8 +76,8 @@ def do_combine_alt(outdir, file):
     return content_of_row
 
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
@@ -93,12 +93,12 @@ SUBDIR = [
 ]
 
 #load combine from CMSSW
-os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
-os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
-os.system("cmsenv")
+#os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
+#os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
+#os.system("cmsenv")
 
 input_file = "significance.txt"
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/old_cuts_final/"
+outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/new_250502_1per_noMC/"
 output_file = outputDir + "output_xsec.csv"
 
 tab = []

@@ -60,16 +60,16 @@ def get_combined_unc_v2(name, sub_proc, procs, bkg_procs):
     line += "\n"
     return line
 
-os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
-os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
-os.system("cmsenv")
+#os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
+#os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
+#os.system("cmsenv")
 
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/"
+outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/new_250502_20per"
 
-DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/final_250502/"
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
@@ -85,8 +85,8 @@ CAT = [
     "NuNu",
 ]
 CUTS = {
-    'LL':"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100",
-    'QQ':"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100",
+    'LL':"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100",
+    'QQ':"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100",
     'NuNu':"selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1",
 }
 VARIABLE = {
@@ -97,6 +97,7 @@ VARIABLE = {
 
 backgrounds_all = [
     "p8_ee_WW_ecm365",
+    "p8_ee_WW_tautau_ecm365",
     "p8_ee_ZQQ_ecm365",
     "p8_ee_ZZ_ecm365",
     'p8_ee_tt_ecm365',
@@ -117,13 +118,13 @@ backgrounds_all = [
     "wzp6_ee_tautauH_HVV_ecm365",
 
     #"wzp6_ee_nunuH_Htautau_ecm365",
-    "wzp6_ee_VBFnunu_HQQ_ecm365",
-    "wzp6_ee_VBFnunu_Hgg_ecm365",
-    "wzp6_ee_VBFnunu_HVV_ecm365",
+    "wzp6_ee_VBF_nunuH_HQQ_ecm365",
+    "wzp6_ee_VBF_nunuH_Hgg_ecm365",
+    "wzp6_ee_VBF_nunuH_HVV_ecm365",
 
-    "wzp6_ee_ZH_Znunu_HQQ_ecm365",
-    "wzp6_ee_ZH_Znunu_Hgg_ecm365",
-    "wzp6_ee_ZH_Znunu_HVV_ecm365",
+    "wzp6_ee_ZH_nunuH_HQQ_ecm365",
+    "wzp6_ee_ZH_nunuH_Hgg_ecm365",
+    "wzp6_ee_ZH_nunuH_HVV_ecm365",
 
     #"wzp6_ee_LLH_Htautau_ecm365",
     "wzp6_ee_LLH_HQQ_ecm365",
@@ -161,7 +162,7 @@ backgrounds_all = [
     #'wzp6_ee_eeH_Htautau_ecm365',
     #'wzp6_ee_mumuH_Htautau_ecm365',
     #'wzp6_ee_LLH_Htautau_ecm365',
-    'wzp6_ee_VBFnunu_Htautau_ecm365',
+    'wzp6_ee_VBF_nunuH_Htautau_ecm365',
     #'wzp6_ee_ZH_Znunu_Htautau_ecm365',
     'wzp6_ee_ZH_Htautau_ecm365',
 ]
@@ -173,7 +174,7 @@ signals = [
     #'wzp6_ee_eeH_Htautau_ecm365',
     #'wzp6_ee_mumuH_Htautau_ecm365',
     #'wzp6_ee_LLH_Htautau_ecm365',
-    'wzp6_ee_VBFnunu_Htautau_ecm365',
+    'wzp6_ee_VBF_nunuH_Htautau_ecm365',
     #'wzp6_ee_ZH_Znunu_Htautau_ecm365',
     'wzp6_ee_ZH_Htautau_ecm365',
 ]
@@ -192,14 +193,14 @@ if make_card:
 
                 ## datacard header, common
                 dc = ""
-                dc += f"# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-5,5]' datacard.txt  -o ws.root\n"
+                dc += f"# text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBF_nunuH_Htautau_ecm365:r_VBF[1,-5,5]' datacard.txt  -o ws.root\n"
                 dc += f"# combine -M MultiDimFit -d  ws.root --cminDefaultMinimizerStrategy 0 -t -1 --expectSignal=1 -v 10 \n"
                 dc += f"imax    1 number of bins\n"
                 dc += f"jmax    * number of processes minus 1\n"
                 dc += f"kmax    * number of nuisance parameters\n"
                 dc += f"--------------------------------------------------------------------------------\n"
                 
-                directory = DIRECTORY + tag + "/final_280125/" + cat  + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/" + cat  + "/" + sub + "/"
 
                 cut = CUTS[cat]
                 print(cut, tag, cat, sub)
@@ -316,9 +317,9 @@ if make_card:
                     if all(substring not in proc for substring in ["H", "_ee_tautau_", "_ee_LL_", "_ee_ZQQ_"]):
                         dc += f"unc_{proc}      lnN     "
                         for p in procs:
-                            if p == proc and ('p8_ee_ZZ_ecm365' in proc or 'p8_ee_WW_ecm365' in proc):
-                                dc += f"{'1.02':<{lspace}}"
-                            elif p == proc:
+                            #if p == proc and ('p8_ee_ZZ_ecm365' in proc or 'p8_ee_WW_ecm365' in proc):
+                            #    dc += f"{'1.02':<{lspace}}"
+                            if p == proc:
                                 dc += f"{'1.20':<{lspace}}"
                             else:
                                 dc += f"{'-':<{lspace}}"

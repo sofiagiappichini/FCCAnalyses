@@ -1,0 +1,20 @@
+ <<< Combine >>> 
+ <<< v10.0.1 >>>
+>>> Random number generator seed is 123456
+>>> Method used is FitDiagnostics
+WARNING: underflow to -19.3152 in pdf_binRecoil_obsOnly for bin 44, weight 644.961
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(Recoil) evaluation error, 
+ origin       : RooAbsReal::Recoil[ params=(r,unc_H_H,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.0210993,unc_H_H = -1.36425e-08 +/- 0.999994,unc_p8_ee_ZZ_ecm240 = -4.35202e-07 +/- 0.971587), catParams=()
+FASTEXIT from pdf_binRecoil_obsOnly
+WARNING: underflow to -19.3152 in pdf_binRecoil_obsOnly for bin 44, weight 644.961
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(Recoil) evaluation error, 
+ origin       : RooAbsReal::Recoil[ params=(r,unc_H_H,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.0210993,unc_H_H = -1.36425e-08 +/- 1,unc_p8_ee_ZZ_ecm240 = -4.35202e-07 +/- 1), catParams=()
+FASTEXIT from pdf_binRecoil_obsOnly
+
+ --- FitDiagnostics ---
+Best fit r: 1  -0.0204266/+0.0212536  (68% CL)
+Done in 0.00 min (cpu), 0.00 min (real)

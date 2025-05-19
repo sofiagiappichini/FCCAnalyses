@@ -13,30 +13,14 @@ import ROOT
 # Set ROOT to batch mode so it doesn't open all the plots
 ROOT.gROOT.SetBatch(True)
 
-def sorted_dict_values(dic: dict) -> list:
-    ''''
-    Sort values in the dictionary.
-    '''
-    keys = sorted(dic)
-    return [dic[key] for key in keys]
-
-def make_dir_if_not_exists(directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-        os.system("cp /eos/user/s/sgiappic/www/index.php {}".format(directory)) #copy index to show plots in web page automatically
-        print(f"Directory created successfully.")
-    else:
-        print(f"Directory already exists.")
-
 def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/ecm365/"
-subdir = "/final_280125_BDT/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/final_250502/"
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
@@ -48,7 +32,7 @@ SUBDIR = [
 #category to plot
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
 #list of cuts you want to plot
@@ -59,7 +43,7 @@ CUTS_LL = [
     "selReco_100Coll150_115Rec160_1DR",
     "selReco_100Coll150_115Rec160_1DR_cos0.25",
     "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100",
+    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100",
 ]
 CUTS_NuNu = [
     "selReco",
@@ -73,129 +57,13 @@ CUTS_NuNu = [
 
 CUTS = {
     'LL':CUTS_LL,
-    #'QQ':CUTS_LL,
-    #'NuNu':CUTS_NuNu,
-    'QQ':["selReco","selReco_0.5BDT"],
-    'NuNu':["selReco","selReco_0.5BDT"],
+    'QQ':CUTS_LL,
+    'NuNu':CUTS_NuNu,
 }
 
 #now you can list all the histograms that you want to plot
 VARIABLES = [
-    ######## Monte-Carlo particles #######
-    "n_FSGenElectron",
-    "FSGenElectron_e",
-    "FSGenElectron_p",
-    "FSGenElectron_pt",
-    "FSGenElectron_px",
-    "FSGenElectron_py",
-    "FSGenElectron_pz",
-    "FSGenElectron_y",
-    "FSGenElectron_eta",
-    "FSGenElectron_theta",
-    "FSGenElectron_phi",
-    "FSGenElectron_charge",
-    "FSGenElectron_mass",
-    "FSGenElectron_parentPDG",
-    "FSGenElectron_vertex_x",
-    "FSGenElectron_vertex_y",
-    "FSGenElectron_vertex_z",
-
-    "n_FSGenMuon",
-    "FSGenMuon_e",
-    "FSGenMuon_p",
-    "FSGenMuon_pt",
-    "FSGenMuon_px",
-    "FSGenMuon_py",
-    "FSGenMuon_pz",
-    "FSGenMuon_y",
-    "FSGenMuon_eta",
-    "FSGenMuon_theta",
-    "FSGenMuon_phi",
-    "FSGenMuon_charge",
-    "FSGenMuon_mass",
-    "FSGenMuon_parentPDG",
-    "FSGenMuon_vertex_x",
-    "FSGenMuon_vertex_y",
-    "FSGenMuon_vertex_z",
-
-    #"n_AllGenTau",
-    #"AllGenTau_e",
-    #"AllGenTau_p",
-    #"AllGenTau_pt",
-    #"AllGenTau_px",
-    #"AllGenTau_py",
-    #"AllGenTau_pz",
-    #"AllGenTau_y",
-    #"AllGenTau_eta",
-    #"AllGenTau_theta",
-    #"AllGenTau_phi",
-    #"AllGenTau_charge",
-    #"AllGenTau_mass",
-    #"AllGenTau_parentPDG",
-    #"AllGenTau_vertex_x",
-    #"AllGenTau_vertex_y",
-    #"AllGenTau_vertex_z",
-
-    "n_HiggsGenTau",
-    "HiggsGenTau_e",
-    "HiggsGenTau_p",
-    "HiggsGenTau_pt",
-    "HiggsGenTau_px",
-    "HiggsGenTau_py",
-    "HiggsGenTau_pz",
-    "HiggsGenTau_y",
-    "HiggsGenTau_eta",
-    "HiggsGenTau_theta",
-    "HiggsGenTau_phi",
-    "HiggsGenTau_charge",
-    "HiggsGenTau_mass",
-    "HiggsGenTau_parentPDG",
-    "HiggsGenTau_vertex_x",
-    "HiggsGenTau_vertex_y",
-    "HiggsGenTau_vertex_z",
-
-    "n_FSGenNeutrino",
-    "FSGenNeutrino_e",
-    "FSGenNeutrino_p",
-    "FSGenNeutrino_pt",
-    "FSGenNeutrino_px",
-    "FSGenNeutrino_py",
-    "FSGenNeutrino_pz",
-    "FSGenNeutrino_y",
-    "FSGenNeutrino_eta",
-    "FSGenNeutrino_theta",
-    "FSGenNeutrino_phi",
-    "FSGenNeutrino_charge",
-    #"FSGenNeutrino_parentPDG",
-
-    "n_FSGenPhoton",
-    "FSGenPhoton_e",
-    "FSGenPhoton_p",
-    "FSGenPhoton_pt",
-    "FSGenPhoton_px",
-    "FSGenPhoton_py",
-    "FSGenPhoton_pz",
-    "FSGenPhoton_y",
-    "FSGenPhoton_eta",
-    "FSGenPhoton_theta",
-    "FSGenPhoton_phi",
-    "FSGenPhoton_charge",
-    #"FSGenPhoton_parentPDG",
-
-    "n_GenHiggs",
-    "GenHiggs_e",
-    "GenHiggs_p", 
-    "GenHiggs_pt", 
-    "GenHiggs_px", 
-    "GenHiggs_py", 
-    "GenHiggs_pz", 
-    "GenHiggs_y", 
-    "GenHiggs_mass",
-    "GenHiggs_eta", 
-    "GenHiggs_theta", 
-    "GenHiggs_phi", 
-    "GenHiggs_charge", 
-
+    
     ######## Reconstructed particles #######
     #"RecoMC_PID",
 
@@ -333,33 +201,6 @@ VARIABLES = [
     "RecoPhoton_charge",
     "RecoPhoton_mass",
 
-    "n_NeutralHadrons",
-    "NeutralHadrons_e",
-    "NeutralHadrons_p",
-    "NeutralHadrons_pt",
-    "NeutralHadrons_px",
-    "NeutralHadrons_py",
-    "NeutralHadrons_pz",
-    "NeutralHadrons_eta",
-    "NeutralHadrons_theta",
-    "NeutralHadrons_phi",
-    "NeutralHadrons_charge",
-    "NeutralHadrons_mass",
-
-    #"n_NoEfficiency",
-    #"NoEfficiency_e",
-    #"NoEfficiency_p",
-    #"NoEfficiency_pt",
-    #"NoEfficiency_px",
-    #"NoEfficiency_py",
-    #"NoEfficiency_pz",
-    #"NoEfficiency_eta",
-    #"NoEfficiency_theta",
-    #"NoEfficiency_phi",
-    #"NoEfficiency_charge",
-    #"NoEfficiency_type",
-    #"NoEfficiency_mass",
-
     "RecoEmiss_px",
     "RecoEmiss_py",
     "RecoEmiss_pz",
@@ -372,349 +213,8 @@ VARIABLES = [
     "RecoEmiss_theta",
     "RecoEmiss_y",
     "RecoEmiss_costheta",
-
-    #"n_RecoTracks",
-    #"RecoVertexObject",
-    #"RecoVertex",
-    #"n_PrimaryTracks",
-    #"PrimaryVertexObject",
-    #"PrimaryVertex", 
-    #"PrimaryVertex_xyz",
-    #"PrimaryVertes_xy",
-    #"n_SecondaryTracks",
-    #"SecondaryVertexObject",
-    #"SecondaryVertex",
-    #"SecondaryVertex_xyz",
-    #"SecondaryVertes_xy",
-    #"VertexObject", 
-    #"RecoPartPID" ,
-    #"RecoPartPIDAtVertex",
-
-    #"Jets_R5_e",     
-    #"Jets_R5_p",     
-    #"Jets_R5_pt",     
-    #"Jets_R5_px",   
-    #"Jets_R5_py",   
-    #"Jets_R5_pz",     
-    #"Jets_R5_eta",    
-    #"Jets_R5_theta",   
-    #"Jets_R5_phi",     
-    #"Jets_R5_mass",        
-    #"n_Jets_R5", 
-
-    #"Jets_excl4_e",     
-    #"Jets_excl4_p",     
-    #"Jets_excl4_pt",     
-    #"Jets_excl4_px",   
-    #"Jets_excl4_py",   
-    #"Jets_excl4_pz",     
-    #"Jets_excl4_eta",    
-    #"Jets_excl4_theta",   
-    #"Jets_excl4_phi",     
-    #"Jets_excl4_mass",        
-    #"n_Jets_excl4", 
-
-    #"TauFromJet_R5_p",
-    #"TauFromJet_R5_pt",
-    #"TauFromJet_R5_px",
-    #"TauFromJet_R5_py",
-    #"TauFromJet_R5_pz",
-    #"TauFromJet_R5_theta",
-    #"TauFromJet_R5_phi",
-    #"TauFromJet_R5_e",
-    #"TauFromJet_R5_eta",
-    #"TauFromJet_R5_y",
-    #"TauFromJet_R5_charge",
-    #"TauFromJet_R5_type",
-    #"TauFromJet_R5_mass",
-    #"n_TauFromJet_R5",
-
-    #"TauFromJet_p",
-    #"TauFromJet_pt",
-    #"TauFromJet_px",
-    #"TauFromJet_py",
-    #"TauFromJet_pz",
-    #"TauFromJet_theta",
-    #"TauFromJet_phi",
-    #"TauFromJet_eta",
-    #"TauFromJet_y",
-    #"TauFromJet_e",
-    #"TauFromJet_charge",
-    #"TauFromJet_type",
-    #"TauFromJet_mass",
-    #"n_TauFromJet",
-
-    #"Jets_R5_sel_e",     
-    #"Jets_R5_sel_p",     
-    #"Jets_R5_sel_pt",     
-    #"Jets_R5_sel_px",   
-    #"Jets_R5_sel_py",   
-    #"Jets_R5_sel_pz",     
-    #"Jets_R5_sel_eta",    
-    #"Jets_R5_sel_theta",   
-    #"Jets_R5_sel_phi",     
-    #"Jets_R5_sel_mass",      
-    #"n_Jets_R5_sel", 
 ]
 
-VAR_JET = [
-
-    "TagJet_R5_px", 
-    "TagJet_R5_py",    
-    "TagJet_R5_pz",      
-    "TagJet_R5_p",  
-    "TagJet_R5_pt",    
-    "TagJet_R5_phi", 
-    "TagJet_R5_eta",     
-    "TagJet_R5_theta",          
-    "TagJet_R5_e",     
-    "TagJet_R5_mass",        
-    "TagJet_R5_charge",  
-    "n_TagJet_R5_constituents",   
-    "n_TagJet_R5_charged_constituents",   
-    "n_TagJet_R5_neutral_constituents",   
-    "n_TagJet_R5",           
-
-    "TagJet_R5_isG",  
-    "TagJet_R5_isU",
-    "TagJet_R5_isD",   
-    "TagJet_R5_isS",  
-    "TagJet_R5_isC",
-    "TagJet_R5_isB",  
-    "TagJet_R5_isTAU",
-
-    "TauFromJet_R5_p",
-    "TauFromJet_R5_pt",
-    "TauFromJet_R5_px",
-    "TauFromJet_R5_py",
-    "TauFromJet_R5_pz",
-    "TauFromJet_R5_theta",
-    "TauFromJet_R5_phi",
-    "TauFromJet_R5_e",
-    "TauFromJet_R5_eta",
-    "TauFromJet_R5_y",
-    "TauFromJet_R5_charge",
-    "TauFromJet_R5_type",
-    "TauFromJet_R5_mass",
-    "n_TauFromJet_R5",
-
-    "TagJet_R5_sel_e",     
-    "TagJet_R5_sel_p",     
-    "TagJet_R5_sel_pt",     
-    "TagJet_R5_sel_px",   
-    "TagJet_R5_sel_py",   
-    "TagJet_R5_sel_pz",     
-    "TagJet_R5_sel_eta",    
-    "TagJet_R5_sel_theta",   
-    "TagJet_R5_sel_phi",     
-    "TagJet_R5_sel_mass",      
-    "n_TagJet_R5_sel", 
-    
-    "TagJet_kt4_px", 
-    "TagJet_kt4_py",    
-    "TagJet_kt4_pz",      
-    "TagJet_kt4_p",  
-    "TagJet_kt4_pt",    
-    "TagJet_kt4_phi", 
-    "TagJet_kt4_eta",     
-    "TagJet_kt4_theta",          
-    "TagJet_kt4_e",     
-    "TagJet_kt4_mass",        
-    "TagJet_kt4_charge",  
-    "n_TagJet_kt4_constituents",   
-    "n_TagJet_kt4_charged_constituents",   
-    "n_TagJet_kt4_neutral_constituents",   
-    "n_TagJet_kt4",          
-
-    "TagJet_kt4_isG",  
-    "TagJet_kt4_isU",
-    "TagJet_kt4_isD",   
-    "TagJet_kt4_isS",  
-    "TagJet_kt4_isC",
-    "TagJet_kt4_isB",  
-    "TagJet_kt4_isTAU",
-
-    "TauFromJet_kt4_p",
-    "TauFromJet_kt4_pt",
-    "TauFromJet_kt4_px",
-    "TauFromJet_kt4_py",
-    "TauFromJet_kt4_pz",
-    "TauFromJet_kt4_theta",
-    "TauFromJet_kt4_phi",
-    "TauFromJet_kt4_e",
-    "TauFromJet_kt4_eta",
-    "TauFromJet_kt4_y",
-    "TauFromJet_kt4_charge",
-    "TauFromJet_kt4_type",
-    "TauFromJet_kt4_mass",
-    "n_TauFromJet_kt4",
-
-    "TagJet_kt4_sel_e",     
-    "TagJet_kt4_sel_p",     
-    "TagJet_kt4_sel_pt",     
-    "TagJet_kt4_sel_px",   
-    "TagJet_kt4_sel_py",   
-    "TagJet_kt4_sel_pz",     
-    "TagJet_kt4_sel_eta",    
-    "TagJet_kt4_sel_theta",   
-    "TagJet_kt4_sel_phi",     
-    "TagJet_kt4_sel_mass",      
-    "n_TagJet_kt4_sel",
-
-    "TagJet_kt3_px", 
-    "TagJet_kt3_py",    
-    "TagJet_kt3_pz",      
-    "TagJet_kt3_p",  
-    "TagJet_kt3_pt",    
-    "TagJet_kt3_phi", 
-    "TagJet_kt3_eta",     
-    "TagJet_kt3_theta",          
-    "TagJet_kt3_e",     
-    "TagJet_kt3_mass",        
-    "TagJet_kt3_charge",       
-    "n_TagJet_kt3_constituents",   
-    "n_TagJet_kt3_charged_constituents",   
-    "n_TagJet_kt3_neutral_constituents",   
-    "n_TagJet_kt3",          
-
-    "TagJet_kt3_isG",  
-    "TagJet_kt3_isU",
-    "TagJet_kt3_isD",   
-    "TagJet_kt3_isS",  
-    "TagJet_kt3_isC",
-    "TagJet_kt3_isB",  
-    "TagJet_kt3_isTAU",
-
-    "TauFromJet_kt3_p",
-    "TauFromJet_kt3_pt",
-    "TauFromJet_kt3_px",
-    "TauFromJet_kt3_py",
-    "TauFromJet_kt3_pz",
-    "TauFromJet_kt3_theta",
-    "TauFromJet_kt3_phi",
-    "TauFromJet_kt3_e",
-    "TauFromJet_kt3_eta",
-    "TauFromJet_kt3_y",
-    "TauFromJet_kt3_charge",
-    "TauFromJet_kt3_type",
-    "TauFromJet_kt3_mass",
-    "n_TauFromJet_kt3",
-
-    "TagJet_kt3_sel_e",     
-    "TagJet_kt3_sel_p",     
-    "TagJet_kt3_sel_pt",     
-    "TagJet_kt3_sel_px",   
-    "TagJet_kt3_sel_py",   
-    "TagJet_kt3_sel_pz",     
-    "TagJet_kt3_sel_eta",    
-    "TagJet_kt3_sel_theta",   
-    "TagJet_kt3_sel_phi",     
-    "TagJet_kt3_sel_mass",      
-    "n_TagJet_kt3_sel",
-
-    "TagJet_kt2_px", 
-    "TagJet_kt2_py",    
-    "TagJet_kt2_pz",      
-    "TagJet_kt2_p",  
-    "TagJet_kt2_pt",    
-    "TagJet_kt2_phi", 
-    "TagJet_kt2_eta",     
-    "TagJet_kt2_theta",          
-    "TagJet_kt2_e",     
-    "TagJet_kt2_mass",        
-    "TagJet_kt2_charge",    
-    "n_TagJet_kt2_constituents",   
-    "n_TagJet_kt2_charged_constituents",   
-    "n_TagJet_kt2_neutral_constituents",   
-    "n_TagJet_kt2",          
-
-    "TagJet_kt2_isG",  
-    "TagJet_kt2_isU",
-    "TagJet_kt2_isD",   
-    "TagJet_kt2_isS",  
-    "TagJet_kt2_isC",
-    "TagJet_kt2_isB",  
-    "TagJet_kt2_isTAU",
-
-    "TauFromJet_kt2_p",
-    "TauFromJet_kt2_pt",
-    "TauFromJet_kt2_px",
-    "TauFromJet_kt2_py",
-    "TauFromJet_kt2_pz",
-    "TauFromJet_kt2_theta",
-    "TauFromJet_kt2_phi",
-    "TauFromJet_kt2_e",
-    "TauFromJet_kt2_eta",
-    "TauFromJet_kt2_y",
-    "TauFromJet_kt2_charge",
-    "TauFromJet_kt2_type",
-    "TauFromJet_kt2_mass",
-    "n_TauFromJet_kt2",
-
-    "TagJet_kt2_sel_e",     
-    "TagJet_kt2_sel_p",     
-    "TagJet_kt2_sel_pt",     
-    "TagJet_kt2_sel_px",   
-    "TagJet_kt2_sel_py",   
-    "TagJet_kt2_sel_pz",     
-    "TagJet_kt2_sel_eta",    
-    "TagJet_kt2_sel_theta",   
-    "TagJet_kt2_sel_phi",     
-    "TagJet_kt2_sel_mass",      
-    "n_TagJet_kt2_sel",
-
-    "TagJet_kt1_px", 
-    "TagJet_kt1_py",    
-    "TagJet_kt1_pz",      
-    "TagJet_kt1_p",  
-    "TagJet_kt1_pt",    
-    "TagJet_kt1_phi", 
-    "TagJet_kt1_eta",     
-    "TagJet_kt1_theta",          
-    "TagJet_kt1_e",     
-    "TagJet_kt1_mass",        
-    "TagJet_kt1_charge",   
-    "n_TagJet_kt1_constituents",   
-    "n_TagJet_kt1_charged_constituents",   
-    "n_TagJet_kt1_neutral_constituents",   
-    "n_TagJet_kt1",          
-
-    "TagJet_kt1_isG",  
-    "TagJet_kt1_isU",
-    "TagJet_kt1_isD",   
-    "TagJet_kt1_isS",  
-    "TagJet_kt1_isC",
-    "TagJet_kt1_isB",  
-    "TagJet_kt1_isTAU",
-
-    "TauFromJet_kt1_p",
-    "TauFromJet_kt1_pt",
-    "TauFromJet_kt1_px",
-    "TauFromJet_kt1_py",
-    "TauFromJet_kt1_pz",
-    "TauFromJet_kt1_theta",
-    "TauFromJet_kt1_phi",
-    "TauFromJet_kt1_e",
-    "TauFromJet_kt1_eta",
-    "TauFromJet_kt1_y",
-    "TauFromJet_kt1_charge",
-    "TauFromJet_kt1_type",
-    "TauFromJet_kt1_mass",
-    "n_TauFromJet_kt1",
-
-    "TagJet_kt1_sel_e",     
-    "TagJet_kt1_sel_p",     
-    "TagJet_kt1_sel_pt",     
-    "TagJet_kt1_sel_px",   
-    "TagJet_kt1_sel_py",   
-    "TagJet_kt1_sel_pz",     
-    "TagJet_kt1_sel_eta",    
-    "TagJet_kt1_sel_theta",   
-    "TagJet_kt1_sel_phi",     
-    "TagJet_kt1_sel_mass",      
-    "n_TagJet_kt1_sel",
-
-]
 VARIABLES_TAG = [
     
     "TauTag_px", 
@@ -1037,7 +537,7 @@ VARIABLES_QQ = [
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
 
-    "BDT_score_bkg",
+    #"BDT_score_bkg",
 ]
 
 VARIABLES_NuNu = [
@@ -1116,9 +616,9 @@ VARIABLES_NuNu = [
     "Tau_DPhi",
     "Visible_mass",
 
-    "BDT_score_bkg",
-    "BDT_score_VBF",
-    "BDT_score_ZH",
+    #"BDT_score_bkg",
+    #"BDT_score_VBF",
+    #"BDT_score_ZH",
 ]
 
 LIST_VAR = {
@@ -1152,13 +652,13 @@ backgrounds_5 = [
     'wzp6_ee_tautauH_HZZ_ecm365',
 ]
 backgrounds_6 = [
-    'wzp6_ee_VBFnunuH_Hbb_ecm365',
-    'wzp6_ee_VBFnunuH_Hcc_ecm365',
-    'wzp6_ee_VBFnunuH_Hss_ecm365',
+    'wzp6_ee_VBF_nunuH_Hbb_ecm365',
+    'wzp6_ee_VBF_nunuH_Hcc_ecm365',
+    'wzp6_ee_VBF_nunuH_Hss_ecm365',
 ]
 backgrounds_7 = [
-    'wzp6_ee_VBFnunuH_HWW_ecm365',
-    'wzp6_ee_VBFnunuH_HZZ_ecm365',
+    'wzp6_ee_VBF_nunuH_HWW_ecm365',
+    'wzp6_ee_VBF_nunuH_HZZ_ecm365',
 ]
 backgrounds_8 = [
     'wzp6_ee_eeH_Hbb_ecm365',
@@ -1282,13 +782,13 @@ backgrounds_28 = [
 ]
 
 backgrounds_29 = [
-    'wzp6_ee_ZH_Znunu_Hbb_ecm365',
-    'wzp6_ee_ZH_Znunu_Hcc_ecm365',
-    'wzp6_ee_ZH_Znunu_Hss_ecm365',
+    'wzp6_ee_ZH_nunuH_Hbb_ecm365',
+    'wzp6_ee_ZH_nunuH_Hcc_ecm365',
+    'wzp6_ee_ZH_nunuH_Hss_ecm365',
 ]
 backgrounds_30 = [
-    'wzp6_ee_ZH_Znunu_HWW_ecm365',
-    'wzp6_ee_ZH_Znunu_HZZ_ecm365',
+    'wzp6_ee_ZH_nunuH_HWW_ecm365',
+    'wzp6_ee_ZH_nunuH_HZZ_ecm365',
 ]
 
 #signals
@@ -1321,8 +821,8 @@ legend = {
     4:"wzp6_ee_tautauH_HQQ_ecm365",
     5:"wzp6_ee_tautauH_HVV_ecm365",
 
-    6:"wzp6_ee_VBFnunuH_HQQ_ecm365",
-    7:"wzp6_ee_VBFnunuH_HVV_ecm365",
+    6:"wzp6_ee_VBF_nunuH_HQQ_ecm365",
+    7:"wzp6_ee_VBF_nunuH_HVV_ecm365",
 
     8:"wzp6_ee_LLH_HQQ_ecm365",
     9:"wzp6_ee_LLH_HVV_ecm365",
@@ -1345,8 +845,8 @@ legend = {
     23:"wzp6_ee_LLH_Hgg_ecm365",
 
     28:"p8_ee_ZQQ_ecm365",
-    29:"wzp6_ee_ZH_Znunu_HQQ_ecm365",
-    30:"wzp6_ee_ZH_Znunu_HVV_ecm365",
+    29:"wzp6_ee_ZH_nunuH_HQQ_ecm365",
+    30:"wzp6_ee_ZH_nunuH_HVV_ecm365",
     #signals
     24:"wzp6_ee_LLH_Htautau_ecm365",
 
@@ -1419,13 +919,13 @@ numunumuH = [
     ]
 
 legend_ZH = {
-    0:'wzp6_ee_ZH_Znunu_Htautau_ecm365',
-    1:'wzp6_ee_ZH_Znunu_Hbb_ecm365',
-    2:'wzp6_ee_ZH_Znunu_Hcc_ecm365',
-    3:'wzp6_ee_ZH_Znunu_Hss_ecm365',
-    4:'wzp6_ee_ZH_Znunu_Hgg_ecm365',
-    5:'wzp6_ee_ZH_Znunu_HWW_ecm365',
-    6:'wzp6_ee_ZH_Znunu_HZZ_ecm365', 
+    0:'wzp6_ee_ZH_nunuH_Htautau_ecm365',
+    1:'wzp6_ee_ZH_nunuH_Hbb_ecm365',
+    2:'wzp6_ee_ZH_nunuH_Hcc_ecm365',
+    3:'wzp6_ee_ZH_nunuH_Hss_ecm365',
+    4:'wzp6_ee_ZH_nunuH_Hgg_ecm365',
+    5:'wzp6_ee_ZH_nunuH_HWW_ecm365',
+    6:'wzp6_ee_ZH_nunuH_HZZ_ecm365', 
 }
 
 legend_VBF = {
@@ -1449,7 +949,7 @@ other_signal = [
 
 ################# VBF - ZH nu nu ##################
 
-for tag in TAG:
+'''for tag in TAG:
     for cat in CAT:
         for sub in SUBDIR:
 
@@ -1540,6 +1040,50 @@ for tag in TAG:
 
                     outFile.Close()
                     if check==False: #if nothing was written i don't want the file saved at all
+                        os.remove(output)'''
+
+##################### nunu ZH ###########################
+for tag in TAG:
+    for cat in CAT:
+        for sub in SUBDIR:
+            print("ZH")
+
+            CUT = CUTS[cat]
+
+            for cut in CUT:
+
+                if "tag" in tag:
+                    variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat]
+                else: 
+                    variables = VARIABLES + LIST_VAR[cat] 
+
+                directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
+
+                # ZH = 3*numunumuH
+                for i in range(len(nunuH)):
+                    output = f"{directory}{legend_ZH[i]}_{cut}_histo.root"
+                    #print(output)
+                    outFile = ROOT.TFile.Open(output, "RECREATE")
+                    check = False
+                    for var in variables:
+                        file2 = f"{directory}{numunumuH[i]}_{cut}_histo.root"
+                        hh2 = None
+                        if file_exists(file2):
+                            tf2 = ROOT.TFile.Open(file2, "READ")
+                            h2 = tf2.Get(var)
+                            hh2 = copy.deepcopy(h2)
+                            hh2.SetDirectory(0)
+                            hh2.Scale(3.)
+                            tf2.Close()
+                                
+                        #write the histogram in the file   
+                        if check==True:
+                            outFile.cd()
+                            hh2.Write()
+                            #print(f"{tag}, {cat}, {sub}, {cut}, {i}, {var} ZH")
+
+                    outFile.Close()
+                    if check==False: #if nothing was written i don't want the file saved at all
                         os.remove(output)
 
 ##################### ZH signal #########################
@@ -1557,7 +1101,7 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + subdir + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
 
                 # ZH_nunu + all other ZH signals for Htautau
                 output = f"{directory}wzp6_ee_ZH_Htautau_ecm365_{cut}_histo.root"
@@ -1565,7 +1109,7 @@ for tag in TAG:
                 outFile = ROOT.TFile.Open(output, "RECREATE")
                 check = False
                 for var in variables:
-                    file = f"{directory}wzp6_ee_ZH_Znunu_Htautau_ecm365_{cut}_histo.root"
+                    file = f"{directory}wzp6_ee_ZH_nunuH_Htautau_ecm365_{cut}_histo.root"
                     hh = None
                     if file_exists(file):
                         print(file)
@@ -1602,10 +1146,13 @@ for tag in TAG:
                 if check==False: #if nothing was written i don't want the file saved at all
                     os.remove(output)
 
-#################### now add the decays #####################
+#################### now add the decays for all #####################
 for tag in TAG:
+    print(tag)
     for cat in CAT:
+        print(cat)
         for sub in SUBDIR:
+            print(sub)
 
             CUT = CUTS[cat]
 
@@ -1616,7 +1163,7 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + subdir + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
             
                 for num in range(1,31):
                     output = f"{directory}{legend[num]}_{cut}_histo.root"
@@ -1651,11 +1198,9 @@ for tag in TAG:
                         if check==True:
                             outFile.cd()
                             hh.Write()
-                        print(f"{tag}, {cat}, {sub}, {cut}, {num}, {var}")
+                        #print(f"{tag}, {cat}, {sub}, {cut}, {num}, {var}")
                         
                     outFile.Close()
                     if check==False: #if nothing was written i don't want the file saved at all
                         os.remove(output)
-
-
 

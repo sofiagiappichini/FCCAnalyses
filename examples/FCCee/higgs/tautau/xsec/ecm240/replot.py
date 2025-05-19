@@ -23,20 +23,20 @@ def sorted_dict_values(dic: dict) -> list:
 def make_dir_if_not_exists(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
-        os.system("cp /web/sgiappic/public_html/index.php {}".format(directory)) #copy index to show plots in web page automatically
-        print(f"Directory created successfully.")
-    else:
-        print(f"Directory already exists.")
+        os.system("cp /eos/user/s/sgiappic/www/index.php {}".format(directory)) #copy index to show plots in web page automatically
+        #print(f"Directory created successfully.")
+    #else:
+        #print(f"Directory already exists.")
 
 def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm240/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/"
 TAG = [
-    "R5-explicit",
-    "R5-tag",
-    "ktN-explicit",
+    #"R5-explicit",
+    #"R5-tag",
+    #"ktN-explicit",
     "ktN-tag",
 ]
 SUBDIR = [
@@ -47,138 +47,35 @@ SUBDIR = [
 #category to plot
 CAT = [
     #"QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
 
-#list of cuts you want to plot
-CUTS_LLHH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss", 
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss_Zp54",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
+CUTS_LL = [
+    "selReco",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_2DR",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+     
 ]
 
-CUTS_LLLH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss", 
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss_Zp54",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
-]
-
-CUTS_LLLL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_40Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss", 
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss_Zp54",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
-]
-
-CUTS_QQHH = [
-    #"selReco_0.5BDT",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
-]
-
-CUTS_QQLH = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
-]
-
-CUTS_QQLL = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss_Zp52",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
-]
-    
-CUTS_NuNuHH = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
+CUTS_NuNu = [
+    "selReco",
+    "selReco_100Me",
+    "selReco_100Me_TauDPhi3",
+    "selReco_100Me_TauDPhi3_2DR",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4",
+    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
-]
-
-CUTS_NuNuLH = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
-]
-
-CUTS_NuNuLL = [
-    #"selReco",
-    #"selReco_100Me",
-    #"selReco_100Me_TauDPhi3",
-    #"selReco_100Me_TauDPhi3_2DR",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4",
-    #"selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1",
-    #"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
-]
+     ]
 
 CUTS = {
-    'LLLL':CUTS_LLLL,
-    'LLLH':CUTS_LLLH,
-    'LLHH':CUTS_LLHH,
-    'QQLL':CUTS_QQLL,
-    'QQLH':CUTS_QQLH,
-    'QQHH':CUTS_QQHH,
-    'NuNuLL':CUTS_NuNuLL,
-    'NuNuLH':CUTS_NuNuLH,
-    'NuNuHH':CUTS_NuNuHH,
+    "LL":CUTS_LL,
+    "QQ":CUTS_LL,
+    "NuNu":CUTS_NuNu,
 }
 
 #now you can list all the histograms that you want to plot
@@ -438,295 +335,12 @@ VARIABLES = [
     "RecoPhoton_charge",
     "RecoPhoton_mass",
 
-    "n_NeutralHadrons",
-    "NeutralHadrons_e",
-    "NeutralHadrons_p",
-    "NeutralHadrons_pt",
-    "NeutralHadrons_px",
-    "NeutralHadrons_py",
-    "NeutralHadrons_pz",
-    "NeutralHadrons_eta",
-    "NeutralHadrons_theta",
-    "NeutralHadrons_phi",
-    "NeutralHadrons_charge",
-    "NeutralHadrons_mass",
-
-    #"n_NoEfficiency",
-    #"NoEfficiency_e",
-    #"NoEfficiency_p",
-    #"NoEfficiency_pt",
-    #"NoEfficiency_px",
-    #"NoEfficiency_py",
-    #"NoEfficiency_pz",
-    #"NoEfficiency_eta",
-    #"NoEfficiency_theta",
-    #"NoEfficiency_phi",
-    #"NoEfficiency_charge",
-    #"NoEfficiency_type",
-    #"NoEfficiency_mass",
-
     "RecoEmiss_px",
     "RecoEmiss_py",
     "RecoEmiss_pz",
     "RecoEmiss_pt",
     "RecoEmiss_p",
     "RecoEmiss_e",
-
-    #"TagJet_R5_px", 
-    #"TagJet_R5_py",    
-    #"TagJet_R5_pz",      
-    #"TagJet_R5_p",  
-    #"TagJet_R5_pt",    
-    #"TagJet_R5_phi", 
-    #"TagJet_R5_eta",     
-    #"TagJet_R5_theta",          
-    #"TagJet_R5_e",     
-    #"TagJet_R5_mass",        
-    #"TagJet_R5_charge",  
-    #"n_TagJet_R5_constituents",   
-    #"n_TagJet_R5_charged_constituents",   
-    #"n_TagJet_R5_neutral_constituents",   
-    #"n_TagJet_R5",           
-
-    #"TagJet_R5_isG",  
-    #"TagJet_R5_isU",
-    #"TagJet_R5_isD",   
-    #"TagJet_R5_isS",  
-    #"TagJet_R5_isC",
-    #"TagJet_R5_isB",  
-    #"TagJet_R5_isTAU",
-
-    #"TauFromJet_R5_p",
-    #"TauFromJet_R5_pt",
-    #"TauFromJet_R5_px",
-    #"TauFromJet_R5_py",
-    #"TauFromJet_R5_pz",
-    #"TauFromJet_R5_theta",
-    #"TauFromJet_R5_phi",
-    #"TauFromJet_R5_e",
-    #"TauFromJet_R5_eta",
-    #"TauFromJet_R5_y",
-    #"TauFromJet_R5_charge",
-    #"TauFromJet_R5_type",
-    #"TauFromJet_R5_mass",
-    #"n_TauFromJet_R5",
-
-    #"TagJet_R5_sel_e",     
-    #"TagJet_R5_sel_p",     
-    #"TagJet_R5_sel_pt",     
-    #"TagJet_R5_sel_px",   
-    #"TagJet_R5_sel_py",   
-    #"TagJet_R5_sel_pz",     
-    #"TagJet_R5_sel_eta",    
-    #"TagJet_R5_sel_theta",   
-    #"TagJet_R5_sel_phi",     
-    #"TagJet_R5_sel_mass",      
-    #"n_TagJet_R5_sel", 
-    
-    #"TagJet_kt4_px", 
-    #"TagJet_kt4_py",    
-    #"TagJet_kt4_pz",      
-    #"TagJet_kt4_p",  
-    #"TagJet_kt4_pt",    
-    #"TagJet_kt4_phi", 
-    #"TagJet_kt4_eta",     
-    #"TagJet_kt4_theta",          
-    #"TagJet_kt4_e",     
-    #"TagJet_kt4_mass",        
-    #"TagJet_kt4_charge",  
-    #"n_TagJet_kt4_constituents",   
-    #"n_TagJet_kt4_charged_constituents",   
-    #"n_TagJet_kt4_neutral_constituents",   
-    #"n_TagJet_kt4",          
-
-    #"TagJet_kt4_isG",  
-    #"TagJet_kt4_isU",
-    #"TagJet_kt4_isD",   
-    #"TagJet_kt4_isS",  
-    #"TagJet_kt4_isC",
-    #"TagJet_kt4_isB",  
-    #"TagJet_kt4_isTAU",
-
-    #"TauFromJet_kt4_p",
-    #"TauFromJet_kt4_pt",
-    #"TauFromJet_kt4_px",
-    #"TauFromJet_kt4_py",
-    #"TauFromJet_kt4_pz",
-    #"TauFromJet_kt4_theta",
-    #"TauFromJet_kt4_phi",
-    #"TauFromJet_kt4_e",
-    #"TauFromJet_kt4_eta",
-    #"TauFromJet_kt4_y",
-    #"TauFromJet_kt4_charge",
-    #"TauFromJet_kt4_type",
-    #"TauFromJet_kt4_mass",
-    #"n_TauFromJet_kt4",
-
-    #"TagJet_kt4_sel_e",     
-    #"TagJet_kt4_sel_p",     
-    #"TagJet_kt4_sel_pt",     
-    #"TagJet_kt4_sel_px",   
-    #"TagJet_kt4_sel_py",   
-    #"TagJet_kt4_sel_pz",     
-    #"TagJet_kt4_sel_eta",    
-    #"TagJet_kt4_sel_theta",   
-    #"TagJet_kt4_sel_phi",     
-    #"TagJet_kt4_sel_mass",      
-    #"n_TagJet_kt4_sel",
-
-    #"TagJet_kt3_px", 
-    #"TagJet_kt3_py",    
-    #"TagJet_kt3_pz",      
-    #"TagJet_kt3_p",  
-    #"TagJet_kt3_pt",    
-    #"TagJet_kt3_phi", 
-    #"TagJet_kt3_eta",     
-    #"TagJet_kt3_theta",          
-    #"TagJet_kt3_e",     
-    #"TagJet_kt3_mass",        
-    #"TagJet_kt3_charge",       
-    #"n_TagJet_kt3_constituents",   
-    #"n_TagJet_kt3_charged_constituents",   
-    #"n_TagJet_kt3_neutral_constituents",   
-    #"n_TagJet_kt3",          
-
-    #"TagJet_kt3_isG",  
-    #"TagJet_kt3_isU",
-    #"TagJet_kt3_isD",   
-    #"TagJet_kt3_isS",  
-    #"TagJet_kt3_isC",
-    #"TagJet_kt3_isB",  
-    #"TagJet_kt3_isTAU",
-
-    #"TauFromJet_kt3_p",
-    #"TauFromJet_kt3_pt",
-    #"TauFromJet_kt3_px",
-    #"TauFromJet_kt3_py",
-    #"TauFromJet_kt3_pz",
-    #"TauFromJet_kt3_theta",
-    #"TauFromJet_kt3_phi",
-    #"TauFromJet_kt3_e",
-    #"TauFromJet_kt3_eta",
-    #"TauFromJet_kt3_y",
-    #"TauFromJet_kt3_charge",
-    #"TauFromJet_kt3_type",
-    #"TauFromJet_kt3_mass",
-    #"n_TauFromJet_kt3",
-
-    #"TagJet_kt3_sel_e",     
-    #"TagJet_kt3_sel_p",     
-    #"TagJet_kt3_sel_pt",     
-    #"TagJet_kt3_sel_px",   
-    #"TagJet_kt3_sel_py",   
-    #"TagJet_kt3_sel_pz",     
-    #"TagJet_kt3_sel_eta",    
-    #"TagJet_kt3_sel_theta",   
-    #"TagJet_kt3_sel_phi",     
-    #"TagJet_kt3_sel_mass",      
-    #"n_TagJet_kt3_sel",
-
-    #"TagJet_kt2_px", 
-    #"TagJet_kt2_py",    
-    #"TagJet_kt2_pz",      
-    #"TagJet_kt2_p",  
-    #"TagJet_kt2_pt",    
-    #"TagJet_kt2_phi", 
-    #"TagJet_kt2_eta",     
-    #"TagJet_kt2_theta",          
-    #"TagJet_kt2_e",     
-    #"TagJet_kt2_mass",        
-    #"TagJet_kt2_charge",    
-    #"n_TagJet_kt2_constituents",   
-    #"n_TagJet_kt2_charged_constituents",   
-    #"n_TagJet_kt2_neutral_constituents",   
-    #"n_TagJet_kt2",          
-
-    #"TagJet_kt2_isG",  
-    #"TagJet_kt2_isU",
-    #"TagJet_kt2_isD",   
-    #"TagJet_kt2_isS",  
-    #"TagJet_kt2_isC",
-    #"TagJet_kt2_isB",  
-    #"TagJet_kt2_isTAU",
-
-    #"TauFromJet_kt2_p",
-    #"TauFromJet_kt2_pt",
-    #"TauFromJet_kt2_px",
-    #"TauFromJet_kt2_py",
-    #"TauFromJet_kt2_pz",
-    #"TauFromJet_kt2_theta",
-    #"TauFromJet_kt2_phi",
-    #"TauFromJet_kt2_e",
-    #"TauFromJet_kt2_eta",
-    #"TauFromJet_kt2_y",
-    #"TauFromJet_kt2_charge",
-    #"TauFromJet_kt2_type",
-    #"TauFromJet_kt2_mass",
-    #"n_TauFromJet_kt2",
-
-    #"TagJet_kt2_sel_e",     
-    #"TagJet_kt2_sel_p",     
-    #"TagJet_kt2_sel_pt",     
-    #"TagJet_kt2_sel_px",   
-    #"TagJet_kt2_sel_py",   
-    #"TagJet_kt2_sel_pz",     
-    #"TagJet_kt2_sel_eta",    
-    #"TagJet_kt2_sel_theta",   
-    #"TagJet_kt2_sel_phi",     
-    #"TagJet_kt2_sel_mass",      
-    #"n_TagJet_kt2_sel",
-
-    #"TagJet_kt1_px", 
-    #"TagJet_kt1_py",    
-    #"TagJet_kt1_pz",      
-    #"TagJet_kt1_p",  
-    #"TagJet_kt1_pt",    
-    #"TagJet_kt1_phi", 
-    #"TagJet_kt1_eta",     
-    #"TagJet_kt1_theta",          
-    #"TagJet_kt1_e",     
-    #"TagJet_kt1_mass",        
-    #"TagJet_kt1_charge",   
-    #"n_TagJet_kt1_constituents",   
-    #"n_TagJet_kt1_charged_constituents",   
-    #"n_TagJet_kt1_neutral_constituents",   
-    #"n_TagJet_kt1",          
-
-    #"TagJet_kt1_isG",  
-    #"TagJet_kt1_isU",
-    #"TagJet_kt1_isD",   
-    #"TagJet_kt1_isS",  
-    #"TagJet_kt1_isC",
-    #"TagJet_kt1_isB",  
-    #"TagJet_kt1_isTAU",
-
-    #"TauFromJet_kt1_p",
-    #"TauFromJet_kt1_pt",
-    #"TauFromJet_kt1_px",
-    #"TauFromJet_kt1_py",
-    #"TauFromJet_kt1_pz",
-    #"TauFromJet_kt1_theta",
-    #"TauFromJet_kt1_phi",
-    #"TauFromJet_kt1_e",
-    #"TauFromJet_kt1_eta",
-    #"TauFromJet_kt1_y",
-    #"TauFromJet_kt1_charge",
-    #"TauFromJet_kt1_type",
-    #"TauFromJet_kt1_mass",
-    #"n_TauFromJet_kt1",
-
-    #"TagJet_kt1_sel_e",     
-    #"TagJet_kt1_sel_p",     
-    #"TagJet_kt1_sel_pt",     
-    #"TagJet_kt1_sel_px",   
-    #"TagJet_kt1_sel_py",   
-    #"TagJet_kt1_sel_pz",     
-    #"TagJet_kt1_sel_eta",    
-    #"TagJet_kt1_sel_theta",   
-    #"TagJet_kt1_sel_phi",     
-    #"TagJet_kt1_sel_mass",      
-    #"n_TagJet_kt1_sel",
-
     "RecoEmiss_eta",
     "RecoEmiss_phi",
     "RecoEmiss_theta",
@@ -773,7 +387,6 @@ VARIABLES_TAG = [
     "QuarkTag_isC",
     "QuarkTag_isB",  
     "QuarkTag_isTAU",
-
 
     "TauLead_type",
     "n_TauLead_constituents",
@@ -1138,73 +751,18 @@ LIST_VAR = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/Higgs_xsec/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_xsec/ecm240/' 
 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
     "selReco_100Coll150": "100<M_{collinear}<150 GeV",
     "selReco_100Coll150_115Rec160": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV",
-    "selReco_100Coll150_115Rec160_10Me": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV",
-
     "selReco_100Coll150_115Rec160_2DR": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2",
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>10 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_QTAU0.5_10ME": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>10 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.96, 80<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV}",
     
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 84<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_84Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 84<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.88, 84<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV}",
-    
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_40Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>40 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>40 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_40Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>40 GeV, p_{Z}<54 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.9, 80<M_{Z}<100 GeV, E_{miss}>40 GeV, p_{Z}<54 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<52 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.86, 70<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<52 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 75<M_{Z}<100 GeV, E_{miss}>4 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 75<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<52 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.86, 75<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<52 GeV}",
-    
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_36Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>36 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 75<M_{Z}<100 GeV, E_{miss}>36 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 75<M_{Z}<100 GeV, E_{miss}>36 GeV, p_{Z}<52 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>52 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_52Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 70<M_{Z}<100 GeV, E_{miss}>52 GeV, p_{Z}<52 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.92, 70<M_{Z}<100 GeV, E_{miss}>52 GeV, p_{Z}<52 GeV}",
-
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 86<M_{Z}<100 GeV, E_{miss}>4 GeV",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 86<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.96, 86<M_{Z}<100 GeV, E_{miss}>4 GeV, p_{Z}<54 GeV",
-
-    #cuts for LL
-    "selReco_100Coll150_115Rec160_10Me_70Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV}",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2}",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0.6": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6}",
-    "selReco_100Coll150_115Rec160_10Me_70Z100_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{70<M_{Z}<110 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98}",
-
-    #cuts for QQ
-    "selReco_100Coll150_115Rec160_10Me_80Z95": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV}",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2}",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6}",
-    "selReco_100Coll150_115Rec160_10Me_80Z95_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, E_{miss}>10 GeV,}{80<M_{Z}<95 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98}",
-    
-    "selReco_0.5BDT":"100<M_{collinear}<150 GeV, BDT score>0.5",
-    "selReco_0.6BDT":"100<M_{collinear}<150 GeV, BDT score>0.6",
-    "selReco_0.7BDT":"100<M_{collinear}<150 GeV, BDT score>0.7",
-
     #cuts for NuNu
     "selReco_100Me": "E_{miss}>100 GeV",
     "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
@@ -1212,19 +770,6 @@ LABELS = {
     "selReco_100Me_TauDPhi3_2DR_cos0.4": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-    "selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.88, |y_{miss}|<1",
-     
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-    "selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.94, |y_{miss}|<1",
-
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
-    "selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1": "E_{miss}>112 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.92, |y_{miss}|<1",
-
-    #"selReco_0.5BDT":"E_{miss}>100 GeV, BDT score>0.5",
-    #"selReco_0.6BDT":"E_{miss}>100 GeV, BDT score>0.6",
-    #"selReco_0.7BDT":"E_{miss}>100 GeV, BDT score>0.7",
 
  }
 
@@ -1435,44 +980,14 @@ for tag in TAG:
         #variables = ["RecoEmiss_e",]
 
         for sub in SUBDIR:
-                    directory = DIRECTORY + tag + "/final_241202/" + cat + "/" + sub + "/"
+                    directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
 
-                    CUT = CUTS[cat+sub]
-
-                    if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
-                        CUT = [
-                            #"selReco",
-                            #"selReco_100Coll150",
-                            #"selReco_100Coll150_115Rec160",
-                            #"selReco_100Coll150_115Rec160_2DR",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_4Emiss",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss", 
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_86Z100_4Emiss_Zp54",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54",
-                        ]
-
-                    if "tag" in tag and "QQ" in cat and "HH" in sub:
-                        CUT = [
-                            #"selReco",
-                            #"selReco_100Coll150",
-                            #"selReco_100Coll150_115Rec160",
-                            #"selReco_100Coll150_115Rec160_2DR",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-                            "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100_8Emiss",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_8Emiss_Zp52",
-                            #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_75Z100_8Emiss_Zp52",
-                        ]
+                    CUT = CUTS[cat]
 
                     for cut in CUT:
                         for variable in variables:
 
-                            print(variable, cut, directory)
+                            #print(variable, cut, directory)
 
                             canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1682,7 +1197,12 @@ for tag in TAG:
                                 canvas.Modified()
                                 canvas.Update()
 
-                                dir = DIR_PLOTS + tag + "/" 
+                                dir = DIR_PLOTS + tag + "/" + cat + "/" + sub + "/log/" + cut + "/"
+                                make_dir_if_not_exists(DIR_PLOTS + tag)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/log/")
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/log/" + cut)
                                 make_dir_if_not_exists(dir)
 
                                 canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
@@ -1698,6 +1218,11 @@ for tag in TAG:
                                 canvas.Update()
 
                                 dir = DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut + "/"
+                                make_dir_if_not_exists(DIR_PLOTS + tag)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub)
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/")
+                                make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut)
                                 make_dir_if_not_exists(dir)
 
                                 canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")

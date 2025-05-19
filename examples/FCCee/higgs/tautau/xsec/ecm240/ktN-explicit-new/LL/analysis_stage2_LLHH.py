@@ -5,6 +5,9 @@ import urllib.request
 #Mandatory: List of processes
 processList = {
 
+    'p8_ee_WW_ecm240':{'chunks':3740},}
+processList_ = {
+
     'p8_ee_WW_ecm240':{'chunks':3740},
     'p8_ee_Zqq_ecm240':{'chunks':1007},
     'p8_ee_ZZ_ecm240':{'chunks':1000},
@@ -96,7 +99,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/stage1_250302/ktN-explicit/LL/HH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-explicit/LL/HH/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -792,8 +795,8 @@ class RDFanalysis():
                 
                 .Define("RecoTau1_p4",      "TLorentzVector(TauFromJet_kt2_px.at(0), TauFromJet_kt2_py.at(0), TauFromJet_kt2_pz.at(0), TauFromJet_kt2_e.at(0))")
                 .Define("RecoTau2_p4",      "TLorentzVector(TauFromJet_kt2_px.at(1), TauFromJet_kt2_py.at(1), TauFromJet_kt2_pz.at(1), TauFromJet_kt2_e.at(1))")
-                .Define("RecoTau1_type",        "TauFromJet_R5Tag_type.at(0)")
-                .Define("RecoTau2_type",        "TauFromJet_R5Tag_type.at(1)")
+                .Define("RecoTau1_type",        "float(TauFromJet_kt2_type.at(0))")
+                .Define("RecoTau2_type",        "float(TauFromJet_kt2_type.at(1))")
 
                 .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
                 .Define("RecoH_px",    "RecoH_p4.Px()")
