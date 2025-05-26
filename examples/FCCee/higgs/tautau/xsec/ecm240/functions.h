@@ -1324,6 +1324,111 @@ Vec_f particleResolution(Vec_rp in, Vec_i in_idx, Vec_i recind, Vec_i mcind, Vec
     return result;
 }
 
+Vec_f dR_matching(Vec_rp in, Vec_i in_idx, Vec_i recind, Vec_i mcind, Vec_rp reco, Vec_mc mc){
+    Vec_f result;
+
+    // avoid events that have the extra soft photon and screws up the MC/RECO collections
+    //if(reco.size() != recind.size()) return result;
+
+    result.reserve(in.size());
+
+    for(int i = 0; i < in.size(); ++i) {
+        TLorentzVector reco_p4;
+        reco_p4.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+        int mc_index = mcind[recind[in_idx[i]]];
+        if(mc_index >= 0 && mc_index < (int)mc.size() && mc.at(mc_index).PDG != 22){
+            TLorentzVector mc_;
+            mc_.SetXYZM(mc.at(mc_index).momentum.x, mc.at(mc_index).momentum.y, mc.at(mc_index).momentum.z, mc.at(mc_index).mass);
+            //cout << reco_p4.P() << " " << mc_.P()<< " "  << reco_p4.Theta() << " " << mc_.Theta() << " "  << reco_p4.Phi() << " " << mc_.Phi() << endl;
+            result.emplace_back(reco_p4.DeltaR(mc_));
+        }
+        else{
+            result.emplace_back(-1000.);
+        }
+    } 
+    return result;
+}
+
+Vec_i Reco2MCpdg(Vec_rp in, Vec_i in_idx, Vec_i recind, Vec_i mcind, Vec_rp reco, Vec_mc mc){
+    Vec_f result;
+
+    result.reserve(in.size());
+    for(int i = 0; i < in.size(); ++i) {
+        int mc_index = mcind[recind[in_idx[i]]];
+        if(mc_index >= 0 && mc_index < (int)mc.size()){
+            result.emplace_back(mc.at(mc_index).PDG);
+        }
+        else{
+            result.emplace_back(-1000.);
+        }
+    } 
+    return result;
+}
+
+ROOT::VecOps::RVec<float> jet_reso(ROOT::VecOps::RVec<float> jet_px,ROOT::VecOps::RVec<float> jet_py,ROOT::VecOps::RVec<float> jet_pz,ROOT::VecOps::RVec<float> jet_mass,ROOT::VecOps::RVec<edm4hep::MCParticleData> mc){
+
+    ROOT::VecOps::RVec<float> result;
+    result.reserve(2);
+
+    float total_DR; 
+    float min_DR = 1000.;
+    int mc2jet1_idx = -1;
+    int mc2jet2_idx = -1;
+
+
+    TLorentzVector jet1;
+    TLorentzVector jet2;
+    jet1.SetXYZM(jet_px[0], jet_py[0], jet_pz[0], jet_mass[0]);
+    jet2.SetXYZM(jet_px[1], jet_py[1], jet_pz[1], jet_mass[1]);
+
+    for(int i = 0; i < mc.size(); ++i){ 
+        for(int j = i+1; j < mc.size(); ++j){
+
+            TLorentzVector mc_quark1;
+            TLorentzVector mc_quark2;
+            mc_quark1.SetXYZM(mc[i].momentum.x, mc[i].momentum.y, mc[i].momentum.z, mc[i].mass);
+            mc_quark2.SetXYZM(mc[j].momentum.x, mc[j].momentum.y, mc[j].momentum.z, mc[j].mass);
+
+            total_DR = jet1.DeltaR(mc_quark1) + jet2.DeltaR(mc_quark2);
+
+            if(min_DR > total_DR){
+
+                min_DR = total_DR;
+                mc2jet1_idx = i;
+                mc2jet2_idx = j;
+            }
+
+            total_DR = jet1.DeltaR(mc_quark2) + jet2.DeltaR(mc_quark1);
+
+            if(min_DR > total_DR){
+
+                min_DR = total_DR;
+                mc2jet1_idx = j;
+                mc2jet2_idx = i;
+            }
+        }
+    }
+
+    //std::cout << mc2jet1_idx << std::endl;
+    //std::cout << mc2jet2_idx << std::endl;
+
+    TLorentzVector quark2jet1;
+    quark2jet1.SetXYZM(mc[mc2jet1_idx].momentum.x, mc[mc2jet1_idx].momentum.y, mc[mc2jet1_idx].momentum.z, mc[mc2jet1_idx].mass);
+    float reso_1 = (jet1.P()-quark2jet1.P())/quark2jet1.P();
+    //std::cout << reso_1 << std::endl;
+
+    TLorentzVector quark2jet2;
+    quark2jet1.SetXYZM(mc[mc2jet2_idx].momentum.x, mc[mc2jet2_idx].momentum.y, mc[mc2jet2_idx].momentum.z, mc[mc2jet2_idx].mass);
+    float reso_2 = (jet2.P()-quark2jet2.P())/quark2jet2.P();
+    //std::cout << reso_2 << std::endl;
+
+    result.push_back(reso_1);
+    result.push_back(reso_2);
+
+    return result; 
+}
+
+
 ROOT::VecOps::RVec<float> reso_p_pdg(ROOT::VecOps::RVec<int> recind,
 				    ROOT::VecOps::RVec<int> mcind,
 				    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> reco,

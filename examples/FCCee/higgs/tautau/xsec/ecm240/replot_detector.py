@@ -9,6 +9,7 @@ import copy
 import re
 import logging
 import ROOT
+import numpy as np
 
 # Set ROOT to batch mode so it doesn't open all the plots
 ROOT.gROOT.SetBatch(True)
@@ -185,13 +186,82 @@ VARIABLES = [
     #"TagJet_kt2_mass",        
     #"TagJet_kt2_charge",  
 
-    #"Down_p_res_0_20",
-    #"Down_p_res_20_40",
-    #"Down_p_res_40_60",
-    #"Down_p_res_60_higher",
-    #"Down_p_res_total",
-    #"NHadron_p_res_total",
+    "n_genBottoms",
+    "genBottom_p",
+    "genBottom_e",
+    "genBottom_pt",
+    "genBottom_px",
+    "genBottom_py",
+    "genBottom_pz",
+    "genBottom_y",
+    "genBottom_eta",
+    "genBottom_theta",
+    "genBottom_phi",
+    "genBottom_charge",
+    "genBottom_mass",
+
+    "n_FSGenChargedHadrons",
+    "FSGenChargedHadrons_p",
+    "FSGenChargedHadrons_eta",
+
+    "n_FSGenNeutralHadrons",
+    "FSGenNeutralHadrons_p",
+    "FSGenNeutralHadrons_eta",
+
+    "n_NeutralHadron", 
+    "NeutralHadron_p",
+    "NeutralHadron_eta",
+
+    "n_ChargedHadron",
+    "ChargedHadron_p",
+    "ChargedHadron_eta",
+
+    "n_NHadron_low_dR",  
+    "NHadron_low_dR_p",     
+    "NHadron_low_dR_e",
+    "NHadron_low_dR_pt",
+    "NHadron_low_dR_px",
+    "NHadron_low_dR_py",
+    "NHadron_low_dR_pz",
+    "NHadron_low_dR_y",
+    "NHadron_low_dR_eta",
+    "NHadron_low_dR_theta",
+    "NHadron_low_dR_phi",
+    "NHadron_low_dR_charge",
+    "NHadron_low_dR_mass",
+    "NHadron_low_dR_p_res_total",
+    "NHadron_low_dR_MCPDG",
+
+
+    "n_NHadron_high_dR",
+    "NHadron_high_dR_p",        
+    "NHadron_high_dR_e",
+    "NHadron_high_dR_pt",
+    "NHadron_high_dR_px",
+    "NHadron_high_dR_py",
+    "NHadron_high_dR_pz",
+    "NHadron_high_dR_y",
+    "NHadron_high_dR_eta",
+    "NHadron_high_dR_theta",
+    "NHadron_high_dR_phi",
+    "NHadron_high_dR_charge",
+    "NHadron_high_dR_mass",
+    "NHadron_high_dR_p_res_total", 
+    "NHadron_high_dR_MCPDG",
+
+    "n_TagJet_kt2",
+    "TagJet_kt2_eta",
+
+    "CHadron_dR",
+    "NHadron_dR",
+
+    "n_DeltaNeutralHadrons",
+
+    "NHadron_p_res_total",
     "CHadron_p_res_total",
+    "NHadron_low_dR_p_res_total",
+    "NHadron_high_dR_p_res_total",
+    "jet_reso",
 ]
 
 #directory where you want your plots to go
@@ -231,9 +301,9 @@ legcolors = {
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    #'IDEA_events_002119867',
-    'IDEA_CMS2',
-    'IDEA_CMS1',
+    'IDEA_events_002119867',
+    #'IDEA_CMS2',
+    #'IDEA_CMS1',
     'CMS_Phase2_events_002119867',
     'CMS_Phase1_events_002119867',
 ]
@@ -287,10 +357,11 @@ for cut in CUTS:
                 histos.append(hh)
                 colors.append(legcolors[s])
                 if('res' in variable):
-                    bin1 = hh.FindFirstBinAbove(hh.GetMaximum()/2)
-                    bin2 = hh.FindLastBinAbove(hh.GetMaximum()/2)
-                    FWHM = hh.GetBinCenter(bin2) - hh.GetBinCenter(bin1)
-                    leg.AddEntry(histos[-1], legend[s], "l") #+ ', FWHM: ' + str(FWHM)
+                    gaussFit = ROOT.TF1("gaussfit","gaus") 
+                    h.Fit(gaussFit, "E")
+                    mean = gaussFit.GetParameter(1)
+                    sigma = gaussFit.GetParameter(2)
+                    leg.AddEntry(histos[-1], legend[s] + ', #sigma: ' + str(round(sigma,5)), "l") #
                 else:
                     leg.AddEntry(histos[-1], legend[s], "l")
                 leg_bkg.append(0)
@@ -368,21 +439,39 @@ for cut in CUTS:
                 h = histos[i]
                 h.SetLineWidth(3)
                 h.SetLineColor(colors[i])
-                #if('res' in variable):
-                #    bin1 = h.FindFirstBinAbove(h.GetMaximum()/2)
-                #    bin2 = h.FindLastBinAbove(h.GetMaximum()/2)
-                #    FWHM = h.GetBinCenter(bin2) - h.GetBinCenter(bin1)
-                #    gaussFit = ROOT.TF1("gaussfit","gaus") 
-                #    h.Fit(gaussFit, "E")
-                #    mean = gaussFit.GetParameter(1)
-                #    sigma = gaussFit.GetParameter(2)
-                #    with open('/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/output.txt', "a") as file:
-                #        file.write(f"{variable}\n")
-                #        file.write(f"{signals[i]}\n")
-                #        file.write(f"Mean: {mean}\n")
-                #        file.write(f"Sigma: {sigma}\n")
-                #        file.write(f"2Sigma: {sigma*2}\n")
-                #        file.write(f"FWHM: {FWHM}\n\n")
+                if('low_dR_p_res' in variable):
+                    bin1 = h.FindFirstBinAbove(h.GetMaximum()/2)
+                    bin2 = h.FindLastBinAbove(h.GetMaximum()/2)
+                    FWHM = h.GetBinCenter(bin2) - h.GetBinCenter(bin1)
+                    maxi = h.GetMaximum()
+                    maxi_bin = h.GetMaximumBin()
+                    print(maxi)
+                    print(maxi_bin)
+                    HM = h.Integral(maxi_bin-5, maxi_bin+5)/2.
+                    #bins = np.linspace(-0.5, 0.5, 1990, True)
+                    left_bin = -1000
+                    for k in range(1990):
+                        if(h.Integral(k, k+10) >= HM and left_bin == -1000):
+                            left_bin = k + 5
+                            print(left_bin)
+                        if(k > maxi_bin and h.Integral(k, k+10) <= HM):
+                            right_bin = k + 5
+                            print(right_bin)
+                            break
+                    FWHM_scan = h.GetBinCenter(right_bin) - h.GetBinCenter(left_bin)
+
+                    gaussFit = ROOT.TF1("gaussfit","gaus") 
+                    h.Fit(gaussFit, "E")
+                    mean = gaussFit.GetParameter(1)
+                    sigma = gaussFit.GetParameter(2)
+                    with open('/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/output.txt', "a") as file:
+                        file.write(f"{variable}\n")
+                        file.write(f"{signals[i]}\n")
+                        file.write(f"Mean: {mean}\n")
+                        file.write(f"Sigma: {sigma}\n")
+                        file.write(f"2Sigma: {sigma*2}\n")
+                        file.write(f"FWHM: {FWHM}\n")
+                        file.write(f"FWHM scan: {FWHM_scan}\n\n")
                 
                 if i == 0:
                     h.Draw("HIST")

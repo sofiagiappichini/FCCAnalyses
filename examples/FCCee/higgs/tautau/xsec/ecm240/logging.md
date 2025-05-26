@@ -25,3 +25,24 @@
 - fitting resolution for e, mu and gamma works quite solid now, only small deviations
 - for IDEA many neural hadrons are mismatched, also small shift for CMS1 + 2
 - charged hadrons work ok for CMS2, but also small shift for CMS1 and not enough smearing  
+
+# Week 19.05.2025-25.05.2025
+- more reconstructed neutral hadrons than MC neutral hadrons -> missmatching
+- for CMS1 lowest number of neutral hadrons per event
+- ckecks on eta and dR: nothing unexpected
+- created 2 subsets with dR < 0.01 and dR > 0.06: 
+    - checks on MC-PDG: dR > 0.06 mainly charged Pions and Kaons, dR < 0.01 still contains protons 
+- fitting only neutral hadron dR<0.01:
+    - CMS2: SF 2.24087
+    - CMS1: SF 5.93010
+    - not enough smearing, understandable since many mismatched charged hadrons do not get proper smearing
+- fitting jet reso -> poor fit -> change to scan for FWHM
+    - CMS2: SF 2.49057
+    - CMS1: SF 3.00629
+    - not enough
+
+# Week 26.05.2025-01.06.2025
+- FWHM scan for low dR neutral hadrons:
+    - CMS2: SF 2.5
+    - CMS1: SF 2.53125
+    - not enough
