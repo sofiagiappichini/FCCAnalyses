@@ -50,6 +50,8 @@
     - sigma = sqrt(sigma_cms^2-sigma_idea^2)
     - p_jet_idea rn gauss smearing with sigma
 - Dijet mass shape is off
-- function for jets smearing build -- not tested 
+- function for jets smearing build:
+    - smearing p4-vectors of jets, legit?
 
 # Week 02.06.2025-08.06.2025
+- smearing for electrons, muons, photons implemented in Cross section measurement

@@ -21,7 +21,7 @@ doTree = False
 
 processList = {
     'IDEA_events_002119867': {},
-    #'IDEA_CMS2': {},
+    'IDEA_CMS2': {},
     #'IDEA_CMS1': {},
     'CMS_Phase2_events_002119867': {},
     'CMS_Phase1_events_002119867': {},
