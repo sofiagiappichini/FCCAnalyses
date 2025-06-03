@@ -5,8 +5,8 @@ from copy import deepcopy
 
 processList = {
     'IDEA_events_002119867': {},
-    'CMS_Phase2_events_002119867': {},
-    'CMS_Phase1_events_002119867': {},
+    #'CMS_Phase2_events_002119867': {},
+    #'CMS_Phase1_events_002119867': {},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -330,7 +330,8 @@ class RDFanalysis():
                 .Define("jet_p4",               "FCCAnalyses::ZHfunctions::build_p4(TagJet_kt2_px, TagJet_kt2_py, TagJet_kt2_pz, TagJet_kt2_e)")
                 .Define("Dijet_p4",             "jet_p4.at(0) + jet_p4.at(1)")
                 .Define("Dijet_mass",           "Dijet_p4.M()")
-                .Define("smeared_jet_p4",       "FCCAnalyses::ZHfunctions::smear_jet(jet_p4, 52.5, 6.96, Dijet_mass)")
+                .Define("Dijet_p",              "Dijet_p4.P()")
+                .Define("smeared_jet_p4",       "FCCAnalyses::ZHfunctions::smear_jet(jet_p4, 21.3, 6.96, Dijet_mass, Dijet_p)")
                 .Define("smeared_Dijet_p4",     "smeared_jet_p4.at(0) + smeared_jet_p4.at(1)")
                 .Define("smeared_Dijet_mass",   "Dijet_p4.M()")
 
