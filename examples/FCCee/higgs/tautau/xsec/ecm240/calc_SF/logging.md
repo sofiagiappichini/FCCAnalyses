@@ -54,4 +54,8 @@
     - smearing p4-vectors of jets, legit?
 
 # Week 02.06.2025-08.06.2025
-- smearing for electrons, muons, photons implemented in Cross section measurement
+- smearing for electrons, muons, photons implemented in Cross section measurement for ktN-tag
+- Monday-Meeting: 
+    - smear charged hads for taus with chad value
+    - check for double matching
+    - explicit ktN, PNet doent work

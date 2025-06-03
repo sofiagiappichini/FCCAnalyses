@@ -2332,6 +2332,28 @@ ROOT::VecOps::RVec<int> get_PID(ROOT::VecOps::RVec<edm4hep::ReconstructedParticl
     return result;
 }
 
+ROOT::VecOps::RVec<TLorentzVector> smear_jet(ROOT::VecOps::RVec<TLorentzVector> jets, float sf){
+    ROOT::VecOps::RVec<TLorentzVector> p4;
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+
+    for(unsigned int i = 0; i < jets.size(); i++){
+        
+        std::normal_distribution<> d(jets[i].P(), sf);
+        float smeared_p = d(gen);
+
+        float smeared_e = std::sqrt(smeared_p * smeared_p + jets[i].M() * jets[i].M());
+        float smeared_x = smeared_p * std::sin(jets[i].Theta()) * std::cos(jets[i].Phi());
+        float smeared_y = smeared_p * std::sin(jets[i].Theta()) * std::sin(jets[i].Phi());
+        float smeared_z = smeared_p * std::cos(jets[i].Theta());
+
+        
+        TLorentzVector tlv;
+        tlv.SetPxPyPzE(smeared_x, smeared_y, smeared_z, smeared_e);
+        p4.push_back(tlv);
+    }
+    return p4;
+}
 
 }}
 

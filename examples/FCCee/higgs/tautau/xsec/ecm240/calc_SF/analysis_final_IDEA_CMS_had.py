@@ -22,9 +22,10 @@ doTree = False
 processList = {
     'IDEA_events_002119867': {},
     'IDEA_CMS2': {},
-    #'IDEA_CMS1': {},
+    'IDEA_CMS1': {},
     'CMS_Phase2_events_002119867': {},
     'CMS_Phase1_events_002119867': {},
+    #'IDEA_SF10':{},
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -41,6 +42,7 @@ procDictAdd = {
     'IDEA_CMS1': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0269, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "CMS_Phase2_events_002119867":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0269, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "CMS_Phase1_events_002119867":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0269, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'IDEA_SF10': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0269, "kfactor": 1.0, "matchingEfficiency": 1.0},
 }
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
@@ -144,7 +146,7 @@ histoList = {
     "n_TagJet_kt2_constituents":             {"name":"n_TagJet_kt2_constituents",               "title":"kt2 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
     "n_TagJet_kt2_charged_constituents":             {"name":"n_TagJet_kt2_charged_constituents",               "title":"kt2 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
     "n_TagJet_kt2_neutral_constituents":             {"name":"n_TagJet_kt2_neutral_constituents",               "title":"kt2 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "Dijet_mass":             {"name":"Dijet_mass",                "title":"Dijet mass [GeV]",                     "bin":120, "xmin":80., "xmax":140.}, 
+    "Dijet_mass":             {"name":"Dijet_mass",                "title":"Dijet mass [GeV]",                     "bin":1000, "xmin":80., "xmax":140.}, 
 
     "CHadron_p_res_total":             {"name":"CHadron_p_res_total",             "title":"p_{reco}-p_{gen}/p_{gen}",    "bin":200, "xmin":-1, "xmax":1}, 
     "NHadron_p_res_total":             {"name":"NHadron_p_res_total",             "title":"p_{reco}-p_{gen}/p_{gen}",    "bin":200, "xmin":-1, "xmax":1},

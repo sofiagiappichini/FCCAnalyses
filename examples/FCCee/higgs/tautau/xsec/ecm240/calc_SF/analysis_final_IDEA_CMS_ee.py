@@ -120,7 +120,7 @@ histoList = {
     #"Electron_p_res_20_40":             {"name":"Electron_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":200, "xmin":-0.08, "xmax":0.08},
     #"Electron_p_res_40_60":             {"name":"Electron_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":200, "xmin":-0.08, "xmax":0.08},
     #"Electron_p_res_60_higher":         {"name":"Electron_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":200, "xmin":-0.08, "xmax":0.08}, 
-    "Electron_p_res_total":             {"name":"Electron_p_res_total",             "title":"Momentum resolution",    "bin":2000, "xmin":-0.2, "xmax":0.2}, 
+    "Electron_p_res_total":             {"name":"Electron_p_res_total",             "title":"Momentum resolution",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
 
     "n_RecoMuons":                  {"name":"n_RecoMuons",                  "title":"Number of reco muons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "RecoMuon_e":                   {"name":"RecoMuon_e",                   "title":"Reco muon energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
