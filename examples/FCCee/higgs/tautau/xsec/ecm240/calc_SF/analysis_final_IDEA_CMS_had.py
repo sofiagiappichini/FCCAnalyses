@@ -147,6 +147,7 @@ histoList = {
     "n_TagJet_kt2_charged_constituents":             {"name":"n_TagJet_kt2_charged_constituents",               "title":"kt2 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
     "n_TagJet_kt2_neutral_constituents":             {"name":"n_TagJet_kt2_neutral_constituents",               "title":"kt2 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
     "Dijet_mass":             {"name":"Dijet_mass",                "title":"Dijet mass [GeV]",                     "bin":1000, "xmin":80., "xmax":140.}, 
+    "smeared_Dijet_mass":             {"name":"smeared_Dijet_mass",                "title":"Dijet mass [GeV]",                     "bin":1000, "xmin":80., "xmax":140.},
 
     "CHadron_p_res_total":             {"name":"CHadron_p_res_total",             "title":"p_{reco}-p_{gen}/p_{gen}",    "bin":200, "xmin":-1, "xmax":1}, 
     "NHadron_p_res_total":             {"name":"NHadron_p_res_total",             "title":"p_{reco}-p_{gen}/p_{gen}",    "bin":200, "xmin":-1, "xmax":1},

@@ -1474,14 +1474,14 @@ ROOT::VecOps::RVec<float> reso_p_pdg(ROOT::VecOps::RVec<int> recind,
     return result;
 }
 
-ROOT::VecOps::RVec<TLorentzVector> smear_jet(ROOT::VecOps::RVec<TLorentzVector> jets){
+ROOT::VecOps::RVec<TLorentzVector> smear_jet(ROOT::VecOps::RVec<TLorentzVector> jets, float FWHM_CMS, float FWHM_IDEA, float Dijet_M){
     ROOT::VecOps::RVec<TLorentzVector> p4;
     static std::random_device rd;
     static std::mt19937 gen(rd());
 
     for(unsigned int i = 0; i < jets.size(); i++){
         
-        std::normal_distribution<> d(jets[i].P(), (jets[i].P()*sqrt(pow(21.3/2.3548,2.)-pow(6.96/2.3548,2.)))/125.11);
+        std::normal_distribution<> d(jets[i].P(), (jets[i].P()*sqrt(pow(FWHM_CMS/2.3548,2.)-pow(FWHM_IDEA/2.3548,2.)))/Dijet_M);
         float smeared_p = d(gen);
 
         float smeared_e = std::sqrt(smeared_p * smeared_p + jets[i].M() * jets[i].M());

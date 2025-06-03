@@ -5,8 +5,8 @@ from copy import deepcopy
 
 processList = {
     'IDEA_events_002119867': {},
-    #'CMS_Phase2_events_002119867': {},
-    #'CMS_Phase1_events_002119867': {},
+    'CMS_Phase2_events_002119867': {},
+    'CMS_Phase1_events_002119867': {},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -327,10 +327,12 @@ class RDFanalysis():
                 .Define("n_TagJet_kt2_neutral_constituents",        "JetConstituentsUtils::get_nneutral_constituents({})".format(jetClusteringHelper_kt2.constituents))
                 .Define("n_TagJet_kt2",           "return int(TagJet_kt2_flavor.size())")
 
-                .Define("smeared_jet_p4",               "FCCAnalyses::ZHfunctions::build_p4(TagJet_kt2_px, TagJet_kt2_py, TagJet_kt2_pz, TagJet_kt2_e)")
-                #.Define("smeared_jet_p4",       "FCCAnalyses::ZHfunctions::smear_jet(jet_p4)")
-                .Define("Dijet_p4",             "smeared_jet_p4.at(0) + smeared_jet_p4.at(1)")
+                .Define("jet_p4",               "FCCAnalyses::ZHfunctions::build_p4(TagJet_kt2_px, TagJet_kt2_py, TagJet_kt2_pz, TagJet_kt2_e)")
+                .Define("Dijet_p4",             "jet_p4.at(0) + jet_p4.at(1)")
                 .Define("Dijet_mass",           "Dijet_p4.M()")
+                .Define("smeared_jet_p4",       "FCCAnalyses::ZHfunctions::smear_jet(jet_p4, 52.5, 6.96, Dijet_mass)")
+                .Define("smeared_Dijet_p4",     "smeared_jet_p4.at(0) + smeared_jet_p4.at(1)")
+                .Define("smeared_Dijet_mass",   "Dijet_p4.M()")
 
                 .Define("jet_reso", "FCCAnalyses::ZHfunctions::jet_reso(TagJet_kt2_px,TagJet_kt2_py,TagJet_kt2_pz,TagJet_kt2_mass,genBottom)")
         )
@@ -473,6 +475,7 @@ class RDFanalysis():
             "n_TagJet_kt2_charged_constituents",   
             "n_TagJet_kt2_neutral_constituents", 
             "Dijet_mass",
+            "smeared_Dijet_mass",
 
             "CHadron_p_res_total",
             "NHadron_p_res_total",
