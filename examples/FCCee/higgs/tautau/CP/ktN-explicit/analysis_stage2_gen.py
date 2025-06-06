@@ -19,6 +19,19 @@ processList = {
     "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
     "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
     "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
+
+    "p8_ee_bbH_Htautau_CPeven":{},
+    "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPeven":{},
+    "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPeven":{},
+    "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPeven":{},
+    "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPeven":{},
+    "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    "p8_ee_qqH_Htautau_CPodd":{},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
