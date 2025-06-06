@@ -617,8 +617,9 @@ def run_stages(args, rdf_module, anapath):
             get_element(rdf_module, "inputDir"))
 
         if len(file_list) <= 0:
-            LOGGER.error('No files to process!\nAborting...')
-            sys.exit(3)
+            LOGGER.error('No files to process!\nSkipping...')
+            continue
+            #sys.exit(3)
 
         # Determine the fraction of the input to be processed
         fraction = 1
