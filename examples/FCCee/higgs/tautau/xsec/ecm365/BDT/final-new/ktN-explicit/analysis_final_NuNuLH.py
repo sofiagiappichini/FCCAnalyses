@@ -147,13 +147,7 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    "selReco_180Me": "RecoEmiss_e>180",
-    "selReco_180Me_TauDPhi3": "RecoEmiss_e>180 && abs(Tau_DPhi)<3",
-    "selReco_180Me_TauDPhi3_1DR": "RecoEmiss_e>180 && abs(Tau_DPhi)<3 && Tau_DR>1",
-    "selReco_180Me_TauDPhi3_1DR_cos0.25": "RecoEmiss_e>180 && abs(Tau_DPhi)<3 && Tau_DR>1 && Tau_cos<0.25",
-    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98": "RecoEmiss_e>180 && abs(Tau_DPhi)<3 && Tau_DR>1 && Tau_cos<0.25 && RecoEmiss_costheta<0.98",
-    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1": "RecoEmiss_e>180 && abs(Tau_DPhi)<3 && Tau_DR>1 && Tau_cos<0.25 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
-  
+    
 }
 
 # Dictionary for prettier names of cuts (optional)

@@ -109,7 +109,7 @@ def create_subjob_script(
                 #for process in processList:
                 scr  = '#!/bin/bash\n\n'
                 scr += "source /afs/cern.ch/user/s/sgiappic/FCCAnalyses/setup.sh\n\n"
-                scr += f"fccanalysis final /afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/{tag}-new/{cat}/analysis_final_{cat}{sub}.py"
+                scr += f"fccanalysis final /afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/BDT/final-new/{tag}/analysis_final_{cat}{sub}.py"
                 scr += '\n\n'     
                 with open(output_dir + tag + cat + sub + '.sh', 'w') as sh:
                     sh.write(scr)
@@ -125,12 +125,12 @@ def submit_jobs(output_dir: str):
 
 TAG = [
     "ktN-tag",
-    #"ktN-explicit",
+    "ktN-explicit",
 ]             
 
 CAT = [
-    "QQ",
-    "NuNu",
+    #"QQ",
+    #"NuNu",
     "LL",
 ]
 
@@ -141,7 +141,7 @@ SUB = [
 ]
 
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
-output = '/afs/cern.ch/user/s/sgiappic/HTCondor/final_240/' ##output directory of submission files, needs to be different to have unique submission files
+output = '/afs/cern.ch/user/s/sgiappic/HTCondor/final_240_bdt_ll/' ##output directory of submission files, needs to be different to have unique submission files
 
 nCPUS = 4
 memory = 10000

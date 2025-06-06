@@ -32,12 +32,29 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_new/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
+
+CAT = [
+    "QQ",
+    #"LL",
+]
+
+SUB = [
+    #"LL",
+    #"LH",
+    "HH",
+]
 
 #list of cuts you want to plot
 CUT = [
-    "selReco_CMS",
-    "selReco_ILC20chi",
+    "SelReco_ILC",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_2DR",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+     
 ]
 
 #now you can list all the histograms that you want to plot
@@ -493,134 +510,6 @@ VARIABLES_RECO = [
             "RecoEmiss_y",
             "RecoEmiss_costheta",
 
-            "TagJet_R5_px", 
-            "TagJet_R5_py",    
-            "TagJet_R5_pz",      
-            "TagJet_R5_p",  
-            "TagJet_R5_pt",    
-            "TagJet_R5_phi", 
-            "TagJet_R5_eta",     
-            "TagJet_R5_theta",          
-            "TagJet_R5_e",     
-            "TagJet_R5_mass",        
-            "TagJet_R5_charge", 
-            "n_TagJet_R5_constituents",   
-            "n_TagJet_R5_charged_constituents",   
-            "n_TagJet_R5_neutral_constituents",   
-            "n_TagJet_R5",          
-
-            "TagJet_R5_isG",  
-            "TagJet_R5_isU",
-            "TagJet_R5_isD",   
-            "TagJet_R5_isS",  
-            "TagJet_R5_isC",
-            "TagJet_R5_isB",  
-            "TagJet_R5_isTAU",
-
-            "TauFromJet_R5_p",
-            "TauFromJet_R5_pt",
-            "TauFromJet_R5_px",
-            "TauFromJet_R5_py",
-            "TauFromJet_R5_pz",
-            "TauFromJet_R5_theta",
-            "TauFromJet_R5_phi",
-            "TauFromJet_R5_e",
-            "TauFromJet_R5_eta",
-            "TauFromJet_R5_y",
-            "TauFromJet_R5_charge",
-            "TauFromJet_R5_type",
-            "TauFromJet_R5_mass",
-            "n_TauFromJet_R5",
-
-            "TagJet_R5_sel_e",     
-            "TagJet_R5_sel_p",     
-            "TagJet_R5_sel_pt",     
-            "TagJet_R5_sel_px",   
-            "TagJet_R5_sel_py",   
-            "TagJet_R5_sel_pz",     
-            "TagJet_R5_sel_eta",    
-            "TagJet_R5_sel_theta",   
-            "TagJet_R5_sel_phi",     
-            "TagJet_R5_sel_mass",      
-            "n_TagJet_R5_sel", 
-
-            "n_ChargedHadron",
-            "ChargedHadron_e",
-            "ChargedHadron_p",
-            "ChargedHadron_pt",
-            "ChargedHadron_px",
-            "ChargedHadron_py",
-            "ChargedHadron_pz",
-            "ChargedHadron_eta",
-            "ChargedHadron_theta",
-            "ChargedHadron_phi",
-            "ChargedHadron_charge",
-            "ChargedHadron_mass",
-
-            "n_NeutralHadron",
-            "NeutralHadron_e",
-            "NeutralHadron_p",
-            "NeutralHadron_pt",
-            "NeutralHadron_px",
-            "NeutralHadron_py",
-            "NeutralHadron_pz",
-            "NeutralHadron_eta",
-            "NeutralHadron_theta",
-            "NeutralHadron_phi",
-            "NeutralHadron_charge",
-            "NeutralHadron_mass",
-
-            "n_ChargedTau",
-            "ChargedTau_e",
-            "ChargedTau_p",
-            "ChargedTau_pt",
-            "ChargedTau_px",
-            "ChargedTau_py",
-            "ChargedTau_pz",
-            "ChargedTau_eta",
-            "ChargedTau_theta",
-            "ChargedTau_phi",
-            "ChargedTau_charge",
-            "ChargedTau_mass",
-
-            "n_NeutralTau",
-            "NeutralTau_e",
-            "NeutralTau_p",
-            "NeutralTau_pt",
-            "NeutralTau_px",
-            "NeutralTau_py",
-            "NeutralTau_pz",
-            "NeutralTau_eta",
-            "NeutralTau_theta",
-            "NeutralTau_phi",
-            "NeutralTau_charge",
-            "NeutralTau_mass",
-
-            "n_ChargedJet",
-            "ChargedJet_e",
-            "ChargedJet_p",
-            "ChargedJet_pt",
-            "ChargedJet_px",
-            "ChargedJet_py",
-            "ChargedJet_pz",
-            "ChargedJet_eta",
-            "ChargedJet_theta",
-            "ChargedJet_phi",
-            "ChargedJet_charge",
-            "ChargedJet_mass",
-
-            "n_NeutralJet",
-            "NeutralJet_e",
-            "NeutralJet_p",
-            "NeutralJet_pt",
-            "NeutralJet_px",
-            "NeutralJet_py",
-            "NeutralJet_pz",
-            "NeutralJet_eta",
-            "NeutralJet_theta",
-            "NeutralJet_phi",
-            "NeutralJet_charge",
-            "NeutralJet_mass",
 ]
 
 VARIABLES_CP = [
@@ -661,17 +550,17 @@ VARIABLES_CP = [
             "RecoZSub_y",    
             "RecoZSub_mass",   
 
-            "Higgs_px",
-            "Higgs_py",
-            "Higgs_pz",
-            "Higgs_p",
-            "Higgs_pt",
-            "Higgs_e",
-            "Higgs_eta",
-            "Higgs_phi",
-            "Higgs_theta",
-            "Higgs_y",
-            "Higgs_mass",
+            "RecoH_px",
+            "RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            "RecoH_phi",
+            "RecoH_theta",
+            "RecoH_y",
+            "RecoH_mass",
 
             "TauLead_px",    
             "TauLead_py",   
@@ -697,30 +586,29 @@ VARIABLES_CP = [
             "TauSub_y",    
             "TauSub_mass",
 
+            #"TauP_px", 
+            #"TauP_py",   
+            #"TauP_pz",   
+            #"TauP_p",    
+            #"TauP_pt",   
+            #"TauP_e",    
+            #"TauP_eta",    
+            #"TauP_phi",    
+            #"TauP_theta",   
+            #"TauP_y",     
+            #"TauP_mass",   
 
-            "TauP_px", 
-            "TauP_py",   
-            "TauP_pz",   
-            "TauP_p",    
-            "TauP_pt",   
-            "TauP_e",    
-            "TauP_eta",    
-            "TauP_phi",    
-            "TauP_theta",   
-            "TauP_y",     
-            "TauP_mass",   
-
-            "TauM_px",    
-            "TauM_py",   
-            "TauM_pz",   
-            "TauM_p",   
-            "TauM_pt",  
-            "TauM_e",     
-            "TauM_eta",   
-            "TauM_phi",   
-            "TauM_theta",    
-            "TauM_y",    
-            "TauM_mass", 
+            #"TauM_px",    
+            #"TauM_py",   
+            #"TauM_pz",   
+            #"TauM_p",   
+            #"TauM_pt",  
+            #"TauM_e",     
+            #"TauM_eta",   
+            #"TauM_phi",   
+            #"TauM_theta",    
+            #"TauM_y",    
+            #"TauM_mass", 
 
             "Recoil_mass",
             "Collinear_mass", 
@@ -743,6 +631,8 @@ VARIABLES_CMS = [
     "O_ZMF",
     "y_tau",
     "PhiCP_CMS",
+    "Collinear_mass_3d",
+    "KinILC_H_mass",
 ]
 
 VARIABLES_ILC = [
@@ -875,7 +765,7 @@ VARIABLES_TAG = [
     "n_TauSub_neutral_constituents",
 ]
 
-SM = [
+'''SM = [
     'EWonly_taudecay_2Pi2Nu',
     'EWonly_taudecay_PiPi0Nu',
     ]
@@ -898,9 +788,33 @@ CEHRE_M1 = [
 CEHRE_P1 = [
     'cehre_p1_taudecay_2Pi2Nu',
     'cehre_p1_taudecay_PiPi0Nu',
-    ]
+    ]'''
 
-legend = {
+SM = ["mg_ee_eetata_ecm240",
+    "mg_ee_jjtata_ecm240",
+    "mg_ee_mumutata_ecm240",]
+
+CEHIM_M1 = [
+    "mg_ee_eetata_smeft_cehim_m1_ecm240",
+    "mg_ee_jjtata_smeft_cehim_m1_ecm240",
+    "mg_ee_mumutata_smeft_cehim_m1_ecm240",]
+
+CEHIM_P1 = [
+    "mg_ee_eetata_smeft_cehim_p1_ecm240",
+    "mg_ee_jjtata_smeft_cehim_p1_ecm240",
+    "mg_ee_mumutata_smeft_cehim_p1_ecm240",]
+
+CEHRE_M1 = [
+    "mg_ee_eetata_smeft_cehre_m1_ecm240",
+    "mg_ee_jjtata_smeft_cehre_m1_ecm240",
+    "mg_ee_mumutata_smeft_cehre_m1_ecm240",]
+
+CEHRE_P1 = [
+    "mg_ee_eetata_smeft_cehre_p1_ecm240",
+    "mg_ee_jjtata_smeft_cehre_p1_ecm240",
+    "mg_ee_mumutata_smeft_cehre_p1_ecm240",]
+
+legend_sig = {
     1:"sm",
     2:"sm_lin_quad_cehim_m1",
     3:"sm_lin_quad_cehim",
@@ -909,7 +823,7 @@ legend = {
 
 }
 
-list = {
+list_sig = {
     1:SM,
     2:CEHIM_M1,
     3:CEHIM_P1,
@@ -917,92 +831,354 @@ list = {
     5:CEHRE_P1,
 }
 
-'''for cut in CUT:
+################ signal #################
+for cat in CAT:
+    for sub in SUB:
+        for cut in CUT:
 
-    variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
+            variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
 
-    for num in range(1,6):
-        outFile = ROOT.TFile.Open(DIRECTORY + legend[num] + "_" + cut + "_histo.root", "RECREATE")
-        for var in variables:
-            #loop to merge different sources into one histograms 
-            j = 0
-            hh = None
-            for b in list[num]:
-                file = f"{DIRECTORY}{b}_{cut}_histo.root"
-                if file_exists(file):
-                    tf = ROOT.TFile.Open(file, "READ")
-                    if (j==0):
-                        h = tf.Get(var)
-                        hh = copy.deepcopy(h)
-                        hh.SetDirectory(0)
-                    else:
-                        h = tf.Get(var)
-                        hh1 = copy.deepcopy(h)
-                        hh1.SetDirectory(0)
-                        hh.Add(hh1)
-                    j += 1
-                    tf.Close()
-            #change the name accordingly to the new histogram for EFT combine
-            hist_name = legend[num]
-            hh.SetName(hist_name + "_" + var)
-            #write the histogram in the file   
-            outFile.cd()
-            hh.Write()
-            print(f"{var}, {legend[num]}")
-        outFile.Close()
+            dir = f"{DIRECTORY}/{cat}/{sub}/"
 
-    ## now we need to "isolate" the quadratic contribution from the eft only from the sm and lin+quad
-    sm_file = ROOT.TFile.Open(DIRECTORY + legend[1] + "_" + cut + "_histo.root", "READ")
-    cehim_m1_file = ROOT.TFile.Open(DIRECTORY + legend[2] + "_" + cut + "_histo.root", "READ")
-    cehim_p1_file = ROOT.TFile.Open(DIRECTORY + legend[3] + "_" + cut + "_histo.root", "READ")
-    quad_file = ROOT.TFile.Open(DIRECTORY + "quad_cehim_" + cut + "_histo.root", "RECREATE")
+            for num in range(1,6):
+                outFile = ROOT.TFile.Open(dir + legend_sig[num] + "_" + cut + "_histo.root", "RECREATE")
+                for var in variables:
+                    #loop to merge different sources into one histograms 
+                    j = 0
+                    hh = None
+                    for b in list_sig[num]:
+                        file = f"{dir}{b}_{cut}_histo.root"
+                        if file_exists(file):
+                            tf = ROOT.TFile.Open(file, "READ")
+                            if (j==0):
+                                h = tf.Get(var)
+                                hh = copy.deepcopy(h)
+                                hh.SetDirectory(0)
+                            else:
+                                h = tf.Get(var)
+                                hh1 = copy.deepcopy(h)
+                                hh1.SetDirectory(0)
+                                hh.Add(hh1)
+                            j += 1
+                            tf.Close()
+                    #change the name accordingly to the new histogram for EFT combine
+                    #hist_name = legend_sig[num]
+                    #hh.SetName(hist_name + "_" + var)
+                    #write the histogram in the file   
+                    outFile.cd()
+                    hh.Write()
+                    print(f"{var}, {legend_sig[num]}")
+                outFile.Close()
 
-    for var in variables:
-        sm_histo = sm_file.Get(legend[1] + "_" + var)
-        cehim_m1_histo = cehim_m1_file.Get(legend[2] + "_" + var)
-        cehim_p1_histo = cehim_p1_file.Get(legend[3] + "_" + var)
+            ## now we need to "isolate" the quadratic contribution from the eft only from the sm and lin+quad
+            sm_file = ROOT.TFile.Open(dir + legend_sig[1] + "_" + cut + "_histo.root", "READ")
+            cehim_m1_file = ROOT.TFile.Open(dir + legend_sig[2] + "_" + cut + "_histo.root", "READ")
+            cehim_p1_file = ROOT.TFile.Open(dir + legend_sig[3] + "_" + cut + "_histo.root", "READ")
+            quad_file = ROOT.TFile.Open(dir + "quad_cehim_" + cut + "_histo.root", "RECREATE")
 
-        # quad = cpv(+1) + cpv(-1) - 2*sm, in brackets the WC
-        quad_histo = copy.deepcopy(cehim_p1_histo)
-        quad_histo.SetDirectory(0)
+            for var in variables:
+                #sm_histo = sm_file.Get(legend_sig[1] + "_" + var)
+                #cehim_m1_histo = cehim_m1_file.Get(legend_sig[2] + "_" + var)
+                #cehim_p1_histo = cehim_p1_file.Get(legend_sig[3] + "_" + var)
 
-        quad_histo.Add(cehim_m1_histo)
-        quad_histo.Add(sm_histo, -2.)
-        quad_histo.SetName("quad_cehim_" + var)
+                sm_histo = sm_file.Get(var)
+                cehim_m1_histo = cehim_m1_file.Get(var)
+                cehim_p1_histo = cehim_p1_file.Get(var)
 
-        print("var {} to file {}\n".format(var, quad_file))
+                # quad = cpv(+1) + cpv(-1) - 2*sm, in brackets the WC
+                quad_histo = copy.deepcopy(cehim_p1_histo)
+                quad_histo.SetDirectory(0)
 
-        quad_file.cd()
-        quad_histo.Write()
+                quad_histo.Add(cehim_m1_histo)
+                quad_histo.Add(sm_histo, -2.)
+                quad_histo.SetName("quad_cehim_" + var)
 
-    quad_file.Close()'''
+                print("var {} to file {}\n".format(var, quad_file))
 
-for cut in CUT:
+                quad_file.cd()
+                quad_histo.Write()
 
-    variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
-    outFile = ROOT.TFile.Open(DIRECTORY+'MG_P8_diff' + "_" + cut + "_histo.root", "RECREATE")
-    for var in variables:
-        #loop to merge different sources into one histograms 
-        j = 0
-        hh = None
-        for b in ['EWonly_taudecay_2Pi2Nu', "p8_ee_llH_Hpinu_even"]:
-            file = f"{DIRECTORY}{b}_{cut}_histo.root"
-            if file_exists(file):
-                tf = ROOT.TFile.Open(file, "READ")
-                print(j)
-                if (j==0):
-                    h = tf.Get(var)
-                    hh = copy.deepcopy(h)
-                    hh.SetDirectory(0)
-                else:
-                    h = tf.Get(var)
-                    hh1 = copy.deepcopy(h)
-                    hh1.SetDirectory(0)
-                    hh.Add(hh1, -1.)
-                j += 1
-                tf.Close()
-        #write the histogram in the file   
-        outFile.cd()
-        hh.Write()
-        print(f"{var}")
-    outFile.Close()
+            quad_file.Close()
+
+'''
+############### backgrounds ##################
+
+backgrounds_1 = [
+    'wzp6_ee_mumu_ecm240',
+    'wzp6_ee_ee_Mee_30_150_ecm240',
+]
+backgrounds_2 = [
+    'wzp6_egamma_eZ_Zmumu_ecm240',
+    'wzp6_egamma_eZ_Zee_ecm240',
+    'wzp6_gammae_eZ_Zmumu_ecm240',
+    'wzp6_gammae_eZ_Zee_ecm240',
+]
+backgrounds_3 = [
+    'wzp6_gaga_mumu_60_ecm240',
+    'wzp6_gaga_ee_60_ecm240',
+]
+backgrounds_4 = [
+    'wzp6_ee_tautauH_Hbb_ecm240',
+    'wzp6_ee_tautauH_Hcc_ecm240',
+    'wzp6_ee_tautauH_Hss_ecm240',
+]
+backgrounds_5 = [
+    'wzp6_ee_tautauH_HWW_ecm240',
+    'wzp6_ee_tautauH_HZZ_ecm240',
+]
+backgrounds_6 = [
+    'wzp6_ee_nunuH_Hbb_ecm240',
+    'wzp6_ee_nunuH_Hcc_ecm240',
+    'wzp6_ee_nunuH_Hss_ecm240',
+]
+backgrounds_7 = [
+    'wzp6_ee_nunuH_HWW_ecm240',
+    'wzp6_ee_nunuH_HZZ_ecm240',
+]
+backgrounds_8 = [
+    'wzp6_ee_eeH_Hbb_ecm240',
+    'wzp6_ee_eeH_Hcc_ecm240',
+    'wzp6_ee_eeH_Hss_ecm240',
+
+    'wzp6_ee_mumuH_Hbb_ecm240',
+    'wzp6_ee_mumuH_Hcc_ecm240',
+    'wzp6_ee_mumuH_Hss_ecm240',
+]
+backgrounds_9 = [
+    'wzp6_ee_eeH_HWW_ecm240',
+    'wzp6_ee_eeH_HZZ_ecm240',
+
+    'wzp6_ee_mumuH_HWW_ecm240',
+    'wzp6_ee_mumuH_HZZ_ecm240',
+]
+backgrounds_10 = [
+    'wzp6_ee_eeH_Hbb_ecm240',
+    'wzp6_ee_eeH_Hcc_ecm240',
+    'wzp6_ee_eeH_Hss_ecm240',
+]
+backgrounds_11 = [
+    'wzp6_ee_eeH_HWW_ecm240',
+    'wzp6_ee_eeH_HZZ_ecm240',
+]
+backgrounds_12 = [
+    'wzp6_ee_mumuH_Hbb_ecm240',
+    'wzp6_ee_mumuH_Hcc_ecm240',
+    'wzp6_ee_mumuH_Hss_ecm240',
+]
+backgrounds_13 = [
+    'wzp6_ee_mumuH_HWW_ecm240',
+    'wzp6_ee_mumuH_HZZ_ecm240',
+]
+backgrounds_14 = [
+    'wzp6_ee_bbH_Hbb_ecm240',
+    'wzp6_ee_bbH_Hcc_ecm240',
+    'wzp6_ee_bbH_Hss_ecm240',
+
+    'wzp6_ee_ccH_Hbb_ecm240',
+    'wzp6_ee_ccH_Hcc_ecm240',
+    'wzp6_ee_ccH_Hss_ecm240',
+
+    'wzp6_ee_ssH_Hbb_ecm240',
+    'wzp6_ee_ssH_Hcc_ecm240',
+    'wzp6_ee_ssH_Hss_ecm240',
+
+    'wzp6_ee_qqH_Hbb_ecm240',
+    'wzp6_ee_qqH_Hcc_ecm240',
+    'wzp6_ee_qqH_Hss_ecm240',
+]
+backgrounds_15 = [
+    'wzp6_ee_bbH_HWW_ecm240',
+    'wzp6_ee_bbH_HZZ_ecm240',
+
+    'wzp6_ee_ccH_HWW_ecm240',
+    'wzp6_ee_ccH_HZZ_ecm240',
+
+    'wzp6_ee_ssH_HWW_ecm240',
+    'wzp6_ee_ssH_HZZ_ecm240',
+    
+    'wzp6_ee_qqH_HWW_ecm240',
+    'wzp6_ee_qqH_HZZ_ecm240',
+]
+backgrounds_16 = [
+    'wzp6_ee_bbH_Hgg_ecm240',
+    'wzp6_ee_ccH_Hgg_ecm240',
+    'wzp6_ee_ssH_Hgg_ecm240',
+    'wzp6_ee_qqH_Hgg_ecm240',
+]
+backgrounds_17 = [
+    'wzp6_ee_eeH_Hgg_ecm240',
+    'wzp6_ee_mumuH_Hgg_ecm240',
+]
+
+legend = {
+    1:"wzp6_ee_LL_ecm240",
+
+    2:"wzp6_ee_egamma_eZ_ZLL_ecm240",
+    3:"wzp6_ee_gaga_LL_60_ecm240",
+
+    4:"wzp6_ee_tautauH_HQQ_ecm240",
+    5:"wzp6_ee_tautauH_HVV_ecm240",
+
+    6:"wzp6_ee_nunuH_HQQ_ecm240",
+    7:"wzp6_ee_nunuH_HVV_ecm240",
+
+    8:"wzp6_ee_LLH_HQQ_ecm240",
+    9:"wzp6_ee_LLH_HVV_ecm240",
+    10:"wzp6_ee_eeH_HQQ_ecm240",
+    11:"wzp6_ee_eeH_HVV_ecm240",
+    12:"wzp6_ee_mumuH_HQQ_ecm240",
+    13:"wzp6_ee_mumuH_HVV_ecm240",
+
+    14:"wzp6_ee_QQH_HQQ_ecm240",
+    15:"wzp6_ee_QQH_HVV_ecm240",
+    16:"wzp6_ee_QQH_Hgg_ecm240",
+
+    17:"wzp6_ee_LLH_Hgg_ecm240",
+    
+}
+
+list = {
+    1:backgrounds_1,
+    2:backgrounds_2,
+    3:backgrounds_3,
+    4:backgrounds_4,
+    5:backgrounds_5,
+    6:backgrounds_6,
+    7:backgrounds_7,
+    8:backgrounds_8,
+    9:backgrounds_9,
+    10:backgrounds_10,
+    11:backgrounds_11,
+    12:backgrounds_12,
+    13:backgrounds_13,
+    14:backgrounds_14,
+    15:backgrounds_15,
+    16:backgrounds_16,
+    17:backgrounds_17,
+}
+
+for cat in CAT:
+    for sub in SUB:
+        for cut in CUT:
+
+            variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
+
+            directory = f"{DIRECTORY}/{cat}/{sub}/"
+        
+            for num in range(1,18):
+                output = f"{directory}{legend[num]}_{cut}_histo.root"
+                #print(output)
+                outFile = ROOT.TFile.Open(output, "RECREATE")
+                check = False
+                for var in variables:
+                    #loop to merge different sources into one histograms for easier plotting
+                    j = 0
+                    hh = None
+                    #print(list)
+                    for b in list[num]:
+                        #print(var)
+                        #print(b)
+                        file = f"{directory}{b}_{cut}_histo.root"
+                        #print(file)
+                        if file_exists(file):
+                            check = True
+                            tf = ROOT.TFile.Open(file, "READ")
+                            if (j==0):
+                                h = tf.Get(var)
+                                hh = copy.deepcopy(h)
+                                hh.SetDirectory(0)
+                            else:
+                                h = tf.Get(var)
+                                hh1 = copy.deepcopy(h)
+                                hh1.SetDirectory(0)
+                                hh.Add(hh1)
+                            j += 1
+                            tf.Close()
+                    #write the histogram in the file   
+                    if check==True:
+                        #change the name accordingly to the new histogram for EFT combine
+                        #hist_name = legend[num]
+                        #hh.SetName(hist_name + "_" + var)
+                        outFile.cd()
+                        hh.Write()
+                    print(f"{cat}, {sub}, {cut}, {num}, {var}")
+                    
+                outFile.Close()
+                if check==False: #if nothing was written i don't want the file saved at all
+                    os.remove(output)
+
+################### pythia signals ###################
+
+ll = [
+    "p8_ee_eeH_Htautau",
+    "p8_ee_mumuH_Htautau",
+]
+
+qq = [
+    "p8_ee_bbH_Htautau",
+    "p8_ee_ccH_Htautau",
+    "p8_ee_ssH_Htautau",
+    "p8_ee_qqH_Htautau",
+]
+
+samples_dict = {
+    "ll": ll,
+    "qq": qq,
+}
+
+legend_p8 = {
+    "ll":"p8_ee_LLH_Htautau",
+    "qq":"p8_ee_QQH_Htautau",
+}
+
+for cat in CAT:
+    for sub in SUB:
+        for cut in CUT:
+
+            variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
+
+            directory = f"{DIRECTORY}/{cat}/{sub}/"
+        
+            for dir in samples_dict:
+                for cp in ["even", "odd"]:
+                    output = f"{directory}{legend_p8[dir]}_CP{cp}_{cut}_histo.root"
+                    print(output)
+                    outFile = ROOT.TFile.Open(output, "RECREATE")
+                    check = False
+                    for var in variables:
+                        #loop to merge different sources into one histograms for easier plotting
+                        j = 0
+                        hh = None
+                        #print(list)
+                        for b in samples_dict[dir]:
+                            #print(var)
+                            print(b)
+                            file = f"{directory}{b}_CP{cp}_{cut}_histo.root"
+                            #print(file)
+                            if file_exists(file):
+                                check = True
+                                tf = ROOT.TFile.Open(file, "READ")
+                                if (j==0):
+                                    h = tf.Get(var)
+                                    hh = copy.deepcopy(h)
+                                    hh.SetDirectory(0)
+                                else:
+                                    h = tf.Get(var)
+                                    hh1 = copy.deepcopy(h)
+                                    hh1.SetDirectory(0)
+                                    hh.Add(hh1)
+                                j += 1
+                                tf.Close()
+                        #write the histogram in the file   
+                        if check==True:
+                            #change the name accordingly to the new histogram for EFT combine
+                            #hist_name = legend_p8[dir]
+                            #hh.SetName(hist_name + "_" + var)
+                            outFile.cd()
+                            hh.Write()
+                        print(f"{cat}, {sub}, {cut}, {var}")
+                        
+                    outFile.Close()
+                    if check==False: #if nothing was written i don't want the file saved at all
+                        os.remove(output)
+'''

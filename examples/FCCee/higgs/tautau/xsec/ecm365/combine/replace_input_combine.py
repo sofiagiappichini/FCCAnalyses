@@ -53,7 +53,7 @@ def do_combine(outdir, file):
             datacard = filename
 
     ## --PO 'map=bin/process:parameter', can be repeated the same parameter name for different processes (will be correlated into one r), first time it needs [starting_value,min,max]
-    os.system(f"text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-5,5]' {outdir}/{datacard} -o {outdir}/ws.root")
+    os.system(f"text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBF_nunuH_Htautau_ecm365:r_VBF[1,-5,5]' {outdir}/{datacard} -o {outdir}/ws.root")
     os.system(f"combine -M MultiDimFit {outdir}/ws.root --cminDefaultMinimizerStrategy 0 -t -1 --expectSignal=1 -v 10 >{file}") ##  --robustFit 1
 
     with open(file, "r") as f:  # Avoid reusing 'file' as a variable name
@@ -74,7 +74,7 @@ def do_combine_alt(outdir, file):
             datacard = filename
 
     ## --PO 'map=bin/process:parameter', can be repeated the same parameter name for different processes (will be correlated into one r), first time it needs [starting_value,min,max]
-    os.system(f"text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBFnunu_Htautau_ecm365:r_VBF[1,-5,5]' {outdir}/{datacard} -o {outdir}/ws.root")
+    os.system(f"text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel  --PO verbose  --PO  'map=.*/wzp6_ee_ZH_Htautau_ecm365:r_ZH[1,-1,2]' --PO 'map=.*/wzp6_ee_VBF_nunuH_Htautau_ecm365:r_VBF[1,-5,5]' {outdir}/{datacard} -o {outdir}/ws.root")
     os.system(f"combine -M MultiDimFit {outdir}/ws.root -t -1 --expectSignal=1 -v 10 >{file}") ##  --robustFit 1
 
     with open(file, "r") as f:  # Avoid reusing 'file' as a variable name
@@ -153,7 +153,7 @@ SUBDIR = [
 #os.system("cmsenv")
 
 input_file = "significance.txt"
-outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/new_250502_20per/"
+outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/combine/new_250502_1per/"
 output_file = outputDir + "output_xsec.csv"
 
 tab = []

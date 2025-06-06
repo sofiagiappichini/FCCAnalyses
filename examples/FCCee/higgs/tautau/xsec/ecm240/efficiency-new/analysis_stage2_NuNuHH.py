@@ -15,7 +15,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/efficiency/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/efficiency_test/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -419,7 +419,7 @@ class RDFanalysis():
                 .Define("TagJet_R5_isB",    "recojet_isB_R5")
                 .Define("TagJet_R5_isTAU",    "recojet_isTAU_R5")
 
-                .Define("TauFromJet_R5", "FCCAnalyses::ZHfunctions::findTauInJet({})".format(jetClusteringHelper_R5.constituents)) 
+                .Define("TauFromJet_R5", "FCCAnalyses::ZHfunctions::findTauInJet_pi0({})".format(jetClusteringHelper_R5.constituents)) 
                 .Define("TauFromJet_R5_type_sel","ReconstructedParticle::get_type(TauFromJet_R5)")
                 .Define("TauFromJet_R5_tau", "TauFromJet_R5[TauFromJet_R5_type_sel>=0]") 
                 .Define("TauFromJet_R5_p","ReconstructedParticle::get_p(TauFromJet_R5_tau)")
@@ -496,7 +496,7 @@ class RDFanalysis():
                 .Define("TagJet_kt2_isB",    "recojet_isB_kt2")
                 .Define("TagJet_kt2_isTAU",    "recojet_isTAU_kt2")
 
-                .Define("TauFromJet_kt2", "FCCAnalyses::ZHfunctions::findTauInJet({})".format(jetClusteringHelper_kt2.constituents)) 
+                .Define("TauFromJet_kt2", "FCCAnalyses::ZHfunctions::findTauInJet_pi0({})".format(jetClusteringHelper_kt2.constituents)) 
                 .Define("TauFromJet_kt2_type_sel","ReconstructedParticle::get_type(TauFromJet_kt2)")
                 .Define("TauFromJet_kt2_tau", "TauFromJet_kt2[TauFromJet_kt2_type_sel>=0]") 
                 .Define("TauFromJet_kt2_p","ReconstructedParticle::get_p(TauFromJet_kt2_tau)")

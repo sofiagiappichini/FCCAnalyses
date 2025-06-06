@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250302/ktN-explicit/QQ/LH/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/QQ/LH"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250302/ktN-explicit/QQ/LH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/QQ/LH"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -20,6 +20,36 @@ saveTabular = False
 doTree = False
 
 processList = {
+
+    "mg_ee_eetata_ecm240":{},
+    "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_eetata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_eetata_smeft_cehre_p1_ecm240":{},
+    "mg_ee_jjtata_ecm240":{},
+    "mg_ee_jjtata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehre_p1_ecm240":{},
+    "mg_ee_mumutata_ecm240":{},
+    "mg_ee_mumutata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
+
+    "p8_ee_bbH_Htautau_CPeven":{},
+    "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPeven":{},
+    "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPeven":{},
+    "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPeven":{},
+    "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPeven":{},
+    "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    "p8_ee_qqH_Htautau_CPodd":{},
+
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
     'p8_ee_ZZ_ecm240':{},
@@ -112,18 +142,53 @@ processLabels = {}
 procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add provate samples as it is not an offical process
-procDictAdd = {}
+procDictAdd = {
+
+    'mg_ee_eetata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039496700612440505, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039467206272751117, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039526795717095316, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039545719323659203, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005953978259013256, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehim_m1_ecm240':{"numberOfEvents": 9893750, "sumOfWeights": 9893750, "crossSection": 0.005957006930373593, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005952444260067142, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005972489422656043, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005960914361046144, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037101429593363667, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037126725168208034, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037152687307799456, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.000371622336608876, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+
+    'p8_ee_bbH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_bbH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPeven':{"numberOfEvents": 2385875, "sumOfWeights": 2385875, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+}
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
     "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
+    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10",
+    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_DR<3.2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10",
+    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM_36Zpt": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_DR<3.2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ_pt>36",
     
 }
 
@@ -343,22 +408,6 @@ histoList = {
     "TagJet_R5_sel_phi":          {"name":"TagJet_R5_sel_phi",                 "title":"Quark/gluon R5 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
     "TagJet_R5_sel_mass":         {"name":"TagJet_R5_sel_mass",                "title":"Quark/gluon R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "n_TagJet_R5_sel":            {"name":"n_TagJet_R5_sel",                   "title":"Number of Quark/gluon R5 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
-
-    "TagJet_kt4_e":                {"name":"TagJet_kt4_e",                   "title":"kt4 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt4_p":                {"name":"TagJet_kt4_p",                   "title":"kt4 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt4_pt":               {"name":"TagJet_kt4_pt",                  "title":"kt4 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt4_px":               {"name":"TagJet_kt4_px",                  "title":"kt4 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_py":               {"name":"TagJet_kt4_py",                  "title":"kt4 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_pz":               {"name":"TagJet_kt4_pz",                  "title":"kt4 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_eta":              {"name":"TagJet_kt4_eta",                 "title":"kt4 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_theta":            {"name":"TagJet_kt4_theta",               "title":"kt4 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt4_phi":              {"name":"TagJet_kt4_phi",                 "title":"kt4 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_mass":             {"name":"TagJet_kt4_mass",                "title":"kt4 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "TagJet_kt4_charge":             {"name":"TagJet_kt4_charge",                "title":"kt4 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
-    "n_TagJet_kt4":                {"name":"n_TagJet_kt4",                   "title":"Number of kt4 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_TagJet_kt4_constituents":             {"name":"n_TagJet_kt4_constituents",               "title":"kt4 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt4_charged_constituents":             {"name":"n_TagJet_kt4_charged_constituents",               "title":"kt4 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt4_neutral_constituents":             {"name":"n_TagJet_kt4_neutral_constituents",               "title":"kt4 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
 
     "TagJet_kt3_e":                {"name":"TagJet_kt3_e",                   "title":"kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_kt3_p":                {"name":"TagJet_kt3_p",                   "title":"kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},

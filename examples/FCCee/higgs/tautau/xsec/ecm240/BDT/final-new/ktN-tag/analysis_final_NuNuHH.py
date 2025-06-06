@@ -118,26 +118,14 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    "selReco_100Me": "RecoEmiss_e>100",
-    "selReco_100Me_TauDPhi3": "RecoEmiss_e>100 && abs(Tau_DPhi)<3",
-    "selReco_100Me_TauDPhi3_2DR": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
-    
+      
 }
 
 # Dictionary for prettier names of cuts (optional)
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
 cutLabels = {
     "selReco": "No additional selection",
-    "selReco_100Me": "E_{miss}>100 GeV",
-    "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
-    "selReco_100Me_TauDPhi3_2DR": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4}",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4}, |cos#theta_{miss}|<0.98}",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4}, |cos#theta_{miss}|<0.98} && |y_{miss}|<1",
-}
+    }
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
 histoList = {
@@ -340,21 +328,21 @@ histoList = {
     "TagJet_R5_sel_mass":         {"name":"TagJet_R5_sel_mass",                "title":"Quark/gluon R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "n_TagJet_R5_sel":            {"name":"n_TagJet_R5_sel",                   "title":"Number of Quark/gluon R5 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
 
-    "TagJet_kt4_e":                {"name":"TagJet_kt4_e",                   "title":"kt4 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt4_p":                {"name":"TagJet_kt4_p",                   "title":"kt4 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt4_pt":               {"name":"TagJet_kt4_pt",                  "title":"kt4 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt4_px":               {"name":"TagJet_kt4_px",                  "title":"kt4 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_py":               {"name":"TagJet_kt4_py",                  "title":"kt4 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_pz":               {"name":"TagJet_kt4_pz",                  "title":"kt4 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt4_eta":              {"name":"TagJet_kt4_eta",                 "title":"kt4 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_theta":            {"name":"TagJet_kt4_theta",               "title":"kt4 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt4_phi":              {"name":"TagJet_kt4_phi",                 "title":"kt4 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt4_mass":             {"name":"TagJet_kt4_mass",                "title":"kt4 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "TagJet_kt4_charge":             {"name":"TagJet_kt4_charge",                "title":"kt4 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
-    "n_TagJet_kt4":                {"name":"n_TagJet_kt4",                   "title":"Number of kt4 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_TagJet_kt4_constituents":             {"name":"n_TagJet_kt4_constituents",               "title":"kt4 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt4_charged_constituents":             {"name":"n_TagJet_kt4_charged_constituents",               "title":"kt4 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt4_neutral_constituents":             {"name":"n_TagJet_kt4_neutral_constituents",               "title":"kt4 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "TagJet_kt2_e":                {"name":"TagJet_kt2_e",                   "title":"kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
+    "TagJet_kt2_p":                {"name":"TagJet_kt2_p",                   "title":"kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt2_pt":               {"name":"TagJet_kt2_pt",                  "title":"kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    "TagJet_kt2_px":               {"name":"TagJet_kt2_px",                  "title":"kt2 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt2_py":               {"name":"TagJet_kt2_py",                  "title":"kt2 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt2_pz":               {"name":"TagJet_kt2_pz",                  "title":"kt2 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    "TagJet_kt2_eta":              {"name":"TagJet_kt2_eta",                 "title":"kt2 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt2_theta":            {"name":"TagJet_kt2_theta",               "title":"kt2 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    "TagJet_kt2_phi":              {"name":"TagJet_kt2_phi",                 "title":"kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    "TagJet_kt2_mass":             {"name":"TagJet_kt2_mass",                "title":"kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    "TagJet_kt2_charge":             {"name":"TagJet_kt2_charge",                "title":"kt2 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
+    "n_TagJet_kt2":                {"name":"n_TagJet_kt2",                   "title":"Number of kt2 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    "n_TagJet_kt2_constituents":             {"name":"n_TagJet_kt2_constituents",               "title":"kt2 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "n_TagJet_kt2_charged_constituents":             {"name":"n_TagJet_kt2_charged_constituents",               "title":"kt2 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "n_TagJet_kt2_neutral_constituents":             {"name":"n_TagJet_kt2_neutral_constituents",               "title":"kt2 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
 
     "TagJet_kt2_e":                {"name":"TagJet_kt2_e",                   "title":"kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_kt2_p":                {"name":"TagJet_kt2_p",                   "title":"kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
@@ -498,4 +486,5 @@ histoList = {
     "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
     "Tau_DEta":                             {"name":"Tau_DEta",           "title":"Reco di-#tau #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
     "Visible_mass":               {"name":"Visible_mass",               "title":"Visible mass",                   "bin":75, "xmin":0 ,"xmax":150},
+    "BDT_score":           {"name":"BDT_score",           "title":"BDT score",                  "bin":200, "xmin":0., "xmax":1.},
 }

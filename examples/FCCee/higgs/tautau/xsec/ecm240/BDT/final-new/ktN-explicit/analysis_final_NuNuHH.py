@@ -117,14 +117,7 @@ procDictAdd = {}
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
-    "selReco_100Me": "RecoEmiss_e>100",
-    "selReco_100Me_TauDPhi3": "RecoEmiss_e>100 && abs(Tau_DPhi)<3",
-    "selReco_100Me_TauDPhi3_2DR": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98",
-    "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "RecoEmiss_e>100 && abs(Tau_DPhi)<3 && Tau_DR>2 && Tau_cos<-0.4 && RecoEmiss_costheta<0.98 && abs(RecoEmiss_y)<1",
-     
+    "selReco": "true",  
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -436,4 +429,5 @@ histoList = {
     "Tau_cos":                  {"name":"Tau_cos",                    "title":"cos#theta(#tau#tau)",                 "bin":100, "xmin":-1.,"xmax":1.},
     "Tau_DEta":                             {"name":"Tau_DEta",           "title":"Reco di-#tau #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
     "Visible_mass":               {"name":"Visible_mass",               "title":"Visible mass",                   "bin":75, "xmin":0 ,"xmax":150},
+    "BDT_score":           {"name":"BDT_score",           "title":"BDT score",                  "bin":200, "xmin":0., "xmax":1.},
 }

@@ -1,10 +1,10 @@
 #Input directory where the files produced at the stage1 level are
 #inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/" 
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/efficiency"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/efficiencyZ-pi0_0.4theta/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/efficiency/jet/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/efficiency"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/efficiencyZ-pi0_0.4theta/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -23,13 +23,10 @@ nCPUS = 1
 doTree = False
 
 processList = {
-    'wzp6_ee_nunuH_Htautau_ecm240': {},
-    'wzp6_ee_eeH_Htautau_ecm240': {},
-    'wzp6_ee_mumuH_Htautau_ecm240': {},
-    'wzp6_ee_bbH_Htautau_ecm240': {},
-    'wzp6_ee_ccH_Htautau_ecm240': {},
-    'wzp6_ee_ssH_Htautau_ecm240': {},
-    'wzp6_ee_qqH_Htautau_ecm240': {},
+    "p8_ee_Ztautau_ecm91":{},
+    'wzp6_ee_tautau_ecm240':{},
+    'wzp6_ee_tautau_ecm365':{},
+    'wzp6_ee_nunuH_Htautau_ecm240':{},
 }
 
 ###Dictionary for prettier names of processes (optional)

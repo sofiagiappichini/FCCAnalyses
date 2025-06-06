@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250302/ktN-explicit/QQ/HH/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/QQ/HH"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250302/ktN-explicit/QQ/HH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/QQ/HH"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -20,6 +20,36 @@ saveTabular = False
 doTree = False
 
 processList = {
+
+    "mg_ee_eetata_ecm240":{},
+    "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_eetata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_eetata_smeft_cehre_p1_ecm240":{},
+    "mg_ee_jjtata_ecm240":{},
+    "mg_ee_jjtata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehre_p1_ecm240":{},
+    "mg_ee_mumutata_ecm240":{},
+    "mg_ee_mumutata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
+
+    "p8_ee_bbH_Htautau_CPeven":{},
+    "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPeven":{},
+    "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPeven":{},
+    "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPeven":{},
+    "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPeven":{},
+    "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    "p8_ee_qqH_Htautau_CPodd":{},
+
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
     'p8_ee_ZZ_ecm240':{},
@@ -112,18 +142,53 @@ processLabels = {}
 procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add provate samples as it is not an offical process
-procDictAdd = {}
+procDictAdd = {
+
+    'mg_ee_eetata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039496700612440505, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039467206272751117, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039526795717095316, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039545719323659203, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005953978259013256, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehim_m1_ecm240':{"numberOfEvents": 9893750, "sumOfWeights": 9893750, "crossSection": 0.005957006930373593, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005952444260067142, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005972489422656043, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005960914361046144, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037101429593363667, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037126725168208034, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037152687307799456, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.000371622336608876, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+
+    'p8_ee_bbH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_bbH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPeven':{"numberOfEvents": 2385875, "sumOfWeights": 2385875, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+}
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    #"selReco": "true",
+    #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
+    #"selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10",
+    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_DR<3 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10",
+    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM_36Zpt": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_DR<3 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ_pt>36",
     
 }
 
@@ -497,5 +562,6 @@ histoList = {
     "SinDeltaPhiILC":                          {"name": "SinDeltaPhiILC", "title": "sin(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
     "DeltaPhiILC":                             {"name":"DeltaPhiILC",           "title":"#Delta#Phi_{CP} ILC",                  "bin":32, "xmin":-3.14,"xmax":3.14},
     "KinILC_chi2":                             {"name":"KinILC_chi2",           "title":"#chi^{2} ILC",                  "bin":50, "xmin":0,"xmax":20},
+    "KinILC_H_mass":                             {"name":"KinILC_H_mass",           "title":"M_{H} ILC",                  "bin":100, "xmin":0,"xmax":200},
 
 }

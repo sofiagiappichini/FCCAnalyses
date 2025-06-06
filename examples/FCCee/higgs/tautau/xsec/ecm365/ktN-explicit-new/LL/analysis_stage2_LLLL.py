@@ -4,6 +4,11 @@ import urllib.request
 
 #Mandatory: List of processes
 processList = {
+    'p8_ee_WW_ecm365':{'chunks':100000},
+    }
+processList_ = {
+
+    #'p8_ee_WW_ecm365':{'chunks':100000},
     'p8_ee_WW_tautau_ecm365':{'chunks':100000},
     'p8_ee_Zqq_ecm365':{'chunks':10000},
     'p8_ee_ZZ_ecm365':{'chunks':1000},
@@ -279,7 +284,7 @@ class RDFanalysis():
                 .Define("WW_daughter",      "FCCAnalyses::MCParticle::sel_daughterID(15, true, true) (WW_candidates, Particle, Particle1)")
 
                 # to exclude WW->tau tau events so they are not counted twice with WW->tau tau dedicated samples
-                #.Filter("WW_daughter.size()<2")
+                .Filter("WW_daughter.size()<2")
                 
                 ##################
                 # Reco particles #

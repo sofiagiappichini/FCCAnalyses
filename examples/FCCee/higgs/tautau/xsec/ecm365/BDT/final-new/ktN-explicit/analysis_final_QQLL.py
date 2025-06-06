@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir =  "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/BDT_250502/ktN-explicit/stage3/QQ/HH/" 
+inputDir =  "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/BDT_250502/ktN-explicit/stage3/QQ/LL/" 
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/BDT_250502/ktN-explicit/final/QQ/HH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/BDT_250502/ktN-explicit/final/QQ/LL/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 3e6 #pb^-1 #to be checked again for 240 gev
@@ -147,12 +147,6 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    "selReco_100Coll150_115Rec160_1DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25)",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
      
 }
 

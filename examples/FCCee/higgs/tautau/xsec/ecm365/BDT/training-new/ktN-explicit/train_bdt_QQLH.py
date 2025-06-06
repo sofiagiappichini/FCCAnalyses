@@ -416,7 +416,10 @@ for q in bkgs:
 
     for file in files:
         f = uproot.open(file)
-        if f.keys() == ['eventsProcessed;1']:
+        if f.keys()==['eventsProcessed;1']:
+            files.remove(file)
+            continue
+        if f.keys()==[]:
             continue
         tree = f["events"]
         temp_df = tree.arrays(expressions=vars_list, library="pd")

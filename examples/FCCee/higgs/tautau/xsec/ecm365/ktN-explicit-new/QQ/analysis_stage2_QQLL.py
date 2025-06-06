@@ -3,11 +3,7 @@ import ROOT
 import urllib.request
 
 #Mandatory: List of processes
-processList = {
-    'p8_ee_WW_ecm365':{'chunks':100000},
-    }
-processList_ = {
-
+list = {
     #'p8_ee_WW_ecm365':{'chunks':100000},
     'p8_ee_WW_tautau_ecm365':{'chunks':100000},
     'p8_ee_Zqq_ecm365':{'chunks':10000},
@@ -88,6 +84,10 @@ processList_ = {
     'wzp6_ee_ssH_HZZ_ecm365': {'chunks':100},
 
     'wzp6_ee_qqH_Htautau_ecm365': {'chunks':100},
+}
+processList = {
+
+
     'wzp6_ee_qqH_Hbb_ecm365': {'chunks':100},
     'wzp6_ee_qqH_Hcc_ecm365': {'chunks':100},
     'wzp6_ee_qqH_Hss_ecm365': {'chunks':100},
@@ -284,7 +284,7 @@ class RDFanalysis():
                 .Define("WW_daughter",      "FCCAnalyses::MCParticle::sel_daughterID(15, true, true) (WW_candidates, Particle, Particle1)")
 
                 # to exclude WW->tau tau events so they are not counted twice with WW->tau tau dedicated samples
-                .Filter("WW_daughter.size()<2")
+                #.Filter("WW_daughter.size()<2")
                 
                 ##################
                 # Reco particles #
@@ -448,7 +448,7 @@ class RDFanalysis():
                 .Define("NoLeptons", "ReconstructedParticle::remove(NoMuons, RecoElectrons)")
 
                 # different definition of missing energy from fccanalysis classes instead of edm4hep
-                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(240, ReconstructedParticles)") #ecm 
+                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(365, ReconstructedParticles)") #ecm 
                 .Define("RecoEmiss_px",  "RecoEmiss[0].momentum.x")
                 .Define("RecoEmiss_py",  "RecoEmiss[0].momentum.y")
                 .Define("RecoEmiss_pz",  "RecoEmiss[0].momentum.z")
@@ -906,7 +906,7 @@ class RDFanalysis():
                 .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
                 .Define("RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(RecoZLead_phi, RecoZSub_phi)")
 
-                .Define("Total_p4",     "TLorentzVector(0.,0.,1.,240.)")
+                .Define("Total_p4",     "TLorentzVector(0.,0.,1.,365.)")
                 .Define("Recoil",       "(Total_p4-RecoZ_p4).M()")
 
                 .Define("p12",      "(TauLead_py*TauSub_px-TauLead_px*TauSub_py)")

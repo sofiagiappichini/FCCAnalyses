@@ -17,7 +17,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/final_250502/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/BDT_250502/"
 TAG = [
     #"R5-explicit",
     #"R5-tag",
@@ -31,28 +31,28 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    "QQ",
-    "LL",
+    #"QQ",
+    #"LL",
     "NuNu",
 ]
 #list of cuts you want to plot
 CUTS_LL = [
     "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_1DR",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_1DR",
+    #"selReco_100Coll150_115Rec160_1DR_cos0.25",
+    #"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98",
+    #"selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100",
 ]
 CUTS_NuNu = [
     "selReco",
-    "selReco_180Me",
-    "selReco_180Me_TauDPhi3",
-    "selReco_180Me_TauDPhi3_1DR",
-    "selReco_180Me_TauDPhi3_1DR_cos0.25",
-    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98",
-    "selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1",
+    #"selReco_180Me",
+    #"selReco_180Me_TauDPhi3",
+    #"selReco_180Me_TauDPhi3_1DR",
+    #"selReco_180Me_TauDPhi3_1DR_cos0.25",
+    #"selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98",
+    #"selReco_180Me_TauDPhi3_1DR_cos0.25_misscos0.98_missy1",
 ]
 
 CUTS = {
@@ -312,29 +312,29 @@ VARIABLES_LL = [
     "RecoZSub_y",    
     "RecoZSub_mass",  
 
-    "RecoZP_px", 
-    "RecoZP_py",   
-    "RecoZP_pz",   
-    "RecoZP_p",    
-    "RecoZP_pt",   
-    "RecoZP_e",    
-    "RecoZP_eta",    
-    "RecoZP_phi",    
-    "RecoZP_theta",   
-    "RecoZP_y",     
-    "RecoZP_mass",   
+    #"RecoZP_px", 
+    #"RecoZP_py",   
+    #"RecoZP_pz",   
+    #"RecoZP_p",    
+    #"RecoZP_pt",   
+    #"RecoZP_e",    
+    #"RecoZP_eta",    
+    #"RecoZP_phi",    
+    #"RecoZP_theta",   
+    #"RecoZP_y",     
+    #"RecoZP_mass",   
 
-    "RecoZM_px",    
-    "RecoZM_py",   
-    "RecoZM_pz",   
-    "RecoZM_p",   
-    "RecoZM_pt",  
-    "RecoZM_e",     
-    "RecoZM_eta",   
-    "RecoZM_phi",   
-    "RecoZM_theta",    
-    "RecoZM_y",    
-    "RecoZM_mass",  
+    #"RecoZM_px",    
+    #"RecoZM_py",   
+    #"RecoZM_pz",   
+    #"RecoZM_p",   
+    #"RecoZM_pt",  
+    #"RecoZM_e",     
+    #"RecoZM_eta",   
+    #"RecoZM_phi",   
+    #"RecoZM_theta",    
+    #"RecoZM_y",    
+    #"RecoZM_mass",  
 
     "RecoH_px",
     "RecoH_py",
@@ -416,6 +416,8 @@ VARIABLES_LL = [
     "RecoZDaughter_cos", 
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
+
+    "BDT_score",
 ]
 
 VARIABLES_QQ = [
@@ -537,7 +539,7 @@ VARIABLES_QQ = [
     "RecoZDaughter_DEta", 
     "RecoZDaughter_DPhi", 
 
-    #"BDT_score_bkg",
+    "BDT_score",
 ]
 
 VARIABLES_NuNu = [
@@ -616,9 +618,9 @@ VARIABLES_NuNu = [
     "Tau_DPhi",
     "Visible_mass",
 
-    #"BDT_score_bkg",
-    #"BDT_score_VBF",
-    #"BDT_score_ZH",
+    "BDT_score_bkg",
+    "BDT_score_VBF",
+    "BDT_score_ZH",
 ]
 
 LIST_VAR = {
@@ -1057,10 +1059,10 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final/" + cat + "/" + sub + "/"
 
                 # ZH = 3*numunumuH
-                for i in range(len(nunuH)):
+                for i in range(len(numunumuH)):
                     output = f"{directory}{legend_ZH[i]}_{cut}_histo.root"
                     #print(output)
                     outFile = ROOT.TFile.Open(output, "RECREATE")
@@ -1075,6 +1077,7 @@ for tag in TAG:
                             hh2.SetDirectory(0)
                             hh2.Scale(3.)
                             tf2.Close()
+                            check = True
                                 
                         #write the histogram in the file   
                         if check==True:
@@ -1101,7 +1104,7 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final/" + cat + "/" + sub + "/"
 
                 # ZH_nunu + all other ZH signals for Htautau
                 output = f"{directory}wzp6_ee_ZH_Htautau_ecm365_{cut}_histo.root"
@@ -1163,7 +1166,7 @@ for tag in TAG:
                 else: 
                     variables = VARIABLES + LIST_VAR[cat] 
 
-                directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final/" + cat + "/" + sub + "/"
             
                 for num in range(1,31):
                     output = f"{directory}{legend[num]}_{cut}_histo.root"
@@ -1203,4 +1206,3 @@ for tag in TAG:
                     outFile.Close()
                     if check==False: #if nothing was written i don't want the file saved at all
                         os.remove(output)
-

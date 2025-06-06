@@ -7,4 +7,4 @@
 
  --- FitDiagnostics ---
 Best fit r: 1  -0.0113779/+0.0114502  (68% CL)
-Done in 0.10 min (cpu), 0.10 min (real)
+Done in 0.08 min (cpu), 0.09 min (real)

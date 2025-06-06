@@ -1,0 +1,876 @@
+
+>>> Random number generator seed is 123456
+>>> Method used is MultiDimFit
+Adding /afs/cern.ch/user/s/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel NuNuLL=pdf_binNuNuLL_bonly NuNuLH=pdf_binNuNuLH_bonly NuNuHH=pdf_binNuNuHH_bonly extraConstraints=() channelMasks=() ] = 5.68329e-10
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel NuNuLL=pdf_binNuNuLL NuNuLH=pdf_binNuNuLH NuNuHH=pdf_binNuNuHH extraConstraints=() channelMasks=() ] = 5.6787e-10
+RooProdPdf::nuisancePdf[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binNuNuHH[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuHH_nuis * pdfbins_binNuNuHH ] = 1e-09
+RooProdPdf::pdf_binNuNuHH_bonly[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuHH_bonly_nuis * pdfbins_binNuNuHH ] = 1e-09
+RooAddPdf::pdf_binNuNuHH_bonly_nuis[ n_exp_binNuNuHH_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuHH_rebinPdf ] = 1e-09/1
+RooAddPdf::pdf_binNuNuHH_nuis[ n_exp_binNuNuHH_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 * shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_ZH_Htautau_ecm365 * shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuHH_rebinPdf + n_exp_binNuNuHH_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuHH_rebinPdf ] = 1e-09/1
+RooProdPdf::pdf_binNuNuLH[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuLH_nuis * pdfbins_binNuNuLH ] = 1e-09
+RooProdPdf::pdf_binNuNuLH_bonly[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuLH_bonly_nuis * pdfbins_binNuNuLH ] = 1e-09
+RooAddPdf::pdf_binNuNuLH_bonly_nuis[ n_exp_binNuNuLH_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuLH_rebinPdf ] = 1e-09/1
+RooAddPdf::pdf_binNuNuLH_nuis[ n_exp_binNuNuLH_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 * shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_ZH_Htautau_ecm365 * shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLH_rebinPdf + n_exp_binNuNuLH_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuLH_rebinPdf ] = 1e-09/1
+RooProdPdf::pdf_binNuNuLL[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuLL_nuis * pdfbins_binNuNuLL ] = 1e-09
+RooProdPdf::pdf_binNuNuLL_bonly[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuLL_bonly_nuis * pdfbins_binNuNuLL ] = 1e-09
+RooAddPdf::pdf_binNuNuLL_bonly_nuis[ n_exp_binNuNuLL_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLL_rebinPdf ] = 1e-09/1
+RooAddPdf::pdf_binNuNuLL_nuis[ n_exp_binNuNuLL_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 * shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_ZH_Htautau_ecm365 * shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuLL_rebinPdf + n_exp_binNuNuLL_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLL_rebinPdf ] = 1e-09/1
+RooProdPdf::pdfbins_binNuNuHH[  ] = 1
+RooProdPdf::pdfbins_binNuNuLH[  ] = 1
+RooProdPdf::pdfbins_binNuNuLL[  ] = 1
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_tautau_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_tautau_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_tautau_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZQQ_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZQQ_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZQQ_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZZ_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZZ_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZZ_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LL_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LL_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LL_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautau_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautau_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautau_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuHH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLL_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+SimpleGaussianConstraint::unc_Z_Pdf[ x=unc_Z mean=unc_Z_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_ecm365_Pdf[ x=unc_p8_ee_WW_ecm365 mean=unc_p8_ee_WW_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_tautau_ecm365_Pdf[ x=unc_p8_ee_WW_tautau_ecm365 mean=unc_p8_ee_WW_tautau_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf[ x=unc_wzp6_ee_egamma_eZ_ZLL_ecm365 mean=unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_gaga_LL_60_ecm365_Pdf[ x=unc_wzp6_ee_gaga_LL_60_ecm365 mean=unc_wzp6_ee_gaga_LL_60_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_nuenueZ_ecm365_Pdf[ x=unc_wzp6_ee_nuenueZ_ecm365 mean=unc_wzp6_ee_nuenueZ_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binNuNuHH_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 41528.2
+ProcessNormalization::n_exp_binNuNuHH_proc_p8_ee_WW_tautau_ecm365[ thetaList=(unc_p8_ee_WW_tautau_ecm365) asymmThetaList=() otherFactorList=() ] = 133374
+ProcessNormalization::n_exp_binNuNuHH_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 246862
+ProcessNormalization::n_exp_binNuNuHH_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 16044.1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.15788
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 3858.31
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.253863
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 132.802
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 2507.85
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1949.41
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 102.898
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 463.414
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 58631.3
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 5601
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 3.363e-05
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 11.0973
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 31.798
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1.3636e+06
+ProcessNormalization::n_exp_binNuNuLH_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 403356
+ProcessNormalization::n_exp_binNuNuLH_proc_p8_ee_WW_tautau_ecm365[ thetaList=(unc_p8_ee_WW_tautau_ecm365) asymmThetaList=() otherFactorList=() ] = 127750
+ProcessNormalization::n_exp_binNuNuLH_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 3173.9
+ProcessNormalization::n_exp_binNuNuLH_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 15179.5
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 2.216
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 88708.3
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.11967
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 649.662
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 2256.55
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1816.36
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 519.666
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 31519.2
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 315024
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 5331.84
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.0765769
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 36.1285
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 104.35
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1.23204e+06
+ProcessNormalization::n_exp_binNuNuLL_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 504158
+ProcessNormalization::n_exp_binNuNuLL_proc_p8_ee_WW_tautau_ecm365[ thetaList=(unc_p8_ee_WW_tautau_ecm365) asymmThetaList=() otherFactorList=() ] = 36968.9
+ProcessNormalization::n_exp_binNuNuLL_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 666.001
+ProcessNormalization::n_exp_binNuNuLL_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 47855.2
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 27.0527
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1.53939e+06
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_VBF_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1243.14
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 628.32
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 510.091
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_ZH_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1000.16
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 108698
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 2.68867e+06
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 24495.1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1.47568
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.0204126
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 436447
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In)
+ModelConfig_NuisParams:(unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In)
+ModelConfig_bonly_NuisParams:(unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In)
+nuisances:(unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365)
+Global Observables:      RooArgSet:: = (unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel NuNuLL=pdf_binNuNuLL NuNuLH=pdf_binNuNuLH NuNuHH=pdf_binNuNuHH extraConstraints=() channelMasks=() ] = 5.6787e-10
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365)
+Global Observables:      RooArgSet:: = (unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel NuNuLL=pdf_binNuNuLL NuNuLH=pdf_binNuNuLH NuNuHH=pdf_binNuNuHH extraConstraints=() channelMasks=() ] = 5.6787e-10
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 2 
+CMS_th1x = 199.5 
+r_VBF = 1 
+r_ZH = 1 
+unc_Z = 0 
+unc_Z_In = 0 (constant)
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_WW_ecm365 = 0 
+unc_p8_ee_WW_ecm365_In = 0 (constant)
+unc_p8_ee_WW_tautau_ecm365 = 0 
+unc_p8_ee_WW_tautau_ecm365_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = 0 
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In = 0 (constant)
+unc_wzp6_ee_gaga_LL_60_ecm365 = 0 
+unc_wzp6_ee_gaga_LL_60_ecm365_In = 0 (constant)
+unc_wzp6_ee_nuenueZ_ecm365 = 0 
+unc_wzp6_ee_nuenueZ_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binNuNuLL_obsOnly: in 200 x-bins
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binNuNuLH_obsOnly: in 200 x-bins
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binNuNuHH_obsOnly: in 200 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5            NuNuHH  965516.0625000
+   1               1.5            NuNuHH  168926.6718750
+   2               2.5            NuNuHH  96648.3906250
+   3               3.5            NuNuHH  63119.5468750
+   4               4.5            NuNuHH  44625.2656250
+   5               5.5            NuNuHH  33504.0507812
+   6               6.5            NuNuHH  26586.7500000
+   7               7.5            NuNuHH  22055.2617188
+   8               8.5            NuNuHH  18802.9335938
+   9               9.5            NuNuHH  16572.8398438
+  10              10.5            NuNuHH  14342.5419922
+  11              11.5            NuNuHH  13041.3876953
+  12              12.5            NuNuHH  11987.7880859
+  13              13.5            NuNuHH  10794.3310547
+  14              14.5            NuNuHH  10018.4169922
+  15              15.5            NuNuHH  9156.4443359
+  16              16.5            NuNuHH  8560.7939453
+  17              17.5            NuNuHH  7899.4418945
+  18              18.5            NuNuHH  7511.1074219
+  19              19.5            NuNuHH  7083.2734375
+  20              20.5            NuNuHH  6694.5468750
+  21              21.5            NuNuHH  6398.8002930
+  22              22.5            NuNuHH  6127.1860352
+  23              23.5            NuNuHH  5732.5048828
+  24              24.5            NuNuHH  5576.8652344
+  25              25.5            NuNuHH  5241.0498047
+  26              26.5            NuNuHH  5066.8315430
+  27              27.5            NuNuHH  4948.5229492
+  28              28.5            NuNuHH  4620.6064453
+  29              29.5            NuNuHH  4489.2075195
+  30              30.5            NuNuHH  4370.2163086
+  31              31.5            NuNuHH  4236.7265625
+  32              32.5            NuNuHH  4010.8906250
+  33              33.5            NuNuHH  3923.1948242
+  34              34.5            NuNuHH  3802.6054688
+  35              35.5            NuNuHH  3636.5644531
+  36              36.5            NuNuHH  3537.1135254
+  37              37.5            NuNuHH  3467.4226074
+  38              38.5            NuNuHH  3327.4558105
+  39              39.5            NuNuHH  3289.0473633
+  40              40.5            NuNuHH  3246.8432617
+  41              41.5            NuNuHH  3099.8957520
+  42              42.5            NuNuHH  3013.8959961
+  43              43.5            NuNuHH  2921.8671875
+  44              44.5            NuNuHH  2899.3356934
+  45              45.5            NuNuHH  2786.8444824
+  46              46.5            NuNuHH  2690.7580566
+  47              47.5            NuNuHH  2663.7680664
+  48              48.5            NuNuHH  2639.1635742
+  49              49.5            NuNuHH  2546.0817871
+  50              50.5            NuNuHH  2503.6721191
+  51              51.5            NuNuHH  2459.2058105
+  52              52.5            NuNuHH  2434.8503418
+  53              53.5            NuNuHH  2406.7917480
+  54              54.5            NuNuHH  2331.4350586
+  55              55.5            NuNuHH  2318.7788086
+  56              56.5            NuNuHH  2266.4768066
+  57              57.5            NuNuHH  2219.7412109
+  58              58.5            NuNuHH  2189.1560059
+  59              59.5            NuNuHH  2155.8564453
+  60              60.5            NuNuHH  2037.2186279
+  61              61.5            NuNuHH  2080.9443359
+  62              62.5            NuNuHH  2029.1744385
+  63              63.5            NuNuHH  1993.9650879
+  64              64.5            NuNuHH  1936.5938721
+  65              65.5            NuNuHH  1922.8277588
+  66              66.5            NuNuHH  1848.8692627
+  67              67.5            NuNuHH  1851.3928223
+  68              68.5            NuNuHH  1877.6691895
+  69              69.5            NuNuHH  1837.1208496
+  70              70.5            NuNuHH  1795.1937256
+  71              71.5            NuNuHH  1719.1319580
+  72              72.5            NuNuHH  1733.4444580
+  73              73.5            NuNuHH  1727.4395752
+  74              74.5            NuNuHH  1699.1668701
+  75              75.5            NuNuHH  1704.7976074
+  76              76.5            NuNuHH  1663.9948730
+  77              77.5            NuNuHH  1618.4108887
+  78              78.5            NuNuHH  1624.5756836
+  79              79.5            NuNuHH  1571.6461182
+  80              80.5            NuNuHH  1551.1328125
+  81              81.5            NuNuHH  1571.5684814
+  82              82.5            NuNuHH  1540.2128906
+  83              83.5            NuNuHH  1520.0388184
+  84              84.5            NuNuHH  1517.5577393
+  85              85.5            NuNuHH  1489.9066162
+  86              86.5            NuNuHH  1481.7414551
+  87              87.5            NuNuHH  1460.9462891
+  88              88.5            NuNuHH  1466.5095215
+  89              89.5            NuNuHH  1453.3006592
+  90              90.5            NuNuHH  1440.5465088
+  91              91.5            NuNuHH  1450.9042969
+  92              92.5            NuNuHH  1420.7071533
+  93              93.5            NuNuHH  1394.2603760
+  94              94.5            NuNuHH  1415.8652344
+  95              95.5            NuNuHH  1408.2445068
+  96              96.5            NuNuHH  1363.0552979
+  97              97.5            NuNuHH  1356.2883301
+  98              98.5            NuNuHH  1386.9726562
+  99              99.5            NuNuHH  1343.3143311
+ 100             100.5            NuNuHH  1336.9422607
+ 101             101.5            NuNuHH  1360.4516602
+ 102             102.5            NuNuHH  1332.8337402
+ 103             103.5            NuNuHH  1272.9858398
+ 104             104.5            NuNuHH  1314.2698975
+ 105             105.5            NuNuHH  1273.0285645
+ 106             106.5            NuNuHH  1297.8398438
+ 107             107.5            NuNuHH  1297.9514160
+ 108             108.5            NuNuHH  1330.0535889
+ 109             109.5            NuNuHH  1273.9477539
+ 110             110.5            NuNuHH  1295.6406250
+ 111             111.5            NuNuHH  1307.0174561
+ 112             112.5            NuNuHH  1272.5122070
+ 113             113.5            NuNuHH  1285.1359863
+ 114             114.5            NuNuHH  1281.1151123
+ 115             115.5            NuNuHH  1260.3640137
+ 116             116.5            NuNuHH  1277.3137207
+ 117             117.5            NuNuHH  1259.6112061
+ 118             118.5            NuNuHH  1235.4785156
+ 119             119.5            NuNuHH  1238.3714600
+ 120             120.5            NuNuHH  1192.5429688
+ 121             121.5            NuNuHH  1183.2491455
+ 122             122.5            NuNuHH  1196.4012451
+ 123             123.5            NuNuHH  1179.1025391
+ 124             124.5            NuNuHH  1176.6677246
+ 125             125.5            NuNuHH  1150.3765869
+ 126             126.5            NuNuHH  1165.2359619
+ 127             127.5            NuNuHH  1141.7154541
+ 128             128.5            NuNuHH  1107.9140625
+ 129             129.5            NuNuHH  1088.9020996
+ 130             130.5            NuNuHH  1115.4464111
+ 131             131.5            NuNuHH  1104.7266846
+ 132             132.5            NuNuHH  1091.0617676
+ 133             133.5            NuNuHH  1113.1954346
+ 134             134.5            NuNuHH  1109.6269531
+ 135             135.5            NuNuHH  1111.2885742
+ 136             136.5            NuNuHH  1111.7916260
+ 137             137.5            NuNuHH  1118.2714844
+ 138             138.5            NuNuHH  1121.4809570
+ 139             139.5            NuNuHH  1124.7839355
+ 140             140.5            NuNuHH  1105.5101318
+ 141             141.5            NuNuHH  1148.2938232
+ 142             142.5            NuNuHH  1123.7924805
+ 143             143.5            NuNuHH  1164.6710205
+ 144             144.5            NuNuHH  1134.3016357
+ 145             145.5            NuNuHH  1190.8240967
+ 146             146.5            NuNuHH  1173.2028809
+ 147             147.5            NuNuHH  1168.6616211
+ 148             148.5            NuNuHH  1186.8215332
+ 149             149.5            NuNuHH  1211.1282959
+ 150             150.5            NuNuHH  1215.1783447
+ 151             151.5            NuNuHH  1229.6447754
+ 152             152.5            NuNuHH  1243.9678955
+ 153             153.5            NuNuHH  1243.6387939
+ 154             154.5            NuNuHH  1290.2539062
+ 155             155.5            NuNuHH  1253.2331543
+ 156             156.5            NuNuHH  1276.6326904
+ 157             157.5            NuNuHH  1289.8284912
+ 158             158.5            NuNuHH  1309.8765869
+ 159             159.5            NuNuHH  1307.9676514
+ 160             160.5            NuNuHH  1296.2553711
+ 161             161.5            NuNuHH  1303.7128906
+ 162             162.5            NuNuHH  1328.5284424
+ 163             163.5            NuNuHH  1330.2126465
+ 164             164.5            NuNuHH  1332.0369873
+ 165             165.5            NuNuHH  1313.2152100
+ 166             166.5            NuNuHH  1292.6339111
+ 167             167.5            NuNuHH  1295.4224854
+ 168             168.5            NuNuHH  1298.9156494
+ 169             169.5            NuNuHH  1300.4144287
+ 170             170.5            NuNuHH  1290.9783936
+ 171             171.5            NuNuHH  1263.0108643
+ 172             172.5            NuNuHH  1267.5124512
+ 173             173.5            NuNuHH  1249.9586182
+ 174             174.5            NuNuHH  1245.0694580
+ 175             175.5            NuNuHH  1243.7258301
+ 176             176.5            NuNuHH  1240.3931885
+ 177             177.5            NuNuHH  1214.4344482
+ 178             178.5            NuNuHH  1193.0714111
+ 179             179.5            NuNuHH  1146.8685303
+ 180             180.5            NuNuHH  1103.5895996
+ 181             181.5            NuNuHH  1081.6834717
+ 182             182.5            NuNuHH  1025.4575195
+ 183             183.5            NuNuHH   998.2863770
+ 184             184.5            NuNuHH   923.2199707
+ 185             185.5            NuNuHH   841.9084473
+ 186             186.5            NuNuHH   779.1378784
+ 187             187.5            NuNuHH   707.2608032
+ 188             188.5            NuNuHH   644.7095947
+ 189             189.5            NuNuHH   553.8074951
+ 190             190.5            NuNuHH   470.8825989
+ 191             191.5            NuNuHH   378.2920227
+ 192             192.5            NuNuHH   282.8245544
+ 193             193.5            NuNuHH   198.4966278
+ 194             194.5            NuNuHH   108.1887894
+ 195             195.5            NuNuHH    30.1455059
+ 196             196.5            NuNuHH     2.7624729
+ 197             197.5            NuNuHH     0.0106232
+ 198             198.5            NuNuHH     0.0018747
+ 199             199.5            NuNuHH     0.0018747
+ 200               0.5            NuNuLH  891198.1875000
+ 201               1.5            NuNuLH  225996.4531250
+ 202               2.5            NuNuLH  129402.6718750
+ 203               3.5            NuNuLH  86976.8984375
+ 204               4.5            NuNuLH  60858.8085938
+ 205               5.5            NuNuLH  46665.3828125
+ 206               6.5            NuNuLH  38038.1250000
+ 207               7.5            NuNuLH  31833.6328125
+ 208               8.5            NuNuLH  27708.4199219
+ 209               9.5            NuNuLH  24579.1679688
+ 210              10.5            NuNuLH  22006.1210938
+ 211              11.5            NuNuLH  20002.1953125
+ 212              12.5            NuNuLH  18226.1601562
+ 213              13.5            NuNuLH  16735.2929688
+ 214              14.5            NuNuLH  15482.5654297
+ 215              15.5            NuNuLH  14778.6474609
+ 216              16.5            NuNuLH  13876.5244141
+ 217              17.5            NuNuLH  13055.1328125
+ 218              18.5            NuNuLH  12329.8886719
+ 219              19.5            NuNuLH  11824.0273438
+ 220              20.5            NuNuLH  11188.2324219
+ 221              21.5            NuNuLH  10596.3037109
+ 222              22.5            NuNuLH  10252.3896484
+ 223              23.5            NuNuLH  9879.9755859
+ 224              24.5            NuNuLH  9464.9667969
+ 225              25.5            NuNuLH  9034.8125000
+ 226              26.5            NuNuLH  8789.4863281
+ 227              27.5            NuNuLH  8467.5908203
+ 228              28.5            NuNuLH  8177.3969727
+ 229              29.5            NuNuLH  7837.5795898
+ 230              30.5            NuNuLH  7553.0292969
+ 231              31.5            NuNuLH  7366.3544922
+ 232              32.5            NuNuLH  7131.8354492
+ 233              33.5            NuNuLH  6829.3315430
+ 234              34.5            NuNuLH  6700.6425781
+ 235              35.5            NuNuLH  6474.1103516
+ 236              36.5            NuNuLH  6291.5703125
+ 237              37.5            NuNuLH  6077.8339844
+ 238              38.5            NuNuLH  5941.6420898
+ 239              39.5            NuNuLH  5763.5654297
+ 240              40.5            NuNuLH  5630.8046875
+ 241              41.5            NuNuLH  5452.8544922
+ 242              42.5            NuNuLH  5358.0317383
+ 243              43.5            NuNuLH  5114.5976562
+ 244              44.5            NuNuLH  5049.8320312
+ 245              45.5            NuNuLH  4905.2128906
+ 246              46.5            NuNuLH  4802.0664062
+ 247              47.5            NuNuLH  4744.5458984
+ 248              48.5            NuNuLH  4551.7724609
+ 249              49.5            NuNuLH  4428.2636719
+ 250              50.5            NuNuLH  4361.5693359
+ 251              51.5            NuNuLH  4217.8173828
+ 252              52.5            NuNuLH  4119.5429688
+ 253              53.5            NuNuLH  4041.8071289
+ 254              54.5            NuNuLH  3954.9711914
+ 255              55.5            NuNuLH  3852.9667969
+ 256              56.5            NuNuLH  3699.4162598
+ 257              57.5            NuNuLH  3695.4689941
+ 258              58.5            NuNuLH  3608.0048828
+ 259              59.5            NuNuLH  3505.5090332
+ 260              60.5            NuNuLH  3466.6894531
+ 261              61.5            NuNuLH  3431.8154297
+ 262              62.5            NuNuLH  3335.3110352
+ 263              63.5            NuNuLH  3282.8012695
+ 264              64.5            NuNuLH  3118.2282715
+ 265              65.5            NuNuLH  3145.2258301
+ 266              66.5            NuNuLH  3036.8662109
+ 267              67.5            NuNuLH  3068.6276855
+ 268              68.5            NuNuLH  2925.1313477
+ 269              69.5            NuNuLH  2958.2924805
+ 270              70.5            NuNuLH  2906.1213379
+ 271              71.5            NuNuLH  2865.0712891
+ 272              72.5            NuNuLH  2836.7958984
+ 273              73.5            NuNuLH  2796.7890625
+ 274              74.5            NuNuLH  2740.9523926
+ 275              75.5            NuNuLH  2697.2761230
+ 276              76.5            NuNuLH  2759.7917480
+ 277              77.5            NuNuLH  2621.6772461
+ 278              78.5            NuNuLH  2613.2907715
+ 279              79.5            NuNuLH  2596.7839355
+ 280              80.5            NuNuLH  2543.8713379
+ 281              81.5            NuNuLH  2544.0996094
+ 282              82.5            NuNuLH  2411.5864258
+ 283              83.5            NuNuLH  2463.3852539
+ 284              84.5            NuNuLH  2394.6584473
+ 285              85.5            NuNuLH  2424.6877441
+ 286              86.5            NuNuLH  2416.1879883
+ 287              87.5            NuNuLH  2327.3781738
+ 288              88.5            NuNuLH  2379.7534180
+ 289              89.5            NuNuLH  2314.4411621
+ 290              90.5            NuNuLH  2297.3928223
+ 291              91.5            NuNuLH  2280.1752930
+ 292              92.5            NuNuLH  2276.5366211
+ 293              93.5            NuNuLH  2213.1701660
+ 294              94.5            NuNuLH  2193.2570801
+ 295              95.5            NuNuLH  2162.5253906
+ 296              96.5            NuNuLH  2244.1516113
+ 297              97.5            NuNuLH  2178.8176270
+ 298              98.5            NuNuLH  2146.9150391
+ 299              99.5            NuNuLH  2103.5002441
+ 300             100.5            NuNuLH  2092.5256348
+ 301             101.5            NuNuLH  2133.5080566
+ 302             102.5            NuNuLH  2094.9257812
+ 303             103.5            NuNuLH  2099.2375488
+ 304             104.5            NuNuLH  2114.6933594
+ 305             105.5            NuNuLH  2032.8377686
+ 306             106.5            NuNuLH  2010.5710449
+ 307             107.5            NuNuLH  2014.9971924
+ 308             108.5            NuNuLH  2037.9364014
+ 309             109.5            NuNuLH  1982.0255127
+ 310             110.5            NuNuLH  1955.4274902
+ 311             111.5            NuNuLH  1983.0572510
+ 312             112.5            NuNuLH  2020.0418701
+ 313             113.5            NuNuLH  1942.3200684
+ 314             114.5            NuNuLH  2000.4431152
+ 315             115.5            NuNuLH  1992.1192627
+ 316             116.5            NuNuLH  2014.5222168
+ 317             117.5            NuNuLH  2002.8881836
+ 318             118.5            NuNuLH  1979.2547607
+ 319             119.5            NuNuLH  1935.1702881
+ 320             120.5            NuNuLH  2031.8732910
+ 321             121.5            NuNuLH  1988.1011963
+ 322             122.5            NuNuLH  1982.8001709
+ 323             123.5            NuNuLH  2006.5571289
+ 324             124.5            NuNuLH  2001.9425049
+ 325             125.5            NuNuLH  2033.8692627
+ 326             126.5            NuNuLH  2005.9604492
+ 327             127.5            NuNuLH  1985.4328613
+ 328             128.5            NuNuLH  2043.1790771
+ 329             129.5            NuNuLH  2019.9448242
+ 330             130.5            NuNuLH  2024.9132080
+ 331             131.5            NuNuLH  2020.2095947
+ 332             132.5            NuNuLH  2084.7343750
+ 333             133.5            NuNuLH  2029.2897949
+ 334             134.5            NuNuLH  2013.7268066
+ 335             135.5            NuNuLH  2039.4421387
+ 336             136.5            NuNuLH  2101.3239746
+ 337             137.5            NuNuLH  2075.2229004
+ 338             138.5            NuNuLH  2022.9858398
+ 339             139.5            NuNuLH  2085.0026855
+ 340             140.5            NuNuLH  2072.3122559
+ 341             141.5            NuNuLH  2034.8648682
+ 342             142.5            NuNuLH  2078.0131836
+ 343             143.5            NuNuLH  2056.5722656
+ 344             144.5            NuNuLH  2018.6539307
+ 345             145.5            NuNuLH  2037.4365234
+ 346             146.5            NuNuLH  2018.9263916
+ 347             147.5            NuNuLH  1944.2995605
+ 348             148.5            NuNuLH  2002.5350342
+ 349             149.5            NuNuLH  1923.7629395
+ 350             150.5            NuNuLH  1928.0764160
+ 351             151.5            NuNuLH  1869.5250244
+ 352             152.5            NuNuLH  1906.2874756
+ 353             153.5            NuNuLH  1876.4785156
+ 354             154.5            NuNuLH  1865.6783447
+ 355             155.5            NuNuLH  1845.8120117
+ 356             156.5            NuNuLH  1816.3529053
+ 357             157.5            NuNuLH  1817.1928711
+ 358             158.5            NuNuLH  1806.5898438
+ 359             159.5            NuNuLH  1803.5524902
+ 360             160.5            NuNuLH  1792.4211426
+ 361             161.5            NuNuLH  1754.5251465
+ 362             162.5            NuNuLH  1774.0035400
+ 363             163.5            NuNuLH  1736.8864746
+ 364             164.5            NuNuLH  1713.2563477
+ 365             165.5            NuNuLH  1692.8895264
+ 366             166.5            NuNuLH  1638.2893066
+ 367             167.5            NuNuLH  1641.0996094
+ 368             168.5            NuNuLH  1553.4990234
+ 369             169.5            NuNuLH  1482.7917480
+ 370             170.5            NuNuLH  1431.8897705
+ 371             171.5            NuNuLH  1383.3489990
+ 372             172.5            NuNuLH  1306.1862793
+ 373             173.5            NuNuLH  1205.0389404
+ 374             174.5            NuNuLH  1091.8033447
+ 375             175.5            NuNuLH   965.2931519
+ 376             176.5            NuNuLH   875.1733398
+ 377             177.5            NuNuLH   801.1116943
+ 378             178.5            NuNuLH   712.8374023
+ 379             179.5            NuNuLH   667.1522827
+ 380             180.5            NuNuLH   601.2183228
+ 381             181.5            NuNuLH   564.3671265
+ 382             182.5            NuNuLH   516.0874634
+ 383             183.5            NuNuLH   494.1038208
+ 384             184.5            NuNuLH   440.4292603
+ 385             185.5            NuNuLH   414.5377197
+ 386             186.5            NuNuLH   364.0218811
+ 387             187.5            NuNuLH   328.9423218
+ 388             188.5            NuNuLH   259.4977722
+ 389             189.5            NuNuLH   204.2855377
+ 390             190.5            NuNuLH   143.3186951
+ 391             191.5            NuNuLH    87.0735855
+ 392             192.5            NuNuLH    48.6187286
+ 393             193.5            NuNuLH    17.9284458
+ 394             194.5            NuNuLH     1.9279257
+ 395             195.5            NuNuLH     0.0033842
+ 396             196.5            NuNuLH     0.0022275
+ 397             197.5            NuNuLH     0.0022275
+ 398             198.5            NuNuLH     0.0022275
+ 399             199.5            NuNuLH     0.0022275
+ 400               0.5            NuNuLL  4219463.0000000
+ 401               1.5            NuNuLL  127072.9843750
+ 402               2.5            NuNuLL  74940.2421875
+ 403               3.5            NuNuLL  52458.6328125
+ 404               4.5            NuNuLL  40144.5234375
+ 405               5.5            NuNuLL  34301.1992188
+ 406               6.5            NuNuLL  29282.1796875
+ 407               7.5            NuNuLL  26138.8417969
+ 408               8.5            NuNuLL  23461.8281250
+ 409               9.5            NuNuLL  20935.3378906
+ 410              10.5            NuNuLL  19675.3046875
+ 411              11.5            NuNuLL  17846.7500000
+ 412              12.5            NuNuLL  16811.2343750
+ 413              13.5            NuNuLL  15600.6875000
+ 414              14.5            NuNuLL  14535.7060547
+ 415              15.5            NuNuLL  13988.0068359
+ 416              16.5            NuNuLL  13088.9843750
+ 417              17.5            NuNuLL  12233.3222656
+ 418              18.5            NuNuLL  11651.0292969
+ 419              19.5            NuNuLL  10878.6123047
+ 420              20.5            NuNuLL  10439.9892578
+ 421              21.5            NuNuLL  9968.0292969
+ 422              22.5            NuNuLL  9210.1933594
+ 423              23.5            NuNuLL  8854.0390625
+ 424              24.5            NuNuLL  8688.4687500
+ 425              25.5            NuNuLL  8175.7617188
+ 426              26.5            NuNuLL  7800.0805664
+ 427              27.5            NuNuLL  7423.3212891
+ 428              28.5            NuNuLL  7099.6831055
+ 429              29.5            NuNuLL  6996.8325195
+ 430              30.5            NuNuLL  6825.9291992
+ 431              31.5            NuNuLL  6636.3330078
+ 432              32.5            NuNuLL  6416.7387695
+ 433              33.5            NuNuLL  6201.8022461
+ 434              34.5            NuNuLL  6101.3798828
+ 435              35.5            NuNuLL  5958.7192383
+ 436              36.5            NuNuLL  5827.2705078
+ 437              37.5            NuNuLL  5597.6962891
+ 438              38.5            NuNuLL  5441.3471680
+ 439              39.5            NuNuLL  5313.7646484
+ 440              40.5            NuNuLL  5203.2011719
+ 441              41.5            NuNuLL  5179.4482422
+ 442              42.5            NuNuLL  5095.0659180
+ 443              43.5            NuNuLL  5009.4111328
+ 444              44.5            NuNuLL  4897.7480469
+ 445              45.5            NuNuLL  4789.8754883
+ 446              46.5            NuNuLL  4654.9189453
+ 447              47.5            NuNuLL  4563.9262695
+ 448              48.5            NuNuLL  4556.8935547
+ 449              49.5            NuNuLL  4402.5429688
+ 450              50.5            NuNuLL  4451.8813477
+ 451              51.5            NuNuLL  4245.1889648
+ 452              52.5            NuNuLL  4275.9858398
+ 453              53.5            NuNuLL  4127.4414062
+ 454              54.5            NuNuLL  4111.6884766
+ 455              55.5            NuNuLL  4125.6704102
+ 456              56.5            NuNuLL  3980.4892578
+ 457              57.5            NuNuLL  3962.6008301
+ 458              58.5            NuNuLL  3946.7868652
+ 459              59.5            NuNuLL  3896.9748535
+ 460              60.5            NuNuLL  3908.3564453
+ 461              61.5            NuNuLL  3829.8779297
+ 462              62.5            NuNuLL  3671.8271484
+ 463              63.5            NuNuLL  3689.4250488
+ 464              64.5            NuNuLL  3657.4819336
+ 465              65.5            NuNuLL  3600.6250000
+ 466              66.5            NuNuLL  3545.0656738
+ 467              67.5            NuNuLL  3575.7768555
+ 468              68.5            NuNuLL  3504.3344727
+ 469              69.5            NuNuLL  3548.0063477
+ 470              70.5            NuNuLL  3429.5905762
+ 471              71.5            NuNuLL  3490.2282715
+ 472              72.5            NuNuLL  3488.2026367
+ 473              73.5            NuNuLL  3441.3298340
+ 474              74.5            NuNuLL  3386.0876465
+ 475              75.5            NuNuLL  3299.6960449
+ 476              76.5            NuNuLL  3360.4877930
+ 477              77.5            NuNuLL  3391.8266602
+ 478              78.5            NuNuLL  3340.9304199
+ 479              79.5            NuNuLL  3301.6347656
+ 480              80.5            NuNuLL  3335.3054199
+ 481              81.5            NuNuLL  3321.0629883
+ 482              82.5            NuNuLL  3271.0041504
+ 483              83.5            NuNuLL  3217.1367188
+ 484              84.5            NuNuLL  3247.9262695
+ 485              85.5            NuNuLL  3102.8413086
+ 486              86.5            NuNuLL  3131.9479980
+ 487              87.5            NuNuLL  3206.0646973
+ 488              88.5            NuNuLL  3119.7316895
+ 489              89.5            NuNuLL  3138.8063965
+ 490              90.5            NuNuLL  3177.5898438
+ 491              91.5            NuNuLL  3126.8937988
+ 492              92.5            NuNuLL  3151.6542969
+ 493              93.5            NuNuLL  3075.6877441
+ 494              94.5            NuNuLL  3166.1782227
+ 495              95.5            NuNuLL  3024.8168945
+ 496              96.5            NuNuLL  3042.6860352
+ 497              97.5            NuNuLL  3012.7639160
+ 498              98.5            NuNuLL  3010.0998535
+ 499              99.5            NuNuLL  3009.0041504
+ 500             100.5            NuNuLL  3091.6262207
+ 501             101.5            NuNuLL  3059.4174805
+ 502             102.5            NuNuLL  3015.2377930
+ 503             103.5            NuNuLL  3070.3647461
+ 504             104.5            NuNuLL  3091.8923340
+ 505             105.5            NuNuLL  3034.3742676
+ 506             106.5            NuNuLL  2967.0075684
+ 507             107.5            NuNuLL  3030.0632324
+ 508             108.5            NuNuLL  2972.2282715
+ 509             109.5            NuNuLL  3009.8947754
+ 510             110.5            NuNuLL  2994.7814941
+ 511             111.5            NuNuLL  2983.9167480
+ 512             112.5            NuNuLL  2947.6879883
+ 513             113.5            NuNuLL  2958.0764160
+ 514             114.5            NuNuLL  2920.8076172
+ 515             115.5            NuNuLL  3137.3662109
+ 516             116.5            NuNuLL  3075.0522461
+ 517             117.5            NuNuLL  2906.1984863
+ 518             118.5            NuNuLL  2968.1533203
+ 519             119.5            NuNuLL  2921.6396484
+ 520             120.5            NuNuLL  3009.3566895
+ 521             121.5            NuNuLL  2973.4074707
+ 522             122.5            NuNuLL  3038.0117188
+ 523             123.5            NuNuLL  2928.1625977
+ 524             124.5            NuNuLL  3019.5085449
+ 525             125.5            NuNuLL  3097.4846191
+ 526             126.5            NuNuLL  2956.5520020
+ 527             127.5            NuNuLL  3066.4812012
+ 528             128.5            NuNuLL  3047.6955566
+ 529             129.5            NuNuLL  3091.2302246
+ 530             130.5            NuNuLL  3064.1528320
+ 531             131.5            NuNuLL  3145.4018555
+ 532             132.5            NuNuLL  3088.9770508
+ 533             133.5            NuNuLL  3125.9384766
+ 534             134.5            NuNuLL  3240.6340332
+ 535             135.5            NuNuLL  3226.9792480
+ 536             136.5            NuNuLL  3100.8193359
+ 537             137.5            NuNuLL  3279.3195801
+ 538             138.5            NuNuLL  3319.5778809
+ 539             139.5            NuNuLL  3258.0466309
+ 540             140.5            NuNuLL  3278.4040527
+ 541             141.5            NuNuLL  3242.9885254
+ 542             142.5            NuNuLL  3454.8972168
+ 543             143.5            NuNuLL  3343.0944824
+ 544             144.5            NuNuLL  3360.2136230
+ 545             145.5            NuNuLL  3377.0720215
+ 546             146.5            NuNuLL  3522.7448730
+ 547             147.5            NuNuLL  3483.7883301
+ 548             148.5            NuNuLL  3509.5952148
+ 549             149.5            NuNuLL  3590.4951172
+ 550             150.5            NuNuLL  3531.6987305
+ 551             151.5            NuNuLL  3563.9719238
+ 552             152.5            NuNuLL  3534.3076172
+ 553             153.5            NuNuLL  3405.7070312
+ 554             154.5            NuNuLL  3497.5688477
+ 555             155.5            NuNuLL  3427.8183594
+ 556             156.5            NuNuLL  3428.5600586
+ 557             157.5            NuNuLL  3390.4528809
+ 558             158.5            NuNuLL  3289.6499023
+ 559             159.5            NuNuLL  3182.8613281
+ 560             160.5            NuNuLL  3187.6479492
+ 561             161.5            NuNuLL  2957.6647949
+ 562             162.5            NuNuLL  2816.6896973
+ 563             163.5            NuNuLL  2723.5888672
+ 564             164.5            NuNuLL  2444.7316895
+ 565             165.5            NuNuLL  2187.6262207
+ 566             166.5            NuNuLL  2006.7393799
+ 567             167.5            NuNuLL  1854.5853271
+ 568             168.5            NuNuLL  1740.4389648
+ 569             169.5            NuNuLL  1643.0751953
+ 570             170.5            NuNuLL  1507.0408936
+ 571             171.5            NuNuLL  1425.2601318
+ 572             172.5            NuNuLL  1330.7344971
+ 573             173.5            NuNuLL  1186.1695557
+ 574             174.5            NuNuLL  1124.6646729
+ 575             175.5            NuNuLL  1025.4663086
+ 576             176.5            NuNuLL   948.1738281
+ 577             177.5            NuNuLL   896.8662720
+ 578             178.5            NuNuLL   784.0403442
+ 579             179.5            NuNuLL   735.1259155
+ 580             180.5            NuNuLL   691.8952026
+ 581             181.5            NuNuLL   616.6817017
+ 582             182.5            NuNuLL   531.8486938
+ 583             183.5            NuNuLL   458.1676941
+ 584             184.5            NuNuLL   387.9215393
+ 585             185.5            NuNuLL   283.5644531
+ 586             186.5            NuNuLL   177.4870911
+ 587             187.5            NuNuLL    84.9315643
+ 588             188.5            NuNuLL    29.2911835
+ 589             189.5            NuNuLL     1.8643987
+ 590             190.5            NuNuLL     0.3208391
+ 591             191.5            NuNuLL     0.0053908
+ 592             192.5            NuNuLL     0.0053908
+ 593             193.5            NuNuLL     0.0053908
+ 594             194.5            NuNuLL     0.0053908
+ 595             195.5            NuNuLL     0.0053908
+ 596             196.5            NuNuLL     0.0053908
+ 597             197.5            NuNuLL     0.0053908
+ 598             198.5            NuNuLL     0.0053908
+ 599             199.5            NuNuLL     0.0053908
+[#1] INFO:Eval -- RooRealVar::setRange(unc_Z) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_tautau_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_gaga_LL_60_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_nuenueZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 5000 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 4.78536395356e-10 Nfcn = 41
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0
+----------> Iteration 1
+            FVAL = -3.70160837155e-09 Edm = 2.14650874831e-09 Nfcn = 72
+            Error matrix change = 0.605855
+            Parameters :  p0 = 1 p1 = 0.999999 p2 = 1.42394e-07 p3 = 3.90966e-07 p4 = -1.6513e-07 p5 = -1.07551e-07 p6 = -4.1571e-06 p7 = -4.43473e-06 p8 = -1.33966e-06 p9 = 1.8892e-06
+----------> Iteration 2
+            FVAL = -3.70160837155e-09 Edm = 2.14650874831e-09 Nfcn = 72
+            Error matrix change = 0.605855
+            Parameters :  p0 = 1 p1 = 0.999999 p2 = 1.42394e-07 p3 = 3.90966e-07 p4 = -1.6513e-07 p5 = -1.07551e-07 p6 = -4.1571e-06 p7 = -4.43473e-06 p8 = -1.33966e-06 p9 = 1.8892e-06
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = -3.70160837155291991e-09
+Edm   = 2.14650874831399237e-09
+Nfcn  = 72
+r_VBF	  = 1	 +/-  0.120232	(limited)
+r_ZH	  = 0.999999	 +/-  0.298839	(limited)
+unc_Z	  = 1.42394e-07	 +/-  0.0562921
+unc__H	  = 3.90966e-07	 +/-  0.983072
+unc_p8_ee_WW_ecm365	  = -1.6513e-07	 +/-  0.16605
+unc_p8_ee_WW_tautau_ecm365	  = -1.07551e-07	 +/-  0.337359
+unc_p8_ee_ZZ_ecm365	  = -4.1571e-06	 +/-  0.906199
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = -4.43473e-06	 +/-  0.819912
+unc_wzp6_ee_gaga_LL_60_ecm365	  = -1.33966e-06	 +/-  0.0951686
+unc_wzp6_ee_nuenueZ_ecm365	  = 1.8892e-06	 +/-  0.912958
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.060563 seconds (0.050000 CPU time)
+FINAL NLL - NLL0 VALUE = -3.701608372e-09
+
+
+ --- MultiDimFit ---
+best fit parameter values: 
+    r_ZH :    +1.000
+   r_VBF :    +1.000
+Done in 0.00 min (cpu), 0.00 min (real)
+33 log messages saved to combine_logger.out

@@ -268,8 +268,26 @@ output_file = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau
 
 modelDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm365/BDT_250502/"
 
+plotDir = "/eos/user/s/sgiappic/www/Higgs_xsec/ecm365/"
+
+
 #fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, gridspec_kw={'height_ratios': [1, 1], 'hspace':0})
-colorDict = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
+colorDict = [
+    # Violets (more magenta-toned)
+    '#5E2A84', 
+    '#9A4DCC', 
+    '#D6A7F2',
+
+    # Blues (cooler, more cyan/indigo)
+    '#03028D', 
+    '#4E6BD3', 
+    '#9FB5D7',  
+
+    # Greens (as before, still distinct)
+    '#004d00',  # Dark green
+    '#4CAF50',  # Medium green
+    '#B2FFB2'   # Light mint green
+]
 
 #index for color list and label list
 col = 0
@@ -285,27 +303,16 @@ for tag in TAG:
 
             print(path)
 
-            if "explicit" in tag:
-                if "QQ" in cat:
-                    vars_list = vars_list_QQ_explcit
+            if "QQ" in cat or "LL" in cat:
+                if "explicit" in tag:
+                vars_list = vars_list_QQ_explcit
                 else:
-                    vars_list = vars_list_NuNu_explicit
-            else:
-                if "QQ" in cat:
                     if "HH" in sub:
                         vars_list = vars_list_QQHH_tag
                     elif "LH" in sub:
                         vars_list = vars_list_QQLH_tag
                     else:
                         vars_list = vars_list_QQ_explcit
-                else:
-                    if "HH" in sub:
-                        vars_list = vars_list_NuNuHH_tag
-                    elif "LH" in sub:
-                        vars_list = vars_list_NuNuLH_tag
-                    else:
-                        vars_list = vars_list_NuNu_explicit
-
             
             print("Loading dataframes")
 
@@ -359,7 +366,7 @@ for tag in TAG:
 
             # Helper to compute efficiencies with broadcasting
             def compute_efficiencies(scores, total_count):
-                return np.maximum(1e-3, (scores[:, None] > cut_vals[None, :]).sum(axis=0) / total_count)
+                return (scores[:, None] > cut_vals[None, :]).sum(axis=0) / total_count
 
             # Compute all efficiencies
             eff_train      = compute_efficiencies(sig_train_scores, N_train)
@@ -369,38 +376,29 @@ for tag in TAG:
 
             print("Plotting")
 
-            plt.title(f'{tag}, {leg_cat[cat]} {leg_sub[sub]}: FCC-ee Simulation IDEA Delphes', loc='right', fontsize=18)
-            plt.plot(cut_vals, eff_train, color=colorDict[0], label=f'Trained signal, accuracy:'+str(round(score_train_sig,3)))
-            plt.plot(cut_vals, eff_test, color=colorDict[1], label=f'Tested signal, accuracy:'+str(round(score_test_sig,3)), linestyle='dashed', linewidth='1.5')
-            plt.plot(cut_vals, eff_train_bkg, color=colorDict[3], label=f'Trained background, accuracy:'+str(round(score_train_bkg,3)))
-            plt.plot(cut_vals, eff_test_bkg, color=colorDict[4], label=f'Tested background, accuracy:'+str(round(score_test_bkg,3)), linestyle='dashed', linewidth='1.5')
+            plt.title(f'{leg_cat[cat]} {leg_sub[sub]}: FCC-ee Simulation (Delphes)', loc='right', fontsize=18)
+            plt.plot(BDT_cuts, eff_train, color=colorDict[0], label=f'Trained signal, accuracy:'+str(round(score_train_sig,3)), linewidth=2)
+            plt.plot(BDT_cuts, eff_test, color=colorDict[2], label=f'Tested signal, accuracy:'+str(round(score_test_sig,3)), linestyle='dashed', linewidth=2.5)
+            plt.plot(BDT_cuts, eff_train_bkg, color=colorDict[3], label=f'Trained background, accuracy:'+str(round(score_train_bkg,3)), linewidth=2)
+            plt.plot(BDT_cuts, eff_test_bkg, color=colorDict[5], label=f'Tested background, accuracy:'+str(round(score_test_bkg,3)), linestyle='dashed', linewidth=2.5)
             #draw vertical line corresponsing to last bin of the bdt score to visualise where most signal will be
             #if "QQ" in cat and "LL" in sub:
             #    plt.axvline(x =-math.log10(1./10), color = 'k', label = 'Last bin in BDT score', linewidth='1.5', linestyle='-.')
             #else:
-            plt.axvline(x =-math.log10(1./200), color = 'k', label = 'Last bin in BDT score', linewidth='1.5', linestyle='-.')
+            # plotting line corresponidng to the last bin in 200 bins
+            plt.axvline(x =-math.log10(1./200.), color = 'k', label = 'Last bin in BDT score', linewidth=1.5, linestyle='-.')
             plt.xlabel("1 - BDT score",fontsize=18)
-            plt.xticks([0, 1, 2, 3, 3.5], ["$10^0$", "$10^{-1}$", "$10^{-2}$", "$10^{-3}$", " "])
+            plt.xticks([0, 1,2,3, 3.5], ["$10^0$", "$10^{-1}$", "$10^{-2}$", "$10^{-3}$", " "])
             plt.xlim(0,3.5)
-            plt.ylim(10e-6,1)
+            plt.ylim(10e-4,1)
             plt.ylabel("Efficiency",fontsize=18)
             plt.yscale('log') 
-            plt.legend(loc="lower left", fontsize=15)
+            #plt.xscale('log')
+            plt.legend(loc="upper left", fontsize=15)
             plt.grid()
             plt.tight_layout()
-            plt.savefig(f"{modelDir}/{tag}/{cat}{sub}_overtrain.pdf")
-            plt.savefig(f"{modelDir}/{tag}/{cat}{sub}_overtrain.png")
-
-            plt.clf()
-            plt.hist(sig_test_scores, bins=100, alpha=0.6, label='Signal')
-            plt.hist(bkg_test_scores, bins=100, alpha=0.6, label='Background')
-            plt.xlabel("BDT score")
-            plt.ylabel("Events")
-            plt.yscale('log')
-            plt.legend()
-            plt.grid()
-            plt.savefig(f"{modelDir}/{tag}/{cat}{sub}_score.pdf")
-            plt.savefig(f"{modelDir}/{tag}/{cat}{sub}_score.png")
+            plt.savefig(f"{plotDir}/{tag}/BDT/{cat}{sub}_overtrain.pdf")
+            plt.savefig(f"{plotDir}/{tag}/BDT/{cat}{sub}_overtrain.png")
 
             print("Max BDT score - train signal:", sig_train_scores.max())
             print("Max BDT score - test signal:", sig_test_scores.max())
@@ -409,3 +407,14 @@ for tag in TAG:
 
 
             print(f"Done: {tag}{cat}{sub}")
+
+            else:
+                if "explicit" in tag:
+                    vars_list = vars_list_NuNu_explicit
+                else:
+                    if "HH" in sub:
+                        vars_list = vars_list_NuNuHH_tag
+                    elif "LH" in sub:
+                        vars_list = vars_list_NuNuLH_tag
+                    else:
+                        vars_list = vars_list_NuNu_explicit

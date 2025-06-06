@@ -60,16 +60,16 @@ def get_combined_unc_v2(name, sub_proc, procs, bkg_procs):
     line += "\n"
     return line
 
-os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
-os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
-os.system("cmsenv")
+#os.system("source /cvmfs/cms.cern.ch/cmsset_default.sh")
+#os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
+#os.system("cmsenv")
 
-outputDir = "/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/BDT/combine/"
+outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/BDT/combine/new_250502_20per/"
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm240/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/BDT_250502/"
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
@@ -81,25 +81,16 @@ SUBDIR = [
 #category to plot
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
 CUTS = {
-    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_70Z100",
+    'LL':"selReco",
     'QQ':"selReco",
     'NuNu':"selReco",
-    #'LL/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_80Z100_4Emiss_Zp54",
-    #'LL/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.88_84Z100_4Emiss_Zp54",
-    #'LL/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.9_80Z100_40Emiss_Zp54",
-    #'QQ/HH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.86_70Z100_8Emiss_Zp52",
-    #'QQ/LH':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_75Z100_36Emiss_Zp52",
-    #'QQ/LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.92_70Z100_52Emiss_Zp52",
-    #'NuNu/HH':"selReco_112Me_TauDPhi3_2DR_cos0.4_misscos0.88_missy1",
-    #'NuNu/LH':"selReco_140Me_TauDPhi3_2DR_cos0.4_misscos0.94_missy1",
-    #'NuNu/LL':"selReco_152Me_TauDPhi3_2DR_cos0.4_misscos0.92_missy1",
 }
 VARIABLE = {
-    'LL':"Recoil",
+    'LL':"BDT_score",
     'QQ':"BDT_score",
     'NuNu':"BDT_score",
     }
@@ -191,7 +182,7 @@ if make_card:
                 dc += f"kmax    * number of nuisance parameters\n"
                 dc += f"--------------------------------------------------------------------------------\n"
                 
-                directory = DIRECTORY + tag + "/final_241202_BDT/" + cat  + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final/" + cat  + "/" + sub + "/"
 
                 #if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
                 #    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54"
@@ -308,7 +299,7 @@ if make_card:
                 for proc in bkg_procs:
                     if proc in ["wzp6_ee_LL_ecm240", "wzp6_ee_tautau_ecm240","p8_ee_Zqq_ecm240"]:
                         Z_proc.append(proc)
-                        print(proc)
+                        #print(proc)
                 dc += get_combined_unc_v2("Z", Z_proc, procs, bkg_procs)        
 
                 #individual uncertainties
@@ -316,9 +307,9 @@ if make_card:
                     if all(substring not in proc for substring in ["nunuH", "LLH", "QQH", "tautauH", "_ee_tautau_", "_ee_LL_", "_ee_Zqq_"]):
                         dc += f"unc_{proc}      lnN     "
                         for p in procs:
-                            if p == proc and ('p8_ee_ZZ_ecm240' in proc or 'p8_ee_WW_ecm240' in proc):
-                                dc += f"{'1.02':<{lspace}}"
-                            elif p == proc:
+                            #if p == proc and ('p8_ee_ZZ_ecm240' in proc or 'p8_ee_WW_ecm240' in proc):
+                            #    dc += f"{'1.02':<{lspace}}"
+                            if p == proc:
                                 dc += f"{'1.20':<{lspace}}"
                             else:
                                 dc += f"{'-':<{lspace}}"

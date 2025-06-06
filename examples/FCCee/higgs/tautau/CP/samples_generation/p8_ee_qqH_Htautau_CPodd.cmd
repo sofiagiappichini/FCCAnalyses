@@ -1,7 +1,7 @@
 ! card adapted from winter23 ww_tautau
 Random:setSeed = on
-Main:numberOfEvents = 10000000         ! number of events to generate
-Main:timesAllowErrors = 5          ! how many aborts before run stops
+Main:numberOfEvents = 2500000         ! number of events to generate
+Main:timesAllowErrors = 1000          ! how many aborts before run stops
 
 ! 2) Settings related to output in init(), next() and stat().
 Init:showChangedSettings = on      ! list changed settings
@@ -31,7 +31,7 @@ PartonLevel:ISR = on               ! no initial-state radiation
 PartonLevel:FSR = on               ! no final-state radiation
 
 23:onMode    = off                 ! switch off Z boson decays
-23:onIfAny   = 1 2 3 4 5                   ! switch on Z boson decay to quarks
+23:onIfAny   = 1 2                   ! switch on Z boson decay to quarks
 
 25:onMode    = off                 ! switch off H boson decays
 25:onIfAny   = 15                  ! switch on H boson decay to taus

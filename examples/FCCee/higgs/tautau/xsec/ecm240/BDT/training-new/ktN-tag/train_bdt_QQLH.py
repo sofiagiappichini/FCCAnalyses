@@ -340,6 +340,8 @@ for q in bkgs:
         f = uproot.open(file)
         if f.keys() == ['eventsProcessed;1']:
             continue
+        if f.keys()==[]:
+            continue
         tree = f["events"]
         temp_df = tree.arrays(expressions=vars_list, library="pd")
         temp_df = temp_df[(temp_df["Collinear_mass"] > 100) & (temp_df["Collinear_mass"] < 150)]

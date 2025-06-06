@@ -1,0 +1,45 @@
+ <<< Combine >>> 
+ <<< v10.0.1 >>>
+>>> Random number generator seed is 123456
+>>> Method used is FitDiagnostics
+[WARNING]: Unable to determine uncertainties on all fit parameters in b-only fit. Have a look at https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/part3/nonstandard/#fit-parameter-uncertainties for more information.
+WARNING: underflow to -6.55673 in pdf_binLL_LLLL_obsOnly for bin 198, weight 180.286
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLLL) evaluation error, 
+ origin       : RooAbsReal::LL_LLLL[ params=(r,unc_H_H,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.0999998 +/- 0.00724797,unc_H_H = 6.16143e-05 +/- 0.78429,unc_p8_ee_WW_ecm240 = 5.56362e-07 +/- 0.0290245,unc_p8_ee_ZZ_ecm240 = 1.43538e-05 +/- 0.35996), catParams=()
+FASTEXIT from pdf_binLL_LLLL_obsOnly
+WARNING: underflow to -5.1673 in pdf_binLL_LLLH_obsOnly for bin 195, weight 204.402
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLLH) evaluation error, 
+ origin       : RooAbsReal::LL_LLLH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240,unc_wzp6_ee_nuenueZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.0999998 +/- 0.00724797,unc_H_H = 6.16143e-05 +/- 0.78429,unc_Z = -1.75862e-07 +/- 0.00981987,unc_p8_ee_WW_ecm240 = 5.56362e-07 +/- 0.0290245,unc_p8_ee_ZZ_ecm240 = 1.43538e-05 +/- 0.35996,unc_wzp6_ee_nuenueZ_ecm240 = 5.87171e-05 +/- 0.891684), catParams=()
+FASTEXIT from pdf_binLL_LLLH_obsOnly
+WARNING: underflow to -3.87474 in pdf_binLL_LLHH_obsOnly for bin 196, weight 182.941
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLHH) evaluation error, 
+ origin       : RooAbsReal::LL_LLHH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240,unc_wzp6_ee_nuenueZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.0999998 +/- 0.00724797,unc_H_H = 6.16143e-05 +/- 0.78429,unc_Z = -1.75862e-07 +/- 0.00981987,unc_p8_ee_WW_ecm240 = 5.56362e-07 +/- 0.0290245,unc_p8_ee_ZZ_ecm240 = 1.43538e-05 +/- 0.35996,unc_wzp6_ee_nuenueZ_ecm240 = 5.87171e-05 +/- 0.891684), catParams=()
+FASTEXIT from pdf_binLL_LLHH_obsOnly
+WARNING: underflow to -6.55673 in pdf_binLL_LLLL_obsOnly for bin 198, weight 180.286
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLLL) evaluation error, 
+ origin       : RooAbsReal::LL_LLLL[ params=(r,unc_H_H,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.0999998 +/- 0.00724797,unc_H_H = 6.16143e-05 +/- 4.1934,unc_p8_ee_WW_ecm240 = 5.56362e-07 +/- 1.01236,unc_p8_ee_ZZ_ecm240 = 1.43538e-05 +/- 2.12019), catParams=()
+FASTEXIT from pdf_binLL_LLLL_obsOnly
+WARNING: underflow to -5.1673 in pdf_binLL_LLLH_obsOnly for bin 195, weight 204.402
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLLH) evaluation error, 
+ origin       : RooAbsReal::LL_LLLH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240,unc_wzp6_ee_nuenueZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.0999998 +/- 0.00724797,unc_H_H = 6.16143e-05 +/- 4.1934,unc_Z = -1.75862e-07 +/- 1.00238,unc_p8_ee_WW_ecm240 = 5.56362e-07 +/- 1.01236,unc_p8_ee_ZZ_ecm240 = 1.43538e-05 +/- 2.12019,unc_wzp6_ee_nuenueZ_ecm240 = 5.87171e-05 +/- 1.00108), catParams=()
+FASTEXIT from pdf_binLL_LLLH_obsOnly
+WARNING: underflow to -3.87474 in pdf_binLL_LLHH_obsOnly for bin 196, weight 182.941
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLHH) evaluation error, 
+ origin       : RooAbsReal::LL_LLHH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240,unc_wzp6_ee_nuenueZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.0999998 +/- 0.00724797,unc_H_H = 6.16143e-05 +/- 4.1934,unc_Z = -1.75862e-07 +/- 1.00238,unc_p8_ee_WW_ecm240 = 5.56362e-07 +/- 1.01236,unc_p8_ee_ZZ_ecm240 = 1.43538e-05 +/- 2.12019,unc_wzp6_ee_nuenueZ_ecm240 = 5.87171e-05 +/- 1.00108), catParams=()
+FASTEXIT from pdf_binLL_LLHH_obsOnly
+
+ --- FitDiagnostics ---
+Best fit r: 1  -0.00723367/+0.0069863  (68% CL)
+Done in 0.00 min (cpu), 0.01 min (real)

@@ -416,6 +416,8 @@ for q in bkgs:
 
     for file in files:
         f = uproot.open(file)
+        if f.keys()==[]:
+            continue
         if f.keys() == ['eventsProcessed;1']:
             continue
         tree = f["events"]

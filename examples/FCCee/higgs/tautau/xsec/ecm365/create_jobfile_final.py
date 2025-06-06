@@ -4,6 +4,46 @@ def make_dir_if_not_exists(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
     os.system(f"chmod -R +x {directory}")
+
+def create_condor_config_lxplus(nCPUs: int,
+                         output_dir: str):
+    '''
+    Creates contents of condor configuration file.
+    '''
+
+    cfg = 'executable       = $(filename)\n'
+
+    cfg += 'Log              = '+output_dir+'/log/condor_job.$(ClusterId).$(ProcId).log\n'
+
+    cfg += 'Output           = '+output_dir+'/out/condor_job.$(ClusterId).$(ProcId).out\n'
+
+    cfg += 'Error            = '+output_dir+'/err/condor_job.$(ClusterId).$(ProcId).err\n'
+
+    cfg += 'getenv           = False\n'
+
+    cfg += 'environment      = "LS_SUBCWD={log_dir}"\n'
+
+    cfg += 'max_retries      = 3\n'
+
+    cfg += '+JobFlavour      = "workday"\n'
+
+    cfg += '+AccountingGroup = "group_u_FCC.local_gen"\n'
+
+    cfg += 'RequestCpus     = '+str(nCPUs)+'\n'
+
+    cfg += 'requirements     = ( (OpSysAndVer =?= "AlmaLinux9") && (Machine =!= LastRemoteHost) && (TARGET.has_avx2 =?= True) )\n'
+
+    cfg += 'on_exit_remove   = (ExitBySignal == False) && (ExitCode == 0)\n'
+
+    cfg += 'queue filename matching files'
+ 
+    #for process in processList:
+    with open(output_dir + '/job_submit.cfg', 'w') as sub:
+        sub.write(cfg)
+        for file in os.listdir(output_dir ):
+            filename = os.fsdecode(file)
+            if filename.endswith('.sh'):
+                sub.write(f' ' + output_dir + '/' + filename)
      
 def create_condor_config(nCPUs: int,
                          memory: int,
@@ -67,8 +107,8 @@ def create_subjob_script(local_dir: str,
             for sub in SUBDIR:
 
                 scr  = '#!/bin/bash\n\n'
-                scr += 'source /ceph/sgiappic/FCCAnalyses/setup.sh\n\n'
-                scr += '/ceph/sgiappic/FCCAnalyses/bin/fccanalysis final ' + local_dir + tag + '/' + '/analysis_final_' + cat + sub + '.py' 
+                scr += 'source /afs/cern.ch/user/s/sgiappic/FCCAnalyses/setup.sh\n\n'
+                scr += '/afs/cern.ch/user/s/sgiappic/FCCAnalyses/bin/fccanalysis final ' + local_dir + tag + '/analysis_final_' + cat + sub + '.py' 
                 with open(output_dir+'submit_'+tag+'_'+cat+sub+'.sh', 'w') as sh:
                     sh.write(scr)
                 print(f"done {tag} {cat+sub}")
@@ -80,8 +120,8 @@ def submit_jobs(output_dir: str):
         os.system(f"chmod -R +x {dir}")
         os.system(f"condor_submit {dir}/job_submit.cfg")
              
-output = '/work/sgiappic/HTCondor/final_mass/' ##output directory of submission files
-localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/BDT/final/'
+output = '/afs/cern.ch/user/s/sgiappic/HTCondor/final_bdt_365_nunu/' ##output directory of submission files
+localDir = '/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm365/BDT/final-new/'
 
 SUBDIR = [
     'LL',
@@ -90,23 +130,23 @@ SUBDIR = [
 ]
 
 CAT = [
-    "QQ",
+    #"QQ",
     #"LL",
     "NuNu",
 ]
 
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
     "ktN-tag",
 ]
 
-nCPUS = 1
+nCPUS = 6
 Memory = 10000
 
 create_subjob_script(localDir, output)
 
-create_condor_config(nCPUS, Memory, output)
+create_condor_config_lxplus(nCPUS, output)
 
 submit_jobs(output)

@@ -4,9 +4,6 @@ import urllib.request
 
 #Mandatory: List of processes
 processList = {
-    'p8_ee_WW_ecm365':{'chunks':100000},
-    }
-processList_ = {
 
     #'p8_ee_WW_ecm365':{'chunks':100000},
     'p8_ee_WW_tautau_ecm365':{'chunks':100000},
@@ -284,7 +281,7 @@ class RDFanalysis():
                 .Define("WW_daughter",      "FCCAnalyses::MCParticle::sel_daughterID(15, true, true) (WW_candidates, Particle, Particle1)")
 
                 # to exclude WW->tau tau events so they are not counted twice with WW->tau tau dedicated samples
-                .Filter("WW_daughter.size()<2")
+                #.Filter("WW_daughter.size()<2")
                 
                 ##################
                 # Reco particles #
@@ -448,7 +445,7 @@ class RDFanalysis():
                 .Define("NoLeptons", "ReconstructedParticle::remove(NoMuons, RecoElectrons)")
 
                 # different definition of missing energy from fccanalysis classes instead of edm4hep
-                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(240, ReconstructedParticles)") #ecm 
+                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(365, ReconstructedParticles)") #ecm 
                 .Define("RecoEmiss_px",  "RecoEmiss[0].momentum.x")
                 .Define("RecoEmiss_py",  "RecoEmiss[0].momentum.y")
                 .Define("RecoEmiss_pz",  "RecoEmiss[0].momentum.z")

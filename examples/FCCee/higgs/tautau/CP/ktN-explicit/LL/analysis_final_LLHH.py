@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250302/ktN-explicit/LL/HH/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/LL/HH"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250302/ktN-explicit/LL/HH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/LL/HH"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -20,6 +20,37 @@ saveTabular = False
 doTree = False
 
 processList = {
+
+    "mg_ee_eetata_ecm240":{},
+    "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_eetata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_eetata_smeft_cehre_p1_ecm240":{},
+    "mg_ee_jjtata_ecm240":{},
+    "mg_ee_jjtata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_jjtata_smeft_cehre_p1_ecm240":{},
+    "mg_ee_mumutata_ecm240":{},
+    "mg_ee_mumutata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
+    "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
+
+    "p8_ee_bbH_Htautau_CPeven":{},
+    "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPeven":{},
+    "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPeven":{},
+    "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPeven":{},
+    "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPeven":{},
+    "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    "p8_ee_qqH_Htautau_CPodd":{},
+
+
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
     'p8_ee_ZZ_ecm240':{},
@@ -112,18 +143,51 @@ processLabels = {}
 procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add provate samples as it is not an offical process
-procDictAdd = {}
+procDictAdd = {
+
+    'mg_ee_eetata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039496700612440505, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039467206272751117, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039526795717095316, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039545719323659203, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005953978259013256, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehim_m1_ecm240':{"numberOfEvents": 9893750, "sumOfWeights": 9893750, "crossSection": 0.005957006930373593, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005952444260067142, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005972489422656043, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_jjtata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005960914361046144, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037101429593363667, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037126725168208034, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037152687307799456, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_mumutata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.000371622336608876, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+
+    'p8_ee_bbH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_bbH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPeven':{"numberOfEvents": 2385875, "sumOfWeights": 2385875, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+}
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    #"selReco": "true",
+    "SelReco_ILC":"ILC_Filter==1",
+    #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
+    #"selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
      
 }
 
@@ -278,20 +342,6 @@ histoList = {
     "RecoPhoton_charge":        {"name":"RecoPhoton_charge",              "title":"Reco photon charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
     "RecoPhoton_mass":          {"name":"RecoPhoton_mass",                 "title":"Reco photon mass [GeV]",                         "bin":50, "xmin":-0.05,"xmax":0.05},
 
-    "n_NeutralHadrons":            {"name":"n_NeutralHadrons",                  "title":"Number of reco neutral hadrons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "NeutralHadrons_e":             {"name":"NeutralHadrons_e",                   "title":"Neutral hadron energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_p":             {"name":"NeutralHadrons_p",                   "title":"Neutral hadron p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_pt":            {"name":"NeutralHadrons_pt",                  "title":"Neutral hadron p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "NeutralHadrons_px":            {"name":"NeutralHadrons_px",                  "title":"Neutral hadron p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadrons_py":            {"name":"NeutralHadrons_py",                  "title":"Neutral hadron p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "NeutralHadrons_pz":            {"name":"NeutralHadrons_pz",                  "title":"Neutral hadron p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-
-    "NeutralHadrons_eta":           {"name":"NeutralHadrons_eta",                 "title":"Neutral hadron #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "NeutralHadrons_theta":         {"name":"NeutralHadrons_theta",               "title":"Neutral hadron #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "NeutralHadrons_phi":           {"name":"NeutralHadrons_phi",                 "title":"Neutral hadron #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "NeutralHadrons_charge":        {"name":"NeutralHadrons_charge",              "title":"Neutral hadron charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    "NeutralHadrons_mass":          {"name":"NeutralHadrons_mass",                 "title":"Neutral hadron mass [GeV]",                         "bin":50, "xmin":0,"xmax":10},
-
     "RecoEmiss_px":             {"name":"RecoEmiss_px",                  "title":"Reco missing energy p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
     "RecoEmiss_py":             {"name":"RecoEmiss_py",                  "title":"Reco missing energy p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
     "RecoEmiss_pz":             {"name":"RecoEmiss_pz",                  "title":"Reco missing energy p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
@@ -406,22 +456,6 @@ histoList = {
     "TagJet_kt2_sel_mass":         {"name":"TagJet_kt2_sel_mass",                "title":"Quark/gluon kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "n_TagJet_kt2_sel":            {"name":"n_TagJet_kt2_sel",                   "title":"Number of Quark/gluon kt2 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
 
-    "TagJet_kt1_e":                {"name":"TagJet_kt1_e",                   "title":"kt1 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt1_p":                {"name":"TagJet_kt1_p",                   "title":"kt1 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt1_pt":               {"name":"TagJet_kt1_pt",                  "title":"kt1 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt1_px":               {"name":"TagJet_kt1_px",                  "title":"kt1 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_py":               {"name":"TagJet_kt1_py",                  "title":"kt1 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_pz":               {"name":"TagJet_kt1_pz",                  "title":"kt1 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt1_eta":              {"name":"TagJet_kt1_eta",                 "title":"kt1 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt1_theta":            {"name":"TagJet_kt1_theta",               "title":"kt1 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt1_phi":              {"name":"TagJet_kt1_phi",                 "title":"kt1 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt1_mass":             {"name":"TagJet_kt1_mass",                "title":"kt1 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "TagJet_kt1_charge":             {"name":"TagJet_kt1_charge",                "title":"kt1 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
-    "n_TagJet_kt1":                {"name":"n_TagJet_kt1",                   "title":"Number of kt1 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_TagJet_kt1_constituents":             {"name":"n_TagJet_kt1_constituents",               "title":"kt1 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt1_charged_constituents":             {"name":"n_TagJet_kt1_charged_constituents",               "title":"kt1 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt1_neutral_constituents":             {"name":"n_TagJet_kt1_neutral_constituents",               "title":"kt1 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
-
     ####################
 
     "RecoZ_px":                 {"name":"RecoZ_px",                 "title":"Reco Z p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},
@@ -494,7 +528,7 @@ histoList = {
     "RecoH_phi":                {"name":"RecoH_phi",                "title":"Reco H #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoH_theta":              {"name":"RecoH_theta",              "title":"Reco H #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "RecoH_y":                  {"name":"RecoH_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":100, "xmin":0 ,"xmax":200},
 
     "TauLead_px":               {"name":"TauLead_px",                 "title":"#tau_{leading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
     "TauLead_py":               {"name":"TauLead_py",                 "title":"#tau_{leading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
@@ -547,5 +581,6 @@ histoList = {
     "SinDeltaPhiILC":                          {"name": "SinDeltaPhiILC", "title": "sin(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
     "DeltaPhiILC":                             {"name":"DeltaPhiILC",           "title":"#Delta#Phi_{CP} ILC",                  "bin":32, "xmin":-3.14,"xmax":3.14},
     "KinILC_chi2":                             {"name":"KinILC_chi2",           "title":"#chi^{2} ILC",                  "bin":50, "xmin":0,"xmax":20},
+    "KinILC_H_mass":                             {"name":"KinILC_H_mass",           "title":"M_{H} ILC",                  "bin":100, "xmin":0,"xmax":200},
 
 }

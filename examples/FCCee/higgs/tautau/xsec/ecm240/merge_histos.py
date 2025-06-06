@@ -32,22 +32,22 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/BDT_250502/"
 TAG = [
     #"R5-explicit",
     #"R5-tag",
-    "ktN-explicit",
+    #"ktN-explicit",
     "ktN-tag",
 ]
 SUBDIR = [
-    'LL',
-    'LH',
+    #'LL',
+    #'LH',
     'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
-    "LL",
+    #"QQ",
+    #"LL",
     "NuNu",
 ]
 #list of cuts you want to plot
@@ -327,29 +327,29 @@ VARIABLES_LL = [
     "RecoZSub_y",    
     "RecoZSub_mass",  
 
-    "RecoZP_px", 
-    "RecoZP_py",   
-    "RecoZP_pz",   
-    "RecoZP_p",    
-    "RecoZP_pt",   
-    "RecoZP_e",    
-    "RecoZP_eta",    
-    "RecoZP_phi",    
-    "RecoZP_theta",   
-    "RecoZP_y",     
-    "RecoZP_mass",   
+    #"RecoZP_px", 
+    #"RecoZP_py",   
+    #"RecoZP_pz",   
+    #"RecoZP_p",    
+    #"RecoZP_pt",   
+    #"RecoZP_e",    
+    #"RecoZP_eta",    
+    #"RecoZP_phi",    
+    #"RecoZP_theta",   
+    #"RecoZP_y",     
+    #"RecoZP_mass",   
 
-    "RecoZM_px",    
-    "RecoZM_py",   
-    "RecoZM_pz",   
-    "RecoZM_p",   
-    "RecoZM_pt",  
-    "RecoZM_e",     
-    "RecoZM_eta",   
-    "RecoZM_phi",   
-    "RecoZM_theta",    
-    "RecoZM_y",    
-    "RecoZM_mass",  
+    #"RecoZM_px",    
+    #"RecoZM_py",   
+    #"RecoZM_pz",   
+    #"RecoZM_p",   
+    #"RecoZM_pt",  
+    #"RecoZM_e",     
+    #"RecoZM_eta",   
+    #"RecoZM_phi",   
+    #"RecoZM_theta",    
+    #"RecoZM_y",    
+    #"RecoZM_mass",  
 
     "RecoH_px",
     "RecoH_py",
@@ -889,11 +889,11 @@ for tag in TAG:
             for cut in CUT:
 
                 if "tag" in tag:
-                    variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat]
+                    variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] + ["BDT_score"]
                 else: 
-                    variables = VARIABLES + LIST_VAR[cat] 
+                    variables = VARIABLES + LIST_VAR[cat] + ["BDT_score"]
 
-                directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final/" + cat + "/" + sub + "/"
             
                 for num in range(1,28):
                     output = f"{directory}{legend[num]}_{cut}_histo.root"

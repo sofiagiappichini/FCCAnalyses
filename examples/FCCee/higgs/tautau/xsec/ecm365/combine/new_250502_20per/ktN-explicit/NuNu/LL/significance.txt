@@ -9,7 +9,7 @@ RooWorkspace(w) w contents
 
 variables
 ---------
-(CMS_channel,CMS_th1x,MH,ONE,ZERO,n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365,prop_binVisible_mass_bin0,prop_binVisible_mass_bin0_In,prop_binVisible_mass_bin1,prop_binVisible_mass_bin10,prop_binVisible_mass_bin10_In,prop_binVisible_mass_bin11,prop_binVisible_mass_bin11_In,prop_binVisible_mass_bin12,prop_binVisible_mass_bin12_In,prop_binVisible_mass_bin13,prop_binVisible_mass_bin13_In,prop_binVisible_mass_bin14,prop_binVisible_mass_bin14_In,prop_binVisible_mass_bin15,prop_binVisible_mass_bin15_In,prop_binVisible_mass_bin16,prop_binVisible_mass_bin16_In,prop_binVisible_mass_bin17,prop_binVisible_mass_bin17_In,prop_binVisible_mass_bin18,prop_binVisible_mass_bin18_In,prop_binVisible_mass_bin19,prop_binVisible_mass_bin19_In,prop_binVisible_mass_bin1_In,prop_binVisible_mass_bin2,prop_binVisible_mass_bin20,prop_binVisible_mass_bin20_In,prop_binVisible_mass_bin21,prop_binVisible_mass_bin21_In,prop_binVisible_mass_bin22,prop_binVisible_mass_bin22_In,prop_binVisible_mass_bin23,prop_binVisible_mass_bin23_In,prop_binVisible_mass_bin24,prop_binVisible_mass_bin24_In,prop_binVisible_mass_bin25,prop_binVisible_mass_bin25_In,prop_binVisible_mass_bin26,prop_binVisible_mass_bin26_In,prop_binVisible_mass_bin27,prop_binVisible_mass_bin27_In,prop_binVisible_mass_bin28,prop_binVisible_mass_bin28_In,prop_binVisible_mass_bin29,prop_binVisible_mass_bin29_In,prop_binVisible_mass_bin2_In,prop_binVisible_mass_bin3,prop_binVisible_mass_bin30,prop_binVisible_mass_bin30_In,prop_binVisible_mass_bin31,prop_binVisible_mass_bin31_In,prop_binVisible_mass_bin32,prop_binVisible_mass_bin32_In,prop_binVisible_mass_bin33,prop_binVisible_mass_bin33_In,prop_binVisible_mass_bin34,prop_binVisible_mass_bin34_In,prop_binVisible_mass_bin35,prop_binVisible_mass_bin35_In,prop_binVisible_mass_bin36,prop_binVisible_mass_bin36_In,prop_binVisible_mass_bin37,prop_binVisible_mass_bin37_In,prop_binVisible_mass_bin38,prop_binVisible_mass_bin38_In,prop_binVisible_mass_bin39,prop_binVisible_mass_bin39_In,prop_binVisible_mass_bin3_In,prop_binVisible_mass_bin4,prop_binVisible_mass_bin40,prop_binVisible_mass_bin40_In,prop_binVisible_mass_bin41,prop_binVisible_mass_bin41_In,prop_binVisible_mass_bin42,prop_binVisible_mass_bin42_In,prop_binVisible_mass_bin43,prop_binVisible_mass_bin43_In,prop_binVisible_mass_bin44,prop_binVisible_mass_bin44_In,prop_binVisible_mass_bin45,prop_binVisible_mass_bin45_In,prop_binVisible_mass_bin46,prop_binVisible_mass_bin46_In,prop_binVisible_mass_bin47,prop_binVisible_mass_bin47_In,prop_binVisible_mass_bin48,prop_binVisible_mass_bin48_In,prop_binVisible_mass_bin49,prop_binVisible_mass_bin49_In,prop_binVisible_mass_bin4_In,prop_binVisible_mass_bin5,prop_binVisible_mass_bin50,prop_binVisible_mass_bin50_In,prop_binVisible_mass_bin51,prop_binVisible_mass_bin51_In,prop_binVisible_mass_bin52,prop_binVisible_mass_bin52_In,prop_binVisible_mass_bin53,prop_binVisible_mass_bin53_In,prop_binVisible_mass_bin54,prop_binVisible_mass_bin54_In,prop_binVisible_mass_bin55,prop_binVisible_mass_bin55_In,prop_binVisible_mass_bin56,prop_binVisible_mass_bin56_In,prop_binVisible_mass_bin57,prop_binVisible_mass_bin57_In,prop_binVisible_mass_bin58,prop_binVisible_mass_bin58_In,prop_binVisible_mass_bin59,prop_binVisible_mass_bin59_In,prop_binVisible_mass_bin5_In,prop_binVisible_mass_bin6,prop_binVisible_mass_bin60,prop_binVisible_mass_bin60_In,prop_binVisible_mass_bin61,prop_binVisible_mass_bin61_In,prop_binVisible_mass_bin62,prop_binVisible_mass_bin62_In,prop_binVisible_mass_bin63,prop_binVisible_mass_bin63_In,prop_binVisible_mass_bin64,prop_binVisible_mass_bin64_In,prop_binVisible_mass_bin65,prop_binVisible_mass_bin65_In,prop_binVisible_mass_bin66,prop_binVisible_mass_bin66_In,prop_binVisible_mass_bin67,prop_binVisible_mass_bin67_In,prop_binVisible_mass_bin68,prop_binVisible_mass_bin68_In,prop_binVisible_mass_bin69,prop_binVisible_mass_bin69_In,prop_binVisible_mass_bin6_In,prop_binVisible_mass_bin7,prop_binVisible_mass_bin7_In,prop_binVisible_mass_bin8,prop_binVisible_mass_bin8_In,prop_binVisible_mass_bin9,prop_binVisible_mass_bin9_In,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
+(CMS_channel,CMS_th1x,MH,ONE,ZERO,prop_binVisible_mass_bin0,prop_binVisible_mass_bin0_In,prop_binVisible_mass_bin1,prop_binVisible_mass_bin10,prop_binVisible_mass_bin10_In,prop_binVisible_mass_bin11,prop_binVisible_mass_bin11_In,prop_binVisible_mass_bin12,prop_binVisible_mass_bin12_In,prop_binVisible_mass_bin13,prop_binVisible_mass_bin13_In,prop_binVisible_mass_bin14,prop_binVisible_mass_bin14_In,prop_binVisible_mass_bin15,prop_binVisible_mass_bin15_In,prop_binVisible_mass_bin16,prop_binVisible_mass_bin16_In,prop_binVisible_mass_bin17,prop_binVisible_mass_bin17_In,prop_binVisible_mass_bin18,prop_binVisible_mass_bin18_In,prop_binVisible_mass_bin19,prop_binVisible_mass_bin19_In,prop_binVisible_mass_bin1_In,prop_binVisible_mass_bin2,prop_binVisible_mass_bin20,prop_binVisible_mass_bin20_In,prop_binVisible_mass_bin21,prop_binVisible_mass_bin21_In,prop_binVisible_mass_bin22,prop_binVisible_mass_bin22_In,prop_binVisible_mass_bin23,prop_binVisible_mass_bin23_In,prop_binVisible_mass_bin24,prop_binVisible_mass_bin24_In,prop_binVisible_mass_bin25,prop_binVisible_mass_bin25_In,prop_binVisible_mass_bin26,prop_binVisible_mass_bin26_In,prop_binVisible_mass_bin27,prop_binVisible_mass_bin27_In,prop_binVisible_mass_bin28,prop_binVisible_mass_bin28_In,prop_binVisible_mass_bin29,prop_binVisible_mass_bin29_In,prop_binVisible_mass_bin2_In,prop_binVisible_mass_bin3,prop_binVisible_mass_bin30,prop_binVisible_mass_bin30_In,prop_binVisible_mass_bin31,prop_binVisible_mass_bin31_In,prop_binVisible_mass_bin32,prop_binVisible_mass_bin32_In,prop_binVisible_mass_bin33,prop_binVisible_mass_bin33_In,prop_binVisible_mass_bin34,prop_binVisible_mass_bin34_In,prop_binVisible_mass_bin35,prop_binVisible_mass_bin35_In,prop_binVisible_mass_bin36,prop_binVisible_mass_bin36_In,prop_binVisible_mass_bin37,prop_binVisible_mass_bin37_In,prop_binVisible_mass_bin38,prop_binVisible_mass_bin38_In,prop_binVisible_mass_bin39,prop_binVisible_mass_bin39_In,prop_binVisible_mass_bin3_In,prop_binVisible_mass_bin4,prop_binVisible_mass_bin40,prop_binVisible_mass_bin40_In,prop_binVisible_mass_bin41,prop_binVisible_mass_bin41_In,prop_binVisible_mass_bin42,prop_binVisible_mass_bin42_In,prop_binVisible_mass_bin43,prop_binVisible_mass_bin43_In,prop_binVisible_mass_bin44,prop_binVisible_mass_bin44_In,prop_binVisible_mass_bin45,prop_binVisible_mass_bin45_In,prop_binVisible_mass_bin46,prop_binVisible_mass_bin46_In,prop_binVisible_mass_bin47,prop_binVisible_mass_bin47_In,prop_binVisible_mass_bin48,prop_binVisible_mass_bin48_In,prop_binVisible_mass_bin49,prop_binVisible_mass_bin49_In,prop_binVisible_mass_bin4_In,prop_binVisible_mass_bin5,prop_binVisible_mass_bin50,prop_binVisible_mass_bin50_In,prop_binVisible_mass_bin51,prop_binVisible_mass_bin51_In,prop_binVisible_mass_bin52,prop_binVisible_mass_bin52_In,prop_binVisible_mass_bin53,prop_binVisible_mass_bin53_In,prop_binVisible_mass_bin54,prop_binVisible_mass_bin54_In,prop_binVisible_mass_bin55,prop_binVisible_mass_bin55_In,prop_binVisible_mass_bin56,prop_binVisible_mass_bin56_In,prop_binVisible_mass_bin57,prop_binVisible_mass_bin57_In,prop_binVisible_mass_bin58,prop_binVisible_mass_bin58_In,prop_binVisible_mass_bin59,prop_binVisible_mass_bin59_In,prop_binVisible_mass_bin5_In,prop_binVisible_mass_bin6,prop_binVisible_mass_bin60,prop_binVisible_mass_bin60_In,prop_binVisible_mass_bin61,prop_binVisible_mass_bin61_In,prop_binVisible_mass_bin62,prop_binVisible_mass_bin62_In,prop_binVisible_mass_bin63,prop_binVisible_mass_bin63_In,prop_binVisible_mass_bin64,prop_binVisible_mass_bin64_In,prop_binVisible_mass_bin65,prop_binVisible_mass_bin65_In,prop_binVisible_mass_bin66,prop_binVisible_mass_bin66_In,prop_binVisible_mass_bin67,prop_binVisible_mass_bin67_In,prop_binVisible_mass_bin68,prop_binVisible_mass_bin68_In,prop_binVisible_mass_bin69,prop_binVisible_mass_bin69_In,prop_binVisible_mass_bin6_In,prop_binVisible_mass_bin7,prop_binVisible_mass_bin7_In,prop_binVisible_mass_bin8,prop_binVisible_mass_bin8_In,prop_binVisible_mass_bin9,prop_binVisible_mass_bin9_In,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
 
 p.d.f.s
 -------
@@ -109,6 +109,7 @@ ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_ZZ_ecm365[ thetaList=(unc
 ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
 ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
 ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 1
 ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
 ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 1
 ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 1
@@ -194,7 +195,6 @@ Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_I
 PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass extraConstraints=() channelMasks=() ] = 1.5e-08
 
 Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
-Found a parameter named n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
 Found a parameter named ONE infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
 Found a parameter named ZERO infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
 Saving snapshot 'clean'
@@ -203,7 +203,6 @@ Generate Asimov toy from parameter values ...
 CMS_channel = 0 
 CMS_th1x = 74.5 
 ONE = 1 (constant)
-n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 = 1 (constant)
 prop_binVisible_mass_bin0 = 0 
 prop_binVisible_mass_bin0_In = 0 (constant)
 prop_binVisible_mass_bin1 = 0 
@@ -344,6 +343,7 @@ prop_binVisible_mass_bin8 = 0
 prop_binVisible_mass_bin8_In = 0 (constant)
 prop_binVisible_mass_bin9 = 0 
 prop_binVisible_mass_bin9_In = 0 (constant)
+r_VBF = 1 
 r_ZH = 1 
 unc_Z = 0 
 unc_Z_In = 0 (constant)
@@ -365,51 +365,51 @@ Using internal logic for binned/unbinned Asimov dataset generation
 Generating asimov with histogram for pdf pdf_binVisible_mass_obsOnly: in 75 x-bins
  bin          CMS_th1x       CMS_channel    weight
    0               0.5      Visible_mass     1.5834662
-   1               1.5      Visible_mass   598.2431641
-   2               2.5      Visible_mass  1846.7091064
-   3               3.5      Visible_mass  3017.4133301
-   4               4.5      Visible_mass  4061.2353516
-   5               5.5      Visible_mass  4568.9150391
-   6               6.5      Visible_mass  5030.7763672
-   7               7.5      Visible_mass  5413.8066406
-   8               8.5      Visible_mass  5823.8681641
-   9               9.5      Visible_mass  6389.1909180
-  10              10.5      Visible_mass  7392.3081055
-  11              11.5      Visible_mass  14049.8818359
-  12              12.5      Visible_mass  15213.1748047
-  13              13.5      Visible_mass  14828.9560547
-  14              14.5      Visible_mass  14106.4804688
-  15              15.5      Visible_mass  13344.0595703
-  16              16.5      Visible_mass  13272.8955078
-  17              17.5      Visible_mass  12835.0458984
-  18              18.5      Visible_mass  12877.1953125
-  19              19.5      Visible_mass  12575.1416016
-  20              20.5      Visible_mass  12320.2724609
-  21              21.5      Visible_mass  12184.1992188
-  22              22.5      Visible_mass  11993.9521484
-  23              23.5      Visible_mass  12037.9316406
-  24              24.5      Visible_mass  12052.8164062
-  25              25.5      Visible_mass  11751.6699219
-  26              26.5      Visible_mass  11717.9589844
-  27              27.5      Visible_mass  11833.2382812
-  28              28.5      Visible_mass  11646.9658203
-  29              29.5      Visible_mass  11769.1582031
-  30              30.5      Visible_mass  11830.1679688
-  31              31.5      Visible_mass  12329.4619141
-  32              32.5      Visible_mass  13346.9072266
-  33              33.5      Visible_mass  18218.2656250
-  34              34.5      Visible_mass  29781.7109375
-  35              35.5      Visible_mass  11768.6953125
-  36              36.5      Visible_mass  11021.7343750
-  37              37.5      Visible_mass  10873.3554688
-  38              38.5      Visible_mass  10713.6796875
-  39              39.5      Visible_mass  10761.1796875
-  40              40.5      Visible_mass  10675.1484375
-  41              41.5      Visible_mass  10532.0185547
-  42              42.5      Visible_mass  10577.2500000
-  43              43.5      Visible_mass  10378.6152344
-  44              44.5      Visible_mass  10408.8769531
-  45              45.5      Visible_mass  10284.1386719
+   1               1.5      Visible_mass   599.6350098
+   2               2.5      Visible_mass  1852.1717529
+   3               3.5      Visible_mass  3027.6386719
+   4               4.5      Visible_mass  4076.2041016
+   5               5.5      Visible_mass  4588.3203125
+   6               6.5      Visible_mass  5052.7128906
+   7               7.5      Visible_mass  5437.5039062
+   8               8.5      Visible_mass  5848.0048828
+   9               9.5      Visible_mass  6413.3315430
+  10              10.5      Visible_mass  7417.0556641
+  11              11.5      Visible_mass  14074.8779297
+  12              12.5      Visible_mass  15236.7353516
+  13              13.5      Visible_mass  14851.7392578
+  14              14.5      Visible_mass  14128.9638672
+  15              15.5      Visible_mass  13365.8056641
+  16              16.5      Visible_mass  13293.5292969
+  17              17.5      Visible_mass  12854.2685547
+  18              18.5      Visible_mass  12895.3251953
+  19              19.5      Visible_mass  12591.7119141
+  20              20.5      Visible_mass  12335.8437500
+  21              21.5      Visible_mass  12198.8720703
+  22              22.5      Visible_mass  12006.9033203
+  23              23.5      Visible_mass  12049.9257812
+  24              24.5      Visible_mass  12063.1972656
+  25              25.5      Visible_mass  11761.1601562
+  26              26.5      Visible_mass  11726.4501953
+  27              27.5      Visible_mass  11840.5908203
+  28              28.5      Visible_mass  11653.2216797
+  29              29.5      Visible_mass  11774.5273438
+  30              30.5      Visible_mass  11834.8535156
+  31              31.5      Visible_mass  12333.3154297
+  32              32.5      Visible_mass  13350.1386719
+  33              33.5      Visible_mass  18220.7734375
+  34              34.5      Visible_mass  29783.6777344
+  35              35.5      Visible_mass  11770.2070312
+  36              36.5      Visible_mass  11023.0322266
+  37              37.5      Visible_mass  10874.3623047
+  38              38.5      Visible_mass  10714.3955078
+  39              39.5      Visible_mass  10761.5917969
+  40              40.5      Visible_mass  10675.4277344
+  41              41.5      Visible_mass  10532.1347656
+  42              42.5      Visible_mass  10577.3662109
+  43              43.5      Visible_mass  10378.6777344
+  44              44.5      Visible_mass  10408.8886719
+  45              45.5      Visible_mass  10284.1425781
   46              46.5      Visible_mass  10215.0585938
   47              47.5      Visible_mass  10066.1767578
   48              48.5      Visible_mass  9968.3076172
@@ -520,44 +520,45 @@ Generating asimov with histogram for pdf pdf_binVisible_mass_obsOnly: in 75 x-bi
 Doing initial fit: 
 do first minimization
 Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
-Minuit2Minimizer: Minimize with max-calls 4500 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer: Minimize with max-calls 5000 convergence for edm < 0.1 strategy 0
 Minuit2Minimizer::Minuit  - Changing default options
              StorageLevel :               0
 Number of iterations 3
 ----------> Iteration 0
-            FVAL = -2.30406999687e-09 Edm = 8.88717384067e-11 Nfcn = 60
+            FVAL = 0 Edm = 2.01972219279e-11 Nfcn = 41
             Error matrix change = 1
-            Parameters :  p0 = 1.0302 p1 = 0 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0
 ----------> Iteration 1
-            FVAL = -2.30406999687e-09 Edm = 8.88717384067e-11 Nfcn = 71
+            FVAL = 0 Edm = 2.01972219279e-11 Nfcn = 45
             Error matrix change = 1
-            Parameters :  p0 = 1.0302 p1 = 0 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0
 ----------> Iteration 2
-            FVAL = -2.30406999687e-09 Edm = 8.88717384067e-11 Nfcn = 71
+            FVAL = 0 Edm = 2.01972219279e-11 Nfcn = 45
             Error matrix change = 1
-            Parameters :  p0 = 1.0302 p1 = 0 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0
 Minuit2Minimizer : Valid minimum - status = 0
-FVAL  = -2.30406999687092659e-09
-Edm   = 8.8871738406727364e-11
-Nfcn  = 71
-r_ZH	  = 1.0302	 +/-  1.57115	(limited)
-unc_Z	  = 0	 +/-  0.0297748
-unc__H	  = 0	 +/-  0.984775
-unc_p8_ee_WW_ecm365	  = 0	 +/-  0.0124313
-unc_p8_ee_WW_tautau_ecm365	  = 0	 +/-  0.168895
-unc_p8_ee_ZZ_ecm365	  = 0	 +/-  0.204035
-unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = 0	 +/-  0.135982
-unc_wzp6_ee_gaga_LL_60_ecm365	  = 0	 +/-  0.76948
-unc_wzp6_ee_nuenueZ_ecm365	  = 0	 +/-  0.0832487
+FVAL  = 0
+Edm   = 2.01972219279301905e-11
+Nfcn  = 45
+r_VBF	  = 1	 +/-  1.06753	(limited)
+r_ZH	  = 1	 +/-  1.07383	(limited)
+unc_Z	  = 0	 +/-  0.0297932
+unc__H	  = 0	 +/-  0.99139
+unc_p8_ee_WW_ecm365	  = 0	 +/-  0.0124326
+unc_p8_ee_WW_tautau_ecm365	  = 0	 +/-  0.169926
+unc_p8_ee_ZZ_ecm365	  = 0	 +/-  0.205857
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = 0	 +/-  0.136572
+unc_wzp6_ee_gaga_LL_60_ecm365	  = 0	 +/-  0.774045
+unc_wzp6_ee_nuenueZ_ecm365	  = 0	 +/-  0.083345
 Minimization finished with status=0
 Minimization success! status=0
-Minimized in 0.055705 seconds (0.050000 CPU time)
-FINAL NLL - NLL0 VALUE = -1.831789632e-09
+Minimized in 0.149695 seconds (0.080000 CPU time)
+FINAL NLL - NLL0 VALUE = -1.452349917e-09
 
 
  --- MultiDimFit ---
 best fit parameter values: 
-    r_ZH :    +1.030
+    r_ZH :    +1.000
    r_VBF :    +1.000
 Done in 0.00 min (cpu), 0.00 min (real)
 170 log messages saved to combine_logger.out

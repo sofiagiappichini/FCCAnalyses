@@ -118,13 +118,7 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
-}
+    }
 
 # Dictionary for prettier names of cuts (optional)
 ### needs to be in the same order as cutList or the table won't be organised well, it's only for the table ###
@@ -397,7 +391,7 @@ histoList = {
     "TagJet_R5_sel_mass":         {"name":"TagJet_R5_sel_mass",                "title":"Quark/gluon R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
     "n_TagJet_R5_sel":            {"name":"n_TagJet_R5_sel",                   "title":"Number of Quark/gluon R5 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
 
-    "TagJet_kt2_e":                {"name":"TagJet_kt2_e",                   "title":"kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
+    #"TagJet_kt2_e":                {"name":"TagJet_kt2_e",                   "title":"kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
     "TagJet_kt2_p":                {"name":"TagJet_kt2_p",                   "title":"kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
     "TagJet_kt2_pt":               {"name":"TagJet_kt2_pt",                  "title":"kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
     "TagJet_kt2_px":               {"name":"TagJet_kt2_px",                  "title":"kt2 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
@@ -576,4 +570,5 @@ histoList = {
 
     "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
     "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
+    "BDT_score":           {"name":"BDT_score",           "title":"BDT score",                  "bin":200, "xmin":0., "xmax":1.},
 }

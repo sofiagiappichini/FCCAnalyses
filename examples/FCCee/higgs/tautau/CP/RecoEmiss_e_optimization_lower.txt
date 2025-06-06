@@ -1,0 +1,33 @@
+Max significance of QQLL = 39.08171072871373 for cut at RecoEmiss_e=28 
+Max purity of QQLL = 0.6840360613739076 for cut at RecoEmiss_e=34 
+
+Max significance of QQLL = 39.08171072871373 for cut at RecoEmiss_e=28 
+Max purity of QQLL = 0.6840360613739076 for cut at RecoEmiss_e=34 
+
+Max significance of QQLL = 39.08171072871373 for cut at RecoEmiss_e=28 
+Max purity of QQLL = 0.6840360613739076 for cut at RecoEmiss_e=34 
+
+Max significance of QQLL = 39.08171072871373 for cut at RecoEmiss_e=28 
+Max purity of QQLL = 0.6840360613739076 for cut at RecoEmiss_e=34 
+
+Max significance of QQLL = 39.08171072871373 for cut at RecoEmiss_e=28 
+Max purity of QQLL = 0.6840360613739076 for cut at RecoEmiss_e=34 
+
+Max significance of QQLL = 39.08171072871373 for cut at RecoEmiss_e=28 
+Max purity of QQLL = 0.6840360613739076 for cut at RecoEmiss_e=34 
+
+Max significance of QQLH = 40.88972916860871 for cut at RecoEmiss_e=14 
+Max purity of QQLH = 0.2510672248543396 for cut at RecoEmiss_e=24 
+
+Max significance of QQHH = 21.292927704223377 for cut at RecoEmiss_e=4 
+Max purity of QQHH = 0.053001734460935805 for cut at RecoEmiss_e=4 
+
+Max significance of LLLL = 43.98226437008546 for cut at RecoEmiss_e=20 
+Max purity of LLLL = 0.7624034938309631 for cut at RecoEmiss_e=40 
+
+Max significance of LLLH = 72.27696422754173 for cut at RecoEmiss_e=6 
+Max purity of LLLH = 0.7314018656870606 for cut at RecoEmiss_e=28 
+
+Max significance of LLHH = 70.34877404123137 for cut at RecoEmiss_e=2 
+Max purity of LLHH = 0.7347405009287888 for cut at RecoEmiss_e=2 
+

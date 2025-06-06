@@ -1,0 +1,419 @@
+
+>>> Random number generator seed is 123456
+>>> Method used is MultiDimFit
+Adding /afs/cern.ch/user/s/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel BDT_score_bkg=pdf_binBDT_score_bkg_bonly extraConstraints=() channelMasks=() ] = 0.506326
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_bkg=pdf_binBDT_score_bkg extraConstraints=() channelMasks=() ] = 0.505283
+RooProdPdf::nuisancePdf[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binBDT_score_bkg[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binBDT_score_bkg_nuis * pdfbins_binBDT_score_bkg ] = 0.505283
+RooProdPdf::pdf_binBDT_score_bkg_bonly[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binBDT_score_bkg_bonly_nuis * pdfbins_binBDT_score_bkg ] = 0.506326
+RooAddPdf::pdf_binBDT_score_bkg_bonly_nuis[ n_exp_binBDT_score_bkg_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_tt_ecm365 * shapeBkg_p8_ee_tt_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_Hgg_ecm365 * shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_HQQ_ecm365 * shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_Hgg_ecm365 * shapeBkg_wzp6_ee_LLH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_HQQ_ecm365 * shapeBkg_wzp6_ee_QQH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_Hgg_ecm365 * shapeBkg_wzp6_ee_QQH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_BDT_score_bkg_rebinPdf ] = 0.506326/1
+RooAddPdf::pdf_binBDT_score_bkg_nuis[ n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 * shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_Htautau_ecm365 * shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_p8_ee_tt_ecm365 * shapeBkg_p8_ee_tt_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_Hgg_ecm365 * shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_HQQ_ecm365 * shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_Hgg_ecm365 * shapeBkg_wzp6_ee_LLH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_HQQ_ecm365 * shapeBkg_wzp6_ee_QQH_HQQ_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_Hgg_ecm365 * shapeBkg_wzp6_ee_QQH_Hgg_ecm365_BDT_score_bkg_rebinPdf + n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_BDT_score_bkg_rebinPdf ] = 0.505283/1
+RooProdPdf::pdfbins_binBDT_score_bkg[  ] = 1
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.35631
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_tautau_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.230381
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.711279
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZZ_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.101353
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_tt_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0314961
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.187723
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.109004
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_Hgg_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.222921
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LL_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.461192
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_HQQ_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.360379
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_HVV_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0916065
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_Hgg_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.465672
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.106694
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.022531
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.109053
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_HQQ_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0999108
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0254691
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.117216
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.523186
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.555975
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0243608
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0531073
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0199945
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0448179
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.0237316
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.554224
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 9.08243e-05
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_bkg_rebinPdf[ coefList=() x=CMS_th1x ] = 0.000656767
+SimpleGaussianConstraint::unc_Z_Pdf[ x=unc_Z mean=unc_Z_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_ecm365_Pdf[ x=unc_p8_ee_WW_ecm365 mean=unc_p8_ee_WW_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_tautau_ecm365_Pdf[ x=unc_p8_ee_WW_tautau_ecm365 mean=unc_p8_ee_WW_tautau_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_tt_ecm365_Pdf[ x=unc_p8_ee_tt_ecm365 mean=unc_p8_ee_tt_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf[ x=unc_wzp6_ee_egamma_eZ_ZLL_ecm365 mean=unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_gaga_LL_60_ecm365_Pdf[ x=unc_wzp6_ee_gaga_LL_60_ecm365 mean=unc_wzp6_ee_gaga_LL_60_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_nuenueZ_ecm365_Pdf[ x=unc_wzp6_ee_nuenueZ_ecm365 mean=unc_wzp6_ee_nuenueZ_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 336466
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_p8_ee_WW_tautau_ecm365[ thetaList=(unc_p8_ee_WW_tautau_ecm365) asymmThetaList=() otherFactorList=() ] = 108095
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 192170
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 12834
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_p8_ee_tt_ecm365[ thetaList=(unc_p8_ee_tt_ecm365) asymmThetaList=() otherFactorList=() ] = 1128.89
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.508965
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 2.61698
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_LLH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.0603393
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 16350.3
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 2.0029
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 12.0612
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_QQH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.536855
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 459.151
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1180.16
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 6.1722
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 1981.9
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1625.76
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 148.213
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 765.278
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1.38554
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 1261.12
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 24449.4
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 5596.67
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 5.81123
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 42.8846
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.365854
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 48.1802
+ProcessNormalization::n_exp_binBDT_score_bkg_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1.04578e+06
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+ModelConfig_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+ModelConfig_bonly_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+nuisances:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_bkg=pdf_binBDT_score_bkg extraConstraints=() channelMasks=() ] = 0.505283
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_bkg=pdf_binBDT_score_bkg extraConstraints=() channelMasks=() ] = 0.505283
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 0 
+CMS_th1x = 199.5 
+r_VBF = 1 
+r_ZH = 1 
+unc_Z = 0 
+unc_Z_In = 0 (constant)
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_WW_ecm365 = 0 
+unc_p8_ee_WW_ecm365_In = 0 (constant)
+unc_p8_ee_WW_tautau_ecm365 = 0 
+unc_p8_ee_WW_tautau_ecm365_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+unc_p8_ee_tt_ecm365 = 0 
+unc_p8_ee_tt_ecm365_In = 0 (constant)
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = 0 
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In = 0 (constant)
+unc_wzp6_ee_gaga_LL_60_ecm365 = 0 
+unc_wzp6_ee_gaga_LL_60_ecm365_In = 0 (constant)
+unc_wzp6_ee_nuenueZ_ecm365 = 0 
+unc_wzp6_ee_nuenueZ_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binBDT_score_bkg_obsOnly: in 200 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5     BDT_score_bkg  1125.4558105
+   1               1.5     BDT_score_bkg  3884.3366699
+   2               2.5     BDT_score_bkg  6378.0981445
+   3               3.5     BDT_score_bkg  7147.4672852
+   4               4.5     BDT_score_bkg  6739.8339844
+   5               5.5     BDT_score_bkg  6178.1582031
+   6               6.5     BDT_score_bkg  5973.5615234
+   7               7.5     BDT_score_bkg  5803.0239258
+   8               8.5     BDT_score_bkg  5208.1845703
+   9               9.5     BDT_score_bkg  4772.2641602
+  10              10.5     BDT_score_bkg  4461.0156250
+  11              11.5     BDT_score_bkg  4144.8676758
+  12              12.5     BDT_score_bkg  3915.3913574
+  13              13.5     BDT_score_bkg  3672.6437988
+  14              14.5     BDT_score_bkg  3499.9931641
+  15              15.5     BDT_score_bkg  3235.0366211
+  16              16.5     BDT_score_bkg  3087.4772949
+  17              17.5     BDT_score_bkg  2946.7524414
+  18              18.5     BDT_score_bkg  2851.2990723
+  19              19.5     BDT_score_bkg  2730.9152832
+  20              20.5     BDT_score_bkg  2642.2687988
+  21              21.5     BDT_score_bkg  2536.6682129
+  22              22.5     BDT_score_bkg  2467.6450195
+  23              23.5     BDT_score_bkg  2388.2216797
+  24              24.5     BDT_score_bkg  2354.4577637
+  25              25.5     BDT_score_bkg  2260.8691406
+  26              26.5     BDT_score_bkg  2237.4162598
+  27              27.5     BDT_score_bkg  2180.9206543
+  28              28.5     BDT_score_bkg  2144.8444824
+  29              29.5     BDT_score_bkg  2100.5507812
+  30              30.5     BDT_score_bkg  2071.5891113
+  31              31.5     BDT_score_bkg  2027.1840820
+  32              32.5     BDT_score_bkg  1998.3532715
+  33              33.5     BDT_score_bkg  1968.0483398
+  34              34.5     BDT_score_bkg  1927.0639648
+  35              35.5     BDT_score_bkg  1863.5050049
+  36              36.5     BDT_score_bkg  1872.2227783
+  37              37.5     BDT_score_bkg  1810.2552490
+  38              38.5     BDT_score_bkg  1776.5041504
+  39              39.5     BDT_score_bkg  1784.7952881
+  40              40.5     BDT_score_bkg  1752.9224854
+  41              41.5     BDT_score_bkg  1705.0339355
+  42              42.5     BDT_score_bkg  1698.4930420
+  43              43.5     BDT_score_bkg  1691.1472168
+  44              44.5     BDT_score_bkg  1673.0275879
+  45              45.5     BDT_score_bkg  1687.8548584
+  46              46.5     BDT_score_bkg  1607.9779053
+  47              47.5     BDT_score_bkg  1640.3269043
+  48              48.5     BDT_score_bkg  1624.2512207
+  49              49.5     BDT_score_bkg  1550.0823975
+  50              50.5     BDT_score_bkg  1538.9649658
+  51              51.5     BDT_score_bkg  1589.1534424
+  52              52.5     BDT_score_bkg  1561.8403320
+  53              53.5     BDT_score_bkg  1570.9418945
+  54              54.5     BDT_score_bkg  1544.5460205
+  55              55.5     BDT_score_bkg  1504.1289062
+  56              56.5     BDT_score_bkg  1539.4862061
+  57              57.5     BDT_score_bkg  1572.5471191
+  58              58.5     BDT_score_bkg  1534.4677734
+  59              59.5     BDT_score_bkg  1565.2854004
+  60              60.5     BDT_score_bkg  1500.9462891
+  61              61.5     BDT_score_bkg  1518.0119629
+  62              62.5     BDT_score_bkg  1472.9761963
+  63              63.5     BDT_score_bkg  1479.3222656
+  64              64.5     BDT_score_bkg  1505.3580322
+  65              65.5     BDT_score_bkg  1520.4191895
+  66              66.5     BDT_score_bkg  1510.7480469
+  67              67.5     BDT_score_bkg  1509.5327148
+  68              68.5     BDT_score_bkg  1505.9107666
+  69              69.5     BDT_score_bkg  1499.5778809
+  70              70.5     BDT_score_bkg  1540.8559570
+  71              71.5     BDT_score_bkg  1515.6685791
+  72              72.5     BDT_score_bkg  1518.3469238
+  73              73.5     BDT_score_bkg  1535.8448486
+  74              74.5     BDT_score_bkg  1515.6605225
+  75              75.5     BDT_score_bkg  1481.9655762
+  76              76.5     BDT_score_bkg  1555.6588135
+  77              77.5     BDT_score_bkg  1581.9959717
+  78              78.5     BDT_score_bkg  1603.4444580
+  79              79.5     BDT_score_bkg  1555.1184082
+  80              80.5     BDT_score_bkg  1554.4559326
+  81              81.5     BDT_score_bkg  1583.7233887
+  82              82.5     BDT_score_bkg  1564.4700928
+  83              83.5     BDT_score_bkg  1588.1466064
+  84              84.5     BDT_score_bkg  1571.2744141
+  85              85.5     BDT_score_bkg  1584.4040527
+  86              86.5     BDT_score_bkg  1619.6489258
+  87              87.5     BDT_score_bkg  1633.6148682
+  88              88.5     BDT_score_bkg  1694.3856201
+  89              89.5     BDT_score_bkg  1692.3554688
+  90              90.5     BDT_score_bkg  1692.6979980
+  91              91.5     BDT_score_bkg  1630.3554688
+  92              92.5     BDT_score_bkg  1661.8588867
+  93              93.5     BDT_score_bkg  1699.5826416
+  94              94.5     BDT_score_bkg  1703.6544189
+  95              95.5     BDT_score_bkg  1688.7615967
+  96              96.5     BDT_score_bkg  1739.2443848
+  97              97.5     BDT_score_bkg  1733.2521973
+  98              98.5     BDT_score_bkg  1765.3529053
+  99              99.5     BDT_score_bkg  1773.5214844
+ 100             100.5     BDT_score_bkg  1793.5483398
+ 101             101.5     BDT_score_bkg  1818.6970215
+ 102             102.5     BDT_score_bkg  1821.4743652
+ 103             103.5     BDT_score_bkg  1844.1207275
+ 104             104.5     BDT_score_bkg  1826.4460449
+ 105             105.5     BDT_score_bkg  1866.9814453
+ 106             106.5     BDT_score_bkg  1845.2388916
+ 107             107.5     BDT_score_bkg  1900.8813477
+ 108             108.5     BDT_score_bkg  1939.4990234
+ 109             109.5     BDT_score_bkg  1925.1560059
+ 110             110.5     BDT_score_bkg  1919.7041016
+ 111             111.5     BDT_score_bkg  1951.2337646
+ 112             112.5     BDT_score_bkg  1950.6530762
+ 113             113.5     BDT_score_bkg  1968.6254883
+ 114             114.5     BDT_score_bkg  1957.8754883
+ 115             115.5     BDT_score_bkg  2046.5947266
+ 116             116.5     BDT_score_bkg  2038.8748779
+ 117             117.5     BDT_score_bkg  2046.2397461
+ 118             118.5     BDT_score_bkg  2072.8684082
+ 119             119.5     BDT_score_bkg  2114.2434082
+ 120             120.5     BDT_score_bkg  2095.5290527
+ 121             121.5     BDT_score_bkg  2068.5097656
+ 122             122.5     BDT_score_bkg  2137.6035156
+ 123             123.5     BDT_score_bkg  2168.2143555
+ 124             124.5     BDT_score_bkg  2198.9240723
+ 125             125.5     BDT_score_bkg  2246.2521973
+ 126             126.5     BDT_score_bkg  2175.0417480
+ 127             127.5     BDT_score_bkg  2231.5759277
+ 128             128.5     BDT_score_bkg  2283.8684082
+ 129             129.5     BDT_score_bkg  2275.5637207
+ 130             130.5     BDT_score_bkg  2294.4704590
+ 131             131.5     BDT_score_bkg  2307.0957031
+ 132             132.5     BDT_score_bkg  2338.4453125
+ 133             133.5     BDT_score_bkg  2288.0510254
+ 134             134.5     BDT_score_bkg  2388.7526855
+ 135             135.5     BDT_score_bkg  2368.6474609
+ 136             136.5     BDT_score_bkg  2400.5944824
+ 137             137.5     BDT_score_bkg  2460.7526855
+ 138             138.5     BDT_score_bkg  2446.7536621
+ 139             139.5     BDT_score_bkg  2490.4243164
+ 140             140.5     BDT_score_bkg  2467.1857910
+ 141             141.5     BDT_score_bkg  2490.9838867
+ 142             142.5     BDT_score_bkg  2562.9934082
+ 143             143.5     BDT_score_bkg  2581.7553711
+ 144             144.5     BDT_score_bkg  2629.2600098
+ 145             145.5     BDT_score_bkg  2658.0332031
+ 146             146.5     BDT_score_bkg  2670.0288086
+ 147             147.5     BDT_score_bkg  2766.4973145
+ 148             148.5     BDT_score_bkg  2744.6469727
+ 149             149.5     BDT_score_bkg  2812.3698730
+ 150             150.5     BDT_score_bkg  2822.4719238
+ 151             151.5     BDT_score_bkg  2822.9240723
+ 152             152.5     BDT_score_bkg  2936.7333984
+ 153             153.5     BDT_score_bkg  2966.2346191
+ 154             154.5     BDT_score_bkg  3027.4106445
+ 155             155.5     BDT_score_bkg  3088.7687988
+ 156             156.5     BDT_score_bkg  3173.6750488
+ 157             157.5     BDT_score_bkg  3116.4936523
+ 158             158.5     BDT_score_bkg  3202.3149414
+ 159             159.5     BDT_score_bkg  3254.5231934
+ 160             160.5     BDT_score_bkg  3336.6811523
+ 161             161.5     BDT_score_bkg  3424.0305176
+ 162             162.5     BDT_score_bkg  3524.0483398
+ 163             163.5     BDT_score_bkg  3532.3776855
+ 164             164.5     BDT_score_bkg  3689.3139648
+ 165             165.5     BDT_score_bkg  3719.1000977
+ 166             166.5     BDT_score_bkg  3843.0119629
+ 167             167.5     BDT_score_bkg  3921.1081543
+ 168             168.5     BDT_score_bkg  4066.3354492
+ 169             169.5     BDT_score_bkg  4092.6806641
+ 170             170.5     BDT_score_bkg  4212.5405273
+ 171             171.5     BDT_score_bkg  4339.9003906
+ 172             172.5     BDT_score_bkg  4574.4702148
+ 173             173.5     BDT_score_bkg  4574.3378906
+ 174             174.5     BDT_score_bkg  4864.2802734
+ 175             175.5     BDT_score_bkg  4977.2866211
+ 176             176.5     BDT_score_bkg  5257.8818359
+ 177             177.5     BDT_score_bkg  5323.8769531
+ 178             178.5     BDT_score_bkg  5606.7290039
+ 179             179.5     BDT_score_bkg  5852.3735352
+ 180             180.5     BDT_score_bkg  6134.6391602
+ 181             181.5     BDT_score_bkg  6482.7124023
+ 182             182.5     BDT_score_bkg  6903.4887695
+ 183             183.5     BDT_score_bkg  7360.7416992
+ 184             184.5     BDT_score_bkg  7845.8286133
+ 185             185.5     BDT_score_bkg  8356.6611328
+ 186             186.5     BDT_score_bkg  9046.1718750
+ 187             187.5     BDT_score_bkg  9729.8789062
+ 188             188.5     BDT_score_bkg  10763.3613281
+ 189             189.5     BDT_score_bkg  11787.5097656
+ 190             190.5     BDT_score_bkg  13148.0156250
+ 191             191.5     BDT_score_bkg  14872.4072266
+ 192             192.5     BDT_score_bkg  17095.7265625
+ 193             193.5     BDT_score_bkg  19931.7597656
+ 194             194.5     BDT_score_bkg  23927.4824219
+ 195             195.5     BDT_score_bkg  29245.4199219
+ 196             196.5     BDT_score_bkg  39869.8984375
+ 197             197.5     BDT_score_bkg  61333.1445312
+ 198             198.5     BDT_score_bkg  108358.0781250
+ 199             199.5     BDT_score_bkg  884453.2500000
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_Z) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_tautau_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_tt_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_nuenueZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_gaga_LL_60_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 5500 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 1.55287780659e-10 Nfcn = 45
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0 p10 = 0
+----------> Iteration 1
+            FVAL = -5.20505947108e-10 Edm = 1.44587970282e-10 Nfcn = 71
+            Error matrix change = 0.611072
+            Parameters :  p0 = 1 p1 = 1 p2 = -6.21672e-08 p3 = -5.22041e-09 p4 = -1.64502e-07 p5 = -2.05269e-07 p6 = -4.42219e-08 p7 = 1.69598e-09 p8 = -3.44747e-08 p9 = -8.81323e-08 p10 = 8.47263e-08
+----------> Iteration 2
+            FVAL = -5.20505947108e-10 Edm = 1.44587970282e-10 Nfcn = 71
+            Error matrix change = 0.611072
+            Parameters :  p0 = 1 p1 = 1 p2 = -6.21672e-08 p3 = -5.22041e-09 p4 = -1.64502e-07 p5 = -2.05269e-07 p6 = -4.42219e-08 p7 = 1.69598e-09 p8 = -3.44747e-08 p9 = -8.81323e-08 p10 = 8.47263e-08
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = -5.20505947107676389e-10
+Edm   = 1.44587970281721347e-10
+Nfcn  = 71
+r_VBF	  = 1	 +/-  0.126088	(limited)
+r_ZH	  = 1	 +/-  0.0925808	(limited)
+unc_Z	  = -6.21672e-08	 +/-  0.110129
+unc__H	  = -5.22041e-09	 +/-  0.985482
+unc_p8_ee_WW_ecm365	  = -1.64502e-07	 +/-  0.317395
+unc_p8_ee_WW_tautau_ecm365	  = -2.05269e-07	 +/-  0.60156
+unc_p8_ee_ZZ_ecm365	  = -4.42219e-08	 +/-  0.961243
+unc_p8_ee_tt_ecm365	  = 1.69598e-09	 +/-  0.947684
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = -3.44747e-08	 +/-  0.933136
+unc_wzp6_ee_gaga_LL_60_ecm365	  = -8.81323e-08	 +/-  0.975396
+unc_wzp6_ee_nuenueZ_ecm365	  = 8.47263e-08	 +/-  0.95664
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.072682 seconds (0.050000 CPU time)
+FINAL NLL - NLL0 VALUE = -5.205059471e-10
+
+
+ --- MultiDimFit ---
+best fit parameter values: 
+    r_ZH :    +1.000
+   r_VBF :    +1.000
+Done in 0.00 min (cpu), 0.00 min (real)
+31 log messages saved to combine_logger.out

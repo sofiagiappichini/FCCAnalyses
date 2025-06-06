@@ -25,7 +25,7 @@ def create_condor_config_lxplus(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "longlunch"\n'
+    cfg += '+JobFlavour      = "testmatch"\n'
 
     cfg += '+AccountingGroup = "group_u_CMS.u_zh.users"\n'
 
@@ -103,14 +103,15 @@ def create_subjob_script(
     make_dir_if_not_exists(output_dir+"/out")
 
     for path in Paths:
+        for i in range(0,5):
 
-        #for process in processList:
-        scr  = '#!/bin/bash\n\n'
-        scr += "source /cvmfs/sw.hsf.org/spackages6/key4hep-stack/2022-12-23/x86_64-centos7-gcc11.2.0-opt/ll3gi/setup.sh\n\n"
-        scr += f"DelphesPythia8_EDM4HEP /afs/cern.ch/user/s/sgiappic/card_IDEA.tcl /afs/cern.ch/user/s/sgiappic/edm4hep_IDEA.tcl /afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/samples_generation/{path}.cmd /eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/{path}.root"
-        scr += '\n\n'     
-        with open(output_dir + path + '.sh', 'w') as sh:
-            sh.write(scr)
+            #for process in processList:
+            scr  = '#!/bin/bash\n\n'
+            scr += "source /cvmfs/sw.hsf.org/spackages6/key4hep-stack/2022-12-23/x86_64-centos7-gcc11.2.0-opt/ll3gi/setup.sh\n\n"
+            scr += f"DelphesPythia8_EDM4HEP /afs/cern.ch/user/s/sgiappic/card_IDEA.tcl /afs/cern.ch/user/s/sgiappic/edm4hep_IDEA.tcl /afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/samples_generation/{path}{i}.cmd /eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/{path}/chunk_{i}.root"
+            scr += '\n\n'     
+            with open(f"{output_dir}{path}{i}.sh", 'w') as sh:
+                sh.write(scr)
 
 def submit_jobs(output_dir: str):
     #for process in processList:
@@ -121,16 +122,22 @@ def submit_jobs(output_dir: str):
         #print(f"GOOD SUBMISSION: {process}")
 
 Paths = [
-    "p8_ee_eeH_Htautau_CPeven",
-    "p8_ee_eeH_Htautau_CPodd",
-    "p8_ee_mumuH_Htautau_CPeven",
-    "p8_ee_mumuH_Htautau_CPodd",
+    #"p8_ee_eeH_Htautau_CPeven",
+    #"p8_ee_eeH_Htautau_CPodd",
+    #"p8_ee_mumuH_Htautau_CPeven",
+    #"p8_ee_mumuH_Htautau_CPodd",
     "p8_ee_qqH_Htautau_CPeven",
-    "p8_ee_qqH_Htautau_CPodd",
+    #"p8_ee_qqH_Htautau_CPodd",
+    #"p8_ee_ssH_Htautau_CPeven",
+    #"p8_ee_ssH_Htautau_CPodd",
+    #"p8_ee_ccH_Htautau_CPeven",
+    #"p8_ee_ccH_Htautau_CPodd",
+    #"p8_ee_bbH_Htautau_CPeven",
+    #"p8_ee_bbH_Htautau_CPodd",
 ]
 
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
-output = '/afs/cern.ch/user/s/sgiappic/HTCondor/pythia/' ##output directory of submission files, needs to be different to have unique submission files
+output = '/afs/cern.ch/user/s/sgiappic/HTCondor/pythia_qq_chunk/' ##output directory of submission files, needs to be different to have unique submission files
 
 nCPUS = 4
 memory = 10000

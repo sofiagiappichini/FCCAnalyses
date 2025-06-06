@@ -1,0 +1,25 @@
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+ & ktN-explicit & ktN-tag \\
+\hline
+QQLL & -6.10, +6.31 &  -5.37, +5.55 &  \\ \hline 
+QQLH & -3.12, +3.11 &  -2.74, +2.74 &  \\ \hline 
+QQHH & -2.59, +2.58 &  -2.09, +2.08 &  \\ \hline 
+QQ &-1.74, +1.76 &  -1.34, +1.35 &  \\ \hline 
+LLLL & -9.65, +10.14 &  -9.60, +10.14 &  \\ \hline 
+LLLH & -4.83, +4.96 &  -5.30, +5.44 &  \\ \hline 
+LLHH & -4.40, +4.54 &  -4.54, +4.70 &  \\ \hline 
+LL &-2.99, +3.10 &  -3.15, +3.25 &  \\ \hline 
+NuNuLL & $\pm$249.50 | $\pm$107.48 &  $\pm$248.75 | $\pm$102.20 &  \\ \hline 
+NuNuLH & $\pm$53.68 | $\pm$24.11 &  $\pm$55.94 | $\pm$23.05 &  \\ \hline 
+NuNuHH & $\pm$38.35 | $\pm$14.70 &  $\pm$41.93 | $\pm$15.62 &  \\ \hline 
+NuNu &$\pm$29.38 | $\pm$12.34 &  $\pm$33.53 | $\pm$12.93 &  \\ \hline 
+combined & $\pm$1.45 | $\pm$12.09 &  $\pm$1.21 | $\pm$11.61 &  \\ \hline 
+
+\hline
+\end{tabular}
+\caption{Fit Results}
+\end{table}

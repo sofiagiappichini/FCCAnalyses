@@ -32,15 +32,14 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_new/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/QQ/HH/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Reco_explicit/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/HiggsCP/' 
 #list of cuts you want to plot
 CUTS = [
-    "selReco_ILC20chi",
-    "selReco_CMS",
-    #"selDPhi",
+    "selReco",
+    "SelReco_ILC",
  ] 
 #labels for the cuts in the plots
 LABELS = {
@@ -51,8 +50,8 @@ LABELS = {
     "selDPhi":"KinGen_hh_norm_DPhi<0.5",
  }
 
-label = "_QQPiNu_SM"
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau (#pi#nu), SM"
+label = "_QQHH"
+ana_tex        = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow qq, H #rightarrow #tau_{h}#tau_{h}, SM"
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
@@ -101,15 +100,15 @@ signals_old = [
     #'cehim_m10_taudecay_2Pi2Nu',
 
     #'wzp6_ee_eeH_Htautau_ecm240',
-    "e+e-_qqH_H2Pi2Nu",
+    #"e+e-_qqH_H2Pi2Nu",
 ]
 
 signals = [
     "sm",
-    "sm_lin_quad_cehim_m1",
-    "sm_lin_quad_cehim",
-    "sm_lin_quad_cehre_m1",
-    "sm_lin_quad_cehre_p1",
+    #"sm_lin_quad_cehim_m1",
+    #"sm_lin_quad_cehim",
+    #"sm_lin_quad_cehre_m1",
+    #"sm_lin_quad_cehre_p1",
 ]
 
 slegend = {
@@ -134,7 +133,7 @@ slegend = {
     'cehre_m1_taudecay_PiPi0Nu':"Z(ee)H(#tau#tau), CPC -1",
     'cehre_p1_taudecay_PiPi0Nu':"Z(ee)H(#tau#tau), CPC +1",
 
-    'sm':"Z(ee)H(#tau#tau), SM",
+    'sm':"ZH, SM",
     'sm_lin_quad_cehim_m1':"Z(ee)H(#tau#tau), CPV -1",
     'sm_lin_quad_cehim':"Z(ee)H(#tau#tau), CPV +1",
     'sm_lin_quad_cehre_m1':"Z(ee)H(#tau#tau), CPC -1",
@@ -181,11 +180,11 @@ scolors = {
     'cehre_m1_taudecay_PiPi0Nu':ROOT.kGreen-8,
     'cehre_p1_taudecay_PiPi0Nu':ROOT.kGreen-6,
 
-    'sm':ROOT.kRed-9,
-    'sm_lin_quad_cehim_m1':ROOT.kBlue-9,
-    'sm_lin_quad_cehim':ROOT.kBlue-7,
-    'sm_lin_quad_cehre_m1':ROOT.kGreen-8,
-    'sm_lin_quad_cehre_p1':ROOT.kGreen-6,
+    'sm':ROOT.kViolet-9,
+    'sm_lin_quad_cehim_m1':ROOT.kAzure-6,
+    'sm_lin_quad_cehim':ROOT.kTeal-7,
+    'sm_lin_quad_cehre_m1':ROOT.kTeal+3,
+    'sm_lin_quad_cehre_p1':ROOT.kSpring+2,
 
     'cehim_m5_taudecay_2Pi2Nu':ROOT.kBlue-9,
     'cehim_p5_taudecay_2Pi2Nu':ROOT.kBlue-7,
@@ -212,7 +211,7 @@ canvas = ROOT.TCanvas("", "", 1000, 1000)
 #canvas.SetTicks(1, 1)
 canvas.cd()
 
-nsig = 4
+nsig = 5
 
 #legend coordinates and style
 legsize = 0.04*nsig
@@ -230,55 +229,56 @@ colors = []
 legend = []
 
 #loop over files for signals and backgrounds and assign corresponding colors and titles
-for s in signals_old:
+for s in signals:
     fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
     with ROOT.TFile(fin) as tf:
         h = tf.Get("RecoH_mass")#s + "_" + variable
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kBlue-7)
-    leg.AddEntry(histos[-1], "Reconstructed", "l")
+    colors.append(ROOT.kCyan-8)
+    leg.AddEntry(histos[-1], "Visible", "l")
 
-for s in signals_old:
+for s in signals:
     fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
     with ROOT.TFile(fin) as tf:
-        h = tf.Get("Higgs_mass")#s + "_" + variable
+        h = tf.Get("KinILC_H_mass")#s + "_" + variable
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kRed-9)
-    leg.AddEntry(histos[-1], "Visible", "l")
+    colors.append(ROOT.kAzure-6)
+    leg.AddEntry(histos[-1], "Reconstructed", "l")
 
-for s in signals_old:
-    fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
+for s in signals:
+    fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
     with ROOT.TFile(fin) as tf:
         h = tf.Get("Collinear_mass")#s + "_" + variable
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kCyan-6)
+    colors.append(ROOT.kTeal-7)
     leg.AddEntry(histos[-1], "Collinear xy", "l")
-
-for s in signals_old:
-    fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
-    with ROOT.TFile(fin) as tf:
-        h = tf.Get("Recoil")#s + "_" + variable
-        hh = copy.deepcopy(h)
-        hh.SetDirectory(0)
-    histos.append(hh)
-    colors.append(ROOT.kGreen-6)
-    leg.AddEntry(histos[-1], "Recoil", "l")
-
-for s in signals_old:
-    fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
+for s in signals:
+    fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
     with ROOT.TFile(fin) as tf:
         h = tf.Get("Collinear_mass_3d")#s + "_" + variable
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kSpring-6)
+    colors.append(ROOT.kTeal+3)
     leg.AddEntry(histos[-1], "Collinear xyz", "l")
+
+for s in signals:
+    fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
+    with ROOT.TFile(fin) as tf:
+        h = tf.Get("Recoil_mass")#s + "_" + variable
+        hh = copy.deepcopy(h)
+        hh.SetDirectory(0)
+    histos.append(hh)
+    colors.append(ROOT.kViolet-9)
+    leg.AddEntry(histos[-1], "Recoil", "l")
+
+nsig = len(histos)
 
 # add the signal histograms
 max = 0
@@ -299,9 +299,8 @@ for i in range(nsig):
         h.GetYaxis().SetTitleOffset(1.4)
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))
-        max = h.GetMaximum()
-        h.GetYaxis().SetRangeUser(0, max*2)
-        #h.GetXaxis().SetLimits(20, 200)
+        h.GetYaxis().SetRangeUser(0, 0.25)
+        h.GetXaxis().SetLimits(60, 140)
     else: 
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))
@@ -329,22 +328,39 @@ text = '#bf{#it{' + extralab + '}}'
 latex.SetTextSize(0.02)
 latex.DrawLatex(0.18, 0.74, text)
 
-leg.Draw()
-
 latex.SetTextAlign(31)
 text = '#it{' + leftText + '}'
 latex.SetTextSize(0.03)
+latex.DrawLatex(0.92, 0.92, text)
+
+leg.Draw()
 
 dir = DIR_PLOTS + "/"
 make_dir_if_not_exists(dir)
 
 if (LOGY == True):
     canvas.SetLogy()
+    canvas.SetTicks(1, 1)
+    canvas.SetLeftMargin(0.14)
+    canvas.SetRightMargin(0.08)
+    canvas.GetFrame().SetBorderSize(12)
+
+    canvas.RedrawAxis()
+    canvas.Modified()
+    canvas.Update()
 
     canvas.SaveAs(dir + "Masses" + label + ".png")
     canvas.SaveAs(dir + "Masses" + label + ".pdf")
 
 else:
+    canvas.SetTicks(1, 1)
+    canvas.SetLeftMargin(0.14)
+    canvas.SetRightMargin(0.08)
+    canvas.GetFrame().SetBorderSize(12)
+
+    canvas.RedrawAxis()
+    canvas.Modified()
+    canvas.Update()
 
     canvas.SaveAs(dir + "Masses" + label + ".png")
     canvas.SaveAs(dir+ "Masses" + label + ".pdf")

@@ -1,10 +1,12 @@
-ktN-explicit/QQ/LL:  0.999014  -10.999/+19.001  (68% CL)
+ktN-explicit/QQ/LL:  0.999999  -0.931656/+0.91913  (68% CL)
+ 
+ktN-explicit/QQ/LL:  0.999999  -0.931656/+0.91913  (68% CL)
  
 ktN-explicit/QQ/LH:  1  -0.120603/+0.120435  (68% CL)
  
-ktN-explicit/QQ/HH:  1  -0.0634447/+0.0633474  (68% CL)
+ktN-explicit/QQ/HH:  1  -0.0629582/+0.0631657  (68% CL)
  
-ktN-explicit/QQ:  1  -0.0551807/+0.0550098  (68% CL)
+ktN-explicit/QQ:  1  -0.0439592/+0.0441428  (68% CL)
  
 ktN-explicit/LL/LL:  0.999999  -0.226355/+0.235101  (68% CL)
  
@@ -14,31 +16,31 @@ ktN-explicit/LL/HH:  1  -0.0658758/+0.0675896  (68% CL)
  
 ktN-explicit/LL:  1  -0.0449287/+0.0458768  (68% CL)
  
-ktN-explicit/NuNu/LL: r_ZH	  = 1.0302	 +/-  1.57115	(limited) | error 
-ktN-explicit/NuNu/LH: r_ZH	  = 1	 +/-  1.92454	(limited) | error 
-ktN-explicit/NuNu/HH: r_ZH	  = 1	 +/-  2.47711	(limited) | error 
-ktN-explicit/NuNu: r_ZH	  = 1	 +/-  1.82549	(limited) | error 
-ktN-explicit combined: r_ZH	  = 1	 +/-  0.0256842	(limited) | error 
+ktN-explicit/NuNu/LL: r_ZH	  = 1	 +/-  1.07383	(limited) | r_VBF	  = 1	 +/-  1.06753	(limited) 
+ktN-explicit/NuNu/LH: r_ZH	  = 1	 +/-  0.310796	(limited) | r_VBF	  = 1	 +/-  0.287989	(limited) 
+ktN-explicit/NuNu/HH: r_ZH	  = 1	 +/-  0.185095	(limited) | r_VBF	  = 1	 +/-  0.159674	(limited) 
+ktN-explicit/NuNu: r_ZH	  = 1	 +/-  0.155255	(limited) | r_VBF	  = 1	 +/-  0.134211	(limited) 
+ktN-explicit combined: r_ZH	  = 1	 +/-  0.0261959	(limited) | r_VBF	  = 1	 +/-  0.124231	(limited) 
 
-ktN-tag/QQ/LL:  0.999093  -10.9991/+19.0009  (68% CL)
+ktN-tag/QQ/LL:  1  -0.458794/+0.46466  (68% CL)
  
-ktN-tag/QQ/LH:  1  -4.11356/+3.99869  (68% CL)
+ktN-tag/QQ/LH:  1  -0.074712/+0.0747366  (68% CL)
  
-ktN-tag/QQ/HH:  1  -0.965917/+0.941629  (68% CL)
+ktN-tag/QQ/HH:  1  -0.0413967/+0.0414932  (68% CL)
  
-ktN-tag/QQ:  0.999999  -0.760736/+0.772917  (68% CL)
+ktN-tag/QQ:  1  -0.029958/+0.0300333  (68% CL)
  
-ktN-tag/LL/LL:  1  -1.8512/+2.16087  (68% CL)
+ktN-tag/LL/LL:  0.999999  -0.226355/+0.235101  (68% CL)
  
 ktN-tag/LL/LH:  1  -0.0702076/+0.072072  (68% CL)
  
 ktN-tag/LL/HH:  1  -0.0657198/+0.0673002  (68% CL)
  
-ktN-tag/LL:  1  -0.0489406/+0.0497873  (68% CL)
+ktN-tag/LL:  1  -0.0454951/+0.0464339  (68% CL)
  
-ktN-tag/NuNu/LL: r_ZH	  = 1.01908	 +/-  1.85712	(limited) | error 
-ktN-tag/NuNu/LH: r_ZH	  = 1	 +/-  2.45245	(limited) | error 
-ktN-tag/NuNu/HH: r_ZH	  = 1	 +/-  1.97298	(limited) | error 
-ktN-tag/NuNu: r_ZH	  = 1.00539	 +/-  1.99615	(limited) | error 
-ktN-tag combined: r_ZH	  = 1	 +/-  0.0436443	(limited) | error 
+ktN-tag/NuNu/LL: r_ZH	  = 1	 +/-  1.07383	(limited) | r_VBF	  = 1	 +/-  1.06753	(limited) 
+ktN-tag/NuNu/LH: r_ZH	  = 0.999999	 +/-  0.284759	(limited) | r_VBF	  = 1	 +/-  0.243975	(limited) 
+ktN-tag/NuNu/HH: r_ZH	  = 1	 +/-  0.168887	(limited) | r_VBF	  = 1	 +/-  0.143889	(limited) 
+ktN-tag/NuNu: r_ZH	  = 1	 +/-  0.146999	(limited) | r_VBF	  = 1	 +/-  0.123044	(limited) 
+ktN-tag combined: r_ZH	  = 1	 +/-  0.0199509	(limited) | r_VBF	  = 1	 +/-  0.117107	(limited) 
 

@@ -147,12 +147,6 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160",
-    "selReco_100Coll150_115Rec160_1DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25)",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>1 && Tau_cos<(0.25) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
      
 }
 

@@ -387,6 +387,8 @@ for q in sigs_ZH + sigs_VBF:
 
     for file in files:
         f = uproot.open(file)
+        if f.keys()==[]:
+            continue
         if f.keys()==['eventsProcessed;1']:
             files.remove(file)
             continue

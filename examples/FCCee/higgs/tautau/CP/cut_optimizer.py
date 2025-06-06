@@ -1,239 +1,312 @@
-## I want to look at the CP angle and find the best cuts on kinematics that make the amplitude bigger (to distinguish form background)
-## and eventually even to make the difference between cp odd and even more pronounced but this may not work since it's the same in gen level
-
 import uproot
+import os
+import shutil
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.optimize import curve_fit
+import uproot
 
-# -------------------------
-# Sine fit for modulation
-# -------------------------
-def sine_fit(phi, a, b, delta):
-    return a + b * np.sin(phi + delta)
+def file_exists(file_path):
+    return os.path.isfile(file_path)
 
-def get_modulation_amplitude(phi_values, bins=20):
-    counts, edges = np.histogram(phi_values, bins=bins, range=(-np.pi, np.pi))
-    centers = 0.5 * (edges[1:] + edges[:-1])
+color_6 = ['#8C0303', '#D04747', '#FFABAC', '#03028D', '#4E6BD3', '#9FB5D7']
+color = ['#8C0303', '#D04747', '#03028D', '#4E6BD3']
+fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(25, 25))
 
-    # Initial guess for fit parameters
-    a_init = np.mean(counts)  # Offset (mean of the histogram)
-    b_init = (np.max(counts) - np.min(counts)) / 2  # Amplitude (half the range of the histogram)
-    delta_init = 0  # Phase shift (initial guess, can be refined)
+replacement_sig = [
+    "mg_ee_eetata_ecm240",
+    "mg_ee_mumutata_ecm240",
+    "mg_ee_jjtata_ecm240",
+]
 
-    try:
-        popt, _ = curve_fit(sine_fit, centers, counts, p0=[a_init, b_init, delta_init])
-        a, b, delta = popt
-        amp = abs(b / a) if a != 0 else 0
-        return amp, delta, centers, counts, popt
-    except Exception as e:
-        print(f"Fit failed: {e}")
-        return 0, 0, centers, counts, None
+replacement_bkgs = [
+    'p8_ee_WW_ecm240',
+    'p8_ee_Zqq_ecm240',
+    'p8_ee_ZZ_ecm240',
+    
+    'wzp6_ee_tautau_ecm240',
+    'wzp6_ee_mumu_ecm240',
+    'wzp6_ee_ee_Mee_30_150_ecm240',
 
-# -------------------------
-# Load ROOT TTree into DataFrame
-# -------------------------
-def load_root_data(file_path, branch_list, label, tree_name="events"):
-    tree = uproot.open(file_path)[tree_name]
-    df = tree.arrays(expressions=branch_list, library="pd")
-    df["label"] = label
-    return df
+    'wzp6_ee_tautauH_Htautau_ecm240',
+    'wzp6_ee_tautauH_Hbb_ecm240',
+    'wzp6_ee_tautauH_Hcc_ecm240',
+    'wzp6_ee_tautauH_Hss_ecm240',
+    'wzp6_ee_tautauH_Hgg_ecm240',
+    'wzp6_ee_tautauH_HWW_ecm240',
+    'wzp6_ee_tautauH_HZZ_ecm240',
 
-def count_events(file_path, tree_name="events"):
-    with uproot.open(file_path) as f:
-        tree = f[tree_name]
-        return tree.num_entries
+    'wzp6_egamma_eZ_Zmumu_ecm240',
+    'wzp6_egamma_eZ_Zee_ecm240',
+    'wzp6_gammae_eZ_Zmumu_ecm240',
+    'wzp6_gammae_eZ_Zee_ecm240',
 
-# -------------------------
-# Apply a dictionary of cuts
-# -------------------------
-def apply_cuts(df, cut_dict):
-    for var, val in cut_dict.items():
-        df = df[df[var] > val]
-    return df
+    'wzp6_gaga_tautau_60_ecm240',
+    'wzp6_gaga_mumu_60_ecm240',
+    'wzp6_gaga_ee_60_ecm240',
 
-# -------------------------
-# Greedy optimization of cuts
-# -------------------------
-def greedy_optimize_cuts(df_even, df_odd, cut_ranges, factor_even=1.0, factor_odd=1.0, penalty_weight=2.0):
-    remaining_vars = list(cut_ranges.keys())
-    selected_cuts = {}
-    best_score = -np.inf
+    'wzp6_ee_nuenueZ_ecm240',
 
-    n_total_even = len(df_even)
-    n_total_odd = len(df_odd)
+    'wzp6_ee_nunuH_Hbb_ecm240',
+    'wzp6_ee_nunuH_Hcc_ecm240',
+    'wzp6_ee_nunuH_Hss_ecm240',
+    'wzp6_ee_nunuH_Hgg_ecm240',
+    'wzp6_ee_nunuH_HWW_ecm240',
+    'wzp6_ee_nunuH_HZZ_ecm240',
 
-    while remaining_vars:
-        best_var = None
-        best_val = None
-        best_local_score = -np.inf
+    'wzp6_ee_eeH_Hbb_ecm240',
+    'wzp6_ee_eeH_Hcc_ecm240',
+    'wzp6_ee_eeH_Hss_ecm240',
+    'wzp6_ee_eeH_Hgg_ecm240',
+    'wzp6_ee_eeH_HWW_ecm240',
+    'wzp6_ee_eeH_HZZ_ecm240',
 
-        for var in remaining_vars:
-            for cut_val in cut_ranges[var]:
-                trial_cuts = selected_cuts.copy()
-                trial_cuts[var] = cut_val
+    'wzp6_ee_mumuH_Hbb_ecm240',
+    'wzp6_ee_mumuH_Hcc_ecm240',
+    'wzp6_ee_mumuH_Hss_ecm240',
+    'wzp6_ee_mumuH_Hgg_ecm240',
+    'wzp6_ee_mumuH_HWW_ecm240',
+    'wzp6_ee_mumuH_HZZ_ecm240',
 
-                df_e_cut = apply_cuts(df_even, trial_cuts)
-                df_o_cut = apply_cuts(df_odd, trial_cuts)
+    'wzp6_ee_bbH_Hbb_ecm240',
+    'wzp6_ee_bbH_Hcc_ecm240',
+    'wzp6_ee_bbH_Hss_ecm240',
+    'wzp6_ee_bbH_Hgg_ecm240',
+    'wzp6_ee_bbH_HWW_ecm240',
+    'wzp6_ee_bbH_HZZ_ecm240',
 
-                n_e_cut = len(df_e_cut)
-                n_o_cut = len(df_o_cut)
+    'wzp6_ee_ccH_Hbb_ecm240',
+    'wzp6_ee_ccH_Hcc_ecm240',
+    'wzp6_ee_ccH_Hss_ecm240',
+    'wzp6_ee_ccH_Hgg_ecm240',
+    'wzp6_ee_ccH_HWW_ecm240',
+    'wzp6_ee_ccH_HZZ_ecm240',
 
-                if n_e_cut < 100 or n_o_cut < 100:
-                    continue
+    'wzp6_ee_ssH_Hbb_ecm240',
+    'wzp6_ee_ssH_Hcc_ecm240',
+    'wzp6_ee_ssH_Hss_ecm240',
+    'wzp6_ee_ssH_Hgg_ecm240',
+    'wzp6_ee_ssH_HWW_ecm240',
+    'wzp6_ee_ssH_HZZ_ecm240',
 
-                amp_e, delta_e, _, _, _ = get_modulation_amplitude(df_e_cut["PhiCP_CMS"])
-                amp_o, delta_o, _, _, _ = get_modulation_amplitude(df_o_cut["PhiCP_CMS"])
+    'wzp6_ee_qqH_Hbb_ecm240',
+    'wzp6_ee_qqH_Hcc_ecm240',
+    'wzp6_ee_qqH_Hss_ecm240',
+    'wzp6_ee_qqH_Hgg_ecm240',
+    'wzp6_ee_qqH_HWW_ecm240',
+    'wzp6_ee_qqH_HZZ_ecm240',
 
-                amp_diff = abs(amp_e - amp_o)
-                delta_diff = abs((delta_e - delta_o + np.pi) % (2 * np.pi) - np.pi)
+]
 
-                # Scaled yield retention (fraction of weighted events retained)
-                rel_yield_e = (n_e_cut * factor_even) / (n_total_even * factor_even)
-                rel_yield_o = (n_o_cut * factor_odd) / (n_total_odd * factor_odd)
-                min_retention = min(rel_yield_e, rel_yield_o)
+# Define the tree name
+tree_name = "events"
 
-                # Final score: balance between separation and retention
-                combined_score = amp_diff + delta_diff - penalty_weight * (1 - min_retention)
+# Select the leaf you want to analyze
+# automatic checks also prompt variable to get more accurate values
+#leaf_name = "TauTag_R5_isTAU"
 
-                if combined_score > best_local_score:
-                    best_local_score = combined_score
-                    best_var = var
-                    best_val = cut_val
+leaf_name = "RecoZ_pt"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
 
-        if best_local_score > best_score:
-            selected_cuts[best_var] = best_val
-            remaining_vars.remove(best_var)
-            best_score = best_local_score
-        else:
-            break
+TAG = []
 
-    return selected_cuts, best_score
+SUBDIR = [
+    'LL',
+    'LH',
+    'HH',
+]
+#category to plot
+CAT = [
+    "QQ",
+    "LL",
+]
 
+CUTS = {
+    'LL':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+    'QQ':"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+}
 
-# -------------------------
-# Plot φ* with fit
-# -------------------------
-def plot_phi_star(phi_values, label, popt=None):
-    plt.figure(figsize=(7, 5))
-    counts, bins, _ = plt.hist(phi_values, bins=20, range=(-np.pi, np.pi),
-                                density=True, alpha=0.6, label=f"{label}")
-    centers = 0.5 * (bins[1:] + bins[:-1])
+output_file = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/" +leaf_name+ "_optimization_lower.txt"
 
-    if popt is not None:
-        x_fit = np.linspace(-np.pi, np.pi, 100)
-        y_fit = sine_fit(x_fit, *popt)
-        plt.plot(x_fit, y_fit / np.trapz(y_fit, x_fit), 'k--', label="Sine Fit")
+for j, cat in enumerate(CAT):
+    for k, sub in enumerate(SUBDIR):
 
-    plt.xlabel("φ* [rad]")
-    plt.ylabel("Normalized Entries")
-    plt.title(f"φ* Distribution: {label}")
-    plt.legend()
-    plt.tight_layout()
-    plt.show()
+        dir = DIRECTORY + cat + "/" + sub + "/"
 
-def plot_phi_star_combined(phi_even_raw, phi_even_cut, phi_odd_raw, phi_odd_cut,
-                           popt_even=None, popt_odd=None, bins=20,
-                           norm_factor_even=1.0, norm_factor_odd=1.0):
-    plt.figure(figsize=(8, 6))
+        # book array for background entries
+        entries_bkg_tag = []
 
-    range_phi = (-np.pi, np.pi)
-    bins_edges = np.linspace(*range_phi, bins + 1)
-    bin_centers = 0.5 * (bins_edges[:-1] + bins_edges[1:])
+        entries_sig_tag = []
 
-    # Raw distributions (using 'step' to plot lines)
-    counts_even_raw, _ = np.histogram(phi_even_raw, bins=bins_edges)
-    counts_odd_raw, _ = np.histogram(phi_odd_raw, bins=bins_edges)
-    plt.step(bin_centers, counts_even_raw * norm_factor_even, 'b-', label="CP-even (raw)")
-    plt.step(bin_centers, counts_odd_raw * norm_factor_odd, 'r-', label="CP-odd (raw)")
+        entries_bkg_exc = 0
 
-    # Cut distributions (using 'step' to plot lines)
-    counts_even_cut, _ = np.histogram(phi_even_cut, bins=bins_edges)
-    counts_odd_cut, _ = np.histogram(phi_odd_cut, bins=bins_edges)
-    plt.step(bin_centers, counts_even_cut * norm_factor_even, 'b--', label="CP-even (cut)")
-    plt.step(bin_centers, counts_odd_cut * norm_factor_odd, 'r--', label="CP-odd (cut)")
+        entries_sig_exc = 0
 
-    # Sine fits after cuts
-    '''x_fit = np.linspace(-np.pi, np.pi, 200)
-    if popt_even is not None:
-        y_fit_even = sine_fit(x_fit, *popt_even)
-        # Normalize the fit to the total event count
-        y_fit_even *= np.sum(counts_even_raw) / np.trapz(y_fit_even, x_fit)
-        plt.plot(x_fit, y_fit_even, 'b-', lw=2, label="Fit (CP-even)")
+        bin_centers = []
 
-    if popt_odd is not None:
-        y_fit_odd = sine_fit(x_fit, *popt_odd)
-        # Normalize the fit to the total event count
-        y_fit_odd *= np.sum(counts_odd_raw) / np.trapz(y_fit_odd, x_fit)
-        plt.plot(x_fit, y_fit_odd, 'r-', lw=2, label="Fit (CP-odd)")'''
+        step = 0
 
-    plt.xlabel("φ* [rad]")
-    plt.ylabel("Scaled Entries")
-    plt.title("CP-sensitive angle φ*: before vs after cuts")
-    plt.legend()
-    plt.grid(True)
-    plt.tight_layout()
-    plt.show()
+        # Loop through each replacement word
+        for replacement_word in replacement_bkgs:
+        
+            # Define the ROOT file path
+            histo_file_path = dir + "{}_".format(replacement_word) + CUTS[cat] + "_histo.root"
 
-# -------------------------
-# Main
-# -------------------------
-if __name__ == "__main__":
-    dir = "/ceph/sgiappic/HiggsCP/CPReco/stage2_explicit_new/"
-    even_file = dir + "EWonly_taudecay_2Pi2Nu.root"
-    odd_file = dir + "cehim_m1_taudecay_2Pi2Nu.root"
+            if file_exists(histo_file_path):
 
-    lumi = 10.8e6
-    n_gen =100000
-    xsec_odd = 5.8024289951161206e-06
-    xsec_even = 5.778120325123597e-06
+                # Get the selected leaf from the tree
+                histo_file = uproot.open(histo_file_path)
 
-    factor_odd = lumi * xsec_odd / n_gen
-    factor_even = lumi * xsec_even / n_gen
+                selected_leaf = histo_file[leaf_name]
 
-    cut_def = {
-        "TauP_p": (0, 10, 100),
-        "TauM_p": (0, 10, 100),
-        "TauP_e": (0, 10, 100),
-        "TauM_e": (0, 10, 100),
-        "RecoPiP_p": (0, 10, 100),
-        "RecoPiM_p": (0, 10, 100),
-        "RecoPiP_e": (0, 10, 100),
-        "RecoPiM_e": (0, 10, 100),
-        "RecoPiP_D0sig": (0, 50, 500),
-        "RecoPiM_D0sig": (0, 50, 500),
-        "RecoPiP_Z0sig": (0, 50, 500),
-        "RecoPiM_Z0sig": (0, 50, 500),
-        "RecoEmiss_e": (0, 10, 100)
-    }
+                # Get scaled number of events from histograms, array
+                y_values = selected_leaf.values()
 
-    cut_ranges = {k: np.linspace(*v) for k, v in cut_def.items()}
-    branches = list(cut_ranges.keys()) + ["PhiCP_CMS"]
+                bin_edges = selected_leaf.axis().edges()
+                bin_centers = 0.5 * (bin_edges[:-1] + bin_edges[1:])
+                step = bin_edges[1] - bin_edges[0]
 
-    df_even = load_root_data(even_file, branches, label=0)
-    df_odd = load_root_data(odd_file, branches, label=1)
+                temp_bkg = []
 
-    print("Running greedy cut optimization...")
-    best_cuts, score = greedy_optimize_cuts(df_even, df_odd, cut_ranges, factor_even, factor_odd, penalty_weight=5)
+                # get associated value of variable from the bin and store the high edge (low edge of successive bin)
+                for i in range(0, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
+                #for i in range(len(bin_edges), len(bin_edges)-50, -1):
+                    temp_bkg.append(sum(y_values[i:]))
 
-    print("\nBest cut strategy found:")
-    for var, val in best_cuts.items():
-        print(f"{var} > {val:.3f}")
-    print(f"Combined modulation score: {score:.4f}")
+                #add the entries for each background into the same array
+                for i in range(len(temp_bkg)):
+                    if len(entries_bkg_tag) < len(temp_bkg):
+                        entries_bkg_tag.append(temp_bkg[i]) 
+                    else:
+                        entries_bkg_tag[i] += temp_bkg[i]
 
-    # Apply final cuts
-    df_even_cut = apply_cuts(df_even, best_cuts)
-    df_odd_cut = apply_cuts(df_odd, best_cuts)
+            '''histo_path_excl= dir_exc + "{}_".format(replacement_word) + CUTS[cat] + "_histo.root"
 
-    _, _, _, _, popt_even = get_modulation_amplitude(df_even_cut["PhiCP_CMS"])
-    _, _, _, _, popt_odd = get_modulation_amplitude(df_odd_cut["PhiCP_CMS"])
+            if file_exists(histo_path_excl):
 
-    print(f"Fit CP-even: {'Success' if popt_even is not None else 'Failed'}")
-    print(f"Fit CP-odd: {'Success' if popt_odd is not None else 'Failed'}")
+                # Get the selected leaf from the tree
+                histo_exc = uproot.open(histo_path_excl)
 
-    #plot_phi_star(df_even_cut["PhiCP_CMS"], label="CP-even", popt=popt_even)
-    #plot_phi_star(df_odd_cut["PhiCP_CMS"], label="CP-odd", popt=popt_odd)
+                selected_leaf_exc = histo_exc[leaf_name_all]
 
-    plot_phi_star_combined(phi_even_raw=df_even["PhiCP_CMS"], phi_even_cut=df_even_cut["PhiCP_CMS"], phi_odd_raw=df_odd["PhiCP_CMS"],
-                            phi_odd_cut=df_odd_cut["PhiCP_CMS"], popt_even=popt_even, popt_odd=popt_odd, norm_factor_even=factor_even ,norm_factor_odd=factor_odd)
+                # Get scaled number of events from histograms, array
+                y_values_exc = selected_leaf_exc.values()
+
+                entries_bkg_exc += sum(y_values_exc)'''
+
+        for replacement_word in replacement_sig:
+
+            # Define the ROOT file path
+            signal_file_path = dir + "{}_".format(replacement_word)+ CUTS[cat] + "_histo.root"
+
+            if file_exists(signal_file_path):
+
+                # Get the selected leaf from the tree
+                signal_file = uproot.open(signal_file_path)
+
+                signal_leaf = signal_file[leaf_name]
+
+                # Get scaled number of events from histograms, array
+                y_values_signal = signal_leaf.values()
+
+                # Get bin edges in arrays
+                bin_edges_signal = selected_leaf.axis().edges()
+
+                temp_sig = []
+
+                # get associated value of variable from the bin and store the high edge (low edge of successive bin)
+                for i in range(0, len(bin_edges)-1, 1): #exclude one of the edges as bins have both 0. and max but the content is n-1
+                #for i in range(len(bin_edges), len(bin_edges)-50, -1):
+                    temp_sig.append(sum(y_values_signal[i:]))
+
+                #add the entries for each signal into the same array
+                for i in range(len(temp_sig)):
+                    if len(entries_sig_tag) < len(temp_sig):
+                        entries_sig_tag.append(temp_sig[i]) 
+                    else:
+                        entries_sig_tag[i] += temp_sig[i]
+
+            '''signal_path_excl= dir_exc + "{}_".format(replacement_word) + cut + "_histo.root"
+
+            if file_exists(signal_path_excl):
+
+                # Get the selected leaf from the tree
+                histo_exc = uproot.open(signal_path_excl)
+
+                selected_leaf_exc = histo_exc[leaf_name_all]
+
+                # Get scaled number of events from histograms, array
+                y_values_exc = selected_leaf_exc.values()
+
+                entries_sig_exc += sum(y_values_exc)'''
+
+        # calculate significance for each bin 
+        s = []
+        p = []
+
+        for i in range(len(entries_bkg_tag)):
+            if (entries_bkg_tag[i]>0):
+                #if "HH" in sub:
+                    #need to account for the fact that I have two jets in the same histogram so the number of event is half of that, approximately
+                #    s.append(entries_sig_tag[i] / (2 * np.sqrt(entries_bkg_tag[i] / 2))) 
+                #    p.append(entries_sig_tag[i] / (2 * (entries_sig_tag[i]/2 + entries_bkg_tag[i]/2)))
+                #else:
+                    s.append(entries_sig_tag[i] / np.sqrt(entries_bkg_tag[i]))
+                    p.append(entries_sig_tag[i] / (entries_sig_tag[i] + entries_bkg_tag[i]))
+                
+                #with open(output_file, "a") as file:
+                #    file.write("significance = {} for cut at TAU={} \n".format(s[i], i*(0.01)+0.5))
+                #    file.write("purity = {} for cut at TAU={} \n".format(p[i], i*(0.01)+0.5))
+                
+            else:
+                s.append(0)
+                p.append(0)
+            
+        s_max = np.max(s)
+        index = s.index(s_max)*(step)
+
+        p_max = np.max(p)
+        indexp = p.index(p_max)*(step)
+
+        #significance = (entries_sig_exc / np.sqrt(entries_bkg_exc))
+        #purity = ((entries_sig_exc / (entries_bkg_exc + entries_sig_exc)))
+
+        with open(output_file, "a") as file:
+            #file.write("\nTAGGER PERFORMANCE:\n")
+            file.write("Max significance of {} = {} for cut at {}={} \n".format(cat+sub, s_max, leaf_name, index))
+            file.write("Max purity of {} = {} for cut at {}={} \n\n".format(cat+sub, p_max, leaf_name, indexp))
+            #file.write("\nEXPLICIT RECO PERFORMANCE:\n")
+            #file.write("Significance of {} = {}\n".format(cat+sub, significance))
+            #file.write("Purity of {} = {} \n\n".format(cat+sub, purity))
+
+            #file.write("{} = {}\n".format(cat+sub, s[0]))
+            #file.write("{} = {}\n\n".format(cat+sub, p[0]))
+
+        #print("File written at {}".format(output_file))
+
+        s_sum = sum(s)
+        p_sum = sum(p)
+        #normalise to 1 significance and purity for plotting
+        #for i in range(len(s)):
+        #    s[i] = s[i]/s_sum
+        #    p[i] = p[i]/p_sum
+
+        row = k % 3
+        col = j % 2
+
+        axs[row][col].plot(bin_centers, s, linestyle='-', color=color[j+k], label=f"significance")
+        axs[row][col].plot(bin_centers, p, linestyle='--', color=color[j+k], label=f"purity")
+
+        #axs[row][col].plot(x, [significance] * len(x), linestyle='-.', color=color[j+3*k], label="explicit significance")
+        #axs[row][col].plot(x, [purity] * len(x), linestyle=':', color=color[j+3*k], label="explicit purity")
+
+        axs[row][col].set_title(f"{cat}{sub}", fontsize=22)
+        axs[row][col].set_xlabel(f'{leaf_name}', fontsize=18)
+        axs[row][col].set_ylabel(r'values', fontsize=18)
+        axs[row][col].legend(loc='lower right', fontsize=18)
+
+        axs[row][col].grid(True, which='both', linestyle='--', linewidth=0.5)
+
+        #axs[row][col].set_yscale('log')
+
+plt.tight_layout()
+plt.savefig(f'/eos/user/s/sgiappic/www/Higgs_CP/cut_optimizer_{leaf_name}_upper.png', format='png', dpi=330)

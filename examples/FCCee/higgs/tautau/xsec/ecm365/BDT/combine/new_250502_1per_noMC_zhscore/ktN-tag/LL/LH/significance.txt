@@ -1,0 +1,20 @@
+ <<< Combine >>> 
+ <<< v10.0.1 >>>
+>>> Random number generator seed is 123456
+>>> Method used is FitDiagnostics
+WARNING: underflow to -0.0311831 in pdf_binBDT_score_obsOnly for bin 192, weight 20.1514
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(BDT_score) evaluation error, 
+ origin       : RooAbsReal::BDT_score[ params=(r,unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_nuenueZ_ecm365) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.0507806,unc_Z = -1.57594e-11 +/- 0.984711,unc__H = -7.4453e-14 +/- 0.999781,unc_p8_ee_WW_ecm365 = -4.20946e-12 +/- 0.993552,unc_p8_ee_WW_tautau_ecm365 = -2.13328e-12 +/- 0.99983,unc_p8_ee_ZZ_ecm365 = -1.62916e-11 +/- 0.974643,unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = -2.62601e-11 +/- 0.972536,unc_wzp6_ee_nuenueZ_ecm365 = -2.2345e-14 +/- 0.999986), catParams=()
+FASTEXIT from pdf_binBDT_score_obsOnly
+WARNING: underflow to -0.0311831 in pdf_binBDT_score_obsOnly for bin 192, weight 20.1514
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(BDT_score) evaluation error, 
+ origin       : RooAbsReal::BDT_score[ params=(r,unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_nuenueZ_ecm365) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.0507806,unc_Z = -1.57594e-11 +/- 1,unc__H = -7.4453e-14 +/- 1,unc_p8_ee_WW_ecm365 = -4.20946e-12 +/- 1,unc_p8_ee_WW_tautau_ecm365 = -2.13328e-12 +/- 1,unc_p8_ee_ZZ_ecm365 = -1.62916e-11 +/- 1,unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = -2.62601e-11 +/- 1,unc_wzp6_ee_nuenueZ_ecm365 = -2.2345e-14 +/- 1), catParams=()
+FASTEXIT from pdf_binBDT_score_obsOnly
+
+ --- FitDiagnostics ---
+Best fit r: 1  -0.0496076/+0.0516181  (68% CL)
+Done in 0.00 min (cpu), 0.01 min (real)

@@ -987,7 +987,10 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_All (const R
 
 }
 
-ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_All_pi0 (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets, int request){
+
+    // request parameter: 0 for full visible tau, 1 for charged pion from the rho resonance (3 prong) or charged pion (1 prong), 2 for opposite charged pion in rho resonance (3 prong) or neutral system (1 prong), 
+    // 3 for sum of charged pions, 4 or else for neutral system only (only different from 1 and 2 in case of 3 prong)
 
     // Identify taus by starting from a jet. An alternative is starting directly from reconstructed particles (to be tested more deeply in the future). 
     // This algorithm requires first building a jet (base example is clustering_ee_kt(2, 4, 1, 0) , we have tested with several configurations) from con 
@@ -1002,10 +1005,13 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (con
         TLorentzVector sum_tau; // initialized by (0., 0., 0., 0.)
         TLorentzVector neutral;
         TLorentzVector charged;
+        ROOT::VecOps::RVec<TLorentzVector> charged_vec;
+        ROOT::VecOps::RVec<int> charges_vec;
         edm4hep::ReconstructedParticleData Tau;
-        edm4hep::ReconstructedParticleData TauCharged;
-        edm4hep::ReconstructedParticleData TauNeutral;
+        edm4hep::ReconstructedParticleData TauVis;
         FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
+        ROOT::VecOps::RVec<int> track_vec;
+        int track=0;
         float tauID=-1;
         int count_piP=0, count_piM=0, count_nu=0, count_pho=0;
 
@@ -1038,24 +1044,25 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (con
             if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
                 lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
                 chargeLead=jc.charge;
+                track = jc.tracks_begin;
             }
         }
+
+        charges_vec.push_back(chargeLead);
+        charged_vec.push_back(lead);
+        track_vec.push_back(track);
 
         // Clean and start counting
         if (lead.Pt()<2) {
             tauID=-1;
             Tau.type = tauID;
-            TauCharged.type = tauID;
-            TauNeutral.type = tauID;
-            out.push_back(TauNeutral); //make sure to keep this iteration saved as non tau jets
+            out.push_back(Tau); //make sure to keep this iteration saved as non tau jets
             continue;
         } // Too low pt 
 
         if (tauID==-13 || tauID==-11) {
             Tau.type = tauID;
-            TauCharged.type = tauID;
-            TauNeutral.type = tauID;
-            out.push_back(TauNeutral); //make sure to keep this iteration saved as non tau jets
+            out.push_back(Tau); //make sure to keep this iteration saved as non tau jets
             continue;
         }//jets with electrons or muon, cannot be tau jets
 
@@ -1081,17 +1088,23 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (con
             double dTheta= fabs(sum_tau.Theta()-tlv.Theta());   
 
             // The Pt cut and Distance are parameters to tune in the future
-            if (tlv.Pt()<1 || dTheta>0.20) continue;
+            if (tlv.Pt()<1 || dTheta>0.40) continue;
 
             // Now count! 
             if (jc.charge>0) {
                 count_piP++; 
                 charged+=tlv;
+                charges_vec.push_back(1);
+                charged_vec.push_back(tlv);
+                track_vec.push_back(jc.tracks_begin);
                 }  
 
             else if (jc.charge<0) {
                 count_piM++;  
                 charged+=tlv;
+                charges_vec.push_back(-1);
+                charged_vec.push_back(tlv);
+                track_vec.push_back(jc.tracks_begin);
                 }
 
             else  {
@@ -1128,33 +1141,136 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (con
             if( (count_piP+count_piM)==3 && count_pho==5)  tauID=15;
             if( (count_piP+count_piM)==3 && count_pho>=6)  tauID=16;
 
-            Tau.momentum.x=sum_tau.Px();
-            Tau.momentum.y=sum_tau.Py();
-            Tau.momentum.z=sum_tau.Pz();
-            Tau.mass= sum_tau.M();
-            Tau.energy= sum_tau.E();
-            Tau.charge= (count_piP-count_piM);
-            Tau.type = tauID;
+            TauVis.momentum.x=sum_tau.Px();
+            TauVis.momentum.y=sum_tau.Py();
+            TauVis.momentum.z=sum_tau.Pz();
+            TauVis.mass= sum_tau.M();
+            TauVis.energy= sum_tau.E();
+            TauVis.charge= (count_piP-count_piM);
+            TauVis.type = tauID;
+            TauVis.tracks_begin = 0;
 
-            TauCharged.momentum.x=charged.Px();
-            TauCharged.momentum.y=charged.Py();
-            TauCharged.momentum.z=charged.Pz();
-            TauCharged.mass= charged.M();
-            TauCharged.energy= charged.E();
-            TauCharged.charge= (count_piP-count_piM);
-            TauCharged.type = tauID;
+            if (request==0) {
+                Tau.momentum.x=sum_tau.Px();
+                Tau.momentum.y=sum_tau.Py();
+                Tau.momentum.z=sum_tau.Pz();
+                Tau.mass= sum_tau.M();
+                Tau.energy= sum_tau.E();
+                Tau.charge= (count_piP-count_piM);
+                Tau.type = tauID;
+                Tau.tracks_begin = track;
+            }
+            else if (request==1 || request==2) {
+                if ((count_piP+count_piM)==3) {
+                    TLorentzVector second;
+                    int second_track;
+                    TLorentzVector third;
+                    double minMassDifference = -1e6;
+                    for (size_t i = 0; i < charges_vec.size(); ++i) {
+                        for (size_t j = i + 1; j < charges_vec.size(); ++j) {
+                            if (charges_vec[i] + charges_vec[j] == 0) {  // opposite charges
+                                double invMass = (charged_vec[i] + charged_vec[j]).M();
+                                double massDifference = std::abs(invMass - 0.775); //rho 0 in gev
+                                
+                                if (minMassDifference == -1e6) {
+                                    minMassDifference = massDifference;
+                                    // i want to save the pion with same charge as the tau as the charged one and the other as the neutral
+                                    if (charges_vec[i]==1){
+                                        second = charged_vec[i];
+                                        third = charged_vec[j];
+                                        second_track = track_vec[i];   
+                                    }
+                                    else {
+                                        second = charged_vec[j];
+                                        third = charged_vec[i];
+                                        second_track = track_vec[j];
+                                    }
+                                } 
+                                else if (massDifference < minMassDifference) {
+                                    // Update if we find a smaller mass difference
+                                    minMassDifference = massDifference;
+                                    if (charges_vec[i]==1){
+                                        second = charged_vec[i];
+                                        third = charged_vec[j];
+                                        second_track = track_vec[i];   
+                                    }
+                                    else {
+                                        second = charged_vec[j];
+                                        third = charged_vec[i];
+                                        second_track = track_vec[j];
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-            TauNeutral.momentum.x=neutral.Px();
-            TauNeutral.momentum.y=neutral.Py();
-            TauNeutral.momentum.z=neutral.Pz();
-            TauNeutral.mass= neutral.M();
-            TauNeutral.energy= neutral.E();
-            TauNeutral.charge= (count_piP-count_piM);
-            // charge of the mother tau
-            TauNeutral.type = tauID;
+                    if (request==1) {
+                        Tau.momentum.x=second.Px();
+                        Tau.momentum.y=second.Py();
+                        Tau.momentum.z=second.Pz();
+                        Tau.mass= second.M();
+                        Tau.energy= second.E();
+                        Tau.charge= (count_piP-count_piM);
+                        Tau.type = tauID;
+                        Tau.tracks_begin = second_track;
+                    }
+                    else {
+                        Tau.momentum.x=third.Px();
+                        Tau.momentum.y=third.Py();
+                        Tau.momentum.z=third.Pz();
+                        Tau.mass= third.M();
+                        Tau.energy= third.E();
+                        Tau.charge= (count_piP-count_piM);
+                        Tau.type = tauID;
+                        Tau.tracks_begin = second_track;
+                    }
+                }
+                else {
+                    if (request==1) {
+                        Tau.momentum.x=lead.Px();
+                        Tau.momentum.y=lead.Py();
+                        Tau.momentum.z=lead.Pz();
+                        Tau.mass= lead.M();
+                        Tau.energy= lead.E();
+                        Tau.charge= (count_piP-count_piM);
+                        Tau.type = tauID;
+                        Tau.tracks_begin = track;
+                    }
+                    else {
+                        Tau.momentum.x=(sum_tau-lead).Px();
+                        Tau.momentum.y=(sum_tau-lead).Py();
+                        Tau.momentum.z=(sum_tau-lead).Pz();
+                        Tau.mass= (sum_tau-lead).M();
+                        Tau.energy= (sum_tau-lead).E();
+                        Tau.charge= (count_piP-count_piM);
+                        Tau.type = tauID;
+                        Tau.tracks_begin = track;
+                    }
+                }
+            }
+            else if (request==3) {
+                Tau.momentum.x=charged.Px();
+                Tau.momentum.y=charged.Py();
+                Tau.momentum.z=charged.Pz();
+                Tau.mass= charged.M();
+                Tau.energy= charged.E();
+                Tau.charge= (count_piP-count_piM);
+                Tau.type = tauID;
+                Tau.tracks_begin = track;
+            }
+            else {
+                Tau.momentum.x=neutral.Px();
+                Tau.momentum.y=neutral.Py();
+                Tau.momentum.z=neutral.Pz();
+                Tau.mass= neutral.M();
+                Tau.energy= neutral.E();
+                Tau.charge= (count_piP-count_piM);
+                Tau.type = tauID;
+                Tau.tracks_begin = track;
+            }
 
-            if (tauID!=-1 && Tau.mass<3)  {
-                out.push_back(TauNeutral);
+            if (tauID!=-1 && TauVis.mass<3)  {
+                    out.push_back(Tau);
             }
             else {
                 Tau.momentum.x = 0;
@@ -1165,39 +1281,19 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (con
                 Tau.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
                 tauID = -2;
                 Tau.type = tauID;
-
-                TauCharged.momentum.x = 0;
-                TauCharged.momentum.y = 0;
-                TauCharged.momentum.z = 0;
-                TauCharged.mass = 0;
-                TauCharged.energy= 0;
-                TauCharged.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
-                TauCharged.type = tauID;
-
-                TauNeutral.momentum.x = 0;
-                TauNeutral.momentum.y = 0;
-                TauNeutral.momentum.z = 0;
-                TauNeutral.mass = 0;
-                TauNeutral.energy= 0;
-                TauNeutral.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
-                TauNeutral.type = tauID;
-
-                out.push_back(TauNeutral);
+                out.push_back(Tau);
             }
         }
-
         else {
             tauID=-3;
-            Tau.type = tauID;
-            TauCharged.type = tauID;
-            TauNeutral.type = tauID;
-            
-            out.push_back(TauNeutral);
+            Tau.type = tauID;            
+            out.push_back(Tau);
         }
     }
     return out;
 
 }
+
 
 //find the leading particle in a collection, returns the particle
 ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> Find_Leading(const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& in){
@@ -1772,6 +1868,210 @@ ROOT::VecOps::RVec<TLorentzVector> build_nu_kin_ILC(const TLorentzVector& Recoil
     return result;
 }
 
+ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_pi0 (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
+
+    // Identify taus by starting from a jet. An alternative is starting directly from reconstructed particles (to be tested more deeply in the future). 
+    // This algorithm requires first building a jet (base example is clustering_ee_kt(2, 4, 1, 0) , we have tested with several configurations) from con 
+    // Then loop over the constituents: identify a seed, and count pions (neutral and charged) and photons to a) build a tau candidate b) be able to identify it
+
+    ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> out;
+
+    // Loop over jets:
+
+    for (int i = 0; i < jets.size(); ++i) {
+
+        TLorentzVector sum_tau; // initialized by (0., 0., 0., 0.)
+        edm4hep::ReconstructedParticleData partMod;
+        ROOT::VecOps::RVec<TLorentzVector> photons_vec;
+        FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
+        float tauID=-1;
+        int count_piP=0, count_piM=0, count_nu=0, count_pho=0, count_pi0=0;
+
+        // Find Lead (This needs to change to first sort the jcs by p or pt, it is very messy right now)
+
+        TLorentzVector lead;
+        lead.SetPxPyPzE(0,0,0,0);
+        int chargeLead=0;
+
+        // Eventually the FCC sw should have better ID for the particles, based on the detector. 
+        // For the moment I compare the reconstructed  masses and charges to known values
+        // (since that is what the PID module as references does). This is something to be improved in the future! 
+        // Too truth-based.
+
+
+        // First loop just to find the lead (not very efficient). 
+        for (const auto& jc : jcs) {
+
+            // No electrons or muons
+            if (fabs(jc.mass -  0.105658) < 1.e-03) {
+                tauID=-13;
+                break; 
+                }
+            if (fabs(jc.mass-0.000510999)<  1.e-05 ) {
+                tauID=-11;
+                break; 
+            }
+
+            // Anything else lets: find the highest pt one, charged particle as lead only
+            if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
+                lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
+                chargeLead=jc.charge;
+            }
+        }
+
+        // Clean and start counting
+        if (lead.Pt()<2) {
+            tauID=-1;
+            partMod.type = tauID;
+            out.push_back(partMod); //make sure to keep this iteration saved as non tau jets
+            continue;
+        } // Too low pt 
+
+        if (tauID==-13 || tauID==-11) {
+            partMod.type = tauID;
+            out.push_back(partMod); //make sure to keep this iteration saved as non tau jets
+            continue;
+        }//jets with electrons or muon, cannot be tau jets
+
+        if (chargeLead==1) count_piP++;
+
+        else if (chargeLead==-1) count_piM++;
+
+        sum_tau+=lead;
+
+        // Now I loop to build the tau adding candidates to the lead
+        // Only if they satisfy some conditions: distance, charge, etc 
+        for (const auto& jc : jcs) {
+
+            TLorentzVector tlv;  
+            tlv.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
+
+            if (tlv==lead) continue;
+
+            // Distance (in terms of Theta)
+            double dTheta= fabs(sum_tau.Theta()-tlv.Theta());   
+
+            // The Pt cut and Distance are parameters to tune in the future
+            if (tlv.Pt()<1 || dTheta>0.20) continue;
+
+            // Now count! 
+            if (jc.charge>0) count_piP++;   
+
+            else if (jc.charge<0) count_piM++;  
+
+            else  {
+                count_pho++;
+                // save the photons in a vector of tlvs for pi0 reconstruction
+                if (tlv.M()<0.2) photons_vec.push_back(tlv);
+                }
+
+            sum_tau += tlv;  // This is the 4 momenta of only the particles we have selected
+
+        }
+
+        // pi0 reconstruction from pairs of photons, one photon can only be associated with one pi0
+        std::vector<bool> used(photons_vec.size(), false);
+        for (size_t i = 0; i < photons_vec.size(); ++i) {
+            if (used[i]) continue;
+            for (size_t j = i + 1; j < photons_vec.size(); ++j) {
+                if (used[j]) continue;
+                TLorentzVector pair = photons_vec[i] + photons_vec[j];
+                double mass = pair.M();
+                // 50 MeV mass tollerance
+                if (std::abs(mass - 0.135) < 0.05) {
+                    count_pi0++;
+                    used[i] = true;
+                    used[j] = true;
+                    break; 
+                }
+            }
+        }
+
+        // Now we have a tau candidate and its momentum (sum_tau).
+        // Lets build the ID : count the charged pions and the neutrals. 
+        // The charge of the tau must be +1 or -1. 
+        // Considering the decays of the tau: we want candidates with one or three charged candidates (one or three prongs) 
+        //std::cout<<" Count? "<<count_piP<<"   "<<count_piM<<"  "<<count_pho<<"   "<<count_pho<<std::endl;
+        // The ID number assigned is a bit dummy, helps to keep track of the kind of candidate we have (and see if we can be more restrictive)
+
+        if (tauID!=-13 && tauID!=-11 && abs(count_piP-count_piM)==1 && ( (count_piP+count_piM)==1 || (count_piP+count_piM)==3) ){    
+
+            if( (count_piP+count_piM)==1 && count_pho==0) tauID=0;
+            if( (count_piP+count_piM)==1 && count_pho==1) tauID=1;
+
+            if( (count_piP+count_piM)==1 && count_pho==2 && count_pi0==0) tauID=2;
+            if( (count_piP+count_piM)==1 && count_pho==2 && count_pi0==1) tauID=3;
+
+            if( (count_piP+count_piM)==1 && count_pho==3 && count_pi0==0) tauID=4;
+            if( (count_piP+count_piM)==1 && count_pho==3 && count_pi0==1) tauID=5;
+
+            if( (count_piP+count_piM)==1 && count_pho==4 && count_pi0==0) tauID=6;
+            if( (count_piP+count_piM)==1 && count_pho==4 && count_pi0==1) tauID=7;
+            if( (count_piP+count_piM)==1 && count_pho==4 && count_pi0==2) tauID=8;
+
+            if( (count_piP+count_piM)==1 && count_pho==5 && count_pi0==0) tauID=9;
+            if( (count_piP+count_piM)==1 && count_pho==5 && count_pi0==1) tauID=10;
+            if( (count_piP+count_piM)==1 && count_pho==5 && count_pi0==2) tauID=11;
+
+            if( (count_piP+count_piM)==1 && count_pho>5 && count_pi0==0) tauID=12;
+            if( (count_piP+count_piM)==1 && count_pho>5 && count_pi0==1) tauID=13;
+            if( (count_piP+count_piM)==1 && count_pho>5 && count_pi0==2) tauID=14;
+            if( (count_piP+count_piM)==1 && count_pho>5 && count_pi0>2) tauID=15;
+
+            if( (count_piP+count_piM)==3 && count_pho==0) tauID=20;
+            if( (count_piP+count_piM)==3 && count_pho==1) tauID=21;
+
+            if( (count_piP+count_piM)==3 && count_pho==2 && count_pi0==0) tauID=22;
+            if( (count_piP+count_piM)==3 && count_pho==2 && count_pi0==1) tauID=23;
+
+            if( (count_piP+count_piM)==3 && count_pho==3 && count_pi0==0) tauID=24;
+            if( (count_piP+count_piM)==3 && count_pho==3 && count_pi0==1) tauID=25;
+
+            if( (count_piP+count_piM)==3 && count_pho==4 && count_pi0==0) tauID=26;
+            if( (count_piP+count_piM)==3 && count_pho==4 && count_pi0==1) tauID=27;
+            if( (count_piP+count_piM)==3 && count_pho==4 && count_pi0==2) tauID=28;
+
+            if( (count_piP+count_piM)==3 && count_pho==5 && count_pi0==0) tauID=29;
+            if( (count_piP+count_piM)==3 && count_pho==5 && count_pi0==1) tauID=30;
+            if( (count_piP+count_piM)==3 && count_pho==5 && count_pi0==2) tauID=31;
+
+            if( (count_piP+count_piM)==3 && count_pho>5 && count_pi0==0) tauID=32;
+            if( (count_piP+count_piM)==3 && count_pho>5 && count_pi0==1) tauID=33;
+            if( (count_piP+count_piM)==3 && count_pho>5 && count_pi0==2) tauID=34;
+            if( (count_piP+count_piM)==3 && count_pho>5 && count_pi0>2) tauID=35;
+
+            partMod.momentum.x=sum_tau.Px();
+            partMod.momentum.y=sum_tau.Py();
+            partMod.momentum.z=sum_tau.Pz();
+            partMod.mass= sum_tau.M();
+            partMod.energy= sum_tau.E();
+            partMod.charge= (count_piP-count_piM);
+            partMod.type = tauID;
+
+            if (tauID!=-1 && partMod.mass<3)  out.push_back(partMod);
+            else {
+                partMod.momentum.x = 0;
+                partMod.momentum.y = 0;
+                partMod.momentum.z = 0;
+                partMod.mass = 0;
+                partMod.energy= 0;
+                partMod.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
+                tauID = -2;
+                partMod.type = tauID;
+                out.push_back(partMod);
+            }
+        }
+
+        else {
+            tauID=-3;
+            partMod.type = tauID;
+            out.push_back(partMod);
+        }
+    }
+    return out;
+
+}
+
 ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
 
     // Identify taus by starting from a jet. An alternative is starting directly from reconstructed particles (to be tested more deeply in the future). 
@@ -1927,7 +2227,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
 
 }
 
-ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_pi0(const ROOT::VecOps::RVec<FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents>& jets){
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_pi0_old(const ROOT::VecOps::RVec<FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents>& jets){
 	// Identify taus by starting from a jet. An alternative is starting directly from reconstructed particles (to be tested more deeply in the future). 
 	// This algorithm requires first building a jet (base example is clustering_ee_kt(2, 4, 1, 0) , we have tested with several configurations) from con 
 	// Then loop over the constituents: identify a seed, and count pions (neutral and charged) and photons to a) build a tau candidate b) be able to identify it
@@ -2268,6 +2568,189 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_OG (const R
         }
         return out;
 
+}
+
+ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentzVector EMiss, ROOT::VecOps::RVec<TLorentzVector> Tau_vis, ROOT::VecOps::RVec<float> charge){
+    
+    //following Belle reconstruction https://arxiv.org/pdf/1310.8503
+    // first of all, build the visible taus from pi and pi0 with either jet tagger or the explciit reconstruction
+    // both should be built from the same jets so keeping the order as it is reuslts in the two taus which will be identified later by the charge of the pi
+    // does handles the two fold ambiguity but the tau have mostly 5 gev more enrgy than they should
+    // could be "fixed" by considering the decay lenght if then the solution picked is best, similar as what we're doing with the ILC method but at that point that's a better method
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    TLorentzVector temp1;
+    TLorentzVector temp2;
+    ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H_temp;
+    ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H;
+
+
+    double E_tau = Recoil.E()/2; //energy of the single taus in the higgs rest frame
+
+    for (size_t i = 0; i < Tau_vis.size(); ++i) {
+
+        // boost the visible taus to the recoil frame / "true" higgs rest frame
+        TLorentzVector boostedTau = Tau_vis[i]; 
+        boostedTau.Boost(-Recoil.BoostVector()); 
+        Tau_vis_H_temp.push_back(boostedTau);
+    }
+
+    // order the taus by charge: first the positive then negative to keep consistent later on
+    // assumes they have opposite charges
+    if (charge[0]==1) {
+        Tau_vis_H.push_back(Tau_vis_H_temp[0]);
+        Tau_vis_H.push_back(Tau_vis_H_temp[1]);
+    }
+    else {
+        Tau_vis_H.push_back(Tau_vis_H_temp[1]);
+        Tau_vis_H.push_back(Tau_vis_H_temp[0]);
+    }
+
+    // determine the angle between the visible and neutrino in the higgs frame
+    double cos0 = (2 * E_tau * Tau_vis_H[0].E() - m_tau * m_tau - Tau_vis_H[0].M() * Tau_vis_H[0].M()) / (2 * Tau_vis_H[0].P() * sqrt(E_tau * E_tau - m_tau * m_tau));
+    double cos1 = (2 * E_tau * Tau_vis_H[1].E() - m_tau * m_tau - Tau_vis_H[1].M() * Tau_vis_H[1].M()) / (2 * Tau_vis_H[1].P() * sqrt(E_tau * E_tau - m_tau * m_tau));
+
+    // solve the system of equations 
+    double a = Tau_vis_H[0].Px();
+    double b = Tau_vis_H[0].Py();
+    double c = Tau_vis_H[0].Pz();
+    double d = Tau_vis_H[0].P() * cos0;
+
+    double e = Tau_vis_H[1].Px();
+    double f = Tau_vis_H[1].Py();
+    double g = Tau_vis_H[1].Pz();
+    double h = - Tau_vis_H[1].P() * cos1;
+
+    double p1 = e*b - a*f;
+    double p2 = e*c - a*g;
+    double q1 = e*d - a*h;
+
+    if (p1 == 0) {
+        //std::cerr << "Error: Invalid values encountered while solving the quadratic equation." << std::endl;
+        result.push_back(temp1);
+        result.push_back(temp2);
+        return result;
+    }
+
+    double r1 = (p1 * d - b * q1) / p1;
+    double r2 = (b * p2 - p1 * c) / p1;
+
+    double A = (r2*r2) / (a*a) + (p2*p2) / (p1*p1) +1;
+    double B = 2*((r1 * r2) / (a*a) - (q1 * p2) / (p1*p1));
+    double C = (r1*r1) / (a*a) + (q1*q1) / (p1*p1) -1;
+
+    double discriminant = B * B - 4 * A * C;
+    if (discriminant < 0) {
+        result.push_back(temp1);
+        result.push_back(temp2);
+        return result;
+    }
+    //else if (discriminant >= -10 && discriminant<0){
+    //    discriminant = 0;
+    //}
+
+    double z1 = (-B + sqrt(discriminant)) / (2*A);
+    double z2 = (-B - sqrt(discriminant)) / (2*A);
+
+    double y1 = (q1 - p2*z1) / p1;
+    double y2 = (q1 - p2*z2) / p1;
+
+    double x1 = (d - b*y1 - c*z1) / a;
+    double x2 = (d - b*y2 - c*z2) / a;
+
+    // now i need to build the TLV for the tau adding back the recoil mass and tau mass
+    double P_tau = sqrt(E_tau * E_tau - m_tau * m_tau);
+    TLorentzVector plus1;
+    plus1.SetPxPyPzE(P_tau * x1, P_tau * y1, P_tau * z1, E_tau);
+    TLorentzVector plus2;
+    plus2.SetPxPyPzE(P_tau * x2, P_tau * y2, P_tau * z2, E_tau);
+    TLorentzVector min1;
+    min1.SetPxPyPzE(-P_tau * x1, -P_tau * y1, -P_tau * z1, E_tau);
+    TLorentzVector min2;
+    min2.SetPxPyPzE(-P_tau * x2, -P_tau * y2, -P_tau * z2, E_tau);
+
+    if (discriminant > 0) {
+        // boost back the solutions to figure out the best one against the recoil frame
+        plus1.Boost( Recoil.BoostVector());
+        plus2.Boost( Recoil.BoostVector());
+        min1.Boost( Recoil.BoostVector());
+        min2.Boost( Recoil.BoostVector());
+
+        TLorentzVector sol1 = plus1 + min1; 
+        TLorentzVector sol2 = plus2 + min2; 
+
+        // Energy conservation check
+        double energy_diff1 = (Recoil - sol1).E();
+        double energy_diff2 = (Recoil - sol2).E();
+
+        // Compute momentum balance for both solutions
+        double momentum_diff1 = (Recoil - sol1).P(); 
+        double momentum_diff2 = (Recoil - sol2).P();
+
+        TLorentzVector nuplus1, nuplus2, numin1, numin2;
+
+        if (charge[0]==1){
+            nuplus1 = plus1 - Tau_vis[0];
+            nuplus2 = plus2 - Tau_vis[0];
+            numin1 = min1 - Tau_vis[1];
+            numin2 = min2 - Tau_vis[1];
+        }
+        else {
+            nuplus1 = plus1 - Tau_vis[1];
+            nuplus2 = plus2 - Tau_vis[1];
+            numin1 = min1 - Tau_vis[0];
+            numin2 = min2 - Tau_vis[0];
+        }
+
+        // Calculate deltaR between the neutrinos and tau
+        float D1 = deltaR(plus1.Phi(), nuplus1.Phi(), plus1.Eta(), nuplus1.Eta());
+        float D2 = deltaR(plus2.Phi(), nuplus2.Phi(), plus2.Eta(), nuplus2.Eta());
+
+        // Now apply the criteria to choose the best solution:
+        // 1. First, choose the solution with the smallest energy difference
+        // 2. If the energy differences are similar, choose the one with the smallest momentum discrepancy
+        // 3. If both are similar, use the deltaR minimization as a tie-breaker.
+
+        bool choose_solution1 = false;
+        bool choose_solution2 = false;
+
+        if (energy_diff1 < energy_diff2) {
+            //std::cout<<"energy first "<<energy_diff1<<std::endl;
+            choose_solution1 = true;
+        } else if (energy_diff1 > energy_diff2) {
+            //std::cout<<"energy second "<<energy_diff2<<std::endl;
+            choose_solution2 = true;
+        } else { 
+            if (momentum_diff1 < momentum_diff2) {
+                //std::cout<<"momentum first "<<momentum_diff1<<std::endl;
+                choose_solution1 = true;
+            } else if (momentum_diff1 > momentum_diff2) {
+                //std::cout<<"momentum second "<<momentum_diff2<<std::endl;
+                choose_solution2 = true;
+            } else { 
+                if (D1 < D2) {
+                    //std::cout<<"DR first "<<D1<<std::endl;
+                    choose_solution1 = true;
+                } else {
+                    //std::cout<<"DR second "<<D2<<std::endl;
+                    choose_solution2 = true;
+                }
+            }
+        }
+
+        if (choose_solution1) {
+            result.push_back(plus1);
+            result.push_back(min1);
+        } else if (choose_solution2) {
+            result.push_back(plus2);
+            result.push_back(min2);
+        }
+    }
+    else {
+        result.push_back(plus1);
+        result.push_back(min1);
+    }
+
+    return result;
 }
 
 

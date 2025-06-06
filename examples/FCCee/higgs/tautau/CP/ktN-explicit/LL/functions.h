@@ -1343,6 +1343,28 @@ ROOT::VecOps::RVec<int> flatten_index(const std::vector<std::vector<int>>& con_i
     return results;
 }
 
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> flatten_part(
+    const ROOT::VecOps::RVec<ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>>& con_idx) 
+{
+    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> results;
+    for (const auto& vec : con_idx) {
+        for (const auto& val : vec) {
+            results.push_back(val);
+        }
+    }
+    return results;
+}
+
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> merge_single(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> x, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> y) {
+  //to be keept as ROOT::VecOps::RVec
+  std::vector<edm4hep::ReconstructedParticleData> result;
+  result.reserve(x.size() + y.size());
+  result.insert( result.end(), x.begin(), x.end() );
+  result.insert( result.end(), y.begin(), y.end() );
+  return ROOT::VecOps::RVec(result);
+}
+
+
 // Function to get the impact parameter vector from the track, defined in the origin frame pointing to the point on the track that is closest to the IP
 ROOT::VecOps::RVec<TLorentzVector> ImpactVector(ROOT::VecOps::RVec<TLorentzVector> Track, ROOT::VecOps::RVec<float> D0, ROOT::VecOps::RVec<float> Z0) {
 

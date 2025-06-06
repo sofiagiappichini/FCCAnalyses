@@ -44,7 +44,7 @@ def get_combined_unc(name, procs, bkg_procs):
     line = f"unc_{name}      lnN     "
     for p in procs:
         if name in p and p in bkg_procs:
-            line += f"{'1.01':{' '}{'<'}{lspace}}"
+            line += f"{'1.20':{' '}{'<'}{lspace}}"
         else:
             line += f"{'-':{' '}{'<'}{lspace}}"
     line += "\n"
@@ -54,7 +54,7 @@ def get_combined_unc_v2(name, sub_proc, procs, bkg_procs):
     line = f"unc_{name}      lnN     "
     for p in procs:
         if p in sub_proc and p in bkg_procs:
-            line += f"{'1.01':{' '}{'<'}{lspace}}"
+            line += f"{'1.20':{' '}{'<'}{lspace}}"
         else:
             line += f"{'-':{' '}{'<'}{lspace}}"
     line += "\n"
@@ -64,7 +64,7 @@ def get_combined_unc_v2(name, sub_proc, procs, bkg_procs):
 #os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
 #os.system("cmsenv")
 
-outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/new_250502_1per_noMC/"
+outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/new_250502_20per/"
 
 DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/"
 TAG = [
@@ -284,7 +284,7 @@ if make_card:
                     dc += f"unc_{proc}      lnN     "
                     for p in procs:
                         if p == proc:
-                            dc += f"{'1.01':{' '}{'<'}{lspace}}"
+                            dc += f"{'1.20':{' '}{'<'}{lspace}}"
                         else:
                             dc += f"{'-':{' '}{'<'}{lspace}}"
                     dc += "\n"
@@ -310,7 +310,7 @@ if make_card:
                             #if p == proc and ('p8_ee_ZZ_ecm240' in proc or 'p8_ee_WW_ecm240' in proc):
                             #    dc += f"{'1.02':<{lspace}}"
                             if p == proc:
-                                dc += f"{'1.01':<{lspace}}"
+                                dc += f"{'1.20':<{lspace}}"
                             else:
                                 dc += f"{'-':<{lspace}}"
                         dc += "\n"
@@ -318,7 +318,7 @@ if make_card:
                 dc += "\n\n" 
 
 
-                #dc += "* autoMCStats 1 1"
+                dc += "* autoMCStats 1 1"
 
                 # write cards
                 if not os.path.exists(f"{outputDir}/{tag}/{cat}/{sub}"):

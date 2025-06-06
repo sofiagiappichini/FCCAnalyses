@@ -421,6 +421,8 @@ for q in bkgs:
     df_list = []
 
     for file in files:
+        if f.keys()==[]:
+            continue
         f = uproot.open(file)
         if f.keys() == ['eventsProcessed;1']:
             continue
