@@ -76,5 +76,6 @@
     - loosing a lot of events by too strict matching criteria
     - remove energy criterion and loosening constrains on eta and phi
     - event numbers now comparable to "standard"-smearing, but small difference in resulting smearing
+    - possible alternative: maybe checking jet_resolution and determine nhad smearing by trail and error
 - first run of hole analysis with smearing for CMS_Phase2
     - no errors
