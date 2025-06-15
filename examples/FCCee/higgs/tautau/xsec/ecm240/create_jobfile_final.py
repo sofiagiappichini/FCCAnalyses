@@ -67,8 +67,8 @@ def create_subjob_script(local_dir: str,
             for sub in SUBDIR:
 
                 scr  = '#!/bin/bash\n\n'
-                scr += 'source /ceph/sgiappic/FCCAnalyses/setup.sh\n\n'
-                scr += '/ceph/sgiappic/FCCAnalyses/bin/fccanalysis final ' + local_dir + tag + '/' + cat + '/analysis_final_' + cat + sub + '.py' 
+                scr += 'source /work/awiedl/FCCAnalyses/setup.sh\n\n'
+                scr += '/work/awiedl/FCCAnalyses/bin/fccanalysis final ' + local_dir + tag + '/' + cat + '/analysis_final_' + cat + sub + '.py' 
                 with open(output_dir+'submit_'+tag+'_'+cat+sub+'.sh', 'w') as sh:
                     sh.write(scr)
                 print(f"done {tag} {cat+sub}")
@@ -80,8 +80,8 @@ def submit_jobs(output_dir: str):
         os.system(f"chmod -R +x {dir}")
         os.system(f"condor_submit {dir}/job_submit.cfg")
              
-output = '/work/sgiappic/HTCondor/final_v2/' ##output directory of submission files
-localDir = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/'
+output = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/final_CMS2/submission/' ##output directory of submission files
+localDir = '/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/'
 
 SUBDIR = [
     'LL',
@@ -91,15 +91,15 @@ SUBDIR = [
 
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
     "NuNu",
 ]
 
 TAG = [
-    "R5-explicit",
-    "R5-tag",
-    "ktN-explicit",
-    "ktN-tag",
+    #"R5-explicit",
+    #"R5-tag",
+    "ktN-explicit-detector",
+    #"ktN-tag",
 ]
 
 nCPUS = 2
