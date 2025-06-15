@@ -114,7 +114,7 @@ class RDFanalysis():
         collections_res["PFParticles"] = "ReconstructedParticles_ee"
 
         df2 = (df2
-                .Define(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(14.6875, 11, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]])
+                .Define(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(26.3, 11, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]])
                 .Define("smeared_electron", "FCCAnalyses::ReconstructedParticle::get(Electron_0, {})".format(collections_res["PFParticles"]))
                 .Define("smeared_electron_idx", "FCCAnalyses::ZHfunctions::getIndex(smeared_electron, {})".format(collections_res["PFParticles"]))
                 #.Define("missmatch", "FCCAnalyses::ZHfunctions::missing_matches_pdg(reco_mc_index,{},Particle,11)".format(collections["PFParticles"]))

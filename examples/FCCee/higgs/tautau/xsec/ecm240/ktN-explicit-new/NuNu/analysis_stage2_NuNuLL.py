@@ -163,6 +163,10 @@ class RDFanalysis():
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 11, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 13, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 22, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
 
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")

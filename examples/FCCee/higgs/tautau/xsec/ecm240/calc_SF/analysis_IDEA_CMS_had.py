@@ -87,6 +87,10 @@ class RDFanalysis():
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
+                #.Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 11, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
+                #.Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 13, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
+                #.Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 22, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
 
                 .Define("genBottom",   "FCCAnalyses::MCParticle::sel_pdgID(5, true)(Particle)")
                 .Define("n_genBottoms",      "FCCAnalyses::MCParticle::get_n(genBottom)")
@@ -143,11 +147,6 @@ class RDFanalysis():
                 .Define("FSGenNeutralHadrons_phi", "FCCAnalyses::MCParticle::get_phi(FSGenNeutralHadrons)")
                 .Define("FSGenNeutralHadrons_charge", "FCCAnalyses::MCParticle::get_charge(FSGenNeutralHadrons)")
                 .Define("FSGenNeutralHadrons_mass",   "FCCAnalyses::MCParticle::get_mass(FSGenNeutralHadrons)")
-
-
-
-                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
-
 
 
                 .Alias("Muon0", "Muon#0.index")
@@ -215,8 +214,11 @@ class RDFanalysis():
         collections_res = deepcopy(collections)
 
         df2 = (df2
-                #.Redefine(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(15.68643, 0, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]]) # 15.68643
-                #.Redefine(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(15.68643, 130, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]]) # 190.50382
+                .Redefine(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(18.3, 0, 1, False),[collections_res["PFParticles"], "reco_mc_index", collections["GenParticles"]]) # 15.68643
+                .Redefine(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(18.3, 130, 1, False),[collections_res["PFParticles"], "reco_mc_index", collections["GenParticles"]]) # 190.50382
+                .Redefine(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(21.7, 11, 1, False),[collections_res["PFParticles"], "reco_mc_index", collections["GenParticles"]])
+                .Redefine(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(3.5631, 13, 1, False),[collections_res["PFParticles"], "reco_mc_index", collections["GenParticles"]])
+                .Redefine(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(1.2671, 22, 1, False),[collections_res["PFParticles"], "reco_mc_index", collections["GenParticles"]])
 
                 .Define("S_NoMuons", "ReconstructedParticle::remove({}, RecoMuons)".format(collections_res["PFParticles"]))
                 .Define("S_NoLeptons", "ReconstructedParticle::remove(S_NoMuons, RecoElectrons)")
@@ -331,9 +333,9 @@ class RDFanalysis():
                 .Define("Dijet_p4",             "jet_p4.at(0) + jet_p4.at(1)")
                 .Define("Dijet_mass",           "Dijet_p4.M()")
                 .Define("Dijet_p",              "Dijet_p4.P()")
-                .Define("smeared_jet_p4",       "FCCAnalyses::ZHfunctions::smear_jet(jet_p4, 21.3, 6.96, Dijet_mass, Dijet_p)")
+                .Define("smeared_jet_p4",       "FCCAnalyses::ZHfunctions::smear_jet(jet_p4, 7., 6.96, Dijet_mass, Dijet_p)")
                 .Define("smeared_Dijet_p4",     "smeared_jet_p4.at(0) + smeared_jet_p4.at(1)")
-                .Define("smeared_Dijet_mass",   "Dijet_p4.M()")
+                .Define("smeared_Dijet_mass",   "smeared_Dijet_p4.M()")
 
                 .Define("jet_reso", "FCCAnalyses::ZHfunctions::jet_reso(TagJet_kt2_px,TagJet_kt2_py,TagJet_kt2_pz,TagJet_kt2_mass,genBottom)")
         )
@@ -407,76 +409,76 @@ class RDFanalysis():
             "NeutralHadron_charge",
             "NeutralHadron_mass",
 
-            "n_ChargedHadron",
-            "ChargedHadron_p",
-            "ChargedHadron_e",
-            "ChargedHadron_pt",
-            "ChargedHadron_px",
-            "ChargedHadron_py",
-            "ChargedHadron_pz",
-            "ChargedHadron_y",
-            "ChargedHadron_eta",
-            "ChargedHadron_theta",
-            "ChargedHadron_phi",
-            "ChargedHadron_charge",
-            "ChargedHadron_mass",
+            #"n_ChargedHadron",
+            #"ChargedHadron_p",
+            #"ChargedHadron_e",
+            #"ChargedHadron_pt",
+            #"ChargedHadron_px",
+            #"ChargedHadron_py",
+            #"ChargedHadron_pz",
+            #"ChargedHadron_y",
+            #"ChargedHadron_eta",
+            #"ChargedHadron_theta",
+            #"ChargedHadron_phi",
+            #"ChargedHadron_charge",
+            #"ChargedHadron_mass",
 
-            "CHadron_dR",
-            "NHadron_dR",
+            #"CHadron_dR",
+            #"NHadron_dR",
 
-            "n_DeltaNeutralHadrons",
+            #"n_DeltaNeutralHadrons",
 
-            "n_NHadron_low_dR",  
-            "NHadron_low_dR_p",     
-            "NHadron_low_dR_e",
-            "NHadron_low_dR_pt",
-            "NHadron_low_dR_px",
-            "NHadron_low_dR_py",
-            "NHadron_low_dR_pz",
-            "NHadron_low_dR_y",
-            "NHadron_low_dR_eta",
-            "NHadron_low_dR_theta",
-            "NHadron_low_dR_phi",
-            "NHadron_low_dR_charge",
-            "NHadron_low_dR_mass",
-            "NHadron_low_dR_p_res_total",
-            "NHadron_low_dR_MCPDG",
+            #"n_NHadron_low_dR",  
+            #"NHadron_low_dR_p",     
+            #"NHadron_low_dR_e",
+            #"NHadron_low_dR_pt",
+            #"NHadron_low_dR_px",
+            #"NHadron_low_dR_py",
+            #"NHadron_low_dR_pz",
+            #"NHadron_low_dR_y",
+            #"NHadron_low_dR_eta",
+            #"NHadron_low_dR_theta",
+            #"NHadron_low_dR_phi",
+            #"NHadron_low_dR_charge",
+            #"NHadron_low_dR_mass",
+            #"NHadron_low_dR_p_res_total",
+            #"NHadron_low_dR_MCPDG",
 
 
-            "n_NHadron_high_dR",
-            "NHadron_high_dR_p",        
-            "NHadron_high_dR_e",
-            "NHadron_high_dR_pt",
-            "NHadron_high_dR_px",
-            "NHadron_high_dR_py",
-            "NHadron_high_dR_pz",
-            "NHadron_high_dR_y",
-            "NHadron_high_dR_eta",
-            "NHadron_high_dR_theta",
-            "NHadron_high_dR_phi",
-            "NHadron_high_dR_charge",
-            "NHadron_high_dR_mass",
-            "NHadron_high_dR_p_res_total", 
-            "NHadron_high_dR_MCPDG",
+            #"n_NHadron_high_dR",
+            #"NHadron_high_dR_p",        
+            #"NHadron_high_dR_e",
+            #"NHadron_high_dR_pt",
+            #"NHadron_high_dR_px",
+            #"NHadron_high_dR_py",
+            #"NHadron_high_dR_pz",
+            #"NHadron_high_dR_y",
+            #"NHadron_high_dR_eta",
+            #"NHadron_high_dR_theta",
+            #"NHadron_high_dR_phi",
+            #"NHadron_high_dR_charge",
+            #"NHadron_high_dR_mass",
+            #"NHadron_high_dR_p_res_total", 
+            #"NHadron_high_dR_MCPDG",
 
-            "n_TagJet_kt2",
-            "TagJet_kt2_px", 
-            "TagJet_kt2_py",    
-            "TagJet_kt2_pz",      
-            "TagJet_kt2_p",  
-            "TagJet_kt2_pt",    
-            "TagJet_kt2_phi", 
-            "TagJet_kt2_eta",     
-            "TagJet_kt2_theta",          
-            "TagJet_kt2_e",     
-            "TagJet_kt2_mass",        
-            "TagJet_kt2_charge",       
-            "TagJet_kt2_flavor", 
-            "n_TagJet_kt2_constituents",   
-            "n_TagJet_kt2_charged_constituents",   
-            "n_TagJet_kt2_neutral_constituents", 
-            "Dijet_mass",
-            "smeared_Dijet_mass",
+            #"n_TagJet_kt2",
+            #"TagJet_kt2_px", 
+            #"TagJet_kt2_py",    
+            #"TagJet_kt2_pz",      
+            #"TagJet_kt2_p",  
+            #"TagJet_kt2_pt",    
+            #"TagJet_kt2_phi", 
+            #"TagJet_kt2_eta",     
+            #"TagJet_kt2_theta",          
+            #"TagJet_kt2_e",     
+            #"TagJet_kt2_mass",        
+            #"TagJet_kt2_charge",       
+            #"TagJet_kt2_flavor", 
+            #"n_TagJet_kt2_constituents",   
+            #"n_TagJet_kt2_charged_constituents",   
+            #"n_TagJet_kt2_neutral_constituents", 
+            #"Dijet_mass",
+            #"smeared_Dijet_mass",
 
             "CHadron_p_res_total",
             "NHadron_p_res_total",

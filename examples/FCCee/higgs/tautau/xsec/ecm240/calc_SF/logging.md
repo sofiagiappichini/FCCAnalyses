@@ -59,3 +59,22 @@
     - smear charged hads for taus with chad value
     - check for double matching
     - explicit ktN, PNet doent work
+- smearing for electrons, muons, photons, chad in ktN-explicit
+    - double smearing jets QQHH and QQLH
+    - jet clustering before any smearing
+    - Problem: No access to Recoparticles after clustering, only jetconstituents
+
+# Week 09.06.2025-15.06.2025
+- smearing after clustering with new set of indices
+    - does not work because jet constituents loose their order after clustering
+- smearing for all particles for hadronic taus with a changed "findTauInJet"-function called "findTauInJet_smearing":
+    - same smearing
+    - matching by eta, phi, charge, energy
+    - downside: iterates twice over all mcparticles 
+    - tries to match pions to mc taus
+        - needs several exclusions 
+    - loosing a lot of events by too strict matching criteria
+    - remove energy criterion and loosening constrains on eta and phi
+    - event numbers now comparable to "standard"-smearing, but small difference in resulting smearing
+- first run of hole analysis with smearing for CMS_Phase2
+    - no errors

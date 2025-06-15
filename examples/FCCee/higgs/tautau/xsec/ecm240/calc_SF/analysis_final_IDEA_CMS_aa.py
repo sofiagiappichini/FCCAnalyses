@@ -20,7 +20,7 @@ saveTabular = True
 doTree = False
 
 processList = {
-    'IDEA_events_032982526': {},
+    'IDEA': {},
     'IDEA_CMS2': {},
     'IDEA_CMS1': {},
     'CMS_Phase2_events_032982526': {},
@@ -36,7 +36,7 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add provate samples as it is not an offical process
 procDictAdd = {
-    'IDEA_events_032982526':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0001049, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'IDEA':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0001049, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'IDEA_CMS2': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0001049, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'IDEA_CMS1': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0001049, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'CMS_Phase2_events_032982526':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.0001049, "kfactor": 1.0, "matchingEfficiency": 1.0},
@@ -148,5 +148,5 @@ histoList = {
     #"Photon_p_res_20_40":             {"name":"Photon_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
     #"Photon_p_res_40_60":             {"name":"Photon_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
     #"Photon_p_res_60_higher":         {"name":"Photon_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
-    "Photon_p_res_total":             {"name":"Photon_p_res_total",             "title":"Momentum resolution",    "bin":200, "xmin":-0.05, "xmax":0.05}, 
+    "Photon_p_res_total":             {"name":"Photon_p_res_total",             "title":"Momentum resolution",    "bin":100, "xmin":-0.05, "xmax":0.05}, 
 }

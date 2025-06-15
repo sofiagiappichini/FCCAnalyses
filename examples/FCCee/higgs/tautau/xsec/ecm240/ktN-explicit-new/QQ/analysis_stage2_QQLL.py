@@ -163,6 +163,10 @@ class RDFanalysis():
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 11, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 13, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 22, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
 
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")
@@ -666,6 +670,8 @@ class RDFanalysis():
 		        .Define("TagJet_kt2_sel_phi",     "TagJet_kt2_phi[TauFromJet_kt2_type_sel<0]")
                 .Define("TagJet_kt2_sel_mass",      "TagJet_kt2_mass[TauFromJet_kt2_type_sel<0]")
                 .Define("n_TagJet_kt2_sel", "TagJet_kt2_sel_e.size()")
+                .Define("jet_p4",               "FCCAnalyses::ZHfunctions::build_p4(TagJet_kt2_sel_px, TagJet_kt2_sel_py, TagJet_kt2_sel_pz, TagJet_kt2_sel_e)")
+                .Define("smeared_jet_p4",       "FCCAnalyses::ZHfunctions::smear_jet(jet_p4, 25.2, 6.96, 125.)")
 
         )
 
@@ -740,8 +746,8 @@ class RDFanalysis():
 
                 ##################
 
-                .Define("RecoZ1_p4",      "TLorentzVector(TagJet_kt2_sel_px.at(0), TagJet_kt2_sel_py.at(0), TagJet_kt2_sel_pz.at(0), TagJet_kt2_sel_e.at(0))")
-                .Define("RecoZ2_p4",      "TLorentzVector(TagJet_kt2_sel_px.at(1), TagJet_kt2_sel_py.at(1), TagJet_kt2_sel_pz.at(1), TagJet_kt2_sel_e.at(1))")
+                .Define("RecoZ1_p4",      "smeared_jet_p4.at(0)")
+                .Define("RecoZ2_p4",      "smeared_jet_p4.at(1)")
                 
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")

@@ -196,12 +196,12 @@ processList = {
     'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
 }
 
-#inputDir = '/ceph/sgiappic/HiggsCP/winter23/'
-inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/ecm240/stage1_241202/'
-output = '/work/sgiappic/HTCondor/stage2_tutorial/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/stage2_tutorial/' ##output directory of stage2 samples
-localDir_path = '/ceph/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-explicit/'
-sourceDir = '/ceph/sgiappic/FCCAnalyses/'
+inputDir_path = '/ceph/sgiappic/HiggsCP/winter23/'
+#inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/'
+output = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/submission/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/' ##output directory of stage2 samples
+localDir_path = '/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-explicit-detector/'
+sourceDir = '/work/awiedl/FCCAnalyses/'
 Filename_path = 'analysis_stage2_'
 SUBDIR = [
     'LL',
@@ -209,9 +209,9 @@ SUBDIR = [
     'HH',
 ]
 CAT = [
-    #"QQ",
+    "QQ",
     "LL",
-    #"NuNu",
+    "NuNu",
 ]
 nCPUS = 1
 Memory = 10000
@@ -221,10 +221,10 @@ for cat in CAT:
             localDir = localDir_path
         else:
             localDir = localDir_path + cat + "/"
-        if "stage1" in inputDir_path:
+        if "stage2" in inputDir_path:
             inputDir = inputDir_path 
         else:
-            inputDir = inputDir_path + cat + "/" + sub + "/"
+            inputDir = inputDir_path
         outputDir = outputDir_path + cat + "/" + sub + "/"
         Filename = Filename_path + cat + sub + ".py"
         create_subjob_script(localDir, sourceDir, inputDir, cat, sub, output, outputDir, Filename)

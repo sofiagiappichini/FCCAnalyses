@@ -250,7 +250,7 @@ VARIABLES = [
 
     #"n_TagJet_kt2",
     #"TagJet_kt2_eta",
-    "smeared_Dijet_mass",
+    #"smeared_Dijet_mass",
 
     #"CHadron_dR",
     #"NHadron_dR",
@@ -261,7 +261,7 @@ VARIABLES = [
     #"CHadron_p_res_total",
     #"NHadron_low_dR_p_res_total",
     #"NHadron_high_dR_p_res_total",
-    #"jet_reso",
+    "jet_reso",
 ]
 
 #directory where you want your plots to go
@@ -284,7 +284,7 @@ backgrounds_all = [
 ]
 
 legend = {
-    'IDEA_events_002119867':'IDEA',
+    'IDEA':'IDEA',
     'CMS_Phase2_events_002119867':'CMS Phase2',
     'CMS_Phase1_events_002119867':'CMS Phase1',
     'IDEA_CMS2':'IDEA to CMS2',
@@ -292,7 +292,7 @@ legend = {
 }
 
 legcolors = {
-    'IDEA_events_002119867':ROOT.kGreen,
+    'IDEA':ROOT.kGreen,
     'CMS_Phase2_events_002119867':ROOT.kCyan,
     'CMS_Phase1_events_002119867':ROOT.kBlue,
     'IDEA_CMS2':ROOT.kOrange,
@@ -301,7 +301,7 @@ legcolors = {
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    'IDEA_events_002119867',
+    'IDEA',
     'IDEA_CMS2',
     'IDEA_CMS1',
     'CMS_Phase2_events_002119867',
@@ -356,7 +356,7 @@ for cut in CUTS:
                 hh.SetDirectory(0)
                 histos.append(hh)
                 colors.append(legcolors[s])
-                if('smear' in variable):
+                if('jet' in variable):
                     bin1 = h.FindFirstBinAbove(h.GetMaximum()/2)
                     bin2 = h.FindLastBinAbove(h.GetMaximum()/2)
                     FWHM = h.GetBinCenter(bin2) - h.GetBinCenter(bin1)

@@ -134,7 +134,7 @@ histoList = {
     #"Muon_p_res_20_40":             {"name":"Muon_p_res_20_40",             "title":"Momentum resolution 20 < p_{gen} < 40 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
     #"Muon_p_res_40_60":             {"name":"Muon_p_res_40_60",             "title":"Momentum resolution 40 < p_{gen} < 60 GeV","bin":200, "xmin":-0.2, "xmax":0.2},
     #"Muon_p_res_60_higher":         {"name":"Muon_p_res_60_higher",         "title":"Momentum resolution 60 GeV < p_{gen} ",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
-    "Muon_p_res_total":             {"name":"Muon_p_res_total",             "title":"Momentum resolution",    "bin":200, "xmin":-0.2, "xmax":0.2}, 
+    "Muon_p_res_total":             {"name":"Muon_p_res_total",             "title":"Momentum resolution",    "bin":200, "xmin":-0.05, "xmax":0.05}, 
 
     "n_RecoPhotons":            {"name":"n_RecoPhotons",                  "title":"Number of reco photons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
     "RecoPhoton_e":             {"name":"RecoPhoton_e",                   "title":"Reco photon energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},

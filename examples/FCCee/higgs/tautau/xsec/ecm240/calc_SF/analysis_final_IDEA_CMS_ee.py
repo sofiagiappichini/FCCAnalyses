@@ -20,7 +20,7 @@ saveTabular = True
 doTree = False
 
 processList = {
-    'IDEA_events_041153094': {},
+    'IDEA': {},
     'IDEA_CMS2': {},
     'IDEA_CMS1': {},
     'CMS_Phase2_events_041153094': {},
@@ -36,7 +36,7 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add provate samples as it is not an offical process
 procDictAdd = {
-    "IDEA_events_041153094":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.28e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "IDEA":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.28e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "IDEA_CMS2":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.28e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "IDEA_CMS1":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.28e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "CMS_Phase2_events_041153094":{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 1.28e-5, "kfactor": 1.0, "matchingEfficiency": 1.0},

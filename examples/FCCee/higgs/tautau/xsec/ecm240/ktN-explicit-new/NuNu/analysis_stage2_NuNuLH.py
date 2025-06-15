@@ -163,6 +163,10 @@ class RDFanalysis():
                 .Alias("Particle1", "Particle#1.index")
                 .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
                 .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+                .Define("reco_mc_index","ReconstructedParticle2MC::getRP2MC_index(MCRecoAssociations0,MCRecoAssociations1,ReconstructedParticles)")
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 11, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 13, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
+                .Redefine("ReconstructedParticles",    ROOT.SmearObjects.SmearedReconstructedParticle(19.93407, 22, 1, False),["ReconstructedParticles", "reco_mc_index", "Particle"])
 
                 #all final state gen electrons and positrons
                 .Define("GenElectron_PID", "FCCAnalyses::MCParticle::sel_pdgID(11, true)(Particle)")
@@ -453,6 +457,10 @@ class RDFanalysis():
             "PathLength": "EFlowTrack_L",
             "Bz": "magFieldBz",
         }
+
+        collections_res = deepcopy(collections)
+
+        df2 = (df2.Redefine(collections_res["PFParticles"],ROOT.SmearObjects.SmearedReconstructedParticle(200., 0, 1, False),[collections["PFParticles"], "reco_mc_index", collections["GenParticles"]]))
         #INCLUSIVE R=0.5
         ## def __init__(self, coll, njets, tag="")
         jetClusteringHelper_R5  = InclusiveJetClusteringHelper(
@@ -462,7 +470,7 @@ class RDFanalysis():
 
         ## define jet flavour tagging parameters
         jetFlavourHelper_R5 = JetFlavourHelper(
-            collections,
+            collections_res,
             jetClusteringHelper_R5.jets,
             jetClusteringHelper_R5.constituents,
             "R5",
@@ -539,7 +547,7 @@ class RDFanalysis():
 
         ## define jet flavour tagging parameters
         jetFlavourHelper_kt1 = JetFlavourHelper(
-            collections,
+            collections_res,
             jetClusteringHelper_kt1.jets,
             jetClusteringHelper_kt1.constituents,
             "kt1",
