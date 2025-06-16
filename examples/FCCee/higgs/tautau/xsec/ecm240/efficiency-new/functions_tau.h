@@ -1194,17 +1194,30 @@ ROOT::VecOps::RVec<TLorentzVector> build_nu_kin_ILC(const TLorentzVector& Recoil
                                                  const ROOT::VecOps::RVec<TLorentzVector>& Charged_p4,
                                                  const ROOT::VecOps::RVec<TLorentzVector>& Neutral_p4,
                                                  const ROOT::VecOps::RVec<TLorentzVector>& Impact_p4,
-                                                 const TLorentzVector& IP) {
+                                                 const TLorentzVector& IP,
+                                                 ROOT::VecOps::RVec<float> charge) {
     ROOT::VecOps::RVec<TLorentzVector> result;
     TLorentzVector TauP_p_p4, TauM_p_p4, TauP_k_p4, TauM_k_p4, TauP_d_p4, TauM_d_p4;
     // order the particles by charge: first the positive then negative to keep consistent later on
     // assumes they have opposite charges
-    TauP_p_p4 = Charged_p4[0];
-    TauM_p_p4 = Charged_p4[1];
-    TauP_k_p4 = Neutral_p4[0];
-    TauM_k_p4 = Neutral_p4[1];
-    TauP_d_p4 = Impact_p4[0];
-    TauM_d_p4 = Impact_p4[1];
+
+    if (charge[0]==1) {
+        TauP_p_p4 = Charged_p4[0];
+        TauM_p_p4 = Charged_p4[1];
+        TauP_k_p4 = Neutral_p4[0];
+        TauM_k_p4 = Neutral_p4[1];
+        TauP_d_p4 = Impact_p4[0];
+        TauM_d_p4 = Impact_p4[1];
+    }
+    else {
+        TauP_p_p4 = Charged_p4[1];
+        TauM_p_p4 = Charged_p4[0];
+        TauP_k_p4 = Neutral_p4[1];
+        TauM_k_p4 = Neutral_p4[0];
+        TauP_d_p4 = Impact_p4[1];
+        TauM_d_p4 = Impact_p4[0];
+    }
+    
     
     ROOT::Minuit2::Minuit2Minimizer minimizer(ROOT::Minuit2::kMigrad);
     NuKinFunctor functor(Recoil, TauP_p_p4, TauM_p_p4, TauP_k_p4, TauM_k_p4, TauP_d_p4, TauM_d_p4, IP);
@@ -1262,6 +1275,189 @@ ROOT::VecOps::RVec<TLorentzVector> build_nu_kin_ILC(const TLorentzVector& Recoil
     TLorentzVector chi;
     chi.SetPxPyPzE(best_result, 0, 0, 0);
     result.push_back(chi);
+
+    return result;
+}
+
+ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentzVector EMiss, ROOT::VecOps::RVec<TLorentzVector> Tau_vis, ROOT::VecOps::RVec<float> charge){
+    
+    //following Belle reconstruction https://arxiv.org/pdf/1310.8503
+    // first of all, build the visible taus from pi and pi0 with either jet tagger or the explciit reconstruction
+    // both should be built from the same jets so keeping the order as it is reuslts in the two taus which will be identified later by the charge of the pi
+    // does handles the two fold ambiguity but the tau have mostly 5 gev more enrgy than they should
+    // could be "fixed" by considering the decay lenght if then the solution picked is best, similar as what we're doing with the ILC method but at that point that's a better method
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    TLorentzVector temp1;
+    TLorentzVector temp2;
+    ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H_temp;
+    ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H;
+
+
+    double E_tau = Recoil.E()/2; //energy of the single taus in the higgs rest frame
+
+    for (size_t i = 0; i < Tau_vis.size(); ++i) {
+
+        // boost the visible taus to the recoil frame / "true" higgs rest frame
+        TLorentzVector boostedTau = Tau_vis[i]; 
+        boostedTau.Boost(-Recoil.BoostVector()); 
+        Tau_vis_H_temp.push_back(boostedTau);
+    }
+
+    // order the taus by charge: first the positive then negative to keep consistent later on
+    // assumes they have opposite charges
+    if (charge[0]==1) {
+        Tau_vis_H.push_back(Tau_vis_H_temp[0]);
+        Tau_vis_H.push_back(Tau_vis_H_temp[1]);
+    }
+    else {
+        Tau_vis_H.push_back(Tau_vis_H_temp[1]);
+        Tau_vis_H.push_back(Tau_vis_H_temp[0]);
+    }
+
+    // determine the angle between the visible and neutrino in the higgs frame
+    double cos0 = (2 * E_tau * Tau_vis_H[0].E() - m_tau * m_tau - Tau_vis_H[0].M() * Tau_vis_H[0].M()) / (2 * Tau_vis_H[0].P() * sqrt(E_tau * E_tau - m_tau * m_tau));
+    double cos1 = (2 * E_tau * Tau_vis_H[1].E() - m_tau * m_tau - Tau_vis_H[1].M() * Tau_vis_H[1].M()) / (2 * Tau_vis_H[1].P() * sqrt(E_tau * E_tau - m_tau * m_tau));
+
+    // solve the system of equations 
+    double a = Tau_vis_H[0].Px();
+    double b = Tau_vis_H[0].Py();
+    double c = Tau_vis_H[0].Pz();
+    double d = Tau_vis_H[0].P() * cos0;
+
+    double e = Tau_vis_H[1].Px();
+    double f = Tau_vis_H[1].Py();
+    double g = Tau_vis_H[1].Pz();
+    double h = - Tau_vis_H[1].P() * cos1;
+
+    double p1 = e*b - a*f;
+    double p2 = e*c - a*g;
+    double q1 = e*d - a*h;
+
+    if (p1 == 0) {
+        //std::cerr << "Error: Invalid values encountered while solving the quadratic equation." << std::endl;
+        result.push_back(temp1);
+        result.push_back(temp2);
+        return result;
+    }
+
+    double r1 = (p1 * d - b * q1) / p1;
+    double r2 = (b * p2 - p1 * c) / p1;
+
+    double A = (r2*r2) / (a*a) + (p2*p2) / (p1*p1) +1;
+    double B = 2*((r1 * r2) / (a*a) - (q1 * p2) / (p1*p1));
+    double C = (r1*r1) / (a*a) + (q1*q1) / (p1*p1) -1;
+
+    double discriminant = B * B - 4 * A * C;
+    if (discriminant < 0) {
+        result.push_back(temp1);
+        result.push_back(temp2);
+        return result;
+    }
+    //else if (discriminant >= -10 && discriminant<0){
+    //    discriminant = 0;
+    //}
+
+    double z1 = (-B + sqrt(discriminant)) / (2*A);
+    double z2 = (-B - sqrt(discriminant)) / (2*A);
+
+    double y1 = (q1 - p2*z1) / p1;
+    double y2 = (q1 - p2*z2) / p1;
+
+    double x1 = (d - b*y1 - c*z1) / a;
+    double x2 = (d - b*y2 - c*z2) / a;
+
+    // now i need to build the TLV for the tau adding back the recoil mass and tau mass
+    double P_tau = sqrt(E_tau * E_tau - m_tau * m_tau);
+    TLorentzVector plus1;
+    plus1.SetPxPyPzE(P_tau * x1, P_tau * y1, P_tau * z1, E_tau);
+    TLorentzVector plus2;
+    plus2.SetPxPyPzE(P_tau * x2, P_tau * y2, P_tau * z2, E_tau);
+    TLorentzVector min1;
+    min1.SetPxPyPzE(-P_tau * x1, -P_tau * y1, -P_tau * z1, E_tau);
+    TLorentzVector min2;
+    min2.SetPxPyPzE(-P_tau * x2, -P_tau * y2, -P_tau * z2, E_tau);
+
+    if (discriminant > 0) {
+        // boost back the solutions to figure out the best one against the recoil frame
+        plus1.Boost( Recoil.BoostVector());
+        plus2.Boost( Recoil.BoostVector());
+        min1.Boost( Recoil.BoostVector());
+        min2.Boost( Recoil.BoostVector());
+
+        TLorentzVector sol1 = plus1 + min1; 
+        TLorentzVector sol2 = plus2 + min2; 
+
+        // Energy conservation check
+        double energy_diff1 = (Recoil - sol1).E();
+        double energy_diff2 = (Recoil - sol2).E();
+
+        // Compute momentum balance for both solutions
+        double momentum_diff1 = (Recoil - sol1).P(); 
+        double momentum_diff2 = (Recoil - sol2).P();
+
+        TLorentzVector nuplus1, nuplus2, numin1, numin2;
+
+        if (charge[0]==1){
+            nuplus1 = plus1 - Tau_vis[0];
+            nuplus2 = plus2 - Tau_vis[0];
+            numin1 = min1 - Tau_vis[1];
+            numin2 = min2 - Tau_vis[1];
+        }
+        else {
+            nuplus1 = plus1 - Tau_vis[1];
+            nuplus2 = plus2 - Tau_vis[1];
+            numin1 = min1 - Tau_vis[0];
+            numin2 = min2 - Tau_vis[0];
+        }
+
+        // Calculate deltaR between the neutrinos and tau
+        float D1 = deltaR(plus1.Phi(), nuplus1.Phi(), plus1.Eta(), nuplus1.Eta());
+        float D2 = deltaR(plus2.Phi(), nuplus2.Phi(), plus2.Eta(), nuplus2.Eta());
+
+        // Now apply the criteria to choose the best solution:
+        // 1. First, choose the solution with the smallest energy difference
+        // 2. If the energy differences are similar, choose the one with the smallest momentum discrepancy
+        // 3. If both are similar, use the deltaR minimization as a tie-breaker.
+
+        bool choose_solution1 = false;
+        bool choose_solution2 = false;
+
+        if (energy_diff1 < energy_diff2) {
+            //std::cout<<"energy first "<<energy_diff1<<std::endl;
+            choose_solution1 = true;
+        } else if (energy_diff1 > energy_diff2) {
+            //std::cout<<"energy second "<<energy_diff2<<std::endl;
+            choose_solution2 = true;
+        } else { 
+            if (momentum_diff1 < momentum_diff2) {
+                //std::cout<<"momentum first "<<momentum_diff1<<std::endl;
+                choose_solution1 = true;
+            } else if (momentum_diff1 > momentum_diff2) {
+                //std::cout<<"momentum second "<<momentum_diff2<<std::endl;
+                choose_solution2 = true;
+            } else { 
+                if (D1 < D2) {
+                    //std::cout<<"DR first "<<D1<<std::endl;
+                    choose_solution1 = true;
+                } else {
+                    //std::cout<<"DR second "<<D2<<std::endl;
+                    choose_solution2 = true;
+                }
+            }
+        }
+
+        if (choose_solution1) {
+            result.push_back(plus1);
+            result.push_back(min1);
+        } else if (choose_solution2) {
+            result.push_back(plus2);
+            result.push_back(min2);
+        }
+    }
+    else {
+        result.push_back(plus1);
+        result.push_back(min1);
+    }
 
     return result;
 }
