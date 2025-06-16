@@ -32,22 +32,24 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
-
+#DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_final_250604/"
 CAT = [
-    "QQ",
+    #"QQ",
     #"LL",
+    ""
 ]
 
 SUB = [
     #"LL",
     #"LH",
-    "HH",
+    #"HH",
+    ""
 ]
 
 #list of cuts you want to plot
 CUT = [
-    "SelReco_ILC",
+    "selReco",
     #"selReco_100Coll150",
     #"selReco_100Coll150_115Rec160",
     #"selReco_100Coll150_115Rec160_2DR",
@@ -73,29 +75,7 @@ VARIABLES_GEN = [
             "FSGenElectron_phi",
             "FSGenElectron_charge",
             "FSGenElectron_mass",
-            "FSGenElectron_parentPDG",
-            "FSGenElectron_vertex_x",
-            "FSGenElectron_vertex_y",
-            "FSGenElectron_vertex_z",
-
-            "n_FSGenMuon",
-            "FSGenMuon_e",
-            "FSGenMuon_p",
-            "FSGenMuon_pt",
-            "FSGenMuon_px",
-            "FSGenMuon_py",
-            "FSGenMuon_pz",
-            "FSGenMuon_y",
-            "FSGenMuon_eta",
-            "FSGenMuon_theta",
-            "FSGenMuon_phi",
-            "FSGenMuon_charge",
-            "FSGenMuon_mass",
-            "FSGenMuon_parentPDG",
-            "FSGenMuon_vertex_x",
-            "FSGenMuon_vertex_y",
-            "FSGenMuon_vertex_z",
-
+            
             #"n_ZFSGenMuon",
             #"ZFSGenMuon_e",
             #"ZFSGenMuon_p",
@@ -147,220 +127,8 @@ VARIABLES_GEN = [
             "HiggsGenTau_phi",
             "HiggsGenTau_charge",
             "HiggsGenTau_mass",
-            "HiggsGenTau_parentPDG",
-            "HiggsGenTau_vertex_x",
-            "HiggsGenTau_vertex_y",
-            "HiggsGenTau_vertex_z",
 
-            "n_GenTau",
-            "GenTau_e",
-            "GenTau_p",
-            "GenTau_pt",
-            "GenTau_px",
-            "GenTau_py",
-            "GenTau_pz",
-            "GenTau_y",
-            "GenTau_eta",
-            "GenTau_theta",
-            "GenTau_phi",
-            "GenTau_charge",
-            "GenTau_mass",
-            "GenTau_parentPDG",
-            "GenTau_vertex_x",
-            "GenTau_vertex_y",
-            "GenTau_vertex_z",
-
-            "GenNuP_e",
-            "GenNuP_p",
-            "GenNuP_pt",
-            "GenNuP_px",
-            "GenNuP_py",
-            "GenNuP_pz",
-            "GenNuP_y",
-            "GenNuP_eta",
-            "GenNuP_theta",
-            "GenNuP_phi",
-            "GenNuP_charge",
-            "GenNuP_mass",
-            "GenNuP_p4",
-
-            "GenNuM_e",
-            "GenNuM_p",
-            "GenNuM_pt",
-            "GenNuM_px",
-            "GenNuM_py",
-            "GenNuM_pz",
-            "GenNuM_y",
-            "GenNuM_eta",
-            "GenNuM_theta",
-            "GenNuM_phi",
-            "GenNuM_charge",
-            "GenNuM_mass",
-            "GenNuM_p4",
-
-            "GenPiP_e",
-            "GenPiP_p",
-            "GenPiP_pt",
-            "GenPiP_px",
-            "GenPiP_py",
-            "GenPiP_pz",
-            "GenPiP_y",
-            "GenPiP_eta",
-            "GenPiP_theta",
-            "GenPiP_phi",
-            "GenPiP_charge",
-            "GenPiP_mass",
-            "GenPiP_p4",
-            "GenNuP_Impact_p4",
-
-            "GenPiM_e",
-            "GenPiM_p",
-            "GenPiM_pt",
-            "GenPiM_px",
-            "GenPiM_py",
-            "GenPiM_pz",
-            "GenPiM_y",
-            "GenPiM_eta",
-            "GenPiM_theta",
-            "GenPiM_phi",
-            "GenPiM_charge",
-            "GenPiM_mass",
-            "GenPiM_p4",
-            "GenNuM_Impact_p4",
-
-            "GenPi0P1_e",
-            "GenPi0P1_p",
-            "GenPi0P1_pt",
-            "GenPi0P1_px",
-            "GenPi0P1_py",
-            "GenPi0P1_pz",
-            "GenPi0P1_y",
-            "GenPi0P1_eta",
-            "GenPi0P1_theta",
-            "GenPi0P1_phi",
-            "GenPi0P1_mass",
-            "GenPi0P1_p4",
-
-            "GenPi0P2_e",
-            "GenPi0P2_p",
-            "GenPi0P2_pt",
-            "GenPi0P2_px",
-            "GenPi0P2_py",
-            "GenPi0P2_pz",
-            "GenPi0P2_y",
-            "GenPi0P2_eta",
-            "GenPi0P2_theta",
-            "GenPi0P2_phi",
-            "GenPi0P2_mass",
-            "GenPi0P2_p4",
-
-            "GenRhoP_e",
-            "GenRhoP_p",
-            "GenRhoP_pt",
-            "GenRhoP_px",
-            "GenRhoP_py",
-            "GenRhoP_pz",
-            "GenRhoP_y",
-            "GenRhoP_eta",
-            "GenRhoP_theta",
-            "GenRhoP_phi",
-            "GenRhoP_mass",
-            "GenRhoP_p4",
-
-            "GenPi0M1_e",
-            "GenPi0M1_p",
-            "GenPi0M1_pt",
-            "GenPi0M1_px",
-            "GenPi0M1_py",
-            "GenPi0M1_pz",
-            "GenPi0M1_y",
-            "GenPi0M1_eta",
-            "GenPi0M1_theta",
-            "GenPi0M1_phi",
-            "GenPi0M1_mass",
-            "GenPi0M1_p4",
-
-            "GenPi0M2_e",
-            "GenPi0M2_p",
-            "GenPi0M2_pt",
-            "GenPi0M2_px",
-            "GenPi0M2_py",
-            "GenPi0M2_pz",
-            "GenPi0M2_y",
-            "GenPi0M2_eta",
-            "GenPi0M2_theta",
-            "GenPi0M2_phi",
-            "GenPi0M2_mass",
-            "GenPi0M2_p4",
-
-            "GenRhoM_e",
-            "GenRhoM_p",
-            "GenRhoM_pt",
-            "GenRhoM_px",
-            "GenRhoM_py",
-            "GenRhoM_pz",
-            "GenRhoM_y",
-            "GenRhoM_eta",
-            "GenRhoM_theta",
-            "GenRhoM_phi",
-            "GenRhoM_mass",
-            "GenRhoM_p4",
-
-            "n_FSGenNeutrino",
-            "FSGenNeutrino_e",
-            "FSGenNeutrino_p",
-            "FSGenNeutrino_pt",
-            "FSGenNeutrino_px",
-            "FSGenNeutrino_py",
-            "FSGenNeutrino_pz",
-            "FSGenNeutrino_y",
-            "FSGenNeutrino_eta",
-            "FSGenNeutrino_theta",
-            "FSGenNeutrino_phi",
-            "FSGenNeutrino_charge",
-            #"FSGenNeutrino_parentPDG",
-
-            "n_FSGenPhoton",
-            "FSGenPhoton_e",
-            "FSGenPhoton_p",
-            "FSGenPhoton_pt",
-            "FSGenPhoton_px",
-            "FSGenPhoton_py",
-            "FSGenPhoton_pz",
-            "FSGenPhoton_y",
-            "FSGenPhoton_eta",
-            "FSGenPhoton_theta",
-            "FSGenPhoton_phi",
-            "FSGenPhoton_charge",
-            #"FSGenPhoton_parentPDG",
-            
-            "n_GenHiggs",
-            "GenHiggs_e",
-            "GenHiggs_p", 
-            "GenHiggs_pt", 
-            "GenHiggs_px", 
-            "GenHiggs_py", 
-            "GenHiggs_pz", 
-            "GenHiggs_y", 
-            "GenHiggs_mass",
-            "GenHiggs_eta", 
-            "GenHiggs_theta", 
-            "GenHiggs_phi", 
-            "GenHiggs_charge", 
-
-            "n_GenTau_had",
-            "HadGenTau_e",
-            "HadGenTau_p",
-            "HadGenTau_pt",
-            "HadGenTau_px",
-            "HadGenTau_py",
-            "HadGenTau_pz",
-            "HadGenTau_y",
-            "HadGenTau_eta",
-            "HadGenTau_theta",
-            "HadGenTau_phi",
-            "HadGenTau_charge",
-            "HadGenTau_mass",
+            "GenPhi_CP",
 ]
 
 VARIABLES_RECO = [
@@ -836,12 +604,13 @@ for cat in CAT:
     for sub in SUB:
         for cut in CUT:
 
-            variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
+            variables = VARIABLES_GEN #VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
 
-            dir = f"{DIRECTORY}/{cat}/{sub}/"
+            dir = f"{DIRECTORY}" #/{cat}/{sub}/
 
             for num in range(1,6):
                 outFile = ROOT.TFile.Open(dir + legend_sig[num] + "_" + cut + "_histo.root", "RECREATE")
+                print(outFile)
                 for var in variables:
                     #loop to merge different sources into one histograms 
                     j = 0
@@ -1108,7 +877,7 @@ for cat in CAT:
                     os.remove(output)
 
 ################### pythia signals ###################
-
+'''
 ll = [
     "p8_ee_eeH_Htautau",
     "p8_ee_mumuH_Htautau",
@@ -1135,9 +904,9 @@ for cat in CAT:
     for sub in SUB:
         for cut in CUT:
 
-            variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
+            variables = VARIABLES_GEN #VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
 
-            directory = f"{DIRECTORY}/{cat}/{sub}/"
+            directory = f"{DIRECTORY}" #/{cat}/{sub}/
         
             for dir in samples_dict:
                 for cp in ["even", "odd"]:
@@ -1181,4 +950,3 @@ for cat in CAT:
                     outFile.Close()
                     if check==False: #if nothing was written i don't want the file saved at all
                         os.remove(output)
-'''

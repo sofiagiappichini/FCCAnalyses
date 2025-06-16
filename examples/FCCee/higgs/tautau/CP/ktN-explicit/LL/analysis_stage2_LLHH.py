@@ -847,7 +847,7 @@ class RDFanalysis():
                 .Define("RecoZDaughter_DEta",    "(RecoZLead_eta - RecoZSub_eta)")
                 .Define("RecoZDaughter_DPhi",    "FCCAnalyses::ZHfunctions::deltaPhi(RecoZLead_phi, RecoZSub_phi)")
 
-                .Define("Total_p4",     "TLorentzVector(0.,0.,1.,240.)")
+                .Define("Total_p4",     "TLorentzVector(0.,0.,0.,240.)")
                 .Define("Recoil_p4",       "Total_p4-RecoZ_p4")
                 .Define("Recoil_mass",       "Recoil_p4.M()")
                 .Define("Recoil_px",       "Recoil_p4.Px()")

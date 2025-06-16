@@ -39,20 +39,44 @@ processList = {
     #'cehim_p10_taudecay_2Pi2Nu':{},
     #'cehim_m10_taudecay_2Pi2Nu':{},
 
-    "e+e-_eeH_H3PiNu":{},
+    #"e+e-_eeH_H3PiNu":{},
 
     #'wzp6_ee_eeH_Htautau_ecm240': {},
     #'p8_ee_ZZ_ecm240':{'chunks':100},
+
+    "mg_ee_eetata_ecm240":{},
+    "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
+    "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/winter2023/IDEA/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/"
 
-#inputDir = "/ceph/mpresill/FCCee/ZH_SMEFT_LO_noISR_noCuts_prod/ele"
-inputDir = '/ceph/sgiappic/HiggsCP'
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23"
+#inputDir = "root://eospublic.cern.ch//eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
 
-outputDir = "/ceph/sgiappic/HiggsCP/CPtest/stage1"
+#Optional: output directory, default is local running directory
+#outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/test/"
+
+# additional/costom C++ functions, defined in header files (optional)
+includePaths = ["functions.h"]
+
+### necessary to run on HTCondor ###
+eosType = "eosuser"
+
+#Optional running on HTCondor, default is False
+runBatch = False
+
+nCPUS = 6
+
+#Optional batch queue name when running on HTCondor, default is workday
+batchQueue = "longlunch"
+
+#Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
+compGroup = "group_u_CMS.u_zh.users"
+
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -61,13 +85,14 @@ includePaths = ["functions.h"]
 ## latest particle transformer model, trained on 9M jets in winter2023 samples
 model_name = "fccee_flavtagging_edm4hep_wc"
 
-## model files needed for unit testing in CI
+### model files needed for unit testing in CI
 url_model_dir = "https://fccsw.web.cern.ch/fccsw/testsamples/jet_flavour_tagging/winter2023/wc_pt_13_01_2022/"
 url_preproc = "{}/{}.json".format(url_model_dir, model_name)
 url_model = "{}/{}.onnx".format(url_model_dir, model_name)
 
 ## model files locally stored on /eos
-model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
+#model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
+model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
 
 local_preproc = "{}/{}.json".format(model_dir, model_name)
 local_model = "{}/{}.onnx".format(model_dir, model_name)
@@ -259,12 +284,12 @@ class RDFanalysis():
 
                 ###############################
 
-                #.Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
+                .Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
                 #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPtoENuNu_idx.size()>0 || TauPtoMuNuNu_idx.size()>0 || TauPto2Pi0Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
                 #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
                 #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPto2Pi0Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
                 #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
-                #c.Filter("TauMtoPiNu_idx.size()>0 && TauPtoPiNu_idx.size()>0")
+                .Filter("TauMtoPiNu_idx.size()>0 && TauPtoPiNu_idx.size()>0")
                 
                 ###############################
 
@@ -1495,15 +1520,6 @@ class RDFanalysis():
                 .Define("VertexObject", "myUtils::get_VertexObject(MCVertexObject, ReconstructedParticles, EFlowTrack_1, MCRecoAssociations0, MCRecoAssociations1)")
                 .Define("RecoPartPID" ,"myUtils::PID(ReconstructedParticles, MCRecoAssociations0, MCRecoAssociations1, Particle)")
                 .Define("RecoPartPIDAtVertex" ,"myUtils::get_RP_atVertex(RecoPartPID, VertexObject)")
-
-                ### LCFIPlus algorithm for secondary vertices ###
-                #find the DVs
-                #ROOT::VecOps::RVec<edm4hep::TrackState> np_tracks, ROOT::VecOps::RVec<edm4hep::TrackState> thetracks, VertexingUtils::FCCAnalysesVertex PV, bool V0_rej, double chi2_cut, double invM_cut, double chi2Tr_cut)
-                .Define("RecoDVs", "VertexFinderLCFIPlus::get_SV_event(SecondaryTracks, EFlowTrack_1, PrimaryVertexObject, true, 10., 5., 5.)")
-                #find number of DVs
-                .Define("n_RecoDVs", "VertexingUtils::get_n_SV(RecoDVs)")
-                # DV position in 3d (TVector3) from the origin
-                .Define("DV_p3", "VertexingUtils::get_position_SV(RecoDVs)")
                 
                 
         )
@@ -1511,7 +1527,7 @@ class RDFanalysis():
     #__________________________________________________________
     #Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
-        '''branchList = [
+        branchList = [
             ######## Monte-Carlo particles #######
             "n_FSGenElectron",
             "FSGenElectron_e",
@@ -1906,8 +1922,8 @@ class RDFanalysis():
             "HadGenTau_charge",
             "HadGenTau_mass",
 
-        ]'''
-        branchList =[
+        ]
+        '''branchList =[
 
         ######## Reconstructed particles #######
             #"RecoMC_PID",
@@ -2256,9 +2272,6 @@ class RDFanalysis():
             "RecoLeptonTrack_charge",
             "RecoLeptonTrack_omega",
 
-            "n_RecoDVs", 
-            "DV_p3",
-
-        ]
+        ]'''
 
         return branchList

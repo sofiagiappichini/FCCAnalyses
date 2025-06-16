@@ -5,9 +5,9 @@ import urllib.request
 #Mandatory: List of processes
 processList = {
     #using only about 5M events per sample for testing
-    "p8_ee_Ztautau_ecm91":{'chunks':1000, 'fraction':0.05},
+    #"p8_ee_Ztautau_ecm91":{'chunks':1000, 'fraction':0.05},
     #'wzp6_ee_tautau_ecm240':{'chunks':1000, 'fraction':0.1},
-    #'wzp6_ee_tautau_ecm365':{'chunks':1000, 'fraction':0.5},
+    'wzp6_ee_tautau_ecm365':{'chunks':1000, 'fraction':0.5},
     #'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
 }
 
@@ -374,7 +374,7 @@ class RDFanalysis():
                 .Define("NoLeptons", "ReconstructedParticle::remove(NoMuons, RecoElectrons)")
 
                 # different definition of missing energy from fccanalysis classes instead of edm4hep
-                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(91, ReconstructedParticles)") #ecm 
+                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(365, ReconstructedParticles)") #ecm 
                 .Define("RecoEmiss_px",  "RecoEmiss[0].momentum.x")
                 .Define("RecoEmiss_py",  "RecoEmiss[0].momentum.y")
                 .Define("RecoEmiss_pz",  "RecoEmiss[0].momentum.z")
@@ -650,7 +650,7 @@ class RDFanalysis():
                 .Define("RecoZ_y",     "RecoZ_p4.Rapidity()")
                 .Define("RecoZ_mass",    "RecoZ_p4.M()")
 
-                .Define("Total_p4",     "TLorentzVector(0.,0.,1.,91.)")
+                .Define("Total_p4",     "TLorentzVector(0.,0.,0.,365.)")
                 .Define("Recoil_True_Tau_p4",        "FCCAnalyses::ZHfunctions::build_tau_p4(Total_p4, RecoEmiss_p4, TauFromJet_kt2_p4, TauFromJet_kt2_charge)")
                 #filtering events where the discriminant to solve is negative and so the reconstruction didn't work out
                 .Define("Belle_Filter",     "if (Recoil_True_Tau_p4.at(0).P()!=0 && Recoil_True_Tau_p4.at(1).P()!=0) return 1; else return 0;")
@@ -725,6 +725,7 @@ class RDFanalysis():
             "FSRGenTau_phi",  
             "FSRGenTau_charge", 
             "FSRGenTau_mass",
+            "AllGenTau_parentPDG",
 
             ######## Reconstructed particles #######
 

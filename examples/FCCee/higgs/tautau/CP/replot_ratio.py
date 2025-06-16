@@ -32,13 +32,14 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/sgiappic/HiggsCP/CPReco/final_explicit_new/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_test/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/sgiappic/public_html/HiggsCP/Reco_explicit/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/' 
 #list of cuts you want to plot
 CUTS = [
-    "selReco_ILC20chi",
+    "selReco",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
     #"selReco_CMS",
     #"selDPhi",
  ] 
@@ -49,9 +50,10 @@ LABELS = {
     "selGen": "No additional selection",
     "selReco_CMS":"No additional selection",
     "selDPhi":"KinGen_hh_norm_DPhi<0.5",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100":"Full selection",
  }
 
-label = ""
+label = "_EE_reduced"
 ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau " #(#pi#pi^{0}#nu)
 energy         = 240
 collider       = 'FCC-ee'
@@ -1085,11 +1087,19 @@ signals_old = [
 ]
 
 signals = [
-    "sm",
-    "sm_lin_quad_cehim_m1",
-    "sm_lin_quad_cehim",
-    "sm_lin_quad_cehre_m1",
-    "sm_lin_quad_cehre_p1",
+    #"sm",
+    #"sm_lin_quad_cehim_m1",
+    #"sm_lin_quad_cehim",
+    #"sm_lin_quad_cehre_m1",
+    #"sm_lin_quad_cehre_p1",
+    #"p8_ee_QQH_Htautau_CPeven",
+    #"p8_ee_QQH_Htautau_CPodd",
+    #"p8_ee_LLH_Htautau_CPeven",
+    #"p8_ee_LLH_Htautau_CPodd",
+
+    "mg_ee_eetata_ecm240",
+    "mg_ee_eetata_smeft_cehim_m1_ecm240",
+    "mg_ee_eetata_smeft_cehim_p1_ecm240",
 ]
 
 slegend = {
@@ -1114,11 +1124,16 @@ slegend = {
     'cehre_m1_taudecay_PiPi0Nu':"Z(ee)H(#tau#tau), CPC -1",
     'cehre_p1_taudecay_PiPi0Nu':"Z(ee)H(#tau#tau), CPC +1",
 
-    'sm':"Z(ee)H(#tau#tau), SM",
-    'sm_lin_quad_cehim_m1':"Z(ee)H(#tau#tau), CPV -1",
-    'sm_lin_quad_cehim':"Z(ee)H(#tau#tau), CPV +1",
-    'sm_lin_quad_cehre_m1':"Z(ee)H(#tau#tau), CPC -1",
-    'sm_lin_quad_cehre_p1':"Z(ee)H(#tau#tau), CPC +1",
+    'sm':"ZH(#tau#tau), SM",
+    'sm_lin_quad_cehim_m1':"ZH(#tau#tau), CPV -1",
+    'sm_lin_quad_cehim':"ZH(#tau#tau), CPV +1",
+    'sm_lin_quad_cehre_m1':"ZH(#tau#tau), CPC -1",
+    'sm_lin_quad_cehre_p1':"ZH(#tau#tau), CPC +1",
+
+    "p8_ee_QQH_Htautau_CPeven":"Z(qq)H(#tau#tau), CP even",
+    "p8_ee_QQH_Htautau_CPodd":"Z(qq)H(#tau#tau), CP odd",
+    "p8_ee_LLH_Htautau_CPeven":"Z(ll)H(#tau#tau), CP even",
+    "p8_ee_LLH_Htautau_CPodd":"Z(ll)H(#tau#tau), CP odd",
 
     'cehim_m5_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV -5",
     'cehim_p5_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV +5",
@@ -1137,6 +1152,10 @@ slegend = {
 
     'cehim_m10_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV -10",
     'cehim_p10_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV +10",
+
+    "mg_ee_eetata_ecm240":"Z(ee)H(#tau#tau)",
+    "mg_ee_eetata_smeft_cehim_m1_ecm240":"Z(ee)H(#tau#tau), CPV -1",
+    "mg_ee_eetata_smeft_cehim_p1_ecm240":"Z(ee)H(#tau#tau), CPV +1",
 }
 
 scolors = {
@@ -1161,11 +1180,20 @@ scolors = {
     'cehre_m1_taudecay_PiPi0Nu':ROOT.kGreen-8,
     'cehre_p1_taudecay_PiPi0Nu':ROOT.kGreen-6,
 
-    'sm':ROOT.kRed-9,
-    'sm_lin_quad_cehim_m1':ROOT.kCyan-6,
-    'sm_lin_quad_cehim':ROOT.kBlue-7,
-    'sm_lin_quad_cehre_m1':ROOT.kGreen-8,
-    'sm_lin_quad_cehre_p1':ROOT.kGreen-6,
+    "mg_ee_eetata_ecm240":ROOT.kViolet-9,
+    "mg_ee_eetata_smeft_cehim_m1_ecm240":ROOT.kAzure-6,
+    "mg_ee_eetata_smeft_cehim_p1_ecm240":ROOT.kTeal-7,
+
+    'sm':ROOT.kViolet-9,
+    'sm_lin_quad_cehim_m1':ROOT.kAzure-6,
+    'sm_lin_quad_cehim':ROOT.kTeal-7,
+    'sm_lin_quad_cehre_m1':ROOT.kTeal+3,
+    'sm_lin_quad_cehre_p1':ROOT.kSpring+2,
+
+    "p8_ee_QQH_Htautau_CPeven":ROOT.kAzure-6,
+    "p8_ee_QQH_Htautau_CPodd":ROOT.kTeal-7,
+    "p8_ee_LLH_Htautau_CPeven":ROOT.kTeal+3,
+    "p8_ee_LLH_Htautau_CPodd":ROOT.kSpring+2,
 
     'cehim_m5_taudecay_2Pi2Nu':ROOT.kCyan-6,
     'cehim_p5_taudecay_2Pi2Nu':ROOT.kBlue-7,
@@ -1188,7 +1216,8 @@ scolors = {
 
 for cut in CUTS:
     #VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
-    VARIABLES = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
+    #VARIABLES = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
+    VARIABLES = ["GenPhi_decay",]
     for variable in VARIABLES:
 
         canvas = ROOT.TCanvas("", "", 1000, 1000)
@@ -1224,7 +1253,7 @@ for cut in CUTS:
         for s in signals:
             fin = f"{DIRECTORY}{s}_{cut}_histo.root"
             with ROOT.TFile(fin) as tf:
-                h = tf.Get(s + "_" + variable) #s + "_" + variable
+                h = tf.Get(variable) #s + "_" + variable
                 hh = copy.deepcopy(h)
                 hh.SetDirectory(0)
             histos.append(hh)
