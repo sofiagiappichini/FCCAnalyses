@@ -33,7 +33,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final_res/had/"
+directory = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/final_res/tautau/"
 TAG = [
     "R5-explicit",
     "R5-tag",
@@ -261,18 +261,30 @@ VARIABLES = [
     #"CHadron_p_res_total",
     #"NHadron_low_dR_p_res_total",
     #"NHadron_high_dR_p_res_total",
-    "jet_reso",
+    #"jet_reso",
+
+    "RecoH_px",
+    "RecoH_py",
+    "RecoH_pz",
+    "RecoH_p",
+    "RecoH_pt",
+    "RecoH_e",
+    "RecoH_eta",
+    "RecoH_phi",
+    "RecoH_theta",
+    "RecoH_y",
+    "RecoH_mass",
 ]
 
 #directory where you want your plots to go
-DIR_PLOTS = '/web/awiedl/public_html/detector_res/had_dijet/' 
+DIR_PLOTS = '/web/awiedl/public_html/detector_res/tautau/' 
 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
  }
 
-ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow b b "
+ana_tex_cat = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow #nu #nu, H #rightarrow #tau #tau "
 
 energy         = 240
 collider       = 'FCC-ee'
@@ -285,27 +297,27 @@ backgrounds_all = [
 
 legend = {
     'IDEA':'IDEA',
-    'CMS_Phase2_events_002119867':'CMS Phase2',
-    'CMS_Phase1_events_002119867':'CMS Phase1',
+    'CMS_Phase2_events_000731799':'CMS Phase2',
+    'CMS_Phase1_events_000731799':'CMS Phase1',
     'IDEA_CMS2':'IDEA to CMS2',
-    'IDEA_CMS1':'IDEA to CMS1',
+    'IDEA_CMS2_2':'IDEA to CMS2 var2',
 }
 
 legcolors = {
     'IDEA':ROOT.kGreen,
-    'CMS_Phase2_events_002119867':ROOT.kCyan,
-    'CMS_Phase1_events_002119867':ROOT.kBlue,
+    'CMS_Phase2_events_000731799':ROOT.kCyan,
+    'CMS_Phase1_events_000731799':ROOT.kBlue,
     'IDEA_CMS2':ROOT.kOrange,
-    'IDEA_CMS1':ROOT.kBlack,
+    'IDEA_CMS2_2':ROOT.kBlack,
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
     'IDEA',
     'IDEA_CMS2',
-    'IDEA_CMS1',
-    'CMS_Phase2_events_002119867',
-    'CMS_Phase1_events_002119867',
+    'IDEA_CMS2_2',
+    'CMS_Phase2_events_000731799',
+    'CMS_Phase1_events_000731799',
 ]
 
 for cut in CUTS:

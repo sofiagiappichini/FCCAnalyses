@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/QQ/LH/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/stage2_CMS2/QQ/LH/"
 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/final_CMS2/QQ/LH/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/QQ/LH/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -247,19 +247,19 @@ histoList = {
     # "RecoLeptonTrack_D0cov":        {"name":"RecoLeptonTrack_D0cov",          "title":"Reco lepton tracks d_{0} #sigma^{2}",        "bin":100,"xmin":0, "xmax":0.5},
     # "RecoLeptonTrack_Z0cov":        {"name":"RecoLeptonTrack_Z0cov",          "title":"Reco lepton tracks z_{0} #sigma^{2}",        "bin":100,"xmin":0, "xmax":0.5},
 
-    "n_RecoLeptons_smeared":                {"name":"n_RecoLeptons_smeared",                  "title":"Number of smeared reco leptons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "RecoLepton_e_smeared":                 {"name":"RecoLepton_e_smeared",                   "title":"smeared Reco lepton energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    "RecoLepton_p_smeared":                 {"name":"RecoLepton_p_smeared",                   "title":"smeared Reco lepton p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "RecoLepton_pt_smeared":                {"name":"RecoLepton_pt_smeared",                  "title":"smeared Reco lepton p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "RecoLepton_px_smeared":                {"name":"RecoLepton_px_smeared",                  "title":"smeared Reco lepton p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoLepton_py_smeared":                {"name":"RecoLepton_py_smeared",                  "title":"smeared Reco lepton p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoLepton_pz_smeared":                {"name":"RecoLepton_pz_smeared",                  "title":"smeared Reco lepton p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "RecoLepton_y_smeared":                 {"name":"RecoLepton_y_smeared",                   "title":"smeared Reco lepton rapidity",                       "bin":40, "xmin":-4., "xmax":4.},
-    "RecoLepton_eta_smeared":               {"name":"RecoLepton_eta_smeared",                 "title":"smeared Reco lepton #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoLepton_theta_smeared":             {"name":"RecoLepton_theta_smeared",               "title":"smeared Reco lepton #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "RecoLepton_phi_smeared":               {"name":"RecoLepton_phi_smeared",                 "title":"smeared Reco lepton #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "RecoLepton_charge_smeared":            {"name":"RecoLepton_charge_smeared",              "title":"smeared Reco lepton charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    "RecoLepton_mass_smeared":              {"name":"RecoLepton_mass_smeared",                "title":"smeared Reco lepton mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    # "n_RecoLeptons_smeared":                {"name":"n_RecoLeptons_smeared",                  "title":"Number of smeared reco leptons",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    # "RecoLepton_e_smeared":                 {"name":"RecoLepton_e_smeared",                   "title":"smeared Reco lepton energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
+    # "RecoLepton_p_smeared":                 {"name":"RecoLepton_p_smeared",                   "title":"smeared Reco lepton p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    # "RecoLepton_pt_smeared":                {"name":"RecoLepton_pt_smeared",                  "title":"smeared Reco lepton p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    # "RecoLepton_px_smeared":                {"name":"RecoLepton_px_smeared",                  "title":"smeared Reco lepton p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "RecoLepton_py_smeared":                {"name":"RecoLepton_py_smeared",                  "title":"smeared Reco lepton p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "RecoLepton_pz_smeared":                {"name":"RecoLepton_pz_smeared",                  "title":"smeared Reco lepton p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "RecoLepton_y_smeared":                 {"name":"RecoLepton_y_smeared",                   "title":"smeared Reco lepton rapidity",                       "bin":40, "xmin":-4., "xmax":4.},
+    # "RecoLepton_eta_smeared":               {"name":"RecoLepton_eta_smeared",                 "title":"smeared Reco lepton #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    # "RecoLepton_theta_smeared":             {"name":"RecoLepton_theta_smeared",               "title":"smeared Reco lepton #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    # "RecoLepton_phi_smeared":               {"name":"RecoLepton_phi_smeared",                 "title":"smeared Reco lepton #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    # "RecoLepton_charge_smeared":            {"name":"RecoLepton_charge_smeared",              "title":"smeared Reco lepton charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
+    # "RecoLepton_mass_smeared":              {"name":"RecoLepton_mass_smeared",                "title":"smeared Reco lepton mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
 
 
     "n_RecoLeptons_sel":                {"name":"n_RecoLeptons_sel",                  "title":"Number of reco isolated electrons",                     "bin":5, "xmin":-0.5, "xmax":4.},

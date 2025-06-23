@@ -1,0 +1,26 @@
+# text2workspace.py datacard.txt -o ws.root
+# combine -M FitDiagnostics -t -1 --expectSignal=1 ws.root --rMin -2 
+imax    1 number of bins
+jmax    * number of processes minus 1
+kmax    * number of nuisance parameters
+--------------------------------------------------------------------------------
+shapes wzp6_ee_LLH_Htautau_ecm240 * /ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/QQ/LH/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_histo.root $CHANNEL
+shapes p8_ee_WW_ecm240 * /ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/QQ/LH/p8_ee_WW_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_histo.root $CHANNEL
+shapes p8_ee_Zqq_ecm240 * /ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/QQ/LH/p8_ee_Zqq_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_histo.root $CHANNEL
+shapes p8_ee_ZZ_ecm240 * /ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/QQ/LH/p8_ee_ZZ_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_histo.root $CHANNEL
+shapes wzp6_ee_tautau_ecm240 * /ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/QQ/LH/wzp6_ee_tautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_histo.root $CHANNEL
+shapes data_obs * /ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/QQ/LH/wzp6_ee_LLH_Htautau_ecm240_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_histo.root $CHANNEL
+--------------------------------------------------------------------------------
+bin                        Recoil
+observation                -1
+--------------------------------------------------------------------------------
+bin                        Recoil                              Recoil                              Recoil                              Recoil                              Recoil                             
+process                    wzp6_ee_LLH_Htautau_ecm240          p8_ee_WW_ecm240                     p8_ee_Zqq_ecm240                    p8_ee_ZZ_ecm240                     wzp6_ee_tautau_ecm240              
+process                    0                                   1                                   2                                   3                                   4                                  
+rate                       -1                                  -1                                  -1                                  -1                                  -1                                 
+--------------------------------------------------------------------------------
+unc_Z      lnN     -                                  -                                  1.01                               -                                  1.01                               
+unc_p8_ee_WW_ecm240      lnN     -                                  1.01                               -                                  -                                  -                                  
+unc_p8_ee_ZZ_ecm240      lnN     -                                  -                                  -                                  1.01                               -                                  
+
+

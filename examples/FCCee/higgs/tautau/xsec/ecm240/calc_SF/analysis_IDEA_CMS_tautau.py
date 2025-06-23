@@ -5,8 +5,8 @@ from copy import deepcopy
 
 processList = {
     'IDEA_events_000731799': {},
-    #'CMS_Phase2_events_000731799': {},
-    #'CMS_Phase1_events_000731799': {},
+    'CMS_Phase2_events_000731799': {},
+    'CMS_Phase1_events_000731799': {},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -165,8 +165,8 @@ class RDFanalysis():
                 .Define("n_TagJet_kt2",           "return int(TagJet_kt2_flavor.size())")
                 .Define("TagJet_kt2_cleanup",       "JetConstituentsUtils::cleanup_taggedjet({})".format(jetClusteringHelper_kt2.constituents))
 
-                #.Define("TauFromJet_kt2", "FCCAnalyses::ZHfunctions::findTauInJet({})".format(jetClusteringHelper_kt2.constituents)) 
-                .Define("TauFromJet_kt2", "FCCAnalyses::ZHfunctions::findTauInJet_smearing({},Particle,21.7,3.5631, 1.2671, 18.3)".format(jetClusteringHelper_kt2.constituents)) 
+                .Define("TauFromJet_kt2", "FCCAnalyses::ZHfunctions::findTauInJet({})".format(jetClusteringHelper_kt2.constituents)) 
+                #.Define("TauFromJet_kt2", "FCCAnalyses::ZHfunctions::findTauInJet_smearing({},Particle,21.7,3.5631, 1.2671, 18.3)".format(jetClusteringHelper_kt2.constituents)) 
 
                 .Define("TauFromJet_kt2_type_sel","ReconstructedParticle::get_type(TauFromJet_kt2)")
                 .Define("TauFromJet_kt2_tau", "TauFromJet_kt2[TauFromJet_kt2_type_sel>=0]") 
@@ -196,6 +196,25 @@ class RDFanalysis():
 		        .Define("TagJet_kt2_sel_phi",     "TagJet_kt2_phi[TauFromJet_kt2_type_sel<0]")
                 .Define("TagJet_kt2_sel_mass",      "TagJet_kt2_mass[TauFromJet_kt2_type_sel<0]")
                 .Define("n_TagJet_kt2_sel", "TagJet_kt2_sel_e.size()")
+
+                .Filter("n_TauFromJet_kt2==2 && n_TagJet_kt2_sel==0") 
+                .Filter("(TauFromJet_kt2_charge.at(0) + TauFromJet_kt2_charge.at(1))==0") 
+
+                .Define("RecoTau1_p4",      "TLorentzVector(TauFromJet_kt2_px.at(0), TauFromJet_kt2_py.at(0), TauFromJet_kt2_pz.at(0), TauFromJet_kt2_e.at(0))")
+                .Define("RecoTau2_p4",      "TLorentzVector(TauFromJet_kt2_px.at(1), TauFromJet_kt2_py.at(1), TauFromJet_kt2_pz.at(1), TauFromJet_kt2_e.at(1))")
+
+                .Define("RecoH_p4",         "RecoTau1_p4+RecoTau2_p4")
+                .Define("RecoH_px",    "RecoH_p4.Px()")
+                .Define("RecoH_py",    "RecoH_p4.Py()")
+                .Define("RecoH_pz",    "RecoH_p4.Pz()")
+                .Define("RecoH_p",    "RecoH_p4.P()")
+                .Define("RecoH_pt",    "RecoH_p4.Pt()")
+                .Define("RecoH_e",     "RecoH_p4.E()")
+                .Define("RecoH_eta",    "RecoH_p4.Eta()")
+                .Define("RecoH_phi",    "RecoH_p4.Phi()")
+                .Define("RecoH_theta",    "RecoH_p4.Theta()")
+                .Define("RecoH_y",     "RecoH_p4.Rapidity()")
+                .Define("RecoH_mass",    "RecoH_p4.M()")
 
         )
         return df2
@@ -234,6 +253,18 @@ class RDFanalysis():
             "TauFromJet_kt2_type",
             "TauFromJet_kt2_mass",
             "n_TauFromJet_kt2",
+
+            "RecoH_px",
+            "RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            "RecoH_phi",
+            "RecoH_theta",
+            "RecoH_y",
+            "RecoH_mass",
 
             "TagJet_kt2_sel_e",     
             "TagJet_kt2_sel_p",     

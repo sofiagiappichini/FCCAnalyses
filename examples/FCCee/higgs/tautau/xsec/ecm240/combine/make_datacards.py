@@ -64,14 +64,14 @@ def get_combined_unc_v2(name, sub_proc, procs, bkg_procs):
 #os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
 #os.system("cmsenv")
 
-outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/new_250502_1per_noMC/"
+outputDir = "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/detector_CMS2/"
 
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/"
 TAG = [
     #"R5-explicit",
     #"R5-tag",
     "ktN-explicit",
-    "ktN-tag",
+    #"ktN-tag",
 ]
 SUBDIR = [
     'LL',
@@ -182,7 +182,7 @@ if make_card:
                 dc += f"kmax    * number of nuisance parameters\n"
                 dc += f"--------------------------------------------------------------------------------\n"
                 
-                directory = DIRECTORY + tag + "/" + cat  + "/" + sub + "/"
+                directory = DIRECTORY + tag + "/final_CMS2/" + cat  + "/" + sub + "/"
 
                 #if "ktN-tag" in tag and "LL" in cat and "HH" in sub:
                 #    cut = "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.96_86Z100_4Emiss_Zp54"

@@ -79,7 +79,7 @@ TAG = [
     #"R5-explicit",
     #"R5-tag",
     "ktN-explicit",
-    "ktN-tag",
+    #"ktN-tag",
 ]
 CAT = [
     "QQ",
@@ -98,7 +98,7 @@ SUBDIR = [
 #os.system("cmsenv")
 
 input_file = "significance.txt"
-outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/new_250502_1per_noMC/"
+outputDir = "/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/combine/detector_CMS2/"
 output_file = outputDir + "output_xsec.csv"
 
 tab = []

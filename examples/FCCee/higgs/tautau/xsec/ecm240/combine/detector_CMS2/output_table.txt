@@ -1,0 +1,25 @@
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+ & ktN-explicit \\
+\hline
+QQLL & -1099.90, +1900.00 &  \\ \hline 
+QQLH & -1099.90, +1900.00 &  \\ \hline 
+QQHH & -1099.90, +1900.00 &  \\ \hline 
+QQ &-1099.90, +1900.00 &  \\ \hline 
+LLLL & -8.99, +9.12 &  \\ \hline 
+LLLH & -2.49, +2.53 &  \\ \hline 
+LLHH & -2.40, +2.43 &  \\ \hline 
+LL &-1.72, +1.73 &  \\ \hline 
+NuNuLL & -1113.40, +1886.50 &  \\ \hline 
+NuNuLH & -1100.60, +1899.30 &  \\ \hline 
+NuNuHH & -1100.00, +1899.90 &  \\ \hline 
+NuNu &-1100.00, +1899.90 &  \\ \hline 
+combined & -1.69, +1.71 &  \\ \hline 
+
+\hline
+\end{tabular}
+\caption{Fit Results}
+\end{table}
