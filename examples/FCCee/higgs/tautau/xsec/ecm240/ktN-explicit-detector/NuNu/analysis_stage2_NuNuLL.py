@@ -89,47 +89,44 @@ processList = {
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
-prodTag     = "FCCee/winter2023/IDEA/"
-
-#inputDir = "/ceph/sgiappic/HiggsCP/winter23"
+inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 #inputDir = "root://eospublic.cern.ch//eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
-#outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/stage1_250502/ktN-explicit/NuNu/LL/"
+outputDir   = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/NuNu/LL/" 
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
 
 ### necessary to run on HTCondor ###
-eosType = "eosuser"
+#eosType = "eosuser"
 
 #Optional running on HTCondor, default is False
-runBatch = False
+#runBatch = False
 
-nCPUS = 6
+#nCPUS = 6
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+#batchQueue = "longlunch"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-compGroup = "group_u_CMS.u_zh.users"
+#compGroup = "group_u_CMS.u_zh.users"
 
 ## tagging -------------------------------
 ## latest particle transformer model, trained on 9M jets in winter2023 samples
-model_name = "fccee_flavtagging_edm4hep_wc"
+#model_name = "fccee_flavtagging_edm4hep_wc"
 
 ## model files needed for unit testing in CI
-url_model_dir = "https://fccsw.web.cern.ch/fccsw/testsamples/jet_flavour_tagging/winter2023/wc_pt_13_01_2022/"
-url_preproc = "{}/{}.json".format(url_model_dir, model_name)
-url_model = "{}/{}.onnx".format(url_model_dir, model_name)
+#url_model_dir = "https://fccsw.web.cern.ch/fccsw/testsamples/jet_flavour_tagging/winter2023/wc_pt_13_01_2022/"
+#url_preproc = "{}/{}.json".format(url_model_dir, model_name)
+#url_model = "{}/{}.onnx".format(url_model_dir, model_name)
 
 ## model files locally stored on /eos
 #model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
-model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
+#model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
 
-local_preproc = "{}/{}.json".format(model_dir, model_name)
-local_model = "{}/{}.onnx".format(model_dir, model_name)
+#local_preproc = "{}/{}.json".format(model_dir, model_name)
+#local_model = "{}/{}.onnx".format(model_dir, model_name)
 
 ## get local file, else download from url
 def get_file_path(url, filename):
@@ -141,8 +138,8 @@ def get_file_path(url, filename):
     ## this is the old version of the tagger and we don't care about it
 
 
-weaver_preproc = get_file_path(url_preproc, local_preproc)
-weaver_model = get_file_path(url_model, local_model)
+#weaver_preproc = get_file_path(url_preproc, local_preproc)
+#weaver_model = get_file_path(url_model, local_model)
 
 from addons.ONNXRuntime.jetFlavourHelper import JetFlavourHelper
 from addons.FastJet.jetClusteringHelper import (

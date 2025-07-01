@@ -79,3 +79,13 @@
     - possible alternative: maybe checking jet_resolution and determine nhad smearing by trail and error
 - first run of hole analysis with smearing for CMS_Phase2
     - no errors
+
+# Week 16.06.2025-22.06.2025
+- Results first run: 
+    - QQ and NuNu signals are missing
+    - matching not sufficient
+    - fit results are comparable to no smearing ???
+    - all fits except LL are out of border
+- Wednesday-Meeting: 
+    - Matching to MC via Reco
+    - try to create a new stage2 for smearing only

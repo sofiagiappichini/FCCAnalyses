@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/"
+DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/"
 TAG = [
     #"R5-explicit",
     #"R5-tag",
@@ -46,9 +46,9 @@ SUBDIR = [
 ]
 #category to plot
 CAT = [
-    #"QQ",
+    "QQ",
     "LL",
-    #"NuNu",
+    "NuNu",
 ]
 
 CUTS_LL = [
@@ -788,7 +788,7 @@ ana_tex_sub = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = True
+LOGY = False
 
 #list of backgorunds, then legend and colors to be assigned to them
 backgrounds_all = [
@@ -1037,6 +1037,7 @@ for tag in TAG:
                             nsig=len(histos)
 
                             if nbkg!=0:
+
                                 #for the common backgrounds i want to keep them separate into different histograms
                                 #no need to have the ones that are empty
                                 for b in backgrounds_all:

@@ -711,7 +711,7 @@ class RDFanalysis():
                 # .Define("TagJet_kt3_isB",    "recojet_isB_kt3")
                 # .Define("TagJet_kt3_isTAU",    "recojet_isTAU_kt3")
 
-                .Define("TauFromJet_kt3", "FCCAnalyses::ZHfunctions::findTauInJet_smearing({},Particle,21.7,3.5631, 1.2671, 18.3)".format(jetClusteringHelper_kt3.constituents)) 
+                .Define("TauFromJet_kt3", "FCCAnalyses::ZHfunctions::findTauInJet_smearing({}, ReconstructedParticles, reco_mc_index, Particle, 21.7,3.5631, 1.2671, 18.3)".format(jetClusteringHelper_kt3.constituents))
                 .Define("TauFromJet_kt3_type_sel","ReconstructedParticle::get_type(TauFromJet_kt3)")
                 .Define("TauFromJet_kt3_tau", "TauFromJet_kt3[TauFromJet_kt3_type_sel>=0]") 
                 .Define("TauFromJet_kt3_p","ReconstructedParticle::get_p(TauFromJet_kt3_tau)")

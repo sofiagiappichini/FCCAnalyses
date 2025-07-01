@@ -2,9 +2,7 @@
  <<< v10.0.2 >>>
 >>> Random number generator seed is 123456
 >>> Method used is FitDiagnostics
-[ERROR] Closed range without finding crossing! 
-[ERROR] Closed range without finding crossing! 
 
  --- FitDiagnostics ---
-Best fit r: 0.999857  -10.9999/+19.0001  (68% CL)
-Done in 0.00 min (cpu), 0.01 min (real)
+Best fit r: 1  -0.0358118/+0.0362281  (68% CL)
+Done in 0.00 min (cpu), 0.00 min (real)

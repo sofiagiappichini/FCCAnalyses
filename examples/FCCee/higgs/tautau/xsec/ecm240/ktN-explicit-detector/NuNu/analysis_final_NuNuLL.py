@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/NuNu/LL/"
+inputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/stage2_CMS2/NuNu/LL/"
 
-outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/final_CMS2/NuNu/LL/"
+outputDir = "/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/NuNu/LL/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev

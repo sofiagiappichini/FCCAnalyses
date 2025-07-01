@@ -98,7 +98,7 @@ def create_subjob_script(local_dir: str,
     print("done")
              
 
-processList_ = {
+processList = {
     'p8_ee_WW_ecm240':{'chunks':100},
     'p8_ee_Zqq_ecm240':{'chunks':100},
     'p8_ee_ZZ_ecm240':{'chunks':100},
@@ -183,23 +183,23 @@ processList_ = {
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':10},
 }
 
-processList = {
-    'p8_ee_WW_ecm240':{'chunks':100},
-    'p8_ee_Zqq_ecm240':{'chunks':100},
-    'p8_ee_ZZ_ecm240':{'chunks':100},
+# processList = {
+#     'p8_ee_WW_ecm240':{'chunks':100},
+#     'p8_ee_Zqq_ecm240':{'chunks':100},
+#     'p8_ee_ZZ_ecm240':{'chunks':100},
     
-    'wzp6_ee_tautau_ecm240':{'chunks':100},
-    'wzp6_ee_mumu_ecm240':{'chunks':100},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
+#     'wzp6_ee_tautau_ecm240':{'chunks':100},
+#     'wzp6_ee_mumu_ecm240':{'chunks':100},
+#     'wzp6_ee_ee_Mee_30_150_ecm240':{'chunks':100},
     
-    'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
-    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
-}
+#     'wzp6_ee_eeH_Htautau_ecm240': {'chunks':1},
+#     'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':1},
+# }
 
 inputDir_path = '/ceph/sgiappic/HiggsCP/winter23/'
 #inputDir_path = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/'
-output = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/submission/' ##output directory of submission files, needs to be different to have unique submission files
-outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/stage2_CMS2/' ##output directory of stage2 samples
+output = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/stage2_CMS2/submission/' ##output directory of submission files, needs to be different to have unique submission files
+outputDir_path = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/stage2_CMS2/' ##output directory of stage2 samples
 localDir_path = '/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/ktN-explicit-detector/'
 sourceDir = '/work/awiedl/FCCAnalyses/'
 Filename_path = 'analysis_stage2_'

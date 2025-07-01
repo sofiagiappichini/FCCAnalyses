@@ -80,7 +80,7 @@ def submit_jobs(output_dir: str):
         os.system(f"chmod -R +x {dir}")
         os.system(f"condor_submit {dir}/job_submit.cfg")
              
-output = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/final_CMS2/submission/' ##output directory of submission files
+output = '/ceph/awiedl/FCCee/HiggsCP/detector_studies/ecm240/ktN-explicit/final_CMS2/submission/' ##output directory of submission files
 localDir = '/work/awiedl/FCCAnalyses/examples/FCCee/higgs/tautau/xsec/ecm240/'
 
 SUBDIR = [

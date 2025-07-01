@@ -56,7 +56,7 @@ processList = {
 #    'wzp6_ee_mumuH_HWW_ecm240': {'chunks':100},
 #    'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':100},
 
-    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':100},
+    'wzp6_ee_bbH_Htautau_ecm240': {'chunks':1},
 #    'wzp6_ee_bbH_Hbb_ecm240': {'chunks':100},
 #    'wzp6_ee_bbH_Hcc_ecm240': {'chunks':100},
 #    'wzp6_ee_bbH_Hss_ecm240': {'chunks':100},
@@ -80,7 +80,7 @@ processList = {
 #    'wzp6_ee_ssH_HWW_ecm240': {'chunks':100},
 #    'wzp6_ee_ssH_HZZ_ecm240': {'chunks':100},
 
-    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':100},
+#    'wzp6_ee_qqH_Htautau_ecm240': {'chunks':100},
 #    'wzp6_ee_qqH_Hbb_ecm240': {'chunks':100},
 #    'wzp6_ee_qqH_Hcc_ecm240': {'chunks':100},
 #    'wzp6_ee_qqH_Hss_ecm240': {'chunks':100},
@@ -269,16 +269,7 @@ class RDFanalysis():
             "dNdx": "EFlowTrack_2",
             "PathLength": "EFlowTrack_L",
             "Bz": "magFieldBz",
-        }
-
-        collections_smeared = deepcopy(collections)
-
-        df2 = (df2
-                .Redefine(collections_smeared["PFParticles"],    ROOT.SmearObjects.SmearedReconstructedParticle(21.7, 11, 1, False),[collections_smeared["PFParticles"], "reco_mc_index", collections_smeared["GenParticles"]])
-                .Redefine(collections_smeared["PFParticles"],    ROOT.SmearObjects.SmearedReconstructedParticle(3.5631, 13, 1, False),[collections_smeared["PFParticles"], "reco_mc_index", collections_smeared["GenParticles"]])
-                .Redefine(collections_smeared["PFParticles"],    ROOT.SmearObjects.SmearedReconstructedParticle(1.2671, 22, 1, False),[collections_smeared["PFParticles"], "reco_mc_index", collections_smeared["GenParticles"]])
-        )
-        
+        }      
                 
         df2 = (df2
                 #ELECTRONS 
@@ -307,33 +298,6 @@ class RDFanalysis():
                 .Define("RecoElectrons_hard", "FCCAnalyses::ReconstructedParticle::sel_p(20)(RecoElectrons)")
                 .Define("RecoElectrons_iso",  "FCCAnalyses::ZHfunctions::coneIsolation(0.01, 0.5)(RecoElectrons_hard, ReconstructedParticles)")
                 .Define("RecoElectrons_sel", "FCCAnalyses::ZHfunctions::sel_iso(0.25)(RecoElectrons_hard, RecoElectrons_iso)")
-                
-
-                # SMEARED ELECTRONS
-                .Define("RecoElectrons_smeared",  "ReconstructedParticle::get(Electron0, {})".format(collections_smeared["PFParticles"]))
-                .Define("n_RecoElectrons_smeared",  "ReconstructedParticle::get_n(RecoElectrons)") #count how many electrons are in the event in total
-                .Define("RecoElectron_e_smeared",      "ReconstructedParticle::get_e(RecoElectrons)")
-                .Define("RecoElectron_p_smeared",      "ReconstructedParticle::get_p(RecoElectrons)")
-                .Define("RecoElectron_pt_smeared",      "ReconstructedParticle::get_pt(RecoElectrons)")
-                .Define("RecoElectron_px_smeared",      "ReconstructedParticle::get_px(RecoElectrons)")
-                .Define("RecoElectron_py_smeared",      "ReconstructedParticle::get_py(RecoElectrons)")
-                .Define("RecoElectron_pz_smeared",      "ReconstructedParticle::get_pz(RecoElectrons)")
-                .Define("RecoElectron_y_smeared",     "ReconstructedParticle::get_y(RecoElectrons)")
-                .Define("RecoElectron_eta_smeared",     "ReconstructedParticle::get_eta(RecoElectrons)") #pseudorapidity eta
-                .Define("RecoElectron_theta_smeared",   "ReconstructedParticle::get_theta(RecoElectrons)")
-                .Define("RecoElectron_phi_smeared",     "ReconstructedParticle::get_phi(RecoElectrons)") #polar angle in the transverse plane phi
-                .Define("RecoElectron_charge_smeared",  "ReconstructedParticle::get_charge(RecoElectrons)")
-                .Define("RecoElectron_mass_smeared",     "ReconstructedParticle::get_mass(RecoElectrons)")
-#                .Define("RecoElectronTrack_absD0_smeared", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoElectrons,EFlowTrack_1))")
-#                .Define("RecoElectronTrack_absZ0_smeared", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoElectrons,EFlowTrack_1))")
-#                .Define("RecoElectronTrack_absD0sig_smeared", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoElectrons,EFlowTrack_1))") #significance
-#                .Define("RecoElectronTrack_absZ0sig_smeared", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoElectrons,EFlowTrack_1))")
-#                .Define("RecoElectronTrack_D0cov_smeared", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoElectrons,EFlowTrack_1)") #variance (not sigma)
-#                .Define("RecoElectronTrack_Z0cov_smeared", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoElectrons,EFlowTrack_1)")
-
-                .Define("RecoElectrons_hard_smeared", "FCCAnalyses::ReconstructedParticle::sel_p(20)(RecoElectrons_smeared)")
-                .Define("RecoElectrons_iso_smeared",  "FCCAnalyses::ZHfunctions::coneIsolation(0.01, 0.5)(RecoElectrons_hard_smeared, {})".format(collections_smeared["PFParticles"]))
-                .Define("RecoElectrons_sel_smeared", "FCCAnalyses::ZHfunctions::sel_iso(0.25)(RecoElectrons_hard_smeared, RecoElectrons_iso_smeared)")
 
                 .Define("n_RecoElectrons_sel",  "ReconstructedParticle::get_n(RecoElectrons_sel)") 
                 .Define("RecoElectron_sel_e",      "ReconstructedParticle::get_e(RecoElectrons_sel)")
@@ -382,32 +346,6 @@ class RDFanalysis():
                 .Define("RecoMuons_hard", "FCCAnalyses::ReconstructedParticle::sel_p(20)(RecoMuons)")
                 .Define("RecoMuons_iso",  "FCCAnalyses::ZHfunctions::coneIsolation(0.01, 0.5)(RecoMuons_hard, ReconstructedParticles)")
                 .Define("RecoMuons_sel", "FCCAnalyses::ZHfunctions::sel_iso(0.25)(RecoMuons_hard, RecoMuons_iso)")
-
-                #SMEARED MUONS
-                .Define("RecoMuons_smeared",  "ReconstructedParticle::get(Muon0, {})".format(collections_smeared["PFParticles"]))
-                .Define("n_RecoMuons_smeared",  "ReconstructedParticle::get_n(RecoMuons)") #count how many muons are in the event in total
-                .Define("RecoMuon_e_smeared",      "ReconstructedParticle::get_e(RecoMuons)")
-                .Define("RecoMuon_p_smeared",      "ReconstructedParticle::get_p(RecoMuons)")
-                .Define("RecoMuon_pt_smeared",      "ReconstructedParticle::get_pt(RecoMuons)")
-                .Define("RecoMuon_px_smeared",      "ReconstructedParticle::get_px(RecoMuons)")
-                .Define("RecoMuon_py_smeared",      "ReconstructedParticle::get_py(RecoMuons)")
-                .Define("RecoMuon_pz_smeared",      "ReconstructedParticle::get_pz(RecoMuons)")
-                .Define("RecoMuon_y_smeared",     "ReconstructedParticle::get_y(RecoMuons)")
-                .Define("RecoMuon_eta_smeared",     "ReconstructedParticle::get_eta(RecoMuons)") #pseudorapidity eta
-                .Define("RecoMuon_theta_smeared",   "ReconstructedParticle::get_theta(RecoMuons)")
-                .Define("RecoMuon_phi_smeared",     "ReconstructedParticle::get_phi(RecoMuons)") #polar angle in the transverse plane phi
-                .Define("RecoMuon_charge_smeared",  "ReconstructedParticle::get_charge(RecoMuons)")
-                .Define("RecoMuon_mass_smeared",     "ReconstructedParticle::get_mass(RecoMuons)")
-#                .Define("RecoMuonTrack_absD0_smeared", "return abs(ReconstructedParticle2Track::getRP2TRK_D0(RecoMuons,EFlowTrack_1))")
-#                .Define("RecoMuonTrack_absZ0_smeared", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0(RecoMuons,EFlowTrack_1))")
-#                .Define("RecoMuonTrack_absD0sig_smeared", "return abs(ReconstructedParticle2Track::getRP2TRK_D0_sig(RecoMuons,EFlowTrack_1))") #significance
-#                .Define("RecoMuonTrack_absZ0sig_smeared", "return abs(ReconstructedParticle2Track::getRP2TRK_Z0_sig(RecoMuons,EFlowTrack_1))")
-#                .Define("RecoMuonTrack_D0cov_smeared", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoMuons,EFlowTrack_1)") #variance (not sigma)
-#                .Define("RecoMuonTrack_Z0cov_smeared", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoMuons,EFlowTrack_1)")
-
-                .Define("RecoMuons_hard_smeared", "FCCAnalyses::ReconstructedParticle::sel_p(20)(RecoMuons_smeared)")
-                .Define("RecoMuons_iso_smeared",  "FCCAnalyses::ZHfunctions::coneIsolation(0.01, 0.5)(RecoMuons_hard_smeared, {})".format(collections_smeared["PFParticles"]))
-                .Define("RecoMuons_sel_smeared", "FCCAnalyses::ZHfunctions::sel_iso(0.25)(RecoMuons_hard_smeared, RecoMuons_iso_smeared)")
                 
                 .Define("n_RecoMuons_sel",  "ReconstructedParticle::get_n(RecoMuons_sel)") 
                 .Define("RecoMuon_sel_e",      "ReconstructedParticle::get_e(RecoMuons_sel)")
@@ -452,24 +390,6 @@ class RDFanalysis():
 #                .Define("RecoLeptonTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(RecoLeptons,EFlowTrack_1)") #variance (not sigma)
 #                .Define("RecoLeptonTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(RecoLeptons,EFlowTrack_1)")
 
-                #SMEARED LEPTONS
-                .Define("RecoLeptons_smeared", "ReconstructedParticle::merge(RecoElectrons_smeared, RecoMuons_smeared)")
-                .Define("n_RecoLeptons_smeared",  "ReconstructedParticle::get_n(RecoLeptons_smeared)") 
-                .Define("RecoLepton_e_smeared",      "ReconstructedParticle::get_e(RecoLeptons_smeared)")
-                .Define("RecoLepton_p_smeared",      "ReconstructedParticle::get_p(RecoLeptons_smeared)")
-                .Define("RecoLepton_pt_smeared",      "ReconstructedParticle::get_pt(RecoLeptons_smeared)")
-                .Define("RecoLepton_px_smeared",      "ReconstructedParticle::get_px(RecoLeptons_smeared)")
-                .Define("RecoLepton_py_smeared",      "ReconstructedParticle::get_py(RecoLeptons_smeared)")
-                .Define("RecoLepton_pz_smeared",      "ReconstructedParticle::get_pz(RecoLeptons_smeared)")
-                .Define("RecoLepton_y_smeared",      "ReconstructedParticle::get_y(RecoLeptons_smeared)")
-                .Define("RecoLepton_eta_smeared",     "ReconstructedParticle::get_eta(RecoLeptons_smeared)") #pseudorapidity eta
-                .Define("RecoLepton_theta_smeared",   "ReconstructedParticle::get_theta(RecoLeptons_smeared)")
-                .Define("RecoLepton_phi_smeared",     "ReconstructedParticle::get_phi(RecoLeptons_smeared)") #polar angle in the transverse plane phi
-                .Define("RecoLepton_charge_smeared",  "ReconstructedParticle::get_charge(RecoLeptons_smeared)")
-                .Define("RecoLepton_mass_smeared",     "ReconstructedParticle::get_mass(RecoLeptons_smeared)")
-
-                .Define("RecoLeptons_sel_smeared", "ReconstructedParticle::merge(RecoElectrons_sel_smeared, RecoMuons_sel_smeared)")
-
                 .Define("RecoLeptons_sel", "ReconstructedParticle::merge(RecoElectrons_sel, RecoMuons_sel)")
                 .Define("n_RecoLeptons_sel",  "ReconstructedParticle::get_n(RecoLeptons_sel)") 
                 .Define("RecoLepton_sel_e",      "ReconstructedParticle::get_e(RecoLeptons_sel)")
@@ -493,7 +413,7 @@ class RDFanalysis():
 
                 #PHOTONS
                 .Alias("Photon0", "Photon#0.index") 
-                .Define("RecoPhotons",  "ReconstructedParticle::get(Photon0, {})".format(collections_smeared["PFParticles"]))
+                .Define("RecoPhotons",  "ReconstructedParticle::get(Photon0, {})".format(collections["PFParticles"]))
                 .Define("n_RecoPhotons",  "ReconstructedParticle::get_n(RecoPhotons)") #count how many photons are in the event in total
                 .Define("RecoPhoton_e",      "ReconstructedParticle::get_e(RecoPhotons)")
                 .Define("RecoPhoton_p",      "ReconstructedParticle::get_p(RecoPhotons)")
@@ -501,10 +421,10 @@ class RDFanalysis():
                 .Define("RecoPhoton_px",      "ReconstructedParticle::get_px(RecoPhotons)")
                 .Define("RecoPhoton_py",      "ReconstructedParticle::get_py(RecoPhotons)")
                 .Define("RecoPhoton_pz",      "ReconstructedParticle::get_pz(RecoPhotons)")
-		        .Define("RecoPhoton_y",     "ReconstructedParticle::get_y(RecoPhotons)") 
-		        .Define("RecoPhoton_eta",     "ReconstructedParticle::get_eta(RecoPhotons)") #pseudorapidity eta
+		.Define("RecoPhoton_y",     "ReconstructedParticle::get_y(RecoPhotons)") 
+		.Define("RecoPhoton_eta",     "ReconstructedParticle::get_eta(RecoPhotons)") #pseudorapidity eta
                 .Define("RecoPhoton_theta",   "ReconstructedParticle::get_theta(RecoPhotons)")
-		        .Define("RecoPhoton_phi",     "ReconstructedParticle::get_phi(RecoPhotons)") #polar angle in the transverse plane phi
+		.Define("RecoPhoton_phi",     "ReconstructedParticle::get_phi(RecoPhotons)") #polar angle in the transverse plane phi
                 .Define("RecoPhoton_charge",  "ReconstructedParticle::get_charge(RecoPhotons)")
                 .Define("RecoPhoton_mass",  "ReconstructedParticle::get_mass(RecoPhotons)")
 
@@ -512,7 +432,7 @@ class RDFanalysis():
                 .Define("NoLeptons", "ReconstructedParticle::remove(NoMuons, RecoElectrons)")
 
                 # different definition of missing energy from fccanalysis classes instead of edm4hep
-                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(240, {})".format(collections_smeared["PFParticles"])) #ecm 
+                .Define("RecoEmiss", "FCCAnalyses::ZHfunctions::missingEnergy(240, {})".format(collections["PFParticles"])) #ecm 
                 .Define("RecoEmiss_px",  "RecoEmiss[0].momentum.x")
                 .Define("RecoEmiss_py",  "RecoEmiss[0].momentum.y")
                 .Define("RecoEmiss_pz",  "RecoEmiss[0].momentum.z")
@@ -659,7 +579,8 @@ class RDFanalysis():
 #                .Define("TagJet_kt4_isB",    "recojet_isB_kt4")
 #                .Define("TagJet_kt4_isTAU",    "recojet_isTAU_kt4")
 
-                .Define("TauFromJet_kt4", "FCCAnalyses::ZHfunctions::findTauInJet_smearing({},Particle,21.7,3.5631, 1.2671, 18.3)".format(jetClusteringHelper_kt4.constituents)) 
+                .Define("TauFromJet_kt4", "FCCAnalyses::ZHfunctions::findTauInJet_smearing({}, ReconstructedParticles, reco_mc_index, Particle, 21.7,3.5631, 1.2671, 18.3)".format(jetClusteringHelper_kt4.constituents)) 
+                #.Define("TauFromJet_kt4", "FCCAnalyses::ZHfunctions::findTauInJet({})".format(jetClusteringHelper_kt4.constituents)) 
                 .Define("TauFromJet_kt4_type_sel","ReconstructedParticle::get_type(TauFromJet_kt4)")
                 .Define("TauFromJet_kt4_tau", "TauFromJet_kt4[TauFromJet_kt4_type_sel>=0]") 
                 .Define("TauFromJet_kt4_p","ReconstructedParticle::get_p(TauFromJet_kt4_tau)")
@@ -683,9 +604,9 @@ class RDFanalysis():
                 .Define("TagJet_kt4_sel_px",      "TagJet_kt4_px[TauFromJet_kt4_type_sel<0]")
                 .Define("TagJet_kt4_sel_py",      "TagJet_kt4_py[TauFromJet_kt4_type_sel<0]")
                 .Define("TagJet_kt4_sel_pz",      "TagJet_kt4_pz[TauFromJet_kt4_type_sel<0]")
-		        .Define("TagJet_kt4_sel_eta",     "TagJet_kt4_eta[TauFromJet_kt4_type_sel<0]")
+		.Define("TagJet_kt4_sel_eta",     "TagJet_kt4_eta[TauFromJet_kt4_type_sel<0]")
                 .Define("TagJet_kt4_sel_theta",   "TagJet_kt4_theta[TauFromJet_kt4_type_sel<0]")
-		        .Define("TagJet_kt4_sel_phi",     "TagJet_kt4_phi[TauFromJet_kt4_type_sel<0]")
+		.Define("TagJet_kt4_sel_phi",     "TagJet_kt4_phi[TauFromJet_kt4_type_sel<0]")
                 .Define("TagJet_kt4_sel_mass",      "TagJet_kt4_mass[TauFromJet_kt4_type_sel<0]")
                 .Define("n_TagJet_kt4_sel", "TagJet_kt4_sel_e.size()")
                 .Define("jet_p4",               "FCCAnalyses::ZHfunctions::build_p4(TagJet_kt4_sel_px, TagJet_kt4_sel_py, TagJet_kt4_sel_pz, TagJet_kt4_sel_e)")

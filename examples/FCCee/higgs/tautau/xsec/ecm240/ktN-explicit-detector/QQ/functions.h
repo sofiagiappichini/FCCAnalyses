@@ -1897,7 +1897,14 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
 
 }
 
-ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets, const ROOT::VecOps::RVec<edm4hep::MCParticleData> &mcParticles, float e_scale, float mu_scale, float gamma_scale, float chad_scale){
+ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents>& jets, 
+                                                                               const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& allRecoParticles,
+                                                                               const ROOT::VecOps::RVec<int> &RP2MC_indices,
+                                                                               const ROOT::VecOps::RVec<edm4hep::MCParticleData> &mcParticles, 
+                                                                               float e_scale, 
+                                                                               float mu_scale, 
+                                                                               float gamma_scale, 
+                                                                               float chad_scale){
 
     // Identify taus by starting from a jet. An alternative is starting directly from reconstructed particles (to be tested more deeply in the future). 
     // This algorithm requires first building a jet (base example is clustering_ee_kt(2, 4, 1, 0) , we have tested with several configurations) from con 
@@ -1917,8 +1924,9 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing (c
 
         // Find Lead (This needs to change to first sort the jcs by p or pt, it is very messy right now)
 
-        TLorentzVector lead, gen_p4, reco_p4, smeared_p4;
+        TLorentzVector lead, smeared_lead;
         lead.SetPxPyPzE(0,0,0,0);
+        smeared_lead.SetPxPyPzE(0,0,0,0);
         int chargeLead=0;
 
         // Eventually the FCC sw should have better ID for the particles, based on the detector. 
@@ -1941,37 +1949,37 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing (c
                 tauID=-11;
                 continue; //stops the loop on jet constituents as soon as it finds a lepton
             }
+            TLorentzVector gen_p4, reco_p4, smeared_p4, jc_p4;
+            jc_p4.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z,jc.energy);
+            smeared_p4.SetPxPyPzE(0,0,0,0);
+            reco_p4.SetPxPyPzE(0,0,0,0);
+            
+            for(int j = 0; j < allRecoParticles.size(); j++){
 
-            for(int j = 0; j < mcParticles.size(); j++){
-
-                if(fabs(mcParticles[j].PDG) < 19){
-                    continue;
-                }
-
-                gen_p4.SetXYZM(mcParticles[j].momentum.x, mcParticles[j].momentum.y, mcParticles[j].momentum.z,mcParticles[j].mass);
-                reco_p4.SetXYZM(jc.momentum.x, jc.momentum.y, jc.momentum.z,jc.mass);
-                float smeared_p = -1.;
-
-                if(fabs(reco_p4.Eta()-gen_p4.Eta())<1.e-02 && (reco_p4.Phi()-gen_p4.Phi())<1.e-02 && jc.charge == mcParticles[j].charge){ //&& (reco_p4.Phi()-gen_p4.Phi())<1.e-02  && (reco_p4.E()-gen_p4.E())<1.e-02
+                reco_p4.SetPxPyPzE(allRecoParticles[j].momentum.x, allRecoParticles[j].momentum.y, allRecoParticles[j].momentum.z, allRecoParticles[j].energy);
+                gen_p4.SetPxPyPzE(0,0,0,0);
+                if(fabs(reco_p4.Eta()-jc_p4.Eta())<1.e-05 && (reco_p4.Phi()-jc_p4.Phi())<1.e-05 && jc.charge == allRecoParticles[j].charge){ //&& (reco_p4.Phi()-gen_p4.Phi())<1.e-02  && (reco_p4.E()-gen_p4.E())<1.e-02
                     
-                    smeared_p =std::max(float(gen_p4.P() + chad_scale * (reco_p4.P() - gen_p4.P())),float(0.));
+                    gen_p4.SetXYZM(mcParticles[RP2MC_indices[j]].momentum.x, mcParticles[RP2MC_indices[j]].momentum.y, mcParticles[RP2MC_indices[j]].momentum.z, mcParticles[RP2MC_indices[j]].mass);
+                    float smeared_p =std::max(float(jc_p4.P() + chad_scale * (jc_p4.P() - gen_p4.P())),float(0.));
 
-                    smeared_p4.SetPxPyPzE(smeared_p * std::sin(reco_p4.Theta()) * std::cos(reco_p4.Phi()),
-                                          smeared_p * std::sin(reco_p4.Theta()) * std::sin(reco_p4.Phi()),
-                                          smeared_p * std::cos(reco_p4.Theta()),
-                                          std::sqrt(smeared_p * smeared_p + reco_p4.M() * reco_p4.M()));
+                    smeared_p4.SetPxPyPzE(smeared_p * std::sin(jc_p4.Theta()) * std::cos(jc_p4.Phi()),
+                                          smeared_p * std::sin(jc_p4.Theta()) * std::sin(jc_p4.Phi()),
+                                          smeared_p * std::cos(jc_p4.Theta()),
+                                          std::sqrt(smeared_p * smeared_p + jc_p4.M() * jc_p4.M()));
                 }
             }
 
             // Anything else lets: find the highest pt one, charged particle as lead only
-            if (sqrt(smeared_p4.Px()*smeared_p4.Px()+smeared_p4.Py()*smeared_p4.Py())>lead.Pt()){
-                lead = smeared_p4;
+            if (sqrt(smeared_p4.Px()*smeared_p4.Px()+smeared_p4.Py()*smeared_p4.Py())>smeared_lead.Pt()){
+                smeared_lead = smeared_p4;
+                lead = jc_p4;
                 chargeLead=jc.charge;
             }
         }
-
+        
         // Clean and start counting
-        if (lead.Pt()<2) {
+        if (smeared_lead.Pt()<2) {
             tauID=-1;
             partMod.type = tauID;
             out.push_back(partMod); //make sure to keep this iteration saved as non tau jets
@@ -1990,67 +1998,74 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing (c
 
         else {continue;} // This cannot happen 
 
-        sum_tau+=lead;
+        sum_tau+=smeared_lead;
 
         // Now I loop to build the tau adding candidates to the lead
         // Only if they satisfy some conditions: distance, charge, etc 
         for (const auto& jc : jcs) {
 
-            TLorentzVector tlv;  
+            TLorentzVector tlv, smeared_jc, reco_jc, gen_jc;  
             tlv.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
 
-            for(int j = 0; j < mcParticles.size(); j++){
-                
-                if(fabs(mcParticles[j].PDG) != 15){
-                    continue;
-                }
+            if (tlv==lead){
+                continue;
+            } 
 
-                gen_p4.SetXYZM(mcParticles[j].momentum.x, mcParticles[j].momentum.y, mcParticles[j].momentum.z,mcParticles[j].mass);
-                float smeared_p = -1;
+            smeared_jc.SetPxPyPzE(0,0,0,0);
 
-                if(fabs(reco_p4.Eta()-gen_p4.Eta())<1.e-02 && (reco_p4.Phi()-gen_p4.Phi())<1.e-02 && jc.charge == mcParticles[j].charge){ // && (reco_p4.Phi()-gen_p4.Phi())<1.e-02  && (reco_p4.E()-gen_p4.E())<1.e-02
-                    
+            for(int j = 0; j < allRecoParticles.size(); j++){
+
+                reco_jc.SetPxPyPzE(allRecoParticles[j].momentum.x, allRecoParticles[j].momentum.y, allRecoParticles[j].momentum.z, allRecoParticles[j].energy);
+
+                if(fabs(reco_jc.Eta()-tlv.Eta())<1.e-05 && (reco_jc.Phi()-tlv.Phi())<1.e-05 && jc.charge == allRecoParticles[j].charge){ // && (reco_p4.Phi()-gen_p4.Phi())<1.e-02  && (reco_p4.E()-gen_p4.E())<1.e-02
+
+                    gen_jc.SetXYZM(mcParticles[RP2MC_indices[j]].momentum.x, mcParticles[RP2MC_indices[j]].momentum.y, mcParticles[RP2MC_indices[j]].momentum.z, mcParticles[RP2MC_indices[j]].mass);
+                    float smeared_p = 0;
                     if(fabs(jc.mass - 0.000510999) < 1.e-05 && jc.charge != 0){
-                        smeared_p =std::max(float(gen_p4.P() + e_scale * (tlv.P() - gen_p4.P())),float(0.));
+                        smeared_p =std::max(float(gen_jc.P() + e_scale * (tlv.P() - gen_jc.P())),float(0.));
                     }
                     else if(fabs(jc.mass - 0.105658) < 1.e-03 && jc.charge != 0){
-                        smeared_p =std::max(float(gen_p4.P() + mu_scale * (tlv.P() - gen_p4.P())),float(0.));
+                        smeared_p =std::max(float(gen_jc.P() + mu_scale * (tlv.P() - gen_jc.P())),float(0.));
                     }
                     else if(jc.type == 22){
-                        smeared_p =std::max(float(gen_p4.P() + gamma_scale * (tlv.P() - gen_p4.P())),float(0.));
+                        smeared_p =std::max(float(gen_jc.P() + gamma_scale * (tlv.P() - gen_jc.P())),float(0.));
                     }
                     else if(jc.type == 0){
-                        smeared_p =std::max(float(gen_p4.P() + chad_scale * (tlv.P() - gen_p4.P())),float(0.));
+                        smeared_p =std::max(float(gen_jc.P() + chad_scale * (tlv.P() - gen_jc.P())),float(0.));
                     }
                     else {
-                        continue;
+                        smeared_p =std::max(float(gen_jc.P() + chad_scale * (tlv.P() - gen_jc.P())),float(0.));
                     }
 
-                    smeared_p4.SetPxPyPzE(smeared_p * std::sin(tlv.Theta()) * std::cos(tlv.Phi()),
+                    smeared_jc.SetPxPyPzE(smeared_p * std::sin(tlv.Theta()) * std::cos(tlv.Phi()),
                                         smeared_p * std::sin(tlv.Theta()) * std::sin(tlv.Phi()),
                                         smeared_p * std::cos(tlv.Theta()),
                                         std::sqrt(smeared_p * smeared_p + tlv.M() * tlv.M()));
-                    tlv = smeared_p4;
-                    //break;
                 }
             }
 
-            if (tlv==lead) continue;
-
             // Distance (in terms of Theta)
-            double dTheta= fabs(sum_tau.Theta()-tlv.Theta());   
+            double dTheta= fabs(sum_tau.Theta()-smeared_jc.Theta());   
 
             // The Pt cut and Distance are parameters to tune in the future
-            if (tlv.Pt()<1 || dTheta>0.20) continue;
+            if (smeared_jc.Pt()<1 || dTheta>0.20) continue;
 
             // Now count! 
-            if (jc.charge>0) count_piP++;   
+            
 
-            else if (jc.charge<0) count_piM++;  
+            if (jc.charge>0){
+                count_piP++;
+                
+            }   
+
+            else if (jc.charge<0){
+                count_piM++; 
+                
+            } 
 
             else  count_pho++;
 
-            sum_tau += tlv;  // This is the 4 momenta of only the particles we have selected
+            sum_tau += smeared_jc;  // This is the 4 momenta of only the particles we have selected
 
         }
 
@@ -2060,6 +2075,8 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing (c
         // Considering the decays of the tau: we want candidates with one or three charged candidates (one or three prongs) 
         //std::cout<<" Count? "<<count_piP<<"   "<<count_piM<<"  "<<count_pho<<"   "<<count_pho<<std::endl;
         // The ID number assigned is a bit dummy, helps to keep track of the kind of candidate we have (and see if we can be more restrictive)
+                            
+        //std::cout << count_piM + count_piP << std::endl;
 
         if (tauID!=-13 && tauID!=-11 && abs(count_piP-count_piM)==1 && ( (count_piP+count_piM)==1 || (count_piP+count_piM)==3) ){    
 
@@ -2089,6 +2106,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing (c
 
             if (tauID!=-1 && partMod.mass<3)  out.push_back(partMod);
             else {
+                
                 partMod.momentum.x = 0;
                 partMod.momentum.y = 0;
                 partMod.momentum.z = 0;
@@ -2102,6 +2120,228 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing (c
         }
 
         else {
+            
+            tauID=-3;
+            partMod.type = tauID;
+            out.push_back(partMod);
+        }
+    }
+    return out;
+}
+
+ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_smearing_test (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents>& jets, 
+                                                                               const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& allRecoParticles,
+                                                                               const ROOT::VecOps::RVec<int> &RP2MC_indices,
+                                                                               const ROOT::VecOps::RVec<edm4hep::MCParticleData> &mcParticles, 
+                                                                               float e_scale, 
+                                                                               float mu_scale, 
+                                                                               float gamma_scale, 
+                                                                               float chad_scale){
+
+    // Identify taus by starting from a jet. An alternative is starting directly from reconstructed particles (to be tested more deeply in the future). 
+    // This algorithm requires first building a jet (base example is clustering_ee_kt(2, 4, 1, 0) , we have tested with several configurations) from con 
+    // Then loop over the constituents: identify a seed, and count pions (neutral and charged) and photons to a) build a tau candidate b) be able to identify it
+
+    ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> out;
+
+    // Loop over jets:
+
+    for (int i = 0; i < jets.size(); ++i) {
+
+        TLorentzVector sum_tau; // initialized by (0., 0., 0., 0.)
+        edm4hep::ReconstructedParticleData partMod;
+        FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
+        float tauID=-1;
+        int count_piP=0, count_piM=0, count_nu=0, count_pho=0;
+
+        // Find Lead (This needs to change to first sort the jcs by p or pt, it is very messy right now)
+
+        TLorentzVector lead, gen_p4, reco_p4, smeared_p4, jc_p4;
+        lead.SetPxPyPzE(0,0,0,0);
+        int chargeLead=0;
+
+        // Eventually the FCC sw should have better ID for the particles, based on the detector. 
+        // For the moment I compare the reconstructed  masses and charges to known values
+        // (since that is what the PID module as references does). This is something to be improved in the future! 
+        // Too truth-based.
+
+
+        // First loop just to find the lead (not very efficient). 
+        for (const auto& jc : jcs) {
+
+            // No electrons or muons
+            if (fabs(jc.mass -  0.105658) < 1.e-03) {
+                tauID=-13;
+                continue; 
+                }
+            if (fabs(jc.mass-0.000510999)<  1.e-05 ) {
+                tauID=-11;
+                continue; //stops the loop on jet constituents as soon as it finds a lepton
+            }
+
+            // Anything else lets: find the highest pt one, charged particle as lead only
+            if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
+                lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
+                chargeLead=jc.charge;
+            }
+        }
+
+        // Clean and start counting
+        if (lead.Pt()<2) {
+            tauID=-1;
+            partMod.type = tauID;
+            out.push_back(partMod); //make sure to keep this iteration saved as non tau jets
+            continue;
+        } // Too low pt 
+
+        if (tauID==-13 || tauID==-11) {
+            partMod.type = tauID;
+            out.push_back(partMod); //make sure to keep this iteration saved as non tau jets
+            continue;
+        }//jets with electrons or muon, cannot be tau jets
+
+        if (chargeLead==1) count_piP++;
+
+        else if (chargeLead==-1) count_piM++;
+
+        else {continue;} // This cannot happen 
+
+        for(int j = 0; j < allRecoParticles.size(); j++){
+
+            reco_p4.SetXYZM(allRecoParticles[j].momentum.x, allRecoParticles[j].momentum.y, allRecoParticles[j].momentum.z, allRecoParticles[j].mass);
+            float smeared_p = -1.;
+
+            if(fabs(reco_p4.Eta()-lead.Eta())<1.e-05 && (reco_p4.Phi()-lead.Phi())<1.e-05 && chargeLead == allRecoParticles[j].charge){ //&& (reco_p4.Phi()-gen_p4.Phi())<1.e-02  && (reco_p4.E()-gen_p4.E())<1.e-02
+                
+                gen_p4.SetXYZM(mcParticles[RP2MC_indices[j]].momentum.x, mcParticles[RP2MC_indices[j]].momentum.y, mcParticles[RP2MC_indices[j]].momentum.z, mcParticles[RP2MC_indices[j]].mass);
+                smeared_p =std::max(float(jc_p4.P() + chad_scale * (jc_p4.P() - gen_p4.P())),float(0.));
+
+                smeared_p4.SetPxPyPzE(smeared_p * std::sin(jc_p4.Theta()) * std::cos(jc_p4.Phi()),
+                                        smeared_p * std::sin(jc_p4.Theta()) * std::sin(jc_p4.Phi()),
+                                        smeared_p * std::cos(jc_p4.Theta()),
+                                        std::sqrt(smeared_p * smeared_p + jc_p4.M() * jc_p4.M()));
+            }
+        }
+        lead = smeared_p4;
+
+        sum_tau+=lead;
+
+        // Now I loop to build the tau adding candidates to the lead
+        // Only if they satisfy some conditions: distance, charge, etc 
+        for (const auto& jc : jcs) {
+
+            TLorentzVector tlv;  
+            tlv.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
+
+            for(int j = 0; j < allRecoParticles.size(); j++){
+
+                reco_p4.SetXYZM(allRecoParticles[j].momentum.x, allRecoParticles[j].momentum.y, allRecoParticles[j].momentum.z, allRecoParticles[j].mass);
+                float smeared_p = -1;
+
+                if(fabs(reco_p4.Eta()-tlv.Eta())<1.e-05 && (reco_p4.Phi()-tlv.Phi())<1.e-05 && jc.charge == allRecoParticles[j].charge){ // && (reco_p4.Phi()-gen_p4.Phi())<1.e-02  && (reco_p4.E()-gen_p4.E())<1.e-02
+
+                    gen_p4.SetXYZM(mcParticles[RP2MC_indices[j]].momentum.x, mcParticles[RP2MC_indices[j]].momentum.y, mcParticles[RP2MC_indices[j]].momentum.z, mcParticles[RP2MC_indices[j]].mass);
+
+                    if(fabs(jc.mass - 0.000510999) < 1.e-05 && jc.charge != 0){
+                        smeared_p =std::max(float(gen_p4.P() + e_scale * (tlv.P() - gen_p4.P())),float(0.));
+                        std::cout << "SHIT" << std::endl;
+                    }
+                    else if(fabs(jc.mass - 0.105658) < 1.e-03 && jc.charge != 0){
+                        smeared_p =std::max(float(gen_p4.P() + mu_scale * (tlv.P() - gen_p4.P())),float(0.));
+                        std::cout << "SHIT" << std::endl;
+                    }
+                    else if(jc.type == 22){
+                        smeared_p =std::max(float(gen_p4.P() + gamma_scale * (tlv.P() - gen_p4.P())),float(0.));
+                    }
+                    else if(jc.type == 0){
+                        smeared_p =std::max(float(gen_p4.P() + chad_scale * (tlv.P() - gen_p4.P())),float(0.));
+                    }
+                    else {
+                        smeared_p =std::max(float(gen_p4.P() + chad_scale * (tlv.P() - gen_p4.P())),float(0.));
+                    }
+
+                    smeared_p4.SetPxPyPzE(smeared_p * std::sin(tlv.Theta()) * std::cos(tlv.Phi()),
+                                        smeared_p * std::sin(tlv.Theta()) * std::sin(tlv.Phi()),
+                                        smeared_p * std::cos(tlv.Theta()),
+                                        std::sqrt(smeared_p * smeared_p + tlv.M() * tlv.M()));
+                    //break;
+                }
+            }
+
+            if (smeared_p4==lead){
+                std::cout << "SHIT" << std::endl;
+                continue;
+            } 
+
+            // Distance (in terms of Theta)
+            double dTheta= fabs(sum_tau.Theta()-smeared_p4.Theta());   
+
+            // The Pt cut and Distance are parameters to tune in the future
+            if (smeared_p4.Pt()<1 || dTheta>0.20) continue;
+
+            // Now count! 
+            if (jc.charge>0) count_piP++;   
+
+            else if (jc.charge<0) count_piM++;  
+
+            else  count_pho++;
+
+            sum_tau += smeared_p4;  // This is the 4 momenta of only the particles we have selected
+
+        }
+
+        // Now we have a tau candidate and its momentum (sum_tau).
+        // Lets build the ID : count the charged pions and the neutrals. 
+        // The charge of the tau must be +1 or -1. 
+        // Considering the decays of the tau: we want candidates with one or three charged candidates (one or three prongs) 
+        //std::cout<<" Count? "<<count_piP<<"   "<<count_piM<<"  "<<count_pho<<"   "<<count_pho<<std::endl;
+        // The ID number assigned is a bit dummy, helps to keep track of the kind of candidate we have (and see if we can be more restrictive)
+                            
+        //std::cout << count_piM + count_piP << std::endl;
+        std::cout << "--------------------------------" << std::endl;
+        if (tauID!=-13 && tauID!=-11 && abs(count_piP-count_piM)==1 && ( (count_piP+count_piM)==1 || (count_piP+count_piM)==3) ){    
+            std::cout << "HIT" << std::endl;
+            if( (count_piP+count_piM)==1 && count_pho==0) tauID=0;
+            if( (count_piP+count_piM)==1 && count_pho==1) tauID=1;
+            if( (count_piP+count_piM)==1 && count_pho==2) tauID=2;
+            if( (count_piP+count_piM)==1 && count_pho==3) tauID=3;
+            if( (count_piP+count_piM)==1 && count_pho==4) tauID=4;
+            if( (count_piP+count_piM)==1 && count_pho==5) tauID=5;
+            if( (count_piP+count_piM)==1 && count_pho>=6) tauID=6;
+
+            if( (count_piP+count_piM)==3 && count_pho==0)  tauID=10;
+            if( (count_piP+count_piM)==3 && count_pho==1)  tauID=11;
+            if( (count_piP+count_piM)==3 && count_pho==2)  tauID=12;
+            if( (count_piP+count_piM)==3 && count_pho==3)  tauID=13;
+            if( (count_piP+count_piM)==3 && count_pho==4)  tauID=14;
+            if( (count_piP+count_piM)==3 && count_pho==5)  tauID=15;
+            if( (count_piP+count_piM)==3 && count_pho>=6)  tauID=16;
+
+            partMod.momentum.x=sum_tau.Px();
+            partMod.momentum.y=sum_tau.Py();
+            partMod.momentum.z=sum_tau.Pz();
+            partMod.mass= sum_tau.M();
+            partMod.energy= sum_tau.E();
+            partMod.charge= (count_piP-count_piM);
+            partMod.type = tauID;
+
+            if (tauID!=-1 && partMod.mass<3)  out.push_back(partMod);
+            else {
+                
+                partMod.momentum.x = 0;
+                partMod.momentum.y = 0;
+                partMod.momentum.z = 0;
+                partMod.mass = 0;
+                partMod.energy= 0;
+                partMod.charge = 0; //reset particle so it aligs with other non tau particles saved, we only care about the type in these cases
+                tauID = -2;
+                partMod.type = tauID;
+                out.push_back(partMod);
+            }
+        }
+
+        else {
+            
             tauID=-3;
             partMod.type = tauID;
             out.push_back(partMod);
