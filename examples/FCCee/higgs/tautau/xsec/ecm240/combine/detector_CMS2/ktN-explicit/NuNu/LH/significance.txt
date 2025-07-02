@@ -2,7 +2,9 @@
  <<< v10.0.2 >>>
 >>> Random number generator seed is 123456
 >>> Method used is FitDiagnostics
+[WARNING]: Unable to determine uncertainties on all fit parameters in b-only fit. Have a look at https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/part3/nonstandard/#fit-parameter-uncertainties for more information.
+[WARNING]: Unable to determine uncertainties on all fit parameters in s+b fit. Have a look at https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/part3/nonstandard/#fit-parameter-uncertainties for more information.
 
  --- FitDiagnostics ---
-Best fit r: 1  -0.293029/+0.293452  (68% CL)
-Done in 0.00 min (cpu), 0.00 min (real)
+Best fit r: 0.999999  -0.378822/+0.378006  (68% CL)
+Done in 0.01 min (cpu), 0.09 min (real)

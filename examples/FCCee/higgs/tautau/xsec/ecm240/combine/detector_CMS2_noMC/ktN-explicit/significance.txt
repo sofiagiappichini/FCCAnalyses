@@ -1,0 +1,32 @@
+ <<< Combine >>> 
+ <<< v10.0.2 >>>
+>>> Random number generator seed is 123456
+>>> Method used is FitDiagnostics
+WARNING: underflow to -0.00242413 in pdf_binLL_LLLH_obsOnly for bin 79, weight 0.0242524
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLLH) evaluation error, 
+ origin       : RooAbsReal::LL_LLLH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.099999 +/- 0.0141117,unc_H_H = 5.93178e-07 +/- 0.994518,unc_Z = 1.27686e-07 +/- 0.10413,unc_p8_ee_WW_ecm240 = -2.02939e-07 +/- 0.0454399,unc_p8_ee_ZZ_ecm240 = -1.51463e-06 +/- 0.585754), catParams=()
+FASTEXIT from pdf_binLL_LLLH_obsOnly
+WARNING: underflow to -4.79071 in pdf_binLL_LLHH_obsOnly for bin 44, weight 317.542
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLHH) evaluation error, 
+ origin       : RooAbsReal::LL_LLHH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.099999 +/- 0.0141117,unc_H_H = 5.93178e-07 +/- 0.994518,unc_Z = 1.27686e-07 +/- 0.10413,unc_p8_ee_WW_ecm240 = -2.02939e-07 +/- 0.0454399,unc_p8_ee_ZZ_ecm240 = -1.51463e-06 +/- 0.585754), catParams=()
+FASTEXIT from pdf_binLL_LLHH_obsOnly
+WARNING: underflow to -0.00242413 in pdf_binLL_LLLH_obsOnly for bin 79, weight 0.0242524
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLLH) evaluation error, 
+ origin       : RooAbsReal::LL_LLLH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.099999 +/- 0.0141117,unc_H_H = 5.93178e-07 +/- 0.0396791,unc_Z = 1.27686e-07 +/- 0.00415456,unc_p8_ee_WW_ecm240 = -2.02939e-07 +/- 0.00181295,unc_p8_ee_ZZ_ecm240 = -1.51463e-06 +/- 0.0233703), catParams=()
+FASTEXIT from pdf_binLL_LLLH_obsOnly
+WARNING: underflow to -4.79071 in pdf_binLL_LLHH_obsOnly for bin 44, weight 317.542
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(LL_LLHH) evaluation error, 
+ origin       : RooAbsReal::LL_LLHH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.099999 +/- 0.0141117,unc_H_H = 5.93178e-07 +/- 0.0396791,unc_Z = 1.27686e-07 +/- 0.00415456,unc_p8_ee_WW_ecm240 = -2.02939e-07 +/- 0.00181295,unc_p8_ee_ZZ_ecm240 = -1.51463e-06 +/- 0.0233703), catParams=()
+FASTEXIT from pdf_binLL_LLHH_obsOnly
+
+ --- FitDiagnostics ---
+Best fit r: 1  -0.014313/+0.0146821  (68% CL)
+Done in 0.01 min (cpu), 0.01 min (real)

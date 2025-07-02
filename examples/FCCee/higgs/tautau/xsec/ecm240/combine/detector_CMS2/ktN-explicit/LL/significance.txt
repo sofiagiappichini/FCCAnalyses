@@ -2,31 +2,7 @@
  <<< v10.0.2 >>>
 >>> Random number generator seed is 123456
 >>> Method used is FitDiagnostics
-WARNING: underflow to -0.00242415 in pdf_binLLLH_obsOnly for bin 79, weight 0.0242524
-[#0] ERROR:Eval -- RooAbsReal::logEvalError(LLLH) evaluation error, 
- origin       : RooAbsReal::LLLH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
- message      : Number of events is negative or error
- server values: params=(r = -0.1 +/- 0.0174795,unc_H_H = -2.59449e-08 +/- 0.999843,unc_Z = -6.24726e-09 +/- 0.999123,unc_p8_ee_WW_ecm240 = -5.60613e-09 +/- 0.99998,unc_p8_ee_ZZ_ecm240 = -4.09066e-07 +/- 0.853377), catParams=()
-FASTEXIT from pdf_binLLLH_obsOnly
-WARNING: underflow to -4.79101 in pdf_binLLHH_obsOnly for bin 44, weight 317.542
-[#0] ERROR:Eval -- RooAbsReal::logEvalError(LLHH) evaluation error, 
- origin       : RooAbsReal::LLHH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
- message      : Number of events is negative or error
- server values: params=(r = -0.1 +/- 0.0174795,unc_H_H = -2.59449e-08 +/- 0.999843,unc_Z = -6.24726e-09 +/- 0.999123,unc_p8_ee_WW_ecm240 = -5.60613e-09 +/- 0.99998,unc_p8_ee_ZZ_ecm240 = -4.09066e-07 +/- 0.853377), catParams=()
-FASTEXIT from pdf_binLLHH_obsOnly
-WARNING: underflow to -0.00242415 in pdf_binLLLH_obsOnly for bin 79, weight 0.0242524
-[#0] ERROR:Eval -- RooAbsReal::logEvalError(LLLH) evaluation error, 
- origin       : RooAbsReal::LLLH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
- message      : Number of events is negative or error
- server values: params=(r = -0.1 +/- 0.0174795,unc_H_H = -2.59449e-08 +/- 1,unc_Z = -6.24726e-09 +/- 1,unc_p8_ee_WW_ecm240 = -5.60613e-09 +/- 1,unc_p8_ee_ZZ_ecm240 = -4.09066e-07 +/- 1), catParams=()
-FASTEXIT from pdf_binLLLH_obsOnly
-WARNING: underflow to -4.79101 in pdf_binLLHH_obsOnly for bin 44, weight 317.542
-[#0] ERROR:Eval -- RooAbsReal::logEvalError(LLHH) evaluation error, 
- origin       : RooAbsReal::LLHH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
- message      : Number of events is negative or error
- server values: params=(r = -0.1 +/- 0.0174795,unc_H_H = -2.59449e-08 +/- 1,unc_Z = -6.24726e-09 +/- 1,unc_p8_ee_WW_ecm240 = -5.60613e-09 +/- 1,unc_p8_ee_ZZ_ecm240 = -4.09066e-07 +/- 1), catParams=()
-FASTEXIT from pdf_binLLHH_obsOnly
 
  --- FitDiagnostics ---
-Best fit r: 1  -0.017596/+0.0176062  (68% CL)
-Done in 0.00 min (cpu), 0.01 min (real)
+Best fit r: 1  -0.0178633/+0.0180217  (68% CL)
+Done in 0.01 min (cpu), 0.11 min (real)

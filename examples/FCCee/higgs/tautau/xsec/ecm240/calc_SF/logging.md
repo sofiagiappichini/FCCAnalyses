@@ -87,5 +87,41 @@
     - fit results are comparable to no smearing ???
     - all fits except LL are out of border
 - Wednesday-Meeting: 
-    - Matching to MC via Reco
+    - Matching JC to MC via Reco
     - try to create a new stage2 for smearing only
+- Implemented Matching JC to MC via Reco
+    - still major loss in events, only 335 events pass, should be around 100000
+
+# Week 23.06.2025-29.06.2025
+
+- Matching JC to MC via Reco:
+    - checks on kinematics, doesn't change anything
+    - checks on matching limits, doesn't change much
+    - checks on charge:
+        - to many charged particles
+        - checks on particle types:
+            - nothing suspicous
+        - lead particle is counted twice, no idea why
+        - problem is rounding mistake, therefore check doesn't work
+    - works now
+- Rerun whole analysis
+
+
+# Week 30.07.2025-06.07.2025
+
+- New results: CMS2 combined uncertainty w/o MCstats around 1.4%
+                                         with MCstats around 1.6%
+- LL main reason for high precision
+- creating comparative plots between IDEA (signal from final_241202, only set I was able to find)and CMS2 (smearing):
+    - LL looks pretty good
+    - NuNu looks ok, I guess
+    - QQHH looks good
+    - QQLL and QQLH do not look good, definitely something off
+- Short overview smearing:
+    - LL + NuNu: Smearing at the begin for electrons, muons, photons and charged hadrons (only one smeared set of particles)
+    - QQLL: 2 sets of particles: one with smeared electrons, muons, photons for the leptonic taus; 
+                                 one with not smeared particles for clustering, only smearing jets for QQ from Z (based on dijet mass shape)
+    - QQLH: 2 sets of particles: one with smeared electrons, muons, photons for the leptonic tau; 
+                                 one with not smeared particles for clustering, smearing jets for QQ from Z (based on dijet mass shape) and smearing hadronic tau within the reconstruction with smear factors like LL+NuNu
+    - QQHH: 1 not smeared set of particles: smearing jets for QQ from Z (based on dijet mass shape) and smearing hadronic tau within the reconstruction with smear factors like LL+NuNu
+    

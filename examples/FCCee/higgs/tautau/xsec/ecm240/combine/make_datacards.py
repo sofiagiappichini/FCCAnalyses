@@ -318,7 +318,7 @@ if make_card:
                 dc += "\n\n" 
 
 
-                #dc += "* autoMCStats 1 1"
+                dc += "* autoMCStats 1 1"
 
                 # write cards
                 if not os.path.exists(f"{outputDir}/{tag}/{cat}/{sub}"):
