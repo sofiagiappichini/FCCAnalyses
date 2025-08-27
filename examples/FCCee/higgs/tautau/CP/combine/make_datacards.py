@@ -64,17 +64,17 @@ def get_combined_unc_v2(name, sub_proc, procs, bkg_procs):
 #os.system("cd /work/xzuo/combine_test/CMSSW_14_1_0_pre4/src/")
 #os.system("cmsenv")
 
-outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/combine/250604_20per/"
+outputDir = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/combine/250729_20per/"
 
 DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
 SUBDIR = [
-    'LL',
-    'LH',
+    #'LL',
+    #'LH',
     'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     "LL",
     #"NuNu",
 ]
@@ -171,10 +171,10 @@ if make_card:
                     if b not in signals:
                         check_nonzero(directory, cut, b, bkg_procs, VARIABLE[cat])
                     else:
-                        check_nonzero(directory, cut, b, sig_procs, b+"_"+VARIABLE[cat])
+                        check_nonzero(directory, cut, b, sig_procs, VARIABLE[cat])
 
             procs = sig_procs + bkg_procs
-            #print(procs)
+            print(bkg_procs)
             nprocs = len(procs)
             #print(nprocs)
 
@@ -186,8 +186,8 @@ if make_card:
             rates_procs = " ".join([f"{'-1':{' '}{'<'}{lspace}}"] * nprocs)
             
             if rebinned:
-                dc += f"shapes * * {directory}Combine_{VARIABLE[cat]}_{cut}_histo.root $PROCESS_$CHANNEL\n"
-                dc += f"shapes data_obs * {directory}Combine_{VARIABLE[cat]}_{cut}_histo.root {sig_procs[0]}_$CHANNEL\n"
+                dc += f"shapes * * {directory}Combine_{VARIABLE[cat]}_{cut}_histo.root $CHANNEL\n"
+                dc += f"shapes data_obs * {directory}Combine_{VARIABLE[cat]}_{cut}_histo.root $CHANNEL\n"
 
             else:
                 for proc in procs:

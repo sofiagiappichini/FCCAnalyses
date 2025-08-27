@@ -32,11 +32,11 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/BDT_250502/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/"
 TAG = [
     #"R5-explicit",
     #"R5-tag",
-    "ktN-explicit",
+    #"ktN-explicit",
     "ktN-tag",
 ]
 SUBDIR = [
@@ -788,7 +788,7 @@ ana_tex_sub = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = True
+LOGY = False
 
 #list of backgorunds, then legend and colors to be assigned to them
 backgrounds_all = [
@@ -923,7 +923,7 @@ legcolors = {
     "wzp6_ee_tautauH_Hgg_ecm240":ROOT.kViolet-4,
     "wzp6_ee_tautauH_HVV_ecm240":ROOT.kViolet+1,
 
-    'wzp6_ee_nunuH_Htautau_ecm240':ROOT.kTeal-9,
+    'wzp6_ee_nunuH_Htautau_ecm240':ROOT.kTeal-8,
     "wzp6_ee_nunuH_HQQ_ecm240":ROOT.kGreen-5,
     "wzp6_ee_nunuH_Hgg_ecm240":ROOT.kGreen-8,
     "wzp6_ee_nunuH_HVV_ecm240":ROOT.kGreen-10,
@@ -953,7 +953,7 @@ legcolors = {
     "wzp6_ee_LLH_Hgg_ecm240":ROOT.kCyan-8,
     "wzp6_ee_LLH_HVV_ecm240":ROOT.kCyan-10,
 
-    'wzp6_ee_QQH_Htautau_ecm240':ROOT.kViolet-9,
+    'wzp6_ee_QQH_Htautau_ecm240':ROOT.kRed-10,
     "wzp6_ee_QQH_HQQ_ecm240":ROOT.kMagenta-5,
     "wzp6_ee_QQH_Hgg_ecm240":ROOT.kMagenta-8,
     "wzp6_ee_QQH_HVV_ecm240":ROOT.kMagenta-10,
@@ -977,12 +977,14 @@ for tag in TAG:
                 variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] #+ ["BDT_score"]
         else: 
             variables = VARIABLES + LIST_VAR[cat] #+["BDT_score"]
-        variables = ["BDT_score",]
+        variables = ["Recoil",]
 
         for sub in SUBDIR:
-            directory = DIRECTORY + tag + "/final/" + cat + "/" + sub + "/"
+            directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
 
             CUT = CUTS[cat]
+
+            CUT = ["selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",]
 
             for cut in CUT:
                 for variable in variables:
@@ -1004,6 +1006,7 @@ for tag in TAG:
                     leg.SetShadowColor(0)
                     leg.SetTextSize(0.025)
                     leg.SetTextFont(42)
+                    leg.SetBorderSize(0) 
 
                     leg2 = ROOT.TLegend(0.45, 0.70 - legsize2, 0.90, 0.70)
                     leg2.SetNColumns(2)
@@ -1013,6 +1016,7 @@ for tag in TAG:
                     leg2.SetShadowColor(0)
                     leg2.SetTextSize(0.025)
                     leg2.SetTextFont(42)
+                    leg2.SetBorderSize(0) 
 
                     #global arrays for histos and colors
                     histos = []
@@ -1083,6 +1087,7 @@ for tag in TAG:
                             h.SetLineWidth(1)
                             h.SetLineColor(ROOT.kBlack)
                             h.SetFillColor(colors[i])
+                            #h.Rebin(4)
                             #making sure only histograms with integral positive get added to the stack and legend
                             if h.Integral() > 0:
                                 BgMCHistYieldsDic[h.Integral()] = h
@@ -1096,8 +1101,8 @@ for tag in TAG:
                             hStackBkg.Add(h)
 
                         if LOGY==True :
-                            hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                            hStackBkg.SetMaximum(1e20) #leave some space on top for the legend
+                            hStackBkg.SetMinimum(1e-1) #change the range to be plotted
+                            hStackBkg.SetMaximum(1e10) #leave some space on top for the legend
                         else:
                             #h = hStackBkg.GetHists() #list of histograms 
                             last = 0
@@ -1106,7 +1111,7 @@ for tag in TAG:
                                     last = histos[i].GetMaximum() 
                                 # Set the y-axis range with additional white space
                             #hStackBkg.SetMinimum(0)
-                            hStackBkg.SetMaximum(last*2.5)
+                            hStackBkg.SetMaximum(last*2)
 
                         #draw the histograms
                         hStackBkg.Draw("HIST")
@@ -1115,6 +1120,7 @@ for tag in TAG:
                         for i in range(nsig):
                             h = histos[i]
                             h.SetLineWidth(3)
+                            #h.Rebin(4)
                             h.SetLineColor(colors[i])
                             h.Draw("HIST SAME")
 
@@ -1124,7 +1130,7 @@ for tag in TAG:
                         #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                         hStackBkg.GetXaxis().SetTitleOffset(1.2)
                         
-                        #hStackBkg.GetXaxis().SetLimits(100, 240)
+                        hStackBkg.GetXaxis().SetLimits(115, 160)
 
                     else: 
                         # add the signal histograms
@@ -1183,7 +1189,6 @@ for tag in TAG:
                     legsize = 0.04*nsig
                     legsize2 = 0.03*(len(histos)-nsig)/2
                     leg.SetY1(0.70 - legsize)
-
                     leg2.SetY1(0.70 - legsize2)
 
                     leg.Draw()
@@ -1222,13 +1227,13 @@ for tag in TAG:
                         canvas.Modified()
                         canvas.Update()
 
-                        dir = DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut + "/"
-                        make_dir_if_not_exists(DIR_PLOTS + tag)
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat)
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub)
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/")
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut)
-                        make_dir_if_not_exists(dir)
+                        dir = DIR_PLOTS + tag + "/"# + cat + "/" + sub + "/lin/" + cut + "/"
+                        #make_dir_if_not_exists(DIR_PLOTS + tag)
+                        #make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat)
+                        #make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub)
+                        #make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/")
+                        #make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub + "/lin/" + cut)
+                        #make_dir_if_not_exists(dir)
 
                         canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
                         canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")

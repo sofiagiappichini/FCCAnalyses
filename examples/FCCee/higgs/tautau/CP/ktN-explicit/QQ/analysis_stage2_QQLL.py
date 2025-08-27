@@ -3,7 +3,22 @@ import ROOT
 import urllib.request
 
 #Mandatory: List of processes
-processList = {
+processList_ = {
+
+    "p8_ee_bbH_Htautau_CPeven":{},
+    "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPeven":{},
+    "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPeven":{},
+    "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPeven":{},
+    "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPeven":{},
+    "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    "p8_ee_qqH_Htautau_CPodd":{},
+}
+processList_ = {
     "mg_ee_eetata_ecm240":{},
     "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
     "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
@@ -19,19 +34,6 @@ processList = {
     "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
     "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
     "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
-
-    "p8_ee_bbH_Htautau_CPeven":{},
-    "p8_ee_bbH_Htautau_CPodd":{},
-    "p8_ee_ccH_Htautau_CPeven":{},
-    "p8_ee_ccH_Htautau_CPodd":{},
-    "p8_ee_eeH_Htautau_CPeven":{},
-    "p8_ee_eeH_Htautau_CPodd":{},
-    "p8_ee_mumuH_Htautau_CPeven":{},
-    "p8_ee_mumuH_Htautau_CPodd":{},
-    "p8_ee_ssH_Htautau_CPeven":{},
-    "p8_ee_ssH_Htautau_CPodd":{},
-    "p8_ee_qqH_Htautau_CPeven":{},
-    "p8_ee_qqH_Htautau_CPodd":{},
 }
 processList_ = {
 
@@ -118,9 +120,23 @@ processList_ = {
     'wzp6_ee_qqH_HZZ_ecm240': {'chunks':100},
 }
 
+processList = {
+    'wzp6_ee_eeH_Hgg_ecm240': {'chunks':100},
+    'wzp6_ee_eeH_HWW_ecm240': {'chunks':100},
+    'wzp6_ee_eeH_HZZ_ecm240': {'chunks':100},
+
+    'wzp6_ee_mumuH_Htautau_ecm240': {'chunks':100},
+    'wzp6_ee_mumuH_Hbb_ecm240': {'chunks':100},
+    'wzp6_ee_mumuH_Hcc_ecm240': {'chunks':100},
+    'wzp6_ee_mumuH_Hss_ecm240': {'chunks':100},
+    'wzp6_ee_mumuH_Hgg_ecm240': {'chunks':100},
+    'wzp6_ee_mumuH_HWW_ecm240': {'chunks':100},
+    'wzp6_ee_mumuH_HZZ_ecm240': {'chunks':100},
+}
+
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
-#prodTag     = "FCCee/winter2023/IDEA/"
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/"
+prodTag     = "FCCee/winter2023/IDEA/"
+#inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/"
 
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 #inputDir = "root://eospublic.cern.ch//eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
@@ -612,7 +628,7 @@ class RDFanalysis():
                 .Define("TagJet_kt2_isB",    "recojet_isB_kt2")
                 .Define("TagJet_kt2_isTAU",    "recojet_isTAU_kt2")
 
-.Define("TauFromJet_kt2", "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 0)".format(jetClusteringHelper_kt2.constituents)) 
+                .Define("TauFromJet_kt2", "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 0)".format(jetClusteringHelper_kt2.constituents)) 
                 .Define("TauFromJet_kt2_type_sel","ReconstructedParticle::get_type(TauFromJet_kt2)")
                 .Define("TauFromJet_kt2_tau", "TauFromJet_kt2[TauFromJet_kt2_type_sel>=0]") 
                 .Define("TauFromJet_kt2_p","ReconstructedParticle::get_p(TauFromJet_kt2_tau)")
@@ -640,6 +656,9 @@ class RDFanalysis():
                 .Define("TagJet_kt2_sel_theta",   "TagJet_kt2_theta[TauFromJet_kt2_type_sel<0 ]")
 		        .Define("TagJet_kt2_sel_phi",     "TagJet_kt2_phi[TauFromJet_kt2_type_sel<0 ]")
                 .Define("TagJet_kt2_sel_mass",      "TagJet_kt2_mass[TauFromJet_kt2_type_sel<0 ]")
+                .Define("n_TagJet_kt2_sel_constituents",        "n_TagJet_kt2_constituents[TauFromJet_kt2_type_sel<0 ]")
+                .Define("n_TagJet_kt2_sel_charged_constituents",        "n_TagJet_kt2_charged_constituents[TauFromJet_kt2_type_sel<0 ]")
+                .Define("n_TagJet_kt2_sel_neutral_constituents",        "n_TagJet_kt2_neutral_constituents[TauFromJet_kt2_type_sel<0 ]")
                 .Define("n_TagJet_kt2_sel", "TagJet_kt2_sel_e.size()")
 
                 #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
@@ -753,7 +772,13 @@ class RDFanalysis():
 
                 .Define("RecoZ1_p4",      "TLorentzVector(TagJet_kt2_sel_px.at(0), TagJet_kt2_sel_py.at(0), TagJet_kt2_sel_pz.at(0), TagJet_kt2_sel_e.at(0))")
                 .Define("RecoZ2_p4",      "TLorentzVector(TagJet_kt2_sel_px.at(1), TagJet_kt2_sel_py.at(1), TagJet_kt2_sel_pz.at(1), TagJet_kt2_sel_e.at(1))")
-                
+                .Define("RecoZ1_consituents",    "n_TagJet_kt2_sel_constituents.at(0)")
+                .Define("RecoZ2_consituents",    "n_TagJet_kt2_sel_constituents.at(1)")
+                .Define("RecoZ1_charged_consituents",    "n_TagJet_kt2_sel_charged_constituents.at(0)")
+                .Define("RecoZ2_charged_consituents",    "n_TagJet_kt2_sel_charged_constituents.at(1)")
+                .Define("RecoZ1_neutral_consituents",    "n_TagJet_kt2_sel_neutral_constituents.at(0)")
+                .Define("RecoZ2_neutral_consituents",    "n_TagJet_kt2_sel_neutral_constituents.at(1)")
+
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
                 .Define("RecoZLead_py",    "RecoZLead_p4.Py()")
@@ -1410,6 +1435,12 @@ class RDFanalysis():
             "RecoZ_theta",
             "RecoZ_y",
             "RecoZ_mass",
+            "RecoZ1_consituents", 
+            "RecoZ2_consituents", 
+            "RecoZ1_charged_consituents",   
+            "RecoZ2_charged_consituents",  
+            "RecoZ1_neutral_consituents",   
+            "RecoZ2_neutral_consituents", 
 
             "RecoZLead_px", 
             "RecoZLead_py",   

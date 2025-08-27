@@ -32,14 +32,15 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/QQ/HH/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/taureco_test/LLHH/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/eos/user/s/sgiappic/www/HiggsCP/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
-    "SelReco_ILC",
+    "selReco_ILC",
+    "selReco_Belle",
  ] 
 #labels for the cuts in the plots
 LABELS = {
@@ -50,12 +51,12 @@ LABELS = {
     "selDPhi":"KinGen_hh_norm_DPhi<0.5",
  }
 
-label = "_QQHH"
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, Z #rightarrow qq, H #rightarrow #tau_{h}#tau_{h}, SM"
+label = "_eeHH"
+ana_tex        = "e^{+}e^{-} #rightarrow ZH, Z #rightarrow ee, H #rightarrow #tau_{h}#tau_{h}"
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = False
+LOGY = True
 
 
 #list of signals, then legend and colors to be assigned to them
@@ -104,7 +105,9 @@ signals_old = [
 ]
 
 signals = [
-    "sm",
+    #"p8_ee_Ztautau_ecm91",
+    "mg_ee_eetata_ecm240",
+    #"sm",
     #"sm_lin_quad_cehim_m1",
     #"sm_lin_quad_cehim",
     #"sm_lin_quad_cehre_m1",
@@ -211,7 +214,7 @@ canvas = ROOT.TCanvas("", "", 1000, 1000)
 #canvas.SetTicks(1, 1)
 canvas.cd()
 
-nsig = 5
+nsig = 6
 
 #legend coordinates and style
 legsize = 0.04*nsig
@@ -236,8 +239,18 @@ for s in signals:
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kCyan-8)
+    colors.append(ROOT.kViolet-7)
     leg.AddEntry(histos[-1], "Visible", "l")
+
+for s in signals:
+    fin = f"{DIRECTORY}{s}_{CUTS[2]}_histo.root"
+    with ROOT.TFile(fin) as tf:
+        h = tf.Get("Belle_Higgs_mass")#s + "_" + variable
+        hh = copy.deepcopy(h)
+        hh.SetDirectory(0)
+    histos.append(hh)
+    colors.append(ROOT.kTeal-7)
+    leg.AddEntry(histos[-1], "Kinematics method", "l")
 
 for s in signals:
     fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
@@ -246,8 +259,8 @@ for s in signals:
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kAzure-6)
-    leg.AddEntry(histos[-1], "Reconstructed", "l")
+    colors.append(ROOT.kCyan-8)
+    leg.AddEntry(histos[-1], "Impact method", "l")
 
 for s in signals:
     fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
@@ -256,7 +269,7 @@ for s in signals:
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kTeal-7)
+    colors.append(ROOT.kAzure-4)
     leg.AddEntry(histos[-1], "Collinear xy", "l")
 for s in signals:
     fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
@@ -295,12 +308,12 @@ for i in range(nsig):
     if i == 0:
         h.Draw("HIST")
         h.GetYaxis().SetTitle("Events (normalised)")
-        h.GetXaxis().SetTitle("M_{H} [GeV]")
+        h.GetXaxis().SetTitle("M_{Z} [GeV]")
         h.GetYaxis().SetTitleOffset(1.4)
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))
-        h.GetYaxis().SetRangeUser(0, 0.25)
-        h.GetXaxis().SetLimits(60, 140)
+        h.GetYaxis().SetRangeUser(1e-2, 1.2)
+        h.GetXaxis().SetRangeUser(40, 140)
     else: 
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))

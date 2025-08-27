@@ -32,28 +32,61 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_test/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_final_tes_madspin/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/Reco_tests_madspin/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
+    "selDiag",
+    "selOffDiag",
+    "selPi",
+    "selRho",
+    #"selReco_ILC",
+    #"selDiag_ILC",
+    #"selOffDiag_ILC",
+    #"selPi_ILC",
+    #"selRho_ILC",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
     #"selReco_CMS",
     #"selDPhi",
+
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_2DR",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+  
  ] 
 #labels for the cuts in the plots
 LABELS = {
     "selReco": "No additional selection",
     "selReco_ILC20chi": "p_{T,miss} (#chi^{2})<20 GeV",
     "selGen": "No additional selection",
-    "selReco_CMS":"No additional selection",
+    "selReco_ILC":"No additional selection",
     "selDPhi":"KinGen_hh_norm_DPhi<0.5",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100":"Full selection",
+    "selDiag":"Both taus decay to pi or rho",
+    "selOffDiag":"One tau decays to pi, the other rho",
+    "selPi":"Both taus decay to pi",
+    "selRho":"Both taus decay to rho",
+    "selDiag_ILC":"Both taus decay to pi or rho",
+    "selOffDiag_ILC":"One tau decays to pi, the other rho",
+    "selPi_ILC":"Both taus decay to pi",
+    "selRho_ILC":"Both taus decay to rho",
+
+    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
+    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+  
  }
 
-label = "_EE_reduced"
+label = "_mod1"
 ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau " #(#pi#pi^{0}#nu)
 energy         = 240
 collider       = 'FCC-ee'
@@ -1043,7 +1076,9 @@ bcolors = {
 }
 
 #list of signals, then legend and colors to be assigned to them
-signals_old = [
+
+signals = [
+
     #'noISR_e+e-_noCuts_EWonly',
     #'noISR_e+e-_noCuts_cehre_m1',
     #'noISR_e+e-_noCuts_cehre_p1',
@@ -1084,9 +1119,7 @@ signals_old = [
     #'cehim_m10_taudecay_2Pi2Nu':{},
 
     #'wzp6_ee_eeH_Htautau_ecm240',
-]
 
-signals = [
     #"sm",
     #"sm_lin_quad_cehim_m1",
     #"sm_lin_quad_cehim",
@@ -1097,12 +1130,28 @@ signals = [
     #"p8_ee_LLH_Htautau_CPeven",
     #"p8_ee_LLH_Htautau_CPodd",
 
-    "mg_ee_eetata_ecm240",
-    "mg_ee_eetata_smeft_cehim_m1_ecm240",
-    "mg_ee_eetata_smeft_cehim_p1_ecm240",
+    #"mg_ee_eetata_ecm240",
+    #'EWonly_taudecay_2Pi2Nu',
+    #"mg_ee_eetata_smeft_cehim_m1_ecm240",
+    #"mg_ee_eetata_smeft_cehim_p1_ecm240",
+    #"test_output",
+
+    #"mg_ee_eetata_pinu_ecm240",
+    #"mg_ee_eetata_pinu_c_mass_smeft_cehim_m1_ecm240",
+    #"mg_ee_eetata_pinu_smeft_cehim_m1_ecm240",
+    
+    #"mg_ee_eetata_pinu_smeft_cehim_m1_ecm240", 
+    #"mg_ee_eetata_mod1_ecm240",                
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240",
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin",
+    #"mg_ee_eetata_mod1_smeft_cehim_p1_ecm240",  
 ]
 
 slegend = {
+    "mg_ee_eetata_pinu_smeft_cehim_m1_ecm240":"CPV -1, mass",
+    "mg_ee_eetata_pinu_c_mass_smeft_cehim_m1_ecm240":"CPV -1, no mass",
+    "mg_ee_eetata_pinu_ecm240":"SM",
+
     'noISR_e+e-_noCuts_EWonly':"Z(ee)H(#tau#tau), SM",
     'noISR_e+e-_noCuts_cehim_m1':"Z(ee)H(#tau#tau), CPV -1",
     'noISR_e+e-_noCuts_cehim_p1':"Z(ee)H(#tau#tau), CPV +1",
@@ -1111,6 +1160,7 @@ slegend = {
     'noISR':"Z(ee)H(#tau#tau), CPV +1, v.2",
     'taudecay':"Z(ee)H(#tau#tau), CPV +1, with #tau decay",
     'wzp6_ee_eeH_Htautau_ecm240':"Z(ee)H(#tau#tau), SM Whizard",
+    "test_output":"new sample cpv",
 
     'EWonly_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), SM",
     'cehim_m1_taudecay_2Pi2Nu':"Z(ee)H(#tau#tau), CPV -1",
@@ -1156,9 +1206,18 @@ slegend = {
     "mg_ee_eetata_ecm240":"Z(ee)H(#tau#tau)",
     "mg_ee_eetata_smeft_cehim_m1_ecm240":"Z(ee)H(#tau#tau), CPV -1",
     "mg_ee_eetata_smeft_cehim_p1_ecm240":"Z(ee)H(#tau#tau), CPV +1",
+
+    "mg_ee_eetata_mod1_ecm240":"Z(ee)H(#tau#tau)",                
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240":"Z(ee)H(#tau#tau), CPV -1",
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin":"Z(ee)H(#tau#tau), CPV -1, MadSpin",
+    "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":"Z(ee)H(#tau#tau), CPV +1",
 }
 
 scolors = {
+    "mg_ee_eetata_pinu_smeft_cehim_m1_ecm240":ROOT.kBlack,
+    "mg_ee_eetata_pinu_c_mass_smeft_cehim_m1_ecm240":ROOT.kBlue,
+    "mg_ee_eetata_pinu_ecm240":ROOT.kRed,
+
     'noISR_e+e-_noCuts_EWonly':ROOT.kRed-9,
     'noISR_e+e-_noCuts_cehim_m1':ROOT.kCyan-6,
     'noISR_e+e-_noCuts_cehim_p1':ROOT.kBlue-7,
@@ -1167,6 +1226,7 @@ scolors = {
     'noISR':ROOT.kCyan-6,
     'taudecay':ROOT.kMagenta-6,
     'wzp6_ee_eeH_Htautau_ecm240':ROOT.kGray+2,
+    "test_output":ROOT.kRed,
 
     'EWonly_taudecay_2Pi2Nu':ROOT.kRed-9,
     'cehim_m1_taudecay_2Pi2Nu':ROOT.kCyan-6,
@@ -1212,12 +1272,19 @@ scolors = {
 
     'cehim_m10_taudecay_2Pi2Nu':ROOT.kCyan-6,
     'cehim_p10_taudecay_2Pi2Nu':ROOT.kBlue-7,
+
+    "mg_ee_eetata_mod1_ecm240":ROOT.kViolet-9,            
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240":ROOT.kAzure-6,
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin":ROOT.kRed-4,
+    "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":ROOT.kTeal-7, 
+
+    
 }
 
 for cut in CUTS:
     #VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
     #VARIABLES = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
-    VARIABLES = ["GenPhi_decay",]
+    VARIABLES = ["GenPhi_CP",]
     for variable in VARIABLES:
 
         canvas = ROOT.TCanvas("", "", 1000, 1000)
@@ -1270,17 +1337,21 @@ for cut in CUTS:
             h = histos[i]
             h.SetLineWidth(3)
             h.SetLineColor(colors[i])
+            h.Rebin(1)
             if i == 0:
                 h.Draw("HIST")
                 h.GetYaxis().SetTitle("Events")
                 h.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
                 #h.GetXaxis().SetTitleOffset(1.2)
-                #if h.Integral()>0:
-                    #h.Scale(1./(h.Integral()))
-                h.GetYaxis().SetRangeUser(0, max*2)
+                #h.Rebin(2)
+                if h.Integral()>0:
+                    h.Scale(1./(h.Integral()))
+                h.GetYaxis().SetRangeUser(0,0.1)
             else: 
-                #if h.Integral()>0:
-                    #h.Scale(1./(h.Integral()))
+                #h.Rebin(2)
+                if h.Integral()>0:
+                    h.Scale(1./(h.Integral()))
+                #    h.Scale(0.5)
                 h.Draw("HIST SAME")
         
         extralab = LABELS[cut]
@@ -1388,7 +1459,7 @@ for cut in CUTS:
         #canvas.Modified()
         #canvas.Update()
 
-        dir = DIR_PLOTS + "/" + cut + "/"
+        dir = DIR_PLOTS #+ "/" + cut + "/"
         make_dir_if_not_exists(dir)
 
         if (LOGY == True):
@@ -1398,5 +1469,5 @@ for cut in CUTS:
 
         else:
 
-            canvas.SaveAs(dir + variable + label + ".png")
-            canvas.SaveAs(dir+ variable + label + ".pdf")
+            canvas.SaveAs(dir + variable + label + cut + ".png")
+            canvas.SaveAs(dir+ variable + label + cut + ".pdf")

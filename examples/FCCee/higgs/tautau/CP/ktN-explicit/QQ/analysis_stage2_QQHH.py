@@ -4,6 +4,21 @@ import urllib.request
 
 #Mandatory: List of processes
 processList = {
+
+    "p8_ee_bbH_Htautau_CPeven":{},
+    "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPeven":{},
+    "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPeven":{},
+    "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPeven":{},
+    "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPeven":{},
+    "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    "p8_ee_qqH_Htautau_CPodd":{},
+}
+processList_ = {
     "mg_ee_eetata_ecm240":{},
     "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
     "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
@@ -19,19 +34,6 @@ processList = {
     "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
     "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
     "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
-
-    "p8_ee_bbH_Htautau_CPeven":{},
-    "p8_ee_bbH_Htautau_CPodd":{},
-    "p8_ee_ccH_Htautau_CPeven":{},
-    "p8_ee_ccH_Htautau_CPodd":{},
-    "p8_ee_eeH_Htautau_CPeven":{},
-    "p8_ee_eeH_Htautau_CPodd":{},
-    "p8_ee_mumuH_Htautau_CPeven":{},
-    "p8_ee_mumuH_Htautau_CPodd":{},
-    "p8_ee_ssH_Htautau_CPeven":{},
-    "p8_ee_ssH_Htautau_CPodd":{},
-    "p8_ee_qqH_Htautau_CPeven":{},
-    "p8_ee_qqH_Htautau_CPodd":{},
 }
 processList_ = {
 
@@ -141,7 +143,7 @@ runBatch = True
 nCPUS = 6
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+batchQueue = "tomorrow"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -572,6 +574,9 @@ class RDFanalysis():
                 .Define("TagJet_kt4_sel_theta",   "TagJet_kt4_theta[TauFromJet_kt4_type_sel<0 ]")
 		        .Define("TagJet_kt4_sel_phi",     "TagJet_kt4_phi[TauFromJet_kt4_type_sel<0 ]")
                 .Define("TagJet_kt4_sel_mass",      "TagJet_kt4_mass[TauFromJet_kt4_type_sel<0 ]")
+                .Define("n_TagJet_kt4_sel_constituents",        "n_TagJet_kt4_constituents[TauFromJet_kt4_type_sel<0 ]")
+                .Define("n_TagJet_kt4_sel_charged_constituents",        "n_TagJet_kt4_charged_constituents[TauFromJet_kt4_type_sel<0 ]")
+                .Define("n_TagJet_kt4_sel_neutral_constituents",        "n_TagJet_kt4_neutral_constituents[TauFromJet_kt4_type_sel<0 ]")
                 .Define("n_TagJet_kt4_sel", "TagJet_kt4_sel_e.size()")
 
                 #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
@@ -684,6 +689,12 @@ class RDFanalysis():
 
                 .Define("RecoZ1_p4",      "TLorentzVector(TagJet_kt4_sel_px.at(0), TagJet_kt4_sel_py.at(0), TagJet_kt4_sel_pz.at(0), TagJet_kt4_sel_e.at(0))")
                 .Define("RecoZ2_p4",      "TLorentzVector(TagJet_kt4_sel_px.at(1), TagJet_kt4_sel_py.at(1), TagJet_kt4_sel_pz.at(1), TagJet_kt4_sel_e.at(1))")
+                .Define("RecoZ1_consituents",    "n_TagJet_kt4_sel_constituents.at(0)")
+                .Define("RecoZ2_consituents",    "n_TagJet_kt4_sel_constituents.at(1)")
+                .Define("RecoZ1_charged_consituents",    "n_TagJet_kt4_sel_charged_constituents.at(0)")
+                .Define("RecoZ2_charged_consituents",    "n_TagJet_kt4_sel_charged_constituents.at(1)")
+                .Define("RecoZ1_neutral_consituents",    "n_TagJet_kt4_sel_neutral_constituents.at(0)")
+                .Define("RecoZ2_neutral_consituents",    "n_TagJet_kt4_sel_neutral_constituents.at(1)")
                 
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
@@ -1303,7 +1314,10 @@ class RDFanalysis():
             "TagJet_kt4_sel_eta",    
             "TagJet_kt4_sel_theta",   
             "TagJet_kt4_sel_phi",     
-            "TagJet_kt4_sel_mass",      
+            "TagJet_kt4_sel_mass", 
+            "n_TagJet_kt4_sel_constituents",   
+            "n_TagJet_kt4_sel_charged_constituents",   
+            "n_TagJet_kt4_sel_neutral_constituents",       
             "n_TagJet_kt4_sel",
 
         ]
@@ -1362,6 +1376,12 @@ class RDFanalysis():
             "RecoZ_theta",
             "RecoZ_y",
             "RecoZ_mass",
+            "RecoZ1_consituents", 
+            "RecoZ2_consituents", 
+            "RecoZ1_charged_consituents",   
+            "RecoZ2_charged_consituents",  
+            "RecoZ1_neutral_consituents",   
+            "RecoZ2_neutral_consituents",   
 
             "RecoZLead_px", 
             "RecoZLead_py",   

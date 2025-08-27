@@ -2570,7 +2570,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet_OG (const R
 
 }
 
-ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentzVector EMiss, ROOT::VecOps::RVec<TLorentzVector> Tau_vis, ROOT::VecOps::RVec<float> charge){
+ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, ROOT::VecOps::RVec<TLorentzVector> Tau_vis, ROOT::VecOps::RVec<float> charge){
     
     //following Belle reconstruction https://arxiv.org/pdf/1310.8503
     // first of all, build the visible taus from pi and pi0 with either jet tagger or the explciit reconstruction
@@ -2584,7 +2584,7 @@ ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentz
     ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H;
 
 
-    double E_tau = Recoil.E()/2; //energy of the single taus in the higgs rest frame
+    double E_tau = Recoil.M()/2; //energy of the single taus in the mother rest frame by energy conservation
 
     for (size_t i = 0; i < Tau_vis.size(); ++i) {
 
@@ -2596,6 +2596,7 @@ ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentz
 
     // order the taus by charge: first the positive then negative to keep consistent later on
     // assumes they have opposite charges
+    // 0 is plus, 1 is minus
     if (charge[0]==1) {
         Tau_vis_H.push_back(Tau_vis_H_temp[0]);
         Tau_vis_H.push_back(Tau_vis_H_temp[1]);
@@ -2668,24 +2669,22 @@ ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentz
     TLorentzVector min2;
     min2.SetPxPyPzE(-P_tau * x2, -P_tau * y2, -P_tau * z2, E_tau);
 
+    TLorentzVector tauP = (plus1 + plus2) * 0.5; // division doesn't work for tvl but multiplication is component wise 
+    TLorentzVector tauM = (min1 + min2) * 0.5;
+
+    tauP.Boost(Recoil.BoostVector());
+    tauM.Boost(Recoil.BoostVector());
+
+    result.push_back(tauP);
+    result.push_back(tauM);
+
+    // boost back the solutions to figure out the best one against the recoil frame
+    /*plus1.Boost( Recoil.BoostVector());
+    plus2.Boost( Recoil.BoostVector());
+    min1.Boost( Recoil.BoostVector());
+    min2.Boost( Recoil.BoostVector());
+
     if (discriminant > 0) {
-        // boost back the solutions to figure out the best one against the recoil frame
-        plus1.Boost( Recoil.BoostVector());
-        plus2.Boost( Recoil.BoostVector());
-        min1.Boost( Recoil.BoostVector());
-        min2.Boost( Recoil.BoostVector());
-
-        TLorentzVector sol1 = plus1 + min1; 
-        TLorentzVector sol2 = plus2 + min2; 
-
-        // Energy conservation check
-        double energy_diff1 = (Recoil - sol1).E();
-        double energy_diff2 = (Recoil - sol2).E();
-
-        // Compute momentum balance for both solutions
-        double momentum_diff1 = (Recoil - sol1).P(); 
-        double momentum_diff2 = (Recoil - sol2).P();
-
         TLorentzVector nuplus1, nuplus2, numin1, numin2;
 
         if (charge[0]==1){
@@ -2705,42 +2704,12 @@ ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentz
         float D1 = deltaR(plus1.Phi(), nuplus1.Phi(), plus1.Eta(), nuplus1.Eta());
         float D2 = deltaR(plus2.Phi(), nuplus2.Phi(), plus2.Eta(), nuplus2.Eta());
 
-        // Now apply the criteria to choose the best solution:
-        // 1. First, choose the solution with the smallest energy difference
-        // 2. If the energy differences are similar, choose the one with the smallest momentum discrepancy
-        // 3. If both are similar, use the deltaR minimization as a tie-breaker.
-
-        bool choose_solution1 = false;
-        bool choose_solution2 = false;
-
-        if (energy_diff1 < energy_diff2) {
-            //std::cout<<"energy first "<<energy_diff1<<std::endl;
-            choose_solution1 = true;
-        } else if (energy_diff1 > energy_diff2) {
-            //std::cout<<"energy second "<<energy_diff2<<std::endl;
-            choose_solution2 = true;
-        } else { 
-            if (momentum_diff1 < momentum_diff2) {
-                //std::cout<<"momentum first "<<momentum_diff1<<std::endl;
-                choose_solution1 = true;
-            } else if (momentum_diff1 > momentum_diff2) {
-                //std::cout<<"momentum second "<<momentum_diff2<<std::endl;
-                choose_solution2 = true;
-            } else { 
-                if (D1 < D2) {
-                    //std::cout<<"DR first "<<D1<<std::endl;
-                    choose_solution1 = true;
-                } else {
-                    //std::cout<<"DR second "<<D2<<std::endl;
-                    choose_solution2 = true;
-                }
-            }
-        }
-
-        if (choose_solution1) {
+        // Now apply the criteria to choose the best solution based on collinearity
+        if (D1 < D2) {
             result.push_back(plus1);
             result.push_back(min1);
-        } else if (choose_solution2) {
+        } 
+        else {
             result.push_back(plus2);
             result.push_back(min2);
         }
@@ -2748,7 +2717,7 @@ ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, TLorentz
     else {
         result.push_back(plus1);
         result.push_back(min1);
-    }
+    }*/
 
     return result;
 }

@@ -32,19 +32,19 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-#DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_final_250604/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/test_250724/LLHH/"
+#DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_final_250604/"
 CAT = [
     #"QQ",
     #"LL",
-    ""
+    "",
 ]
 
 SUB = [
     #"LL",
     #"LH",
     #"HH",
-    ""
+    "",
 ]
 
 #list of cuts you want to plot
@@ -56,7 +56,34 @@ CUT = [
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
-     
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
+]
+
+CUT_LLLL = [
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM_HE110",
+]
+
+CUT_QQHH = [
+    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55", 
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM",
+    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM",
+    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95",
+    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95_40HE",
+]
+
+CUT_QQLH = [
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM",
+    #"selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM",
+    #"selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM_40Zp55",
+]
+
+CUT_QQLL = [
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_HE95"
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM_80HEH",
 ]
 
 #now you can list all the histograms that you want to plot
@@ -294,6 +321,13 @@ VARIABLES_CP = [
             "RecoZ_y",
             "RecoZ_mass",
 
+            "RecoZ1_consituents", 
+            "RecoZ2_consituents", 
+            "RecoZ1_charged_consituents",   
+            "RecoZ2_charged_consituents",  
+            "RecoZ1_neutral_consituents",   
+            "RecoZ2_neutral_consituents",
+
             "RecoZLead_px", 
             "RecoZLead_py",   
             "RecoZLead_pz",   
@@ -399,8 +433,8 @@ VARIABLES_CMS = [
     "O_ZMF",
     "y_tau",
     "PhiCP_CMS",
-    "Collinear_mass_3d",
-    "KinILC_H_mass",
+    #"Collinear_mass_3d",
+    #"KinILC_H_mass",
 ]
 
 VARIABLES_ILC = [
@@ -558,7 +592,7 @@ CEHRE_P1 = [
     'cehre_p1_taudecay_PiPi0Nu',
     ]'''
 
-SM = ["mg_ee_eetata_ecm240",
+'''SM = ["mg_ee_eetata_ecm240",
     "mg_ee_jjtata_ecm240",
     "mg_ee_mumutata_ecm240",]
 
@@ -580,7 +614,19 @@ CEHRE_M1 = [
 CEHRE_P1 = [
     "mg_ee_eetata_smeft_cehre_p1_ecm240",
     "mg_ee_jjtata_smeft_cehre_p1_ecm240",
-    "mg_ee_mumutata_smeft_cehre_p1_ecm240",]
+    "mg_ee_mumutata_smeft_cehre_p1_ecm240",]'''
+
+SM = [
+    "mg_ee_eetata_mod1_ecm240",
+]
+
+CEHIM_M1 = [
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240",
+]
+
+CEHIM_P1 = [
+    "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240",
+]
 
 legend_sig = {
     1:"sm",
@@ -595,23 +641,35 @@ list_sig = {
     1:SM,
     2:CEHIM_M1,
     3:CEHIM_P1,
-    4:CEHRE_M1,
-    5:CEHRE_P1,
+    #4:CEHRE_M1,
+    #5:CEHRE_P1,
 }
 
 ################ signal #################
 for cat in CAT:
     for sub in SUB:
-        for cut in CUT:
+        CUTS = ""
+        if "LL" in cat:
+            if "LL" in sub:
+                CUTS = CUT + CUT_LLLL
+        else:
+            if "HH" in sub:
+                CUTS = CUT +  CUT_QQHH
+            elif "LH" in sub:
+                CUTS = CUT + CUT_QQLH
+            else:
+                CUTS = CUT + CUT_QQLL
+        
+        for cut in ["selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",]:
 
-            variables = VARIABLES_GEN #VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
+            #variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
 
-            dir = f"{DIRECTORY}" #/{cat}/{sub}/
+            dir = f"{DIRECTORY}/{cat}/{sub}/"
 
-            for num in range(1,6):
+            for num in range(1,4):
                 outFile = ROOT.TFile.Open(dir + legend_sig[num] + "_" + cut + "_histo.root", "RECREATE")
                 print(outFile)
-                for var in variables:
+                for var in ["PhiCP_CMS",]:
                     #loop to merge different sources into one histograms 
                     j = 0
                     hh = None
@@ -645,7 +703,7 @@ for cat in CAT:
             cehim_p1_file = ROOT.TFile.Open(dir + legend_sig[3] + "_" + cut + "_histo.root", "READ")
             quad_file = ROOT.TFile.Open(dir + "quad_cehim_" + cut + "_histo.root", "RECREATE")
 
-            for var in variables:
+            for var in ["PhiCP_CMS",]:
                 #sm_histo = sm_file.Get(legend_sig[1] + "_" + var)
                 #cehim_m1_histo = cehim_m1_file.Get(legend_sig[2] + "_" + var)
                 #cehim_p1_histo = cehim_p1_file.Get(legend_sig[3] + "_" + var)
@@ -660,7 +718,7 @@ for cat in CAT:
 
                 quad_histo.Add(cehim_m1_histo)
                 quad_histo.Add(sm_histo, -2.)
-                quad_histo.SetName("quad_cehim_" + var)
+                #quad_histo.SetName("quad_cehim_" + var)
 
                 print("var {} to file {}\n".format(var, quad_file))
 
@@ -668,8 +726,9 @@ for cat in CAT:
                 quad_histo.Write()
 
             quad_file.Close()
+            '''
 
-'''
+
 ############### backgrounds ##################
 
 backgrounds_1 = [
@@ -828,7 +887,18 @@ list = {
 
 for cat in CAT:
     for sub in SUB:
-        for cut in CUT:
+        CUTS = ""
+        if "LL" in cat:
+            if "LL" in sub:
+                CUTS = CUT + CUT_LLLL
+        else:
+            if "HH" in sub:
+                CUTS = CUT +  CUT_QQHH
+            elif "LH" in sub:
+                CUTS = CUT + CUT_QQLH
+            else:
+                CUTS = CUT + CUT_QQLL
+        for cut in CUTS:
 
             variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
 
@@ -877,7 +947,7 @@ for cat in CAT:
                     os.remove(output)
 
 ################### pythia signals ###################
-'''
+
 ll = [
     "p8_ee_eeH_Htautau",
     "p8_ee_mumuH_Htautau",
@@ -902,11 +972,24 @@ legend_p8 = {
 
 for cat in CAT:
     for sub in SUB:
-        for cut in CUT:
+        CUTS = ""
+        if "LL" in cat:
+            if "LL" in sub:
+                CUTS = CUT + CUT_LLLL
+            else:
+                CUTS = CUT
+        else:
+            if "HH" in sub:
+                CUTS = CUT +  CUT_QQHH
+            elif "LH" in sub:
+                CUTS = CUT + CUT_QQLH
+            else:
+                CUTS = CUT + CUT_QQLL
+        for cut in CUTS:
 
-            variables = VARIABLES_GEN #VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
+            variables = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS
 
-            directory = f"{DIRECTORY}" #/{cat}/{sub}/
+            directory = f"{DIRECTORY}/{cat}/{sub}/"
         
             for dir in samples_dict:
                 for cp in ["even", "odd"]:
@@ -950,3 +1033,4 @@ for cat in CAT:
                     outFile.Close()
                     if check==False: #if nothing was written i don't want the file saved at all
                         os.remove(output)
+                        '''

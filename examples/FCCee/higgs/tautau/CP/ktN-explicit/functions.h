@@ -650,6 +650,57 @@ ROOT::VecOps::RVec<int> deltaR_sel_idx_v2(ROOT::VecOps::RVec<float> phi1, ROOT::
     return result;
   }
 
+ROOT::VecOps::RVec<TLorentzVector> build_3prong(ROOT::VecOps::RVec<TLorentzVector> charged_vec, ROOT::VecOps::RVec<float> charges_vec) {
+
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    TLorentzVector second;
+    TLorentzVector third;
+    if (charged_vec.size()==3) {
+        int tau_charge=0;
+        for (size_t i = 0; i < charges_vec.size(); ++i) tau_charge += charges_vec[i];
+        double minMassDifference = -1e6;
+        for (size_t i = 0; i < charges_vec.size(); ++i) {
+            for (size_t j = i + 1; j < charges_vec.size(); ++j) {
+                if (charges_vec[i] + charges_vec[j] == 0) {  // opposite charges
+                    double invMass = (charged_vec[i] + charged_vec[j]).M();
+                    double massDifference = std::abs(invMass - 0.775); //rho 0 in gev
+                    
+                    if (minMassDifference == -1e6) {
+                        minMassDifference = massDifference;
+                        // i want to save the pion with same charge as the tau as the charged one (second) and the other as the neutral (third)
+                        if (charges_vec[i]==tau_charge){
+                            second = charged_vec[i];
+                            third = charged_vec[j];
+                        }
+                        else {
+                            second = charged_vec[j];
+                            third = charged_vec[i];
+                        }
+                    } 
+                    else if (massDifference < minMassDifference) {
+                        // Update if we find a smaller mass difference
+                        minMassDifference = massDifference;
+                        if (charges_vec[i]==tau_charge){
+                            second = charged_vec[i];
+                            third = charged_vec[j];  
+                        }
+                        else {
+                            second = charged_vec[j];
+                            third = charged_vec[i];
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    result.push_back(second);
+    result.push_back(third);
+
+    return result;
+                        
+}
+
 ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_All (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets, int request){
 
     // request parameter: 0 for full visible tau, 1 for charged pion from the rho resonance (3 prong) or charged pion (1 prong), 2 for opposite charged pion in rho resonance (3 prong) or neutral system (1 prong), 
@@ -955,28 +1006,6 @@ ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_All (const R
     }
     return out;
 
-}
-
-ROOT::VecOps::RVec<int> flatten_index(const std::vector<std::vector<int>>& con_idx) {
-    ROOT::VecOps::RVec<int> results;
-    for (const auto& vec : con_idx) {
-        for (int val : vec) {
-            results.push_back(val);
-        }
-    }
-    return results;
-}
-
-ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> flatten_part(
-    const ROOT::VecOps::RVec<ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>>& con_idx) 
-{
-    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> results;
-    for (const auto& vec : con_idx) {
-        for (const auto& val : vec) {
-            results.push_back(val);
-        }
-    }
-    return results;
 }
 
 ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet_Neutral (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
@@ -1354,6 +1383,38 @@ ROOT::VecOps::RVec<float> get_phi_track(ROOT::VecOps::RVec<TLorentzVector> vec) 
     }
     return result;
 }
+
+ROOT::VecOps::RVec<int> flatten_index(const std::vector<std::vector<int>>& con_idx) {
+    ROOT::VecOps::RVec<int> results;
+    for (const auto& vec : con_idx) {
+        for (int val : vec) {
+            results.push_back(val);
+        }
+    }
+    return results;
+}
+
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> flatten_part(
+    const ROOT::VecOps::RVec<ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>>& con_idx) 
+{
+    ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> results;
+    for (const auto& vec : con_idx) {
+        for (const auto& val : vec) {
+            results.push_back(val);
+        }
+    }
+    return results;
+}
+
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> merge_single(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> x, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> y) {
+  //to be keept as ROOT::VecOps::RVec
+  std::vector<edm4hep::ReconstructedParticleData> result;
+  result.reserve(x.size() + y.size());
+  result.insert( result.end(), x.begin(), x.end() );
+  result.insert( result.end(), y.begin(), y.end() );
+  return ROOT::VecOps::RVec(result);
+}
+
 
 // Function to get the impact parameter vector from the track, defined in the origin frame pointing to the point on the track that is closest to the IP
 ROOT::VecOps::RVec<TLorentzVector> ImpactVector(ROOT::VecOps::RVec<TLorentzVector> Track, ROOT::VecOps::RVec<float> D0, ROOT::VecOps::RVec<float> Z0) {
@@ -2299,6 +2360,149 @@ std::vector<int> FindBest_3(ROOT::VecOps::RVec<TLorentzVector> P4vector, ROOT::V
 
     return idx;
 } 
+
+ROOT::VecOps::RVec<TLorentzVector> build_tau_p4 (TLorentzVector Recoil, ROOT::VecOps::RVec<TLorentzVector> Tau_vis, ROOT::VecOps::RVec<float> charge){
+    
+    //following Belle reconstruction https://arxiv.org/pdf/1310.8503
+    // first of all, build the visible taus from pi and pi0 with either jet tagger or the explciit reconstruction
+    // both should be built from the same jets so keeping the order as it is reuslts in the two taus which will be identified later by the charge of the pi
+    // does handles the two fold ambiguity but the tau have mostly 5 gev more enrgy than they should
+    // could be "fixed" by considering the decay lenght if then the solution picked is best, similar as what we're doing with the ILC method but at that point that's a better method
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    TLorentzVector temp1;
+    TLorentzVector temp2;
+    ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H_temp;
+    ROOT::VecOps::RVec<TLorentzVector> Tau_vis_H;
+
+
+    double E_tau = Recoil.M()/2; //energy of the single taus in the higgs rest frame
+
+    for (size_t i = 0; i < Tau_vis.size(); ++i) {
+
+        // boost the visible taus to the recoil frame / "true" higgs rest frame
+        TLorentzVector boostedTau = Tau_vis[i]; 
+        boostedTau.Boost(-Recoil.BoostVector()); 
+        Tau_vis_H_temp.push_back(boostedTau);
+    }
+
+    // order the taus by charge: first the positive then negative to keep consistent later on
+    // assumes they have opposite charges
+    if (charge[0]==1) {
+        Tau_vis_H.push_back(Tau_vis_H_temp[0]);
+        Tau_vis_H.push_back(Tau_vis_H_temp[1]);
+    }
+    else {
+        Tau_vis_H.push_back(Tau_vis_H_temp[1]);
+        Tau_vis_H.push_back(Tau_vis_H_temp[0]);
+    }
+
+    // determine the angle between the visible and neutrino in the higgs frame
+    double cos0 = (2 * E_tau * Tau_vis_H[0].E() - m_tau * m_tau - Tau_vis_H[0].M() * Tau_vis_H[0].M()) / (2 * Tau_vis_H[0].P() * sqrt(E_tau * E_tau - m_tau * m_tau));
+    double cos1 = (2 * E_tau * Tau_vis_H[1].E() - m_tau * m_tau - Tau_vis_H[1].M() * Tau_vis_H[1].M()) / (2 * Tau_vis_H[1].P() * sqrt(E_tau * E_tau - m_tau * m_tau));
+
+    // solve the system of equations 
+    double a = Tau_vis_H[0].Px();
+    double b = Tau_vis_H[0].Py();
+    double c = Tau_vis_H[0].Pz();
+    double d = Tau_vis_H[0].P() * cos0;
+
+    double e = Tau_vis_H[1].Px();
+    double f = Tau_vis_H[1].Py();
+    double g = Tau_vis_H[1].Pz();
+    double h = - Tau_vis_H[1].P() * cos1;
+
+    double p1 = e*b - a*f;
+    double p2 = e*c - a*g;
+    double q1 = e*d - a*h;
+
+    if (p1 == 0) {
+        //std::cerr << "Error: Invalid values encountered while solving the quadratic equation." << std::endl;
+        result.push_back(temp1);
+        result.push_back(temp2);
+        return result;
+    }
+
+    double r1 = (p1 * d - b * q1) / p1;
+    double r2 = (b * p2 - p1 * c) / p1;
+
+    double A = (r2*r2) / (a*a) + (p2*p2) / (p1*p1) +1;
+    double B = 2*((r1 * r2) / (a*a) - (q1 * p2) / (p1*p1));
+    double C = (r1*r1) / (a*a) + (q1*q1) / (p1*p1) -1;
+
+    double discriminant = B * B - 4 * A * C;
+    if (discriminant < 0) {
+        result.push_back(temp1);
+        result.push_back(temp2);
+        return result;
+    }
+    //else if (discriminant >= -10 && discriminant<0){
+    //    discriminant = 0;
+    //}
+
+    double z1 = (-B + sqrt(discriminant)) / (2*A);
+    double z2 = (-B - sqrt(discriminant)) / (2*A);
+
+    double y1 = (q1 - p2*z1) / p1;
+    double y2 = (q1 - p2*z2) / p1;
+
+    double x1 = (d - b*y1 - c*z1) / a;
+    double x2 = (d - b*y2 - c*z2) / a;
+
+    // now i need to build the TLV for the tau adding back the recoil mass and tau mass
+    double P_tau = sqrt(E_tau * E_tau - m_tau * m_tau);
+    TLorentzVector plus1;
+    plus1.SetPxPyPzE(P_tau * x1, P_tau * y1, P_tau * z1, E_tau);
+    TLorentzVector plus2;
+    plus2.SetPxPyPzE(P_tau * x2, P_tau * y2, P_tau * z2, E_tau);
+    TLorentzVector min1;
+    min1.SetPxPyPzE(-P_tau * x1, -P_tau * y1, -P_tau * z1, E_tau);
+    TLorentzVector min2;
+    min2.SetPxPyPzE(-P_tau * x2, -P_tau * y2, -P_tau * z2, E_tau);
+
+    // boost back the solutions to figure out the best one against the recoil frame
+    plus1.Boost( Recoil.BoostVector());
+    plus2.Boost( Recoil.BoostVector());
+    min1.Boost( Recoil.BoostVector());
+    min2.Boost( Recoil.BoostVector());
+
+    if (discriminant > 0) {
+        TLorentzVector nuplus1, nuplus2, numin1, numin2;
+
+        if (charge[0]==1){
+            nuplus1 = plus1 - Tau_vis[0];
+            nuplus2 = plus2 - Tau_vis[0];
+            numin1 = min1 - Tau_vis[1];
+            numin2 = min2 - Tau_vis[1];
+        }
+        else {
+            nuplus1 = plus1 - Tau_vis[1];
+            nuplus2 = plus2 - Tau_vis[1];
+            numin1 = min1 - Tau_vis[0];
+            numin2 = min2 - Tau_vis[0];
+        }
+
+        // Calculate deltaR between the neutrinos and tau
+        float D1 = deltaR(plus1.Phi(), nuplus1.Phi(), plus1.Eta(), nuplus1.Eta());
+        float D2 = deltaR(plus2.Phi(), nuplus2.Phi(), plus2.Eta(), nuplus2.Eta());
+
+        // Now apply the criteria to choose the best solution based on collinearity
+        if (D1 < D2) {
+            result.push_back(plus1);
+            result.push_back(min1);
+        } 
+        else {
+            result.push_back(plus2);
+            result.push_back(min2);
+        }
+    }
+    else {
+        result.push_back(plus1);
+        result.push_back(min1);
+    }
+
+    return result;
+}
+
 
 std::vector<int> FindBest_4(ROOT::VecOps::RVec<TLorentzVector> P4vector, ROOT::VecOps::RVec<float> vec_charge, ROOT::VecOps::RVec<float> vec_mass, double mass1, double mass2){ 
 

@@ -36,7 +36,7 @@ DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/e
 TAG = [
     #"R5-explicit",
     #"R5-tag",
-    "ktN-explicit",
+    #"ktN-explicit",
     "ktN-tag",
 ]
 SUBDIR = [
@@ -938,12 +938,12 @@ legcolors = {
     "wzp6_ee_tautauH_Hgg_ecm365":ROOT.kViolet-4,
     "wzp6_ee_tautauH_HVV_ecm365":ROOT.kViolet+1,
 
-    'wzp6_ee_ZH_nunuH_Htautau_ecm365':ROOT.kTeal-9,
+    'wzp6_ee_ZH_nunuH_Htautau_ecm365':ROOT.kTeal-8,
     "wzp6_ee_ZH_nunuH_HQQ_ecm365":ROOT.kGreen-5,
     "wzp6_ee_ZH_nunuH_Hgg_ecm365":ROOT.kGreen-8,
     "wzp6_ee_ZH_nunuH_HVV_ecm365":ROOT.kGreen-10,
 
-    'wzp6_ee_VBF_nunuH_Htautau_ecm365':ROOT.kAzure-7,
+    'wzp6_ee_VBF_nunuH_Htautau_ecm365':ROOT.kViolet-9,
     "wzp6_ee_VBF_nunuH_HQQ_ecm365":ROOT.kBlue-5,
     "wzp6_ee_VBF_nunuH_Hgg_ecm365":ROOT.kBlue-8,
     "wzp6_ee_VBF_nunuH_HVV_ecm365":ROOT.kBlue-10,
@@ -973,7 +973,7 @@ legcolors = {
     "wzp6_ee_LLH_Hgg_ecm365":ROOT.kCyan-8,
     "wzp6_ee_LLH_HVV_ecm365":ROOT.kCyan-10,
 
-    'wzp6_ee_QQH_Htautau_ecm365':ROOT.kViolet-9,
+    'wzp6_ee_QQH_Htautau_ecm365':ROOT.kRed-10,
     "wzp6_ee_QQH_HQQ_ecm365":ROOT.kMagenta-5,
     "wzp6_ee_QQH_Hgg_ecm365":ROOT.kMagenta-8,
     "wzp6_ee_QQH_HVV_ecm365":ROOT.kMagenta-10,
@@ -1115,6 +1115,7 @@ for tag in TAG:
                             h = histos[i]
                             h.SetLineWidth(1)
                             h.SetLineColor(ROOT.kBlack)
+                            h.Rebin(4)
                             h.SetFillColor(colors[i])
                             #making sure only histograms with integral positive get added to the stack and legend
                             if h.Integral() > 0:
@@ -1129,8 +1130,8 @@ for tag in TAG:
                             hStackBkg.Add(h)
 
                         if LOGY==True :
-                            hStackBkg.SetMinimum(1e-5) #change the range to be plotted
-                            hStackBkg.SetMaximum(1e20) #leave some space on top for the legend
+                            hStackBkg.SetMinimum(1e-1) #change the range to be plotted
+                            hStackBkg.SetMaximum(1e13) #leave some space on top for the legend
                         else:
                             #h = hStackBkg.GetHists() #list of histograms 
                             last = 0
@@ -1148,6 +1149,7 @@ for tag in TAG:
                         for i in range(nsig):
                             h = histos[i]
                             h.SetLineWidth(3)
+                            h.Rebin(4)
                             h.SetLineColor(colors[i])
                             h.Draw("HIST SAME")
 

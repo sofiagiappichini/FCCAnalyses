@@ -41,21 +41,26 @@ replacement_words = [
     #'noISR_e+e-_noCuts_cehre_m1_taudecay_PiPi0Nu',
     #'noISR_e+e-_noCuts_cehre_p1_taudecay_PiPi0Nu',
 
-    "mg_ee_eetata_ecm240",
-    "mg_ee_eetata_smeft_cehim_m1_ecm240",
-    "mg_ee_eetata_smeft_cehim_p1_ecm240",
-    "mg_ee_eetata_smeft_cehre_m1_ecm240",
-    "mg_ee_eetata_smeft_cehre_p1_ecm240",
-    "mg_ee_jjtata_ecm240",
-    "mg_ee_jjtata_smeft_cehim_m1_ecm240",
-    "mg_ee_jjtata_smeft_cehim_p1_ecm240",
-    "mg_ee_jjtata_smeft_cehre_m1_ecm240",
-    "mg_ee_jjtata_smeft_cehre_p1_ecm240",
-    "mg_ee_mumutata_ecm240",
-    "mg_ee_mumutata_smeft_cehim_m1_ecm240",
-    "mg_ee_mumutata_smeft_cehim_p1_ecm240",
-    "mg_ee_mumutata_smeft_cehre_m1_ecm240",
-    "mg_ee_mumutata_smeft_cehre_p1_ecm240",
+    #"mg_ee_eetata_ecm240",
+    #"mg_ee_eetata_smeft_cehim_m1_ecm240",
+    #"mg_ee_eetata_smeft_cehim_p1_ecm240",
+    #"mg_ee_eetata_smeft_cehre_m1_ecm240",
+    #"mg_ee_eetata_smeft_cehre_p1_ecm240",
+    #"mg_ee_jjtata_ecm240",
+    #"mg_ee_jjtata_smeft_cehim_m1_ecm240",
+    #"mg_ee_jjtata_smeft_cehim_p1_ecm240",
+    #"mg_ee_jjtata_smeft_cehre_m1_ecm240",
+    #"mg_ee_jjtata_smeft_cehre_p1_ecm240",
+    #"mg_ee_mumutata_ecm240",
+    #"mg_ee_mumutata_smeft_cehim_m1_ecm240",
+    #"mg_ee_mumutata_smeft_cehim_p1_ecm240",
+    #"mg_ee_mumutata_smeft_cehre_m1_ecm240",
+    #"mg_ee_mumutata_smeft_cehre_p1_ecm240",
+    #"mg_ee_eetata_pinu_c_mass_smeft_cehim_m1_ecm240",
+    #"mg_ee_eetata_pinu_smeft_cehim_m1_ecm240",
+    "mg_ee_eetata_mod1_ecm240",                
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240",
+    "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240",
 
 ]
 
@@ -73,7 +78,8 @@ for replacement_word in replacement_words:
         continue
 
     first_file = lhe_gz_files[0]  # Take only the first match
-
+    nevents = 0
+    #for file in first_file:
     with gzip.open(first_file, 'rt') as f:
         read = False
         for line in f:
@@ -81,7 +87,7 @@ for replacement_word in replacement_words:
                 content_of_row=float(line[35:])
                 read=True
             if "#  Number of Events        : " in line:
-                nevents=int(line[35:])
+                nevents+=int(line[35:])
                 read=True
 
         if read == False:
@@ -91,7 +97,8 @@ for replacement_word in replacement_words:
     output_file = "/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/weight.txt"
 
     # Write the content of the selected row to the output CSV file
-    with open(output_file, "a") as csv_file:
-        csv_file.write("'{}':{{\"numberOfEvents\": {}, \"sumOfWeights\": {}, \"crossSection\": {}, \"kfactor\": 1.0, \"matchingEfficiency\": 1.0}},\n".format(replacement_word, nevents, nevents, content_of_row))
+    #with open(output_file, "a") as csv_file:
+    print("'{}':{{\"numberOfEvents\": {}, \"sumOfWeights\": {}, \"crossSection\": {}, \"kfactor\": 1.0, \"matchingEfficiency\": 1.0}},\n".format(replacement_word, nevents, nevents, content_of_row))
 
-    print("Content from {} has been written to {}".format(first_file, output_file))
+    #print(f"{nevents}")
+    #print("Content from {} has been written to {}".format(first_file, output_file))

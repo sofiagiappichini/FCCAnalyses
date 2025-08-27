@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_stage1_250604/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_stage1_test_madspin/"
 
 #Optional: output directory, default is local running directory
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_final_250604/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_final_tes_madspin/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -22,6 +22,12 @@ doTree = False
 
 #Mandatory: List of processes
 processList = {
+    #"mg_ee_eetata_mod1_ecm240":{},                
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240":{},
+    #"mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":{},
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin":{},
+}
+processList_ = {
     "mg_ee_eetata_ecm240":{},
     "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
     "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
@@ -48,8 +54,13 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 #Add provate samples as it is not an offical process
 procDictAdd = {
 
+    'mg_ee_eetata_mod1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.612249108209635e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_mod1_smeft_cehim_m1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.641935457756982e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_mod1_smeft_cehim_p1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.691984057002465e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.641935457756982e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    
     'mg_ee_eetata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_eetata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039496700612440505, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_smeft_cehim_m1_ecm240':{"numberOfEvents": 793649, "sumOfWeights": 793649, "crossSection": 0.0005313, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'mg_ee_eetata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039467206272751117, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'mg_ee_eetata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039526795717095316, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'mg_ee_eetata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039545719323659203, "kfactor": 1.0, "matchingEfficiency": 1.0},
@@ -84,6 +95,10 @@ procDictAdd = {
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
+    "selOffDiag":"(GenTauP_DM==0 && GenTauM_DM==1) || (GenTauP_DM==1 && GenTauM_DM==0)",
+    "selDiag":"(GenTauP_DM==0 && GenTauM_DM==0) || (GenTauP_DM==1 && GenTauM_DM==1)",
+    "selPi":"(GenTauP_DM==0 && GenTauM_DM==0)",
+    "selRho":"(GenTauP_DM==1 && GenTauM_DM==1)",
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -126,6 +141,7 @@ histoList = {
     "HiggsGenTau_vertex_y":               {"name":"HiggsGenTau_vertex_y", "title":"Final state gen #tau^{#font[122]{\55}} production vertex y [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
     "HiggsGenTau_vertex_z":               {"name":"HiggsGenTau_vertex_z", "title":"Final state gen #tau^{#font[122]{\55}} production vertex z [mm]",   "bin":100, "xmin":-2000, "xmax":2000},
 
-    "GenDeltaPhi":              {"name":"GenDeltaPhi",            "title":"#Delta#phi (angle of decay)",                  "bin":32, "xmin":-3.14,"xmax":3.14},
+    "GenPhi_CP":              {"name":"GenPhi_CP",            "title":"#Delta#phi (CMS)",                  "bin":32, "xmin":-3.14,"xmax":3.14},
+    "GenDeltaPhi":              {"name":"GenDeltaPhi",            "title":"#Delta#phi (polarimeters)",                  "bin":32, "xmin":-3.14,"xmax":3.14},
 
 }

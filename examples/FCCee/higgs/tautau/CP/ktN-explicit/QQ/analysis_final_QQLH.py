@@ -14,12 +14,12 @@ doScale = True
 saveTabular = False
 
 #Number of CPUs to use
-#nCPUs = 6
+nCPUs = 6
 
 #produces ROOT TTrees, default is False
 doTree = False
 
-processList = {
+processList_ = {
 
     "mg_ee_eetata_ecm240":{},
     "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
@@ -36,6 +36,21 @@ processList = {
     "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
     "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
     "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
+
+    "p8_ee_bbH_Htautau_CPeven":{},
+    "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPeven":{},
+    "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPeven":{},
+    "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPeven":{},
+    "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPeven":{},
+    "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    "p8_ee_qqH_Htautau_CPodd":{},}
+
+processList = {
 
     "p8_ee_bbH_Htautau_CPeven":{},
     "p8_ee_bbH_Htautau_CPodd":{},
@@ -179,16 +194,16 @@ procDictAdd = {
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10",
-    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_DR<3.2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10",
-    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM_36Zpt": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_DR<3.2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ_pt>36",
+    #"selReco": "true",
+    #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
+    #"selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ_p>40 && RecoZ_p<55 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
     
 }
 
@@ -473,6 +488,12 @@ histoList = {
     "RecoZ_theta":              {"name":"RecoZ_theta",              "title":"Reco Z #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "RecoZ_y":                  {"name":"RecoZ_y",                  "title":"Reco Z rapidity",               "bin":40, "xmin":-4., "xmax":4.},
     "RecoZ_mass":               {"name":"RecoZ_mass",               "title":"Reco Z mass",                   "bin":100, "xmin":50., "xmax":150},
+    "RecoZ1_consituents":             {"name":"RecoZ1_consituents",               "title":"Z1 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "RecoZ1_charged_consituents":             {"name":"RecoZ1_charged_consituents",               "title":"Z1 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "RecoZ1_neutral_consituents":             {"name":"RecoZ1_neutral_consituents",               "title":"Z1 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "RecoZ2_consituents":             {"name":"RecoZ2_consituents",               "title":"Z2 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "RecoZ2_charged_consituents":             {"name":"RecoZ2_charged_consituents",               "title":"Z2 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    "RecoZ2_neutral_consituents":             {"name":"RecoZ2_neutral_consituents",               "title":"Z2 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
 
     "RecoZLead_px":               {"name":"RecoZLead_px",                 "title":"Reco leading Z daughter p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
     "RecoZLead_py":               {"name":"RecoZLead_py",                 "title":"Reco leading Z daughter p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   

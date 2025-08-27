@@ -25,7 +25,7 @@ includePaths = ["functions.h"]
 eosType = "eosuser"
 
 #Optional running on HTCondor, default is False
-runBatch = False
+runBatch = True
 
 nCPUS = 6
 
@@ -640,10 +640,8 @@ class RDFanalysis():
 
                 .Define("RecoLepton_p4",  "FCCAnalyses::ZHfunctions::build_p4(RecoLepton_px, RecoLepton_py, RecoLepton_pz, RecoLepton_e)")
 
-                .Define("RecoZH_idx",        "FCCAnalyses::ZHfunctions::FindBest_3(RecoLepton_p4, RecoLepton_charge, RecoLepton_mass, 91.188)")
-
-                .Define("RecoZ1_p4",      "RecoLepton_p4.at(RecoZH_idx[0])")
-                .Define("RecoZ2_p4",      "RecoLepton_p4.at(RecoZH_idx[1])")
+                .Define("RecoZ1_p4",      "RecoLepton_p4.at(0)")
+                .Define("RecoZ2_p4",      "RecoLepton_p4.at(1)")
 
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
@@ -807,9 +805,9 @@ class RDFanalysis():
 
                 .Define("TauFromJet_kt2_p4",  "FCCAnalyses::ZHfunctions::build_p4(TauFromJet_kt2_px, TauFromJet_kt2_py, TauFromJet_kt2_pz, TauFromJet_kt2_e)")
 
-                .Define("Recoil_True_Tau_p4",        "FCCAnalyses::ZHfunctions::build_tau_p4(Recoil, RecoEmiss_p4, TauFromJet_kt2_p4, TauFromJet_kt2_charge)")
+                .Define("Recoil_True_Tau_p4",        "FCCAnalyses::ZHfunctions::build_tau_p4(Recoil, TauFromJet_kt2_p4, TauFromJet_kt2_charge)")
                 #filtering events where the discriminant to solve is negative and so the reconstruction didn't work out
-                .Define("Belle_Filter",     "if (Recoil_True_Tau_p4.at(0).P()!=0 && Recoil_True_Tau_p4.at(1).P()!=0) return 1; else return 0;")
+                .Define("Belle_Filter",     "if (Recoil_True_Tau_p4.at(0).P()>0 && Recoil_True_Tau_p4.at(1).P()>0) return 1; else return 0;")
 
                 .Define("True_TauP_p4",     "Recoil_True_Tau_p4.at(0)")
                 .Define("True_TauM_p4",     "Recoil_True_Tau_p4.at(1)")
@@ -817,7 +815,7 @@ class RDFanalysis():
                 .Define("True_NuP_p4",      "Recoil_True_Tau_p4.at(0) - TauFromJet_kt2_p4.at(0)")
                 .Define("True_NuM_p4",      "Recoil_True_Tau_p4.at(1) - TauFromJet_kt2_p4.at(1)")
 
-                .Define("Total_E",      "(True_TauP_p4+True_TauM_p4).E()")
+                .Define("Total_E",      "(True_TauP_p4+True_TauM_p4 + RecoZ_p4).E()")
                 .Define("RecoGen_TauP",     "if (HiggsGenTau_charge.at(0)==1) return (True_TauP_p4-HiggsGenTau_p4.at(0)); else return (True_TauP_p4-HiggsGenTau_p4.at(1));")
                 .Define("RecoGen_TauM",     "if (HiggsGenTau_charge.at(0)==1) return (True_TauM_p4-HiggsGenTau_p4.at(1)); else return (True_TauM_p4-HiggsGenTau_p4.at(0));")
 
@@ -1141,13 +1139,11 @@ class RDFanalysis():
             "n_TagJet_kt2_sel",
 
             "n_GenTau_had", 
-            "n_TauTag_R5_match",  
-            "TauTag_R5_Gen_p",
+            "n_TauTag_R5_match", 
             "n_events_R5tag",  
             "n_events_R5excl",
 
-            "n_TauTag_kt2_match",  
-            "TauTag_kt2_Gen_p",
+            "n_TauTag_kt2_match", 
             "n_events_ktNtag",  
             "n_events_ktNexcl",
 
@@ -1195,6 +1191,128 @@ class RDFanalysis():
             "QuarkTag_isC",
             "QuarkTag_isB",  
             "QuarkTag_isTAU",
+
+             "RecoZ_px",
+            "RecoZ_py",
+            "RecoZ_pz",
+            "RecoZ_p",
+            "RecoZ_pt",
+            "RecoZ_e",
+            "RecoZ_eta",
+            "RecoZ_phi",
+            "RecoZ_theta",
+            "RecoZ_y",
+            "RecoZ_mass",
+
+            "RecoZLead_px", 
+            "RecoZLead_py",   
+            "RecoZLead_pz",   
+            "RecoZLead_p",    
+            "RecoZLead_pt",   
+            "RecoZLead_e",    
+            "RecoZLead_eta",    
+            "RecoZLead_phi",    
+            "RecoZLead_theta",   
+            "RecoZLead_y",     
+            "RecoZLead_mass",   
+
+            "RecoZSub_px",    
+            "RecoZSub_py",   
+            "RecoZSub_pz",   
+            "RecoZSub_p",   
+            "RecoZSub_pt",  
+            "RecoZSub_e",     
+            "RecoZSub_eta",   
+            "RecoZSub_phi",   
+            "RecoZSub_theta",    
+            "RecoZSub_y",    
+            "RecoZSub_mass",   
+
+            "RecoZP_px", 
+            "RecoZP_py",   
+            "RecoZP_pz",   
+            "RecoZP_p",    
+            "RecoZP_pt",   
+            "RecoZP_e",    
+            "RecoZP_eta",    
+            "RecoZP_phi",    
+            "RecoZP_theta",   
+            "RecoZP_y",     
+            "RecoZP_mass",   
+
+            "RecoZM_px",    
+            "RecoZM_py",   
+            "RecoZM_pz",   
+            "RecoZM_p",   
+            "RecoZM_pt",  
+            "RecoZM_e",     
+            "RecoZM_eta",   
+            "RecoZM_phi",   
+            "RecoZM_theta",    
+            "RecoZM_y",    
+            "RecoZM_mass", 
+
+            "RecoH_px",
+            "RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            "RecoH_phi",
+            "RecoH_theta",
+            "RecoH_y",
+            "RecoH_mass",
+
+            "TauLead_px",    
+            "TauLead_py",   
+            "TauLead_pz",   
+            "TauLead_p",   
+            "TauLead_pt",   
+            "TauLead_e",    
+            "TauLead_eta",    
+            "TauLead_phi",    
+            "TauLead_theta",    
+            "TauLead_y",    
+            "TauLead_mass",
+
+            "TauSub_px",    
+            "TauSub_py",   
+            "TauSub_pz",   
+            "TauSub_p",   
+            "TauSub_pt",   
+            "TauSub_e",    
+            "TauSub_eta",    
+            "TauSub_phi",    
+            "TauSub_theta",    
+            "TauSub_y",    
+            "TauSub_mass",
+
+            "TauP_px",    
+            "TauP_py",   
+            "TauP_pz",   
+            "TauP_p",   
+            "TauP_pt",   
+            "TauP_e",    
+            "TauP_eta",    
+            "TauP_phi",    
+            "TauP_theta",    
+            "TauP_y",    
+            "TauP_mass",
+
+            "TauM_px",    
+            "TauM_py",   
+            "TauM_pz",   
+            "TauM_p",   
+            "TauM_pt",   
+            "TauM_e",    
+            "TauM_eta",    
+            "TauM_phi",    
+            "TauM_theta",    
+            "TauM_y",    
+            "TauM_mass",
+
+            "Recoil",
 
             "Recoil_True_Tau_p4", 
             "True_TauP_p4",  

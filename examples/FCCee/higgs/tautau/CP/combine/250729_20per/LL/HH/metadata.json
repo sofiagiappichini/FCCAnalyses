@@ -1,0 +1,27 @@
+{
+    "analysis": "HH",
+    "card": "datacard.txt",
+    "operators": {
+        "cehim": [
+            -10.0,
+            10.0
+        ],
+        "cehim_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_histo.root": [
+            -10.0,
+            10.0
+        ],
+        "cehim_m1": [
+            -10.0,
+            10.0
+        ]
+    },
+    "nuisances": [
+        "unc_H_H",
+        "unc_Z",
+        "unc_p8_ee_WW_ecm240",
+        "unc_p8_ee_ZZ_ecm240",
+        "xsec",
+        "xsec",
+        "xsec"
+    ]
+}

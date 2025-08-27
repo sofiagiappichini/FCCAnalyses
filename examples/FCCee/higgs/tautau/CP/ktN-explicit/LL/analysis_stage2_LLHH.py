@@ -3,6 +3,11 @@ import ROOT
 import urllib.request
 
 #Mandatory: List of processes
+processList = {
+    "mg_ee_eetata_mod1_ecm240":{},                
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240":{},
+    "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":{},
+}
 processList_ = {
     "mg_ee_eetata_ecm240":{},
     "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
@@ -33,7 +38,7 @@ processList_ = {
     "p8_ee_qqH_Htautau_CPeven":{},
     "p8_ee_qqH_Htautau_CPodd":{},
 }
-processList = {
+processList_ = {
 
     'p8_ee_WW_ecm240':{'chunks':3740},
     'p8_ee_Zqq_ecm240':{'chunks':1007},
@@ -119,15 +124,15 @@ processList = {
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
-prodTag     = "FCCee/winter2023/IDEA/"
-#inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/"
+#prodTag     = "FCCee/winter2023/IDEA/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/DelphesPythia8_EDM4HEP/"
 
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 #inputDir = "root://eospublic.cern.ch//eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/LL/HH"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/test_250724/LLHH/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -141,7 +146,7 @@ runBatch = True
 nCPUS = 6
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+batchQueue = "workday"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -185,6 +190,83 @@ from addons.FastJet.jetClusteringHelper import (
 class RDFanalysis():
     def analysers(df):
         df2 = (df
+
+                #################
+                # Gen particles #
+                #################
+
+                .Alias("Particle0", "Particle#0.index")
+                .Alias("Particle1", "Particle#1.index")
+                .Alias("MCRecoAssociations0", "MCRecoAssociations#0.index")
+                .Alias("MCRecoAssociations1", "MCRecoAssociations#1.index")
+
+                .Define("AllGenTauPlus",    "FCCAnalyses::MCParticle::sel_pdgID(-15, false)(Particle)")
+                .Define("AllGenTauMin",    "FCCAnalyses::MCParticle::sel_pdgID(15, false)(Particle)")
+                .Define("AllGenTau",           "FCCAnalyses::MCParticle::mergeParticles(AllGenTauPlus, AllGenTauMin)")
+
+                .Define("n_AllGenTau",      "FCCAnalyses::MCParticle::get_n(AllGenTau)")
+                .Define("AllGenTau_e",     "FCCAnalyses::MCParticle::get_e(AllGenTau)")
+                .Define("AllGenTau_p",     "FCCAnalyses::MCParticle::get_p(AllGenTau)")
+                .Define("AllGenTau_pt",     "FCCAnalyses::MCParticle::get_pt(AllGenTau)")
+                .Define("AllGenTau_px",     "FCCAnalyses::MCParticle::get_px(AllGenTau)")
+                .Define("AllGenTau_py",     "FCCAnalyses::MCParticle::get_py(AllGenTau)")
+                .Define("AllGenTau_pz",     "FCCAnalyses::MCParticle::get_pz(AllGenTau)")
+                .Define("AllGenTau_y",    "FCCAnalyses::MCParticle::get_y(AllGenTau)")
+                .Define("AllGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(AllGenTau)")
+                .Define("AllGenTau_theta",     "FCCAnalyses::MCParticle::get_theta(AllGenTau)")
+                .Define("AllGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(AllGenTau)")
+                .Define("AllGenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(AllGenTau,Particle,Particle0)")
+                .Define("AllGenTau_charge", "FCCAnalyses::MCParticle::get_charge(AllGenTau)")
+                .Define("AllGenTau_mass",   "FCCAnalyses::MCParticle::get_mass(AllGenTau)")
+                .Define("AllGenTau_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( AllGenTau )")
+                .Define("AllGenTau_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( AllGenTau )")
+                .Define("AllGenTau_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( AllGenTau )")
+
+                .Define("FSRGenTauPlus",       "FCCAnalyses::MCParticle::sel_daughterID(-15, false, false)(AllGenTauPlus,Particle,Particle1)")
+                .Define("FSRGenTauMin",       "FCCAnalyses::MCParticle::sel_daughterID(15, false, false)(AllGenTauMin,Particle,Particle1)")
+                .Define("FSRGenTau",           "FCCAnalyses::MCParticle::mergeParticles(FSRGenTauPlus, FSRGenTauMin)")
+                .Define("n_FSRGenTau",      "FCCAnalyses::MCParticle::get_n(FSRGenTau)")
+                .Define("FSRGenTau_e",     "FCCAnalyses::MCParticle::get_e(FSRGenTau)")
+                .Define("FSRGenTau_p",     "FCCAnalyses::MCParticle::get_p(FSRGenTau)")
+                .Define("FSRGenTau_pt",     "FCCAnalyses::MCParticle::get_pt(FSRGenTau)")
+                .Define("FSRGenTau_px",     "FCCAnalyses::MCParticle::get_px(FSRGenTau)")
+                .Define("FSRGenTau_py",     "FCCAnalyses::MCParticle::get_py(FSRGenTau)")
+                .Define("FSRGenTau_pz",     "FCCAnalyses::MCParticle::get_pz(FSRGenTau)")
+                .Define("FSRGenTau_y",    "FCCAnalyses::MCParticle::get_y(FSRGenTau)")
+                .Define("FSRGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(FSRGenTau)")
+                .Define("FSRGenTau_theta",     "FCCAnalyses::MCParticle::get_theta(FSRGenTau)")
+                .Define("FSRGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(FSRGenTau)")
+                .Define("FSRGenTau_parentPDG", "FCCAnalyses::MCParticle::get_leptons_origin(FSRGenTau,Particle,Particle0)")
+                .Define("FSRGenTau_charge", "FCCAnalyses::MCParticle::get_charge(FSRGenTau)")
+                .Define("FSRGenTau_mass",   "FCCAnalyses::MCParticle::get_mass(FSRGenTau)")
+                .Define("FSRGenTau_vertex_x", "FCCAnalyses::MCParticle::get_vertex_x( FSRGenTau )")
+                .Define("FSRGenTau_vertex_y", "FCCAnalyses::MCParticle::get_vertex_y( FSRGenTau )")
+                .Define("FSRGenTau_vertex_z", "FCCAnalyses::MCParticle::get_vertex_z( FSRGenTau )")
+
+                #rho nu decay (pi pi0 nu)
+                .Define("TauPtoRhoNu_idx",  "FCCAnalyses::MCParticle::get_indices( -15, {211, 22, 22, -16},  true, false, false, false)  ( Particle, Particle1)" ) #size is the size of the vector (mother+daughters) because it only saves the first matching decay in the event, not all the decays
+                .Define("TauMtoRhoNu_idx",  "FCCAnalyses::MCParticle::get_indices( 15, {-211, 22, 22, 16},  true, false, false, false)  ( Particle, Particle1)" )
+                #pi nu decay
+                .Define("TauPtoPiNu_idx",  "FCCAnalyses::MCParticle::get_indices( -15, {211, -16},  true, false, false, false)  ( Particle, Particle1)" ) #size is the size of the vector (mother+daughters) because it only saves the first matching decay in the event, not all the decays
+                .Define("TauMtoPiNu_idx",  "FCCAnalyses::MCParticle::get_indices( 15, {-211, 16},  true, false, false, false)  ( Particle, Particle1)" )
+                #ele nu decay
+                .Define("TauPtoENuNu_idx",  "FCCAnalyses::MCParticle::get_indices( -15, {-11, 12, -16},  true, false, false, false)  ( Particle, Particle1)" )
+                .Define("TauMtoENuNu_idx",  "FCCAnalyses::MCParticle::get_indices( 15, {11, -12, 16},  true, false, false, false)  ( Particle, Particle1)" )
+                #mu nu decay
+                .Define("TauPtoMuNuNu_idx",  "FCCAnalyses::MCParticle::get_indices( -15, {-13, 14, -16},  true, false, false, false)  ( Particle, Particle1)" )
+                .Define("TauMtoMuNuNu_idx",  "FCCAnalyses::MCParticle::get_indices( 15, {13, -14, 16},  true, false, false, false)  ( Particle, Particle1)" )
+                #a1 nu decay (pi pi0 pi0 nu)
+                .Define("TauPto2Pi0Nu_idx",  "FCCAnalyses::MCParticle::get_indices( -15, {211, 22, 22, 22, 22, -16},  true, false, false, false)  ( Particle, Particle1)" )
+                .Define("TauMto2Pi0Nu_idx",  "FCCAnalyses::MCParticle::get_indices( 15, {-211, 22, 22, 22, 22, 16},  true, false, false, false)  ( Particle, Particle1)" )
+                #a1 nu decay - three prongs (pi pi pi nu)
+                .Define("TauPto3PiNu_idx",  "FCCAnalyses::MCParticle::get_indices( -15, {211, 211, -211, -16},  true, false, false, false)  ( Particle, Particle1)" )
+                .Define("TauMto3PiNu_idx",  "FCCAnalyses::MCParticle::get_indices( 15, {-211, -211, 211, 16},  true, false, false, false)  ( Particle, Particle1)" )
+
+                .Define("GenTauP_DM",      "if (TauPtoPiNu_idx.size()>0) return 0; else if (TauPtoRhoNu_idx.size()>0) return 1; else if (TauPto2Pi0Nu_idx.size()>0) return 2;\
+                                        else if (TauPto3PiNu_idx.size()>0) return 3; else if (TauPtoENuNu_idx.size()>0) return 4; else if (TauPtoMuNuNu_idx.size()>0) return 5; else return 10;")
+                .Define("GenTauM_DM",      "if (TauMtoPiNu_idx.size()>0) return 0; else if (TauMtoRhoNu_idx.size()>0) return 1; else if (TauMto2Pi0Nu_idx.size()>0) return 2;\
+                                        else if (TauMto3PiNu_idx.size()>0) return 3; else if (TauMtoENuNu_idx.size()>0) return 4; else if (TauMtoMuNuNu_idx.size()>0) return 5; else return 10;")
+
                 
                 ##################
                 # Reco particles #
@@ -474,7 +556,7 @@ class RDFanalysis():
                 .Define("n_TagJet_R5_sel", "TagJet_R5_sel_e.size()")
 
                 #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
-                .Define("ChargedTau_R5_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 1)".format(jetClusteringHelper_R5.constituents))
+                .Define("ChargedTau_R5_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 3)".format(jetClusteringHelper_R5.constituents))
                 .Define("ChargedTau_R5_type",      "ReconstructedParticle::get_type(ChargedTau_R5_all)") 
                 .Define("ChargedTau_R5",      "ChargedTau_R5_all[ChargedTau_R5_type>=0]") 
                 .Define("n_ChargedTau_R5",      "ReconstructedParticle::get_n(ChargedTau_R5)") 
@@ -492,7 +574,7 @@ class RDFanalysis():
                 .Define("ChargedTau_R5_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_R5_px, ChargedTau_R5_py, ChargedTau_R5_pz, ChargedTau_R5_e)")
 
                 #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
-                .Define("NeutralTau_R5_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 2)".format(jetClusteringHelper_R5.constituents))
+                .Define("NeutralTau_R5_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 4)".format(jetClusteringHelper_R5.constituents))
                 .Define("NeutralTau_R5_type",      "ReconstructedParticle::get_type(NeutralTau_R5_all)") 
                 .Define("NeutralTau_R5",      "NeutralTau_R5_all[NeutralTau_R5_type>=0]") 
                 .Define("n_NeutralTau_R5",      "ReconstructedParticle::get_n(NeutralTau_R5)") 
@@ -588,7 +670,7 @@ class RDFanalysis():
                 .Define("n_TagJet_kt2_sel", "TagJet_kt2_sel_e.size()")
 
                 #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
-                .Define("ChargedTau_kt2_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 1)".format(jetClusteringHelper_kt2.constituents))
+                .Define("ChargedTau_kt2_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 3)".format(jetClusteringHelper_kt2.constituents))
                 .Define("ChargedTau_kt2_type",      "ReconstructedParticle::get_type(ChargedTau_kt2_all)") 
                 .Define("ChargedTau_kt2",      "ChargedTau_kt2_all[ChargedTau_kt2_type>=0]") 
                 .Define("n_ChargedTau_kt2",      "ReconstructedParticle::get_n(ChargedTau_kt2)") 
@@ -606,7 +688,7 @@ class RDFanalysis():
                 .Define("ChargedTau_kt2_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_kt2_px, ChargedTau_kt2_py, ChargedTau_kt2_pz, ChargedTau_kt2_e)")
 
                 #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
-                .Define("NeutralTau_kt2_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 2)".format(jetClusteringHelper_kt2.constituents))
+                .Define("NeutralTau_kt2_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 4)".format(jetClusteringHelper_kt2.constituents))
                 .Define("NeutralTau_kt2_type",      "ReconstructedParticle::get_type(NeutralTau_kt2_all)") 
                 .Define("NeutralTau_kt2",      "NeutralTau_kt2_all[NeutralTau_kt2_type>=0]") 
                 .Define("n_NeutralTau_kt2",      "ReconstructedParticle::get_n(NeutralTau_kt2)") 
@@ -1069,6 +1151,54 @@ class RDFanalysis():
 
                 .Define("KinILC_H_mass",         "KinILC_Higgs_p4.M()")
 
+                #.Define("GenTau_el",       "FCCAnalyses::MCParticle::sel_daughterID(-11, false, true)(FSRGenTau,Particle,Particle1)")
+                #.Define("GenTau_had",       "FCCAnalyses::MCParticle::sel_daughterID(-13, false, true)(GenTau_el,Particle,Particle1)")
+                #.Define("HadGenTau_eta",    "FCCAnalyses::MCParticle::get_eta(GenTau_had)")
+                #.Define("HadGenTau_phi",    "FCCAnalyses::MCParticle::get_phi(GenTau_had)")
+                #.Define("HadGenTau_DR",     "FCCAnalyses::ZHfunctions::deltaR(HadGenTau_phi.at(0), HadGenTau_phi.at(1), HadGenTau_eta.at(0), HadGenTau_eta.at(1))")
+                #.Define("HadGenTau_p",    "FCCAnalyses::MCParticle::get_p(GenTau_had)")
+                #.Define("HadGenTau_px",    "FCCAnalyses::MCParticle::get_px(GenTau_had)")
+                #.Define("HadGenTau_py",    "FCCAnalyses::MCParticle::get_py(GenTau_had)")
+                #.Define("HadGenTau_pz",    "FCCAnalyses::MCParticle::get_pz(GenTau_had)")
+                #.Define("HadGenTau_e",    "FCCAnalyses::MCParticle::get_e(GenTau_had)")
+                #.Define("HadGenTau_p4",  "FCCAnalyses::ZHfunctions::build_p4(HadGenTau_px, HadGenTau_py, HadGenTau_pz, HadGenTau_e)")
+                #.Define("HadGenTau_charge",    "FCCAnalyses::MCParticle::get_charge(GenTau_had)")
+                #.Define("n_GenTau_had",     "HadGenTau_eta.size()")
+
+                #.Filter("n_GenTau_had==2")
+
+                #.Define("KinILC_RecoGen_TauP",     "if (HadGenTau_charge.at(0)==1) return (KinILC_TauP_p4-HadGenTau_p4.at(0)); else return (KinILC_TauP_p4-HadGenTau_p4.at(1));")
+                #.Define("KinILC_RecoGen_TauP_px",     "KinILC_RecoGen_TauP.X()")
+                #.Define("KinILC_RecoGen_TauP_py",     "KinILC_RecoGen_TauP.Y()")
+                #.Define("KinILC_RecoGen_TauP_pz",     "KinILC_RecoGen_TauP.Z()")
+                #.Define("KinILC_RecoGen_TauP_e",     "KinILC_RecoGen_TauP.E()")
+
+                #.Define("KinILC_RecoGen_TauM",     "if (HadGenTau_charge.at(0)==1) return (KinILC_TauM_p4-HadGenTau_p4.at(1)); else return (KinILC_TauM_p4-HadGenTau_p4.at(0));")
+                #.Define("KinILC_RecoGen_TauM_px",     "KinILC_RecoGen_TauM.X()")
+                #.Define("KinILC_RecoGen_TauM_py",     "KinILC_RecoGen_TauM.Y()")
+                #.Define("KinILC_RecoGen_TauM_pz",     "KinILC_RecoGen_TauM.Z()")
+                #.Define("KinILC_RecoGen_TauM_e",     "KinILC_RecoGen_TauM.E()")
+
+                ############################
+
+                # following Belle reconstruction https://arxiv.org/pdf/1310.8503 to get the tau 4 vector in the recoil frame, then get the neutrino momentum by subtraction
+                # then following ILC polarimetric vectors for the cp angle
+                # the reconstruction does not work, the taus have about 5 gev more energy than they should
+
+                #.Define("TauFromJet_kt2_p4",  "FCCAnalyses::ZHfunctions::build_p4(TauFromJet_kt2_px, TauFromJet_kt2_py, TauFromJet_kt2_pz, TauFromJet_kt2_e)")
+
+                #.Define("Recoil_True_Tau_p4",        "FCCAnalyses::ZHfunctions::build_tau_p4(Recoil_p4, TauFromJet_kt2_p4, TauFromJet_kt2_charge)")
+                #filtering events where the discriminant to solve is negative and so the reconstruction didn't work out
+                #.Define("Belle_Filter",     "if (Recoil_True_Tau_p4.at(0).P()!=0 && Recoil_True_Tau_p4.at(1).P()!=0) return 1; else return 0;")
+
+                #.Define("True_TauP_p4",     "Recoil_True_Tau_p4.at(0)")
+                #.Define("True_TauM_p4",     "Recoil_True_Tau_p4.at(1)")
+
+                #.Define("True_NuP_p4",      "Recoil_True_Tau_p4.at(0) - TauFromJet_kt2_p4.at(0)")
+                #.Define("True_NuM_p4",      "Recoil_True_Tau_p4.at(1) - TauFromJet_kt2_p4.at(1)")
+
+                #.Define("Belle_Higgs_mass",      "(True_TauP_p4+True_TauM_p4).M()")
+
         )
         return df2
 
@@ -1077,6 +1207,10 @@ class RDFanalysis():
     def output():
         #branches from stage1 to be kept for histogram booking in final and plotting
         branchList = [
+
+            "GenTauP_DM",
+            "GenTauM_DM",
+            
             ######## Reconstructed particles #######
 
             "n_RecoElectrons",
@@ -1624,6 +1758,19 @@ class RDFanalysis():
             "ILC_Filter", 
 
             "KinILC_H_mass",
+
+            #"Belle_Filter",
+            #"Belle_Higgs_mass", 
+
+            #"KinILC_RecoGen_TauP_px",   
+            #"KinILC_RecoGen_TauP_py",  
+            #"KinILC_RecoGen_TauP_pz", 
+            #"KinILC_RecoGen_TauP_e",    
+            #"KinILC_RecoGen_TauM",  
+            #"KinILC_RecoGen_TauM_px",   
+            #"KinILC_RecoGen_TauM_py", 
+            #"KinILC_RecoGen_TauM_pz",  
+            #"KinILC_RecoGen_TauM_e",  
 
         ]
 

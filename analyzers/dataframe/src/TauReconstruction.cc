@@ -1,5 +1,4 @@
-#ifndef TauFunctions_H
-#define TauFunctions_H
+#include "FCCAnalyses/TauReconstruction.h"
 
 #include <cmath>
 #include <vector>
@@ -7,13 +6,27 @@
 
 #include "TLorentzVector.h"
 #include "ROOT/RVec.hxx"
-#include "edm4hep/ReconstructedParticleData.h"
+#include "Minuit2/FCNBase.h"
+#include "FCCAnalyses/JetConstituentsUtils.h"
+#include "FCCAnalyses/ReconstructedParticle.h"
+#include "FCCAnalyses/ReconstructedParticle2Track.h"
+#include "FCCAnalyses/ReconstructedParticle2MC.h"
 #include "edm4hep/MCParticleData.h"
+#include "edm4hep/Track.h"
+#include "edm4hep/TrackerHitData.h"
+#include "edm4hep/TrackData.h"
+#include "edm4hep/Cluster.h"
+#include "edm4hep/ClusterData.h"
+#include "edm4hep/CalorimeterHitData.h"
+#include "edm4hep/ReconstructedParticleData.h"
+#include "FCCAnalyses/JetClusteringUtils.h"
 #include "edm4hep/ParticleIDData.h"
-#include "ReconstructedParticle2MC.h"
+#include "Math/Minimizer.h"
+#include "Math/Factory.h"
+#include "Math/Functor.h"
 
 
-namespace FCCAnalyses { namespace TauFunctions {
+namespace FCCAnalyses { namespace TauReconstruction {
 
 ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> findTauInJet (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets, int request){
 
@@ -680,7 +693,7 @@ ROOT::VecOps::RVec<TLorentzVector> ImpactVector(ROOT::VecOps::RVec<TLorentzVecto
     return impact;
 }
 
-// find the intersection between two tracks defined by one point and one vector (both TVector3)
+// Find the intersection between two tracks defined by one point and one vector (both TVector3)
 TVector3 findIntersection(const TVector3& P1, const TVector3& d1, const TVector3& P2, const TVector3& d2) {
     TVector3 closestPoint;
     TVector3 crossDir = d1.Cross(d2);
@@ -723,7 +736,7 @@ TLorentzVector ImpactFromIP(const TLorentzVector& d0, const TLorentzVector& pi, 
     return impactVector;
 }
 
-//return parallel component of a vector v that lies in the plane defined by a and b
+// Return parallel component of a vector v that lies in the plane defined by a and b
 TVector3 ProjectOntoPlane(const TVector3& v, const TVector3& a, const TVector3& b) {
     // Compute normal to the plane
     TVector3 n = a.Cross(b);
@@ -738,7 +751,8 @@ TVector3 ProjectOntoPlane(const TVector3& v, const TVector3& a, const TVector3& 
 }
 
 // Begin of minimizer function to reconstruct the full tau momenta in di-tau events following reference https://arxiv.org/pdf/1507.01700
-// Returns tau neutrinos in lab frame, only works for hadronic tau decays
+// Returns tau neutrinos in lab frame, only for hadronic decays
+// Needs the charged daughters of the tau to be separated from the neutral particles in two vectors
 // Recoil vector can either be the recoiling system or the center of mass
 class NuKinFunctor : public ROOT::Minuit2::FCNBase {
 public:
@@ -972,13 +986,14 @@ private:
     mutable TLorentzVector best_NuP_nu_, best_NuM_nu_;
 };
 
-ROOT::VecOps::RVec<TLorentzVector> TauNuReco_Impact(const TLorentzVector& Recoil,
-                                                 const ROOT::VecOps::RVec<TLorentzVector>& Charged_p4,
-                                                 const ROOT::VecOps::RVec<TLorentzVector>& Neutral_p4,
-                                                 const ROOT::VecOps::RVec<float>& D0_p4,
-                                                 const ROOT::VecOps::RVec<float>& Z0_p4,
-                                                 const TLorentzVector& IP,
-                                                 ROOT::VecOps::RVec<float> charge) {
+ROOT::VecOps::RVec<TLorentzVector> TauNuReco_Impact(const TLorentzVector& Recoil, // recoil system or centre of mass
+                                                 const ROOT::VecOps::RVec<TLorentzVector>& Charged_p4, // sum of charged daughters of the taus
+                                                 const ROOT::VecOps::RVec<TLorentzVector>& Neutral_p4, // sum of neutral daughters of taus (if non then empty)
+                                                 const ROOT::VecOps::RVec<float>& D0_p4, // d0 of leading prong
+                                                 const ROOT::VecOps::RVec<float>& Z0_p4, //z0 of leading prong
+                                                 const TLorentzVector& IP, // interaction point (e=0)
+                                                 ROOT::VecOps::RVec<float> charge) // charge of taus, same indices as Charged_p4, Neutral_p4, D0_p4 and Z0_p4
+                                                {
     ROOT::VecOps::RVec<TLorentzVector> result;
     TLorentzVector TauP_p_p4, TauM_p_p4, TauP_k_p4, TauM_k_p4, TauP_d_p4, TauM_d_p4;
 
@@ -1004,11 +1019,12 @@ ROOT::VecOps::RVec<TLorentzVector> TauNuReco_Impact(const TLorentzVector& Recoil
         TauM_d_p4 = Impact_p4[0];
     }
     
-    ROOT::Minuit2::Minuit2Minimizer minimizer(ROOT::Minuit2::kMigrad);
+    //ROOT::Minuit2::Minuit2Minimizer minimizer(ROOT::Minuit2::kMigrad);
+    std::unique_ptr<ROOT::Math::Minimizer> minimizer(ROOT::Math::Factory::CreateMinimizer("Minuit2", "Migrad"));
     NuKinFunctor functor(Recoil, TauP_p_p4, TauM_p_p4, TauP_k_p4, TauM_k_p4, TauP_d_p4, TauM_d_p4, IP);
     ROOT::Math::Functor fcn(functor, 2);
-    minimizer.SetFunction(fcn);
-    minimizer.SetPrintLevel(-1);
+    minimizer->SetFunction(fcn);
+    minimizer->SetPrintLevel(-1);
     
     // Define the two ranges for phi angles
     std::vector<std::pair<double, double>> phi_ranges = {
@@ -1027,19 +1043,19 @@ ROOT::VecOps::RVec<TLorentzVector> TauNuReco_Impact(const TLorentzVector& Recoil
         for (const auto& phi_minus_range : phi_ranges) {
             
             // Set phi_plus with the current range
-            minimizer.SetVariable(0, "phi_plus", (phi_plus_range.first + phi_plus_range.second) / 2, 0.000001);
-            minimizer.SetVariableLimits(0, phi_plus_range.first, phi_plus_range.second);
+            minimizer->SetVariable(0, "phi_plus", (phi_plus_range.first + phi_plus_range.second) / 2, 0.0001);
+            minimizer->SetVariableLimits(0, phi_plus_range.first, phi_plus_range.second);
 
             // Set phi_minus with the current range
-            minimizer.SetVariable(1, "phi_minus", (phi_minus_range.first + phi_minus_range.second) / 2, 0.000001);
-            minimizer.SetVariableLimits(1, phi_minus_range.first, phi_minus_range.second);
+            minimizer->SetVariable(1, "phi_minus", (phi_minus_range.first + phi_minus_range.second) / 2, 0.0001);
+            minimizer->SetVariableLimits(1, phi_minus_range.first, phi_minus_range.second);
 
-            bool success = minimizer.Minimize();
+            bool success = minimizer->Minimize();
 
             if (success) {
 
-                double current_result = minimizer.MinValue();
-                const double* best_params = minimizer.X();
+                double current_result = minimizer->MinValue();
+                const double* best_params = minimizer->X();
                 functor.operator()(best_params); 
 
                 if (current_result < best_result) {
@@ -1062,9 +1078,10 @@ ROOT::VecOps::RVec<TLorentzVector> TauNuReco_Impact(const TLorentzVector& Recoil
     return result;
 }
 
+// Following kinematic reconstrcution of di-tau system in its rest frame in https://arxiv.org/pdf/1310.8503
+// Returns the taus in the lab frame, for hadronic decays only
+// Recoil vector can be recoiling system or center of mass
 ROOT::VecOps::RVec<TLorentzVector> TauReco_Kin (TLorentzVector Recoil, ROOT::VecOps::RVec<TLorentzVector> Tau_vis, ROOT::VecOps::RVec<float> charge){
-    
-    // Following kinematic reconstrcution of di-tau system in its rest frame in https://arxiv.org/pdf/1310.8503
     // First of all, build the visible taus with either jet tagger or the explciit reconstruction
     ROOT::VecOps::RVec<TLorentzVector> result;
     TLorentzVector temp1;
@@ -1170,5 +1187,3 @@ ROOT::VecOps::RVec<TLorentzVector> TauReco_Kin (TLorentzVector Recoil, ROOT::Vec
 }
 
 }}
-
-#endif

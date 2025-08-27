@@ -31,29 +31,57 @@ def make_dir_if_not_exists(directory):
 def file_exists(file_path):
     return os.path.isfile(file_path)
 
-# directory with final stage files
+# directory with final stage filescono
 DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/"
 
 SUBDIR = [
     'LL',
-    'LH',
-    'HH',
+    #'LH',
+    #'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
-    "LL",
+    #"LL",
 ]
 
-CUTS = [
-    "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_2DR",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+CUT = [
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_2DR",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
      
+]
+
+CUT_LLLL = [
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM_HE110",
+]
+
+CUT_QQHH = [
+    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM",
+    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM",
+    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95",
+    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95_40HE",
+]
+
+CUT_QQLH = [
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM",
+    #"selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM",
+    #"selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM_40Zp55",
+]
+
+CUT_QQLL = [
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_HE95"
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM_90HM",
 ]
 
 #now you can list all the histograms that you want to plot
@@ -511,6 +539,13 @@ VARIABLES_QQ = [
     "RecoZ_y",
     "RecoZ_mass",
 
+    "RecoZ1_consituents", 
+    "RecoZ2_consituents", 
+    "RecoZ1_charged_consituents",   
+    "RecoZ2_charged_consituents",  
+    "RecoZ1_neutral_consituents",   
+    "RecoZ2_neutral_consituents",
+
     "RecoZLead_px", 
     "RecoZLead_py",   
     "RecoZLead_pz",   
@@ -712,7 +747,7 @@ LIST_VAR = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/ecm240/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/ecm240/pythia/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -723,7 +758,12 @@ LABELS = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98}",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV}",
-    
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets, E_{missing}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets, E_{missing}>10 GeV, 40<p_{Z}<55 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, -0.98<cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets, E_{missing}>10 GeV, 40<p_{Z}<55 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_HE95":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets, E_{missing}>10 GeV, 40<p_{Z}<55 GeV, E_{H}<95 GeV}",
+
     #cuts for NuNu
     "selReco_100Me": "E_{miss}>100 GeV",
     "selReco_100Me_TauDPhi3": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3",
@@ -731,6 +771,17 @@ LABELS = {
     "selReco_100Me_TauDPhi3_2DR_cos0.4": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
+
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>20 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM_HE110":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>20 GeV, E_{H}>110 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM_40Zp55":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3.2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>10 GeV, 40<p_{Z}>55 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3.2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, 10<E_{missing}<95 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95_40HE":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, 10<E_{missing}<95 GeV, E_{H}>40 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>54 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM_90HM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>54 GeV, M_{H}<90 GeV}",
 
  }
 
@@ -896,24 +947,24 @@ legcolors = {
     'sm_lin_quad_cehre_m1':ROOT.kTeal+3,
     'sm_lin_quad_cehre_p1':ROOT.kSpring+2,
 
-    "p8_ee_QQH_Htautau_CPeven":ROOT.kAzure-6,
-    "p8_ee_QQH_Htautau_CPodd":ROOT.kTeal-7,
-    "p8_ee_LLH_Htautau_CPeven":ROOT.kTeal+3,
-    "p8_ee_LLH_Htautau_CPodd":ROOT.kSpring+2,
+    "p8_ee_QQH_Htautau_CPeven":ROOT.kRed-10,
+    "p8_ee_QQH_Htautau_CPodd":ROOT.kPink+3,
+    "p8_ee_LLH_Htautau_CPeven":ROOT.kAzure-9,
+    "p8_ee_LLH_Htautau_CPodd":ROOT.kAzure-6,
 
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    "sm",
-    "sm_lin_quad_cehim_m1",
-    "sm_lin_quad_cehim",
+    #"sm",
+    #"sm_lin_quad_cehim_m1",
+    #"sm_lin_quad_cehim",
     #"sm_lin_quad_cehre_m1",
     #"sm_lin_quad_cehre_p1",
-    #"p8_ee_QQH_Htautau_CPeven",
-    #"p8_ee_QQH_Htautau_CPodd",
-    #"p8_ee_LLH_Htautau_CPeven",
-    #"p8_ee_LLH_Htautau_CPodd",
+    "p8_ee_QQH_Htautau_CPeven",
+    "p8_ee_QQH_Htautau_CPodd",
+    "p8_ee_LLH_Htautau_CPeven",
+    "p8_ee_LLH_Htautau_CPodd",
 ]
 
 for cat in CAT:
@@ -922,6 +973,19 @@ for cat in CAT:
     for sub in SUBDIR:
         directory = DIRECTORY + "ktN-explicit/" + cat + "/" + sub + "/"
 
+        CUTS = ""
+        if "LL" in cat:
+            if "LL" in sub:
+                CUTS = CUT + CUT_LLLL
+            else:
+                CUTS = CUT
+        else:
+            if "HH" in sub:
+                CUTS = CUT +  CUT_QQHH
+            elif "LH" in sub:
+                CUTS = CUT + CUT_QQLH
+            else:
+                CUTS = CUT + CUT_QQLL
         for cut in CUTS:
             for variable in variables:
 
@@ -932,7 +996,7 @@ for cat in CAT:
 
                 #legend coordinates and style
                 legsize = 0.04*nsig
-                legsize2 = 0.04*nbkg
+                legsize2 = 0.06*nbkg
                 leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
                 leg.SetFillColor(0)
                 leg.SetFillStyle(0)
@@ -1112,10 +1176,10 @@ for cat in CAT:
                 #fix legened height after having the correct number of processes
 
                 legsize = 0.04*nsig
-                legsize2 = 0.03*(len(histos)-nsig)/2
-                leg.SetY1(0.70 - legsize)
+                legsize2 = 0.025*(len(histos)-nsig)/2
+                leg.SetY1(0.74 - legsize)
 
-                leg2.SetY1(0.70 - legsize2)
+                leg2.SetY1(0.74 - legsize2)
 
                 leg.Draw()
                 leg2.Draw()

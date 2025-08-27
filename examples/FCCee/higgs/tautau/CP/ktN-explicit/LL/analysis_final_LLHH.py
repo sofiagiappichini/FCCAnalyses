@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/LL/HH"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/test_250724/LLHH/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/LL/HH"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/test_250724/LLHH/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -14,12 +14,18 @@ doScale = True
 saveTabular = False
 
 #Number of CPUs to use
-#nCPUs = 6
+nCPUs = 6
 
 #produces ROOT TTrees, default is False
 doTree = False
 
 processList = {
+    "mg_ee_eetata_mod1_ecm240":{},                
+    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240":{},
+    "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":{},
+}
+
+processList_ = {
 
     "mg_ee_eetata_ecm240":{},
     "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
@@ -145,6 +151,10 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 #Add provate samples as it is not an offical process
 procDictAdd = {
 
+    'mg_ee_eetata_mod1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.612249108209635e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_mod1_smeft_cehim_m1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.641935457756982e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_eetata_mod1_smeft_cehim_p1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.691984057002465e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
     'mg_ee_eetata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'mg_ee_eetata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039496700612440505, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'mg_ee_eetata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039467206272751117, "kfactor": 1.0, "matchingEfficiency": 1.0},
@@ -181,13 +191,21 @@ procDictAdd = {
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     #"selReco": "true",
-    "SelReco_ILC":"ILC_Filter==1",
-    #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
-    #"selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    #"selOffDiag":"(GenTauP_DM==0 && GenTauM_DM==1) || (GenTauP_DM==1 && GenTauM_DM==0)",
+    #"selDiag":"(GenTauP_DM==0 && GenTauM_DM==0) || (GenTauP_DM==1 && GenTauM_DM==1)",
+    #"selPi":"(GenTauP_DM==0 && GenTauM_DM==0)",
+    #"selRho":"(GenTauP_DM==1 && GenTauM_DM==1)",
+    #"selReco_ILC": "ILC_Filter==1",
+    #"selOffDiag_ILC":"(GenTauP_DM==0 && GenTauM_DM==1) || (GenTauP_DM==1 && GenTauM_DM==0) && ILC_Filter==1",
+    #"selDiag_ILC":"(GenTauP_DM==0 && GenTauM_DM==0) || (GenTauP_DM==1 && GenTauM_DM==1) && ILC_Filter==1",
+    #"selPi_ILC":"(GenTauP_DM==0 && GenTauM_DM==0) && ILC_Filter==1",
+    #"selRho_ILC":"(GenTauP_DM==1 && GenTauM_DM==1) && ILC_Filter==1",
+    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
+    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
      
 }
 
@@ -582,5 +600,6 @@ histoList = {
     "DeltaPhiILC":                             {"name":"DeltaPhiILC",           "title":"#Delta#Phi_{CP} ILC",                  "bin":32, "xmin":-3.14,"xmax":3.14},
     "KinILC_chi2":                             {"name":"KinILC_chi2",           "title":"#chi^{2} ILC",                  "bin":50, "xmin":0,"xmax":20},
     "KinILC_H_mass":                             {"name":"KinILC_H_mass",           "title":"M_{H} ILC",                  "bin":100, "xmin":0,"xmax":200},
+    #"Belle_Higgs_mass":                             {"name":"Belle_Higgs_mass",           "title":"M_{H} BElle",                  "bin":100, "xmin":0,"xmax":200},
 
 }
