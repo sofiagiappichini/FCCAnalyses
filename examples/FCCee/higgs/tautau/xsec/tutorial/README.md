@@ -24,7 +24,7 @@ If you want to use a sample that is not there, i.e. your favourite BSM model, yo
 
 ### LHE files
 
-These are the instructions to generate samples starting from Madgraph. If you want to use Pythia, skip ahead.
+These are the instructions to generate samples starting from Madgraph. More information can be found in [this set of slides](https://indico.jlab.org/event/413/contributions/7694/attachments/6580/8909/Hands-onStartToMG.pdf). If you want to use Pythia, skip ahead.
 
 1. First of all, install [Madgraph](http://madgraph.phys.ucl.ac.be) by downloading the latest version (check it on the website):
 
