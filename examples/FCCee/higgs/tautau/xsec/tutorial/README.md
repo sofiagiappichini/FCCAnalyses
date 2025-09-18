@@ -8,6 +8,7 @@
     - [FCCAnalyses setup](#fccanalyses-setup)
     - [Running the analysis](#running-the-analysis)
     - [How to add new functions to call in the stage1](#how-to-add-new-functions-to-call-in-the-stage1)
+  - [Visualization](#visualization)
   - [Statystical analysis with Combine](#statystical-analysis-with-combine)
 
 ## Generating your own events
@@ -211,6 +212,23 @@ To add new functions that take any argument and that will be useful to either se
     ```
 
 5. As said before, you can also add the functions in `functions.h` and you will not have to build again and do any of the other steps. Be aware that sometimes you will not be able to do this because of the type of objects you want.
+
+## Visualization
+
+You can visiualize single events in an event display fashion via the website [https://fccsw.web.cern.ch/fccsw/phoenix/](https://fccsw.web.cern.ch/fccsw/phoenix/), selecting the IDEA detector geometry (so you don't have to load this too). You will now see the detctor layers (can be modified or removed via the menu) and now you need to load your events. To do this, you first need to have simulated edm4hep files including the detcetor simulation (i.e. files from Delphes or GEANT). After sourcing the usual key4hep stack, run the command 
+
+```
+edm4hep2json $PATH_TO_YOUR_EVENTS.root
+```
+
+which will result in a json file containing the event info. Some options:
+
+- `-n 10` to only keep 10 events,
+- `-l ReconstructedParticles,Particle,DCH,...` to list the classes you want the file to have in the end. These can be seen in the ROOT TTree structure (names without a #, as these are reference classes).
+
+Then upload this json file to the website and from the menu again you can change the color and which classes to visualize. You can now save the visualization and play with it.
+
+**Note**: this works for both fast and full simulation. For fast simulation you can only see tracks, jets, and missing energy and for full simulation you can see the individual hits in the detector layers and the reconstructed tracks or jets only if this is implemented in your workflow (try with different stages and see what is available).
 
 ## Statystical analysis with Combine
 
