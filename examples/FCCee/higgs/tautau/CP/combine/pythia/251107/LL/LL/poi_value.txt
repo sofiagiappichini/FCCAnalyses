@@ -1,0 +1,4 @@
+POI: alpha
+Best fit: 0.000
++1 sigma: 26.556
+-1 sigma: 27.352

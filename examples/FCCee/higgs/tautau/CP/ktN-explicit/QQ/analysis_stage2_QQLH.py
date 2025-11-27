@@ -4,37 +4,35 @@ import urllib.request
 
 #Mandatory: List of processes
 processList = {
+    "mg_ee_fftata_cehim-m1_ecm240":{},
+    "mg_ee_fftata_cehre-m1_ecm240":{},
+    "mg_ee_fftata_sm_ecm240":{},
+    "mg_ee_fftata_cehim-p1_ecm240":{},
+    "mg_ee_fftata_cehre-p1_ecm240":{},
+}
 
-    "p8_ee_bbH_Htautau_CPeven":{},
-    "p8_ee_bbH_Htautau_CPodd":{},
-    "p8_ee_ccH_Htautau_CPeven":{},
-    "p8_ee_ccH_Htautau_CPodd":{},
-    "p8_ee_eeH_Htautau_CPeven":{},
-    "p8_ee_eeH_Htautau_CPodd":{},
-    "p8_ee_mumuH_Htautau_CPeven":{},
-    "p8_ee_mumuH_Htautau_CPodd":{},
-    "p8_ee_ssH_Htautau_CPeven":{},
-    "p8_ee_ssH_Htautau_CPodd":{},
-    "p8_ee_qqH_Htautau_CPeven":{},
-    "p8_ee_qqH_Htautau_CPodd":{},
-}
 processList_ = {
-    "mg_ee_eetata_ecm240":{},
-    "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_eetata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_eetata_smeft_cehre_p1_ecm240":{},
-    "mg_ee_jjtata_ecm240":{'chunks':10},
-    "mg_ee_jjtata_smeft_cehim_m1_ecm240":{'chunks':10},
-    "mg_ee_jjtata_smeft_cehim_p1_ecm240":{'chunks':10},
-    "mg_ee_jjtata_smeft_cehre_m1_ecm240":{'chunks':10},
-    "mg_ee_jjtata_smeft_cehre_p1_ecm240":{'chunks':10},
-    "mg_ee_mumutata_ecm240":{},
-    "mg_ee_mumutata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
+
+    #"p8_ee_bbH_Htautau_CPeven":{},
+    #"p8_ee_bbH_Htautau_CPodd":{},
+    #"p8_ee_bbH_Htautau_CPmix":{},
+    #"p8_ee_ccH_Htautau_CPeven":{},
+    #"p8_ee_ccH_Htautau_CPodd":{},
+    #"p8_ee_ccH_Htautau_CPmix":{},
+    #"p8_ee_eeH_Htautau_CPeven":{},
+    #"p8_ee_eeH_Htautau_CPodd":{},
+    #"p8_ee_eeH_Htautau_CPmix":{},
+    #"p8_ee_mumuH_Htautau_CPeven":{},
+    #"p8_ee_mumuH_Htautau_CPodd":{},
+    #"p8_ee_mumuH_Htautau_CPmix":{},
+    #"p8_ee_ssH_Htautau_CPeven":{},
+    #"p8_ee_ssH_Htautau_CPodd":{},
+    #"p8_ee_ssH_Htautau_CPmix":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    #"p8_ee_qqH_Htautau_CPodd":{},
+    #"p8_ee_qqH_Htautau_CPmix":{},
 }
+
 processList_ = {
 
     'p8_ee_WW_ecm240':{'chunks':3740},
@@ -122,7 +120,8 @@ processList_ = {
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/winter2023/IDEA/"
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/"
+#inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/DelphesPythia8_EDM4HEP/NovCampaign/"
 
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 #inputDir = "root://eospublic.cern.ch//eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
@@ -143,45 +142,10 @@ runBatch = True
 nCPUS = 6
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "tomorrow"
+batchQueue = "workday"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
-
-## tagging -------------------------------
-## latest particle transformer model, trained on 9M jets in winter2023 samples
-model_name = "fccee_flavtagging_edm4hep_wc"
-
-## model files needed for unit testing in CI
-url_model_dir = "https://fccsw.web.cern.ch/fccsw/testsamples/jet_flavour_tagging/winter2023/wc_pt_13_01_2022/"
-url_preproc = "{}/{}.json".format(url_model_dir, model_name)
-url_model = "{}/{}.onnx".format(url_model_dir, model_name)
-
-## model files locally stored on /eos
-#model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
-model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
-
-local_preproc = "{}/{}.json".format(model_dir, model_name)
-local_model = "{}/{}.onnx".format(model_dir, model_name)
-
-## get local file, else download from url
-def get_file_path(url, filename):
-    if os.path.exists(filename):
-        return os.path.abspath(filename)
-    #else:
-    #    urllib.request.urlretrieve(url, os.path.basename(url))
-    #    return os.path.basename(url)
-    ## this is the old version of the tagger and we don't care about it
-
-
-weaver_preproc = get_file_path(url_preproc, local_preproc)
-weaver_model = get_file_path(url_model, local_model)
-
-from addons.ONNXRuntime.jetFlavourHelper import JetFlavourHelper
-from addons.FastJet.jetClusteringHelper import (
-    ExclusiveJetClusteringHelper,
-    InclusiveJetClusteringHelper,
-)
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -393,187 +357,37 @@ class RDFanalysis():
 
                 .Define("ReconstructedParticlesJET",  "FCCAnalyses::ReconstructedParticle::remove(ReconstructedParticles,LeadingLepton)")
             
-        )
-        #### tagging
-        
-        global jetClusteringHelper_R5
-        global jetFlavourHelper_R5
-        ## define jet and run clustering parameters
-        ## name of collections in EDM root files
-        collections = {
-            "GenParticles": "Particle",
-            "PFParticles": "ReconstructedParticlesJET",
-            "PFTracks": "EFlowTrack",
-            "PFPhotons": "EFlowPhoton",
-            "PFNeutralHadrons": "EFlowNeutralHadron",
-            "TrackState": "EFlowTrack_1",
-            "TrackerHits": "TrackerHits",
-            "CalorimeterHits": "CalorimeterHits",
-            "dNdx": "EFlowTrack_2",
-            "PathLength": "EFlowTrack_L",
-            "Bz": "magFieldBz",
-        }
-        #INCLUSIVE R=0.5
-        ## def __init__(self, coll, njets, tag="")
-        jetClusteringHelper_R5  = InclusiveJetClusteringHelper(
-            collections["PFParticles"], 0.5, 2, "R5"
-        )
-        df2 = jetClusteringHelper_R5.define(df2)
+                .Define("RP_px_sel",          "ReconstructedParticle::get_px(ReconstructedParticlesJET)")
+                .Define("RP_py_sel",          "ReconstructedParticle::get_py(ReconstructedParticlesJET)")
+                .Define("RP_pz_sel",          "ReconstructedParticle::get_pz(ReconstructedParticlesJET)")
+                .Define("RP_e_sel",           "ReconstructedParticle::get_e(ReconstructedParticlesJET)")
+                .Define("RP_m_sel",           "ReconstructedParticle::get_mass(ReconstructedParticlesJET)")
+                .Define("RP_q_sel",           "ReconstructedParticle::get_charge(ReconstructedParticlesJET)")
+                # build pseudo jets with the RP, using the interface that takes px,py,pz,E
+                .Define("pseudo_jets",  "JetClusteringUtils::set_pseudoJets(RP_px_sel, RP_py_sel, RP_pz_sel, RP_e_sel)" )
 
-        ## define jet flavour tagging parameters
-        jetFlavourHelper_R5 = JetFlavourHelper(
-            collections,
-            jetClusteringHelper_R5.jets,
-            jetClusteringHelper_R5.constituents,
-            "R5",
-        )
-        ## define observables for tagger
-        df2 = jetFlavourHelper_R5.define(df2)
+                ### Durham algo, exclusive clustering (first number 2) N_jets=2 (second number), E-scheme=0 (third and forth numbers) ###
+                .Define( "FCCAnalysesJets_ee_kt",  "JetClustering::clustering_ee_kt(2, 3, 1, 0)(pseudo_jets)" )
+                .Define("Jets_kt3",  "JetClusteringUtils::get_pseudoJets( FCCAnalysesJets_ee_kt )")
+                .Define("Jet_GetConstituents_kt3","JetClusteringUtils::get_constituents(FCCAnalysesJets_ee_kt)") # constituents indices
+                .Define("Jets_Constituents_kt3", "JetConstituentsUtils::build_constituents_cluster(ReconstructedParticlesJET, Jet_GetConstituents_kt3)") #build jet constituents lists for tau reconstruction
+                
+		        .Define("Jets_kt3_e",      "JetClusteringUtils::get_e(Jets_kt3)")
+                .Define("Jets_kt3_p",      "JetClusteringUtils::get_p(Jets_kt3)") #momentum p
+                .Define("Jets_kt3_pt",      "JetClusteringUtils::get_pt(Jets_kt3)") #transverse momentum pt
+                .Define("Jets_kt3_px",      "JetClusteringUtils::get_px(Jets_kt3)")
+                .Define("Jets_kt3_py",      "JetClusteringUtils::get_py(Jets_kt3)")
+                .Define("Jets_kt3_pz",      "JetClusteringUtils::get_pz(Jets_kt3)")
+		        .Define("Jets_kt3_eta",     "JetClusteringUtils::get_eta(Jets_kt3)") #pseudorapidity eta
+                .Define("Jets_kt3_theta",   "JetClusteringUtils::get_theta(Jets_kt3)")
+		        .Define("Jets_kt3_phi",     "JetClusteringUtils::get_phi(Jets_kt3)") #polar angle in the transverse plane phi
+                .Define("Jets_kt3_mass",      "JetClusteringUtils::get_m(Jets_kt3)")
+                .Define("n_Jets_kt3_constituents",        "JetConstituentsUtils::get_n_constituents(Jets_Constituents_kt3)")
+                .Define("n_Jets_kt3_charged_constituents",        "JetConstituentsUtils::get_ncharged_constituents(Jets_Constituents_kt3)")
+                .Define("n_Jets_kt3_neutral_constituents",        "JetConstituentsUtils::get_nneutral_constituents(Jets_Constituents_kt3)")
+                .Define("n_Jets_kt3", "Jets_kt3_e.size()")
 
-        ## tagger inference
-        df2 = jetFlavourHelper_R5.inference(weaver_preproc, weaver_model, df2)
-
-        df2 = (df2
-                .Define("TagJet_R5_px",           "JetClusteringUtils::get_px({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_py",           "JetClusteringUtils::get_py({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_pz",           "JetClusteringUtils::get_pz({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_p",           "JetClusteringUtils::get_p({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_pt",           "JetClusteringUtils::get_pt({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_phi",          "JetClusteringUtils::get_phi({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_eta",          "JetClusteringUtils::get_eta({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_theta",          "JetClusteringUtils::get_theta({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_e",       "JetClusteringUtils::get_e({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_mass",         "JetClusteringUtils::get_m({})".format(jetClusteringHelper_R5.jets))
-                .Define("TagJet_R5_charge",         "JetConstituentsUtils::get_charge_constituents({})".format(jetClusteringHelper_R5.constituents))
-                .Define("TagJet_R5_flavor",        "JetTaggingUtils::get_flavour({}, Particle)".format(jetClusteringHelper_R5.jets))
-                .Define("n_TagJet_R5_constituents",        "JetConstituentsUtils::get_n_constituents({})".format(jetClusteringHelper_R5.constituents))
-                .Define("n_TagJet_R5_charged_constituents",        "JetConstituentsUtils::get_ncharged_constituents({})".format(jetClusteringHelper_R5.constituents))
-                .Define("n_TagJet_R5_neutral_constituents",        "JetConstituentsUtils::get_nneutral_constituents({})".format(jetClusteringHelper_R5.constituents))
-                .Define("n_TagJet_R5",           "return TagJet_R5_e.size()")
-                .Define("TagJet_R5_cleanup",       "JetConstituentsUtils::cleanup_taggedjet({})".format(jetClusteringHelper_R5.constituents))
-
-                .Define("TagJet_R5_isG",    "recojet_isG_R5")
-                .Define("TagJet_R5_isU",    "recojet_isU_R5")
-                .Define("TagJet_R5_isD",    "recojet_isD_R5")
-                .Define("TagJet_R5_isS",    "recojet_isS_R5")
-                .Define("TagJet_R5_isC",    "recojet_isC_R5")
-                .Define("TagJet_R5_isB",    "recojet_isB_R5")
-                .Define("TagJet_R5_isTAU",    "recojet_isTAU_R5")
-
-                .Define("TauFromJet_R5", "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 0)".format(jetClusteringHelper_R5.constituents)) 
-                .Define("TauFromJet_R5_type_sel","ReconstructedParticle::get_type(TauFromJet_R5)")
-                .Define("TauFromJet_R5_tau", "TauFromJet_R5[TauFromJet_R5_type_sel>=0]") 
-                .Define("TauFromJet_R5_p","ReconstructedParticle::get_p(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_pt","ReconstructedParticle::get_pt(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_px","ReconstructedParticle::get_px(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_py","ReconstructedParticle::get_py(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_pz","ReconstructedParticle::get_pz(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_theta","ReconstructedParticle::get_theta(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_phi","ReconstructedParticle::get_phi(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_eta","ReconstructedParticle::get_eta(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_y","ReconstructedParticle::get_y(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_e","ReconstructedParticle::get_e(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_charge","ReconstructedParticle::get_charge(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_type","ReconstructedParticle::get_type(TauFromJet_R5_tau)")
-                .Define("TauFromJet_R5_mass","ReconstructedParticle::get_mass(TauFromJet_R5_tau)")
-                .Define("n_TauFromJet_R5","TauFromJet_R5_pt.size()")
-
-                .Define("TagJet_R5_sel_e",      "TagJet_R5_e[TauFromJet_R5_type_sel<0]")
-                .Define("TagJet_R5_sel_p",      "TagJet_R5_p[TauFromJet_R5_type_sel<0]")
-                .Define("TagJet_R5_sel_pt",      "TagJet_R5_pt[TauFromJet_R5_type_sel<0]")
-                .Define("TagJet_R5_sel_px",      "TagJet_R5_px[TauFromJet_R5_type_sel<0]")
-                .Define("TagJet_R5_sel_py",      "TagJet_R5_py[TauFromJet_R5_type_sel<0]")
-                .Define("TagJet_R5_sel_pz",      "TagJet_R5_pz[TauFromJet_R5_type_sel<0]")
-		        .Define("TagJet_R5_sel_eta",     "TagJet_R5_eta[TauFromJet_R5_type_sel<0]")
-                .Define("TagJet_R5_sel_theta",   "TagJet_R5_theta[TauFromJet_R5_type_sel<0]")
-		        .Define("TagJet_R5_sel_phi",     "TagJet_R5_phi[TauFromJet_R5_type_sel<0]")
-                .Define("TagJet_R5_sel_mass",      "TagJet_R5_mass[TauFromJet_R5_type_sel<0]")
-                .Define("n_TagJet_R5_sel", "TagJet_R5_sel_e.size()")
-
-                #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
-                .Define("ChargedTau_R5_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 1)".format(jetClusteringHelper_R5.constituents))
-                .Define("ChargedTau_R5_type",      "ReconstructedParticle::get_type(ChargedTau_R5_all)") 
-                .Define("ChargedTau_R5",      "ChargedTau_R5_all[ChargedTau_R5_type>=0]") 
-                .Define("n_ChargedTau_R5",      "ReconstructedParticle::get_n(ChargedTau_R5)") 
-                .Define("ChargedTau_R5_e",      "ReconstructedParticle::get_e(ChargedTau_R5)")
-                .Define("ChargedTau_R5_p",      "ReconstructedParticle::get_p(ChargedTau_R5)")
-                .Define("ChargedTau_R5_pt",      "ReconstructedParticle::get_pt(ChargedTau_R5)")
-                .Define("ChargedTau_R5_px",      "ReconstructedParticle::get_px(ChargedTau_R5)")
-                .Define("ChargedTau_R5_py",      "ReconstructedParticle::get_py(ChargedTau_R5)")
-                .Define("ChargedTau_R5_pz",      "ReconstructedParticle::get_pz(ChargedTau_R5)")
-                .Define("ChargedTau_R5_eta",     "ReconstructedParticle::get_eta(ChargedTau_R5)") #pseudorapidity eta
-                .Define("ChargedTau_R5_theta",   "ReconstructedParticle::get_theta(ChargedTau_R5)")
-                .Define("ChargedTau_R5_phi",     "ReconstructedParticle::get_phi(ChargedTau_R5)") #polar angle in the transverse plane phi
-                .Define("ChargedTau_R5_charge",  "ReconstructedParticle::get_charge(ChargedTau_R5)")
-                .Define("ChargedTau_R5_mass",  "ReconstructedParticle::get_mass(ChargedTau_R5)")
-                .Define("ChargedTau_R5_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_R5_px, ChargedTau_R5_py, ChargedTau_R5_pz, ChargedTau_R5_e)")
-
-                #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
-                .Define("NeutralTau_R5_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 2)".format(jetClusteringHelper_R5.constituents))
-                .Define("NeutralTau_R5_type",      "ReconstructedParticle::get_type(NeutralTau_R5_all)") 
-                .Define("NeutralTau_R5",      "NeutralTau_R5_all[NeutralTau_R5_type>=0]") 
-                .Define("n_NeutralTau_R5",      "ReconstructedParticle::get_n(NeutralTau_R5)") 
-                .Define("NeutralTau_R5_e",      "ReconstructedParticle::get_e(NeutralTau_R5)")
-                .Define("NeutralTau_R5_p",      "ReconstructedParticle::get_p(NeutralTau_R5)")
-                .Define("NeutralTau_R5_pt",      "ReconstructedParticle::get_pt(NeutralTau_R5)")
-                .Define("NeutralTau_R5_px",      "ReconstructedParticle::get_px(NeutralTau_R5)")
-                .Define("NeutralTau_R5_py",      "ReconstructedParticle::get_py(NeutralTau_R5)")
-                .Define("NeutralTau_R5_pz",      "ReconstructedParticle::get_pz(NeutralTau_R5)")
-                .Define("NeutralTau_R5_eta",     "ReconstructedParticle::get_eta(NeutralTau_R5)") #pseudorapidity eta
-                .Define("NeutralTau_R5_theta",   "ReconstructedParticle::get_theta(NeutralTau_R5)")
-                .Define("NeutralTau_R5_phi",     "ReconstructedParticle::get_phi(NeutralTau_R5)") #polar angle in the transverse plane phi
-                .Define("NeutralTau_R5_charge",  "ReconstructedParticle::get_charge(NeutralTau_R5)")
-                .Define("NeutralTau_R5_mass",  "ReconstructedParticle::get_mass(NeutralTau_R5)")
-                .Define("NeutralTau_R5_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralTau_R5_px, NeutralTau_R5_py, NeutralTau_R5_pz, NeutralTau_R5_e)") 
-        )
-
-        #EXCLUSIVE 2 JETS=
-        jetClusteringHelper_kt3  = ExclusiveJetClusteringHelper(
-            collections["PFParticles"], 3, "kt3"
-        )
-        df2 = jetClusteringHelper_kt3.define(df2)
-
-        ## define jet flavour tagging parameters
-        jetFlavourHelper_kt3 = JetFlavourHelper(
-            collections,
-            jetClusteringHelper_kt3.jets,
-            jetClusteringHelper_kt3.constituents,
-            "kt3",
-        )
-        ## define observables for tagger
-        df2 = jetFlavourHelper_kt3.define(df2)
-
-        ## tagger inference
-        df2 = jetFlavourHelper_kt3.inference(weaver_preproc, weaver_model, df2)
-
-        df2 = (df2
-                .Define("TagJet_kt3_px",           "JetClusteringUtils::get_px({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_py",           "JetClusteringUtils::get_py({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_pz",           "JetClusteringUtils::get_pz({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_p",           "JetClusteringUtils::get_p({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_pt",           "JetClusteringUtils::get_pt({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_phi",          "JetClusteringUtils::get_phi({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_eta",          "JetClusteringUtils::get_eta({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_theta",          "JetClusteringUtils::get_theta({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_e",       "JetClusteringUtils::get_e({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_mass",         "JetClusteringUtils::get_m({})".format(jetClusteringHelper_kt3.jets))
-                .Define("TagJet_kt3_charge",         "JetConstituentsUtils::get_charge_constituents({})".format(jetClusteringHelper_kt3.constituents))
-                .Define("TagJet_kt3_flavor",        "JetTaggingUtils::get_flavour({}, Particle)".format(jetClusteringHelper_kt3.jets))
-                .Define("n_TagJet_kt3_constituents",        "JetConstituentsUtils::get_n_constituents({})".format(jetClusteringHelper_kt3.constituents))
-                .Define("n_TagJet_kt3_charged_constituents",        "JetConstituentsUtils::get_ncharged_constituents({})".format(jetClusteringHelper_kt3.constituents))
-                .Define("n_TagJet_kt3_neutral_constituents",        "JetConstituentsUtils::get_nneutral_constituents({})".format(jetClusteringHelper_kt3.constituents))
-                .Define("n_TagJet_kt3",           "return int(TagJet_kt3_flavor.size())")
-                .Define("TagJet_kt3_cleanup",       "JetConstituentsUtils::cleanup_taggedjet({})".format(jetClusteringHelper_kt3.constituents))
-
-                .Define("TagJet_kt3_isG",    "recojet_isG_kt3")
-                .Define("TagJet_kt3_isU",    "recojet_isU_kt3")
-                .Define("TagJet_kt3_isD",    "recojet_isD_kt3")
-                .Define("TagJet_kt3_isS",    "recojet_isS_kt3")
-                .Define("TagJet_kt3_isC",    "recojet_isC_kt3")
-                .Define("TagJet_kt3_isB",    "recojet_isB_kt3")
-                .Define("TagJet_kt3_isTAU",    "recojet_isTAU_kt3")
-
-                .Define("TauFromJet_kt3", "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 0)".format(jetClusteringHelper_kt3.constituents)) 
+                .Define("TauFromJet_kt3", "FCCAnalyses::ZHfunctions::findTauInJet_All(Jets_Constituents_kt3, 0)") 
                 .Define("TauFromJet_kt3_type_sel","ReconstructedParticle::get_type(TauFromJet_kt3)")
                 .Define("TauFromJet_kt3_tau", "TauFromJet_kt3[TauFromJet_kt3_type_sel>=0]") 
                 .Define("TauFromJet_kt3_p","ReconstructedParticle::get_p(TauFromJet_kt3_tau)")
@@ -591,23 +405,23 @@ class RDFanalysis():
                 .Define("TauFromJet_kt3_mass","ReconstructedParticle::get_mass(TauFromJet_kt3_tau)")
                 .Define("n_TauFromJet_kt3","TauFromJet_kt3_pt.size()")
 
-                .Define("TagJet_kt3_sel_e",      "TagJet_kt3_e[TauFromJet_kt3_type_sel<0 ]")
-                .Define("TagJet_kt3_sel_p",      "TagJet_kt3_p[TauFromJet_kt3_type_sel<0 ]")
-                .Define("TagJet_kt3_sel_pt",      "TagJet_kt3_pt[TauFromJet_kt3_type_sel<0 ]")
-                .Define("TagJet_kt3_sel_px",      "TagJet_kt3_px[TauFromJet_kt3_type_sel<0 ]")
-                .Define("TagJet_kt3_sel_py",      "TagJet_kt3_py[TauFromJet_kt3_type_sel<0 ]")
-                .Define("TagJet_kt3_sel_pz",      "TagJet_kt3_pz[TauFromJet_kt3_type_sel<0 ]")
-		        .Define("TagJet_kt3_sel_eta",     "TagJet_kt3_eta[TauFromJet_kt3_type_sel<0 ]")
-                .Define("TagJet_kt3_sel_theta",   "TagJet_kt3_theta[TauFromJet_kt3_type_sel<0 ]")
-		        .Define("TagJet_kt3_sel_phi",     "TagJet_kt3_phi[TauFromJet_kt3_type_sel<0 ]")
-                .Define("TagJet_kt3_sel_mass",      "TagJet_kt3_mass[TauFromJet_kt3_type_sel<0 ]")
-                .Define("n_TagJet_kt3_sel_constituents",        "n_TagJet_kt3_constituents[TauFromJet_kt3_type_sel<0 ]")
-                .Define("n_TagJet_kt3_sel_charged_constituents",        "n_TagJet_kt3_charged_constituents[TauFromJet_kt3_type_sel<0 ]")
-                .Define("n_TagJet_kt3_sel_neutral_constituents",        "n_TagJet_kt3_neutral_constituents[TauFromJet_kt3_type_sel<0 ]")
-                .Define("n_TagJet_kt3_sel", "TagJet_kt3_sel_e.size()")
+                .Define("Jets_kt3_sel_e",      "Jets_kt3_e[TauFromJet_kt3_type_sel<0 ]")
+                .Define("Jets_kt3_sel_p",      "Jets_kt3_p[TauFromJet_kt3_type_sel<0 ]")
+                .Define("Jets_kt3_sel_pt",      "Jets_kt3_pt[TauFromJet_kt3_type_sel<0 ]")
+                .Define("Jets_kt3_sel_px",      "Jets_kt3_px[TauFromJet_kt3_type_sel<0 ]")
+                .Define("Jets_kt3_sel_py",      "Jets_kt3_py[TauFromJet_kt3_type_sel<0 ]")
+                .Define("Jets_kt3_sel_pz",      "Jets_kt3_pz[TauFromJet_kt3_type_sel<0 ]")
+		        .Define("Jets_kt3_sel_eta",     "Jets_kt3_eta[TauFromJet_kt3_type_sel<0 ]")
+                .Define("Jets_kt3_sel_theta",   "Jets_kt3_theta[TauFromJet_kt3_type_sel<0 ]")
+		        .Define("Jets_kt3_sel_phi",     "Jets_kt3_phi[TauFromJet_kt3_type_sel<0 ]")
+                .Define("Jets_kt3_sel_mass",      "Jets_kt3_mass[TauFromJet_kt3_type_sel<0 ]")
+                .Define("n_Jets_kt3_sel_constituents",        "n_Jets_kt3_constituents[TauFromJet_kt3_type_sel<0 ]")
+                .Define("n_Jets_kt3_sel_charged_constituents",        "n_Jets_kt3_charged_constituents[TauFromJet_kt3_type_sel<0 ]")
+                .Define("n_Jets_kt3_sel_neutral_constituents",        "n_Jets_kt3_neutral_constituents[TauFromJet_kt3_type_sel<0 ]")
+                .Define("n_Jets_kt3_sel", "Jets_kt3_sel_e.size()")
 
                 #get the leading charged particle in the tau jet, if only neutral particles are present then the particle is null
-                .Define("ChargedTau_kt3_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 1)".format(jetClusteringHelper_kt3.constituents))
+                .Define("ChargedTau_kt3_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All(Jets_Constituents_kt3, 3)")
                 .Define("ChargedTau_kt3_type",      "ReconstructedParticle::get_type(ChargedTau_kt3_all)") 
                 .Define("ChargedTau_kt3",      "ChargedTau_kt3_all[ChargedTau_kt3_type>=0]") 
                 .Define("n_ChargedTau_kt3",      "ReconstructedParticle::get_n(ChargedTau_kt3)") 
@@ -625,7 +439,7 @@ class RDFanalysis():
                 .Define("ChargedTau_kt3_p4",  "FCCAnalyses::ZHfunctions::build_p4(ChargedTau_kt3_px, ChargedTau_kt3_py, ChargedTau_kt3_pz, ChargedTau_kt3_e)")
 
                 #get the neutral hadronic system for the tau jet, all in one "particle" variable, photons are kept separetely but would be related in pairs to pi0
-                .Define("NeutralTau_kt3_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All({}, 2)".format(jetClusteringHelper_kt3.constituents))
+                .Define("NeutralTau_kt3_all",      "FCCAnalyses::ZHfunctions::findTauInJet_All(Jets_Constituents_kt3, 4)")
                 .Define("NeutralTau_kt3_type",      "ReconstructedParticle::get_type(NeutralTau_kt3_all)") 
                 .Define("NeutralTau_kt3",      "NeutralTau_kt3_all[NeutralTau_kt3_type>=0]") 
                 .Define("n_NeutralTau_kt3",      "ReconstructedParticle::get_n(NeutralTau_kt3)") 
@@ -642,86 +456,24 @@ class RDFanalysis():
                 .Define("NeutralTau_kt3_mass",  "ReconstructedParticle::get_mass(NeutralTau_kt3)")
                 .Define("NeutralTau_kt3_p4",  "FCCAnalyses::ZHfunctions::build_p4(NeutralTau_kt3_px, NeutralTau_kt3_py, NeutralTau_kt3_pz, NeutralTau_kt3_e)") 
 
-        )
-
-        df2 = (df2
-                ##########################
-                ###### Ex. stage2 ########
-                ##########################
-
-                ### to find already made functions, this is where they are or where they can be added instead of writing them here
-                ### https://github.com/Edler1/FCCAnalyses-1/tree/7f6006a1e4579c9bc01a149732ea39685cbad951/analyzers/dataframe/src
-
-                ### defining filters for one sel lepotons, two no tau jets, one tau jet
-
-                ### when working with Z jets, remember to use the Leptons_sel class because they are the ones not in the jets
-                ### when working with tau jets it does not matter since the tau jets don't have any lepton in them so there is no confusion 
-
-                .Define("TauTag_px",      "TagJet_kt3_px[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_py",      "TagJet_kt3_py[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_pz",      "TagJet_kt3_pz[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_pt",      "TagJet_kt3_pt[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_p",      "TagJet_kt3_p[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_e",      "TagJet_kt3_e[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_phi",      "TagJet_kt3_phi[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_eta",      "TagJet_kt3_eta[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_theta",      "TagJet_kt3_theta[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_charge",      "TagJet_kt3_charge[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_mass",      "TagJet_kt3_mass[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_isG",      "TagJet_kt3_isG[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_isU",      "TagJet_kt3_isU[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_isD",      "TagJet_kt3_isD[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_isS",      "TagJet_kt3_isS[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_isC",      "TagJet_kt3_isC[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_isB",      "TagJet_kt3_isB[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_isTAU",      "TagJet_kt3_isTAU[TagJet_kt3_isTAU>0.5]")
-                .Define("TauTag_flavor",      "TagJet_kt3_flavor[TagJet_kt3_isTAU>0.5]")
-                .Define("n_TauTag_constituents",        "n_TagJet_kt3_constituents[TagJet_kt3_isTAU>0.5]")
-                .Define("n_TauTag_charged_constituents",        "n_TagJet_kt3_charged_constituents[TagJet_kt3_isTAU>0.5]")
-                .Define("n_TauTag_neutral_constituents",        "n_TagJet_kt3_neutral_constituents[TagJet_kt3_isTAU>0.5]")
-                .Define("n_TauTag",          "TauTag_px.size()")
-
-                .Define("QuarkTag_px",      "TagJet_kt3_px[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_py",      "TagJet_kt3_py[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_pz",      "TagJet_kt3_pz[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_pt",      "TagJet_kt3_pt[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_p",      "TagJet_kt3_p[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_e",      "TagJet_kt3_e[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_phi",      "TagJet_kt3_phi[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_eta",      "TagJet_kt3_eta[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_theta",      "TagJet_kt3_theta[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_charge",      "TagJet_kt3_charge[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_mass",      "TagJet_kt3_mass[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_isG",      "TagJet_kt3_isG[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_isU",      "TagJet_kt3_isU[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_isD",      "TagJet_kt3_isD[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_isS",      "TagJet_kt3_isS[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_isC",      "TagJet_kt3_isC[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_isB",      "TagJet_kt3_isB[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_isTAU",      "TagJet_kt3_isTAU[TagJet_kt3_isTAU<=0.5]")
-                .Define("QuarkTag_flavor",      "TagJet_kt3_flavor[TagJet_kt3_isTAU<=0.5]")
-                .Define("n_QuarkTag_constituents",        "n_TagJet_kt3_constituents[TagJet_kt3_isTAU<=0.5]")
-                .Define("n_QuarkTag_charged_constituents",        "n_TagJet_kt3_charged_constituents[TagJet_kt3_isTAU<=0.5]")
-                .Define("n_QuarkTag_neutral_constituents",        "n_TagJet_kt3_neutral_constituents[TagJet_kt3_isTAU<=0.5]")
-                .Define("n_QuarkTag",     "QuarkTag_charge.size()")
 
                 ###########################
                 ######### FILTER ##########
                 ###########################
 
-                .Filter("n_TauFromJet_kt3==1 && n_TagJet_kt3_sel==2 && n_RecoLeptons_sel==1")
+                .Filter("n_TauFromJet_kt3==1 && n_Jets_kt3_sel==2 && n_RecoLeptons_sel==1")
                 .Filter("(TauFromJet_kt3_charge.at(0) + LeadingLepton_charge.at(0))==0") 
 
                 ################################
 
-                .Define("RecoZ1_p4",      "TLorentzVector(TagJet_kt3_sel_px.at(0), TagJet_kt3_sel_py.at(0), TagJet_kt3_sel_pz.at(0), TagJet_kt3_sel_e.at(0))")
-                .Define("RecoZ2_p4",      "TLorentzVector(TagJet_kt3_sel_px.at(1), TagJet_kt3_sel_py.at(1), TagJet_kt3_sel_pz.at(1), TagJet_kt3_sel_e.at(1))")
-                .Define("RecoZ1_consituents",    "n_TagJet_kt3_sel_constituents.at(0)")
-                .Define("RecoZ2_consituents",    "n_TagJet_kt3_sel_constituents.at(1)")
-                .Define("RecoZ1_charged_consituents",    "n_TagJet_kt3_sel_charged_constituents.at(0)")
-                .Define("RecoZ2_charged_consituents",    "n_TagJet_kt3_sel_charged_constituents.at(1)")
-                .Define("RecoZ1_neutral_consituents",    "n_TagJet_kt3_sel_neutral_constituents.at(0)")
-                .Define("RecoZ2_neutral_consituents",    "n_TagJet_kt3_sel_neutral_constituents.at(1)")
+                .Define("RecoZ1_p4",      "TLorentzVector(Jets_kt3_sel_px.at(0), Jets_kt3_sel_py.at(0), Jets_kt3_sel_pz.at(0), Jets_kt3_sel_e.at(0))")
+                .Define("RecoZ2_p4",      "TLorentzVector(Jets_kt3_sel_px.at(1), Jets_kt3_sel_py.at(1), Jets_kt3_sel_pz.at(1), Jets_kt3_sel_e.at(1))")
+                .Define("RecoZ1_consituents",    "n_Jets_kt3_sel_constituents.at(0)")
+                .Define("RecoZ2_consituents",    "n_Jets_kt3_sel_constituents.at(1)")
+                .Define("RecoZ1_charged_consituents",    "n_Jets_kt3_sel_charged_constituents.at(0)")
+                .Define("RecoZ2_charged_consituents",    "n_Jets_kt3_sel_charged_constituents.at(1)")
+                .Define("RecoZ1_neutral_consituents",    "n_Jets_kt3_sel_neutral_constituents.at(0)")
+                .Define("RecoZ2_neutral_consituents",    "n_Jets_kt3_sel_neutral_constituents.at(1)")
 
                 .Define("RecoZLead_p4",      "if (RecoZ1_p4.Pt()>RecoZ2_p4.Pt()) return RecoZ1_p4; else return RecoZ2_p4;")
                 .Define("RecoZLead_px",    "RecoZLead_p4.Px()")
@@ -894,10 +646,8 @@ class RDFanalysis():
                 ########### CP ############
                 ###########################
 
-                # get jet consituents as a vetor of vector of particles
-                .Define("Jet_consituents",      "{}".format(jetClusteringHelper_kt3.constituents))
                 # select quark jets
-                .Define("Quark_constituents",       "Jet_consituents[TauFromJet_kt3_type_sel<0]")
+                .Define("Quark_constituents",       "Jets_Constituents_kt3[TauFromJet_kt3_type_sel<0]")
                 # then flatten the particles
                 .Define("Flat_quark_constituents",      "FCCAnalyses::ZHfunctions::flatten_part(Quark_constituents)")
                 # get the particles' tracks
@@ -1220,83 +970,20 @@ class RDFanalysis():
             "RecoEmiss_y",
             "RecoEmiss_costheta",
 
-            "TagJet_R5_px", 
-            "TagJet_R5_py",    
-            "TagJet_R5_pz",      
-            "TagJet_R5_p",  
-            "TagJet_R5_pt",    
-            "TagJet_R5_phi", 
-            "TagJet_R5_eta",     
-            "TagJet_R5_theta",          
-            "TagJet_R5_e",     
-            "TagJet_R5_mass",        
-            "TagJet_R5_charge",       
-            "TagJet_R5_flavor", 
-            "n_TagJet_R5_constituents",   
-            "n_TagJet_R5_charged_constituents",   
-            "n_TagJet_R5_neutral_constituents",   
-            "n_TagJet_R5",    
-            "TagJet_R5_cleanup",        
-
-            "TagJet_R5_isG",  
-            "TagJet_R5_isU",
-            "TagJet_R5_isD",   
-            "TagJet_R5_isS",  
-            "TagJet_R5_isC",
-            "TagJet_R5_isB",  
-            "TagJet_R5_isTAU",
-
-            "TauFromJet_R5_p",
-            "TauFromJet_R5_pt",
-            "TauFromJet_R5_px",
-            "TauFromJet_R5_py",
-            "TauFromJet_R5_pz",
-            "TauFromJet_R5_theta",
-            "TauFromJet_R5_phi",
-            "TauFromJet_R5_e",
-            "TauFromJet_R5_eta",
-            "TauFromJet_R5_y",
-            "TauFromJet_R5_charge",
-            "TauFromJet_R5_type",
-            "TauFromJet_R5_mass",
-            "n_TauFromJet_R5",
-
-            "TagJet_R5_sel_e",     
-            "TagJet_R5_sel_p",     
-            "TagJet_R5_sel_pt",     
-            "TagJet_R5_sel_px",   
-            "TagJet_R5_sel_py",   
-            "TagJet_R5_sel_pz",     
-            "TagJet_R5_sel_eta",    
-            "TagJet_R5_sel_theta",   
-            "TagJet_R5_sel_phi",     
-            "TagJet_R5_sel_mass",      
-            "n_TagJet_R5_sel", 
-
-            "TagJet_kt3_px", 
-            "TagJet_kt3_py",    
-            "TagJet_kt3_pz",      
-            "TagJet_kt3_p",  
-            "TagJet_kt3_pt",    
-            "TagJet_kt3_phi", 
-            "TagJet_kt3_eta",     
-            "TagJet_kt3_theta",          
-            "TagJet_kt3_e",     
-            "TagJet_kt3_mass",        
-            "TagJet_kt3_charge",       
-            "TagJet_kt3_flavor", 
-            "n_TagJet_kt3_constituents",   
-            "n_TagJet_kt3_charged_constituents",   
-            "n_TagJet_kt3_neutral_constituents",   
-            "n_TagJet_kt3",          
-
-            "TagJet_kt3_isG",  
-            "TagJet_kt3_isU",
-            "TagJet_kt3_isD",   
-            "TagJet_kt3_isS",  
-            "TagJet_kt3_isC",
-            "TagJet_kt3_isB",  
-            "TagJet_kt3_isTAU",
+            "Jets_kt3_px", 
+            "Jets_kt3_py",    
+            "Jets_kt3_pz",      
+            "Jets_kt3_p",  
+            "Jets_kt3_pt",    
+            "Jets_kt3_phi", 
+            "Jets_kt3_eta",     
+            "Jets_kt3_theta",          
+            "Jets_kt3_e",     
+            "Jets_kt3_mass",   
+            "n_Jets_kt3_constituents",   
+            "n_Jets_kt3_charged_constituents",   
+            "n_Jets_kt3_neutral_constituents",   
+            "n_Jets_kt3",      
 
             "TauFromJet_kt3_p",
             "TauFromJet_kt3_pt",
@@ -1313,62 +1000,21 @@ class RDFanalysis():
             "TauFromJet_kt3_mass",
             "n_TauFromJet_kt3",
 
-            "TagJet_kt3_sel_e",     
-            "TagJet_kt3_sel_p",     
-            "TagJet_kt3_sel_pt",     
-            "TagJet_kt3_sel_px",   
-            "TagJet_kt3_sel_py",   
-            "TagJet_kt3_sel_pz",     
-            "TagJet_kt3_sel_eta",    
-            "TagJet_kt3_sel_theta",   
-            "TagJet_kt3_sel_phi",     
-            "TagJet_kt3_sel_mass",      
-            "n_TagJet_kt3_sel",
+            "Jets_kt3_sel_e",     
+            "Jets_kt3_sel_p",     
+            "Jets_kt3_sel_pt",     
+            "Jets_kt3_sel_px",   
+            "Jets_kt3_sel_py",   
+            "Jets_kt3_sel_pz",     
+            "Jets_kt3_sel_eta",    
+            "Jets_kt3_sel_theta",   
+            "Jets_kt3_sel_phi",     
+            "Jets_kt3_sel_mass",      
+            "n_Jets_kt3_sel",
 
         ]
         #complex variables added here at stage2
         branchList += [
-            "TauTag_px", 
-            "TauTag_py",    
-            "TauTag_pz",      
-            "TauTag_p",  
-            "TauTag_pt",    
-            "TauTag_phi", 
-            "TauTag_eta",     
-            "TauTag_theta",          
-            "TauTag_e",     
-            "TauTag_mass",        
-            "TauTag_charge",       
-            "TauTag_flavor",       
-            "n_TauTag",          
-            "TauTag_isG",  
-            "TauTag_isU",
-            "TauTag_isD",   
-            "TauTag_isS",  
-            "TauTag_isC",
-            "TauTag_isB",  
-            "TauTag_isTAU",
-
-            "QuarkTag_px", 
-            "QuarkTag_py",    
-            "QuarkTag_pz",      
-            "QuarkTag_p",  
-            "QuarkTag_pt",    
-            "QuarkTag_phi", 
-            "QuarkTag_eta",     
-            "QuarkTag_theta",          
-            "QuarkTag_e",     
-            "QuarkTag_mass",        
-            "QuarkTag_charge",       
-            "QuarkTag_flavor",       
-            "n_QuarkTag",          
-            "QuarkTag_isG",  
-            "QuarkTag_isU",
-            "QuarkTag_isD",   
-            "QuarkTag_isS",  
-            "QuarkTag_isC",
-            "QuarkTag_isB",  
-            "QuarkTag_isTAU",
 
             "RecoZ_px",
             "RecoZ_py",

@@ -1,0 +1,15 @@
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+ &  \\
+\hline
+ & 0.0 +6.167 -6.26 &  \\ \hline 
+ &0.0 +6.167 -6.26 &  \\ \hline 
+combined & 0.0 +6.167 -6.26  &  \\ \hline 
+
+\hline
+\end{tabular}
+\caption{Fit Results}
+\end{table}

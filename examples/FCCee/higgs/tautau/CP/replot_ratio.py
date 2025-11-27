@@ -32,17 +32,21 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_final_tes_madspin/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/Reco_tests_madspin/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/EFT/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
-    "selDiag",
-    "selOffDiag",
-    "selPi",
-    "selRho",
+    #"selReco_3body",
+    #"selReco_2body",
+    #"selDM",
+    #"selDiag",
+    #"selOffDiag",
+    #"selPi",
+    #"selRho",
+
     #"selReco_ILC",
     #"selDiag_ILC",
     #"selOffDiag_ILC",
@@ -58,6 +62,7 @@ CUTS = [
     #"selReco_100Coll150_115Rec160_2DR_cos0.6",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_oneprong",
   
  ] 
 #labels for the cuts in the plots
@@ -76,6 +81,9 @@ LABELS = {
     "selOffDiag_ILC":"One tau decays to pi, the other rho",
     "selPi_ILC":"Both taus decay to pi",
     "selRho_ILC":"Both taus decay to rho",
+    "selDM":"Only valid tau DM",
+    "selReco_3body":"three body",
+    "selReco_2body":"two body",
 
     "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
     "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
@@ -83,10 +91,11 @@ LABELS = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
-  
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_oneprong": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV}, one prong",
+    
  }
 
-label = "_mod1"
+label = "_QQHH_ratio"
 ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau " #(#pi#pi^{0}#nu)
 energy         = 240
 collider       = 'FCC-ee'
@@ -94,7 +103,7 @@ intLumi        = 10.8 #ab-1
 LOGY = False
 
 #now you can list all the histograms that you want to plot
-VARIABLES_GEN = [
+VARIABLES_GEN = [   
     ######## Monte-Carlo particles #######
             "n_FSGenElectron",
             "FSGenElectron_e",
@@ -546,134 +555,6 @@ VARIABLES_RECO = [
             "RecoEmiss_y",
             "RecoEmiss_costheta",
 
-            "TagJet_R5_px", 
-            "TagJet_R5_py",    
-            "TagJet_R5_pz",      
-            "TagJet_R5_p",  
-            "TagJet_R5_pt",    
-            "TagJet_R5_phi", 
-            "TagJet_R5_eta",     
-            "TagJet_R5_theta",          
-            "TagJet_R5_e",     
-            "TagJet_R5_mass",        
-            "TagJet_R5_charge", 
-            "n_TagJet_R5_constituents",   
-            "n_TagJet_R5_charged_constituents",   
-            "n_TagJet_R5_neutral_constituents",   
-            "n_TagJet_R5",          
-
-            "TagJet_R5_isG",  
-            "TagJet_R5_isU",
-            "TagJet_R5_isD",   
-            "TagJet_R5_isS",  
-            "TagJet_R5_isC",
-            "TagJet_R5_isB",  
-            "TagJet_R5_isTAU",
-
-            "TauFromJet_R5_p",
-            "TauFromJet_R5_pt",
-            "TauFromJet_R5_px",
-            "TauFromJet_R5_py",
-            "TauFromJet_R5_pz",
-            "TauFromJet_R5_theta",
-            "TauFromJet_R5_phi",
-            "TauFromJet_R5_e",
-            "TauFromJet_R5_eta",
-            "TauFromJet_R5_y",
-            "TauFromJet_R5_charge",
-            "TauFromJet_R5_type",
-            "TauFromJet_R5_mass",
-            "n_TauFromJet_R5",
-
-            "TagJet_R5_sel_e",     
-            "TagJet_R5_sel_p",     
-            "TagJet_R5_sel_pt",     
-            "TagJet_R5_sel_px",   
-            "TagJet_R5_sel_py",   
-            "TagJet_R5_sel_pz",     
-            "TagJet_R5_sel_eta",    
-            "TagJet_R5_sel_theta",   
-            "TagJet_R5_sel_phi",     
-            "TagJet_R5_sel_mass",      
-            "n_TagJet_R5_sel", 
-
-            "n_ChargedHadron",
-            "ChargedHadron_e",
-            "ChargedHadron_p",
-            "ChargedHadron_pt",
-            "ChargedHadron_px",
-            "ChargedHadron_py",
-            "ChargedHadron_pz",
-            "ChargedHadron_eta",
-            "ChargedHadron_theta",
-            "ChargedHadron_phi",
-            "ChargedHadron_charge",
-            "ChargedHadron_mass",
-
-            "n_NeutralHadron",
-            "NeutralHadron_e",
-            "NeutralHadron_p",
-            "NeutralHadron_pt",
-            "NeutralHadron_px",
-            "NeutralHadron_py",
-            "NeutralHadron_pz",
-            "NeutralHadron_eta",
-            "NeutralHadron_theta",
-            "NeutralHadron_phi",
-            "NeutralHadron_charge",
-            "NeutralHadron_mass",
-
-            "n_ChargedTau",
-            "ChargedTau_e",
-            "ChargedTau_p",
-            "ChargedTau_pt",
-            "ChargedTau_px",
-            "ChargedTau_py",
-            "ChargedTau_pz",
-            "ChargedTau_eta",
-            "ChargedTau_theta",
-            "ChargedTau_phi",
-            "ChargedTau_charge",
-            "ChargedTau_mass",
-
-            "n_NeutralTau",
-            "NeutralTau_e",
-            "NeutralTau_p",
-            "NeutralTau_pt",
-            "NeutralTau_px",
-            "NeutralTau_py",
-            "NeutralTau_pz",
-            "NeutralTau_eta",
-            "NeutralTau_theta",
-            "NeutralTau_phi",
-            "NeutralTau_charge",
-            "NeutralTau_mass",
-
-            "n_ChargedJet",
-            "ChargedJet_e",
-            "ChargedJet_p",
-            "ChargedJet_pt",
-            "ChargedJet_px",
-            "ChargedJet_py",
-            "ChargedJet_pz",
-            "ChargedJet_eta",
-            "ChargedJet_theta",
-            "ChargedJet_phi",
-            "ChargedJet_charge",
-            "ChargedJet_mass",
-
-            "n_NeutralJet",
-            "NeutralJet_e",
-            "NeutralJet_p",
-            "NeutralJet_pt",
-            "NeutralJet_px",
-            "NeutralJet_py",
-            "NeutralJet_pz",
-            "NeutralJet_eta",
-            "NeutralJet_theta",
-            "NeutralJet_phi",
-            "NeutralJet_charge",
-            "NeutralJet_mass",
 ]
 
 VARIABLES_CP = [
@@ -714,41 +595,17 @@ VARIABLES_CP = [
             "RecoZSub_y",    
             "RecoZSub_mass",   
 
-            "RecoZP_px", 
-            "RecoZP_py",   
-            "RecoZP_pz",   
-            "RecoZP_p",    
-            "RecoZP_pt",   
-            "RecoZP_e",    
-            "RecoZP_eta",    
-            "RecoZP_phi",    
-            "RecoZP_theta",   
-            "RecoZP_y",     
-            "RecoZP_mass",   
-
-            "RecoZM_px",    
-            "RecoZM_py",   
-            "RecoZM_pz",   
-            "RecoZM_p",   
-            "RecoZM_pt",  
-            "RecoZM_e",     
-            "RecoZM_eta",   
-            "RecoZM_phi",   
-            "RecoZM_theta",    
-            "RecoZM_y",    
-            "RecoZM_mass", 
-
-            "Higgs_px",
-            "Higgs_py",
-            "Higgs_pz",
-            "Higgs_p",
-            "Higgs_pt",
-            "Higgs_e",
-            "Higgs_eta",
-            "Higgs_phi",
-            "Higgs_theta",
-            "Higgs_y",
-            "Higgs_mass",
+            "RecoH_px",
+            "RecoH_py",
+            "RecoH_pz",
+            "RecoH_p",
+            "RecoH_pt",
+            "RecoH_e",
+            "RecoH_eta",
+            "RecoH_phi",
+            "RecoH_theta",
+            "RecoH_y",
+            "RecoH_mass",
 
             "TauLead_px",    
             "TauLead_py",   
@@ -774,31 +631,7 @@ VARIABLES_CP = [
             "TauSub_y",    
             "TauSub_mass",
 
-            "TauP_px", 
-            "TauP_py",   
-            "TauP_pz",   
-            "TauP_p",    
-            "TauP_pt",   
-            "TauP_e",    
-            "TauP_eta",    
-            "TauP_phi",    
-            "TauP_theta",   
-            "TauP_y",     
-            "TauP_mass",   
-
-            "TauM_px",    
-            "TauM_py",   
-            "TauM_pz",   
-            "TauM_p",   
-            "TauM_pt",  
-            "TauM_e",     
-            "TauM_eta",   
-            "TauM_phi",   
-            "TauM_theta",    
-            "TauM_y",    
-            "TauM_mass", 
-
-            "Recoil",
+            "Recoil_mass",
             "Collinear_mass", 
         
             "Tau_DR",
@@ -819,136 +652,6 @@ VARIABLES_CMS = [
     "O_ZMF",
     "y_tau",
     "PhiCP_CMS",
-]
-
-VARIABLES_ILC = [
-            "CosDeltaPhiILC", 
-            "SinDeltaPhiILC", 
-            "DeltaPhiILC",
-            "KinILC_chi2",
-            
-            "RecoH_px",
-            "RecoH_py",
-            "RecoH_pz",
-            "RecoH_p",
-            "RecoH_pt",
-            "RecoH_e",
-            "RecoH_eta",
-            "RecoH_phi",
-            "RecoH_theta",
-            "RecoH_y",
-            "RecoH_mass",
-
-            "RecoTauLead_px",    
-            "RecoTauLead_py",   
-            "RecoTauLead_pz",   
-            "RecoTauLead_p",   
-            "RecoTauLead_pt",   
-            "RecoTauLead_e",    
-            "RecoTauLead_eta",    
-            "RecoTauLead_phi",    
-            "RecoTauLead_theta",    
-            "RecoTauLead_y",    
-            "RecoTauLead_mass",
-
-            "RecoTauSub_px",    
-            "RecoTauSub_py",   
-            "RecoTauSub_pz",   
-            "RecoTauSub_p",   
-            "RecoTauSub_pt",   
-            "RecoTauSub_e",    
-            "RecoTauSub_eta",    
-            "RecoTauSub_phi",    
-            "RecoTauSub_theta",    
-            "RecoTauSub_y",    
-            "RecoTauSub_mass",
-
-            "RecoTauP_px", 
-            "RecoTauP_py",   
-            "RecoTauP_pz",   
-            "RecoTauP_p",    
-            "RecoTauP_pt",   
-            "RecoTauP_e",    
-            "RecoTauP_eta",    
-            "RecoTauP_phi",    
-            "RecoTauP_theta",   
-            "RecoTauP_y",     
-            "RecoTauP_mass",   
-
-            "RecoTauM_px",    
-            "RecoTauM_py",   
-            "RecoTauM_pz",   
-            "RecoTauM_p",   
-            "RecoTauM_pt",  
-            "RecoTauM_e",     
-            "RecoTauM_eta",   
-            "RecoTauM_phi",   
-            "RecoTauM_theta",    
-            "RecoTauM_y",    
-            "RecoTauM_mass", 
-
-            "RecoTau_DR",
-            "RecoTau_cos",
-            "RecoTau_DEta", 
-            "RecoTau_DPhi",
-]
-
-VARIABLES_TAG = [
-    "TauTag_px", 
-    "TauTag_py",    
-    "TauTag_pz",      
-    "TauTag_p",  
-    "TauTag_pt",    
-    "TauTag_phi", 
-    "TauTag_eta",     
-    "TauTag_theta",          
-    "TauTag_e",     
-    "TauTag_mass",        
-    "TauTag_mass",        
-   # "TauTag_charge",       
-    "TauTag_mass",          
-   # "TauTag_charge",       
-    "n_TauTag",          
-    "TauTag_isG",  
-    "TauTag_isU",
-    "TauTag_isD",   
-    "TauTag_isS",  
-    "TauTag_isC",
-    "TauTag_isB",  
-    "TauTag_isTAU",
-
-    "QuarkTag_px", 
-    "QuarkTag_py",    
-    "QuarkTag_pz",      
-    "QuarkTag_p",  
-    "QuarkTag_pt",    
-    "QuarkTag_phi", 
-    "QuarkTag_eta",     
-    "QuarkTag_theta",          
-    "QuarkTag_e",     
-    "QuarkTag_mass",        
-    "QuarkTag_mass",        
-    #"QuarkTag_charge",       
-    "QuarkTag_mass",          
-    #"QuarkTag_charge",       
-    "n_QuarkTag",          
-    "QuarkTag_isG",  
-    "QuarkTag_isU",
-    "QuarkTag_isD",   
-    "QuarkTag_isS",  
-    "QuarkTag_isC",
-    "QuarkTag_isB",  
-    "QuarkTag_isTAU",
-
-    "TauLead_type",
-    "n_TauLead_constituents",
-    "n_TauLead_charged_constituents",
-    "n_TauLead_neutral_constituents",
-
-    "TauSub_type",
-    "n_TauSub_constituents",
-    "n_TauSub_charged_constituents",
-    "n_TauSub_neutral_constituents",
 ]
 
 #list of backgorunds, then legend and colors to be assigned to them
@@ -1120,31 +823,11 @@ signals = [
 
     #'wzp6_ee_eeH_Htautau_ecm240',
 
-    #"sm",
-    #"sm_lin_quad_cehim_m1",
-    #"sm_lin_quad_cehim",
-    #"sm_lin_quad_cehre_m1",
-    #"sm_lin_quad_cehre_p1",
-    #"p8_ee_QQH_Htautau_CPeven",
-    #"p8_ee_QQH_Htautau_CPodd",
-    #"p8_ee_LLH_Htautau_CPeven",
-    #"p8_ee_LLH_Htautau_CPodd",
-
-    #"mg_ee_eetata_ecm240",
-    #'EWonly_taudecay_2Pi2Nu',
-    #"mg_ee_eetata_smeft_cehim_m1_ecm240",
-    #"mg_ee_eetata_smeft_cehim_p1_ecm240",
-    #"test_output",
-
-    #"mg_ee_eetata_pinu_ecm240",
-    #"mg_ee_eetata_pinu_c_mass_smeft_cehim_m1_ecm240",
-    #"mg_ee_eetata_pinu_smeft_cehim_m1_ecm240",
-    
-    #"mg_ee_eetata_pinu_smeft_cehim_m1_ecm240", 
-    #"mg_ee_eetata_mod1_ecm240",                
-    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240",
-    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin",
-    #"mg_ee_eetata_mod1_smeft_cehim_p1_ecm240",  
+    "sm",
+    "sm_lin_quad_cehim_m1",
+    "sm_lin_quad_cehim",
+    "sm_lin_quad_cehre_m1",
+    "sm_lin_quad_cehre",
 ]
 
 slegend = {
@@ -1178,7 +861,7 @@ slegend = {
     'sm_lin_quad_cehim_m1':"ZH(#tau#tau), CPV -1",
     'sm_lin_quad_cehim':"ZH(#tau#tau), CPV +1",
     'sm_lin_quad_cehre_m1':"ZH(#tau#tau), CPC -1",
-    'sm_lin_quad_cehre_p1':"ZH(#tau#tau), CPC +1",
+    'sm_lin_quad_cehre':"ZH(#tau#tau), CPC +1",
 
     "p8_ee_QQH_Htautau_CPeven":"Z(qq)H(#tau#tau), CP even",
     "p8_ee_QQH_Htautau_CPodd":"Z(qq)H(#tau#tau), CP odd",
@@ -1211,6 +894,27 @@ slegend = {
     "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240":"Z(ee)H(#tau#tau), CPV -1",
     "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin":"Z(ee)H(#tau#tau), CPV -1, MadSpin",
     "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":"Z(ee)H(#tau#tau), CPV +1",
+
+    "mg_ee_eetata_ecm240_NoTauDecay":"SM",
+    "mg_ee_eetata_smeft_cehim_m1_ecm240_NoTauDecay":"CPV",
+    "test-sm":"SM",
+    "test-cehim-p1":"CPV",
+    "test-sm-v2":"SM",
+    "test-cehim-p10":"CPV +10",
+
+    "p8_ee_eeH_Htautau_CPeven":"0",
+    "p8_ee_eeH_Htautau_CPodd":"90",
+    "p8_ee_eeH_Htautau_CPmix":"45",
+
+    "llh-m1-2body":"m1",  
+    "llh-m1-4body":"m1",
+    "llh-p1-3body":"p1",
+    "llh-sm-2body":"sm",
+    "llh-sm-4body":"sm",
+    "llh-m1-3body":"m1",
+    "llh-p1-2body":"p1",
+    "llh-p1-4body":"p1",
+    "llh-sm-3body":"sm",
 }
 
 scolors = {
@@ -1245,10 +949,11 @@ scolors = {
     "mg_ee_eetata_smeft_cehim_p1_ecm240":ROOT.kTeal-7,
 
     'sm':ROOT.kViolet-9,
-    'sm_lin_quad_cehim_m1':ROOT.kAzure-6,
-    'sm_lin_quad_cehim':ROOT.kTeal-7,
-    'sm_lin_quad_cehre_m1':ROOT.kTeal+3,
-    'sm_lin_quad_cehre_p1':ROOT.kSpring+2,
+    'sm_lin_quad_cehim_m1':ROOT.kTeal-7,
+    'sm_lin_quad_cehim':ROOT.kSpring+2,
+    'sm_lin_quad_cehre_m1':ROOT.kAzure-6,
+    'sm_lin_quad_cehre':ROOT.kAzure-9, 
+    "quad_cehim":ROOT.kTeal-7,
 
     "p8_ee_QQH_Htautau_CPeven":ROOT.kAzure-6,
     "p8_ee_QQH_Htautau_CPodd":ROOT.kTeal-7,
@@ -1278,13 +983,33 @@ scolors = {
     "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin":ROOT.kRed-4,
     "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":ROOT.kTeal-7, 
 
+    "mg_ee_eetata_ecm240_NoTauDecay":ROOT.kRed-4,
+    "mg_ee_eetata_smeft_cehim_m1_ecm240_NoTauDecay":ROOT.kBlue-4,
+
+    "test-sm":ROOT.kRed-4,
+    "test-cehim-p1":ROOT.kBlue-4,
+    "test-sm-v2":ROOT.kRed-4,
+    "test-cehim-p10":ROOT.kBlue-4,
     
+    "p8_ee_eeH_Htautau_CPeven":ROOT.kRed,
+    "p8_ee_eeH_Htautau_CPodd":ROOT.kBlue-7,
+    "p8_ee_eeH_Htautau_CPmix":ROOT.kMagenta-6,
+
+    "llh-m1-2body":ROOT.kCyan-6,  
+    "llh-m1-4body":ROOT.kCyan-6,
+    "llh-p1-3body":ROOT.kBlue-7,
+    "llh-sm-2body":ROOT.kTeal-7,
+    "llh-sm-4body":ROOT.kTeal-7,
+    "llh-m1-3body":ROOT.kCyan-6,
+    "llh-p1-2body":ROOT.kBlue-7,
+    "llh-p1-4body":ROOT.kBlue-7,
+    "llh-sm-3body":ROOT.kTeal-7,
 }
 
 for cut in CUTS:
     #VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
-    #VARIABLES = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS + VARIABLES_ILC
-    VARIABLES = ["GenPhi_CP",]
+    #VARIABLES = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS #+ VARIABLES_ILC
+    VARIABLES = ["PhiCP_CMS",]
     for variable in VARIABLES:
 
         canvas = ROOT.TCanvas("", "", 1000, 1000)
@@ -1317,15 +1042,41 @@ for cut in CUTS:
         legend = []
 
         #loop over files for signals and backgrounds and assign corresponding colors and titles
+        '''for s in signals:
+            fin_ll = f"{DIRECTORY}/LL/HH/{s}_{cut}_histo.root"
+            fin_qq = f"{DIRECTORY}/QQ/HH/{s}_{cut}_histo.root"
+            tf_ll = ROOT.TFile.Open(fin_ll, 'READ')
+            h = tf_ll.Get(variable)
+            hh = copy.deepcopy(h)
+            hh.SetDirectory(0)
+            tf_qq = ROOT.TFile.Open(fin_qq, 'READ')
+            h3 = tf_qq.Get(variable)
+            hh.Add(h3)
+            histos.append(hh)
+            colors.append(scolors[s])
+            leg.AddEntry(histos[-1], slegend[s], "l")'''
+
         for s in signals:
-            fin = f"{DIRECTORY}{s}_{cut}_histo.root"
-            with ROOT.TFile(fin) as tf:
-                h = tf.Get(variable) #s + "_" + variable
-                hh = copy.deepcopy(h)
-                hh.SetDirectory(0)
+            fin_ll = f"{DIRECTORY}/QQ/HH/{s}_{cut}_histo.root"
+            tf_ll = ROOT.TFile.Open(fin_ll, 'READ')
+            h = tf_ll.Get(variable)
+            hh = copy.deepcopy(h)
+            hh.SetDirectory(0)
             histos.append(hh)
             colors.append(scolors[s])
             leg.AddEntry(histos[-1], slegend[s], "l")
+        
+        #for s in signals:
+        #    fin = f"{DIRECTORY}/{s}_{cut}_histo.root"
+        #    with ROOT.TFile(fin) as tf:
+        #        h = tf.Get(variable) #s + "_" + variable
+        #        hh = h.Clone()
+        #        hh.SetDirectory(0)
+        #    histos.append(hh)
+        #    colors.append(ROOT.kBlue)
+        #    leg.AddEntry(histos[-1], "no jet tagger", "l")
+
+        nsig = len(histos)
 
         # add the signal histograms
         for i in range(nsig):
@@ -1337,20 +1088,20 @@ for cut in CUTS:
             h = histos[i]
             h.SetLineWidth(3)
             h.SetLineColor(colors[i])
-            h.Rebin(1)
+            h.Rebin(2)
             if i == 0:
                 h.Draw("HIST")
                 h.GetYaxis().SetTitle("Events")
                 h.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
+                if variable == "PhiCP_CMS":
+                    h.GetXaxis().SetTitle("#Delta#Phi_{CP}")
                 #h.GetXaxis().SetTitleOffset(1.2)
-                #h.Rebin(2)
-                if h.Integral()>0:
-                    h.Scale(1./(h.Integral()))
-                h.GetYaxis().SetRangeUser(0,0.1)
+                #if h.Integral()>0:
+                #    h.Scale(1./(h.Integral()))
+                h.GetYaxis().SetRangeUser(0, max*2.5)
             else: 
-                #h.Rebin(2)
-                if h.Integral()>0:
-                    h.Scale(1./(h.Integral()))
+                #if h.Integral()>0:
+                #    h.Scale(1./(h.Integral()))
                 #    h.Scale(0.5)
                 h.Draw("HIST SAME")
         
@@ -1422,7 +1173,7 @@ for cut in CUTS:
         dummy.GetYaxis().SetTitleSize(0.08)
         dummy.GetYaxis().CenterTitle()
         #adjust the range for the ratio here
-        dummy.GetYaxis().SetRangeUser(0.5,1.5)
+        dummy.GetYaxis().SetRangeUser(0.8,1.2)
         dummy.GetYaxis().SetLabelSize(0.08)
         dummy.GetYaxis().SetNdivisions(5)
         dummy.GetYaxis().SetTitleOffset(0.5)
@@ -1455,19 +1206,19 @@ for cut in CUTS:
 
         #canvas.cd()
 
-        #canvas.RedrawAxis()
-        #canvas.Modified()
-        #canvas.Update()
+        canvas.RedrawAxis()
+        canvas.Modified()
+        canvas.Update()
 
-        dir = DIR_PLOTS #+ "/" + cut + "/"
+        dir = DIR_PLOTS + "/"
         make_dir_if_not_exists(dir)
 
         if (LOGY == True):
 
-            canvas.SaveAs(dir + "log/" + variable + ".png")
-            canvas.SaveAs(dir + "log/" + variable + ".pdf")
+            canvas.SaveAs(dir + "log/" + variable + cut + ".png")
+            canvas.SaveAs(dir + "log/" + variable + cut + ".pdf")
 
         else:
 
-            canvas.SaveAs(dir + variable + label + cut + ".png")
-            canvas.SaveAs(dir+ variable + label + cut + ".pdf")
+            canvas.SaveAs(dir + variable + label + ".png")
+            canvas.SaveAs(dir+ variable + label + ".pdf")

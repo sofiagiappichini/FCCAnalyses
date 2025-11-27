@@ -51,7 +51,7 @@ LABELS = {
     "selDPhi":"KinGen_hh_norm_DPhi<0.5",
  }
 
-label = "_eeHH"
+label = "_eedHH"
 ana_tex        = "e^{+}e^{-} #rightarrow ZH, Z #rightarrow ee, H #rightarrow #tau_{h}#tau_{h}"
 energy         = 240
 collider       = 'FCC-ee'
@@ -242,25 +242,25 @@ for s in signals:
     colors.append(ROOT.kViolet-7)
     leg.AddEntry(histos[-1], "Visible", "l")
 
-for s in signals:
-    fin = f"{DIRECTORY}{s}_{CUTS[2]}_histo.root"
-    with ROOT.TFile(fin) as tf:
-        h = tf.Get("Belle_Higgs_mass")#s + "_" + variable
-        hh = copy.deepcopy(h)
-        hh.SetDirectory(0)
-    histos.append(hh)
-    colors.append(ROOT.kTeal-7)
-    leg.AddEntry(histos[-1], "Kinematics method", "l")
+#for s in signals:
+#    fin = f"{DIRECTORY}{s}_{CUTS[2]}_histo.root"
+#    with ROOT.TFile(fin) as tf:
+#        h = tf.Get("Belle_Higgs_mass")#s + "_" + variable
+#        hh = copy.deepcopy(h)
+#        hh.SetDirectory(0)
+#    histos.append(hh)
+#    colors.append(ROOT.kTeal-7)
+#    leg.AddEntry(histos[-1], "Kinematics method", "l")
 
-for s in signals:
-    fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
-    with ROOT.TFile(fin) as tf:
-        h = tf.Get("KinILC_H_mass")#s + "_" + variable
-        hh = copy.deepcopy(h)
-        hh.SetDirectory(0)
-    histos.append(hh)
-    colors.append(ROOT.kCyan-8)
-    leg.AddEntry(histos[-1], "Impact method", "l")
+#for s in signals:
+#    fin = f"{DIRECTORY}{s}_{CUTS[1]}_histo.root"
+#    with ROOT.TFile(fin) as tf:
+#        h = tf.Get("KinILC_H_mass")#s + "_" + variable
+#        hh = copy.deepcopy(h)
+#        hh.SetDirectory(0)
+#    histos.append(hh)
+#    colors.append(ROOT.kCyan-8)
+#    leg.AddEntry(histos[-1], "Impact method", "l")
 
 for s in signals:
     fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
@@ -271,15 +271,16 @@ for s in signals:
     histos.append(hh)
     colors.append(ROOT.kAzure-4)
     leg.AddEntry(histos[-1], "Collinear xy", "l")
-for s in signals:
-    fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
-    with ROOT.TFile(fin) as tf:
-        h = tf.Get("Collinear_mass_3d")#s + "_" + variable
-        hh = copy.deepcopy(h)
-        hh.SetDirectory(0)
-    histos.append(hh)
-    colors.append(ROOT.kTeal+3)
-    leg.AddEntry(histos[-1], "Collinear xyz", "l")
+
+#for s in signals:
+#    fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
+#    with ROOT.TFile(fin) as tf:
+#        h = tf.Get("Collinear_mass_3d")#s + "_" + variable
+#        hh = copy.deepcopy(h)
+#        hh.SetDirectory(0)
+#    histos.append(hh)
+#    colors.append(ROOT.kTeal+3)
+#    leg.AddEntry(histos[-1], "Collinear xyz", "l")
 
 for s in signals:
     fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
@@ -288,7 +289,7 @@ for s in signals:
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
-    colors.append(ROOT.kViolet-9)
+    colors.append(ROOT.kTeal+3)
     leg.AddEntry(histos[-1], "Recoil", "l")
 
 nsig = len(histos)
@@ -302,13 +303,13 @@ for i in range(nsig):
 
 for i in range(nsig):
     h = histos[i]
-    h.SetLineWidth(3)
+    h.SetLineWidth(5)
     h.SetLineColor(colors[i])
     #h.SetLineStyle(style[i])  # 1 = solid, 2 = dashed, 3 = dotted, etc.
     if i == 0:
         h.Draw("HIST")
         h.GetYaxis().SetTitle("Events (normalised)")
-        h.GetXaxis().SetTitle("M_{Z} [GeV]")
+        h.GetXaxis().SetTitle("M_{H} [GeV]")
         h.GetYaxis().SetTitleOffset(1.4)
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))

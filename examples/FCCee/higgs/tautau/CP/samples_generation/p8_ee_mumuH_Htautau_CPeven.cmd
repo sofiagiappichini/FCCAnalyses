@@ -31,7 +31,7 @@ PartonLevel:ISR = on               ! no initial-state radiation
 PartonLevel:FSR = on               ! no final-state radiation
 
 23:onMode    = off                 ! switch off Z boson decays
-23:onIfAny   = 11                  ! switch on Z boson decay to electrons
+23:onIfAny   = 13                  ! switch on Z boson decay to electrons
 
 25:onMode    = off                 ! switch off H boson decays
 25:onIfAny   = 15                  ! switch on H boson decay to taus

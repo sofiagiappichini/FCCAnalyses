@@ -4,22 +4,6 @@ import urllib.request
 
 #Mandatory: List of processes
 processList_ = {
-    "mg_ee_eetata_ecm240":{},
-    "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_eetata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_eetata_smeft_cehre_p1_ecm240":{},
-    "mg_ee_jjtata_ecm240":{'chunks':10},
-    "mg_ee_jjtata_smeft_cehim_m1_ecm240":{'chunks':10},
-    "mg_ee_jjtata_smeft_cehim_p1_ecm240":{'chunks':10},
-    "mg_ee_jjtata_smeft_cehre_m1_ecm240":{'chunks':10},
-    "mg_ee_jjtata_smeft_cehre_p1_ecm240":{'chunks':10},
-    "mg_ee_mumutata_ecm240":{},
-    "mg_ee_mumutata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
-
     "p8_ee_bbH_Htautau_CPeven":{},
     "p8_ee_bbH_Htautau_CPodd":{},
     "p8_ee_ccH_Htautau_CPeven":{},
@@ -34,32 +18,16 @@ processList_ = {
     "p8_ee_qqH_Htautau_CPodd":{},
 }
 
-processList = {
-    #"mg_ee_eetata_ecm240":{},
-    #"mg_ee_eetata_smeft_cehim_m1_ecm240":{},
-    #"mg_ee_eetata_smeft_cehim_p1_ecm240":{},
-    #"test_output":{},
-    #"mg_ee_eetata_pinu_smeft_cehim_m1_ecm240":{},
-    #"mg_ee_eetata_pinu_ecm240":{},
-    #"mg_ee_eetata_pinu_c_mass_smeft_cehim_m1_ecm240":{},
-    #"mg_ee_eetata_pinu_smeft_cehim_m1_ecm240":{},
-    #"mg_ee_eetata_mod1_ecm240":{},                
-    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240":{},
-    #"mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":{},
-    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240_wMadspin":{},
-
-}
-
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/winter2023/IDEA/"
 
 #inputDir = "/ceph/sgiappic/HiggsCP/winter23"
 #inputDir = "root://eospublic.cern.ch//eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/"
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/DelphesPythia8_EDM4HEP/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/MCgenCP/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/gen_stage1_test_madspin/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/pythia_gen/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
@@ -77,41 +45,6 @@ batchQueue = "workday"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_CMS.u_zh.users"
-
-## tagging -------------------------------
-## latest particle transformer model, trained on 9M jets in winter2023 samples
-model_name = "fccee_flavtagging_edm4hep_wc"
-
-## model files needed for unit testing in CI
-url_model_dir = "https://fccsw.web.cern.ch/fccsw/testsamples/jet_flavour_tagging/winter2023/wc_pt_13_01_2022/"
-url_preproc = "{}/{}.json".format(url_model_dir, model_name)
-url_model = "{}/{}.onnx".format(url_model_dir, model_name)
-
-## model files locally stored on /eos
-#model_dir = "/ceph/sgiappic/FCCAnalyses/addons/jet_flavor_tagging/winter2023/wc_pt_7classes_12_04_2023/"
-model_dir = "/eos/experiment/fcc/ee/jet_flavour_tagging/winter2023/wc_pt_7classes_12_04_2023/"
-
-local_preproc = "{}/{}.json".format(model_dir, model_name)
-local_model = "{}/{}.onnx".format(model_dir, model_name)
-
-## get local file, else download from url
-def get_file_path(url, filename):
-    if os.path.exists(filename):
-        return os.path.abspath(filename)
-    #else:
-    #    urllib.request.urlretrieve(url, os.path.basename(url))
-    #    return os.path.basename(url)
-    ## this is the old version of the tagger and we don't care about it
-
-
-weaver_preproc = get_file_path(url_preproc, local_preproc)
-weaver_model = get_file_path(url_model, local_model)
-
-from addons.ONNXRuntime.jetFlavourHelper import JetFlavourHelper
-from addons.FastJet.jetClusteringHelper import (
-    ExclusiveJetClusteringHelper,
-    InclusiveJetClusteringHelper,
-)
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():
@@ -283,8 +216,10 @@ class RDFanalysis():
                 ###############################
 
                 .Filter("n_HiggsGenTau==2 && (HiggsGenTau_charge.at(0) + HiggsGenTau_charge.at(1))==0")
-                .Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPtoENuNu_idx.size()>0 || TauPtoMuNuNu_idx.size()>0 || TauPto2Pi0Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
-                .Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
+                #.Filter("(TauPtoENuNu_idx.size()>0)")
+                #.Filter("(TauMtoENuNu_idx.size()>0)")
+                #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 || TauPtoENuNu_idx.size()>0 || TauPtoMuNuNu_idx.size()>0 || TauPto2Pi0Nu_idx.size()>0 || TauPto3PiNu_idx.size()>0)")
+                #.Filter("(TauMtoPiNu_idx.size()>0 || TauMtoRhoNu_idx.size()>0 || TauMtoENuNu_idx.size()>0 || TauMtoMuNuNu_idx.size()>0 || TauMto2Pi0Nu_idx.size()>0 || TauMto3PiNu_idx.size()>0)")
                 #.Filter("(TauPtoPiNu_idx.size()>0 )")
                 #.Filter("(TauMtoPiNu_idx.size()>0 )")
                 #.Filter("(TauPtoPiNu_idx.size()>0 || TauPtoRhoNu_idx.size()>0 )")
@@ -300,8 +235,8 @@ class RDFanalysis():
                 .Define("n_GenPiP",     "GenPiP.size()")
                 .Define("n_GenPiM",     "GenPiM.size()")
 
-                #.Filter("n_GenPiP==1 || n_GenPiP==3")
-                #.Filter("n_GenPiM==1 || n_GenPiM==3")
+                .Filter("n_GenPiP==1 || n_GenPiP==3")
+                .Filter("n_GenPiM==1 || n_GenPiM==3")
 
                 .Define("GenPiP_e", "FCCAnalyses::MCParticle::get_e(GenPiP)")
                 .Define("GenPiP_px", "FCCAnalyses::MCParticle::get_px(GenPiP)")

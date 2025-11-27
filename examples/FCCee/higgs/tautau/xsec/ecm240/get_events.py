@@ -90,6 +90,18 @@ all = [
     "wzp6_ee_gaga_LL_60_ecm240",
     "wzp6_ee_gaga_tautau_60_ecm240",
 
+    "mg_ee_fftata_sm_ecm240",
+    "p8_ee_LLH_Htautau_CPeven",
+    "p8_ee_QQH_Htautau_CPeven",
+
+    "wzp6_ee_bbH_Htautau_ecm240",
+    "wzp6_ee_ccH_Htautau_ecm240",
+    "wzp6_ee_ssH_Htautau_ecm240",
+    "wzp6_ee_qqH_Htautau_ecm240",
+    "wzp6_ee_eeH_Htautau_ecm240",
+    "wzp6_ee_mumuH_Htautau_ecm240",
+
+
 ]
 
 DY = [
@@ -122,38 +134,51 @@ ZH = [
     "wzp6_ee_QQH_HVV_ecm240",
 ]
 
-signal = [
-    'wzp6_ee_QQH_Htautau_ecm240',
+signal_eft = [
+    #'wzp6_ee_QQH_Htautau_ecm240',
     #'wzp6_ee_eeH_Htautau_ecm240',
     #'wzp6_ee_mumuH_Htautau_ecm240',
-    'wzp6_ee_LLH_Htautau_ecm240',
-    'wzp6_ee_nunuH_Htautau_ecm240',
+    #'wzp6_ee_LLH_Htautau_ecm240',
+    #'wzp6_ee_nunuH_Htautau_ecm240',
+    "mg_ee_fftata_sm_ecm240",
 ]
 
-DIRECTORY = "/ceph/awiedl/FCCee/HiggsCP/ecm240/"
+signal_pythia = [
+    "p8_ee_LLH_Htautau_CPeven",
+    "p8_ee_QQH_Htautau_CPeven",
+    #"wzp6_ee_bbH_Htautau_ecm240",
+    #"wzp6_ee_ccH_Htautau_ecm240",
+    #"wzp6_ee_ssH_Htautau_ecm240",
+    #"wzp6_ee_qqH_Htautau_ecm240",
+    #"wzp6_ee_eeH_Htautau_ecm240",
+    #"wzp6_ee_mumuH_Htautau_ecm240",
+    
+]
+
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/"
 
 TAG = [
-    "R5-explicit",
-    "R5-tag",
+    #"R5-explicit",
+    #"R5-tag",
     "ktN-explicit",
-    "ktN-tag",
+    #"ktN-tag",
 ]
 
 SUBDIR = [
-    'LL',
-    'LH',
+    #'LL',
+    #'LH',
     'HH',
 ]
 #category to plot
 CAT = [
-    "QQ",
+    #"QQ",
     "LL",
-    "NuNu",
+    #"NuNu",
 ]
 
 # Define the tree name
 tree_name = "events"
-leaf_name = "Tau_cos"
+leaf_name = "PhiCP_CMS"
 
 '''for replacement_word in replacement_words:
 
@@ -231,14 +256,18 @@ for tag in TAG:
     hh_total_data = {}  
     dy_total_data = {}
     sig_total_data = {}
+    sig_total_data_2 = {}
 
     for cat in CAT:
         for sub in SUBDIR:
-            directory = DIRECTORY + tag + "/final_241202/" + cat + "/" + sub + "/"
+            directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
             col_name = f"{cat}{sub}"
 
             for file in all:
-                file_name = f"{file}_selReco_histo.root"
+                if "LL" in cat:
+                    file_name = f"{file}_selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_oneprong_histo.root"
+                else:
+                    file_name = f"{file}_selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_oneprong_histo.root"
                 histo_file_path = os.path.join(directory, file_name)
 
                 if os.path.exists(histo_file_path):
@@ -248,10 +277,14 @@ for tag in TAG:
                 else:
                     total_entries = 0
 
-                if file in signal:
+                if file in signal_eft:
                     if col_name not in sig_total_data:
                         sig_total_data[col_name] = 0
                     sig_total_data[col_name] += total_entries
+                elif file in signal_pythia:
+                    if col_name not in sig_total_data_2:
+                        sig_total_data_2[col_name] = 0
+                    sig_total_data_2[col_name] += total_entries
                 elif file in ZH:
                     if col_name not in hh_total_data:
                         hh_total_data[col_name] = 0
@@ -266,7 +299,10 @@ for tag in TAG:
                     table_data_temp[file][col_name] = f"{total_entries:.2e}" if total_entries !=0 else "0"
         
     if sig_total_data:
-        table_data['wzp6_ee_ZH_Htautau_ecm240'] = {col: f"{value:.2e}" for col, value in sig_total_data.items()}
+        table_data['EFT'] = {col: f"{value:.2e}" for col, value in sig_total_data.items()}
+    
+    if sig_total_data_2:
+        table_data['PYTHIA'] = {col: f"{value:.2e}" for col, value in sig_total_data_2.items()}
 
     if hh_total_data:
         table_data['ZH background'] = {col: f"{value:.2e}" for col, value in hh_total_data.items()}
@@ -309,7 +345,7 @@ for tag in TAG:
     """
 
     # Save LaTeX Table
-    latex_output_file = f"/ceph/sgiappic/HiggsCP/ecm240/{tag}_nevents.txt"
+    latex_output_file = f"/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/{tag}_nevents.txt"
     with open(latex_output_file, "w") as f:
         f.write(latex_table_content)
 

@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/test_250724/LLHH/"
+inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/LL/HH/"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/test_250724/LLHH/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/LL/HH/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -20,42 +20,37 @@ nCPUs = 6
 doTree = False
 
 processList = {
-    "mg_ee_eetata_mod1_ecm240":{},                
-    "mg_ee_eetata_mod1_smeft_cehim_m1_ecm240":{},
-    "mg_ee_eetata_mod1_smeft_cehim_p1_ecm240":{},
+    "mg_ee_fftata_ceHIm_m1_ecm240":{},
+    "mg_ee_fftata_ceHRe_m1_ecm240":{},
+    "mg_ee_fftata_sm_ecm240":{},
+    "mg_ee_fftata_ceHIm_p1_ecm240":{},
+    "mg_ee_fftata_ceHRe_p1_ecm240":{},
+    "mg_ee_fftata_ceHRe__ceHIm_p1_p1_ecm240":{},
 }
 
 processList_ = {
 
-    "mg_ee_eetata_ecm240":{},
-    "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_eetata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_eetata_smeft_cehre_p1_ecm240":{},
-    "mg_ee_jjtata_ecm240":{},
-    "mg_ee_jjtata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_jjtata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_jjtata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_jjtata_smeft_cehre_p1_ecm240":{},
-    "mg_ee_mumutata_ecm240":{},
-    "mg_ee_mumutata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
-
     "p8_ee_bbH_Htautau_CPeven":{},
     "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_bbH_Htautau_CPmix":{},
     "p8_ee_ccH_Htautau_CPeven":{},
     "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPmix":{},
     "p8_ee_eeH_Htautau_CPeven":{},
     "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPmix":{},
     "p8_ee_mumuH_Htautau_CPeven":{},
     "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPmix":{},
     "p8_ee_ssH_Htautau_CPeven":{},
     "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPmix":{},
     "p8_ee_qqH_Htautau_CPeven":{},
     "p8_ee_qqH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPmix":{},
+}
 
+processList_ = {
 
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
@@ -151,62 +146,46 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 #Add provate samples as it is not an offical process
 procDictAdd = {
 
-    'mg_ee_eetata_mod1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.612249108209635e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_eetata_mod1_smeft_cehim_m1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.641935457756982e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_eetata_mod1_smeft_cehim_p1_ecm240':{"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.691984057002465e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_fftata_sm_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.003334498557524032, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_fftata_ceHIm_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.003351849508259051, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_fftata_ceHRe_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0037567698218019313, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_fftata_ceHIm_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0033515248747026756, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_fftata_ceHRe_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0029467886619852653, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'mg_ee_fftata_ceHRe__ceHIm_p1_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002958768035846184, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
-    'mg_ee_eetata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_eetata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039496700612440505, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_eetata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039467206272751117, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_eetata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039526795717095316, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_eetata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00039545719323659203, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_jjtata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005953978259013256, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_jjtata_smeft_cehim_m1_ecm240':{"numberOfEvents": 9893750, "sumOfWeights": 9893750, "crossSection": 0.005957006930373593, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_jjtata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005952444260067142, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_jjtata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005972489422656043, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_jjtata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.005960914361046144, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_mumutata_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_mumutata_smeft_cehim_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037101429593363667, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_mumutata_smeft_cehim_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037126725168208034, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_mumutata_smeft_cehre_m1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.00037152687307799456, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'mg_ee_mumutata_smeft_cehre_p1_ecm240':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.000371622336608876, "kfactor": 1.0, "matchingEfficiency": 1.0},
-
-
-    'p8_ee_bbH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_bbH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_ccH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_ccH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_ssH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_ssH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_qqH_Htautau_CPeven':{"numberOfEvents": 2385875, "sumOfWeights": 2385875, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_qqH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00148825, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_eeH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_eeH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003949209283230132, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_mumuH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'p8_ee_mumuH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.0003717730785778399, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_bbH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001672, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_bbH_Htautau_CPmix':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001672, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_bbH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001672, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001307, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPmix':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001307, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ccH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001307, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001307, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPmix':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001307, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_ssH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.001307, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPeven':{"numberOfEvents": 2385875, "sumOfWeights": 2385875, "crossSection": 0.002614, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPmix':{"numberOfEvents": 2385875, "sumOfWeights": 2385875, "crossSection": 0.002614, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_qqH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.002614, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00038, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPmix':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00038, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_eeH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00038, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPeven':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00038, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPmix':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00038, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    'p8_ee_mumuH_Htautau_CPodd':{"numberOfEvents": 2500000, "sumOfWeights": 2500000, "crossSection": 0.00038, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
 }
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    #"selReco": "true",
-    #"selOffDiag":"(GenTauP_DM==0 && GenTauM_DM==1) || (GenTauP_DM==1 && GenTauM_DM==0)",
-    #"selDiag":"(GenTauP_DM==0 && GenTauM_DM==0) || (GenTauP_DM==1 && GenTauM_DM==1)",
-    #"selPi":"(GenTauP_DM==0 && GenTauM_DM==0)",
-    #"selRho":"(GenTauP_DM==1 && GenTauM_DM==1)",
-    #"selReco_ILC": "ILC_Filter==1",
-    #"selOffDiag_ILC":"(GenTauP_DM==0 && GenTauM_DM==1) || (GenTauP_DM==1 && GenTauM_DM==0) && ILC_Filter==1",
-    #"selDiag_ILC":"(GenTauP_DM==0 && GenTauM_DM==0) || (GenTauP_DM==1 && GenTauM_DM==1) && ILC_Filter==1",
-    #"selPi_ILC":"(GenTauP_DM==0 && GenTauM_DM==0) && ILC_Filter==1",
-    #"selRho_ILC":"(GenTauP_DM==1 && GenTauM_DM==1) && ILC_Filter==1",
+    "selReco": "true",
     "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
     "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
     "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
-     
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_oneprong": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && TauP_type<10 && TauM_type<10",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_notoneprong": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && !(TauP_type<10 && TauM_type<10)",
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -372,80 +351,20 @@ histoList = {
     "RecoEmiss_y":              {"name":"RecoEmiss_y",                   "title":"Reco missing energy rapidity",                       "bin":40, "xmin":-4., "xmax":4.},
     "RecoEmiss_costheta":       {"name":"RecoEmiss_costheta",               "title":"Reco missing energy |cos(#theta)|",                 "bin":50, "xmin":0,"xmax":1.},
 
-    "TagJet_R5_e":                {"name":"TagJet_R5_e",                   "title":"R5 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_R5_p":                {"name":"TagJet_R5_p",                   "title":"R5 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_R5_pt":               {"name":"TagJet_R5_pt",                  "title":"R5 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_R5_px":               {"name":"TagJet_R5_px",                  "title":"R5 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_py":               {"name":"TagJet_R5_py",                  "title":"R5 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_pz":               {"name":"TagJet_R5_pz",                  "title":"R5 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_eta":              {"name":"TagJet_R5_eta",                 "title":"R5 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_R5_theta":            {"name":"TagJet_R5_theta",               "title":"R5 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_R5_phi":              {"name":"TagJet_R5_phi",                 "title":"R5 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_R5_mass":             {"name":"TagJet_R5_mass",                "title":"R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "TagJet_R5_charge":             {"name":"TagJet_R5_charge",                "title":"R5 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
-    "n_TagJet_R5":                {"name":"n_TagJet_R5",                   "title":"Number of R5 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_TagJet_R5_constituents":             {"name":"n_TagJet_R5_constituents",               "title":"R5 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_R5_charged_constituents":             {"name":"n_TagJet_R5_charged_constituents",               "title":"R5 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_R5_neutral_constituents":             {"name":"n_TagJet_R5_neutral_constituents",               "title":"R5 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
-
-    "TagJet_R5_isG":             {"name":"TagJet_R5_isG",                "title":"R5 jet G score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_R5_isU":             {"name":"TagJet_R5_isU",                "title":"R5 jet U score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_R5_isD":             {"name":"TagJet_R5_isD",                "title":"R5 jet D score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_R5_isS":             {"name":"TagJet_R5_isS",                "title":"R5 jet S score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_R5_isC":             {"name":"TagJet_R5_isC",                "title":"R5 jet C score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_R5_isB":             {"name":"TagJet_R5_isB",                "title":"R5 jet B score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_R5_isTAU":             {"name":"TagJet_R5_isTAU",                "title":"R5 jet TAU score",                     "bin":100, "xmin":0., "xmax":1.},
-
-    "TauFromJet_R5_p":          {"name":"TauFromJet_R5_p",                   "title":"#tau from R5 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TauFromJet_R5_pt":         {"name":"TauFromJet_R5_pt",                  "title":"#tau from R5 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TauFromJet_R5_px":         {"name":"TauFromJet_R5_px",                  "title":"#tau from R5 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TauFromJet_R5_py":         {"name":"TauFromJet_R5_py",                  "title":"#tau from R5 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TauFromJet_R5_pz":         {"name":"TauFromJet_R5_pz",                  "title":"#tau from R5 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TauFromJet_R5_theta":      {"name":"TauFromJet_R5_theta",               "title":"#tau from R5 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TauFromJet_R5_phi":        {"name":"TauFromJet_R5_phi",                 "title":"#tau from R5 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TauFromJet_R5_e":          {"name":"TauFromJet_R5_e",                   "title":"#tau from R5 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},
-    "TauFromJet_R5_eta":        {"name":"TauFromJet_R5_eta",                 "title":"#tau from R5 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TauFromJet_R5_y":          {"name":"TauFromJet_R5_y",                   "title":"#tau from R5 jet rapidity",                       "bin":80,"xmin":-4. ,"xmax":4.},
-    "TauFromJet_R5_charge":     {"name":"TauFromJet_R5_charge",              "title":"#tau from R5 jet charge",                         "bin":3, "xmin":-1.5,"xmax":1.5},
-    "TauFromJet_R5_type":       {"name":"TauFromJet_R5_type",                "title":"#tau from R5 jet decay type",                     "bin":100, "xmin":-20, "xmax":80},
-    "TauFromJet_R5_mass":       {"name":"TauFromJet_R5_mass",                "title":"#tau from R5 jet mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
-    "n_TauFromJet_R5":          {"name":"n_TauFromJet_R5",                   "title":"Number of #tau from R5 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-
-    "TagJet_R5_sel_e":            {"name":"TagJet_R5_sel_e",                   "title":"Quark/gluon R5 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
-    "TagJet_R5_sel_p":            {"name":"TagJet_R5_sel_p",                   "title":"Quark/gluon R5 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_R5_sel_pt":           {"name":"TagJet_R5_sel_pt",                  "title":"Quark/gluon R5 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_R5_sel_px":           {"name":"TagJet_R5_sel_px",                  "title":"Quark/gluon R5 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_sel_py":           {"name":"TagJet_R5_sel_py",                  "title":"Quark/gluon R5 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_sel_pz":           {"name":"TagJet_R5_sel_pz",                  "title":"Quark/gluon R5 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_R5_sel_eta":          {"name":"TagJet_R5_sel_eta",                 "title":"Quark/gluon R5 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_R5_sel_theta":        {"name":"TagJet_R5_sel_theta",               "title":"Quark/gluon R5 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_R5_sel_phi":          {"name":"TagJet_R5_sel_phi",                 "title":"Quark/gluon R5 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_R5_sel_mass":         {"name":"TagJet_R5_sel_mass",                "title":"Quark/gluon R5 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "n_TagJet_R5_sel":            {"name":"n_TagJet_R5_sel",                   "title":"Number of Quark/gluon R5 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
-
-    "TagJet_kt2_e":                {"name":"TagJet_kt2_e",                   "title":"kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "TagJet_kt2_p":                {"name":"TagJet_kt2_p",                   "title":"kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt2_pt":               {"name":"TagJet_kt2_pt",                  "title":"kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt2_px":               {"name":"TagJet_kt2_px",                  "title":"kt2 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_py":               {"name":"TagJet_kt2_py",                  "title":"kt2 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_pz":               {"name":"TagJet_kt2_pz",                  "title":"kt2 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_eta":              {"name":"TagJet_kt2_eta",                 "title":"kt2 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt2_theta":            {"name":"TagJet_kt2_theta",               "title":"kt2 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt2_phi":              {"name":"TagJet_kt2_phi",                 "title":"kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt2_mass":             {"name":"TagJet_kt2_mass",                "title":"kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "TagJet_kt2_charge":             {"name":"TagJet_kt2_charge",                "title":"kt2 jet charge",                     "bin":10, "xmin":-5., "xmax":5.},
-    "n_TagJet_kt2":                {"name":"n_TagJet_kt2",                   "title":"Number of kt2 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_TagJet_kt2_constituents":             {"name":"n_TagJet_kt2_constituents",               "title":"kt2 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt2_charged_constituents":             {"name":"n_TagJet_kt2_charged_constituents",               "title":"kt2 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_TagJet_kt2_neutral_constituents":             {"name":"n_TagJet_kt2_neutral_constituents",               "title":"kt2 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
-
-    "TagJet_kt2_isG":             {"name":"TagJet_kt2_isG",                "title":"kt2 jet G score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_kt2_isU":             {"name":"TagJet_kt2_isU",                "title":"kt2 jet U score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_kt2_isD":             {"name":"TagJet_kt2_isD",                "title":"kt2 jet D score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_kt2_isS":             {"name":"TagJet_kt2_isS",                "title":"kt2 jet S score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_kt2_isC":             {"name":"TagJet_kt2_isC",                "title":"kt2 jet C score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_kt2_isB":             {"name":"TagJet_kt2_isB",                "title":"kt2 jet B score",                     "bin":100, "xmin":0., "xmax":1.},
-    "TagJet_kt2_isTAU":             {"name":"TagJet_kt2_isTAU",                "title":"kt2 jet TAU score",                     "bin":100, "xmin":0., "xmax":1.},
+    #"Jets_kt2_e":                {"name":"Jets_kt2_e",                   "title":"kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
+    #"Jets_kt2_p":                {"name":"Jets_kt2_p",                   "title":"kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    #"Jets_kt2_pt":               {"name":"Jets_kt2_pt",                  "title":"kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    #"Jets_kt2_px":               {"name":"Jets_kt2_px",                  "title":"kt2 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"Jets_kt2_py":               {"name":"Jets_kt2_py",                  "title":"kt2 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"Jets_kt2_pz":               {"name":"Jets_kt2_pz",                  "title":"kt2 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"Jets_kt2_eta":              {"name":"Jets_kt2_eta",                 "title":"kt2 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    #"Jets_kt2_theta":            {"name":"Jets_kt2_theta",               "title":"kt2 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    #"Jets_kt2_phi":              {"name":"Jets_kt2_phi",                 "title":"kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    #"Jets_kt2_mass":             {"name":"Jets_kt2_mass",                "title":"kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    #"n_Jets_kt2":                {"name":"n_Jets_kt2",                   "title":"Number of kt2 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    #"n_Jets_kt2_constituents":             {"name":"n_Jets_kt2_constituents",               "title":"kt2 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    #"n_Jets_kt2_charged_constituents":             {"name":"n_Jets_kt2_charged_constituents",               "title":"kt2 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    #"n_Jets_kt2_neutral_constituents":             {"name":"n_Jets_kt2_neutral_constituents",               "title":"kt2 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
 
     "TauFromJet_kt2_p":          {"name":"TauFromJet_kt2_p",                   "title":"#tau from kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
     "TauFromJet_kt2_pt":         {"name":"TauFromJet_kt2_pt",                  "title":"#tau from kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
@@ -462,17 +381,17 @@ histoList = {
     "TauFromJet_kt2_mass":       {"name":"TauFromJet_kt2_mass",                "title":"#tau from kt2 jet mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
     "n_TauFromJet_kt2":          {"name":"n_TauFromJet_kt2",                   "title":"Number of #tau from kt2 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
 
-    "TagJet_kt2_sel_e":            {"name":"TagJet_kt2_sel_e",                   "title":"Quark/gluon kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
-    "TagJet_kt2_sel_p":            {"name":"TagJet_kt2_sel_p",                   "title":"Quark/gluon kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt2_sel_pt":           {"name":"TagJet_kt2_sel_pt",                  "title":"Quark/gluon kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "TagJet_kt2_sel_px":           {"name":"TagJet_kt2_sel_px",                  "title":"Quark/gluon kt2 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_sel_py":           {"name":"TagJet_kt2_sel_py",                  "title":"Quark/gluon kt2 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_sel_pz":           {"name":"TagJet_kt2_sel_pz",                  "title":"Quark/gluon kt2 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "TagJet_kt2_sel_eta":          {"name":"TagJet_kt2_sel_eta",                 "title":"Quark/gluon kt2 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt2_sel_theta":        {"name":"TagJet_kt2_sel_theta",               "title":"Quark/gluon kt2 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "TagJet_kt2_sel_phi":          {"name":"TagJet_kt2_sel_phi",                 "title":"Quark/gluon kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "TagJet_kt2_sel_mass":         {"name":"TagJet_kt2_sel_mass",                "title":"Quark/gluon kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "n_TagJet_kt2_sel":            {"name":"n_TagJet_kt2_sel",                   "title":"Number of Quark/gluon kt2 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
+    #"Jets_kt2_sel_e":            {"name":"Jets_kt2_sel_e",                   "title":"Quark/gluon kt2 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
+    #"Jets_kt2_sel_p":            {"name":"Jets_kt2_sel_p",                   "title":"Quark/gluon kt2 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    #"Jets_kt2_sel_pt":           {"name":"Jets_kt2_sel_pt",                  "title":"Quark/gluon kt2 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    #"Jets_kt2_sel_px":           {"name":"Jets_kt2_sel_px",                  "title":"Quark/gluon kt2 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"Jets_kt2_sel_py":           {"name":"Jets_kt2_sel_py",                  "title":"Quark/gluon kt2 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"Jets_kt2_sel_pz":           {"name":"Jets_kt2_sel_pz",                  "title":"Quark/gluon kt2 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    #"Jets_kt2_sel_eta":          {"name":"Jets_kt2_sel_eta",                 "title":"Quark/gluon kt2 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    #"Jets_kt2_sel_theta":        {"name":"Jets_kt2_sel_theta",               "title":"Quark/gluon kt2 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    #"Jets_kt2_sel_phi":          {"name":"Jets_kt2_sel_phi",                 "title":"Quark/gluon kt2 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    #"Jets_kt2_sel_mass":         {"name":"Jets_kt2_sel_mass",                "title":"Quark/gluon kt2 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    #"n_Jets_kt2_sel":            {"name":"n_Jets_kt2_sel",                   "title":"Number of Quark/gluon kt2 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
 
     ####################
 
@@ -586,7 +505,7 @@ histoList = {
 
     "Recoil_mass":                   {"name":"Recoil_mass",                   "title":"M_{recoil} [GeV]",                     "bin":100, "xmin":0., "xmax":200.},
     "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":100, "xmin":0., "xmax":200.},
-    "Collinear_mass_3d":           {"name":"Collinear_mass_3d",           "title":"M_{collinear} 3D [GeV]",                  "bin":100, "xmin":0., "xmax":200.},
+    #"Collinear_mass_3d":           {"name":"Collinear_mass_3d",           "title":"M_{collinear} 3D [GeV]",                  "bin":100, "xmin":0., "xmax":200.},
 
     #### CP variables
 
@@ -595,11 +514,11 @@ histoList = {
     "y_tau":                          {"name": "y_tau", "title": "y^{#tau} CMS", "bin": 50, "xmin": -1, "xmax": 1},
     "PhiCP_CMS":                             {"name":"PhiCP_CMS",           "title":"#Delta#Phi_{CP} CMS",                  "bin":32, "xmin":-3.14,"xmax":3.14},
 
-    "CosDeltaPhiILC":                          {"name": "CosDeltaPhiILC", "title": "cos(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
-    "SinDeltaPhiILC":                          {"name": "SinDeltaPhiILC", "title": "sin(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
-    "DeltaPhiILC":                             {"name":"DeltaPhiILC",           "title":"#Delta#Phi_{CP} ILC",                  "bin":32, "xmin":-3.14,"xmax":3.14},
-    "KinILC_chi2":                             {"name":"KinILC_chi2",           "title":"#chi^{2} ILC",                  "bin":50, "xmin":0,"xmax":20},
-    "KinILC_H_mass":                             {"name":"KinILC_H_mass",           "title":"M_{H} ILC",                  "bin":100, "xmin":0,"xmax":200},
+    #"CosDeltaPhiILC":                          {"name": "CosDeltaPhiILC", "title": "cos(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
+    #"SinDeltaPhiILC":                          {"name": "SinDeltaPhiILC", "title": "sin(#Delta#phi_{CP}) ILC", "bin": 50, "xmin": -1, "xmax": 1},
+    #"DeltaPhiILC":                             {"name":"DeltaPhiILC",           "title":"#Delta#Phi_{CP} ILC",                  "bin":32, "xmin":-3.14,"xmax":3.14},
+    #"KinILC_chi2":                             {"name":"KinILC_chi2",           "title":"#chi^{2} ILC",                  "bin":50, "xmin":0,"xmax":20},
+    #"KinILC_H_mass":                             {"name":"KinILC_H_mass",           "title":"M_{H} ILC",                  "bin":100, "xmin":0,"xmax":200},
     #"Belle_Higgs_mass":                             {"name":"Belle_Higgs_mass",           "title":"M_{H} BElle",                  "bin":100, "xmin":0,"xmax":200},
 
 }

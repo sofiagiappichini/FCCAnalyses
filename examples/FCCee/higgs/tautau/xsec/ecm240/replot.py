@@ -977,7 +977,7 @@ for tag in TAG:
                 variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] #+ ["BDT_score"]
         else: 
             variables = VARIABLES + LIST_VAR[cat] #+["BDT_score"]
-        variables = ["Recoil",]
+        variables = ["Collinear_mass",]
 
         for sub in SUBDIR:
             directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
@@ -1111,7 +1111,7 @@ for tag in TAG:
                                     last = histos[i].GetMaximum() 
                                 # Set the y-axis range with additional white space
                             #hStackBkg.SetMinimum(0)
-                            hStackBkg.SetMaximum(last*2)
+                            hStackBkg.SetMaximum(last*3)
 
                         #draw the histograms
                         hStackBkg.Draw("HIST")
@@ -1130,7 +1130,7 @@ for tag in TAG:
                         #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                         hStackBkg.GetXaxis().SetTitleOffset(1.2)
                         
-                        hStackBkg.GetXaxis().SetLimits(115, 160)
+                        hStackBkg.GetXaxis().SetLimits(100, 150)
 
                     else: 
                         # add the signal histograms
@@ -1155,10 +1155,10 @@ for tag in TAG:
 
                     #labels around the plot
                     extralab = LABELS[cut]
-                    if "NuNu" in cat:
-                        extralab = "E_{miss}>100 GeV"
-                    else:
-                        extralab = "100<M_{collinear}<150 GeV"
+                    #if "NuNu" in cat:
+                    #    extralab = "E_{miss}>100 GeV"
+                    #else:
+                    #    extralab = "100<M_{collinear}<150 GeV"
 
                     if 'ee' in collider:
                         leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'

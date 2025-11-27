@@ -1,0 +1,11 @@
+Combination of QQ=/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/combine/pythia/251107_ILC//QQ/datacard_QQ.txt  LL=/afs/cern.ch/user/s/sgiappic/FCCAnalyses/examples/FCCee/higgs/tautau/CP/combine/pythia/251107_ILC//LL/datacard_LL.txt
+imax 0 number of bins
+jmax -1 number of processes minus 1
+kmax 0 number of nuisance parameters
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+bin          
+process      
+process      
+rate         
+----------------------------------------------------------------------------------------------------------------------------------

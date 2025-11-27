@@ -32,31 +32,32 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage filescono
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
 
 SUBDIR = [
-    'LL',
+    #'LL',
     #'LH',
-    #'HH',
+    'HH',
 ]
 #category to plot
 CAT = [
     "QQ",
-    #"LL",
+    "LL",
 ]
 
 CUT = [
-    #"selReco",
-    #"selReco_100Coll150",
-    #"selReco_100Coll150_115Rec160",
-    #"selReco_100Coll150_115Rec160_2DR",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
-     
+    "selReco",
+    "selReco_100Coll150",
+    "selReco_100Coll150_115Rec160",
+    "selReco_100Coll150_115Rec160_2DR",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+]
+
+CUT_LLHH = [
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_oneprong"
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_notoneprong"
 ]
 
 CUT_LLLL = [
@@ -65,23 +66,24 @@ CUT_LLLL = [
 ]
 
 CUT_QQHH = [
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
     "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM",
-    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM",
-    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95",
-    #"selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95_40HE",
+    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_oneprong",
 ]
 
 CUT_QQLH = [
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM",
-    #"selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM",
-    #"selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM_40Zp55",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
 ]
 
 CUT_QQLL = [
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_HE95"
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM",
-    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM_90HM",
 ]
 
 #now you can list all the histograms that you want to plot
@@ -419,29 +421,29 @@ VARIABLES_LL = [
     "RecoZ_y",
     "RecoZ_mass",
 
-    "RecoZLead_px", 
-    "RecoZLead_py",   
-    "RecoZLead_pz",   
-    "RecoZLead_p",    
-    "RecoZLead_pt",   
-    "RecoZLead_e",    
-    "RecoZLead_eta",    
-    "RecoZLead_phi",    
-    "RecoZLead_theta",   
-    "RecoZLead_y",     
-    "RecoZLead_mass",   
+    #"RecoZLead_px", 
+    #"RecoZLead_py",   
+    #"RecoZLead_pz",   
+    #"RecoZLead_p",    
+    #"RecoZLead_pt",   
+    #"RecoZLead_e",    
+    #"RecoZLead_eta",    
+    #"RecoZLead_phi",    
+    #"RecoZLead_theta",   
+    #"RecoZLead_y",     
+    #"RecoZLead_mass",   
 
-    "RecoZSub_px",    
-    "RecoZSub_py",   
-    "RecoZSub_pz",   
-    "RecoZSub_p",   
-    "RecoZSub_pt",  
-    "RecoZSub_e",     
-    "RecoZSub_eta",   
-    "RecoZSub_phi",   
-    "RecoZSub_theta",    
-    "RecoZSub_y",    
-    "RecoZSub_mass",  
+    #"RecoZSub_px",    
+    #"RecoZSub_py",   
+    #"RecoZSub_pz",   
+    #"RecoZSub_p",   
+    #"RecoZSub_pt",  
+    #"RecoZSub_e",     
+    #"RecoZSub_eta",   
+    #"RecoZSub_phi",   
+    #"RecoZSub_theta",    
+    #"RecoZSub_y",    
+    #"RecoZSub_mass",  
 
     "RecoH_px",
     "RecoH_py",
@@ -539,12 +541,12 @@ VARIABLES_QQ = [
     "RecoZ_y",
     "RecoZ_mass",
 
-    "RecoZ1_consituents", 
-    "RecoZ2_consituents", 
-    "RecoZ1_charged_consituents",   
-    "RecoZ2_charged_consituents",  
-    "RecoZ1_neutral_consituents",   
-    "RecoZ2_neutral_consituents",
+    #"RecoZ1_consituents", 
+    #"RecoZ2_consituents", 
+    #"RecoZ1_charged_consituents",   
+    #"RecoZ2_charged_consituents",  
+    #"RecoZ1_neutral_consituents",   
+    # "RecoZ2_neutral_consituents",
 
     "RecoZLead_px", 
     "RecoZLead_py",   
@@ -747,7 +749,7 @@ LIST_VAR = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/ecm240/pythia/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/ecm240/EFT/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -758,11 +760,14 @@ LABELS = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98}",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets, E_{missing}>10 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets, E_{missing}>10 GeV, 40<p_{Z}<55 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, -0.98<cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets, E_{missing}>10 GeV, 40<p_{Z}<55 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_HE95":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, tracks in q jets, E_{missing}>10 GeV, 40<p_{Z}<55 GeV, E_{H}<95 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_oneprong": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, one prong}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_notoneprong": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, not one prong}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, -0.98<cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_HE95":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV, E_{H}<95 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_oneprong":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV, E_{H}<95 GeV, one prong}",
 
     #cuts for NuNu
     "selReco_100Me": "E_{miss}>100 GeV",
@@ -772,16 +777,16 @@ LABELS = {
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98",
     "selReco_100Me_TauDPhi3_2DR_cos0.4_misscos0.98_missy1": "E_{miss}>100 GeV, |#Delta#phi_{#tau}|<3, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.4, |cos#theta_{miss}|<0.98, |y_{miss}|<1",
 
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>20 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM_HE110":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>20 GeV, E_{H}>110 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>10 GeV}",
-    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>10 GeV}",
-    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM_40Zp55":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3.2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>10 GeV, 40<p_{Z}>55 GeV}",
-    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3.2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>10 GeV}",
-    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, 10<E_{missing}<95 GeV}",
-    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95_40HE":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, 10<E_{missing}<95 GeV, E_{H}>40 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>54 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM_90HM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{missing}>54 GeV, M_{H}<90 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>20 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_20EM_HE110":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>20 GeV, E_{H}>110 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM_40Zp55":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3.2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>10 GeV, 40<p_{Z}>55 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3.2_cos0.6_misscos0.98_80Z100_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3.2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>10 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, 10<E_{miss}<95 GeV}",
+    "selReco_100Coll150_115Rec160_2DR3_cos0.6_misscos0.98_80Z100_10EM95_40HE":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, 2<#Delta R_{#tau}<3, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, 10<E_{miss}<95 GeV, E_{H}>40 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>54 GeV}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_54EM_90HM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, E_{miss}>54 GeV, M_{H}<90 GeV}",
 
  }
 
@@ -898,11 +903,14 @@ legend = {
     'sm_lin_quad_cehim_m1':"ZH(#tau#tau), CPV -1",
     'sm_lin_quad_cehim':"ZH(#tau#tau), CPV +1",
     'sm_lin_quad_cehre_m1':"ZH(#tau#tau), CPC -1",
-    'sm_lin_quad_cehre_p1':"ZH(#tau#tau), CPC +1",
+    'sm_lin_quad_cehre':"ZH(#tau#tau), CPC +1",
+    'quad_cehim':"Quadratic",
 
     "p8_ee_QQH_Htautau_CPeven":"Z(qq)H(#tau#tau), CP even",
+    "p8_ee_QQH_Htautau_CPmix":"Z(qq)H(#tau#tau), CP mix",
     "p8_ee_QQH_Htautau_CPodd":"Z(qq)H(#tau#tau), CP odd",
     "p8_ee_LLH_Htautau_CPeven":"Z(ll)H(#tau#tau), CP even",
+    "p8_ee_LLH_Htautau_CPmix":"Z(ll)H(#tau#tau), CP mix",
     "p8_ee_LLH_Htautau_CPodd":"Z(ll)H(#tau#tau), CP odd",
 }
 
@@ -942,41 +950,50 @@ legcolors = {
     "wzp6_ee_QQH_HVV_ecm240":ROOT.kMagenta-10,
 
     'sm':ROOT.kViolet-9,
-    'sm_lin_quad_cehim_m1':ROOT.kAzure-6,
-    'sm_lin_quad_cehim':ROOT.kTeal-7,
-    'sm_lin_quad_cehre_m1':ROOT.kTeal+3,
-    'sm_lin_quad_cehre_p1':ROOT.kSpring+2,
+    'sm_lin_quad_cehim_m1':ROOT.kTeal-7,
+    'sm_lin_quad_cehim':ROOT.kSpring+2,
+    'sm_lin_quad_cehre_m1':ROOT.kAzure-6,
+    'sm_lin_quad_cehre':ROOT.kAzure-9, 
+    "quad_cehim":ROOT.kTeal-7,
 
     "p8_ee_QQH_Htautau_CPeven":ROOT.kRed-10,
+    "p8_ee_QQH_Htautau_CPmix":ROOT.kPink+6,
     "p8_ee_QQH_Htautau_CPodd":ROOT.kPink+3,
     "p8_ee_LLH_Htautau_CPeven":ROOT.kAzure-9,
+    "p8_ee_LLH_Htautau_CPmix":ROOT.kAzure+1,
     "p8_ee_LLH_Htautau_CPodd":ROOT.kAzure-6,
 
 }
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    #"sm",
-    #"sm_lin_quad_cehim_m1",
-    #"sm_lin_quad_cehim",
-    #"sm_lin_quad_cehre_m1",
-    #"sm_lin_quad_cehre_p1",
-    "p8_ee_QQH_Htautau_CPeven",
-    "p8_ee_QQH_Htautau_CPodd",
-    "p8_ee_LLH_Htautau_CPeven",
-    "p8_ee_LLH_Htautau_CPodd",
+    "sm",
+    "sm_lin_quad_cehim_m1",
+    "sm_lin_quad_cehim",
+    "sm_lin_quad_cehre_m1",
+    "sm_lin_quad_cehre",
+    #"quad_cehim",
+    
+    #"p8_ee_QQH_Htautau_CPeven",
+    #"p8_ee_QQH_Htautau_CPmix",
+    #"p8_ee_QQH_Htautau_CPodd",
+    #"p8_ee_LLH_Htautau_CPeven",
+    #"p8_ee_LLH_Htautau_CPmix",
+    #"p8_ee_LLH_Htautau_CPodd",
 ]
 
 for cat in CAT:
     variables = VARIABLES + LIST_VAR[cat] + VARIABLES_CMS
 
     for sub in SUBDIR:
-        directory = DIRECTORY + "ktN-explicit/" + cat + "/" + sub + "/"
+        directory = DIRECTORY + cat + "/" + sub + "/"
 
         CUTS = ""
         if "LL" in cat:
             if "LL" in sub:
                 CUTS = CUT + CUT_LLLL
+            elif "HH" in sub:
+                CUTS = CUT + CUT_LLHH
             else:
                 CUTS = CUT
         else:
@@ -1033,7 +1050,28 @@ for cat in CAT:
                         colors.append(legcolors[s])
                         leg.AddEntry(histos[-1], legend[s], "l")
                         leg_bkg.append(0)
+
+                
+                '''fin = f"{directory}sm_lin_quad_cehim_{cut}_histo.root"
+                if file_exists(fin): #might be an empty file after stage2 
+                    tf = ROOT.TFile.Open(fin, 'READ')
+                    h = tf.Get(variable)
+                    hh = copy.deepcopy(h)
+                    hh.SetDirectory(0)
+                    tf2 = ROOT.TFile.Open(f"{directory}quad_cehim_{cut}_histo.root", 'READ')
+                    tf3 = ROOT.TFile.Open(f"{directory}sm_{cut}_histo.root", 'READ')
+                    h2 = tf2.Get(variable)
+                    h3 = tf3.Get(variable)
+                    hh.Add(h3, -1.)
+                    hh.Add(h2, -1.)
+                    histos.append(hh)
+                    colors.append(ROOT.kAzure-6)
+                    leg.AddEntry(histos[-1], "Linear", "l")
+                    leg_bkg.append(0)'''
+
                 nsig=len(histos)
+
+                #nbkg = 0
 
                 if nbkg!=0:
                     #for the common backgrounds i want to keep them separate into different histograms
@@ -1119,6 +1157,8 @@ for cat in CAT:
 
                     hStackBkg.GetYaxis().SetTitle("Events")
                     hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
+                    if variable == "PhiCP_CMS":
+                        hStackBkg.GetXaxis().SetTitle("#Delta#Phi_{CP}")
                     #hStackBkg.GetXaxis().SetTitle("TAU score")
                     #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                     hStackBkg.GetXaxis().SetTitleOffset(1.2)
@@ -1135,6 +1175,8 @@ for cat in CAT:
                             h.Draw("HIST")
                             h.GetYaxis().SetTitle("Events")
                             h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
+                            if variable == "PhiCP_CMS":
+                                h.GetXaxis().SetTitle("#Delta#Phi_{CP}")
                             #h.GetYaxis().SetTitleOffset(1.5)
                             h.GetXaxis().SetTitleOffset(1.2)
                             #h.GetXaxis().SetLimits(1, 1000)
@@ -1142,7 +1184,7 @@ for cat in CAT:
                                 h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
                             else:
                                 max_y = h.GetMaximum() 
-                                h.GetYaxis().SetRangeUser(0, max_y*1.5 )
+                                h.GetYaxis().SetRangeUser(0, max_y*2.5 )
                         else: 
                             h.Draw("HIST SAME")
 
