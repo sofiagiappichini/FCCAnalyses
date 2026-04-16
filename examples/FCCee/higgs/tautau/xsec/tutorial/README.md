@@ -114,10 +114,10 @@ The `output_file` is the EDM4Hep root file you want to produce.
 
 ### FCCAnalyses setup 
 
-1. First of all you need to clone or fork this FCCAnalyses repository to set up the working environment in lxplus/kit machines/linux environment. Go to the directory in your file system where you want to have FCCAnalyses and the do:
+1. First of all you need to clone or fork this FCCAnalyses repository to set up the working environment in lxplus/KIT machines/linux environment. Go to the directory in your file system where you want to have FCCAnalyses and the do:
 
     ```
-    git clone git@github.com:sofiagiappichini/FCCAnalyses.git
+    git clone https://github.com/sofiagiappichini/FCCAnalyses.git
     git checkout higgs
     cd FCCAnalyses
     source ./setup.sh
@@ -125,6 +125,8 @@ The `output_file` is the EDM4Hep root file you want to produce.
     ```
 
     **Note**: this particular branch for tutorials lives in the higgs branch of the repository so we need to move there.
+
+    **Note**: if working from KIT machines, make sure to build from a portal machine and not a local desktop or it will not work.
 
 2. When beginning a new session do:
 

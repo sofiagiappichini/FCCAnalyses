@@ -11,25 +11,97 @@
 #include "edm4hep/MCParticleData.h"
 #include "edm4hep/ParticleIDData.h"
 #include "ReconstructedParticle2MC.h"
-#include "FCCAnalyses/JetConstituentsUtils.h"
-#include "FCCAnalyses/ReconstructedParticle.h"
-#include "FCCAnalyses/ReconstructedParticle2Track.h"
-#include "edm4hep/Track.h"
-#include "edm4hep/TrackerHitData.h"
-#include "edm4hep/TrackData.h"
-#include "edm4hep/Cluster.h"
-#include "edm4hep/ClusterData.h"
-#include "edm4hep/CalorimeterHitData.h"
-#include "FCCAnalyses/JetClusteringUtils.h"
-// #include "FCCAnalyses/ExternalRecombiner.h"
-#include "fastjet/JetDefinition.hh"
-#include "fastjet/PseudoJet.hh"
-#include "fastjet/Selector.hh"
 
 
 namespace FCCAnalyses { namespace ZHfunctions {
+    
+struct sel_iso {
+    sel_iso(float arg_max_iso);
+    float m_max_iso = .25;
+    Vec_rp operator() (Vec_rp in, Vec_f iso);
+  };
 
+sel_iso::sel_iso(float arg_max_iso) : m_max_iso(arg_max_iso) {};
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>  sel_iso::operator() (Vec_rp in, Vec_f iso) {
+    Vec_rp result;
+    result.reserve(in.size());
+    for (size_t i = 0; i < in.size(); ++i) {
+        auto & p = in[i];
+        if (iso[i] < m_max_iso) {
+            result.emplace_back(p);
+        }
+    }
+    return result;
+}
 
+ 
+// compute the cone isolation for reco particles
+struct coneIsolation {
+
+    coneIsolation(float arg_dr_min, float arg_dr_max);
+    double deltaR(double eta1, double phi1, double eta2, double phi2) { return TMath::Sqrt(TMath::Power(eta1-eta2, 2) + (TMath::Power(phi1-phi2, 2))); };
+
+    float dr_min = 0;
+    float dr_max = 0.4;
+    Vec_f operator() (Vec_rp in, Vec_rp rps) ;
+};
+
+coneIsolation::coneIsolation(float arg_dr_min, float arg_dr_max) : dr_min(arg_dr_min), dr_max( arg_dr_max ) { };
+Vec_f coneIsolation::coneIsolation::operator() (Vec_rp in, Vec_rp rps) {
+  
+    Vec_f result;
+    result.reserve(in.size());
+
+    std::vector<ROOT::Math::PxPyPzEVector> lv_reco;
+    std::vector<ROOT::Math::PxPyPzEVector> lv_charged;
+    std::vector<ROOT::Math::PxPyPzEVector> lv_neutral;
+
+    for(size_t i = 0; i < rps.size(); ++i) {
+
+        ROOT::Math::PxPyPzEVector tlv;
+        tlv.SetPxPyPzE(rps.at(i).momentum.x, rps.at(i).momentum.y, rps.at(i).momentum.z, rps.at(i).energy);
+        
+        if(rps.at(i).charge == 0) lv_neutral.push_back(tlv);
+        else lv_charged.push_back(tlv);
+    }
+    
+    for(size_t i = 0; i < in.size(); ++i) {
+
+        ROOT::Math::PxPyPzEVector tlv;
+        tlv.SetPxPyPzE(in.at(i).momentum.x, in.at(i).momentum.y, in.at(i).momentum.z, in.at(i).energy);
+        lv_reco.push_back(tlv);
+    }
+
+    
+    // compute the isolation (see https://github.com/delphes/delphes/blob/master/modules/Isolation.cc#L154) 
+    for (auto & lv_reco_ : lv_reco) {
+    
+        double sumNeutral = 0.0;
+        double sumCharged = 0.0;
+    
+        // charged
+        for (auto & lv_charged_ : lv_charged) {
+    
+            double dr = coneIsolation::deltaR(lv_reco_.Eta(), lv_reco_.Phi(), lv_charged_.Eta(), lv_charged_.Phi());
+            if(dr > dr_min && dr < dr_max) sumCharged += lv_charged_.P();
+        }
+        
+        // neutral
+        for (auto & lv_neutral_ : lv_neutral) {
+    
+            double dr = coneIsolation::deltaR(lv_reco_.Eta(), lv_reco_.Phi(), lv_neutral_.Eta(), lv_neutral_.Phi());
+            if(dr > dr_min && dr < dr_max) sumNeutral += lv_neutral_.P();
+        }
+        
+        double sum = sumCharged + sumNeutral;
+        double ratio= sum / lv_reco_.P();
+        result.emplace_back(ratio);
+    }
+    return result;
+}
+ 
+ 
+ 
 // returns missing energy vector, based on reco particles
 Vec_rp missingEnergy(float ecm, Vec_rp in, float p_cutoff = 0.0) {
     float px = 0, py = 0, pz = 0, e = 0;
@@ -53,21 +125,17 @@ Vec_rp missingEnergy(float ecm, Vec_rp in, float p_cutoff = 0.0) {
 
   // --- functions Helper
 float deltaEta(float eta1, float eta2) {
-    return std::abs(eta1 - eta2);
+    return eta1 - eta2;
   }
 
 float deltaPhi(float phi1, float phi2){
-    float PHI = std::abs(phi1-phi2);
-    if (PHI<=3.14159265)
-      return PHI;
-    else
-      return 2*3.14159265-PHI;
+    float PHI = 3.14159265;
+    return PHI - std::abs(std::abs(phi1-phi2) - PHI);
   }
 
 float deltaR(float phi1, float phi2, float eta1, float eta2) {
     return sqrt(deltaEta(eta1,eta2)*deltaEta(eta1,eta2) + deltaPhi(phi1,phi2)*deltaPhi(phi1,phi2));
   }
-}
 
 ROOT::VecOps::RVec<TLorentzVector> build_p4(ROOT::VecOps::RVec<float> px, ROOT::VecOps::RVec<float> py, ROOT::VecOps::RVec<float> pz, ROOT::VecOps::RVec<float> e) {
     ROOT::VecOps::RVec<TLorentzVector> p4;
@@ -79,10 +147,26 @@ ROOT::VecOps::RVec<TLorentzVector> build_p4(ROOT::VecOps::RVec<float> px, ROOT::
     return p4;
 }
 
-TLorentzVector build_p4_single(float px, float py, float pz, float e) {
-    TLorentzVector tlv;
-    tlv.SetPxPyPzE(px, py, pz, e);
-    return tlv;
+ROOT::VecOps::RVec<TLorentzVector> build_p4_class(TLorentzVector v1, TLorentzVector v2) {
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    result.push_back(v1);
+    result.push_back(v2);
+    return result;
+}
+
+ROOT::VecOps::RVec<TLorentzVector> boosted_p4(TLorentzVector boost, ROOT::VecOps::RVec<TLorentzVector> vec) {
+    ROOT::VecOps::RVec<TLorentzVector> result;
+    for (size_t i = 0; i < vec.size(); ++i) {
+        TLorentzVector boosted=vec[i];
+        boosted.Boost( - boost.BoostVector());
+        result.push_back(boosted);
+    }
+    return result;
+}
+
+TLorentzVector boosted_p4_single(TLorentzVector boost, TLorentzVector vec) {
+    vec.Boost( - boost.BoostVector());
+    return vec;
 }
 
 ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT::VecOps::RVec< FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents   >& jets){
@@ -100,7 +184,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
         TLorentzVector sum_tau; // initialized by (0., 0., 0., 0.)
         edm4hep::ReconstructedParticleData partMod;
         FCCAnalyses::JetConstituentsUtils::FCCAnalysesJetConstituents jcs = jets.at(i);
-        int tauID=-1;
+        float tauID=-1;
         int count_piP=0, count_piM=0, count_nu=0, count_pho=0;
 
         // Find Lead (This needs to change to first sort the jcs by p or pt, it is very messy right now)
@@ -129,7 +213,7 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
             }
 
             // Anything else lets: find the highest pt one, charged particle as lead only
-            if ((jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
+            if (sqrt(jc.momentum.x*jc.momentum.x+jc.momentum.y*jc.momentum.y)>lead.Pt() && jc.charge!=0){
                 lead.SetPxPyPzE(jc.momentum.x, jc.momentum.y, jc.momentum.z, jc.energy);
                 chargeLead=jc.charge;
             }
@@ -239,6 +323,6 @@ ROOT::VecOps::RVec< edm4hep::ReconstructedParticleData> findTauInJet (const ROOT
     return out;
 
 }
-}
+}}
 
 #endif

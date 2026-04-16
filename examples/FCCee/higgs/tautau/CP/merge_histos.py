@@ -35,7 +35,7 @@ def file_exists(file_path):
 DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
 CAT = [
     "QQ",
-    "LL",
+    #"LL",
 ]
 
 SUB = [
@@ -574,6 +574,88 @@ CEHIM_P1 = ["mg_ee_fftata_ceHIm_p1_ecm240",]
 CEHRE_P1 = ["mg_ee_fftata_ceHRe_p1_ecm240",]
 MIXED = ["mg_ee_fftata_ceHRe__ceHIm_p1_p1_ecm240",]
 
+TYPE = [
+    "sm",
+    "ceHIm",
+    "ceHRe",
+    "ceHRe__ceHIm",
+    "ceHIm__cHB",
+    "ceHIm__cHBtil",
+    "ceHIm__cHWB",
+    "ceHIm__cHWBtil",
+    "ceHIm__cHW",
+    "ceHIm__cHWtil",
+    "ceHRe__cHB",
+    "ceHRe__cHBtil",
+    "ceHRe__cHWB",
+    "ceHRe__cHWBtil",
+    "ceHRe__cHW",
+    "ceHRe__cHWtil",
+    "cHB__cHBtil",
+    "cHB__cHWB",
+    "cHB__cHWBtil",
+    "cHB__cHW",
+    "cHB__cHWtil",
+    "cHB",
+    "cHBtil__cHWB",
+    "cHBtil__cHWBtil",
+    "cHBtil__cHW",
+    "cHBtil__cHWtil",
+    "cHBtil",
+    "cHWB__cHWBtil",
+    "cHWB",
+    "cHWBtil",
+    "cHW__cHWB",
+    "cHW__cHWBtil",
+    "cHW__cHWtil",
+    "cHW",
+    "cHWtil__cHWB",
+    "cHWtil__cHWBtil",
+    "cHWtil",
+]
+
+MIXED = [
+    "ceHRe__ceHIm",
+    "ceHIm__cHB",
+    "ceHIm__cHBtil",
+    "ceHIm__cHWB",
+    "ceHIm__cHWBtil",
+    "ceHIm__cHW",
+    "ceHIm__cHWtil",
+    "ceHRe__cHB",
+    "ceHRe__cHBtil",
+    "ceHRe__cHWB",
+    "ceHRe__cHWBtil",
+    "ceHRe__cHW",
+    "ceHRe__cHWtil",
+    "cHB__cHBtil",
+    "cHB__cHWB",
+    "cHB__cHWBtil",
+    "cHB__cHW",
+    "cHB__cHWtil",
+    "cHBtil__cHWB",
+    "cHBtil__cHWBtil",
+    "cHBtil__cHW",
+    "cHBtil__cHWtil",
+    "cHWB__cHWBtil",
+    "cHW__cHWB",
+    "cHW__cHWBtil",
+    "cHW__cHWtil",
+    "cHWtil__cHWB",
+    "cHWtil__cHWBtil",
+]
+
+SINGLE = [
+    "ceHRe",
+    "ceHIm",
+    "cHB",
+    "cHBtil",
+    "cHWB",
+    "cHWBtil",
+    "cHW",
+    "cHWtil",
+]
+
 legend_sig = {
     1:"sm",
     2:"sm_lin_quad_cehim_m1",
@@ -619,28 +701,42 @@ if eft:
                 dir = f"{DIRECTORY}/{cat}/{sub}/"
                 #print(dir)
 
-                for num in range(1,7):
-                    outFile = ROOT.TFile.Open(dir + legend_sig[num] + "_" + cut + "_histo.root", "RECREATE")
+                for num in range(len(TYPE)):
+                    type_name = TYPE[num].lower()
+                    if TYPE[num] in MIXED:
+                        type_name = type_name.replace("__", "_")
+                        outFile = ROOT.TFile.Open(dir + f"sm_lin_quad_mixed_{type_name}_{cut}_histo.root", "RECREATE")
+                    elif num == 0:
+                        outFile = ROOT.TFile.Open(dir + f"{type_name}_{cut}_histo.root", "RECREATE")
+                    else:
+                        outFile = ROOT.TFile.Open(dir + f"sm_lin_quad_{type_name}_{cut}_histo.root", "RECREATE")
+                    #print(outFile)
                     for var in variables:
                         #loop to merge different sources into one histograms 
                         j = 0
                         hh = None
-                        for b in list_sig[num]:
-                            #print(b, var)
-                            file = f"{dir}{b}_{cut}_histo.root"
-                            if file_exists(file):
-                                tf = ROOT.TFile.Open(file, "READ")
-                                if (j==0):
-                                    h = tf.Get(var)
-                                    hh = copy.deepcopy(h)
-                                    hh.SetDirectory(0)
-                                else:
-                                    h = tf.Get(var)
-                                    hh1 = copy.deepcopy(h)
-                                    hh1.SetDirectory(0)
-                                    hh.Add(hh1)
-                                j += 1
-                                tf.Close()
+                        #print(TYPE[num], var)
+                        if num==0:
+                            file = f"{dir}mg_ee_fftata_{TYPE[num]}_ecm240_{cut}_histo.root"
+                        else:
+                            if TYPE[num] in MIXED:
+                                file = f"{dir}mg_ee_fftata_{TYPE[num]}_p1_p1_ecm240_{cut}_histo.root"
+                            else: 
+                                file = f"{dir}mg_ee_fftata_{TYPE[num]}_p1_ecm240_{cut}_histo.root"
+                        if file_exists(file):
+                            #print(file)
+                            tf = ROOT.TFile.Open(file, "READ")
+                            if (j==0):
+                                h = tf.Get(var)
+                                hh = copy.deepcopy(h)
+                                hh.SetDirectory(0)
+                            else:
+                                h = tf.Get(var)
+                                hh1 = copy.deepcopy(h)
+                                hh1.SetDirectory(0)
+                                hh.Add(hh1)
+                            j += 1
+                            tf.Close()
                         #change the name accordingly to the new histogram for EFT combine
                         #hist_name = legend_sig[num]
                         #hh.SetName(hist_name + "_" + var)
@@ -651,54 +747,45 @@ if eft:
                     outFile.Close()
 
                 ## now we need to "isolate" the quadratic contribution from the eft only from the sm and lin+quad
-                sm_file = ROOT.TFile.Open(dir + legend_sig[1] + "_" + cut + "_histo.root", "READ")
-                cehim_m1_file = ROOT.TFile.Open(dir + legend_sig[2] + "_" + cut + "_histo.root", "READ")
-                cehim_p1_file = ROOT.TFile.Open(dir + legend_sig[3] + "_" + cut + "_histo.root", "READ")
-                quad_im_file = ROOT.TFile.Open(dir + "quad_cehim_" + cut + "_histo.root", "RECREATE")
-                cehre_m1_file = ROOT.TFile.Open(dir + legend_sig[4] + "_" + cut + "_histo.root", "READ")
-                cehre_p1_file = ROOT.TFile.Open(dir + legend_sig[5] + "_" + cut + "_histo.root", "READ")
-                quad_re_file = ROOT.TFile.Open(dir + "quad_cehre_" + cut + "_histo.root", "RECREATE")
+                sm_file = ROOT.TFile.Open(dir + "sm_" + cut + "_histo.root", "READ")
 
-                for var in variables:
-                    #sm_histo = sm_file.Get(legend_sig[1] + "_" + var)
-                    #cehim_m1_histo = cehim_m1_file.Get(legend_sig[2] + "_" + var)
-                    #cehim_p1_histo = cehim_p1_file.Get(legend_sig[3] + "_" + var)
+                for i in range(len(SINGLE)):
+                    p1_file = ROOT.TFile.Open(dir + "mg_ee_fftata_" + SINGLE[i] + "_p1_ecm240_" + cut + "_histo.root", "READ")
+                    m1_file = ROOT.TFile.Open(dir + "mg_ee_fftata_" + SINGLE[i] + "_m1_ecm240_" + cut + "_histo.root", "READ")
+                    quad_file = ROOT.TFile.Open(dir + "quad_" + SINGLE[i].lower() + "_" + cut + "_histo.root", "RECREATE")
+                    #print(quad_file)
 
-                    sm_histo = sm_file.Get(var)
-                    cehim_m1_histo = cehim_m1_file.Get(var)
-                    cehim_p1_histo = cehim_p1_file.Get(var)
+                #cehim_m1_file = ROOT.TFile.Open(dir + legend_sig[2] + "_" + cut + "_histo.root", "READ")
+                #cehim_p1_file = ROOT.TFile.Open(dir + legend_sig[3] + "_" + cut + "_histo.root", "READ")
+                #quad_im_file = ROOT.TFile.Open(dir + "quad_cehim_" + cut + "_histo.root", "RECREATE")
+                #cehre_m1_file = ROOT.TFile.Open(dir + legend_sig[4] + "_" + cut + "_histo.root", "READ")
+                #cehre_p1_file = ROOT.TFile.Open(dir + legend_sig[5] + "_" + cut + "_histo.root", "READ")
+                #quad_re_file = ROOT.TFile.Open(dir + "quad_cehre_" + cut + "_histo.root", "RECREATE")
 
-                    # quad = cpv(+1) + cpv(-1) - 2*sm, in brackets the WC
-                    quad_im_histo = copy.deepcopy(cehim_p1_histo)
-                    quad_im_histo.SetDirectory(0)
+                    for var in variables:
 
-                    quad_im_histo.Add(cehim_m1_histo)
-                    quad_im_histo.Add(sm_histo, -2.)
-                    #quad_histo.SetName("quad_cehim_" + var)
+                        sm_histo = sm_file.Get(var)
+                        m1_histo = m1_file.Get(var)
+                        p1_histo = p1_file.Get(var)
 
-                    quad_im_file.cd()
-                    quad_im_histo.Write()
+                        # quad = (+1) + (-1) - 2*sm, in brackets the WC
+                        quad_histo = copy.deepcopy(p1_histo)
+                        quad_histo.SetDirectory(0)
 
-                    sm_histo = sm_file.Get(var)
-                    cehre_m1_histo = cehre_m1_file.Get(var)
-                    cehre_p1_histo = cehre_p1_file.Get(var)
+                        quad_histo.Add(m1_histo)
+                        quad_histo.Add(sm_histo, -2.)
+                        #quad_histo.SetName("quad_cehim_" + var)
 
-                    # quad = cpv(+1) + cpv(-1) - 2*sm, in brackets the WC
-                    quad_re_histo = copy.deepcopy(cehre_p1_histo)
-                    quad_re_histo.SetDirectory(0)
+                        #print("var {} to file {}\n".format(var, quad_file))
 
-                    quad_re_histo.Add(cehre_m1_histo)
-                    quad_re_histo.Add(sm_histo, -2.)
-                    #quad_histo.SetName("quad_cehim_" + var)
+                        quad_file.cd()
+                        quad_histo.Write()
 
-                    print("var {} to file {}\n".format(var, quad_re_file))
+                    quad_file.Close()
+                    p1_file.Close()
+                    m1_file.Close()
 
-                    quad_re_file.cd()
-                    quad_re_histo.Write()
-
-                quad_re_file.Close()
-
-                quad_im_file.Close()
+        print(f"done:{cat}{sub}")
 
 
 ############### backgrounds ##################

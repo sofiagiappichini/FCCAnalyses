@@ -42,17 +42,17 @@ SUBDIR = [
 #category to plot
 CAT = [
     "QQ",
-    "LL",
+    #"LL",
 ]
 
 CUT = [
-    "selReco",
-    "selReco_100Coll150",
-    "selReco_100Coll150_115Rec160",
-    "selReco_100Coll150_115Rec160_2DR",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
+    #"selReco",
+    #"selReco_100Coll150",
+    #"selReco_100Coll150_115Rec160",
+    #"selReco_100Coll150_115Rec160_2DR",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",
 ]
 
 CUT_LLHH = [
@@ -66,10 +66,10 @@ CUT_LLLL = [
 ]
 
 CUT_QQHH = [
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
-    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
+    #"selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55",
     "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_oneprong",
 ]
 
@@ -749,7 +749,7 @@ LIST_VAR = {
 }
 
 #directory where you want your plots to go
-DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/ecm240/EFT/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/ecm240/PYTHIA/' 
 
 #labels for the cuts in the plots
 LABELS = {
@@ -764,10 +764,10 @@ LABELS = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_notoneprong": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, not one prong}",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets}",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, -0.98<cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_HE95":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV, E_{H}<95 GeV}",
-    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_oneprong":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV, E_{H}<95 GeV, one prong}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{#splitline{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV,}{40<p_{Z}<55 GeV}}",
+    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, -0.98<cos#theta_{#tau}<-0.6,}{#splitline{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets,}{E_{miss}>10 GeV, 40<p_{Z}<55 GeV}}",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_HE95":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{#splitline{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV,}{40<p_{Z}<55 GeV, E_{H}<95 GeV}}",
+    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_oneprong":"#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6, |cos#theta_{miss}|<0.98,}{80<M_{Z}<100 GeV, track in jets, E_{miss}>10 GeV, 40<p_{Z}<55 GeV, E_{H}<95 GeV}",
 
     #cuts for NuNu
     "selReco_100Me": "E_{miss}>100 GeV",
@@ -799,7 +799,7 @@ ana_tex_cat = {
 ana_tex_sub = {
     'LL':"H #rightarrow #tau_{L}#tau_{L}",
     'LH':"H #rightarrow #tau_{L}#tau_{h}",
-    'HH':"H #rightarrow #tau_{h}#tau_{h}",
+    'HH':"H #rightarrow #tau_{h}#tau_{h} one prong",
     }
 
 energy         = 240
@@ -967,16 +967,16 @@ legcolors = {
 
 #list of signals, then legend and colors to be assigned to them
 signals = [
-    "sm",
-    "sm_lin_quad_cehim_m1",
-    "sm_lin_quad_cehim",
-    "sm_lin_quad_cehre_m1",
-    "sm_lin_quad_cehre",
+    #"sm",
+    #"sm_lin_quad_cehim_m1",
+    #"sm_lin_quad_cehim",
+    #"sm_lin_quad_cehre_m1",
+    #"sm_lin_quad_cehre",
     #"quad_cehim",
     
-    #"p8_ee_QQH_Htautau_CPeven",
-    #"p8_ee_QQH_Htautau_CPmix",
-    #"p8_ee_QQH_Htautau_CPodd",
+    "p8_ee_QQH_Htautau_CPeven",
+    "p8_ee_QQH_Htautau_CPmix",
+    "p8_ee_QQH_Htautau_CPodd",
     #"p8_ee_LLH_Htautau_CPeven",
     #"p8_ee_LLH_Htautau_CPmix",
     #"p8_ee_LLH_Htautau_CPodd",
@@ -1004,7 +1004,7 @@ for cat in CAT:
             else:
                 CUTS = CUT + CUT_QQLL
         for cut in CUTS:
-            for variable in variables:
+            for variable in ["PhiCP_CMS",]:
 
                 canvas = ROOT.TCanvas("", "", 800, 800)
 
@@ -1086,30 +1086,6 @@ for cat in CAT:
                             histos.append(hh)
                             colors.append(legcolors[b])
                             leg_bkg.append(b)
-
-                    #merge backgrounds in plotting
-                    '''i = 0
-                    hh = None
-                    for b in LIST_B[cat]:
-                        j = 0
-                        for sub in SUBDIR:
-                            fin = f"{directory}{sub}{b}_{cut}_histo.root"
-                            if (i==0 and j==0):
-                                with ROOT.TFile(fin) as tf:
-                                    h = tf.Get(variable)
-                                    hh = copy.deepcopy(h)
-                                    hh.SetDirectory(0)
-                            else:
-                                with ROOT.TFile(fin) as tf:
-                                    h = tf.Get(variable)
-                                    hh1 = copy.deepcopy(h)
-                                    hh1.SetDirectory(0)
-                                hh.Add(hh1)
-                            j += 1
-                        i += 1
-                    histos.append(hh)
-                    colors.append(bcolors[cat])
-                    leg2.AddEntry(histos[-1], blegend[cat], "f")'''
                     
                     #drawing stack for backgrounds
                     hStackBkg = ROOT.THStack("hStackBkg", "")
@@ -1158,7 +1134,7 @@ for cat in CAT:
                     hStackBkg.GetYaxis().SetTitle("Events")
                     hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
                     if variable == "PhiCP_CMS":
-                        hStackBkg.GetXaxis().SetTitle("#Delta#Phi_{CP}")
+                        hStackBkg.GetXaxis().SetTitle("#phi_{CP} (rad)")
                     #hStackBkg.GetXaxis().SetTitle("TAU score")
                     #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                     hStackBkg.GetXaxis().SetTitleOffset(1.2)
@@ -1176,7 +1152,7 @@ for cat in CAT:
                             h.GetYaxis().SetTitle("Events")
                             h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
                             if variable == "PhiCP_CMS":
-                                h.GetXaxis().SetTitle("#Delta#Phi_{CP}")
+                                h.GetXaxis().SetTitle("#phi_{CP} (rad)")
                             #h.GetYaxis().SetTitleOffset(1.5)
                             h.GetXaxis().SetTitleOffset(1.2)
                             #h.GetXaxis().SetLimits(1, 1000)
@@ -1184,7 +1160,7 @@ for cat in CAT:
                                 h.GetYaxis().SetRangeUser(1e-6,1e8) #range to set if only working with signals
                             else:
                                 max_y = h.GetMaximum() 
-                                h.GetYaxis().SetRangeUser(0, max_y*2.5 )
+                                h.GetYaxis().SetRangeUser(200, max_y*3.5 )
                         else: 
                             h.Draw("HIST SAME")
 
@@ -1207,7 +1183,7 @@ for cat in CAT:
                 latex.DrawLatex(0.18, 0.80, text)
 
                 text = '#bf{#it{' + extralab + '}}'
-                latex.SetTextSize(0.025)
+                latex.SetTextSize(0.02)
                 latex.DrawLatex(0.18, 0.74, text)
 
                 latex.SetTextAlign(31)
@@ -1219,7 +1195,7 @@ for cat in CAT:
 
                 legsize = 0.04*nsig
                 legsize2 = 0.025*(len(histos)-nsig)/2
-                leg.SetY1(0.74 - legsize)
+                leg.SetY1(0.72 - legsize)
 
                 leg2.SetY1(0.74 - legsize2)
 
@@ -1266,5 +1242,5 @@ for cat in CAT:
                     make_dir_if_not_exists(DIR_PLOTS + "/" + cat + "/" + sub + "/lin/" + cut)
                     make_dir_if_not_exists(dir)
 
-                    canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
-                    canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")
+                    canvas.SaveAs(dir + variable + "_" + cat + sub + "_EFT.png")
+                    canvas.SaveAs(dir + variable + "_" + cat + sub + "_EFT.pdf")

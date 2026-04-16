@@ -79,12 +79,17 @@ class RDFanalysis():
                 # JETS, reclustered from the reconstructed particles, never use the class in the samples
                 ### https://github.com/HEP-FCC/FCCAnalyses/blob/master/addons/FastJet/JetClustering.h ###
 
-                .Define("RP_px",          "ReconstructedParticle::get_px(ReconstructedParticles)")
-                .Define("RP_py",          "ReconstructedParticle::get_py(ReconstructedParticles)")
-                .Define("RP_pz",          "ReconstructedParticle::get_pz(ReconstructedParticles)")
-                .Define("RP_e",           "ReconstructedParticle::get_e(ReconstructedParticles)")
-                .Define("RP_m",           "ReconstructedParticle::get_mass(ReconstructedParticles)")
-                .Define("RP_q",           "ReconstructedParticle::get_charge(ReconstructedParticles)")
+                # since we want to have jets only for hadronic tau decays and leptons for the Z decay, we remove them from the jets
+
+                .Define("NoMuons", "ReconstructedParticle::remove(ReconstructedParticles, RecoMuons)")
+                .Define("NoLeptons", "ReconstructedParticle::remove(NoMuons, RecoElectrons)")
+
+                .Define("RP_px",          "ReconstructedParticle::get_px(NoLeptons)")
+                .Define("RP_py",          "ReconstructedParticle::get_py(NoLeptons)")
+                .Define("RP_pz",          "ReconstructedParticle::get_pz(NoLeptons)")
+                .Define("RP_e",           "ReconstructedParticle::get_e(NoLeptons)")
+                .Define("RP_m",           "ReconstructedParticle::get_mass(NoLeptons)")
+                .Define("RP_q",           "ReconstructedParticle::get_charge(NoLeptons)")
                 .Define("pseudo_jets",    "JetClusteringUtils::set_pseudoJets_xyzm(RP_px, RP_py, RP_pz, RP_m)")
                 # build pseudo jets with the RP, using the interface that takes px,py,pz,E
 
@@ -92,7 +97,7 @@ class RDFanalysis():
                 .Define("FCCAnalysesJets_R5", "JetClustering::clustering_ee_genkt(0.5, 0, 2., 0, 1, -1)(pseudo_jets)")
                 .Define("Jets_R5",  "JetClusteringUtils::get_pseudoJets( FCCAnalysesJets_R5 )") 
                 .Define("Jet_GetConstituents_R5","JetClusteringUtils::get_constituents(FCCAnalysesJets_R5)")
-                .Define("Jets_Constituents_R5", "JetConstituentsUtils::build_constituents_cluster(ReconstructedParticles, Jet_GetConstituents_R5)") #build jet constituents lists for tau reconstruction
+                .Define("Jets_Constituents_R5", "JetConstituentsUtils::build_constituents_cluster(NoLeptons, Jet_GetConstituents_R5)") #build jet constituents lists for tau reconstruction
 
                 # the function names to get the variables are the same as for the usual particles but the definitions are specific to work with a collection of particle (jet) instead of a single particle
 		        .Define("Jets_R5_e",      "JetClusteringUtils::get_e(Jets_R5)")

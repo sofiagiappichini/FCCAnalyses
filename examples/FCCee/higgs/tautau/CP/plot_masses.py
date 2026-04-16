@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/taureco_test/LLHH/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/ktN-tag/LL/HH/"
 
 #directory where you want your plots to go
 DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/' 
@@ -51,7 +51,7 @@ LABELS = {
     "selDPhi":"KinGen_hh_norm_DPhi<0.5",
  }
 
-label = "_eedHH"
+label = "_eeH_ktN_tag"
 ana_tex        = "e^{+}e^{-} #rightarrow ZH, Z #rightarrow ee, H #rightarrow #tau_{h}#tau_{h}"
 energy         = 240
 collider       = 'FCC-ee'
@@ -106,7 +106,8 @@ signals_old = [
 
 signals = [
     #"p8_ee_Ztautau_ecm91",
-    "mg_ee_eetata_ecm240",
+    #"mg_ee_eetata_ecm240",
+    "wzp6_ee_eeH_Htautau_ecm240"
     #"sm",
     #"sm_lin_quad_cehim_m1",
     #"sm_lin_quad_cehim",
@@ -214,7 +215,7 @@ canvas = ROOT.TCanvas("", "", 1000, 1000)
 #canvas.SetTicks(1, 1)
 canvas.cd()
 
-nsig = 6
+nsig = 3
 
 #legend coordinates and style
 legsize = 0.04*nsig
@@ -285,7 +286,7 @@ for s in signals:
 for s in signals:
     fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
     with ROOT.TFile(fin) as tf:
-        h = tf.Get("Recoil_mass")#s + "_" + variable
+        h = tf.Get("Recoil")#s + "_" + variable
         hh = copy.deepcopy(h)
         hh.SetDirectory(0)
     histos.append(hh)
@@ -313,11 +314,13 @@ for i in range(nsig):
         h.GetYaxis().SetTitleOffset(1.4)
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))
+        h.Rebin(5)
         h.GetYaxis().SetRangeUser(1e-2, 1.2)
-        h.GetXaxis().SetRangeUser(40, 140)
+        h.GetXaxis().SetRangeUser(40, 160)
     else: 
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))
+        h.Rebin(5)
         h.Draw("HIST SAME")
 
 extralab = "No additional selection"

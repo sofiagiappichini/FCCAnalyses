@@ -20,6 +20,10 @@ saveTabular = False
 doTree = False
 
 processList = {
+    "wzp6_ee_eeH_Htautau_ecm240":{},
+}
+
+processList_ = {
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
     'p8_ee_ZZ_ecm240':{},
@@ -118,12 +122,12 @@ procDictAdd = {}
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
     "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0 ",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0 ",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
+    #"selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
+    #"selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0 ",
+    #"selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0 ",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
+    #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil>115 && Recoil<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && n_TauLead_charged_constituents>0 && n_TauSub_charged_constituents>0",
 }
 
 # Dictionary for prettier names of cuts (optional)
@@ -503,7 +507,7 @@ histoList = {
     "RecoH_phi":                {"name":"RecoH_phi",                "title":"Reco H #phi",                   "bin":32, "xmin":-3.2,"xmax":3.2},
     "RecoH_theta":              {"name":"RecoH_theta",              "title":"Reco H #theta",                 "bin":16, "xmin":0,"xmax":3.2},
     "RecoH_y":                  {"name":"RecoH_y",                  "title":"Reco H rapidity",               "bin":40, "xmin":-4., "xmax":4.},
-    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":75, "xmin":0 ,"xmax":150},
+    "RecoH_mass":               {"name":"RecoH_mass",               "title":"Reco H mass",                   "bin":150, "xmin":40., "xmax":160.},
 
     "TauLead_px":               {"name":"TauLead_px",                 "title":"#tau_{leading} p_{x} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
     "TauLead_py":               {"name":"TauLead_py",                 "title":"#tau_{leading} p_{y} [GeV]",            "bin":50,"xmin":-100 ,"xmax":100},   
@@ -547,6 +551,6 @@ histoList = {
     "RecoZDaughter_cos":                  {"name":"RecoZDaughter_cos",                    "title":"cos#theta(ll)",                 "bin":100, "xmin":-1.,"xmax":1.},
     "RecoZDaughter_DEta":                   {"name":"RecoZDaughter_DEta",           "title":"Reco Z daughters #Delta#eta",                  "bin":32, "xmin":-3.2,"xmax":3.2},
 
-    "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":80, "xmin":80., "xmax":160.},
-    "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":50., "xmax":200.},
+    "Recoil":                   {"name":"Recoil",                   "title":"M_{recoil} [GeV]",                     "bin":150, "xmin":40., "xmax":160.},
+    "Collinear_mass":           {"name":"Collinear_mass",           "title":"M_{collinear} [GeV]",                  "bin":150, "xmin":40., "xmax":160.},
 }

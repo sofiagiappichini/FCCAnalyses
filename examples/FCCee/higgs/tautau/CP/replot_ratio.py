@@ -35,7 +35,7 @@ def file_exists(file_path):
 DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/"
 
 #directory where you want your plots to go
-DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/EFT/' 
+DIR_PLOTS = '/eos/user/s/sgiappic/www/Higgs_CP/ecm240/EFT/' 
 #list of cuts you want to plot
 CUTS = [
     "selReco",
@@ -91,12 +91,12 @@ LABELS = {
     "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_oneprong": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV}, one prong",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_oneprong": "#splitline{100<M_{collinear}<150 GeV, 115<M_{recoil}<160 GeV, #Delta R_{#tau}>2, cos#theta_{#tau}<-0.6,}{|cos#theta_{miss}|<0.98, 80<M_{Z}<100 GeV, one prong}",
     
  }
 
 label = "_QQHH_ratio"
-ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau#tau " #(#pi#pi^{0}#nu)
+ana_tex        = "e^{+}e^{-} #rightarrow Z H, H #rightarrow #tau_{h}#tau_{h} one prong" #(#pi#pi^{0}#nu)
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
@@ -781,53 +781,17 @@ bcolors = {
 #list of signals, then legend and colors to be assigned to them
 
 signals = [
-
-    #'noISR_e+e-_noCuts_EWonly',
-    #'noISR_e+e-_noCuts_cehre_m1',
-    #'noISR_e+e-_noCuts_cehre_p1',
-    #'noISR_e+e-_noCuts_cehim_m1',
-    #'noISR_e+e-_noCuts_cehim_p1',
-
-    #'EWonly_taudecay_2Pi2Nu',
-    #'cehim_m1_taudecay_2Pi2Nu',
-    #'cehim_p1_taudecay_2Pi2Nu',
-    #'cehre_m1_taudecay_2Pi2Nu',
-    #'cehre_p1_taudecay_2Pi2Nu',
-
-    #'EWonly_taudecay_PiPi0Nu',
-    #'cehim_m1_taudecay_PiPi0Nu',
-    #'cehim_p1_taudecay_PiPi0Nu',
-    #'cehre_m1_taudecay_PiPi0Nu',
-    #'cehre_p1_taudecay_PiPi0Nu',
-
-    #'cehim_m5_taudecay_2Pi2Nu',
-    #'cehim_p5_taudecay_2Pi2Nu',
-    #'cehre_m5_taudecay_2Pi2Nu',
-    #'cehre_p5_taudecay_2Pi2Nu',
-
-    #'cehim_m2_taudecay_2Pi2Nu',
-    #'cehim_p2_taudecay_2Pi2Nu',
-    #'cehre_m2_taudecay_2Pi2Nu',
-    #'cehre_p2_taudecay_2Pi2Nu',
-
-    #'cehim_p0p1_taudecay_2Pi2Nu',
-    #'cehim_m0p1_taudecay_2Pi2Nu',
-    #'cehre_m0p1_taudecay_2Pi2Nu',
-    #'cehre_p0p1_taudecay_2Pi2Nu',
-
-    #'cehim_p10_taudecay_2Pi2Nu',
-    #'cehim_m10_taudecay_2Pi2Nu',
-
-    #'cehim_p10_taudecay_2Pi2Nu':{},
-    #'cehim_m10_taudecay_2Pi2Nu':{},
-
-    #'wzp6_ee_eeH_Htautau_ecm240',
-
     "sm",
     "sm_lin_quad_cehim_m1",
     "sm_lin_quad_cehim",
     "sm_lin_quad_cehre_m1",
     "sm_lin_quad_cehre",
+]
+
+SINGLE = [
+    "chb",
+    "chwb",
+    "chw",
 ]
 
 slegend = {
@@ -858,10 +822,10 @@ slegend = {
     'cehre_p1_taudecay_PiPi0Nu':"Z(ee)H(#tau#tau), CPC +1",
 
     'sm':"ZH(#tau#tau), SM",
-    'sm_lin_quad_cehim_m1':"ZH(#tau#tau), CPV -1",
-    'sm_lin_quad_cehim':"ZH(#tau#tau), CPV +1",
-    'sm_lin_quad_cehre_m1':"ZH(#tau#tau), CPC -1",
-    'sm_lin_quad_cehre':"ZH(#tau#tau), CPC +1",
+    'sm_lin_quad_cehim_m1':"ZH(#tau#tau), #it{Im}(#bf{O}_{eh}), #it{c}=-1",
+    'sm_lin_quad_cehim':"ZH(#tau#tau), #it{Im}(#bf{O}_{eh}), #it{c}=+1",
+    'sm_lin_quad_cehre_m1':"ZH(#tau#tau), #it{Re}(#bf{O}_{eh}), #it{c}=-1",
+    'sm_lin_quad_cehre':"ZH(#tau#tau), #it{Re}(#bf{O}_{eh}), #it{c}=-1",
 
     "p8_ee_QQH_Htautau_CPeven":"Z(qq)H(#tau#tau), CP even",
     "p8_ee_QQH_Htautau_CPodd":"Z(qq)H(#tau#tau), CP odd",
@@ -1006,45 +970,48 @@ scolors = {
     "llh-sm-3body":ROOT.kTeal-7,
 }
 
-for cut in CUTS:
-    #VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
-    #VARIABLES = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS #+ VARIABLES_ILC
-    VARIABLES = ["PhiCP_CMS",]
-    for variable in VARIABLES:
+for op in SINGLE:
+    label = f"_{op}_"
+    for cut in CUTS:
+        #VARIABLES = VARIABLES_GEN + VARIABLES_CPGEN
+        #VARIABLES = VARIABLES_RECO + VARIABLES_CP + VARIABLES_CMS #+ VARIABLES_ILC
+        VARIABLES = ["PhiCP_CMS",]
+        for variable in VARIABLES:
 
-        canvas = ROOT.TCanvas("", "", 1000, 1000)
-        #canvas.SetTicks(1, 1)
+            canvas = ROOT.TCanvas("", "", 800, 800)
+            canvas.SetLeftMargin(0.14)
+            canvas.SetRightMargin(0.08)
+            canvas.GetFrame().SetBorderSize(12)
 
-        pad = ROOT.TPad("", "", 0.0, 0.3, 1.0, 1.0)
-        
-        pad2 = ROOT.TPad("", "", 0.0, 0.0, 1.0, 0.3)
+            pad = ROOT.TPad("", "", 0.0, 0.3, 1.0, 1.0)
+            
+            pad2 = ROOT.TPad("", "", 0.0, 0.0, 1.0, 0.35)
 
-        pad.Draw()
-        pad2.Draw()
-        canvas.cd()
-        pad.cd()
+            pad.Draw()
+            pad2.Draw()
+            canvas.cd()
+            pad.cd()
 
-        nsig = len(signals)
+            nsig = len(signals)
 
-        #legend coordinates and style
-        legsize = 0.04*nsig
-        leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
-        leg.SetFillColor(0)
-        leg.SetFillStyle(0)
-        leg.SetLineColor(0)
-        leg.SetShadowColor(0)
-        leg.SetTextSize(0.025)
-        leg.SetTextFont(42)
+            #legend coordinates and style
+            legsize = 0.04*nsig
+            leg = ROOT.TLegend(0.16, 0.78 - legsize, 0.45, 0.74)
+            leg.SetFillColor(0)
+            leg.SetFillStyle(0)
+            leg.SetLineColor(0)
+            leg.SetShadowColor(0)
+            leg.SetTextSize(0.025)
+            leg.SetTextFont(42)
 
-        #global arrays for histos and colors
-        histos = []
-        colors = []
-        legend = []
+            #global arrays for histos and colors
+            histos = []
+            colors = []
+            legend = []
 
-        #loop over files for signals and backgrounds and assign corresponding colors and titles
-        '''for s in signals:
-            fin_ll = f"{DIRECTORY}/LL/HH/{s}_{cut}_histo.root"
-            fin_qq = f"{DIRECTORY}/QQ/HH/{s}_{cut}_histo.root"
+            #loop over files for signals and backgrounds and assign corresponding colors and titles
+            fin_ll = f"{DIRECTORY}/LL/HH/sm_{cut}_histo.root"
+            fin_qq = f"{DIRECTORY}/QQ/HH/sm_{cut}_histo.root"
             tf_ll = ROOT.TFile.Open(fin_ll, 'READ')
             h = tf_ll.Get(variable)
             hh = copy.deepcopy(h)
@@ -1053,172 +1020,206 @@ for cut in CUTS:
             h3 = tf_qq.Get(variable)
             hh.Add(h3)
             histos.append(hh)
-            colors.append(scolors[s])
-            leg.AddEntry(histos[-1], slegend[s], "l")'''
+            colors.append(scolors["sm"])
+            leg.AddEntry(histos[-1], "sm", "l")
 
-        for s in signals:
-            fin_ll = f"{DIRECTORY}/QQ/HH/{s}_{cut}_histo.root"
+            fin_ll = f"{DIRECTORY}/LL/HH/sm_lin_quad_{op}til_{cut}_histo.root"
+            fin_qq = f"{DIRECTORY}/QQ/HH/sm_lin_quad_{op}til_{cut}_histo.root"
             tf_ll = ROOT.TFile.Open(fin_ll, 'READ')
             h = tf_ll.Get(variable)
             hh = copy.deepcopy(h)
             hh.SetDirectory(0)
+            tf_qq = ROOT.TFile.Open(fin_qq, 'READ')
+            h3 = tf_qq.Get(variable)
+            hh.Add(h3)
             histos.append(hh)
-            colors.append(scolors[s])
-            leg.AddEntry(histos[-1], slegend[s], "l")
-        
-        #for s in signals:
-        #    fin = f"{DIRECTORY}/{s}_{cut}_histo.root"
-        #    with ROOT.TFile(fin) as tf:
-        #        h = tf.Get(variable) #s + "_" + variable
-        #        hh = h.Clone()
-        #        hh.SetDirectory(0)
-        #    histos.append(hh)
-        #    colors.append(ROOT.kBlue)
-        #    leg.AddEntry(histos[-1], "no jet tagger", "l")
+            colors.append(scolors["sm_lin_quad_cehre"])
+            leg.AddEntry(histos[-1], f"{op}til", "l")
 
-        nsig = len(histos)
+            fin_ll = f"{DIRECTORY}/LL/HH/sm_lin_quad_{op}_{cut}_histo.root"
+            fin_qq = f"{DIRECTORY}/QQ/HH/sm_lin_quad_{op}_{cut}_histo.root"
+            tf_ll = ROOT.TFile.Open(fin_ll, 'READ')
+            h = tf_ll.Get(variable)
+            hh = copy.deepcopy(h)
+            hh.SetDirectory(0)
+            tf_qq = ROOT.TFile.Open(fin_qq, 'READ')
+            h3 = tf_qq.Get(variable)
+            hh.Add(h3)
+            histos.append(hh)
+            colors.append(scolors["sm_lin_quad_cehim"])
+            leg.AddEntry(histos[-1], f"{op}", "l")
+                
+                
+            '''
 
-        # add the signal histograms
-        for i in range(nsig):
-            h = histos[i]
-            max = 0 
-            if h.GetMaximum() > max :
-                max = h.GetMaximum() 
-        for i in range(nsig):
-            h = histos[i]
-            h.SetLineWidth(3)
-            h.SetLineColor(colors[i])
-            h.Rebin(2)
-            if i == 0:
-                h.Draw("HIST")
-                h.GetYaxis().SetTitle("Events")
-                h.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
-                if variable == "PhiCP_CMS":
-                    h.GetXaxis().SetTitle("#Delta#Phi_{CP}")
-                #h.GetXaxis().SetTitleOffset(1.2)
-                #if h.Integral()>0:
-                #    h.Scale(1./(h.Integral()))
-                h.GetYaxis().SetRangeUser(0, max*2.5)
-            else: 
-                #if h.Integral()>0:
-                #    h.Scale(1./(h.Integral()))
-                #    h.Scale(0.5)
-                h.Draw("HIST SAME")
-        
-        extralab = LABELS[cut]
-
-        #labels around the plot
-        if 'ee' in collider:
-            leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
-        rightText = f'#sqrt{{s}} = {energy} GeV, L={intLumi} ab^{{-1}}'
-
-        latex = ROOT.TLatex()
-        latex.SetNDC()
-
-        text = '#bf{#it{'+rightText+'}}'
-        latex.SetTextSize(0.03)
-        latex.DrawLatex(0.18, 0.84, text)
-
-        text = '#bf{#it{' + ana_tex + '}}'
-        latex.SetTextSize(0.03)
-        latex.DrawLatex(0.18, 0.80, text)
-
-        text = '#bf{#it{' + extralab + '}}'
-        latex.SetTextSize(0.02)
-        latex.DrawLatex(0.18, 0.74, text)
-
-        leg.Draw()
-
-        latex.SetTextAlign(31)
-        text = '#it{' + leftText + '}'
-        latex.SetTextSize(0.03)
-
-
-        pad.SetLeftMargin(0.14)
-        pad.SetRightMargin(0.08)
-        pad.GetFrame().SetBorderSize(12)
-        pad.SetBottomMargin(0)
-
-        canvas.cd()
-        
-        #### ratio plot ####
-        pad2.cd()
- 
-        legend2size = 0.1*(nsig-1)
-        legend2 = ROOT.TLegend(0.16, 0.90 - legend2size, 0.45, 0.74)
-        legend2.SetFillColor(0)
-        legend2.SetFillStyle(0)
-        legend2.SetLineColor(0)
-        legend2.SetShadowColor(0)
-        legend2.SetTextSize(0.04)
-        legend2.SetTextFont(42)
-
-        #dummy plot
-        #drawing error bar for SM sample centered at 1 (ratio with itself) but error from the full scale
-        #dummy = histos[0].Clone("")
-        #for i in range(dummy.GetNbinsX()):
-        #    dummy.SetBinContent(i,1.0)
-        dummy = histos[0].Clone("")
-        dummy.Divide(histos[0])
-        #for i in range(dummy.GetNbinsX()+1):
-        #    dummy.SetBinContent(i,1.0)
-        #    dummy.SetBinError(i, histos[0].GetBinError(i)/histos[0].GetBinContent(i))
-        dummy.SetFillColor(ROOT.kGray)
-        dummy.SetLineColor(0)
-        #dummy.SetMarkerColor(0)
-        dummy.SetLineWidth(0)
-        #dummy.SetMarkerSize(0)
-
-        dummy.GetYaxis().SetTitle("Ratio")
-        dummy.GetYaxis().SetTitleSize(0.08)
-        dummy.GetYaxis().CenterTitle()
-        #adjust the range for the ratio here
-        dummy.GetYaxis().SetRangeUser(0.8,1.2)
-        dummy.GetYaxis().SetLabelSize(0.08)
-        dummy.GetYaxis().SetNdivisions(5)
-        dummy.GetYaxis().SetTitleOffset(0.5)
-
-        dummy.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
-        dummy.GetXaxis().SetTitleSize(0.08)
-        dummy.GetXaxis().SetLabelSize(0.08)
-        dummy.GetXaxis().SetTitleOffset(1.2)
-        dummy.Draw("e2")
+            for s in signals:
+                fin_ll = f"{DIRECTORY}/QQ/HH/{s}_{cut}_histo.root"
+                tf_ll = ROOT.TFile.Open(fin_ll, 'READ')
+                h = tf_ll.Get(variable)
+                hh = copy.deepcopy(h)
+                hh.SetDirectory(0)
+                histos.append(hh)
+                colors.append(scolors[s])
+                leg.AddEntry(histos[-1], slegend[s], "l")'''
             
-        ratio_list = []
-        for i in range(1,nsig):  
-            ratio = histos[i].Clone("")
-            ratio.Divide(histos[0])
-            ratio.SetLineWidth(3)
-            ratio.SetLineColor(colors[i])
-            #print(f"{legend[i]}")
-            ratio.Draw("hist same")
-            ratio_list.append(ratio)
-            #legend2.AddEntry(ratio, legend[i], "l")
+            #for s in signals:
+            #    fin = f"{DIRECTORY}/{s}_{cut}_histo.root"
+            #    with ROOT.TFile(fin) as tf:
+            #        h = tf.Get(variable) #s + "_" + variable
+            #        hh = h.Clone()
+            #        hh.SetDirectory(0)
+            #    histos.append(hh)
+            #    colors.append(ROOT.kBlue)
+            #    leg.AddEntry(histos[-1], "no jet tagger", "l")
 
-        #legend2.Draw()
-        
-        pad2.SetLeftMargin(0.14)
-        pad2.SetRightMargin(0.08)
-        pad2.GetFrame().SetBorderSize(12)
-        pad2.SetTopMargin(0)
-        pad2.SetBottomMargin(0.3)
-        #pad2.SetLogy()
+            nsig = len(histos)
 
-        #canvas.cd()
+            # add the signal histograms
+            for i in range(nsig):
+                h = histos[i]
+                max = 0 
+                if h.GetMaximum() > max :
+                    max = h.GetMaximum() 
+            for i in range(nsig):
+                h = histos[i]
+                h.SetLineWidth(3)
+                h.SetLineColor(colors[i])
+                #h.Rebin(2)
+                if i == 0:
+                    h.Draw("HIST")
+                    h.GetYaxis().SetTitle("Events")
+                    h.GetYaxis().SetTitleSize(0.05)
+                    h.GetYaxis().SetLabelSize(0.048)
+                    h.GetYaxis().SetTitleOffset(1.2)
+                    h.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
+                    if variable == "PhiCP_CMS":
+                        h.GetXaxis().SetTitle("#phi_{CP} (rad)")
+                    #h.GetXaxis().SetTitleOffset(1.2)
+                    #if h.Integral()>0:
+                    #    h.Scale(1./(h.Integral()))
+                    h.GetYaxis().SetRangeUser(420, max*2)
+                else: 
+                    #if h.Integral()>0:
+                    #    h.Scale(1./(h.Integral()))
+                    #    h.Scale(0.5)
+                    h.Draw("HIST SAME")
+            
+            
 
-        canvas.RedrawAxis()
-        canvas.Modified()
-        canvas.Update()
+            #leg.Draw()
 
-        dir = DIR_PLOTS + "/"
-        make_dir_if_not_exists(dir)
+            pad.SetLeftMargin(0.14)
+            pad.SetRightMargin(0.08)
+            pad.GetFrame().SetBorderSize(12)
+            pad.SetBottomMargin(0)
+            pad.SetTopMargin(0.148)
+            pad.SetTicks(1, 1)
 
-        if (LOGY == True):
+            canvas.cd()
+            
+            #### ratio plot ####
+            pad2.cd()
+    
+            legend2size = 0.1*(nsig-1)
+            legend2 = ROOT.TLegend(0.16, 0.90 - legend2size, 0.45, 0.74)
+            legend2.SetFillColor(0)
+            legend2.SetFillStyle(0)
+            legend2.SetLineColor(0)
+            legend2.SetShadowColor(0)
+            legend2.SetTextSize(0.04)
+            legend2.SetTextFont(42)
 
-            canvas.SaveAs(dir + "log/" + variable + cut + ".png")
-            canvas.SaveAs(dir + "log/" + variable + cut + ".pdf")
+            #dummy plot
+            #drawing error bar for SM sample centered at 1 (ratio with itself) but error from the full scale
+            #dummy = histos[0].Clone("")
+            #for i in range(dummy.GetNbinsX()):
+            #    dummy.SetBinContent(i,1.0)
+            dummy = histos[0].Clone("")
+            dummy.Divide(histos[0])
+            #for i in range(dummy.GetNbinsX()+1):
+            #    dummy.SetBinContent(i,1.0)
+            #    dummy.SetBinError(i, histos[0].GetBinError(i)/histos[0].GetBinContent(i))
+            dummy.SetFillColor(ROOT.kGray)
+            dummy.SetLineColor(0)
+            #dummy.SetMarkerColor(0)
+            dummy.SetLineWidth(0)
+            #dummy.SetMarkerSize(0)
 
-        else:
+            dummy.GetYaxis().SetTitle("Ratio with SM")
+            dummy.GetYaxis().SetTitleSize(0.093)
+            dummy.GetYaxis().CenterTitle()
+            #adjust the range for the ratio here
+            dummy.GetYaxis().SetRangeUser(0.95,1.05)
+            dummy.GetYaxis().SetLabelSize(0.095)
+            dummy.GetYaxis().SetNdivisions(5)
+            dummy.GetYaxis().SetTitleOffset(0.6)
 
-            canvas.SaveAs(dir + variable + label + ".png")
-            canvas.SaveAs(dir+ variable + label + ".pdf")
+            dummy.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle())
+            dummy.GetXaxis().SetTitleSize(0.1)
+            dummy.GetXaxis().SetLabelSize(0.095)
+            dummy.GetXaxis().SetTitleOffset(1.1)
+            dummy.Draw("e2")
+                
+            ratio_list = []
+            for i in range(1,nsig):  
+                ratio = histos[i].Clone("")
+                ratio.Divide(histos[0])
+                ratio.SetLineWidth(3)
+                ratio.SetLineColor(colors[i])
+                #print(f"{legend[i]}")
+                ratio.Draw("hist same")
+                ratio_list.append(ratio)
+                #legend2.AddEntry(ratio, legend[i], "l")
+
+            #legend2.Draw()
+            pad2.SetLeftMargin(0.14)
+            pad2.SetRightMargin(0.08)
+            pad2.GetFrame().SetBorderSize(12)
+            pad2.SetTopMargin(0.145)
+            pad2.SetBottomMargin(0.28)
+            pad2.SetFillColor(0)
+            pad2.SetFillStyle(4000)
+            #pad2.SetLogy()
+
+            # Draw leftText on the main pad before saving
+            canvas.cd()
+            leg.Draw()
+            extralab = LABELS[cut]
+
+            #labels around the plot
+            rightText = f'#sqrt{{s}} = {energy} GeV, L={intLumi} ab^{{-1}}'
+
+            latex = ROOT.TLatex()
+            latex.SetNDC()
+
+            text = '#bf{#it{'+rightText+'}}'
+            latex.SetTextSize(0.03)
+            latex.DrawLatex(0.18, 0.84, text)
+
+            text = '#bf{#it{' + ana_tex + '}}'
+            latex.SetTextSize(0.03)
+            latex.DrawLatex(0.18, 0.80, text)
+
+            text = '#bf{#it{' + extralab + '}}'
+            latex.SetTextSize(0.02)
+            latex.DrawLatex(0.18, 0.76, text)
+
+            if 'ee' in collider:
+                leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
+                latex.SetTextAlign(31)
+                latex.SetTextSize(0.03)
+                latex.DrawLatex(0.92, 0.92, '#it{' + leftText + '}')
+
+            canvas.RedrawAxis()
+            canvas.Modified()
+            canvas.Update()
+
+            dir = DIR_PLOTS + "/"
+            make_dir_if_not_exists(dir)
+
+            if (LOGY == True):
+                canvas.SaveAs(dir + "log/" + variable + cut + ".png")
+                canvas.SaveAs(dir + "log/" + variable + cut + ".pdf")
+            else:
+                canvas.SaveAs(dir + variable + label + ".png")
+                canvas.SaveAs(dir + variable + label + ".pdf")

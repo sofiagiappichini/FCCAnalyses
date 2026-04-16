@@ -26,9 +26,9 @@ reco_names = [
 
 # Define the directories to explore
 sample_dirs = {
-    "p8_ee_Ztautau_ecm91": r"$Z\to\tau\tau,\; \sqrt{s}=91\;GeV$",
-    "wzp6_ee_tautau_ecm240": r"$Z\to\tau\tau,\; \sqrt{s}=240\;GeV$",
-    "wzp6_ee_tautau_ecm365": r"$Z\to\tau\tau,\; \sqrt{s}=365\;GeV$",
+    #"p8_ee_Ztautau_ecm91": r"$Z\to\tau\tau,\; \sqrt{s}=91\;GeV$",
+    #"wzp6_ee_tautau_ecm240": r"$Z\to\tau\tau,\; \sqrt{s}=240\;GeV$",
+    #"wzp6_ee_tautau_ecm365": r"$Z\to\tau\tau,\; \sqrt{s}=365\;GeV$",
     "wzp6_ee_nunuH_Htautau_ecm240": r"$Z\to\nu\nu,\; H\to\tau\tau,\; \sqrt{s}=240\;GeV$",
 }
 
@@ -104,6 +104,17 @@ def reduced_label(index):
     }
     return reduced_map.get(index, f"Reduced {index}")
 
+def reduced_label_2(index):
+    # Map tauID to reduced labels (0 to 15 roughly)
+    # Summed labels grouping tauIDs by (count_piP+count_piM) and count_pho, ignoring count_pi0
+    reduced_map = {
+        0: r"$\pi$",
+        1: r"$\pi + n\gamma$",
+        2: r"$3\pi$",
+        3: r"$3\pi + n\gamma$",
+    }
+    return reduced_map.get(index, f"Reduced {index}")
+
 # Build confusion matrix with tauID labels
 def build_conf_matrix(gen_arrays, reco_array, max_reco_class=31):  # 35-4=31
     n_gen = len(gen_arrays)
@@ -160,28 +171,60 @@ def plot_conf_matrix(conf_matrix, title, fig, labels, max_x_ticks=None):
                            out=np.zeros_like(conf_matrix, dtype=float),
                            where=conf_matrix.sum(axis=1, keepdims=True) != 0) * 100
 
-    if max_x_ticks>15:
+    # Invert axes: x=gen, y=reco
+    eff_matrix_T = eff_matrix.T
+
+    if max_x_ticks and max_x_ticks > 15:
         plt.figure(figsize=(22, 5))
     else:
-        plt.figure(figsize=(12, 5))
+        plt.figure(figsize=(8, 5))
+
+    # Set font sizes globally for this plot
+    plt.rc('font', size=14)
+    #plt.rc('axes', titlesize=20)
+    #plt.rc('axes', labelsize=18)
+    #plt.rc('xtick', labelsize=16)
+    #plt.rc('ytick', labelsize=16)
+    #plt.rc('legend', fontsize=14)
+    plt.rc('figure', titlesize=20)
+
+    # Use logarithmic color normalization
+    import matplotlib.colors as mcolors
+    cmap = plt.get_cmap("BuPu_r").copy()
+    cmap.set_bad(color=cmap(0))  # Set color for masked (zero) values to the lowest color
+    # Mask zeros so they are shown with the lowest color
+    masked_matrix = np.ma.masked_where(eff_matrix_T == 0, eff_matrix_T)
+    norm = mcolors.LogNorm(vmin=np.clip(np.nanmin(eff_matrix_T[eff_matrix_T>0]), 1e-2, None), vmax=np.nanmax(eff_matrix_T))
+
     ax = sns.heatmap(
-        eff_matrix, annot=True, fmt=".1f", cmap="BuPu_r",
-        xticklabels=labels if max_x_ticks is None else labels[:max_x_ticks],
-        yticklabels=gen_labels,
-        cbar_kws={"label": "Event fraction [%]"}
+        masked_matrix, annot=True, fmt=".2f", cmap=cmap,
+        xticklabels=gen_labels,
+        yticklabels=labels if max_x_ticks is None else labels[:max_x_ticks],
+        cbar_kws={"label": "Event fraction [%]", "ticks": [1e-2, 1e-1, 1, 10, 100]},
+        norm=norm
     )
-    ax.set_xlabel(r"Reco $\tau$ ID")
-    ax.set_ylabel(r"Gen $\tau$ decay mode")
-    ax.set_title(title)
+    # Set colorbar tick labels to scientific notation, with 10^2 at 100
+    cbar = ax.collections[0].colorbar
+    cbar.set_ticks([1e-1, 1, 10, 100])
+    cbar.set_ticklabels([r"$0.1$", r"$1$", r"$10$", r"$100$"])
+    cbar.ax.tick_params(labelsize=16)
+    cbar.set_label("Event fraction [%]", fontsize=18)
+
+    ax.set_xlabel(r"Gen $\tau$ decay mode", fontsize=18)
+    ax.set_ylabel(r"Reco $\tau$ ID", fontsize=18)
+    ax.set_title("FCC-ee Simulation (Delphes)", fontweight='bold', fontsize=18, loc='right')
     plt.tight_layout()
     plt.savefig(fig)
+    # Also save as PDF
+    if fig.endswith('.png'):
+        plt.savefig(fig.replace('.png', '.pdf'))
     plt.close()
 
 
 # Main loop over sample directories and reco variables
 for sample_dir in sample_dirs:
     print(f"Processing sample: {sample_dir}")
-    all_files = glob.glob(f"/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/efficiencyZ-pi0_0.2theta/{sample_dir}/chunk_*.root")
+    all_files = glob.glob(f"/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/taureco_test/{sample_dir}/chunk_*.root")
     if not all_files:
         print(f"Warning: No files found for {sample_dir}")
         continue
@@ -204,42 +247,75 @@ for sample_dir in sample_dirs:
         genM_arrays = [arrays[var] for var in gen_tauM_vars]
 
         # --- Full detailed tauID plots ---
-        conf_matrix_P = build_conf_matrix(genP_arrays, recoP)
-        conf_matrix_M = build_conf_matrix(genM_arrays, recoM)
+        conf_matrix_P = build_conf_matrix_reduced(genP_arrays, recoP)
+        conf_matrix_M = build_conf_matrix_reduced(genM_arrays, recoM)
 
-        labels_full = [tauid_label(i) for i in range(32)]
+        labels_full = [reduced_label(i) for i in range(13)]
         suffix = recoP_name.split('_')[1]  # e.g., 'kt2' or 'R5'
 
-        plot_conf_matrix(
+        '''plot_conf_matrix(
             conf_matrix_P,
             fr"$\tau^+$ with $\pi^0$ reconstruction ({suffix}) - {sample_dirs[sample_dir]}",
-            f'/eos/user/s/sgiappic/www/Higgs_xsec/{sample_dir}_TauP_{suffix}_full_0.2.png',
-            labels_full, max_x_ticks=32
+            f'/eos/user/s/sgiappic/www/Higgs_xsec/{sample_dir}_TauP_{suffix}_full.png',
+            labels_full, max_x_ticks=13
         )
         plot_conf_matrix(
             conf_matrix_M,
             fr"$\tau^-$ with $\pi^0$ reconstruction ({suffix}) - {sample_dirs[sample_dir]}",
-            f'/eos/user/s/sgiappic/www/Higgs_xsec/{sample_dir}_TauM_{suffix}_full_0.2.png',
-            labels_full, max_x_ticks=32
-        )
+            f'/eos/user/s/sgiappic/www/Higgs_xsec/{sample_dir}_TauM_{suffix}_full.png',
+            labels_full, max_x_ticks=13
+        )'''
 
-        # --- Reduced tauID plots (grouped by pi count and pho count) ---
-        conf_matrix_P_red = build_conf_matrix_reduced(genP_arrays, recoP)
-        conf_matrix_M_red = build_conf_matrix_reduced(genM_arrays, recoM)
 
-        labels_reduced = [reduced_label(i) for i in range(14)]
+        # --- Reduced tauID plots using reduced_label_2 (coarse grouping) ---
+        n_reduced2 = 4  # Number of reduced_label_2 classes (0-3)
+        labels_reduced2 = [reduced_label_2(i) for i in range(n_reduced2)]
+
+        # Build new reduced confusion matrices for 4 classes
+        def build_conf_matrix_reduced2(gen_arrays, reco_array, max_reco_class=3):
+            n_gen = len(gen_arrays)
+            conf_matrix = np.zeros((n_gen, max_reco_class + 1), dtype=int)
+            n_events = len(reco_array)
+            # Mapping detailed tauID (0-35) to reduced class index (0-3)
+            tauid_to_reduced2 = {}
+            for tauid in range(32):
+                # Example mapping: 0: pi, 1: pi n gamma, 2: 3pi, 3: 3pi n gamma
+                if tauid == 0:
+                    reduced_idx = 0
+                elif 1 <= tauid <= 6:
+                    reduced_idx = 1
+                elif tauid == 10:
+                    reduced_idx = 2
+                elif 11 <= tauid <= 16:
+                    reduced_idx = 3
+                else:
+                    reduced_idx = 1  # fallback
+                tauid_to_reduced2[tauid] = reduced_idx
+
+            for i in range(n_events):
+                for gen_idx, gen_array in enumerate(gen_arrays):
+                    if gen_array[i] > 0:
+                        reco_val = remap_tauID(reco_array[i]) 
+                        if 0 <= reco_val <= 31:
+                            reduced_val = tauid_to_reduced2.get(reco_val, max_reco_class)
+                            conf_matrix[gen_idx, reduced_val] += 1
+                        break
+            return conf_matrix
+
+        conf_matrix_P_red2 = build_conf_matrix_reduced2(genP_arrays, recoP)
+        conf_matrix_M_red2 = build_conf_matrix_reduced2(genM_arrays, recoM)
 
         plot_conf_matrix(
-            conf_matrix_P_red,
-            fr"$\tau^+$ ({suffix}) - {sample_dirs[sample_dir]}",
-            f'/eos/user/s/sgiappic/www/Higgs_xsec/{sample_dir}_TauP_{suffix}_reduced_0.2.png',
-            labels_reduced, max_x_ticks=14
+            conf_matrix_P_red2,
+            fr"{sample_dirs[sample_dir]}",
+            f'/eos/user/s/sgiappic/www/Higgs_xsec/{sample_dir}_TauP_{suffix}_short.png',
+            labels_reduced2, max_x_ticks=4
         )
         plot_conf_matrix(
-            conf_matrix_M_red,
-            fr"$\tau^-$ ({suffix}) - {sample_dirs[sample_dir]}",
-            f'/eos/user/s/sgiappic/www/Higgs_xsec/{sample_dir}_TauM_{suffix}_reduced_0.2.png',
-            labels_reduced, max_x_ticks=14
+            conf_matrix_M_red2,
+            fr"{sample_dirs[sample_dir]}",
+            f'/eos/user/s/sgiappic/www/Higgs_xsec/{sample_dir}_TauM_{suffix}_short.png',
+            labels_reduced2, max_x_ticks=4
         )
 
 print("All plots saved.")
