@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/QQ/LH"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/QQ/LH"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/QQ/LH/Trees/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -14,12 +14,12 @@ doScale = True
 saveTabular = False
 
 #Number of CPUs to use
-nCPUs = 6
+nCPUs = 8
 
 #produces ROOT TTrees, default is False
-doTree = False
+doTree = True
 
-processList = {
+processList_ = {
 
     "p8_ee_bbH_Htautau_CPeven":{},
     "p8_ee_bbH_Htautau_CPodd":{},
@@ -41,20 +41,26 @@ processList = {
     "p8_ee_qqH_Htautau_CPmix":{},
 }
 
-processList_ = {
+processList = {
 
     "p8_ee_bbH_Htautau_CPeven":{},
     "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_bbH_Htautau_CPmix":{},
     "p8_ee_ccH_Htautau_CPeven":{},
     "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPmix":{},
     "p8_ee_eeH_Htautau_CPeven":{},
     "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPmix":{},
     "p8_ee_mumuH_Htautau_CPeven":{},
     "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPmix":{},
     "p8_ee_ssH_Htautau_CPeven":{},
     "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPmix":{},
     "p8_ee_qqH_Htautau_CPeven":{},
     "p8_ee_qqH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPmix":{},
 
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
@@ -200,7 +206,7 @@ cutList = {
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
     #"selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ_p>40 && RecoZ_p<55 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0 && RecoLepton_e>2",
+    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ_p>40 && RecoZ_p<55 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
     
 }
 
@@ -370,20 +376,20 @@ histoList = {
     "RecoEmiss_y":              {"name":"RecoEmiss_y",                   "title":"Reco missing energy rapidity",                       "bin":40, "xmin":-4., "xmax":4.},
     "RecoEmiss_costheta":       {"name":"RecoEmiss_costheta",               "title":"Reco missing energy |cos(#theta)|",                 "bin":50, "xmin":0,"xmax":1.},
 
-    "Jets_kt3_e":                {"name":"Jets_kt3_e",                   "title":"kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
-    "Jets_kt3_p":                {"name":"Jets_kt3_p",                   "title":"kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "Jets_kt3_pt":               {"name":"Jets_kt3_pt",                  "title":"kt3 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "Jets_kt3_px":               {"name":"Jets_kt3_px",                  "title":"kt3 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "Jets_kt3_py":               {"name":"Jets_kt3_py",                  "title":"kt3 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "Jets_kt3_pz":               {"name":"Jets_kt3_pz",                  "title":"kt3 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "Jets_kt3_eta":              {"name":"Jets_kt3_eta",                 "title":"kt3 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "Jets_kt3_theta":            {"name":"Jets_kt3_theta",               "title":"kt3 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "Jets_kt3_phi":              {"name":"Jets_kt3_phi",                 "title":"kt3 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "Jets_kt3_mass":             {"name":"Jets_kt3_mass",                "title":"kt3 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "n_Jets_kt3":                {"name":"n_Jets_kt3",                   "title":"Number of kt3 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_Jets_kt3_constituents":             {"name":"n_Jets_kt3_constituents",               "title":"kt3 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_Jets_kt3_charged_constituents":             {"name":"n_Jets_kt3_charged_constituents",               "title":"kt3 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
-    "n_Jets_kt3_neutral_constituents":             {"name":"n_Jets_kt3_neutral_constituents",               "title":"kt3 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    # "Jets_kt3_e":                {"name":"Jets_kt3_e",                   "title":"kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},   
+    # "Jets_kt3_p":                {"name":"Jets_kt3_p",                   "title":"kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    # "Jets_kt3_pt":               {"name":"Jets_kt3_pt",                  "title":"kt3 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    # "Jets_kt3_px":               {"name":"Jets_kt3_px",                  "title":"kt3 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "Jets_kt3_py":               {"name":"Jets_kt3_py",                  "title":"kt3 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "Jets_kt3_pz":               {"name":"Jets_kt3_pz",                  "title":"kt3 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "Jets_kt3_eta":              {"name":"Jets_kt3_eta",                 "title":"kt3 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    # "Jets_kt3_theta":            {"name":"Jets_kt3_theta",               "title":"kt3 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    # "Jets_kt3_phi":              {"name":"Jets_kt3_phi",                 "title":"kt3 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    # "Jets_kt3_mass":             {"name":"Jets_kt3_mass",                "title":"kt3 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    # "n_Jets_kt3":                {"name":"n_Jets_kt3",                   "title":"Number of kt3 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
+    # "n_Jets_kt3_constituents":             {"name":"n_Jets_kt3_constituents",               "title":"kt3 jet constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    # "n_Jets_kt3_charged_constituents":             {"name":"n_Jets_kt3_charged_constituents",               "title":"kt3 jet charged constituents",                   "bin":20, "xmin":0., "xmax":20.},
+    # "n_Jets_kt3_neutral_constituents":             {"name":"n_Jets_kt3_neutral_constituents",               "title":"kt3 jet neutral constituents",                   "bin":20, "xmin":0., "xmax":20.},
 
     "TauFromJet_kt3_p":          {"name":"TauFromJet_kt3_p",                   "title":"#tau from kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
     "TauFromJet_kt3_pt":         {"name":"TauFromJet_kt3_pt",                  "title":"#tau from kt3 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
@@ -400,17 +406,17 @@ histoList = {
     "TauFromJet_kt3_mass":       {"name":"TauFromJet_kt3_mass",                "title":"#tau from kt3 jet mass [GeV]",                     "bin":15, "xmin":0., "xmax":3.},
     "n_TauFromJet_kt3":          {"name":"n_TauFromJet_kt3",                   "title":"Number of #tau from kt3 jet",                     "bin":5, "xmin":-0.5, "xmax":4.5},
 
-    "Jets_kt3_sel_e":            {"name":"Jets_kt3_sel_e",                   "title":"Quark/gluon kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
-    "Jets_kt3_sel_p":            {"name":"Jets_kt3_sel_p",                   "title":"Quark/gluon kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
-    "Jets_kt3_sel_pt":           {"name":"Jets_kt3_sel_pt",                  "title":"Quark/gluon kt3 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
-    "Jets_kt3_sel_px":           {"name":"Jets_kt3_sel_px",                  "title":"Quark/gluon kt3 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "Jets_kt3_sel_py":           {"name":"Jets_kt3_sel_py",                  "title":"Quark/gluon kt3 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "Jets_kt3_sel_pz":           {"name":"Jets_kt3_sel_pz",                  "title":"Quark/gluon kt3 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
-    "Jets_kt3_sel_eta":          {"name":"Jets_kt3_sel_eta",                 "title":"Quark/gluon kt3 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "Jets_kt3_sel_theta":        {"name":"Jets_kt3_sel_theta",               "title":"Quark/gluon kt3 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
-    "Jets_kt3_sel_phi":          {"name":"Jets_kt3_sel_phi",                 "title":"Quark/gluon kt3 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
-    "Jets_kt3_sel_mass":         {"name":"Jets_kt3_sel_mass",                "title":"Quark/gluon kt3 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
-    "n_Jets_kt3_sel":            {"name":"n_Jets_kt3_sel",                   "title":"Number of Quark/gluon kt3 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
+    # "Jets_kt3_sel_e":            {"name":"Jets_kt3_sel_e",                   "title":"Quark/gluon kt3 jet energy [GeV]",                   "bin":50,"xmin":0 ,"xmax":100},    
+    # "Jets_kt3_sel_p":            {"name":"Jets_kt3_sel_p",                   "title":"Quark/gluon kt3 jet p [GeV]",                        "bin":50,"xmin":0 ,"xmax":100},
+    # "Jets_kt3_sel_pt":           {"name":"Jets_kt3_sel_pt",                  "title":"Quark/gluon kt3 jet p_{T} [GeV]",                    "bin":50,"xmin":0 ,"xmax":100},
+    # "Jets_kt3_sel_px":           {"name":"Jets_kt3_sel_px",                  "title":"Quark/gluon kt3 jet p_{x} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "Jets_kt3_sel_py":           {"name":"Jets_kt3_sel_py",                  "title":"Quark/gluon kt3 jet p_{y} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "Jets_kt3_sel_pz":           {"name":"Jets_kt3_sel_pz",                  "title":"Quark/gluon kt3 jet p_{z} [GeV]",                    "bin":50,"xmin":-100 ,"xmax":100},
+    # "Jets_kt3_sel_eta":          {"name":"Jets_kt3_sel_eta",                 "title":"Quark/gluon kt3 jet #eta",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    # "Jets_kt3_sel_theta":        {"name":"Jets_kt3_sel_theta",               "title":"Quark/gluon kt3 jet #theta",                         "bin":16, "xmin":0,"xmax":3.2},
+    # "Jets_kt3_sel_phi":          {"name":"Jets_kt3_sel_phi",                 "title":"Quark/gluon kt3 jet #phi",                           "bin":32, "xmin":-3.2,"xmax":3.2},
+    # "Jets_kt3_sel_mass":         {"name":"Jets_kt3_sel_mass",                "title":"Quark/gluon kt3 jet mass [GeV]",                     "bin":20, "xmin":0., "xmax":2.},
+    # "n_Jets_kt3_sel":            {"name":"n_Jets_kt3_sel",                   "title":"Number of Quark/gluon kt3 jet",                     "bin":7, "xmin":-0.5, "xmax":6.5},
 
     ####################
 

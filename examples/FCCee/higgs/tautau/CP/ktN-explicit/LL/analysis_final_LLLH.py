@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/LL/LH"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/LL/LH"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/LL/LH/Trees/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -14,12 +14,12 @@ doScale = True
 saveTabular = False
 
 #Number of CPUs to use
-#nCPUs = 6
+nCPUs = 8
 
 #produces ROOT TTrees, default is False
-doTree = False
+doTree = True
 
-processList = {
+processList_ = {
 
     "p8_ee_bbH_Htautau_CPeven":{},
     "p8_ee_bbH_Htautau_CPodd":{},
@@ -41,36 +41,26 @@ processList = {
     "p8_ee_qqH_Htautau_CPmix":{},
 }
 
-processList_ = {
-
-    "mg_ee_eetata_ecm240":{},
-    "mg_ee_eetata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_eetata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_eetata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_eetata_smeft_cehre_p1_ecm240":{},
-    "mg_ee_jjtata_ecm240":{},
-    "mg_ee_jjtata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_jjtata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_jjtata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_jjtata_smeft_cehre_p1_ecm240":{},
-    "mg_ee_mumutata_ecm240":{},
-    "mg_ee_mumutata_smeft_cehim_m1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehim_p1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehre_m1_ecm240":{},
-    "mg_ee_mumutata_smeft_cehre_p1_ecm240":{},
+processList = {
 
     "p8_ee_bbH_Htautau_CPeven":{},
     "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_bbH_Htautau_CPmix":{},
     "p8_ee_ccH_Htautau_CPeven":{},
     "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPmix":{},
     "p8_ee_eeH_Htautau_CPeven":{},
     "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPmix":{},
     "p8_ee_mumuH_Htautau_CPeven":{},
     "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPmix":{},
     "p8_ee_ssH_Htautau_CPeven":{},
     "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPmix":{},
     "p8_ee_qqH_Htautau_CPeven":{},
     "p8_ee_qqH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPmix":{},
 
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
@@ -207,12 +197,12 @@ procDictAdd = {
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    # "selReco": "true",
+    # "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    # "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
+    # "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
+    # "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    # "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
     "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
     #"selReco_4body":"(GenTauP_DM==2 || GenTauP_DM==3) && (GenTauM_DM==2 || GenTauM_DM==3) && Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
     #"selReco_3body":"(GenTauP_DM==1 || GenTauP_DM==4 || GenTauP_DM==5) && (GenTauM_DM==1 || GenTauM_DM==4 || GenTauM_DM==5) && Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",

@@ -25,7 +25,7 @@ def create_condor_config_lxplus(nCPUs: int,
 
     cfg += 'max_retries      = 3\n'
 
-    cfg += '+JobFlavour      = "longlunch"\n'
+    cfg += '+JobFlavour      = "tomorrow"\n'
 
     cfg += '+AccountingGroup = "group_u_FCC.local_gen"\n'
 
@@ -143,8 +143,8 @@ SUB = [
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/"
 output = '/afs/cern.ch/user/s/sgiappic/HTCondor/final_cp/' ##output directory of submission files, needs to be different to have unique submission files
 
-nCPUS = 4
-memory = 10000
+nCPUS = 8
+memory = 10000 # not used for lxplus
 
 create_subjob_script(inputDir, output)
 

@@ -1,7 +1,7 @@
 #Input directory where the files produced at the stage1 level are
 inputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/stage1_250530/ktN-explicit/QQ/HH"
 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/QQ/HH"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/CP/final_250530/ktN-explicit/QQ/HH/Trees/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
 intLumi = 10.8e6 #pb^-1 #to be checked again for 240 gev
@@ -17,9 +17,9 @@ saveTabular = False
 nCPUs = 8
 
 #produces ROOT TTrees, default is False
-doTree = False
+doTree = True
 
-processList = {
+processList_ = {
     "mg_ee_fftata_ceHIm_m1_ecm240":{},
     "mg_ee_fftata_ceHRe_m1_ecm240":{},
     "mg_ee_fftata_sm_ecm240":{},
@@ -90,7 +90,26 @@ processList_ = {
     "p8_ee_qqH_Htautau_CPmix":{},
 }
 
-processList_ = {
+processList = {
+
+    "p8_ee_bbH_Htautau_CPeven":{},
+    "p8_ee_bbH_Htautau_CPodd":{},
+    "p8_ee_bbH_Htautau_CPmix":{},
+    "p8_ee_ccH_Htautau_CPeven":{},
+    "p8_ee_ccH_Htautau_CPodd":{},
+    "p8_ee_ccH_Htautau_CPmix":{},
+    "p8_ee_eeH_Htautau_CPeven":{},
+    "p8_ee_eeH_Htautau_CPodd":{},
+    "p8_ee_eeH_Htautau_CPmix":{},
+    "p8_ee_mumuH_Htautau_CPeven":{},
+    "p8_ee_mumuH_Htautau_CPodd":{},
+    "p8_ee_mumuH_Htautau_CPmix":{},
+    "p8_ee_ssH_Htautau_CPeven":{},
+    "p8_ee_ssH_Htautau_CPodd":{},
+    "p8_ee_ssH_Htautau_CPmix":{},
+    "p8_ee_qqH_Htautau_CPeven":{},
+    "p8_ee_qqH_Htautau_CPodd":{},
+    "p8_ee_qqH_Htautau_CPmix":{},
 
     'p8_ee_WW_ecm240':{},
     'p8_ee_Zqq_ecm240':{},
@@ -255,18 +274,18 @@ procDictAdd = {
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     ### no selection, just builds the histograms, it will not be shown in the latex table
-    "selReco": "true",
-    "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
-    "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
-    "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
-    "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0 && RecoZ_p>40 && RecoZ_p<55",
+    # "selReco": "true",
+    # "selReco_100Coll150": "Collinear_mass>100 && Collinear_mass<150",
+    # "selReco_100Coll150_115Rec160": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160",
+    # "selReco_100Coll150_115Rec160_2DR": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2",
+    # "selReco_100Coll150_115Rec160_2DR_cos0.6": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6)",
+    # "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98",
+    # "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100",
+    # "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
+    # "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0",
+    # "selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0 && RecoZ_p>40 && RecoZ_p<55",
     "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && Tau_cos>(-0.98) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0 && RecoZ_p>40 && RecoZ_p<55",
-    "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_oneprong": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && Tau_cos>(-0.98) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0 && RecoZ_p>40 && RecoZ_p<55 && TauP_type<10 && TauM_type<10",
+    # "selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_oneprong": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && Tau_cos>(-0.98) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0 && RecoZ_p>40 && RecoZ_p<55 && TauP_type<10 && TauM_type<10",
     #"selReco_100Coll150_115Rec160_2DR_0.98cos0.6_misscos0.98_80Z100_jets_10EM_40Zp55_notoneprong": "Collinear_mass>100 && Collinear_mass<150 && Recoil_mass>115 && Recoil_mass<160 && Tau_DR>2 && Tau_cos<(-0.6) && Tau_cos>(-0.98) && RecoEmiss_costheta<0.98 && RecoZ_mass>80 && RecoZ_mass<100 && RecoEmiss_e>10 && RecoZ1_charged_consituents>0 && RecoZ2_charged_consituents>0 && RecoZ_p>40 && RecoZ_p<55 && !(TauP_type<10 && TauM_type<10)",
     #"selReco_0.75BDT":"BDT_score>0.75",
     #"selReco_0.9BDT":"BDT_score>0.9",
