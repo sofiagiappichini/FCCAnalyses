@@ -1,0 +1,130 @@
+Class R5-explicit:
+
+Max significance of NuNuLL = 0.09960541673170999 for cut at RecoEmiss_e=98.53 
+Max purity of NuNuLL = 3.0714642340347644e-05 for cut at RecoEmiss_e=98.53 
+
+Class R5-explicit:
+
+Max significance of NuNuLL = 0.09960541673170999 for cut at RecoEmiss_e=354 
+Max purity of NuNuLL = 3.0714642340347644e-05 for cut at RecoEmiss_e=354 
+
+Class R5-explicit:
+
+Max significance of NuNuLL = 0.09960541673170999 for cut at RecoEmiss_e=359.9 
+Max purity of NuNuLL = 3.0714642340347644e-05 for cut at RecoEmiss_e=359.9 
+
+Class R5-explicit:
+
+Max significance of NuNuLH = 1.378467252389117 for cut at RecoEmiss_e=359.9 
+Max purity of NuNuLH = 0.0009192655967973991 for cut at RecoEmiss_e=359.9 
+
+Class R5-explicit:
+
+Max significance of NuNuHH = 2.392902826602064 for cut at RecoEmiss_e=359.9 
+Max purity of NuNuHH = 0.0018110661759200596 for cut at RecoEmiss_e=359.9 
+
+Class R5-tag:
+
+Max significance of NuNuLL = 0.09960541673170999 for cut at RecoEmiss_e=359.9 
+Max purity of NuNuLL = 3.0714642340347644e-05 for cut at RecoEmiss_e=359.9 
+
+Class R5-tag:
+
+Max significance of NuNuLH = 1.3418526871037444 for cut at RecoEmiss_e=347.7 
+Max purity of NuNuLH = 0.0006744700977563598 for cut at RecoEmiss_e=347.7 
+
+Class R5-tag:
+
+Max significance of NuNuHH = 3.216124669617287 for cut at RecoEmiss_e=359.9 
+Max purity of NuNuHH = 0.0019073077237737387 for cut at RecoEmiss_e=359.9 
+
+Class ktN-explicit:
+
+Max significance of NuNuLL = 0.09960541673170999 for cut at RecoEmiss_e=359.9 
+Max purity of NuNuLL = 3.0714642340347644e-05 for cut at RecoEmiss_e=359.9 
+
+Class ktN-explicit:
+
+Max significance of NuNuLH = 1.26869160341156 for cut at RecoEmiss_e=341.59999999999997 
+Max purity of NuNuLH = 0.0009030652606023246 for cut at RecoEmiss_e=341.59999999999997 
+
+Class ktN-explicit:
+
+Max significance of NuNuHH = 2.397589130998796 for cut at RecoEmiss_e=347.7 
+Max purity of NuNuHH = 0.0018676262222083698 for cut at RecoEmiss_e=335.5 
+
+Class ktN-tag:
+
+Max significance of NuNuLL = 0.09960541673170999 for cut at RecoEmiss_e=359.9 
+Max purity of NuNuLL = 3.0714642340347644e-05 for cut at RecoEmiss_e=359.9 
+
+Class ktN-tag:
+
+Max significance of NuNuLH = 1.211569641290115 for cut at RecoEmiss_e=347.7 
+Max purity of NuNuLH = 0.0006882409156066813 for cut at RecoEmiss_e=347.7 
+
+Class ktN-tag:
+
+Max significance of NuNuHH = 3.1810187013262543 for cut at RecoEmiss_e=341.59999999999997 
+Max purity of NuNuHH = 0.001991635369206932 for cut at RecoEmiss_e=329.4 
+
+Class R5-explicit:
+
+Max significance of NuNuLL = 0.20676244876559577 for cut at RecoEmiss_e=305.0 
+Max purity of NuNuLL = 0.0010222577517033382 for cut at RecoEmiss_e=323.29999999999995 
+
+Class R5-explicit:
+
+Max significance of NuNuLH = 2.2317126850760465 for cut at RecoEmiss_e=237.89999999999998 
+Max purity of NuNuLH = 0.004333650874832237 for cut at RecoEmiss_e=359.9 
+
+Class R5-explicit:
+
+Max significance of NuNuHH = 3.567206580068696 for cut at RecoEmiss_e=213.5 
+Max purity of NuNuHH = 0.005528585849952745 for cut at RecoEmiss_e=250.1 
+
+Class R5-tag:
+
+Max significance of NuNuLL = 0.20676244876559577 for cut at RecoEmiss_e=305.0 
+Max purity of NuNuLL = 0.0010222577517033382 for cut at RecoEmiss_e=323.29999999999995 
+
+Class R5-tag:
+
+Max significance of NuNuLH = 1.9970099510497887 for cut at RecoEmiss_e=225.7 
+Max purity of NuNuLH = 0.003181322762530657 for cut at RecoEmiss_e=341.59999999999997 
+
+Class R5-tag:
+
+Max significance of NuNuHH = 4.271184656038244 for cut at RecoEmiss_e=207.39999999999998 
+Max purity of NuNuHH = 0.004198823201678678 for cut at RecoEmiss_e=250.1 
+
+Class ktN-explicit:
+
+Max significance of NuNuLL = 0.20676244876559577 for cut at RecoEmiss_e=305.0 
+Max purity of NuNuLL = 0.0010222577517033382 for cut at RecoEmiss_e=323.29999999999995 
+
+Class ktN-explicit:
+
+Max significance of NuNuLH = 2.088687336051295 for cut at RecoEmiss_e=237.89999999999998 
+Max purity of NuNuLH = 0.004422278110663337 for cut at RecoEmiss_e=292.79999999999995 
+
+Class ktN-explicit:
+
+Max significance of NuNuHH = 3.352316717087472 for cut at RecoEmiss_e=207.39999999999998 
+Max purity of NuNuHH = 0.00511483755497253 for cut at RecoEmiss_e=250.1 
+
+Class ktN-tag:
+
+Max significance of NuNuLL = 0.20676244876559577 for cut at RecoEmiss_e=305.0 
+Max purity of NuNuLL = 0.0010222577517033382 for cut at RecoEmiss_e=323.29999999999995 
+
+Class ktN-tag:
+
+Max significance of NuNuLH = 1.8520549134874846 for cut at RecoEmiss_e=225.7 
+Max purity of NuNuLH = 0.0025042539808050124 for cut at RecoEmiss_e=305.0 
+
+Class ktN-tag:
+
+Max significance of NuNuHH = 3.8238172962835284 for cut at RecoEmiss_e=201.29999999999998 
+Max purity of NuNuHH = 0.0033094935732959135 for cut at RecoEmiss_e=237.89999999999998 
+

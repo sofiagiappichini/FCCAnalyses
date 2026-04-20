@@ -1,0 +1,20 @@
+ <<< Combine >>> 
+ <<< v10.0.1 >>>
+>>> Random number generator seed is 123456
+>>> Method used is FitDiagnostics
+WARNING: underflow to -8.99028 in pdf_binQQHH_obsOnly for bin 45, weight 3401.04
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(QQHH) evaluation error, 
+ origin       : RooAbsReal::QQHH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240,unc_wzp6_ee_nuenueZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.00782383,unc_H_H = -8.46446e-08 +/- 0.984995,unc_Z = -1.79758e-07 +/- 0.979893,unc_p8_ee_WW_ecm240 = -2.76244e-07 +/- 0.935274,unc_p8_ee_ZZ_ecm240 = -4.85108e-07 +/- 0.467608,unc_wzp6_ee_nuenueZ_ecm240 = -5.45681e-09 +/- 0.999978), catParams=()
+FASTEXIT from pdf_binQQHH_obsOnly
+WARNING: underflow to -8.99028 in pdf_binQQHH_obsOnly for bin 45, weight 3401.04
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(QQHH) evaluation error, 
+ origin       : RooAbsReal::QQHH[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240,unc_wzp6_ee_nuenueZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.00782383,unc_H_H = -8.46446e-08 +/- 1,unc_Z = -1.79758e-07 +/- 1,unc_p8_ee_WW_ecm240 = -2.76244e-07 +/- 1,unc_p8_ee_ZZ_ecm240 = -4.85108e-07 +/- 1,unc_wzp6_ee_nuenueZ_ecm240 = -5.45681e-09 +/- 1), catParams=()
+FASTEXIT from pdf_binQQHH_obsOnly
+
+ --- FitDiagnostics ---
+Best fit r: 1  -0.00777335/+0.00780273  (68% CL)
+Done in 0.00 min (cpu), 0.00 min (real)

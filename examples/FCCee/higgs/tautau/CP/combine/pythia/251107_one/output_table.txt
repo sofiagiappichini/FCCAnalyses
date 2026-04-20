@@ -1,0 +1,21 @@
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+ &  \\
+\hline
+QQLL & 0.0 +13.88 -14.429 &  \\ \hline 
+QQLH & -0.0 +9.073 -7.193 &  \\ \hline 
+QQHH & 0.0 +3.095 -3.103 &  \\ \hline 
+QQ &-0.0 +2.838 -2.815 &  \\ \hline 
+LLLL & 0.0 +26.556 -27.352 &  \\ \hline 
+LLLH & 0.0 +13.499 -9.0 &  \\ \hline 
+LLHH & 0.0 +6.344 -6.355 &  \\ \hline 
+LL &0.0 +5.382 -5.37 &  \\ \hline 
+combined & -0.0 +2.508 -2.494  &  \\ \hline 
+
+\hline
+\end{tabular}
+\caption{Fit Results}
+\end{table}

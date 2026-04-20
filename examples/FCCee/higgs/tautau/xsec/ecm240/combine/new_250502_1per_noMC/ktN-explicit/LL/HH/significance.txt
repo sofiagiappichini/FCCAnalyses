@@ -1,0 +1,20 @@
+ <<< Combine >>> 
+ <<< v10.0.1 >>>
+>>> Random number generator seed is 123456
+>>> Method used is FitDiagnostics
+WARNING: underflow to -26.0449 in pdf_binRecoil_obsOnly for bin 44, weight 530.734
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(Recoil) evaluation error, 
+ origin       : RooAbsReal::Recoil[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.0224877,unc_H_H = -1.50064e-08 +/- 0.999986,unc_Z = 2.27193e-09 +/- 0.999168,unc_p8_ee_WW_ecm240 = -2.9558e-09 +/- 0.999989,unc_p8_ee_ZZ_ecm240 = -1.20747e-07 +/- 0.985181), catParams=()
+FASTEXIT from pdf_binRecoil_obsOnly
+WARNING: underflow to -26.0449 in pdf_binRecoil_obsOnly for bin 44, weight 530.734
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(Recoil) evaluation error, 
+ origin       : RooAbsReal::Recoil[ params=(r,unc_H_H,unc_Z,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.0224877,unc_H_H = -1.50064e-08 +/- 1,unc_Z = 2.27193e-09 +/- 1,unc_p8_ee_WW_ecm240 = -2.9558e-09 +/- 1,unc_p8_ee_ZZ_ecm240 = -1.20747e-07 +/- 1), catParams=()
+FASTEXIT from pdf_binRecoil_obsOnly
+
+ --- FitDiagnostics ---
+Best fit r: 1  -0.0220343/+0.0226387  (68% CL)
+Done in 0.00 min (cpu), 0.00 min (real)

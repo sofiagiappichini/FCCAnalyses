@@ -1,0 +1,263 @@
+
+>>> Random number generator seed is 123456
+>>> Method used is MultiDimFit
+Adding /afs/cern.ch/user/s/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass_bonly extraConstraints=() channelMasks=() ] = 1e-09
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass extraConstraints=() channelMasks=() ] = 1e-09
+RooProdPdf::nuisancePdf[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binVisible_mass[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binVisible_mass_nuis * pdfbins_binVisible_mass ] = 1e-09
+RooProdPdf::pdf_binVisible_mass_bonly[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binVisible_mass_bonly_nuis * pdfbins_binVisible_mass ] = 1e-09
+RooAddPdf::pdf_binVisible_mass_bonly_nuis[ n_exp_binVisible_mass_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_Visible_mass_rebinPdf ] = 1e-09/1
+RooAddPdf::pdf_binVisible_mass_nuis[ n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 * shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_ZH_Htautau_ecm365 * shapeSig_wzp6_ee_ZH_Htautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_Visible_mass_rebinPdf ] = 1e-09/1
+RooProdPdf::pdfbins_binVisible_mass[  ] = 1
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_tautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZQQ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZZ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HVV_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LL_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_nuenueZ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_ZH_Htautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+SimpleGaussianConstraint::unc_Z_Pdf[ x=unc_Z mean=unc_Z_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_ecm365_Pdf[ x=unc_p8_ee_WW_ecm365 mean=unc_p8_ee_WW_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_tautau_ecm365_Pdf[ x=unc_p8_ee_WW_tautau_ecm365 mean=unc_p8_ee_WW_tautau_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf[ x=unc_wzp6_ee_egamma_eZ_ZLL_ecm365 mean=unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_gaga_LL_60_ecm365_Pdf[ x=unc_wzp6_ee_gaga_LL_60_ecm365 mean=unc_wzp6_ee_gaga_LL_60_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_nuenueZ_ecm365_Pdf[ x=unc_wzp6_ee_nuenueZ_ecm365 mean=unc_wzp6_ee_nuenueZ_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 400050
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_WW_tautau_ecm365[ thetaList=(unc_p8_ee_WW_tautau_ecm365) asymmThetaList=() otherFactorList=() ] = 29545.5
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 4.48914
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 12353.4
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 11.8769
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 144245
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 457.443
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 549.409
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 484.694
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 15038.9
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 2443.06
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 19405.1
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.617371
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.0102063
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 16158.5
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+ModelConfig_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+ModelConfig_bonly_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+nuisances:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass extraConstraints=() channelMasks=() ] = 1e-09
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass extraConstraints=() channelMasks=() ] = 1e-09
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 0 
+CMS_th1x = 74.5 
+r_VBF = 1 
+r_ZH = 1 
+unc_Z = 0 
+unc_Z_In = 0 (constant)
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_WW_ecm365 = 0 
+unc_p8_ee_WW_ecm365_In = 0 (constant)
+unc_p8_ee_WW_tautau_ecm365 = 0 
+unc_p8_ee_WW_tautau_ecm365_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = 0 
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In = 0 (constant)
+unc_wzp6_ee_gaga_LL_60_ecm365 = 0 
+unc_wzp6_ee_gaga_LL_60_ecm365_In = 0 (constant)
+unc_wzp6_ee_nuenueZ_ecm365 = 0 
+unc_wzp6_ee_nuenueZ_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binVisible_mass_obsOnly: in 75 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5      Visible_mass     1.5839316
+   1               1.5      Visible_mass   599.6350098
+   2               2.5      Visible_mass  1852.1716309
+   3               3.5      Visible_mass  3027.6386719
+   4               4.5      Visible_mass  4076.2041016
+   5               5.5      Visible_mass  4588.3203125
+   6               6.5      Visible_mass  5052.7128906
+   7               7.5      Visible_mass  5437.5039062
+   8               8.5      Visible_mass  5848.0048828
+   9               9.5      Visible_mass  6413.3315430
+  10              10.5      Visible_mass  7417.0551758
+  11              11.5      Visible_mass  14074.8769531
+  12              12.5      Visible_mass  15236.7353516
+  13              13.5      Visible_mass  14851.7392578
+  14              14.5      Visible_mass  14128.9638672
+  15              15.5      Visible_mass  13365.8056641
+  16              16.5      Visible_mass  13293.5292969
+  17              17.5      Visible_mass  12854.2685547
+  18              18.5      Visible_mass  12895.3242188
+  19              19.5      Visible_mass  12591.7119141
+  20              20.5      Visible_mass  12335.8437500
+  21              21.5      Visible_mass  12198.8720703
+  22              22.5      Visible_mass  12006.9033203
+  23              23.5      Visible_mass  12049.9257812
+  24              24.5      Visible_mass  12063.1972656
+  25              25.5      Visible_mass  11761.1601562
+  26              26.5      Visible_mass  11726.4501953
+  27              27.5      Visible_mass  11840.5898438
+  28              28.5      Visible_mass  11653.2216797
+  29              29.5      Visible_mass  11774.5273438
+  30              30.5      Visible_mass  11834.8535156
+  31              31.5      Visible_mass  12333.3154297
+  32              32.5      Visible_mass  13350.1376953
+  33              33.5      Visible_mass  18220.7714844
+  34              34.5      Visible_mass  29783.6757812
+  35              35.5      Visible_mass  11770.2070312
+  36              36.5      Visible_mass  11023.0322266
+  37              37.5      Visible_mass  10874.3623047
+  38              38.5      Visible_mass  10714.3955078
+  39              39.5      Visible_mass  10761.5917969
+  40              40.5      Visible_mass  10675.4277344
+  41              41.5      Visible_mass  10532.1347656
+  42              42.5      Visible_mass  10577.3662109
+  43              43.5      Visible_mass  10378.6777344
+  44              44.5      Visible_mass  10408.8886719
+  45              45.5      Visible_mass  10284.1425781
+  46              46.5      Visible_mass  10215.0585938
+  47              47.5      Visible_mass  10066.1767578
+  48              48.5      Visible_mass  9968.3076172
+  49              49.5      Visible_mass  9885.1328125
+  50              50.5      Visible_mass  9701.4980469
+  51              51.5      Visible_mass  9436.9814453
+  52              52.5      Visible_mass  9282.4082031
+  53              53.5      Visible_mass  8884.1015625
+  54              54.5      Visible_mass  8690.2460938
+  55              55.5      Visible_mass  8304.0888672
+  56              56.5      Visible_mass  7571.9790039
+  57              57.5      Visible_mass  7232.9375000
+  58              58.5      Visible_mass  6818.7744141
+  59              59.5      Visible_mass  6351.4477539
+  60              60.5      Visible_mass  5937.6235352
+  61              61.5      Visible_mass  5371.9970703
+  62              62.5      Visible_mass  4612.7021484
+  63              63.5      Visible_mass  3855.2287598
+  64              64.5      Visible_mass  3061.1716309
+  65              65.5      Visible_mass  2301.9677734
+  66              66.5      Visible_mass  1558.6568604
+  67              67.5      Visible_mass   809.3589478
+  68              68.5      Visible_mass   281.7765503
+  69              69.5      Visible_mass     7.1852574
+  70              70.5      Visible_mass     0.0006407
+  71              71.5      Visible_mass     0.0006407
+  72              72.5      Visible_mass     0.0006407
+  73              73.5      Visible_mass     0.0006407
+  74              74.5      Visible_mass     0.0006407
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_Z) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_tautau_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_nuenueZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_gaga_LL_60_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 5000 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 5.11679953813e-11 Nfcn = 41
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0
+----------> Iteration 1
+            FVAL = -1.27680974129e-09 Edm = 1.9573913111e-10 Nfcn = 65
+            Error matrix change = 0.561552
+            Parameters :  p0 = 0.999997 p1 = 0.999997 p2 = -2.32308e-06 p3 = 8.55859e-07 p4 = -7.01491e-07 p5 = -1.97989e-06 p6 = -2.31963e-06 p7 = 1.54026e-07 p8 = -3.96071e-07 p9 = -3.38813e-06
+----------> Iteration 2
+            FVAL = -1.27680974129e-09 Edm = 1.9573913111e-10 Nfcn = 65
+            Error matrix change = 0.561552
+            Parameters :  p0 = 0.999997 p1 = 0.999997 p2 = -2.32308e-06 p3 = 8.55859e-07 p4 = -7.01491e-07 p5 = -1.97989e-06 p6 = -2.31963e-06 p7 = 1.54026e-07 p8 = -3.96071e-07 p9 = -3.38813e-06
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = -1.27680974129082211e-09
+Edm   = 1.95739131109793011e-10
+Nfcn  = 65
+r_VBF	  = 0.999997	 +/-  0.764729	(limited)
+r_ZH	  = 0.999997	 +/-  0.836351	(limited)
+unc_Z	  = -2.32308e-06	 +/-  0.354937
+unc__H	  = 8.55859e-07	 +/-  1.00057
+unc_p8_ee_WW_ecm365	  = -7.01491e-07	 +/-  0.177227
+unc_p8_ee_WW_tautau_ecm365	  = -1.97989e-06	 +/-  0.909824
+unc_p8_ee_ZZ_ecm365	  = -2.31963e-06	 +/-  0.957333
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = 1.54026e-07	 +/-  0.890136
+unc_wzp6_ee_gaga_LL_60_ecm365	  = -3.96071e-07	 +/-  0.996772
+unc_wzp6_ee_nuenueZ_ecm365	  = -3.38813e-06	 +/-  0.796776
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.077471 seconds (0.060000 CPU time)
+FINAL NLL - NLL0 VALUE = -1.276809741e-09
+
+
+ --- MultiDimFit ---
+best fit parameter values: 
+    r_ZH :    +1.000
+   r_VBF :    +1.000
+Done in 0.00 min (cpu), 0.00 min (real)
+29 log messages saved to combine_logger.out

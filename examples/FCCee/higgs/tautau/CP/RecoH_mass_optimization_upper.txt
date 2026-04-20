@@ -1,0 +1,18 @@
+Max significance of QQLL = 44.598878173410775 for cut at RecoH_mass=78.0 
+Max purity of QQLL = 0.7436221857111973 for cut at RecoH_mass=48.0 
+
+Max significance of QQLH = 40.15997666912502 for cut at RecoH_mass=114.0 
+Max purity of QQLH = 0.21423793444941955 for cut at RecoH_mass=90.0 
+
+Max significance of QQHH = 20.72103591092459 for cut at RecoH_mass=116.0 
+Max purity of QQHH = 0.05217609097600453 for cut at RecoH_mass=102.0 
+
+Max significance of LLLL = 43.86449939852659 for cut at RecoH_mass=82.0 
+Max purity of LLLL = 0.8029489612841341 for cut at RecoH_mass=6.0 
+
+Max significance of LLLH = 71.95509320935146 for cut at RecoH_mass=108.0 
+Max purity of LLLH = 0.8819614575219316 for cut at RecoH_mass=6.0 
+
+Max significance of LLHH = 70.53755407466923 for cut at RecoH_mass=124.0 
+Max purity of LLHH = 0.7361189302471394 for cut at RecoH_mass=118.0 
+

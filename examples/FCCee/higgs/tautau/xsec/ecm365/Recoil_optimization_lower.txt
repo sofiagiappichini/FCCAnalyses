@@ -1,0 +1,125 @@
+Class R5-explicit:
+
+Max significance of QQLL = 1.2528772617959851 for cut at Recoil=139.4 
+Max purity of QQLL = 0.01237485892119434 for cut at Recoil=124.1 
+
+Class R5-explicit:
+
+Max significance of QQLL = 1.2528772617959851 for cut at Recoil=136.94 
+Max purity of QQLL = 0.01237485892119434 for cut at Recoil=121.91 
+
+Class R5-explicit:
+
+Max significance of QQLH = 3.1161716268244493 for cut at Recoil=217.1 
+Max purity of QQLH = 0.009678819192210529 for cut at Recoil=138.60999999999999 
+
+Class R5-explicit:
+
+Max significance of QQHH = 7.4119094551379305 for cut at Recoil=223.78 
+Max purity of QQHH = 0.03425430083191334 for cut at Recoil=135.26999999999998 
+
+Class R5-explicit:
+
+Max significance of LLLL = 1.335407642467135 for cut at Recoil=233.79999999999998 
+Max purity of LLLL = 0.04282770377948426 for cut at Recoil=85.17 
+
+Class R5-explicit:
+
+Max significance of LLLH = 11.003951523577419 for cut at Recoil=180.35999999999999 
+Max purity of LLLH = 0.5028241343332546 for cut at Recoil=88.50999999999999 
+
+Class R5-explicit:
+
+Max significance of LLHH = 27.556609209545535 for cut at Recoil=198.73 
+Max purity of LLHH = 0.6105953854241837 for cut at Recoil=91.85 
+
+Class R5-tag:
+
+Max significance of QQLL = 1.326740680529213 for cut at Recoil=135.26999999999998 
+Max purity of QQLL = 0.012506512199036467 for cut at Recoil=120.24 
+
+Class R5-tag:
+
+Max significance of QQLH = 3.86770427365529 for cut at Recoil=225.45 
+Max purity of QQLH = 0.010354011349765211 for cut at Recoil=163.66 
+
+Class R5-tag:
+
+Max significance of QQHH = 10.967615010221396 for cut at Recoil=223.78 
+Max purity of QQHH = 0.04278667985658345 for cut at Recoil=188.70999999999998 
+
+Class R5-tag:
+
+Max significance of LLLL = 1.3355035744801602 for cut at Recoil=233.79999999999998 
+Max purity of LLLL = 0.042807310553565105 for cut at Recoil=85.17 
+
+Class R5-tag:
+
+Max significance of LLLH = 9.201279857446258 for cut at Recoil=182.03 
+Max purity of LLLH = 0.3429139052053235 for cut at Recoil=121.91 
+
+Class R5-tag:
+
+Max significance of LLHH = 29.97221951711376 for cut at Recoil=212.09 
+Max purity of LLHH = 0.5217049651688072 for cut at Recoil=156.98 
+
+Class ktN-explicit:
+
+Max significance of QQLL = 2.237851028873094 for cut at Recoil=135.26999999999998 
+Max purity of QQLL = 0.015797460134615037 for cut at Recoil=120.24 
+
+Class ktN-explicit:
+
+Max significance of QQLH = 4.432499553569841 for cut at Recoil=190.38 
+Max purity of QQLH = 0.009742285199976592 for cut at Recoil=123.58 
+
+Class ktN-explicit:
+
+Max significance of QQHH = 8.203550999354263 for cut at Recoil=150.29999999999998 
+Max purity of QQHH = 0.024989650612664917 for cut at Recoil=118.57 
+
+Class ktN-explicit:
+
+Max significance of LLLL = 1.3355035744801602 for cut at Recoil=233.79999999999998 
+Max purity of LLLL = 0.042807310553565105 for cut at Recoil=85.17 
+
+Class ktN-explicit:
+
+Max significance of LLLH = 10.368957133595183 for cut at Recoil=146.95999999999998 
+Max purity of LLLH = 0.5460319350077458 for cut at Recoil=88.50999999999999 
+
+Class ktN-explicit:
+
+Max significance of LLHH = 26.217103726445178 for cut at Recoil=195.39 
+Max purity of LLHH = 0.6056027150140847 for cut at Recoil=115.22999999999999 
+
+Class ktN-tag:
+
+Max significance of QQLL = 2.404251108955647 for cut at Recoil=133.6 
+Max purity of QQLL = 0.016182972782201925 for cut at Recoil=120.24 
+
+Class ktN-tag:
+
+Max significance of QQLH = 6.531540012755509 for cut at Recoil=182.03 
+Max purity of QQLH = 0.01644529617507979 for cut at Recoil=141.95 
+
+Class ktN-tag:
+
+Max significance of QQHH = 13.661434146297303 for cut at Recoil=156.98 
+Max purity of QQHH = 0.047281659762252605 for cut at Recoil=125.25 
+
+Class ktN-tag:
+
+Max significance of LLLL = 0.33568525147588163 for cut at Recoil=136.94 
+Max purity of LLLL = 0.07303041760286605 for cut at Recoil=3.34 
+
+Class ktN-tag:
+
+Max significance of LLLH = 0.9488637157574418 for cut at Recoil=90.17999999999999 
+Max purity of LLLH = 0.18655563571867395 for cut at Recoil=5.01 
+
+Class ktN-tag:
+
+Max significance of LLHH = 18.86690561745421 for cut at Recoil=205.41 
+Max purity of LLHH = 0.3490131158529796 for cut at Recoil=141.95 
+

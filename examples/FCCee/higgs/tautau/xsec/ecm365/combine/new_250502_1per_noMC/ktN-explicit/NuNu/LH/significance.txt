@@ -1,0 +1,288 @@
+
+>>> Random number generator seed is 123456
+>>> Method used is MultiDimFit
+Adding /afs/cern.ch/user/s/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass_bonly extraConstraints=() channelMasks=() ] = 1e-09
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass extraConstraints=() channelMasks=() ] = 1e-09
+RooProdPdf::nuisancePdf[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binVisible_mass[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binVisible_mass_nuis * pdfbins_binVisible_mass ] = 1e-09
+RooProdPdf::pdf_binVisible_mass_bonly[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binVisible_mass_bonly_nuis * pdfbins_binVisible_mass ] = 1e-09
+RooAddPdf::pdf_binVisible_mass_bonly_nuis[ n_exp_binVisible_mass_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_tt_ecm365 * shapeBkg_p8_ee_tt_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Hgg_ecm365 * shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LLH_HQQ_ecm365 * shapeBkg_wzp6_ee_LLH_HQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LLH_Hgg_ecm365 * shapeBkg_wzp6_ee_LLH_Hgg_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_QQH_HQQ_ecm365 * shapeBkg_wzp6_ee_QQH_HQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_Visible_mass_rebinPdf ] = 1e-09/1
+RooAddPdf::pdf_binVisible_mass_nuis[ n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 * shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_ZH_Htautau_ecm365 * shapeSig_wzp6_ee_ZH_Htautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_p8_ee_tt_ecm365 * shapeBkg_p8_ee_tt_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Hgg_ecm365 * shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LLH_HQQ_ecm365 * shapeBkg_wzp6_ee_LLH_HQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LLH_Hgg_ecm365 * shapeBkg_wzp6_ee_LLH_Hgg_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_QQH_HQQ_ecm365 * shapeBkg_wzp6_ee_QQH_HQQ_ecm365_Visible_mass_rebinPdf + n_exp_binVisible_mass_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_Visible_mass_rebinPdf ] = 1e-09/1
+RooProdPdf::pdfbins_binVisible_mass[  ] = 1
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_tautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZQQ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZZ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_tt_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HVV_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_Hgg_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LL_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_HQQ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_HVV_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_nuenueZ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_ZH_Htautau_ecm365_Visible_mass_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+SimpleGaussianConstraint::unc_Z_Pdf[ x=unc_Z mean=unc_Z_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_ecm365_Pdf[ x=unc_p8_ee_WW_ecm365 mean=unc_p8_ee_WW_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_tautau_ecm365_Pdf[ x=unc_p8_ee_WW_tautau_ecm365 mean=unc_p8_ee_WW_tautau_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_tt_ecm365_Pdf[ x=unc_p8_ee_tt_ecm365 mean=unc_p8_ee_tt_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf[ x=unc_wzp6_ee_egamma_eZ_ZLL_ecm365 mean=unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_gaga_LL_60_ecm365_Pdf[ x=unc_wzp6_ee_gaga_LL_60_ecm365 mean=unc_wzp6_ee_gaga_LL_60_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_nuenueZ_ecm365_Pdf[ x=unc_wzp6_ee_nuenueZ_ecm365 mean=unc_wzp6_ee_nuenueZ_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 268089
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_WW_tautau_ecm365[ thetaList=(unc_p8_ee_WW_tautau_ecm365) asymmThetaList=() otherFactorList=() ] = 87038.6
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 5065.48
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 4348.2
+ProcessNormalization::n_exp_binVisible_mass_proc_p8_ee_tt_ecm365[ thetaList=(unc_p8_ee_tt_ecm365) asymmThetaList=() otherFactorList=() ] = 713.778
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_LLH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.166778
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1.34853
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_LLH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.0231165
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1607.3
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_QQH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.156284
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 4.90245
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 82.4035
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 533.011
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 2.1844
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 1733.59
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1539.02
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.334966
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 161.085
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 22.3569
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 3720.65
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 3.44892
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 23.2249
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.248002
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 34.8363
+ProcessNormalization::n_exp_binVisible_mass_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 27851.1
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+ModelConfig_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+ModelConfig_bonly_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+nuisances:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass extraConstraints=() channelMasks=() ] = 1e-09
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel Visible_mass=pdf_binVisible_mass extraConstraints=() channelMasks=() ] = 1e-09
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 0 
+CMS_th1x = 74.5 
+r_VBF = 1 
+r_ZH = 1 
+unc_Z = 0 
+unc_Z_In = 0 (constant)
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_WW_ecm365 = 0 
+unc_p8_ee_WW_ecm365_In = 0 (constant)
+unc_p8_ee_WW_tautau_ecm365 = 0 
+unc_p8_ee_WW_tautau_ecm365_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+unc_p8_ee_tt_ecm365 = 0 
+unc_p8_ee_tt_ecm365_In = 0 (constant)
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = 0 
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In = 0 (constant)
+unc_wzp6_ee_gaga_LL_60_ecm365 = 0 
+unc_wzp6_ee_gaga_LL_60_ecm365_In = 0 (constant)
+unc_wzp6_ee_nuenueZ_ecm365 = 0 
+unc_wzp6_ee_nuenueZ_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binVisible_mass_obsOnly: in 75 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5      Visible_mass     0.7428197
+   1               1.5      Visible_mass   590.0082397
+   2               2.5      Visible_mass  1605.2117920
+   3               3.5      Visible_mass  2311.1362305
+   4               4.5      Visible_mass  2837.2656250
+   5               5.5      Visible_mass  3404.8815918
+   6               6.5      Visible_mass  3934.2438965
+   7               7.5      Visible_mass  4438.4223633
+   8               8.5      Visible_mass  4812.6845703
+   9               9.5      Visible_mass  5181.3481445
+  10              10.5      Visible_mass  5414.3750000
+  11              11.5      Visible_mass  5780.1748047
+  12              12.5      Visible_mass  5973.1440430
+  13              13.5      Visible_mass  6206.4638672
+  14              14.5      Visible_mass  6358.4418945
+  15              15.5      Visible_mass  6504.1689453
+  16              16.5      Visible_mass  6514.9174805
+  17              17.5      Visible_mass  6646.6997070
+  18              18.5      Visible_mass  6720.7768555
+  19              19.5      Visible_mass  6842.4497070
+  20              20.5      Visible_mass  6709.3828125
+  21              21.5      Visible_mass  6745.6777344
+  22              22.5      Visible_mass  6802.4096680
+  23              23.5      Visible_mass  6739.1831055
+  24              24.5      Visible_mass  6768.8037109
+  25              25.5      Visible_mass  6850.3837891
+  26              26.5      Visible_mass  6902.6953125
+  27              27.5      Visible_mass  6968.8945312
+  28              28.5      Visible_mass  6905.1879883
+  29              29.5      Visible_mass  7145.9902344
+  30              30.5      Visible_mass  7124.1020508
+  31              31.5      Visible_mass  7088.1875000
+  32              32.5      Visible_mass  7256.4028320
+  33              33.5      Visible_mass  7329.4321289
+  34              34.5      Visible_mass  7555.7456055
+  35              35.5      Visible_mass  7377.9418945
+  36              36.5      Visible_mass  7376.1118164
+  37              37.5      Visible_mass  7601.8076172
+  38              38.5      Visible_mass  7603.8115234
+  39              39.5      Visible_mass  7678.6459961
+  40              40.5      Visible_mass  7594.8168945
+  41              41.5      Visible_mass  7644.4663086
+  42              42.5      Visible_mass  7737.9746094
+  43              43.5      Visible_mass  7741.9599609
+  44              44.5      Visible_mass  7712.4711914
+  45              45.5      Visible_mass  7818.3256836
+  46              46.5      Visible_mass  7698.6337891
+  47              47.5      Visible_mass  7746.0317383
+  48              48.5      Visible_mass  7577.2084961
+  49              49.5      Visible_mass  7559.6894531
+  50              50.5      Visible_mass  7464.1845703
+  51              51.5      Visible_mass  7371.0781250
+  52              52.5      Visible_mass  7168.8496094
+  53              53.5      Visible_mass  6999.6303711
+  54              54.5      Visible_mass  6866.0815430
+  55              55.5      Visible_mass  6660.3403320
+  56              56.5      Visible_mass  6362.8227539
+  57              57.5      Visible_mass  6084.9575195
+  58              58.5      Visible_mass  5795.4858398
+  59              59.5      Visible_mass  5393.5463867
+  60              60.5      Visible_mass  5084.1821289
+  61              61.5      Visible_mass  4626.3203125
+  62              62.5      Visible_mass  4180.8627930
+  63              63.5      Visible_mass  3504.3937988
+  64              64.5      Visible_mass  2915.1254883
+  65              65.5      Visible_mass  2233.9440918
+  66              66.5      Visible_mass  1474.5909424
+  67              67.5      Visible_mass   747.1245728
+  68              68.5      Visible_mass   199.9086609
+  69              69.5      Visible_mass     3.2712624
+  70              70.5      Visible_mass     0.0004026
+  71              71.5      Visible_mass     0.0004026
+  72              72.5      Visible_mass     0.0004026
+  73              73.5      Visible_mass     0.0004026
+  74              74.5      Visible_mass     0.0004026
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_Z) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_tautau_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_tt_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_nuenueZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_gaga_LL_60_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 5500 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 6.23726207493e-12 Nfcn = 45
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0 p10 = 0
+----------> Iteration 1
+            FVAL = 0 Edm = 6.23726207493e-12 Nfcn = 48
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0 p10 = 0
+----------> Iteration 2
+            FVAL = 0 Edm = 6.23726207493e-12 Nfcn = 48
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0 p10 = 0
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = 0
+Edm   = 6.237262074927341e-12
+Nfcn  = 48
+r_VBF	  = 1	 +/-  0.262431	(limited)
+r_ZH	  = 1	 +/-  0.293337	(limited)
+unc_Z	  = 0	 +/-  0.70372
+unc__H	  = 0	 +/-  1.00081
+unc_p8_ee_WW_ecm365	  = 0	 +/-  0.22446
+unc_p8_ee_WW_tautau_ecm365	  = 0	 +/-  0.581795
+unc_p8_ee_ZZ_ecm365	  = 0	 +/-  0.995076
+unc_p8_ee_tt_ecm365	  = 0	 +/-  1.00016
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = 0	 +/-  1.00049
+unc_wzp6_ee_gaga_LL_60_ecm365	  = 0	 +/-  1.00035
+unc_wzp6_ee_nuenueZ_ecm365	  = 0	 +/-  0.9959
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.081233 seconds (0.060000 CPU time)
+FINAL NLL - NLL0 VALUE = 0
+
+
+ --- MultiDimFit ---
+best fit parameter values: 
+    r_ZH :    +1.000
+   r_VBF :    +1.000
+Done in 0.00 min (cpu), 0.00 min (real)
+31 log messages saved to combine_logger.out

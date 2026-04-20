@@ -1,0 +1,25 @@
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+ & ktN-explicit & ktN-tag \\
+\hline
+QQLL & -7.58, +7.67 &  -3.93, +3.98 &  \\ \hline 
+QQLH & -1.86, +1.86 &  -1.26, +1.27 &  \\ \hline 
+QQHH & -1.39, +1.40 &  -1.08, +1.09 &  \\ \hline 
+QQ &-1.03, +1.04 &  -0.69, +0.69 &  \\ \hline 
+LLLL & -4.10, +4.18 &  -4.06, +4.17 &  \\ \hline 
+LLLH & -2.25, +2.26 &  -2.22, +2.26 &  \\ \hline 
+LLHH & -2.13, +2.16 &  -2.25, +2.23 &  \\ \hline 
+LL &-1.42, +1.43 &  -1.48, +1.46 &  \\ \hline 
+NuNuLL & -36.43, +36.39 &  -35.57, +35.58 &  \\ \hline 
+NuNuLH & -8.39, +8.42 &  -8.80, +8.84 &  \\ \hline 
+NuNuHH & -6.36, +6.41 &  -6.77, +6.83 &  \\ \hline 
+NuNu &-4.43, +4.50 &  -4.60, +4.65 &  \\ \hline 
+combined & -0.82, +0.81 &  -0.61, +0.62 &  \\ \hline 
+
+\hline
+\end{tabular}
+\caption{Fit Results}
+\end{table}

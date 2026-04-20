@@ -1,0 +1,16 @@
+## Shape input card
+imax 1 number of channels
+jmax * number of background
+kmax * number of nuisance parameters
+----------------------------------------------------------------------------------------------------
+bin         GenPhi_decay
+observation -1
+shapes  *           * /ceph/sgiappic/HiggsCP/CPGen/final_pinu/GenPhi_decay_EFT_selGen.root    $PROCESS_$CHANNEL
+shapes  data_obs           * /ceph/sgiappic/HiggsCP/CPGen/final_pinu/GenPhi_decay_EFT_selGen.root     sm_$CHANNEL
+bin              GenPhi_decay                  GenPhi_decay                        GenPhi_decay                       GenPhi_decay    
+process          sm                            sm_lin_quad_cehim                   quad_cehim               p8_ee_ZZ_ecm240           
+process          0                             -2                                   -3                             1
+rate             -1                            -1                                  -1             -1
+----------------------------------------------------------------------------------------------------
+lumi  lnN        1.02                          1.02                          1.02                          1.02
+----------------------------------------------------------------------------------------------------

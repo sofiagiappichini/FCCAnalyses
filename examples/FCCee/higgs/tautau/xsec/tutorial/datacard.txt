@@ -1,0 +1,19 @@
+imax    1 number of bins
+jmax    * number of processes minus 1
+kmax    * number of nuisance parameters
+--------------------------------------------------------------------------------
+shapes wzp6_ee_eeH_Htautau_ecm365 * /ceph/sgiappic/HiggsCP/ecm365/R5-explicit/final_280125/LL/HH/wzp6_ee_ZH_Htautau_ecm365_selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100_histo.root $CHANNEL
+shapes p8_ee_ZZ_ecm365 * /ceph/sgiappic/HiggsCP/ecm365/R5-explicit/final_280125/LL/HH/p8_ee_ZZ_ecm365_selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100_histo.root $CHANNEL
+shapes data_obs * /ceph/sgiappic/HiggsCP/ecm365/R5-explicit/final_280125/LL/HH/wzp6_ee_eeH_Htautau_ecm365_selReco_100Coll150_115Rec160_1DR_cos0.25_misscos0.98_70Z100_histo.root $CHANNEL
+--------------------------------------------------------------------------------
+bin                        Recoil
+observation                -1
+--------------------------------------------------------------------------------
+bin                        Recoil                              Recoil                              
+process                    wzp6_ee_eeH_Htautau_ecm365           p8_ee_ZZ_ecm365                     
+process                    0                                   1                                   
+rate                       -1                                  -1                                 
+--------------------------------------------------------------------------------
+unc_p8_ee_ZZ_ecm365      lnN     -                                  1.02                             
+
+* autoMCStats 1 1

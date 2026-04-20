@@ -22,8 +22,9 @@ def get_entries(inpath: str) -> int:
     '''
     nevents = None
     with ROOT.TFile(inpath, 'READ') as infile:
-        tt = infile.Get("events")
-        nevents = tt.GetEntries()
+        if infile.Get("events"):
+            tt = infile.Get("events")
+            nevents = tt.GetEntries()
     return nevents
 
 

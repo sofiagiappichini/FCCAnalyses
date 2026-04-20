@@ -1,0 +1,18 @@
+Max significance of QQLL = 5.1012863760108536 for cut at Tau_DR=3.1 
+Max purity of QQLL = 0.05362003187992754 for cut at Tau_DR=2.6 
+
+Max significance of QQLH = 39.789586500565896 for cut at Tau_DR=3.6 
+Max purity of QQLH = 0.31196200852483996 for cut at Tau_DR=2.6 
+
+Max significance of QQHH = 44.25312835190967 for cut at Tau_DR=3.0 
+Max purity of QQHH = 0.389873442451329 for cut at Tau_DR=2.6 
+
+Max significance of LLLL = 12.493924963899058 for cut at Tau_DR=3.8000000000000003 
+Max purity of LLLL = 0.29143444785652145 for cut at Tau_DR=2.6 
+
+Max significance of LLLH = 70.3511636023943 for cut at Tau_DR=3.8000000000000003 
+Max purity of LLLH = 0.7767017850510403 for cut at Tau_DR=2.6 
+
+Max significance of LLHH = 70.63036175376206 for cut at Tau_DR=4.0 
+Max purity of LLHH = 0.8338696627310381 for cut at Tau_DR=2.5 
+

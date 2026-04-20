@@ -69,6 +69,12 @@ namespace MCParticle{
     ROOT::VecOps::RVec<edm4hep::MCParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> par, ROOT::VecOps::RVec<edm4hep::MCParticleData> in, ROOT::VecOps::RVec<int> ind);
   };
 
+  /// select MCParticles taus coming from Higgs and after FSR
+  struct sel_HTauTau {
+    sel_HTauTau();
+    ROOT::VecOps::RVec<edm4hep::MCParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> par, ROOT::VecOps::RVec<edm4hep::MCParticleData> in, ROOT::VecOps::RVec<int> ind_p, ROOT::VecOps::RVec<int> ind_d);
+  };
+
   /// get MC history tree for a given MCParticle index
   struct get_tree{
     get_tree(int arg_index);

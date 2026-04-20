@@ -1,0 +1,1113 @@
+
+>>> Random number generator seed is 123456
+>>> Method used is MultiDimFit
+Adding /work/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,ONE,ZERO,prop_binNuNuHH_bin0,prop_binNuNuHH_bin0_In,prop_binNuNuHH_bin1,prop_binNuNuHH_bin10,prop_binNuNuHH_bin10_In,prop_binNuNuHH_bin11,prop_binNuNuHH_bin11_In,prop_binNuNuHH_bin12,prop_binNuNuHH_bin12_In,prop_binNuNuHH_bin13,prop_binNuNuHH_bin13_In,prop_binNuNuHH_bin14,prop_binNuNuHH_bin14_In,prop_binNuNuHH_bin15,prop_binNuNuHH_bin15_In,prop_binNuNuHH_bin16,prop_binNuNuHH_bin16_In,prop_binNuNuHH_bin17,prop_binNuNuHH_bin17_In,prop_binNuNuHH_bin18,prop_binNuNuHH_bin18_In,prop_binNuNuHH_bin19,prop_binNuNuHH_bin19_In,prop_binNuNuHH_bin1_In,prop_binNuNuHH_bin2,prop_binNuNuHH_bin20,prop_binNuNuHH_bin20_In,prop_binNuNuHH_bin21,prop_binNuNuHH_bin21_In,prop_binNuNuHH_bin22,prop_binNuNuHH_bin22_In,prop_binNuNuHH_bin23,prop_binNuNuHH_bin23_In,prop_binNuNuHH_bin24,prop_binNuNuHH_bin24_In,prop_binNuNuHH_bin25,prop_binNuNuHH_bin25_In,prop_binNuNuHH_bin26,prop_binNuNuHH_bin26_In,prop_binNuNuHH_bin27,prop_binNuNuHH_bin27_In,prop_binNuNuHH_bin28,prop_binNuNuHH_bin28_In,prop_binNuNuHH_bin29,prop_binNuNuHH_bin29_In,prop_binNuNuHH_bin2_In,prop_binNuNuHH_bin3,prop_binNuNuHH_bin30,prop_binNuNuHH_bin30_In,prop_binNuNuHH_bin31,prop_binNuNuHH_bin31_In,prop_binNuNuHH_bin32,prop_binNuNuHH_bin32_In,prop_binNuNuHH_bin33,prop_binNuNuHH_bin33_In,prop_binNuNuHH_bin34,prop_binNuNuHH_bin34_In,prop_binNuNuHH_bin35,prop_binNuNuHH_bin35_In,prop_binNuNuHH_bin36,prop_binNuNuHH_bin36_In,prop_binNuNuHH_bin37,prop_binNuNuHH_bin37_In,prop_binNuNuHH_bin38,prop_binNuNuHH_bin38_In,prop_binNuNuHH_bin39,prop_binNuNuHH_bin39_In,prop_binNuNuHH_bin3_In,prop_binNuNuHH_bin4,prop_binNuNuHH_bin40,prop_binNuNuHH_bin40_In,prop_binNuNuHH_bin41,prop_binNuNuHH_bin41_In,prop_binNuNuHH_bin42,prop_binNuNuHH_bin42_In,prop_binNuNuHH_bin43,prop_binNuNuHH_bin43_In,prop_binNuNuHH_bin44,prop_binNuNuHH_bin44_In,prop_binNuNuHH_bin45,prop_binNuNuHH_bin45_In,prop_binNuNuHH_bin46,prop_binNuNuHH_bin46_In,prop_binNuNuHH_bin47,prop_binNuNuHH_bin47_In,prop_binNuNuHH_bin48,prop_binNuNuHH_bin48_In,prop_binNuNuHH_bin49,prop_binNuNuHH_bin49_In,prop_binNuNuHH_bin4_In,prop_binNuNuHH_bin5,prop_binNuNuHH_bin5_In,prop_binNuNuHH_bin6,prop_binNuNuHH_bin6_In,prop_binNuNuHH_bin7,prop_binNuNuHH_bin7_In,prop_binNuNuHH_bin8,prop_binNuNuHH_bin8_In,prop_binNuNuHH_bin9,prop_binNuNuHH_bin9_In,prop_binNuNuLH_bin0,prop_binNuNuLH_bin0_In,prop_binNuNuLH_bin1,prop_binNuNuLH_bin10,prop_binNuNuLH_bin10_In,prop_binNuNuLH_bin11,prop_binNuNuLH_bin11_In,prop_binNuNuLH_bin12,prop_binNuNuLH_bin12_In,prop_binNuNuLH_bin13,prop_binNuNuLH_bin13_In,prop_binNuNuLH_bin14,prop_binNuNuLH_bin14_In,prop_binNuNuLH_bin15,prop_binNuNuLH_bin15_In,prop_binNuNuLH_bin16,prop_binNuNuLH_bin16_In,prop_binNuNuLH_bin17,prop_binNuNuLH_bin17_In,prop_binNuNuLH_bin18,prop_binNuNuLH_bin18_In,prop_binNuNuLH_bin19,prop_binNuNuLH_bin19_In,prop_binNuNuLH_bin1_In,prop_binNuNuLH_bin2,prop_binNuNuLH_bin20,prop_binNuNuLH_bin20_In,prop_binNuNuLH_bin21,prop_binNuNuLH_bin21_In,prop_binNuNuLH_bin22,prop_binNuNuLH_bin22_In,prop_binNuNuLH_bin23,prop_binNuNuLH_bin23_In,prop_binNuNuLH_bin24,prop_binNuNuLH_bin24_In,prop_binNuNuLH_bin25,prop_binNuNuLH_bin25_In,prop_binNuNuLH_bin26,prop_binNuNuLH_bin26_In,prop_binNuNuLH_bin27,prop_binNuNuLH_bin27_In,prop_binNuNuLH_bin28,prop_binNuNuLH_bin28_In,prop_binNuNuLH_bin29,prop_binNuNuLH_bin29_In,prop_binNuNuLH_bin2_In,prop_binNuNuLH_bin3,prop_binNuNuLH_bin30,prop_binNuNuLH_bin30_In,prop_binNuNuLH_bin31,prop_binNuNuLH_bin31_In,prop_binNuNuLH_bin32,prop_binNuNuLH_bin32_In,prop_binNuNuLH_bin33,prop_binNuNuLH_bin33_In,prop_binNuNuLH_bin34,prop_binNuNuLH_bin34_In,prop_binNuNuLH_bin35,prop_binNuNuLH_bin35_In,prop_binNuNuLH_bin36,prop_binNuNuLH_bin36_In,prop_binNuNuLH_bin37,prop_binNuNuLH_bin37_In,prop_binNuNuLH_bin38,prop_binNuNuLH_bin38_In,prop_binNuNuLH_bin39,prop_binNuNuLH_bin39_In,prop_binNuNuLH_bin3_In,prop_binNuNuLH_bin4,prop_binNuNuLH_bin40,prop_binNuNuLH_bin40_In,prop_binNuNuLH_bin41,prop_binNuNuLH_bin41_In,prop_binNuNuLH_bin42,prop_binNuNuLH_bin42_In,prop_binNuNuLH_bin43,prop_binNuNuLH_bin43_In,prop_binNuNuLH_bin44,prop_binNuNuLH_bin44_In,prop_binNuNuLH_bin45,prop_binNuNuLH_bin45_In,prop_binNuNuLH_bin46,prop_binNuNuLH_bin46_In,prop_binNuNuLH_bin47,prop_binNuNuLH_bin47_In,prop_binNuNuLH_bin48,prop_binNuNuLH_bin48_In,prop_binNuNuLH_bin49_p8_ee_WW_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365_In,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_In,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_In,prop_binNuNuLH_bin4_In,prop_binNuNuLH_bin5,prop_binNuNuLH_bin5_In,prop_binNuNuLH_bin6,prop_binNuNuLH_bin6_In,prop_binNuNuLH_bin7,prop_binNuNuLH_bin7_In,prop_binNuNuLH_bin8,prop_binNuNuLH_bin8_In,prop_binNuNuLH_bin9,prop_binNuNuLH_bin9_In,prop_binNuNuLL_bin0,prop_binNuNuLL_bin0_In,prop_binNuNuLL_bin1,prop_binNuNuLL_bin10,prop_binNuNuLL_bin10_In,prop_binNuNuLL_bin11,prop_binNuNuLL_bin11_In,prop_binNuNuLL_bin12,prop_binNuNuLL_bin12_In,prop_binNuNuLL_bin13,prop_binNuNuLL_bin13_In,prop_binNuNuLL_bin14,prop_binNuNuLL_bin14_In,prop_binNuNuLL_bin15,prop_binNuNuLL_bin15_In,prop_binNuNuLL_bin16,prop_binNuNuLL_bin16_In,prop_binNuNuLL_bin17,prop_binNuNuLL_bin17_In,prop_binNuNuLL_bin18,prop_binNuNuLL_bin18_In,prop_binNuNuLL_bin19,prop_binNuNuLL_bin19_In,prop_binNuNuLL_bin1_In,prop_binNuNuLL_bin2,prop_binNuNuLL_bin20,prop_binNuNuLL_bin20_In,prop_binNuNuLL_bin21,prop_binNuNuLL_bin21_In,prop_binNuNuLL_bin22,prop_binNuNuLL_bin22_In,prop_binNuNuLL_bin23,prop_binNuNuLL_bin23_In,prop_binNuNuLL_bin24,prop_binNuNuLL_bin24_In,prop_binNuNuLL_bin25,prop_binNuNuLL_bin25_In,prop_binNuNuLL_bin26,prop_binNuNuLL_bin26_In,prop_binNuNuLL_bin27,prop_binNuNuLL_bin27_In,prop_binNuNuLL_bin28,prop_binNuNuLL_bin28_In,prop_binNuNuLL_bin29,prop_binNuNuLL_bin29_In,prop_binNuNuLL_bin2_In,prop_binNuNuLL_bin3,prop_binNuNuLL_bin30,prop_binNuNuLL_bin30_In,prop_binNuNuLL_bin31,prop_binNuNuLL_bin31_In,prop_binNuNuLL_bin32,prop_binNuNuLL_bin32_In,prop_binNuNuLL_bin33,prop_binNuNuLL_bin33_In,prop_binNuNuLL_bin34,prop_binNuNuLL_bin34_In,prop_binNuNuLL_bin35,prop_binNuNuLL_bin35_In,prop_binNuNuLL_bin36,prop_binNuNuLL_bin36_In,prop_binNuNuLL_bin37,prop_binNuNuLL_bin37_In,prop_binNuNuLL_bin38,prop_binNuNuLL_bin38_In,prop_binNuNuLL_bin39,prop_binNuNuLL_bin39_In,prop_binNuNuLL_bin3_In,prop_binNuNuLL_bin4,prop_binNuNuLL_bin40,prop_binNuNuLL_bin40_In,prop_binNuNuLL_bin41,prop_binNuNuLL_bin41_In,prop_binNuNuLL_bin42,prop_binNuNuLL_bin42_In,prop_binNuNuLL_bin43,prop_binNuNuLL_bin43_In,prop_binNuNuLL_bin44,prop_binNuNuLL_bin44_In,prop_binNuNuLL_bin45,prop_binNuNuLL_bin45_In,prop_binNuNuLL_bin46,prop_binNuNuLL_bin46_In,prop_binNuNuLL_bin47,prop_binNuNuLL_bin47_In,prop_binNuNuLL_bin48,prop_binNuNuLL_bin48_In,prop_binNuNuLL_bin4_In,prop_binNuNuLL_bin5,prop_binNuNuLL_bin5_In,prop_binNuNuLL_bin6,prop_binNuNuLL_bin6_In,prop_binNuNuLL_bin7,prop_binNuNuLL_bin7_In,prop_binNuNuLL_bin8,prop_binNuNuLL_bin8_In,prop_binNuNuLL_bin9,prop_binNuNuLL_bin9_In,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel NuNuLL=pdf_binNuNuLL_bonly NuNuLH=pdf_binNuNuLH_bonly NuNuHH=pdf_binNuNuHH_bonly extraConstraints=() channelMasks=() ] = 4e-09
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel NuNuLL=pdf_binNuNuLL NuNuLH=pdf_binNuNuLH NuNuHH=pdf_binNuNuHH extraConstraints=() channelMasks=() ] = 4.66667e-09
+RooProdPdf::nuisancePdf[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binNuNuHH[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuHH_nuis * pdfbins_binNuNuHH ] = 108.307
+RooProdPdf::pdf_binNuNuHH_bonly[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuHH_bonly_nuis * pdfbins_binNuNuHH ] = 106.63
+RooRealSumPdf::pdf_binNuNuHH_bonly_nuis[ ONE * prop_binNuNuHH_bonly ] = 106.63
+RooRealSumPdf::pdf_binNuNuHH_nuis[ ONE * prop_binNuNuHH ] = 108.307
+RooProdPdf::pdf_binNuNuLH[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuLH_nuis * pdfbins_binNuNuLH ] = 1.15501
+RooProdPdf::pdf_binNuNuLH_bonly[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuLH_bonly_nuis * pdfbins_binNuNuLH ] = 1.08964
+RooRealSumPdf::pdf_binNuNuLH_bonly_nuis[ ONE * prop_binNuNuLH_bonly ] = 2.96194
+RooRealSumPdf::pdf_binNuNuLH_nuis[ ONE * prop_binNuNuLH ] = 3.13965
+RooProdPdf::pdf_binNuNuLL[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuLL_nuis * pdfbins_binNuNuLL ] = 1.4e-08
+RooProdPdf::pdf_binNuNuLL_bonly[ unc_Z_Pdf * unc__H_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * pdf_binNuNuLL_bonly_nuis * pdfbins_binNuNuLL ] = 1.2e-08
+RooRealSumPdf::pdf_binNuNuLL_bonly_nuis[ ONE * prop_binNuNuLL_bonly ] = 1.2e-08
+RooRealSumPdf::pdf_binNuNuLL_nuis[ ONE * prop_binNuNuLL ] = 1.4e-08
+RooProdPdf::pdfbins_binNuNuHH[ prop_binNuNuHH_bin0_Pdf * prop_binNuNuHH_bin1_Pdf * prop_binNuNuHH_bin2_Pdf * prop_binNuNuHH_bin3_Pdf * prop_binNuNuHH_bin4_Pdf * prop_binNuNuHH_bin5_Pdf * prop_binNuNuHH_bin6_Pdf * prop_binNuNuHH_bin7_Pdf * prop_binNuNuHH_bin8_Pdf * prop_binNuNuHH_bin9_Pdf * prop_binNuNuHH_bin10_Pdf * prop_binNuNuHH_bin11_Pdf * prop_binNuNuHH_bin12_Pdf * prop_binNuNuHH_bin13_Pdf * prop_binNuNuHH_bin14_Pdf * prop_binNuNuHH_bin15_Pdf * prop_binNuNuHH_bin16_Pdf * prop_binNuNuHH_bin17_Pdf * prop_binNuNuHH_bin18_Pdf * prop_binNuNuHH_bin19_Pdf * prop_binNuNuHH_bin20_Pdf * prop_binNuNuHH_bin21_Pdf * prop_binNuNuHH_bin22_Pdf * prop_binNuNuHH_bin23_Pdf * prop_binNuNuHH_bin24_Pdf * prop_binNuNuHH_bin25_Pdf * prop_binNuNuHH_bin26_Pdf * prop_binNuNuHH_bin27_Pdf * prop_binNuNuHH_bin28_Pdf * prop_binNuNuHH_bin29_Pdf * prop_binNuNuHH_bin30_Pdf * prop_binNuNuHH_bin31_Pdf * prop_binNuNuHH_bin32_Pdf * prop_binNuNuHH_bin33_Pdf * prop_binNuNuHH_bin34_Pdf * prop_binNuNuHH_bin35_Pdf * prop_binNuNuHH_bin36_Pdf * prop_binNuNuHH_bin37_Pdf * prop_binNuNuHH_bin38_Pdf * prop_binNuNuHH_bin39_Pdf * prop_binNuNuHH_bin40_Pdf * prop_binNuNuHH_bin41_Pdf * prop_binNuNuHH_bin42_Pdf * prop_binNuNuHH_bin43_Pdf * prop_binNuNuHH_bin44_Pdf * prop_binNuNuHH_bin45_Pdf * prop_binNuNuHH_bin46_Pdf * prop_binNuNuHH_bin47_Pdf * prop_binNuNuHH_bin48_Pdf * prop_binNuNuHH_bin49_Pdf ] = 1
+RooProdPdf::pdfbins_binNuNuLH[ prop_binNuNuLH_bin0_Pdf * prop_binNuNuLH_bin1_Pdf * prop_binNuNuLH_bin2_Pdf * prop_binNuNuLH_bin3_Pdf * prop_binNuNuLH_bin4_Pdf * prop_binNuNuLH_bin5_Pdf * prop_binNuNuLH_bin6_Pdf * prop_binNuNuLH_bin7_Pdf * prop_binNuNuLH_bin8_Pdf * prop_binNuNuLH_bin9_Pdf * prop_binNuNuLH_bin10_Pdf * prop_binNuNuLH_bin11_Pdf * prop_binNuNuLH_bin12_Pdf * prop_binNuNuLH_bin13_Pdf * prop_binNuNuLH_bin14_Pdf * prop_binNuNuLH_bin15_Pdf * prop_binNuNuLH_bin16_Pdf * prop_binNuNuLH_bin17_Pdf * prop_binNuNuLH_bin18_Pdf * prop_binNuNuLH_bin19_Pdf * prop_binNuNuLH_bin20_Pdf * prop_binNuNuLH_bin21_Pdf * prop_binNuNuLH_bin22_Pdf * prop_binNuNuLH_bin23_Pdf * prop_binNuNuLH_bin24_Pdf * prop_binNuNuLH_bin25_Pdf * prop_binNuNuLH_bin26_Pdf * prop_binNuNuLH_bin27_Pdf * prop_binNuNuLH_bin28_Pdf * prop_binNuNuLH_bin29_Pdf * prop_binNuNuLH_bin30_Pdf * prop_binNuNuLH_bin31_Pdf * prop_binNuNuLH_bin32_Pdf * prop_binNuNuLH_bin33_Pdf * prop_binNuNuLH_bin34_Pdf * prop_binNuNuLH_bin35_Pdf * prop_binNuNuLH_bin36_Pdf * prop_binNuNuLH_bin37_Pdf * prop_binNuNuLH_bin38_Pdf * prop_binNuNuLH_bin39_Pdf * prop_binNuNuLH_bin40_Pdf * prop_binNuNuLH_bin41_Pdf * prop_binNuNuLH_bin42_Pdf * prop_binNuNuLH_bin43_Pdf * prop_binNuNuLH_bin44_Pdf * prop_binNuNuLH_bin45_Pdf * prop_binNuNuLH_bin46_Pdf * prop_binNuNuLH_bin47_Pdf * prop_binNuNuLH_bin48_Pdf * prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_Pdf * prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_Pdf * prop_binNuNuLH_bin49_p8_ee_WW_ecm365_Pdf ] = 0.367879
+RooProdPdf::pdfbins_binNuNuLL[ prop_binNuNuLL_bin0_Pdf * prop_binNuNuLL_bin1_Pdf * prop_binNuNuLL_bin2_Pdf * prop_binNuNuLL_bin3_Pdf * prop_binNuNuLL_bin4_Pdf * prop_binNuNuLL_bin5_Pdf * prop_binNuNuLL_bin6_Pdf * prop_binNuNuLL_bin7_Pdf * prop_binNuNuLL_bin8_Pdf * prop_binNuNuLL_bin9_Pdf * prop_binNuNuLL_bin10_Pdf * prop_binNuNuLL_bin11_Pdf * prop_binNuNuLL_bin12_Pdf * prop_binNuNuLL_bin13_Pdf * prop_binNuNuLL_bin14_Pdf * prop_binNuNuLL_bin15_Pdf * prop_binNuNuLL_bin16_Pdf * prop_binNuNuLL_bin17_Pdf * prop_binNuNuLL_bin18_Pdf * prop_binNuNuLL_bin19_Pdf * prop_binNuNuLL_bin20_Pdf * prop_binNuNuLL_bin21_Pdf * prop_binNuNuLL_bin22_Pdf * prop_binNuNuLL_bin23_Pdf * prop_binNuNuLL_bin24_Pdf * prop_binNuNuLL_bin25_Pdf * prop_binNuNuLL_bin26_Pdf * prop_binNuNuLL_bin27_Pdf * prop_binNuNuLL_bin28_Pdf * prop_binNuNuLL_bin29_Pdf * prop_binNuNuLL_bin30_Pdf * prop_binNuNuLL_bin31_Pdf * prop_binNuNuLL_bin32_Pdf * prop_binNuNuLL_bin33_Pdf * prop_binNuNuLL_bin34_Pdf * prop_binNuNuLL_bin35_Pdf * prop_binNuNuLL_bin36_Pdf * prop_binNuNuLL_bin37_Pdf * prop_binNuNuLL_bin38_Pdf * prop_binNuNuLL_bin39_Pdf * prop_binNuNuLL_bin40_Pdf * prop_binNuNuLL_bin41_Pdf * prop_binNuNuLL_bin42_Pdf * prop_binNuNuLL_bin43_Pdf * prop_binNuNuLL_bin44_Pdf * prop_binNuNuLL_bin45_Pdf * prop_binNuNuLL_bin46_Pdf * prop_binNuNuLL_bin47_Pdf * prop_binNuNuLL_bin48_Pdf ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin0_Pdf[ x=prop_binNuNuHH_bin0 mean=prop_binNuNuHH_bin0_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin10_Pdf[ x=prop_binNuNuHH_bin10 mean=prop_binNuNuHH_bin10_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin11_Pdf[ x=prop_binNuNuHH_bin11 mean=prop_binNuNuHH_bin11_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin12_Pdf[ x=prop_binNuNuHH_bin12 mean=prop_binNuNuHH_bin12_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin13_Pdf[ x=prop_binNuNuHH_bin13 mean=prop_binNuNuHH_bin13_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin14_Pdf[ x=prop_binNuNuHH_bin14 mean=prop_binNuNuHH_bin14_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin15_Pdf[ x=prop_binNuNuHH_bin15 mean=prop_binNuNuHH_bin15_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin16_Pdf[ x=prop_binNuNuHH_bin16 mean=prop_binNuNuHH_bin16_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin17_Pdf[ x=prop_binNuNuHH_bin17 mean=prop_binNuNuHH_bin17_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin18_Pdf[ x=prop_binNuNuHH_bin18 mean=prop_binNuNuHH_bin18_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin19_Pdf[ x=prop_binNuNuHH_bin19 mean=prop_binNuNuHH_bin19_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin1_Pdf[ x=prop_binNuNuHH_bin1 mean=prop_binNuNuHH_bin1_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin20_Pdf[ x=prop_binNuNuHH_bin20 mean=prop_binNuNuHH_bin20_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin21_Pdf[ x=prop_binNuNuHH_bin21 mean=prop_binNuNuHH_bin21_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin22_Pdf[ x=prop_binNuNuHH_bin22 mean=prop_binNuNuHH_bin22_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin23_Pdf[ x=prop_binNuNuHH_bin23 mean=prop_binNuNuHH_bin23_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin24_Pdf[ x=prop_binNuNuHH_bin24 mean=prop_binNuNuHH_bin24_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin25_Pdf[ x=prop_binNuNuHH_bin25 mean=prop_binNuNuHH_bin25_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin26_Pdf[ x=prop_binNuNuHH_bin26 mean=prop_binNuNuHH_bin26_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin27_Pdf[ x=prop_binNuNuHH_bin27 mean=prop_binNuNuHH_bin27_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin28_Pdf[ x=prop_binNuNuHH_bin28 mean=prop_binNuNuHH_bin28_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin29_Pdf[ x=prop_binNuNuHH_bin29 mean=prop_binNuNuHH_bin29_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin2_Pdf[ x=prop_binNuNuHH_bin2 mean=prop_binNuNuHH_bin2_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin30_Pdf[ x=prop_binNuNuHH_bin30 mean=prop_binNuNuHH_bin30_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin31_Pdf[ x=prop_binNuNuHH_bin31 mean=prop_binNuNuHH_bin31_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin32_Pdf[ x=prop_binNuNuHH_bin32 mean=prop_binNuNuHH_bin32_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin33_Pdf[ x=prop_binNuNuHH_bin33 mean=prop_binNuNuHH_bin33_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin34_Pdf[ x=prop_binNuNuHH_bin34 mean=prop_binNuNuHH_bin34_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin35_Pdf[ x=prop_binNuNuHH_bin35 mean=prop_binNuNuHH_bin35_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin36_Pdf[ x=prop_binNuNuHH_bin36 mean=prop_binNuNuHH_bin36_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin37_Pdf[ x=prop_binNuNuHH_bin37 mean=prop_binNuNuHH_bin37_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin38_Pdf[ x=prop_binNuNuHH_bin38 mean=prop_binNuNuHH_bin38_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin39_Pdf[ x=prop_binNuNuHH_bin39 mean=prop_binNuNuHH_bin39_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin3_Pdf[ x=prop_binNuNuHH_bin3 mean=prop_binNuNuHH_bin3_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin40_Pdf[ x=prop_binNuNuHH_bin40 mean=prop_binNuNuHH_bin40_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin41_Pdf[ x=prop_binNuNuHH_bin41 mean=prop_binNuNuHH_bin41_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin42_Pdf[ x=prop_binNuNuHH_bin42 mean=prop_binNuNuHH_bin42_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin43_Pdf[ x=prop_binNuNuHH_bin43 mean=prop_binNuNuHH_bin43_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin44_Pdf[ x=prop_binNuNuHH_bin44 mean=prop_binNuNuHH_bin44_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin45_Pdf[ x=prop_binNuNuHH_bin45 mean=prop_binNuNuHH_bin45_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin46_Pdf[ x=prop_binNuNuHH_bin46 mean=prop_binNuNuHH_bin46_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin47_Pdf[ x=prop_binNuNuHH_bin47 mean=prop_binNuNuHH_bin47_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin48_Pdf[ x=prop_binNuNuHH_bin48 mean=prop_binNuNuHH_bin48_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin49_Pdf[ x=prop_binNuNuHH_bin49 mean=prop_binNuNuHH_bin49_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin4_Pdf[ x=prop_binNuNuHH_bin4 mean=prop_binNuNuHH_bin4_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin5_Pdf[ x=prop_binNuNuHH_bin5 mean=prop_binNuNuHH_bin5_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin6_Pdf[ x=prop_binNuNuHH_bin6 mean=prop_binNuNuHH_bin6_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin7_Pdf[ x=prop_binNuNuHH_bin7 mean=prop_binNuNuHH_bin7_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin8_Pdf[ x=prop_binNuNuHH_bin8 mean=prop_binNuNuHH_bin8_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuHH_bin9_Pdf[ x=prop_binNuNuHH_bin9 mean=prop_binNuNuHH_bin9_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin0_Pdf[ x=prop_binNuNuLH_bin0 mean=prop_binNuNuLH_bin0_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin10_Pdf[ x=prop_binNuNuLH_bin10 mean=prop_binNuNuLH_bin10_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin11_Pdf[ x=prop_binNuNuLH_bin11 mean=prop_binNuNuLH_bin11_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin12_Pdf[ x=prop_binNuNuLH_bin12 mean=prop_binNuNuLH_bin12_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin13_Pdf[ x=prop_binNuNuLH_bin13 mean=prop_binNuNuLH_bin13_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin14_Pdf[ x=prop_binNuNuLH_bin14 mean=prop_binNuNuLH_bin14_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin15_Pdf[ x=prop_binNuNuLH_bin15 mean=prop_binNuNuLH_bin15_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin16_Pdf[ x=prop_binNuNuLH_bin16 mean=prop_binNuNuLH_bin16_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin17_Pdf[ x=prop_binNuNuLH_bin17 mean=prop_binNuNuLH_bin17_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin18_Pdf[ x=prop_binNuNuLH_bin18 mean=prop_binNuNuLH_bin18_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin19_Pdf[ x=prop_binNuNuLH_bin19 mean=prop_binNuNuLH_bin19_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin1_Pdf[ x=prop_binNuNuLH_bin1 mean=prop_binNuNuLH_bin1_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin20_Pdf[ x=prop_binNuNuLH_bin20 mean=prop_binNuNuLH_bin20_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin21_Pdf[ x=prop_binNuNuLH_bin21 mean=prop_binNuNuLH_bin21_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin22_Pdf[ x=prop_binNuNuLH_bin22 mean=prop_binNuNuLH_bin22_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin23_Pdf[ x=prop_binNuNuLH_bin23 mean=prop_binNuNuLH_bin23_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin24_Pdf[ x=prop_binNuNuLH_bin24 mean=prop_binNuNuLH_bin24_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin25_Pdf[ x=prop_binNuNuLH_bin25 mean=prop_binNuNuLH_bin25_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin26_Pdf[ x=prop_binNuNuLH_bin26 mean=prop_binNuNuLH_bin26_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin27_Pdf[ x=prop_binNuNuLH_bin27 mean=prop_binNuNuLH_bin27_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin28_Pdf[ x=prop_binNuNuLH_bin28 mean=prop_binNuNuLH_bin28_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin29_Pdf[ x=prop_binNuNuLH_bin29 mean=prop_binNuNuLH_bin29_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin2_Pdf[ x=prop_binNuNuLH_bin2 mean=prop_binNuNuLH_bin2_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin30_Pdf[ x=prop_binNuNuLH_bin30 mean=prop_binNuNuLH_bin30_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin31_Pdf[ x=prop_binNuNuLH_bin31 mean=prop_binNuNuLH_bin31_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin32_Pdf[ x=prop_binNuNuLH_bin32 mean=prop_binNuNuLH_bin32_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin33_Pdf[ x=prop_binNuNuLH_bin33 mean=prop_binNuNuLH_bin33_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin34_Pdf[ x=prop_binNuNuLH_bin34 mean=prop_binNuNuLH_bin34_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin35_Pdf[ x=prop_binNuNuLH_bin35 mean=prop_binNuNuLH_bin35_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin36_Pdf[ x=prop_binNuNuLH_bin36 mean=prop_binNuNuLH_bin36_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin37_Pdf[ x=prop_binNuNuLH_bin37 mean=prop_binNuNuLH_bin37_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin38_Pdf[ x=prop_binNuNuLH_bin38 mean=prop_binNuNuLH_bin38_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin39_Pdf[ x=prop_binNuNuLH_bin39 mean=prop_binNuNuLH_bin39_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin3_Pdf[ x=prop_binNuNuLH_bin3 mean=prop_binNuNuLH_bin3_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin40_Pdf[ x=prop_binNuNuLH_bin40 mean=prop_binNuNuLH_bin40_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin41_Pdf[ x=prop_binNuNuLH_bin41 mean=prop_binNuNuLH_bin41_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin42_Pdf[ x=prop_binNuNuLH_bin42 mean=prop_binNuNuLH_bin42_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin43_Pdf[ x=prop_binNuNuLH_bin43 mean=prop_binNuNuLH_bin43_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin44_Pdf[ x=prop_binNuNuLH_bin44 mean=prop_binNuNuLH_bin44_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin45_Pdf[ x=prop_binNuNuLH_bin45 mean=prop_binNuNuLH_bin45_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin46_Pdf[ x=prop_binNuNuLH_bin46 mean=prop_binNuNuLH_bin46_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin47_Pdf[ x=prop_binNuNuLH_bin47 mean=prop_binNuNuLH_bin47_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin48_Pdf[ x=prop_binNuNuLH_bin48 mean=prop_binNuNuLH_bin48_In sigma=1 ] = 1
+RooPoisson::prop_binNuNuLH_bin49_p8_ee_WW_ecm365_Pdf[ x=prop_binNuNuLH_bin49_p8_ee_WW_ecm365_In mean=prop_binNuNuLH_bin49_p8_ee_WW_ecm365 ] = 0.367879
+SimpleGaussianConstraint::prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_Pdf[ x=prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365 mean=prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_Pdf[ x=prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365 mean=prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin4_Pdf[ x=prop_binNuNuLH_bin4 mean=prop_binNuNuLH_bin4_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin5_Pdf[ x=prop_binNuNuLH_bin5 mean=prop_binNuNuLH_bin5_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin6_Pdf[ x=prop_binNuNuLH_bin6 mean=prop_binNuNuLH_bin6_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin7_Pdf[ x=prop_binNuNuLH_bin7 mean=prop_binNuNuLH_bin7_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin8_Pdf[ x=prop_binNuNuLH_bin8 mean=prop_binNuNuLH_bin8_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLH_bin9_Pdf[ x=prop_binNuNuLH_bin9 mean=prop_binNuNuLH_bin9_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin0_Pdf[ x=prop_binNuNuLL_bin0 mean=prop_binNuNuLL_bin0_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin10_Pdf[ x=prop_binNuNuLL_bin10 mean=prop_binNuNuLL_bin10_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin11_Pdf[ x=prop_binNuNuLL_bin11 mean=prop_binNuNuLL_bin11_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin12_Pdf[ x=prop_binNuNuLL_bin12 mean=prop_binNuNuLL_bin12_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin13_Pdf[ x=prop_binNuNuLL_bin13 mean=prop_binNuNuLL_bin13_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin14_Pdf[ x=prop_binNuNuLL_bin14 mean=prop_binNuNuLL_bin14_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin15_Pdf[ x=prop_binNuNuLL_bin15 mean=prop_binNuNuLL_bin15_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin16_Pdf[ x=prop_binNuNuLL_bin16 mean=prop_binNuNuLL_bin16_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin17_Pdf[ x=prop_binNuNuLL_bin17 mean=prop_binNuNuLL_bin17_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin18_Pdf[ x=prop_binNuNuLL_bin18 mean=prop_binNuNuLL_bin18_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin19_Pdf[ x=prop_binNuNuLL_bin19 mean=prop_binNuNuLL_bin19_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin1_Pdf[ x=prop_binNuNuLL_bin1 mean=prop_binNuNuLL_bin1_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin20_Pdf[ x=prop_binNuNuLL_bin20 mean=prop_binNuNuLL_bin20_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin21_Pdf[ x=prop_binNuNuLL_bin21 mean=prop_binNuNuLL_bin21_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin22_Pdf[ x=prop_binNuNuLL_bin22 mean=prop_binNuNuLL_bin22_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin23_Pdf[ x=prop_binNuNuLL_bin23 mean=prop_binNuNuLL_bin23_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin24_Pdf[ x=prop_binNuNuLL_bin24 mean=prop_binNuNuLL_bin24_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin25_Pdf[ x=prop_binNuNuLL_bin25 mean=prop_binNuNuLL_bin25_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin26_Pdf[ x=prop_binNuNuLL_bin26 mean=prop_binNuNuLL_bin26_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin27_Pdf[ x=prop_binNuNuLL_bin27 mean=prop_binNuNuLL_bin27_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin28_Pdf[ x=prop_binNuNuLL_bin28 mean=prop_binNuNuLL_bin28_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin29_Pdf[ x=prop_binNuNuLL_bin29 mean=prop_binNuNuLL_bin29_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin2_Pdf[ x=prop_binNuNuLL_bin2 mean=prop_binNuNuLL_bin2_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin30_Pdf[ x=prop_binNuNuLL_bin30 mean=prop_binNuNuLL_bin30_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin31_Pdf[ x=prop_binNuNuLL_bin31 mean=prop_binNuNuLL_bin31_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin32_Pdf[ x=prop_binNuNuLL_bin32 mean=prop_binNuNuLL_bin32_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin33_Pdf[ x=prop_binNuNuLL_bin33 mean=prop_binNuNuLL_bin33_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin34_Pdf[ x=prop_binNuNuLL_bin34 mean=prop_binNuNuLL_bin34_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin35_Pdf[ x=prop_binNuNuLL_bin35 mean=prop_binNuNuLL_bin35_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin36_Pdf[ x=prop_binNuNuLL_bin36 mean=prop_binNuNuLL_bin36_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin37_Pdf[ x=prop_binNuNuLL_bin37 mean=prop_binNuNuLL_bin37_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin38_Pdf[ x=prop_binNuNuLL_bin38 mean=prop_binNuNuLL_bin38_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin39_Pdf[ x=prop_binNuNuLL_bin39 mean=prop_binNuNuLL_bin39_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin3_Pdf[ x=prop_binNuNuLL_bin3 mean=prop_binNuNuLL_bin3_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin40_Pdf[ x=prop_binNuNuLL_bin40 mean=prop_binNuNuLL_bin40_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin41_Pdf[ x=prop_binNuNuLL_bin41 mean=prop_binNuNuLL_bin41_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin42_Pdf[ x=prop_binNuNuLL_bin42 mean=prop_binNuNuLL_bin42_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin43_Pdf[ x=prop_binNuNuLL_bin43 mean=prop_binNuNuLL_bin43_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin44_Pdf[ x=prop_binNuNuLL_bin44 mean=prop_binNuNuLL_bin44_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin45_Pdf[ x=prop_binNuNuLL_bin45 mean=prop_binNuNuLL_bin45_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin46_Pdf[ x=prop_binNuNuLL_bin46 mean=prop_binNuNuLL_bin46_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin47_Pdf[ x=prop_binNuNuLL_bin47 mean=prop_binNuNuLL_bin47_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin48_Pdf[ x=prop_binNuNuLL_bin48 mean=prop_binNuNuLL_bin48_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin4_Pdf[ x=prop_binNuNuLL_bin4 mean=prop_binNuNuLL_bin4_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin5_Pdf[ x=prop_binNuNuLL_bin5 mean=prop_binNuNuLL_bin5_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin6_Pdf[ x=prop_binNuNuLL_bin6 mean=prop_binNuNuLL_bin6_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin7_Pdf[ x=prop_binNuNuLL_bin7 mean=prop_binNuNuLL_bin7_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin8_Pdf[ x=prop_binNuNuLL_bin8 mean=prop_binNuNuLL_bin8_In sigma=1 ] = 1
+SimpleGaussianConstraint::prop_binNuNuLL_bin9_Pdf[ x=prop_binNuNuLL_bin9 mean=prop_binNuNuLL_bin9_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_Z_Pdf[ x=unc_Z mean=unc_Z_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_ecm365_Pdf[ x=unc_p8_ee_WW_ecm365 mean=unc_p8_ee_WW_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_tt_ecm365_Pdf[ x=unc_p8_ee_tt_ecm365 mean=unc_p8_ee_tt_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf[ x=unc_wzp6_ee_egamma_eZ_ZLL_ecm365 mean=unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_gaga_LL_60_ecm365_Pdf[ x=unc_wzp6_ee_gaga_LL_60_ecm365 mean=unc_wzp6_ee_gaga_LL_60_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_nuenueZ_ecm365_Pdf[ x=unc_wzp6_ee_nuenueZ_ecm365 mean=unc_wzp6_ee_nuenueZ_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binNuNuHH_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_p8_ee_tt_ecm365[ thetaList=(unc_p8_ee_tt_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_LLH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_QQH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_QQH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_VBFnunu_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_VBFnunu_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuHH_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_p8_ee_tt_ecm365[ thetaList=(unc_p8_ee_tt_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_LLH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_LLH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_VBFnunu_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLH_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_VBFnunu_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_ZH_Znunu_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1
+ProcessNormalization::n_exp_binNuNuLL_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1
+CMSHistErrorPropagator::prop_binNuNuHH[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuHH_rebinPdf,shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuHH_rebinPdf,shapeBkg_p8_ee_WW_ecm365_NuNuHH_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_NuNuHH_rebinPdf,shapeBkg_p8_ee_tt_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_LL_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautau_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_VBFnunu_Hgg_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_Hgg_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_QQH_HQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_QQH_Hgg_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuHH_rebinPdf) coeffs=(n_exp_binNuNuHH_proc_wzp6_ee_VBFnunu_Htautau_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_ZH_Htautau_ecm365,n_exp_binNuNuHH_proc_p8_ee_WW_ecm365,n_exp_binNuNuHH_proc_p8_ee_ZQQ_ecm365,n_exp_binNuNuHH_proc_p8_ee_ZZ_ecm365,n_exp_binNuNuHH_proc_p8_ee_tt_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_LL_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautau_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_nuenueZ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_gaga_LL_60_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HQQ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Hgg_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_VBFnunu_Hgg_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_HQQ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_Hgg_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_LLH_HQQ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_LLH_HVV_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_QQH_HQQ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_QQH_Hgg_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_QQH_HVV_ecm365) binpars=(prop_binNuNuHH_bin0,prop_binNuNuHH_bin1,prop_binNuNuHH_bin2,prop_binNuNuHH_bin3,prop_binNuNuHH_bin4,prop_binNuNuHH_bin5,prop_binNuNuHH_bin6,prop_binNuNuHH_bin7,prop_binNuNuHH_bin8,prop_binNuNuHH_bin9,prop_binNuNuHH_bin10,prop_binNuNuHH_bin11,prop_binNuNuHH_bin12,prop_binNuNuHH_bin13,prop_binNuNuHH_bin14,prop_binNuNuHH_bin15,prop_binNuNuHH_bin16,prop_binNuNuHH_bin17,prop_binNuNuHH_bin18,prop_binNuNuHH_bin19,prop_binNuNuHH_bin20,prop_binNuNuHH_bin21,prop_binNuNuHH_bin22,prop_binNuNuHH_bin23,prop_binNuNuHH_bin24,prop_binNuNuHH_bin25,prop_binNuNuHH_bin26,prop_binNuNuHH_bin27,prop_binNuNuHH_bin28,prop_binNuNuHH_bin29,prop_binNuNuHH_bin30,prop_binNuNuHH_bin31,prop_binNuNuHH_bin32,prop_binNuNuHH_bin33,prop_binNuNuHH_bin34,prop_binNuNuHH_bin35,prop_binNuNuHH_bin36,prop_binNuNuHH_bin37,prop_binNuNuHH_bin38,prop_binNuNuHH_bin39,prop_binNuNuHH_bin40,prop_binNuNuHH_bin41,prop_binNuNuHH_bin42,prop_binNuNuHH_bin43,prop_binNuNuHH_bin44,prop_binNuNuHH_bin45,prop_binNuNuHH_bin46,prop_binNuNuHH_bin47,prop_binNuNuHH_bin48,prop_binNuNuHH_bin49) ] = 108.307
+CMSHistErrorPropagator::prop_binNuNuHH_bonly[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuHH_rebinPdf,shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuHH_rebinPdf,shapeBkg_p8_ee_WW_ecm365_NuNuHH_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_NuNuHH_rebinPdf,shapeBkg_p8_ee_tt_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_LL_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautau_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_VBFnunu_Hgg_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_Hgg_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_QQH_HQQ_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_QQH_Hgg_ecm365_NuNuHH_rebinPdf,shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuHH_rebinPdf) coeffs=(ZERO,ZERO,n_exp_binNuNuHH_proc_p8_ee_WW_ecm365,n_exp_binNuNuHH_proc_p8_ee_ZQQ_ecm365,n_exp_binNuNuHH_proc_p8_ee_ZZ_ecm365,n_exp_binNuNuHH_proc_p8_ee_tt_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_LL_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautau_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_nuenueZ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_gaga_LL_60_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HQQ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautauH_Hgg_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_VBFnunu_Hgg_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_HQQ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_Hgg_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_LLH_HQQ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_LLH_HVV_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_QQH_HQQ_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_QQH_Hgg_ecm365,n_exp_binNuNuHH_proc_wzp6_ee_QQH_HVV_ecm365) binpars=(prop_binNuNuHH_bin0,prop_binNuNuHH_bin1,prop_binNuNuHH_bin2,prop_binNuNuHH_bin3,prop_binNuNuHH_bin4,prop_binNuNuHH_bin5,prop_binNuNuHH_bin6,prop_binNuNuHH_bin7,prop_binNuNuHH_bin8,prop_binNuNuHH_bin9,prop_binNuNuHH_bin10,prop_binNuNuHH_bin11,prop_binNuNuHH_bin12,prop_binNuNuHH_bin13,prop_binNuNuHH_bin14,prop_binNuNuHH_bin15,prop_binNuNuHH_bin16,prop_binNuNuHH_bin17,prop_binNuNuHH_bin18,prop_binNuNuHH_bin19,prop_binNuNuHH_bin20,prop_binNuNuHH_bin21,prop_binNuNuHH_bin22,prop_binNuNuHH_bin23,prop_binNuNuHH_bin24,prop_binNuNuHH_bin25,prop_binNuNuHH_bin26,prop_binNuNuHH_bin27,prop_binNuNuHH_bin28,prop_binNuNuHH_bin29,prop_binNuNuHH_bin30,prop_binNuNuHH_bin31,prop_binNuNuHH_bin32,prop_binNuNuHH_bin33,prop_binNuNuHH_bin34,prop_binNuNuHH_bin35,prop_binNuNuHH_bin36,prop_binNuNuHH_bin37,prop_binNuNuHH_bin38,prop_binNuNuHH_bin39,prop_binNuNuHH_bin40,prop_binNuNuHH_bin41,prop_binNuNuHH_bin42,prop_binNuNuHH_bin43,prop_binNuNuHH_bin44,prop_binNuNuHH_bin45,prop_binNuNuHH_bin46,prop_binNuNuHH_bin47,prop_binNuNuHH_bin48,prop_binNuNuHH_bin49) ] = 106.63
+CMSHistErrorPropagator::prop_binNuNuLH[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLH_rebinPdf,shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLH_rebinPdf,shapeBkg_p8_ee_WW_ecm365_NuNuLH_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_NuNuLH_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_NuNuLH_rebinPdf,shapeBkg_p8_ee_tt_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_LL_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautau_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_LLH_Hgg_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuLH_rebinPdf) coeffs=(n_exp_binNuNuLH_proc_wzp6_ee_VBFnunu_Htautau_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_ZH_Htautau_ecm365,n_exp_binNuNuLH_proc_p8_ee_WW_ecm365,n_exp_binNuNuLH_proc_p8_ee_ZQQ_ecm365,n_exp_binNuNuLH_proc_p8_ee_ZZ_ecm365,n_exp_binNuNuLH_proc_p8_ee_tt_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_LL_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautau_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_nuenueZ_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_gaga_LL_60_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HQQ_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Hgg_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_LLH_HQQ_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_LLH_Hgg_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_LLH_HVV_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_QQH_HVV_ecm365) binpars=(prop_binNuNuLH_bin0,prop_binNuNuLH_bin1,prop_binNuNuLH_bin2,prop_binNuNuLH_bin3,prop_binNuNuLH_bin4,prop_binNuNuLH_bin5,prop_binNuNuLH_bin6,prop_binNuNuLH_bin7,prop_binNuNuLH_bin8,prop_binNuNuLH_bin9,prop_binNuNuLH_bin10,prop_binNuNuLH_bin11,prop_binNuNuLH_bin12,prop_binNuNuLH_bin13,prop_binNuNuLH_bin14,prop_binNuNuLH_bin15,prop_binNuNuLH_bin16,prop_binNuNuLH_bin17,prop_binNuNuLH_bin18,prop_binNuNuLH_bin19,prop_binNuNuLH_bin20,prop_binNuNuLH_bin21,prop_binNuNuLH_bin22,prop_binNuNuLH_bin23,prop_binNuNuLH_bin24,prop_binNuNuLH_bin25,prop_binNuNuLH_bin26,prop_binNuNuLH_bin27,prop_binNuNuLH_bin28,prop_binNuNuLH_bin29,prop_binNuNuLH_bin30,prop_binNuNuLH_bin31,prop_binNuNuLH_bin32,prop_binNuNuLH_bin33,prop_binNuNuLH_bin34,prop_binNuNuLH_bin35,prop_binNuNuLH_bin36,prop_binNuNuLH_bin37,prop_binNuNuLH_bin38,prop_binNuNuLH_bin39,prop_binNuNuLH_bin40,prop_binNuNuLH_bin41,prop_binNuNuLH_bin42,prop_binNuNuLH_bin43,prop_binNuNuLH_bin44,prop_binNuNuLH_bin45,prop_binNuNuLH_bin46,prop_binNuNuLH_bin47,prop_binNuNuLH_bin48,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365_prod) ] = 3.13965
+RooProduct::prop_binNuNuLH_bin49_p8_ee_WW_ecm365_prod[ prop_binNuNuLH_bin49_p8_ee_WW_ecm365 * 1 ] = 1
+CMSHistErrorPropagator::prop_binNuNuLH_bonly[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLH_rebinPdf,shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLH_rebinPdf,shapeBkg_p8_ee_WW_ecm365_NuNuLH_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_NuNuLH_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_NuNuLH_rebinPdf,shapeBkg_p8_ee_tt_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_LL_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautau_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_LLH_Hgg_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLH_rebinPdf,shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuLH_rebinPdf) coeffs=(ZERO,ZERO,n_exp_binNuNuLH_proc_p8_ee_WW_ecm365,n_exp_binNuNuLH_proc_p8_ee_ZQQ_ecm365,n_exp_binNuNuLH_proc_p8_ee_ZZ_ecm365,n_exp_binNuNuLH_proc_p8_ee_tt_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_LL_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautau_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_nuenueZ_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_gaga_LL_60_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HQQ_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautauH_Hgg_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_LLH_HQQ_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_LLH_Hgg_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_LLH_HVV_ecm365,n_exp_binNuNuLH_proc_wzp6_ee_QQH_HVV_ecm365) binpars=(prop_binNuNuLH_bin0,prop_binNuNuLH_bin1,prop_binNuNuLH_bin2,prop_binNuNuLH_bin3,prop_binNuNuLH_bin4,prop_binNuNuLH_bin5,prop_binNuNuLH_bin6,prop_binNuNuLH_bin7,prop_binNuNuLH_bin8,prop_binNuNuLH_bin9,prop_binNuNuLH_bin10,prop_binNuNuLH_bin11,prop_binNuNuLH_bin12,prop_binNuNuLH_bin13,prop_binNuNuLH_bin14,prop_binNuNuLH_bin15,prop_binNuNuLH_bin16,prop_binNuNuLH_bin17,prop_binNuNuLH_bin18,prop_binNuNuLH_bin19,prop_binNuNuLH_bin20,prop_binNuNuLH_bin21,prop_binNuNuLH_bin22,prop_binNuNuLH_bin23,prop_binNuNuLH_bin24,prop_binNuNuLH_bin25,prop_binNuNuLH_bin26,prop_binNuNuLH_bin27,prop_binNuNuLH_bin28,prop_binNuNuLH_bin29,prop_binNuNuLH_bin30,prop_binNuNuLH_bin31,prop_binNuNuLH_bin32,prop_binNuNuLH_bin33,prop_binNuNuLH_bin34,prop_binNuNuLH_bin35,prop_binNuNuLH_bin36,prop_binNuNuLH_bin37,prop_binNuNuLH_bin38,prop_binNuNuLH_bin39,prop_binNuNuLH_bin40,prop_binNuNuLH_bin41,prop_binNuNuLH_bin42,prop_binNuNuLH_bin43,prop_binNuNuLH_bin44,prop_binNuNuLH_bin45,prop_binNuNuLH_bin46,prop_binNuNuLH_bin47,prop_binNuNuLH_bin48,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365_prod) ] = 2.96194
+CMSHistErrorPropagator::prop_binNuNuLL[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLL_rebinPdf,shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLL_rebinPdf,shapeBkg_p8_ee_WW_ecm365_NuNuLL_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_NuNuLL_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_LL_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_tautau_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLL_rebinPdf) coeffs=(n_exp_binNuNuLL_proc_wzp6_ee_VBFnunu_Htautau_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_ZH_Htautau_ecm365,n_exp_binNuNuLL_proc_p8_ee_WW_ecm365,n_exp_binNuNuLL_proc_p8_ee_ZQQ_ecm365,n_exp_binNuNuLL_proc_p8_ee_ZZ_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_LL_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_tautau_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_nuenueZ_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_egamma_eZ_ZLL_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_gaga_LL_60_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_LLH_HVV_ecm365) binpars=(prop_binNuNuLL_bin0,prop_binNuNuLL_bin1,prop_binNuNuLL_bin2,prop_binNuNuLL_bin3,prop_binNuNuLL_bin4,prop_binNuNuLL_bin5,prop_binNuNuLL_bin6,prop_binNuNuLL_bin7,prop_binNuNuLL_bin8,prop_binNuNuLL_bin9,prop_binNuNuLL_bin10,prop_binNuNuLL_bin11,prop_binNuNuLL_bin12,prop_binNuNuLL_bin13,prop_binNuNuLL_bin14,prop_binNuNuLL_bin15,prop_binNuNuLL_bin16,prop_binNuNuLL_bin17,prop_binNuNuLL_bin18,prop_binNuNuLL_bin19,prop_binNuNuLL_bin20,prop_binNuNuLL_bin21,prop_binNuNuLL_bin22,prop_binNuNuLL_bin23,prop_binNuNuLL_bin24,prop_binNuNuLL_bin25,prop_binNuNuLL_bin26,prop_binNuNuLL_bin27,prop_binNuNuLL_bin28,prop_binNuNuLL_bin29,prop_binNuNuLL_bin30,prop_binNuNuLL_bin31,prop_binNuNuLL_bin32,prop_binNuNuLL_bin33,prop_binNuNuLL_bin34,prop_binNuNuLL_bin35,prop_binNuNuLL_bin36,prop_binNuNuLL_bin37,prop_binNuNuLL_bin38,prop_binNuNuLL_bin39,prop_binNuNuLL_bin40,prop_binNuNuLL_bin41,prop_binNuNuLL_bin42,prop_binNuNuLL_bin43,prop_binNuNuLL_bin44,prop_binNuNuLL_bin45,prop_binNuNuLL_bin46,prop_binNuNuLL_bin47,prop_binNuNuLL_bin48) ] = 1.4e-08
+CMSHistErrorPropagator::prop_binNuNuLL_bonly[ x=CMS_th1x funcs=(shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLL_rebinPdf,shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLL_rebinPdf,shapeBkg_p8_ee_WW_ecm365_NuNuLL_rebinPdf,shapeBkg_p8_ee_ZQQ_ecm365_NuNuLL_rebinPdf,shapeBkg_p8_ee_ZZ_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_LL_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_tautau_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLL_rebinPdf,shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLL_rebinPdf) coeffs=(ZERO,ZERO,n_exp_binNuNuLL_proc_p8_ee_WW_ecm365,n_exp_binNuNuLL_proc_p8_ee_ZQQ_ecm365,n_exp_binNuNuLL_proc_p8_ee_ZZ_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_LL_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_tautau_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_nuenueZ_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_egamma_eZ_ZLL_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_gaga_LL_60_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_tautauH_Htautau_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_tautauH_HVV_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_ZH_Znunu_HVV_ecm365,n_exp_binNuNuLL_proc_wzp6_ee_LLH_HVV_ecm365) binpars=(prop_binNuNuLL_bin0,prop_binNuNuLL_bin1,prop_binNuNuLL_bin2,prop_binNuNuLL_bin3,prop_binNuNuLL_bin4,prop_binNuNuLL_bin5,prop_binNuNuLL_bin6,prop_binNuNuLL_bin7,prop_binNuNuLL_bin8,prop_binNuNuLL_bin9,prop_binNuNuLL_bin10,prop_binNuNuLL_bin11,prop_binNuNuLL_bin12,prop_binNuNuLL_bin13,prop_binNuNuLL_bin14,prop_binNuNuLL_bin15,prop_binNuNuLL_bin16,prop_binNuNuLL_bin17,prop_binNuNuLL_bin18,prop_binNuNuLL_bin19,prop_binNuNuLL_bin20,prop_binNuNuLL_bin21,prop_binNuNuLL_bin22,prop_binNuNuLL_bin23,prop_binNuNuLL_bin24,prop_binNuNuLL_bin25,prop_binNuNuLL_bin26,prop_binNuNuLL_bin27,prop_binNuNuLL_bin28,prop_binNuNuLL_bin29,prop_binNuNuLL_bin30,prop_binNuNuLL_bin31,prop_binNuNuLL_bin32,prop_binNuNuLL_bin33,prop_binNuNuLL_bin34,prop_binNuNuLL_bin35,prop_binNuNuLL_bin36,prop_binNuNuLL_bin37,prop_binNuNuLL_bin38,prop_binNuNuLL_bin39,prop_binNuNuLL_bin40,prop_binNuNuLL_bin41,prop_binNuNuLL_bin42,prop_binNuNuLL_bin43,prop_binNuNuLL_bin44,prop_binNuNuLL_bin45,prop_binNuNuLL_bin46,prop_binNuNuLL_bin47,prop_binNuNuLL_bin48) ] = 1.2e-08
+CMSHistFunc::shapeBkg_p8_ee_WW_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 106.63
+CMSHistFuncWrapper::shapeBkg_p8_ee_WW_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_WW_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 106.63
+CMSHistFunc::shapeBkg_p8_ee_WW_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 2.96194
+CMSHistFuncWrapper::shapeBkg_p8_ee_WW_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_WW_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 2.96194
+CMSHistFunc::shapeBkg_p8_ee_WW_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_WW_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_WW_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZQQ_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZQQ_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZQQ_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZQQ_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZQQ_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZQQ_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZQQ_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZQQ_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZQQ_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZZ_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZZ_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZZ_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZZ_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZZ_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZZ_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_ZZ_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_ZZ_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_ZZ_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_tt_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_tt_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_tt_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_p8_ee_tt_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_p8_ee_tt_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_p8_ee_tt_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HQQ_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_HVV_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LLH_Hgg_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LLH_Hgg_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LLH_Hgg_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LL_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LL_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LL_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LL_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LL_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LL_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_LL_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_LL_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_LL_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_QQH_HQQ_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_QQH_HQQ_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_QQH_HQQ_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_QQH_HVV_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_QQH_Hgg_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_QQH_Hgg_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_QQH_Hgg_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_VBFnunu_Hgg_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_VBFnunu_Hgg_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_VBFnunu_Hgg_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_ZH_Znunu_HQQ_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_ZH_Znunu_HQQ_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_ZH_Znunu_HQQ_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_ZH_Znunu_HVV_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_ZH_Znunu_Hgg_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_ZH_Znunu_Hgg_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_ZH_Znunu_Hgg_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_gaga_LL_60_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_nuenueZ_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_HVV_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 0.000713727
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 0.000713727
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautau_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautau_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautau_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautau_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautau_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautau_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 1e-09
+CMSHistFunc::shapeBkg_wzp6_ee_tautau_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeBkg_wzp6_ee_tautau_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeBkg_wzp6_ee_tautau_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1.67642
+CMSHistFuncWrapper::shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1.67642
+CMSHistFunc::shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 0.155966
+CMSHistFuncWrapper::shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 0.155966
+CMSHistFunc::shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_VBFnunu_Htautau_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuHH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuHH_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuHH_rebinPdf err=prop_binNuNuHH ] = 1e-09
+CMSHistFunc::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLH_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 0.021747
+CMSHistFuncWrapper::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLH_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLH_rebinPdf err=prop_binNuNuLH ] = 0.021747
+CMSHistFunc::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLL_rebinPdf[ x=CMS_th1x vmorphs=() hmorphs=() external_morph=() ] = 1e-09
+CMSHistFuncWrapper::shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLL_rebinPdf_wrapper[ x=CMS_th1x func=shapeSig_wzp6_ee_ZH_Htautau_ecm365_NuNuLL_rebinPdf err=prop_binNuNuLL ] = 1e-09
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,prop_binNuNuLL_bin0_In,prop_binNuNuLL_bin1_In,prop_binNuNuLL_bin2_In,prop_binNuNuLL_bin3_In,prop_binNuNuLL_bin4_In,prop_binNuNuLL_bin5_In,prop_binNuNuLL_bin6_In,prop_binNuNuLL_bin7_In,prop_binNuNuLL_bin8_In,prop_binNuNuLL_bin9_In,prop_binNuNuLL_bin10_In,prop_binNuNuLL_bin11_In,prop_binNuNuLL_bin12_In,prop_binNuNuLL_bin13_In,prop_binNuNuLL_bin14_In,prop_binNuNuLL_bin15_In,prop_binNuNuLL_bin16_In,prop_binNuNuLL_bin17_In,prop_binNuNuLL_bin18_In,prop_binNuNuLL_bin19_In,prop_binNuNuLL_bin20_In,prop_binNuNuLL_bin21_In,prop_binNuNuLL_bin22_In,prop_binNuNuLL_bin23_In,prop_binNuNuLL_bin24_In,prop_binNuNuLL_bin25_In,prop_binNuNuLL_bin26_In,prop_binNuNuLL_bin27_In,prop_binNuNuLL_bin28_In,prop_binNuNuLL_bin29_In,prop_binNuNuLL_bin30_In,prop_binNuNuLL_bin31_In,prop_binNuNuLL_bin32_In,prop_binNuNuLL_bin33_In,prop_binNuNuLL_bin34_In,prop_binNuNuLL_bin35_In,prop_binNuNuLL_bin36_In,prop_binNuNuLL_bin37_In,prop_binNuNuLL_bin38_In,prop_binNuNuLL_bin39_In,prop_binNuNuLL_bin40_In,prop_binNuNuLL_bin41_In,prop_binNuNuLL_bin42_In,prop_binNuNuLL_bin43_In,prop_binNuNuLL_bin44_In,prop_binNuNuLL_bin45_In,prop_binNuNuLL_bin46_In,prop_binNuNuLL_bin47_In,prop_binNuNuLL_bin48_In,prop_binNuNuLH_bin0_In,prop_binNuNuLH_bin1_In,prop_binNuNuLH_bin2_In,prop_binNuNuLH_bin3_In,prop_binNuNuLH_bin4_In,prop_binNuNuLH_bin5_In,prop_binNuNuLH_bin6_In,prop_binNuNuLH_bin7_In,prop_binNuNuLH_bin8_In,prop_binNuNuLH_bin9_In,prop_binNuNuLH_bin10_In,prop_binNuNuLH_bin11_In,prop_binNuNuLH_bin12_In,prop_binNuNuLH_bin13_In,prop_binNuNuLH_bin14_In,prop_binNuNuLH_bin15_In,prop_binNuNuLH_bin16_In,prop_binNuNuLH_bin17_In,prop_binNuNuLH_bin18_In,prop_binNuNuLH_bin19_In,prop_binNuNuLH_bin20_In,prop_binNuNuLH_bin21_In,prop_binNuNuLH_bin22_In,prop_binNuNuLH_bin23_In,prop_binNuNuLH_bin24_In,prop_binNuNuLH_bin25_In,prop_binNuNuLH_bin26_In,prop_binNuNuLH_bin27_In,prop_binNuNuLH_bin28_In,prop_binNuNuLH_bin29_In,prop_binNuNuLH_bin30_In,prop_binNuNuLH_bin31_In,prop_binNuNuLH_bin32_In,prop_binNuNuLH_bin33_In,prop_binNuNuLH_bin34_In,prop_binNuNuLH_bin35_In,prop_binNuNuLH_bin36_In,prop_binNuNuLH_bin37_In,prop_binNuNuLH_bin38_In,prop_binNuNuLH_bin39_In,prop_binNuNuLH_bin40_In,prop_binNuNuLH_bin41_In,prop_binNuNuLH_bin42_In,prop_binNuNuLH_bin43_In,prop_binNuNuLH_bin44_In,prop_binNuNuLH_bin45_In,prop_binNuNuLH_bin46_In,prop_binNuNuLH_bin47_In,prop_binNuNuLH_bin48_In,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_In,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_In,prop_binNuNuLH_bin49_p8_ee_WW_ecm365_In,prop_binNuNuHH_bin0_In,prop_binNuNuHH_bin1_In,prop_binNuNuHH_bin2_In,prop_binNuNuHH_bin3_In,prop_binNuNuHH_bin4_In,prop_binNuNuHH_bin5_In,prop_binNuNuHH_bin6_In,prop_binNuNuHH_bin7_In,prop_binNuNuHH_bin8_In,prop_binNuNuHH_bin9_In,prop_binNuNuHH_bin10_In,prop_binNuNuHH_bin11_In,prop_binNuNuHH_bin12_In,prop_binNuNuHH_bin13_In,prop_binNuNuHH_bin14_In,prop_binNuNuHH_bin15_In,prop_binNuNuHH_bin16_In,prop_binNuNuHH_bin17_In,prop_binNuNuHH_bin18_In,prop_binNuNuHH_bin19_In,prop_binNuNuHH_bin20_In,prop_binNuNuHH_bin21_In,prop_binNuNuHH_bin22_In,prop_binNuNuHH_bin23_In,prop_binNuNuHH_bin24_In,prop_binNuNuHH_bin25_In,prop_binNuNuHH_bin26_In,prop_binNuNuHH_bin27_In,prop_binNuNuHH_bin28_In,prop_binNuNuHH_bin29_In,prop_binNuNuHH_bin30_In,prop_binNuNuHH_bin31_In,prop_binNuNuHH_bin32_In,prop_binNuNuHH_bin33_In,prop_binNuNuHH_bin34_In,prop_binNuNuHH_bin35_In,prop_binNuNuHH_bin36_In,prop_binNuNuHH_bin37_In,prop_binNuNuHH_bin38_In,prop_binNuNuHH_bin39_In,prop_binNuNuHH_bin40_In,prop_binNuNuHH_bin41_In,prop_binNuNuHH_bin42_In,prop_binNuNuHH_bin43_In,prop_binNuNuHH_bin44_In,prop_binNuNuHH_bin45_In,prop_binNuNuHH_bin46_In,prop_binNuNuHH_bin47_In,prop_binNuNuHH_bin48_In,prop_binNuNuHH_bin49_In)
+ModelConfig_NuisParams:(unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365,prop_binNuNuLL_bin0,prop_binNuNuLL_bin1,prop_binNuNuLL_bin2,prop_binNuNuLL_bin3,prop_binNuNuLL_bin4,prop_binNuNuLL_bin5,prop_binNuNuLL_bin6,prop_binNuNuLL_bin7,prop_binNuNuLL_bin8,prop_binNuNuLL_bin9,prop_binNuNuLL_bin10,prop_binNuNuLL_bin11,prop_binNuNuLL_bin12,prop_binNuNuLL_bin13,prop_binNuNuLL_bin14,prop_binNuNuLL_bin15,prop_binNuNuLL_bin16,prop_binNuNuLL_bin17,prop_binNuNuLL_bin18,prop_binNuNuLL_bin19,prop_binNuNuLL_bin20,prop_binNuNuLL_bin21,prop_binNuNuLL_bin22,prop_binNuNuLL_bin23,prop_binNuNuLL_bin24,prop_binNuNuLL_bin25,prop_binNuNuLL_bin26,prop_binNuNuLL_bin27,prop_binNuNuLL_bin28,prop_binNuNuLL_bin29,prop_binNuNuLL_bin30,prop_binNuNuLL_bin31,prop_binNuNuLL_bin32,prop_binNuNuLL_bin33,prop_binNuNuLL_bin34,prop_binNuNuLL_bin35,prop_binNuNuLL_bin36,prop_binNuNuLL_bin37,prop_binNuNuLL_bin38,prop_binNuNuLL_bin39,prop_binNuNuLL_bin40,prop_binNuNuLL_bin41,prop_binNuNuLL_bin42,prop_binNuNuLL_bin43,prop_binNuNuLL_bin44,prop_binNuNuLL_bin45,prop_binNuNuLL_bin46,prop_binNuNuLL_bin47,prop_binNuNuLL_bin48,prop_binNuNuLH_bin0,prop_binNuNuLH_bin1,prop_binNuNuLH_bin2,prop_binNuNuLH_bin3,prop_binNuNuLH_bin4,prop_binNuNuLH_bin5,prop_binNuNuLH_bin6,prop_binNuNuLH_bin7,prop_binNuNuLH_bin8,prop_binNuNuLH_bin9,prop_binNuNuLH_bin10,prop_binNuNuLH_bin11,prop_binNuNuLH_bin12,prop_binNuNuLH_bin13,prop_binNuNuLH_bin14,prop_binNuNuLH_bin15,prop_binNuNuLH_bin16,prop_binNuNuLH_bin17,prop_binNuNuLH_bin18,prop_binNuNuLH_bin19,prop_binNuNuLH_bin20,prop_binNuNuLH_bin21,prop_binNuNuLH_bin22,prop_binNuNuLH_bin23,prop_binNuNuLH_bin24,prop_binNuNuLH_bin25,prop_binNuNuLH_bin26,prop_binNuNuLH_bin27,prop_binNuNuLH_bin28,prop_binNuNuLH_bin29,prop_binNuNuLH_bin30,prop_binNuNuLH_bin31,prop_binNuNuLH_bin32,prop_binNuNuLH_bin33,prop_binNuNuLH_bin34,prop_binNuNuLH_bin35,prop_binNuNuLH_bin36,prop_binNuNuLH_bin37,prop_binNuNuLH_bin38,prop_binNuNuLH_bin39,prop_binNuNuLH_bin40,prop_binNuNuLH_bin41,prop_binNuNuLH_bin42,prop_binNuNuLH_bin43,prop_binNuNuLH_bin44,prop_binNuNuLH_bin45,prop_binNuNuLH_bin46,prop_binNuNuLH_bin47,prop_binNuNuLH_bin48,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365,prop_binNuNuHH_bin0,prop_binNuNuHH_bin1,prop_binNuNuHH_bin2,prop_binNuNuHH_bin3,prop_binNuNuHH_bin4,prop_binNuNuHH_bin5,prop_binNuNuHH_bin6,prop_binNuNuHH_bin7,prop_binNuNuHH_bin8,prop_binNuNuHH_bin9,prop_binNuNuHH_bin10,prop_binNuNuHH_bin11,prop_binNuNuHH_bin12,prop_binNuNuHH_bin13,prop_binNuNuHH_bin14,prop_binNuNuHH_bin15,prop_binNuNuHH_bin16,prop_binNuNuHH_bin17,prop_binNuNuHH_bin18,prop_binNuNuHH_bin19,prop_binNuNuHH_bin20,prop_binNuNuHH_bin21,prop_binNuNuHH_bin22,prop_binNuNuHH_bin23,prop_binNuNuHH_bin24,prop_binNuNuHH_bin25,prop_binNuNuHH_bin26,prop_binNuNuHH_bin27,prop_binNuNuHH_bin28,prop_binNuNuHH_bin29,prop_binNuNuHH_bin30,prop_binNuNuHH_bin31,prop_binNuNuHH_bin32,prop_binNuNuHH_bin33,prop_binNuNuHH_bin34,prop_binNuNuHH_bin35,prop_binNuNuHH_bin36,prop_binNuNuHH_bin37,prop_binNuNuHH_bin38,prop_binNuNuHH_bin39,prop_binNuNuHH_bin40,prop_binNuNuHH_bin41,prop_binNuNuHH_bin42,prop_binNuNuHH_bin43,prop_binNuNuHH_bin44,prop_binNuNuHH_bin45,prop_binNuNuHH_bin46,prop_binNuNuHH_bin47,prop_binNuNuHH_bin48,prop_binNuNuHH_bin49)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,prop_binNuNuLL_bin0_In,prop_binNuNuLL_bin1_In,prop_binNuNuLL_bin2_In,prop_binNuNuLL_bin3_In,prop_binNuNuLL_bin4_In,prop_binNuNuLL_bin5_In,prop_binNuNuLL_bin6_In,prop_binNuNuLL_bin7_In,prop_binNuNuLL_bin8_In,prop_binNuNuLL_bin9_In,prop_binNuNuLL_bin10_In,prop_binNuNuLL_bin11_In,prop_binNuNuLL_bin12_In,prop_binNuNuLL_bin13_In,prop_binNuNuLL_bin14_In,prop_binNuNuLL_bin15_In,prop_binNuNuLL_bin16_In,prop_binNuNuLL_bin17_In,prop_binNuNuLL_bin18_In,prop_binNuNuLL_bin19_In,prop_binNuNuLL_bin20_In,prop_binNuNuLL_bin21_In,prop_binNuNuLL_bin22_In,prop_binNuNuLL_bin23_In,prop_binNuNuLL_bin24_In,prop_binNuNuLL_bin25_In,prop_binNuNuLL_bin26_In,prop_binNuNuLL_bin27_In,prop_binNuNuLL_bin28_In,prop_binNuNuLL_bin29_In,prop_binNuNuLL_bin30_In,prop_binNuNuLL_bin31_In,prop_binNuNuLL_bin32_In,prop_binNuNuLL_bin33_In,prop_binNuNuLL_bin34_In,prop_binNuNuLL_bin35_In,prop_binNuNuLL_bin36_In,prop_binNuNuLL_bin37_In,prop_binNuNuLL_bin38_In,prop_binNuNuLL_bin39_In,prop_binNuNuLL_bin40_In,prop_binNuNuLL_bin41_In,prop_binNuNuLL_bin42_In,prop_binNuNuLL_bin43_In,prop_binNuNuLL_bin44_In,prop_binNuNuLL_bin45_In,prop_binNuNuLL_bin46_In,prop_binNuNuLL_bin47_In,prop_binNuNuLL_bin48_In,prop_binNuNuLH_bin0_In,prop_binNuNuLH_bin1_In,prop_binNuNuLH_bin2_In,prop_binNuNuLH_bin3_In,prop_binNuNuLH_bin4_In,prop_binNuNuLH_bin5_In,prop_binNuNuLH_bin6_In,prop_binNuNuLH_bin7_In,prop_binNuNuLH_bin8_In,prop_binNuNuLH_bin9_In,prop_binNuNuLH_bin10_In,prop_binNuNuLH_bin11_In,prop_binNuNuLH_bin12_In,prop_binNuNuLH_bin13_In,prop_binNuNuLH_bin14_In,prop_binNuNuLH_bin15_In,prop_binNuNuLH_bin16_In,prop_binNuNuLH_bin17_In,prop_binNuNuLH_bin18_In,prop_binNuNuLH_bin19_In,prop_binNuNuLH_bin20_In,prop_binNuNuLH_bin21_In,prop_binNuNuLH_bin22_In,prop_binNuNuLH_bin23_In,prop_binNuNuLH_bin24_In,prop_binNuNuLH_bin25_In,prop_binNuNuLH_bin26_In,prop_binNuNuLH_bin27_In,prop_binNuNuLH_bin28_In,prop_binNuNuLH_bin29_In,prop_binNuNuLH_bin30_In,prop_binNuNuLH_bin31_In,prop_binNuNuLH_bin32_In,prop_binNuNuLH_bin33_In,prop_binNuNuLH_bin34_In,prop_binNuNuLH_bin35_In,prop_binNuNuLH_bin36_In,prop_binNuNuLH_bin37_In,prop_binNuNuLH_bin38_In,prop_binNuNuLH_bin39_In,prop_binNuNuLH_bin40_In,prop_binNuNuLH_bin41_In,prop_binNuNuLH_bin42_In,prop_binNuNuLH_bin43_In,prop_binNuNuLH_bin44_In,prop_binNuNuLH_bin45_In,prop_binNuNuLH_bin46_In,prop_binNuNuLH_bin47_In,prop_binNuNuLH_bin48_In,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_In,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_In,prop_binNuNuLH_bin49_p8_ee_WW_ecm365_In,prop_binNuNuHH_bin0_In,prop_binNuNuHH_bin1_In,prop_binNuNuHH_bin2_In,prop_binNuNuHH_bin3_In,prop_binNuNuHH_bin4_In,prop_binNuNuHH_bin5_In,prop_binNuNuHH_bin6_In,prop_binNuNuHH_bin7_In,prop_binNuNuHH_bin8_In,prop_binNuNuHH_bin9_In,prop_binNuNuHH_bin10_In,prop_binNuNuHH_bin11_In,prop_binNuNuHH_bin12_In,prop_binNuNuHH_bin13_In,prop_binNuNuHH_bin14_In,prop_binNuNuHH_bin15_In,prop_binNuNuHH_bin16_In,prop_binNuNuHH_bin17_In,prop_binNuNuHH_bin18_In,prop_binNuNuHH_bin19_In,prop_binNuNuHH_bin20_In,prop_binNuNuHH_bin21_In,prop_binNuNuHH_bin22_In,prop_binNuNuHH_bin23_In,prop_binNuNuHH_bin24_In,prop_binNuNuHH_bin25_In,prop_binNuNuHH_bin26_In,prop_binNuNuHH_bin27_In,prop_binNuNuHH_bin28_In,prop_binNuNuHH_bin29_In,prop_binNuNuHH_bin30_In,prop_binNuNuHH_bin31_In,prop_binNuNuHH_bin32_In,prop_binNuNuHH_bin33_In,prop_binNuNuHH_bin34_In,prop_binNuNuHH_bin35_In,prop_binNuNuHH_bin36_In,prop_binNuNuHH_bin37_In,prop_binNuNuHH_bin38_In,prop_binNuNuHH_bin39_In,prop_binNuNuHH_bin40_In,prop_binNuNuHH_bin41_In,prop_binNuNuHH_bin42_In,prop_binNuNuHH_bin43_In,prop_binNuNuHH_bin44_In,prop_binNuNuHH_bin45_In,prop_binNuNuHH_bin46_In,prop_binNuNuHH_bin47_In,prop_binNuNuHH_bin48_In,prop_binNuNuHH_bin49_In)
+ModelConfig_bonly_NuisParams:(unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365,prop_binNuNuLL_bin0,prop_binNuNuLL_bin1,prop_binNuNuLL_bin2,prop_binNuNuLL_bin3,prop_binNuNuLL_bin4,prop_binNuNuLL_bin5,prop_binNuNuLL_bin6,prop_binNuNuLL_bin7,prop_binNuNuLL_bin8,prop_binNuNuLL_bin9,prop_binNuNuLL_bin10,prop_binNuNuLL_bin11,prop_binNuNuLL_bin12,prop_binNuNuLL_bin13,prop_binNuNuLL_bin14,prop_binNuNuLL_bin15,prop_binNuNuLL_bin16,prop_binNuNuLL_bin17,prop_binNuNuLL_bin18,prop_binNuNuLL_bin19,prop_binNuNuLL_bin20,prop_binNuNuLL_bin21,prop_binNuNuLL_bin22,prop_binNuNuLL_bin23,prop_binNuNuLL_bin24,prop_binNuNuLL_bin25,prop_binNuNuLL_bin26,prop_binNuNuLL_bin27,prop_binNuNuLL_bin28,prop_binNuNuLL_bin29,prop_binNuNuLL_bin30,prop_binNuNuLL_bin31,prop_binNuNuLL_bin32,prop_binNuNuLL_bin33,prop_binNuNuLL_bin34,prop_binNuNuLL_bin35,prop_binNuNuLL_bin36,prop_binNuNuLL_bin37,prop_binNuNuLL_bin38,prop_binNuNuLL_bin39,prop_binNuNuLL_bin40,prop_binNuNuLL_bin41,prop_binNuNuLL_bin42,prop_binNuNuLL_bin43,prop_binNuNuLL_bin44,prop_binNuNuLL_bin45,prop_binNuNuLL_bin46,prop_binNuNuLL_bin47,prop_binNuNuLL_bin48,prop_binNuNuLH_bin0,prop_binNuNuLH_bin1,prop_binNuNuLH_bin2,prop_binNuNuLH_bin3,prop_binNuNuLH_bin4,prop_binNuNuLH_bin5,prop_binNuNuLH_bin6,prop_binNuNuLH_bin7,prop_binNuNuLH_bin8,prop_binNuNuLH_bin9,prop_binNuNuLH_bin10,prop_binNuNuLH_bin11,prop_binNuNuLH_bin12,prop_binNuNuLH_bin13,prop_binNuNuLH_bin14,prop_binNuNuLH_bin15,prop_binNuNuLH_bin16,prop_binNuNuLH_bin17,prop_binNuNuLH_bin18,prop_binNuNuLH_bin19,prop_binNuNuLH_bin20,prop_binNuNuLH_bin21,prop_binNuNuLH_bin22,prop_binNuNuLH_bin23,prop_binNuNuLH_bin24,prop_binNuNuLH_bin25,prop_binNuNuLH_bin26,prop_binNuNuLH_bin27,prop_binNuNuLH_bin28,prop_binNuNuLH_bin29,prop_binNuNuLH_bin30,prop_binNuNuLH_bin31,prop_binNuNuLH_bin32,prop_binNuNuLH_bin33,prop_binNuNuLH_bin34,prop_binNuNuLH_bin35,prop_binNuNuLH_bin36,prop_binNuNuLH_bin37,prop_binNuNuLH_bin38,prop_binNuNuLH_bin39,prop_binNuNuLH_bin40,prop_binNuNuLH_bin41,prop_binNuNuLH_bin42,prop_binNuNuLH_bin43,prop_binNuNuLH_bin44,prop_binNuNuLH_bin45,prop_binNuNuLH_bin46,prop_binNuNuLH_bin47,prop_binNuNuLH_bin48,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365,prop_binNuNuHH_bin0,prop_binNuNuHH_bin1,prop_binNuNuHH_bin2,prop_binNuNuHH_bin3,prop_binNuNuHH_bin4,prop_binNuNuHH_bin5,prop_binNuNuHH_bin6,prop_binNuNuHH_bin7,prop_binNuNuHH_bin8,prop_binNuNuHH_bin9,prop_binNuNuHH_bin10,prop_binNuNuHH_bin11,prop_binNuNuHH_bin12,prop_binNuNuHH_bin13,prop_binNuNuHH_bin14,prop_binNuNuHH_bin15,prop_binNuNuHH_bin16,prop_binNuNuHH_bin17,prop_binNuNuHH_bin18,prop_binNuNuHH_bin19,prop_binNuNuHH_bin20,prop_binNuNuHH_bin21,prop_binNuNuHH_bin22,prop_binNuNuHH_bin23,prop_binNuNuHH_bin24,prop_binNuNuHH_bin25,prop_binNuNuHH_bin26,prop_binNuNuHH_bin27,prop_binNuNuHH_bin28,prop_binNuNuHH_bin29,prop_binNuNuHH_bin30,prop_binNuNuHH_bin31,prop_binNuNuHH_bin32,prop_binNuNuHH_bin33,prop_binNuNuHH_bin34,prop_binNuNuHH_bin35,prop_binNuNuHH_bin36,prop_binNuNuHH_bin37,prop_binNuNuHH_bin38,prop_binNuNuHH_bin39,prop_binNuNuHH_bin40,prop_binNuNuHH_bin41,prop_binNuNuHH_bin42,prop_binNuNuHH_bin43,prop_binNuNuHH_bin44,prop_binNuNuHH_bin45,prop_binNuNuHH_bin46,prop_binNuNuHH_bin47,prop_binNuNuHH_bin48,prop_binNuNuHH_bin49)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,prop_binNuNuLL_bin0_In,prop_binNuNuLL_bin1_In,prop_binNuNuLL_bin2_In,prop_binNuNuLL_bin3_In,prop_binNuNuLL_bin4_In,prop_binNuNuLL_bin5_In,prop_binNuNuLL_bin6_In,prop_binNuNuLL_bin7_In,prop_binNuNuLL_bin8_In,prop_binNuNuLL_bin9_In,prop_binNuNuLL_bin10_In,prop_binNuNuLL_bin11_In,prop_binNuNuLL_bin12_In,prop_binNuNuLL_bin13_In,prop_binNuNuLL_bin14_In,prop_binNuNuLL_bin15_In,prop_binNuNuLL_bin16_In,prop_binNuNuLL_bin17_In,prop_binNuNuLL_bin18_In,prop_binNuNuLL_bin19_In,prop_binNuNuLL_bin20_In,prop_binNuNuLL_bin21_In,prop_binNuNuLL_bin22_In,prop_binNuNuLL_bin23_In,prop_binNuNuLL_bin24_In,prop_binNuNuLL_bin25_In,prop_binNuNuLL_bin26_In,prop_binNuNuLL_bin27_In,prop_binNuNuLL_bin28_In,prop_binNuNuLL_bin29_In,prop_binNuNuLL_bin30_In,prop_binNuNuLL_bin31_In,prop_binNuNuLL_bin32_In,prop_binNuNuLL_bin33_In,prop_binNuNuLL_bin34_In,prop_binNuNuLL_bin35_In,prop_binNuNuLL_bin36_In,prop_binNuNuLL_bin37_In,prop_binNuNuLL_bin38_In,prop_binNuNuLL_bin39_In,prop_binNuNuLL_bin40_In,prop_binNuNuLL_bin41_In,prop_binNuNuLL_bin42_In,prop_binNuNuLL_bin43_In,prop_binNuNuLL_bin44_In,prop_binNuNuLL_bin45_In,prop_binNuNuLL_bin46_In,prop_binNuNuLL_bin47_In,prop_binNuNuLL_bin48_In,prop_binNuNuLH_bin0_In,prop_binNuNuLH_bin1_In,prop_binNuNuLH_bin2_In,prop_binNuNuLH_bin3_In,prop_binNuNuLH_bin4_In,prop_binNuNuLH_bin5_In,prop_binNuNuLH_bin6_In,prop_binNuNuLH_bin7_In,prop_binNuNuLH_bin8_In,prop_binNuNuLH_bin9_In,prop_binNuNuLH_bin10_In,prop_binNuNuLH_bin11_In,prop_binNuNuLH_bin12_In,prop_binNuNuLH_bin13_In,prop_binNuNuLH_bin14_In,prop_binNuNuLH_bin15_In,prop_binNuNuLH_bin16_In,prop_binNuNuLH_bin17_In,prop_binNuNuLH_bin18_In,prop_binNuNuLH_bin19_In,prop_binNuNuLH_bin20_In,prop_binNuNuLH_bin21_In,prop_binNuNuLH_bin22_In,prop_binNuNuLH_bin23_In,prop_binNuNuLH_bin24_In,prop_binNuNuLH_bin25_In,prop_binNuNuLH_bin26_In,prop_binNuNuLH_bin27_In,prop_binNuNuLH_bin28_In,prop_binNuNuLH_bin29_In,prop_binNuNuLH_bin30_In,prop_binNuNuLH_bin31_In,prop_binNuNuLH_bin32_In,prop_binNuNuLH_bin33_In,prop_binNuNuLH_bin34_In,prop_binNuNuLH_bin35_In,prop_binNuNuLH_bin36_In,prop_binNuNuLH_bin37_In,prop_binNuNuLH_bin38_In,prop_binNuNuLH_bin39_In,prop_binNuNuLH_bin40_In,prop_binNuNuLH_bin41_In,prop_binNuNuLH_bin42_In,prop_binNuNuLH_bin43_In,prop_binNuNuLH_bin44_In,prop_binNuNuLH_bin45_In,prop_binNuNuLH_bin46_In,prop_binNuNuLH_bin47_In,prop_binNuNuLH_bin48_In,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_In,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_In,prop_binNuNuLH_bin49_p8_ee_WW_ecm365_In,prop_binNuNuHH_bin0_In,prop_binNuNuHH_bin1_In,prop_binNuNuHH_bin2_In,prop_binNuNuHH_bin3_In,prop_binNuNuHH_bin4_In,prop_binNuNuHH_bin5_In,prop_binNuNuHH_bin6_In,prop_binNuNuHH_bin7_In,prop_binNuNuHH_bin8_In,prop_binNuNuHH_bin9_In,prop_binNuNuHH_bin10_In,prop_binNuNuHH_bin11_In,prop_binNuNuHH_bin12_In,prop_binNuNuHH_bin13_In,prop_binNuNuHH_bin14_In,prop_binNuNuHH_bin15_In,prop_binNuNuHH_bin16_In,prop_binNuNuHH_bin17_In,prop_binNuNuHH_bin18_In,prop_binNuNuHH_bin19_In,prop_binNuNuHH_bin20_In,prop_binNuNuHH_bin21_In,prop_binNuNuHH_bin22_In,prop_binNuNuHH_bin23_In,prop_binNuNuHH_bin24_In,prop_binNuNuHH_bin25_In,prop_binNuNuHH_bin26_In,prop_binNuNuHH_bin27_In,prop_binNuNuHH_bin28_In,prop_binNuNuHH_bin29_In,prop_binNuNuHH_bin30_In,prop_binNuNuHH_bin31_In,prop_binNuNuHH_bin32_In,prop_binNuNuHH_bin33_In,prop_binNuNuHH_bin34_In,prop_binNuNuHH_bin35_In,prop_binNuNuHH_bin36_In,prop_binNuNuHH_bin37_In,prop_binNuNuHH_bin38_In,prop_binNuNuHH_bin39_In,prop_binNuNuHH_bin40_In,prop_binNuNuHH_bin41_In,prop_binNuNuHH_bin42_In,prop_binNuNuHH_bin43_In,prop_binNuNuHH_bin44_In,prop_binNuNuHH_bin45_In,prop_binNuNuHH_bin46_In,prop_binNuNuHH_bin47_In,prop_binNuNuHH_bin48_In,prop_binNuNuHH_bin49_In)
+group_autoMCStats:(prop_binNuNuLL_bin0,prop_binNuNuLL_bin1,prop_binNuNuLL_bin2,prop_binNuNuLL_bin3,prop_binNuNuLL_bin4,prop_binNuNuLL_bin5,prop_binNuNuLL_bin6,prop_binNuNuLL_bin7,prop_binNuNuLL_bin8,prop_binNuNuLL_bin9,prop_binNuNuLL_bin10,prop_binNuNuLL_bin11,prop_binNuNuLL_bin12,prop_binNuNuLL_bin13,prop_binNuNuLL_bin14,prop_binNuNuLL_bin15,prop_binNuNuLL_bin16,prop_binNuNuLL_bin17,prop_binNuNuLL_bin18,prop_binNuNuLL_bin19,prop_binNuNuLL_bin20,prop_binNuNuLL_bin21,prop_binNuNuLL_bin22,prop_binNuNuLL_bin23,prop_binNuNuLL_bin24,prop_binNuNuLL_bin25,prop_binNuNuLL_bin26,prop_binNuNuLL_bin27,prop_binNuNuLL_bin28,prop_binNuNuLL_bin29,prop_binNuNuLL_bin30,prop_binNuNuLL_bin31,prop_binNuNuLL_bin32,prop_binNuNuLL_bin33,prop_binNuNuLL_bin34,prop_binNuNuLL_bin35,prop_binNuNuLL_bin36,prop_binNuNuLL_bin37,prop_binNuNuLL_bin38,prop_binNuNuLL_bin39,prop_binNuNuLL_bin40,prop_binNuNuLL_bin41,prop_binNuNuLL_bin42,prop_binNuNuLL_bin43,prop_binNuNuLL_bin44,prop_binNuNuLL_bin45,prop_binNuNuLL_bin46,prop_binNuNuLL_bin47,prop_binNuNuLL_bin48,prop_binNuNuLH_bin0,prop_binNuNuLH_bin1,prop_binNuNuLH_bin2,prop_binNuNuLH_bin3,prop_binNuNuLH_bin4,prop_binNuNuLH_bin5,prop_binNuNuLH_bin6,prop_binNuNuLH_bin7,prop_binNuNuLH_bin8,prop_binNuNuLH_bin9,prop_binNuNuLH_bin10,prop_binNuNuLH_bin11,prop_binNuNuLH_bin12,prop_binNuNuLH_bin13,prop_binNuNuLH_bin14,prop_binNuNuLH_bin15,prop_binNuNuLH_bin16,prop_binNuNuLH_bin17,prop_binNuNuLH_bin18,prop_binNuNuLH_bin19,prop_binNuNuLH_bin20,prop_binNuNuLH_bin21,prop_binNuNuLH_bin22,prop_binNuNuLH_bin23,prop_binNuNuLH_bin24,prop_binNuNuLH_bin25,prop_binNuNuLH_bin26,prop_binNuNuLH_bin27,prop_binNuNuLH_bin28,prop_binNuNuLH_bin29,prop_binNuNuLH_bin30,prop_binNuNuLH_bin31,prop_binNuNuLH_bin32,prop_binNuNuLH_bin33,prop_binNuNuLH_bin34,prop_binNuNuLH_bin35,prop_binNuNuLH_bin36,prop_binNuNuLH_bin37,prop_binNuNuLH_bin38,prop_binNuNuLH_bin39,prop_binNuNuLH_bin40,prop_binNuNuLH_bin41,prop_binNuNuLH_bin42,prop_binNuNuLH_bin43,prop_binNuNuLH_bin44,prop_binNuNuLH_bin45,prop_binNuNuLH_bin46,prop_binNuNuLH_bin47,prop_binNuNuLH_bin48,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365,prop_binNuNuHH_bin0,prop_binNuNuHH_bin1,prop_binNuNuHH_bin2,prop_binNuNuHH_bin3,prop_binNuNuHH_bin4,prop_binNuNuHH_bin5,prop_binNuNuHH_bin6,prop_binNuNuHH_bin7,prop_binNuNuHH_bin8,prop_binNuNuHH_bin9,prop_binNuNuHH_bin10,prop_binNuNuHH_bin11,prop_binNuNuHH_bin12,prop_binNuNuHH_bin13,prop_binNuNuHH_bin14,prop_binNuNuHH_bin15,prop_binNuNuHH_bin16,prop_binNuNuHH_bin17,prop_binNuNuHH_bin18,prop_binNuNuHH_bin19,prop_binNuNuHH_bin20,prop_binNuNuHH_bin21,prop_binNuNuHH_bin22,prop_binNuNuHH_bin23,prop_binNuNuHH_bin24,prop_binNuNuHH_bin25,prop_binNuNuHH_bin26,prop_binNuNuHH_bin27,prop_binNuNuHH_bin28,prop_binNuNuHH_bin29,prop_binNuNuHH_bin30,prop_binNuNuHH_bin31,prop_binNuNuHH_bin32,prop_binNuNuHH_bin33,prop_binNuNuHH_bin34,prop_binNuNuHH_bin35,prop_binNuNuHH_bin36,prop_binNuNuHH_bin37,prop_binNuNuHH_bin38,prop_binNuNuHH_bin39,prop_binNuNuHH_bin40,prop_binNuNuHH_bin41,prop_binNuNuHH_bin42,prop_binNuNuHH_bin43,prop_binNuNuHH_bin44,prop_binNuNuHH_bin45,prop_binNuNuHH_bin46,prop_binNuNuHH_bin47,prop_binNuNuHH_bin48,prop_binNuNuHH_bin49)
+nuisances:(unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365,prop_binNuNuLL_bin0,prop_binNuNuLL_bin1,prop_binNuNuLL_bin2,prop_binNuNuLL_bin3,prop_binNuNuLL_bin4,prop_binNuNuLL_bin5,prop_binNuNuLL_bin6,prop_binNuNuLL_bin7,prop_binNuNuLL_bin8,prop_binNuNuLL_bin9,prop_binNuNuLL_bin10,prop_binNuNuLL_bin11,prop_binNuNuLL_bin12,prop_binNuNuLL_bin13,prop_binNuNuLL_bin14,prop_binNuNuLL_bin15,prop_binNuNuLL_bin16,prop_binNuNuLL_bin17,prop_binNuNuLL_bin18,prop_binNuNuLL_bin19,prop_binNuNuLL_bin20,prop_binNuNuLL_bin21,prop_binNuNuLL_bin22,prop_binNuNuLL_bin23,prop_binNuNuLL_bin24,prop_binNuNuLL_bin25,prop_binNuNuLL_bin26,prop_binNuNuLL_bin27,prop_binNuNuLL_bin28,prop_binNuNuLL_bin29,prop_binNuNuLL_bin30,prop_binNuNuLL_bin31,prop_binNuNuLL_bin32,prop_binNuNuLL_bin33,prop_binNuNuLL_bin34,prop_binNuNuLL_bin35,prop_binNuNuLL_bin36,prop_binNuNuLL_bin37,prop_binNuNuLL_bin38,prop_binNuNuLL_bin39,prop_binNuNuLL_bin40,prop_binNuNuLL_bin41,prop_binNuNuLL_bin42,prop_binNuNuLL_bin43,prop_binNuNuLL_bin44,prop_binNuNuLL_bin45,prop_binNuNuLL_bin46,prop_binNuNuLL_bin47,prop_binNuNuLL_bin48,prop_binNuNuLH_bin0,prop_binNuNuLH_bin1,prop_binNuNuLH_bin2,prop_binNuNuLH_bin3,prop_binNuNuLH_bin4,prop_binNuNuLH_bin5,prop_binNuNuLH_bin6,prop_binNuNuLH_bin7,prop_binNuNuLH_bin8,prop_binNuNuLH_bin9,prop_binNuNuLH_bin10,prop_binNuNuLH_bin11,prop_binNuNuLH_bin12,prop_binNuNuLH_bin13,prop_binNuNuLH_bin14,prop_binNuNuLH_bin15,prop_binNuNuLH_bin16,prop_binNuNuLH_bin17,prop_binNuNuLH_bin18,prop_binNuNuLH_bin19,prop_binNuNuLH_bin20,prop_binNuNuLH_bin21,prop_binNuNuLH_bin22,prop_binNuNuLH_bin23,prop_binNuNuLH_bin24,prop_binNuNuLH_bin25,prop_binNuNuLH_bin26,prop_binNuNuLH_bin27,prop_binNuNuLH_bin28,prop_binNuNuLH_bin29,prop_binNuNuLH_bin30,prop_binNuNuLH_bin31,prop_binNuNuLH_bin32,prop_binNuNuLH_bin33,prop_binNuNuLH_bin34,prop_binNuNuLH_bin35,prop_binNuNuLH_bin36,prop_binNuNuLH_bin37,prop_binNuNuLH_bin38,prop_binNuNuLH_bin39,prop_binNuNuLH_bin40,prop_binNuNuLH_bin41,prop_binNuNuLH_bin42,prop_binNuNuLH_bin43,prop_binNuNuLH_bin44,prop_binNuNuLH_bin45,prop_binNuNuLH_bin46,prop_binNuNuLH_bin47,prop_binNuNuLH_bin48,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365,prop_binNuNuHH_bin0,prop_binNuNuHH_bin1,prop_binNuNuHH_bin2,prop_binNuNuHH_bin3,prop_binNuNuHH_bin4,prop_binNuNuHH_bin5,prop_binNuNuHH_bin6,prop_binNuNuHH_bin7,prop_binNuNuHH_bin8,prop_binNuNuHH_bin9,prop_binNuNuHH_bin10,prop_binNuNuHH_bin11,prop_binNuNuHH_bin12,prop_binNuNuHH_bin13,prop_binNuNuHH_bin14,prop_binNuNuHH_bin15,prop_binNuNuHH_bin16,prop_binNuNuHH_bin17,prop_binNuNuHH_bin18,prop_binNuNuHH_bin19,prop_binNuNuHH_bin20,prop_binNuNuHH_bin21,prop_binNuNuHH_bin22,prop_binNuNuHH_bin23,prop_binNuNuHH_bin24,prop_binNuNuHH_bin25,prop_binNuNuHH_bin26,prop_binNuNuHH_bin27,prop_binNuNuHH_bin28,prop_binNuNuHH_bin29,prop_binNuNuHH_bin30,prop_binNuNuHH_bin31,prop_binNuNuHH_bin32,prop_binNuNuHH_bin33,prop_binNuNuHH_bin34,prop_binNuNuHH_bin35,prop_binNuNuHH_bin36,prop_binNuNuHH_bin37,prop_binNuNuHH_bin38,prop_binNuNuHH_bin39,prop_binNuNuHH_bin40,prop_binNuNuHH_bin41,prop_binNuNuHH_bin42,prop_binNuNuHH_bin43,prop_binNuNuHH_bin44,prop_binNuNuHH_bin45,prop_binNuNuHH_bin46,prop_binNuNuHH_bin47,prop_binNuNuHH_bin48,prop_binNuNuHH_bin49)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365,prop_binNuNuLL_bin0,prop_binNuNuLL_bin1,prop_binNuNuLL_bin2,prop_binNuNuLL_bin3,prop_binNuNuLL_bin4,prop_binNuNuLL_bin5,prop_binNuNuLL_bin6,prop_binNuNuLL_bin7,prop_binNuNuLL_bin8,prop_binNuNuLL_bin9,prop_binNuNuLL_bin10,prop_binNuNuLL_bin11,prop_binNuNuLL_bin12,prop_binNuNuLL_bin13,prop_binNuNuLL_bin14,prop_binNuNuLL_bin15,prop_binNuNuLL_bin16,prop_binNuNuLL_bin17,prop_binNuNuLL_bin18,prop_binNuNuLL_bin19,prop_binNuNuLL_bin20,prop_binNuNuLL_bin21,prop_binNuNuLL_bin22,prop_binNuNuLL_bin23,prop_binNuNuLL_bin24,prop_binNuNuLL_bin25,prop_binNuNuLL_bin26,prop_binNuNuLL_bin27,prop_binNuNuLL_bin28,prop_binNuNuLL_bin29,prop_binNuNuLL_bin30,prop_binNuNuLL_bin31,prop_binNuNuLL_bin32,prop_binNuNuLL_bin33,prop_binNuNuLL_bin34,prop_binNuNuLL_bin35,prop_binNuNuLL_bin36,prop_binNuNuLL_bin37,prop_binNuNuLL_bin38,prop_binNuNuLL_bin39,prop_binNuNuLL_bin40,prop_binNuNuLL_bin41,prop_binNuNuLL_bin42,prop_binNuNuLL_bin43,prop_binNuNuLL_bin44,prop_binNuNuLL_bin45,prop_binNuNuLL_bin46,prop_binNuNuLL_bin47,prop_binNuNuLL_bin48,prop_binNuNuLH_bin0,prop_binNuNuLH_bin1,prop_binNuNuLH_bin2,prop_binNuNuLH_bin3,prop_binNuNuLH_bin4,prop_binNuNuLH_bin5,prop_binNuNuLH_bin6,prop_binNuNuLH_bin7,prop_binNuNuLH_bin8,prop_binNuNuLH_bin9,prop_binNuNuLH_bin10,prop_binNuNuLH_bin11,prop_binNuNuLH_bin12,prop_binNuNuLH_bin13,prop_binNuNuLH_bin14,prop_binNuNuLH_bin15,prop_binNuNuLH_bin16,prop_binNuNuLH_bin17,prop_binNuNuLH_bin18,prop_binNuNuLH_bin19,prop_binNuNuLH_bin20,prop_binNuNuLH_bin21,prop_binNuNuLH_bin22,prop_binNuNuLH_bin23,prop_binNuNuLH_bin24,prop_binNuNuLH_bin25,prop_binNuNuLH_bin26,prop_binNuNuLH_bin27,prop_binNuNuLH_bin28,prop_binNuNuLH_bin29,prop_binNuNuLH_bin30,prop_binNuNuLH_bin31,prop_binNuNuLH_bin32,prop_binNuNuLH_bin33,prop_binNuNuLH_bin34,prop_binNuNuLH_bin35,prop_binNuNuLH_bin36,prop_binNuNuLH_bin37,prop_binNuNuLH_bin38,prop_binNuNuLH_bin39,prop_binNuNuLH_bin40,prop_binNuNuLH_bin41,prop_binNuNuLH_bin42,prop_binNuNuLH_bin43,prop_binNuNuLH_bin44,prop_binNuNuLH_bin45,prop_binNuNuLH_bin46,prop_binNuNuLH_bin47,prop_binNuNuLH_bin48,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365,prop_binNuNuHH_bin0,prop_binNuNuHH_bin1,prop_binNuNuHH_bin2,prop_binNuNuHH_bin3,prop_binNuNuHH_bin4,prop_binNuNuHH_bin5,prop_binNuNuHH_bin6,prop_binNuNuHH_bin7,prop_binNuNuHH_bin8,prop_binNuNuHH_bin9,prop_binNuNuHH_bin10,prop_binNuNuHH_bin11,prop_binNuNuHH_bin12,prop_binNuNuHH_bin13,prop_binNuNuHH_bin14,prop_binNuNuHH_bin15,prop_binNuNuHH_bin16,prop_binNuNuHH_bin17,prop_binNuNuHH_bin18,prop_binNuNuHH_bin19,prop_binNuNuHH_bin20,prop_binNuNuHH_bin21,prop_binNuNuHH_bin22,prop_binNuNuHH_bin23,prop_binNuNuHH_bin24,prop_binNuNuHH_bin25,prop_binNuNuHH_bin26,prop_binNuNuHH_bin27,prop_binNuNuHH_bin28,prop_binNuNuHH_bin29,prop_binNuNuHH_bin30,prop_binNuNuHH_bin31,prop_binNuNuHH_bin32,prop_binNuNuHH_bin33,prop_binNuNuHH_bin34,prop_binNuNuHH_bin35,prop_binNuNuHH_bin36,prop_binNuNuHH_bin37,prop_binNuNuHH_bin38,prop_binNuNuHH_bin39,prop_binNuNuHH_bin40,prop_binNuNuHH_bin41,prop_binNuNuHH_bin42,prop_binNuNuHH_bin43,prop_binNuNuHH_bin44,prop_binNuNuHH_bin45,prop_binNuNuHH_bin46,prop_binNuNuHH_bin47,prop_binNuNuHH_bin48,prop_binNuNuHH_bin49)
+Global Observables:      RooArgSet:: = (unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,prop_binNuNuLL_bin0_In,prop_binNuNuLL_bin1_In,prop_binNuNuLL_bin2_In,prop_binNuNuLL_bin3_In,prop_binNuNuLL_bin4_In,prop_binNuNuLL_bin5_In,prop_binNuNuLL_bin6_In,prop_binNuNuLL_bin7_In,prop_binNuNuLL_bin8_In,prop_binNuNuLL_bin9_In,prop_binNuNuLL_bin10_In,prop_binNuNuLL_bin11_In,prop_binNuNuLL_bin12_In,prop_binNuNuLL_bin13_In,prop_binNuNuLL_bin14_In,prop_binNuNuLL_bin15_In,prop_binNuNuLL_bin16_In,prop_binNuNuLL_bin17_In,prop_binNuNuLL_bin18_In,prop_binNuNuLL_bin19_In,prop_binNuNuLL_bin20_In,prop_binNuNuLL_bin21_In,prop_binNuNuLL_bin22_In,prop_binNuNuLL_bin23_In,prop_binNuNuLL_bin24_In,prop_binNuNuLL_bin25_In,prop_binNuNuLL_bin26_In,prop_binNuNuLL_bin27_In,prop_binNuNuLL_bin28_In,prop_binNuNuLL_bin29_In,prop_binNuNuLL_bin30_In,prop_binNuNuLL_bin31_In,prop_binNuNuLL_bin32_In,prop_binNuNuLL_bin33_In,prop_binNuNuLL_bin34_In,prop_binNuNuLL_bin35_In,prop_binNuNuLL_bin36_In,prop_binNuNuLL_bin37_In,prop_binNuNuLL_bin38_In,prop_binNuNuLL_bin39_In,prop_binNuNuLL_bin40_In,prop_binNuNuLL_bin41_In,prop_binNuNuLL_bin42_In,prop_binNuNuLL_bin43_In,prop_binNuNuLL_bin44_In,prop_binNuNuLL_bin45_In,prop_binNuNuLL_bin46_In,prop_binNuNuLL_bin47_In,prop_binNuNuLL_bin48_In,prop_binNuNuLH_bin0_In,prop_binNuNuLH_bin1_In,prop_binNuNuLH_bin2_In,prop_binNuNuLH_bin3_In,prop_binNuNuLH_bin4_In,prop_binNuNuLH_bin5_In,prop_binNuNuLH_bin6_In,prop_binNuNuLH_bin7_In,prop_binNuNuLH_bin8_In,prop_binNuNuLH_bin9_In,prop_binNuNuLH_bin10_In,prop_binNuNuLH_bin11_In,prop_binNuNuLH_bin12_In,prop_binNuNuLH_bin13_In,prop_binNuNuLH_bin14_In,prop_binNuNuLH_bin15_In,prop_binNuNuLH_bin16_In,prop_binNuNuLH_bin17_In,prop_binNuNuLH_bin18_In,prop_binNuNuLH_bin19_In,prop_binNuNuLH_bin20_In,prop_binNuNuLH_bin21_In,prop_binNuNuLH_bin22_In,prop_binNuNuLH_bin23_In,prop_binNuNuLH_bin24_In,prop_binNuNuLH_bin25_In,prop_binNuNuLH_bin26_In,prop_binNuNuLH_bin27_In,prop_binNuNuLH_bin28_In,prop_binNuNuLH_bin29_In,prop_binNuNuLH_bin30_In,prop_binNuNuLH_bin31_In,prop_binNuNuLH_bin32_In,prop_binNuNuLH_bin33_In,prop_binNuNuLH_bin34_In,prop_binNuNuLH_bin35_In,prop_binNuNuLH_bin36_In,prop_binNuNuLH_bin37_In,prop_binNuNuLH_bin38_In,prop_binNuNuLH_bin39_In,prop_binNuNuLH_bin40_In,prop_binNuNuLH_bin41_In,prop_binNuNuLH_bin42_In,prop_binNuNuLH_bin43_In,prop_binNuNuLH_bin44_In,prop_binNuNuLH_bin45_In,prop_binNuNuLH_bin46_In,prop_binNuNuLH_bin47_In,prop_binNuNuLH_bin48_In,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_In,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_In,prop_binNuNuLH_bin49_p8_ee_WW_ecm365_In,prop_binNuNuHH_bin0_In,prop_binNuNuHH_bin1_In,prop_binNuNuHH_bin2_In,prop_binNuNuHH_bin3_In,prop_binNuNuHH_bin4_In,prop_binNuNuHH_bin5_In,prop_binNuNuHH_bin6_In,prop_binNuNuHH_bin7_In,prop_binNuNuHH_bin8_In,prop_binNuNuHH_bin9_In,prop_binNuNuHH_bin10_In,prop_binNuNuHH_bin11_In,prop_binNuNuHH_bin12_In,prop_binNuNuHH_bin13_In,prop_binNuNuHH_bin14_In,prop_binNuNuHH_bin15_In,prop_binNuNuHH_bin16_In,prop_binNuNuHH_bin17_In,prop_binNuNuHH_bin18_In,prop_binNuNuHH_bin19_In,prop_binNuNuHH_bin20_In,prop_binNuNuHH_bin21_In,prop_binNuNuHH_bin22_In,prop_binNuNuHH_bin23_In,prop_binNuNuHH_bin24_In,prop_binNuNuHH_bin25_In,prop_binNuNuHH_bin26_In,prop_binNuNuHH_bin27_In,prop_binNuNuHH_bin28_In,prop_binNuNuHH_bin29_In,prop_binNuNuHH_bin30_In,prop_binNuNuHH_bin31_In,prop_binNuNuHH_bin32_In,prop_binNuNuHH_bin33_In,prop_binNuNuHH_bin34_In,prop_binNuNuHH_bin35_In,prop_binNuNuHH_bin36_In,prop_binNuNuHH_bin37_In,prop_binNuNuHH_bin38_In,prop_binNuNuHH_bin39_In,prop_binNuNuHH_bin40_In,prop_binNuNuHH_bin41_In,prop_binNuNuHH_bin42_In,prop_binNuNuHH_bin43_In,prop_binNuNuHH_bin44_In,prop_binNuNuHH_bin45_In,prop_binNuNuHH_bin46_In,prop_binNuNuHH_bin47_In,prop_binNuNuHH_bin48_In,prop_binNuNuHH_bin49_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel NuNuLL=pdf_binNuNuLL NuNuLH=pdf_binNuNuLH NuNuHH=pdf_binNuNuHH extraConstraints=() channelMasks=() ] = 4.66667e-09
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc_Z,unc__H,unc_p8_ee_WW_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_nuenueZ_ecm365,prop_binNuNuLL_bin0,prop_binNuNuLL_bin1,prop_binNuNuLL_bin2,prop_binNuNuLL_bin3,prop_binNuNuLL_bin4,prop_binNuNuLL_bin5,prop_binNuNuLL_bin6,prop_binNuNuLL_bin7,prop_binNuNuLL_bin8,prop_binNuNuLL_bin9,prop_binNuNuLL_bin10,prop_binNuNuLL_bin11,prop_binNuNuLL_bin12,prop_binNuNuLL_bin13,prop_binNuNuLL_bin14,prop_binNuNuLL_bin15,prop_binNuNuLL_bin16,prop_binNuNuLL_bin17,prop_binNuNuLL_bin18,prop_binNuNuLL_bin19,prop_binNuNuLL_bin20,prop_binNuNuLL_bin21,prop_binNuNuLL_bin22,prop_binNuNuLL_bin23,prop_binNuNuLL_bin24,prop_binNuNuLL_bin25,prop_binNuNuLL_bin26,prop_binNuNuLL_bin27,prop_binNuNuLL_bin28,prop_binNuNuLL_bin29,prop_binNuNuLL_bin30,prop_binNuNuLL_bin31,prop_binNuNuLL_bin32,prop_binNuNuLL_bin33,prop_binNuNuLL_bin34,prop_binNuNuLL_bin35,prop_binNuNuLL_bin36,prop_binNuNuLL_bin37,prop_binNuNuLL_bin38,prop_binNuNuLL_bin39,prop_binNuNuLL_bin40,prop_binNuNuLL_bin41,prop_binNuNuLL_bin42,prop_binNuNuLL_bin43,prop_binNuNuLL_bin44,prop_binNuNuLL_bin45,prop_binNuNuLL_bin46,prop_binNuNuLL_bin47,prop_binNuNuLL_bin48,prop_binNuNuLH_bin0,prop_binNuNuLH_bin1,prop_binNuNuLH_bin2,prop_binNuNuLH_bin3,prop_binNuNuLH_bin4,prop_binNuNuLH_bin5,prop_binNuNuLH_bin6,prop_binNuNuLH_bin7,prop_binNuNuLH_bin8,prop_binNuNuLH_bin9,prop_binNuNuLH_bin10,prop_binNuNuLH_bin11,prop_binNuNuLH_bin12,prop_binNuNuLH_bin13,prop_binNuNuLH_bin14,prop_binNuNuLH_bin15,prop_binNuNuLH_bin16,prop_binNuNuLH_bin17,prop_binNuNuLH_bin18,prop_binNuNuLH_bin19,prop_binNuNuLH_bin20,prop_binNuNuLH_bin21,prop_binNuNuLH_bin22,prop_binNuNuLH_bin23,prop_binNuNuLH_bin24,prop_binNuNuLH_bin25,prop_binNuNuLH_bin26,prop_binNuNuLH_bin27,prop_binNuNuLH_bin28,prop_binNuNuLH_bin29,prop_binNuNuLH_bin30,prop_binNuNuLH_bin31,prop_binNuNuLH_bin32,prop_binNuNuLH_bin33,prop_binNuNuLH_bin34,prop_binNuNuLH_bin35,prop_binNuNuLH_bin36,prop_binNuNuLH_bin37,prop_binNuNuLH_bin38,prop_binNuNuLH_bin39,prop_binNuNuLH_bin40,prop_binNuNuLH_bin41,prop_binNuNuLH_bin42,prop_binNuNuLH_bin43,prop_binNuNuLH_bin44,prop_binNuNuLH_bin45,prop_binNuNuLH_bin46,prop_binNuNuLH_bin47,prop_binNuNuLH_bin48,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365,prop_binNuNuLH_bin49_p8_ee_WW_ecm365,prop_binNuNuHH_bin0,prop_binNuNuHH_bin1,prop_binNuNuHH_bin2,prop_binNuNuHH_bin3,prop_binNuNuHH_bin4,prop_binNuNuHH_bin5,prop_binNuNuHH_bin6,prop_binNuNuHH_bin7,prop_binNuNuHH_bin8,prop_binNuNuHH_bin9,prop_binNuNuHH_bin10,prop_binNuNuHH_bin11,prop_binNuNuHH_bin12,prop_binNuNuHH_bin13,prop_binNuNuHH_bin14,prop_binNuNuHH_bin15,prop_binNuNuHH_bin16,prop_binNuNuHH_bin17,prop_binNuNuHH_bin18,prop_binNuNuHH_bin19,prop_binNuNuHH_bin20,prop_binNuNuHH_bin21,prop_binNuNuHH_bin22,prop_binNuNuHH_bin23,prop_binNuNuHH_bin24,prop_binNuNuHH_bin25,prop_binNuNuHH_bin26,prop_binNuNuHH_bin27,prop_binNuNuHH_bin28,prop_binNuNuHH_bin29,prop_binNuNuHH_bin30,prop_binNuNuHH_bin31,prop_binNuNuHH_bin32,prop_binNuNuHH_bin33,prop_binNuNuHH_bin34,prop_binNuNuHH_bin35,prop_binNuNuHH_bin36,prop_binNuNuHH_bin37,prop_binNuNuHH_bin38,prop_binNuNuHH_bin39,prop_binNuNuHH_bin40,prop_binNuNuHH_bin41,prop_binNuNuHH_bin42,prop_binNuNuHH_bin43,prop_binNuNuHH_bin44,prop_binNuNuHH_bin45,prop_binNuNuHH_bin46,prop_binNuNuHH_bin47,prop_binNuNuHH_bin48,prop_binNuNuHH_bin49)
+Global Observables:      RooArgSet:: = (unc_Z_In,unc__H_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,prop_binNuNuLL_bin0_In,prop_binNuNuLL_bin1_In,prop_binNuNuLL_bin2_In,prop_binNuNuLL_bin3_In,prop_binNuNuLL_bin4_In,prop_binNuNuLL_bin5_In,prop_binNuNuLL_bin6_In,prop_binNuNuLL_bin7_In,prop_binNuNuLL_bin8_In,prop_binNuNuLL_bin9_In,prop_binNuNuLL_bin10_In,prop_binNuNuLL_bin11_In,prop_binNuNuLL_bin12_In,prop_binNuNuLL_bin13_In,prop_binNuNuLL_bin14_In,prop_binNuNuLL_bin15_In,prop_binNuNuLL_bin16_In,prop_binNuNuLL_bin17_In,prop_binNuNuLL_bin18_In,prop_binNuNuLL_bin19_In,prop_binNuNuLL_bin20_In,prop_binNuNuLL_bin21_In,prop_binNuNuLL_bin22_In,prop_binNuNuLL_bin23_In,prop_binNuNuLL_bin24_In,prop_binNuNuLL_bin25_In,prop_binNuNuLL_bin26_In,prop_binNuNuLL_bin27_In,prop_binNuNuLL_bin28_In,prop_binNuNuLL_bin29_In,prop_binNuNuLL_bin30_In,prop_binNuNuLL_bin31_In,prop_binNuNuLL_bin32_In,prop_binNuNuLL_bin33_In,prop_binNuNuLL_bin34_In,prop_binNuNuLL_bin35_In,prop_binNuNuLL_bin36_In,prop_binNuNuLL_bin37_In,prop_binNuNuLL_bin38_In,prop_binNuNuLL_bin39_In,prop_binNuNuLL_bin40_In,prop_binNuNuLL_bin41_In,prop_binNuNuLL_bin42_In,prop_binNuNuLL_bin43_In,prop_binNuNuLL_bin44_In,prop_binNuNuLL_bin45_In,prop_binNuNuLL_bin46_In,prop_binNuNuLL_bin47_In,prop_binNuNuLL_bin48_In,prop_binNuNuLH_bin0_In,prop_binNuNuLH_bin1_In,prop_binNuNuLH_bin2_In,prop_binNuNuLH_bin3_In,prop_binNuNuLH_bin4_In,prop_binNuNuLH_bin5_In,prop_binNuNuLH_bin6_In,prop_binNuNuLH_bin7_In,prop_binNuNuLH_bin8_In,prop_binNuNuLH_bin9_In,prop_binNuNuLH_bin10_In,prop_binNuNuLH_bin11_In,prop_binNuNuLH_bin12_In,prop_binNuNuLH_bin13_In,prop_binNuNuLH_bin14_In,prop_binNuNuLH_bin15_In,prop_binNuNuLH_bin16_In,prop_binNuNuLH_bin17_In,prop_binNuNuLH_bin18_In,prop_binNuNuLH_bin19_In,prop_binNuNuLH_bin20_In,prop_binNuNuLH_bin21_In,prop_binNuNuLH_bin22_In,prop_binNuNuLH_bin23_In,prop_binNuNuLH_bin24_In,prop_binNuNuLH_bin25_In,prop_binNuNuLH_bin26_In,prop_binNuNuLH_bin27_In,prop_binNuNuLH_bin28_In,prop_binNuNuLH_bin29_In,prop_binNuNuLH_bin30_In,prop_binNuNuLH_bin31_In,prop_binNuNuLH_bin32_In,prop_binNuNuLH_bin33_In,prop_binNuNuLH_bin34_In,prop_binNuNuLH_bin35_In,prop_binNuNuLH_bin36_In,prop_binNuNuLH_bin37_In,prop_binNuNuLH_bin38_In,prop_binNuNuLH_bin39_In,prop_binNuNuLH_bin40_In,prop_binNuNuLH_bin41_In,prop_binNuNuLH_bin42_In,prop_binNuNuLH_bin43_In,prop_binNuNuLH_bin44_In,prop_binNuNuLH_bin45_In,prop_binNuNuLH_bin46_In,prop_binNuNuLH_bin47_In,prop_binNuNuLH_bin48_In,prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_In,prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_In,prop_binNuNuLH_bin49_p8_ee_WW_ecm365_In,prop_binNuNuHH_bin0_In,prop_binNuNuHH_bin1_In,prop_binNuNuHH_bin2_In,prop_binNuNuHH_bin3_In,prop_binNuNuHH_bin4_In,prop_binNuNuHH_bin5_In,prop_binNuNuHH_bin6_In,prop_binNuNuHH_bin7_In,prop_binNuNuHH_bin8_In,prop_binNuNuHH_bin9_In,prop_binNuNuHH_bin10_In,prop_binNuNuHH_bin11_In,prop_binNuNuHH_bin12_In,prop_binNuNuHH_bin13_In,prop_binNuNuHH_bin14_In,prop_binNuNuHH_bin15_In,prop_binNuNuHH_bin16_In,prop_binNuNuHH_bin17_In,prop_binNuNuHH_bin18_In,prop_binNuNuHH_bin19_In,prop_binNuNuHH_bin20_In,prop_binNuNuHH_bin21_In,prop_binNuNuHH_bin22_In,prop_binNuNuHH_bin23_In,prop_binNuNuHH_bin24_In,prop_binNuNuHH_bin25_In,prop_binNuNuHH_bin26_In,prop_binNuNuHH_bin27_In,prop_binNuNuHH_bin28_In,prop_binNuNuHH_bin29_In,prop_binNuNuHH_bin30_In,prop_binNuNuHH_bin31_In,prop_binNuNuHH_bin32_In,prop_binNuNuHH_bin33_In,prop_binNuNuHH_bin34_In,prop_binNuNuHH_bin35_In,prop_binNuNuHH_bin36_In,prop_binNuNuHH_bin37_In,prop_binNuNuHH_bin38_In,prop_binNuNuHH_bin39_In,prop_binNuNuHH_bin40_In,prop_binNuNuHH_bin41_In,prop_binNuNuHH_bin42_In,prop_binNuNuHH_bin43_In,prop_binNuNuHH_bin44_In,prop_binNuNuHH_bin45_In,prop_binNuNuHH_bin46_In,prop_binNuNuHH_bin47_In,prop_binNuNuHH_bin48_In,prop_binNuNuHH_bin49_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel NuNuLL=pdf_binNuNuLL NuNuLH=pdf_binNuNuLH NuNuHH=pdf_binNuNuHH extraConstraints=() channelMasks=() ] = 4.66667e-09
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Found a parameter named ONE infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Found a parameter named ZERO infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 2 
+CMS_th1x = 49.5 
+ONE = 1 (constant)
+prop_binNuNuHH_bin0 = 0 
+prop_binNuNuHH_bin0_In = 0 (constant)
+prop_binNuNuHH_bin1 = 0 
+prop_binNuNuHH_bin10 = 0 
+prop_binNuNuHH_bin10_In = 0 (constant)
+prop_binNuNuHH_bin11 = 0 
+prop_binNuNuHH_bin11_In = 0 (constant)
+prop_binNuNuHH_bin12 = 0 
+prop_binNuNuHH_bin12_In = 0 (constant)
+prop_binNuNuHH_bin13 = 0 
+prop_binNuNuHH_bin13_In = 0 (constant)
+prop_binNuNuHH_bin14 = 0 
+prop_binNuNuHH_bin14_In = 0 (constant)
+prop_binNuNuHH_bin15 = 0 
+prop_binNuNuHH_bin15_In = 0 (constant)
+prop_binNuNuHH_bin16 = 0 
+prop_binNuNuHH_bin16_In = 0 (constant)
+prop_binNuNuHH_bin17 = 0 
+prop_binNuNuHH_bin17_In = 0 (constant)
+prop_binNuNuHH_bin18 = 0 
+prop_binNuNuHH_bin18_In = 0 (constant)
+prop_binNuNuHH_bin19 = 0 
+prop_binNuNuHH_bin19_In = 0 (constant)
+prop_binNuNuHH_bin1_In = 0 (constant)
+prop_binNuNuHH_bin2 = 0 
+prop_binNuNuHH_bin20 = 0 
+prop_binNuNuHH_bin20_In = 0 (constant)
+prop_binNuNuHH_bin21 = 0 
+prop_binNuNuHH_bin21_In = 0 (constant)
+prop_binNuNuHH_bin22 = 0 
+prop_binNuNuHH_bin22_In = 0 (constant)
+prop_binNuNuHH_bin23 = 0 
+prop_binNuNuHH_bin23_In = 0 (constant)
+prop_binNuNuHH_bin24 = 0 
+prop_binNuNuHH_bin24_In = 0 (constant)
+prop_binNuNuHH_bin25 = 0 
+prop_binNuNuHH_bin25_In = 0 (constant)
+prop_binNuNuHH_bin26 = 0 
+prop_binNuNuHH_bin26_In = 0 (constant)
+prop_binNuNuHH_bin27 = 0 
+prop_binNuNuHH_bin27_In = 0 (constant)
+prop_binNuNuHH_bin28 = 0 
+prop_binNuNuHH_bin28_In = 0 (constant)
+prop_binNuNuHH_bin29 = 0 
+prop_binNuNuHH_bin29_In = 0 (constant)
+prop_binNuNuHH_bin2_In = 0 (constant)
+prop_binNuNuHH_bin3 = 0 
+prop_binNuNuHH_bin30 = 0 
+prop_binNuNuHH_bin30_In = 0 (constant)
+prop_binNuNuHH_bin31 = 0 
+prop_binNuNuHH_bin31_In = 0 (constant)
+prop_binNuNuHH_bin32 = 0 
+prop_binNuNuHH_bin32_In = 0 (constant)
+prop_binNuNuHH_bin33 = 0 
+prop_binNuNuHH_bin33_In = 0 (constant)
+prop_binNuNuHH_bin34 = 0 
+prop_binNuNuHH_bin34_In = 0 (constant)
+prop_binNuNuHH_bin35 = 0 
+prop_binNuNuHH_bin35_In = 0 (constant)
+prop_binNuNuHH_bin36 = 0 
+prop_binNuNuHH_bin36_In = 0 (constant)
+prop_binNuNuHH_bin37 = 0 
+prop_binNuNuHH_bin37_In = 0 (constant)
+prop_binNuNuHH_bin38 = 0 
+prop_binNuNuHH_bin38_In = 0 (constant)
+prop_binNuNuHH_bin39 = 0 
+prop_binNuNuHH_bin39_In = 0 (constant)
+prop_binNuNuHH_bin3_In = 0 (constant)
+prop_binNuNuHH_bin4 = 0 
+prop_binNuNuHH_bin40 = 0 
+prop_binNuNuHH_bin40_In = 0 (constant)
+prop_binNuNuHH_bin41 = 0 
+prop_binNuNuHH_bin41_In = 0 (constant)
+prop_binNuNuHH_bin42 = 0 
+prop_binNuNuHH_bin42_In = 0 (constant)
+prop_binNuNuHH_bin43 = 0 
+prop_binNuNuHH_bin43_In = 0 (constant)
+prop_binNuNuHH_bin44 = 0 
+prop_binNuNuHH_bin44_In = 0 (constant)
+prop_binNuNuHH_bin45 = 0 
+prop_binNuNuHH_bin45_In = 0 (constant)
+prop_binNuNuHH_bin46 = 0 
+prop_binNuNuHH_bin46_In = 0 (constant)
+prop_binNuNuHH_bin47 = 0 
+prop_binNuNuHH_bin47_In = 0 (constant)
+prop_binNuNuHH_bin48 = 0 
+prop_binNuNuHH_bin48_In = 0 (constant)
+prop_binNuNuHH_bin49 = 0 
+prop_binNuNuHH_bin49_In = 0 (constant)
+prop_binNuNuHH_bin4_In = 0 (constant)
+prop_binNuNuHH_bin5 = 0 
+prop_binNuNuHH_bin5_In = 0 (constant)
+prop_binNuNuHH_bin6 = 0 
+prop_binNuNuHH_bin6_In = 0 (constant)
+prop_binNuNuHH_bin7 = 0 
+prop_binNuNuHH_bin7_In = 0 (constant)
+prop_binNuNuHH_bin8 = 0 
+prop_binNuNuHH_bin8_In = 0 (constant)
+prop_binNuNuHH_bin9 = 0 
+prop_binNuNuHH_bin9_In = 0 (constant)
+prop_binNuNuLH_bin0 = 0 
+prop_binNuNuLH_bin0_In = 0 (constant)
+prop_binNuNuLH_bin1 = 0 
+prop_binNuNuLH_bin10 = 0 
+prop_binNuNuLH_bin10_In = 0 (constant)
+prop_binNuNuLH_bin11 = 0 
+prop_binNuNuLH_bin11_In = 0 (constant)
+prop_binNuNuLH_bin12 = 0 
+prop_binNuNuLH_bin12_In = 0 (constant)
+prop_binNuNuLH_bin13 = 0 
+prop_binNuNuLH_bin13_In = 0 (constant)
+prop_binNuNuLH_bin14 = 0 
+prop_binNuNuLH_bin14_In = 0 (constant)
+prop_binNuNuLH_bin15 = 0 
+prop_binNuNuLH_bin15_In = 0 (constant)
+prop_binNuNuLH_bin16 = 0 
+prop_binNuNuLH_bin16_In = 0 (constant)
+prop_binNuNuLH_bin17 = 0 
+prop_binNuNuLH_bin17_In = 0 (constant)
+prop_binNuNuLH_bin18 = 0 
+prop_binNuNuLH_bin18_In = 0 (constant)
+prop_binNuNuLH_bin19 = 0 
+prop_binNuNuLH_bin19_In = 0 (constant)
+prop_binNuNuLH_bin1_In = 0 (constant)
+prop_binNuNuLH_bin2 = 0 
+prop_binNuNuLH_bin20 = 0 
+prop_binNuNuLH_bin20_In = 0 (constant)
+prop_binNuNuLH_bin21 = 0 
+prop_binNuNuLH_bin21_In = 0 (constant)
+prop_binNuNuLH_bin22 = 0 
+prop_binNuNuLH_bin22_In = 0 (constant)
+prop_binNuNuLH_bin23 = 0 
+prop_binNuNuLH_bin23_In = 0 (constant)
+prop_binNuNuLH_bin24 = 0 
+prop_binNuNuLH_bin24_In = 0 (constant)
+prop_binNuNuLH_bin25 = 0 
+prop_binNuNuLH_bin25_In = 0 (constant)
+prop_binNuNuLH_bin26 = 0 
+prop_binNuNuLH_bin26_In = 0 (constant)
+prop_binNuNuLH_bin27 = 0 
+prop_binNuNuLH_bin27_In = 0 (constant)
+prop_binNuNuLH_bin28 = 0 
+prop_binNuNuLH_bin28_In = 0 (constant)
+prop_binNuNuLH_bin29 = 0 
+prop_binNuNuLH_bin29_In = 0 (constant)
+prop_binNuNuLH_bin2_In = 0 (constant)
+prop_binNuNuLH_bin3 = 0 
+prop_binNuNuLH_bin30 = 0 
+prop_binNuNuLH_bin30_In = 0 (constant)
+prop_binNuNuLH_bin31 = 0 
+prop_binNuNuLH_bin31_In = 0 (constant)
+prop_binNuNuLH_bin32 = 0 
+prop_binNuNuLH_bin32_In = 0 (constant)
+prop_binNuNuLH_bin33 = 0 
+prop_binNuNuLH_bin33_In = 0 (constant)
+prop_binNuNuLH_bin34 = 0 
+prop_binNuNuLH_bin34_In = 0 (constant)
+prop_binNuNuLH_bin35 = 0 
+prop_binNuNuLH_bin35_In = 0 (constant)
+prop_binNuNuLH_bin36 = 0 
+prop_binNuNuLH_bin36_In = 0 (constant)
+prop_binNuNuLH_bin37 = 0 
+prop_binNuNuLH_bin37_In = 0 (constant)
+prop_binNuNuLH_bin38 = 0 
+prop_binNuNuLH_bin38_In = 0 (constant)
+prop_binNuNuLH_bin39 = 0 
+prop_binNuNuLH_bin39_In = 0 (constant)
+prop_binNuNuLH_bin3_In = 0 (constant)
+prop_binNuNuLH_bin4 = 0 
+prop_binNuNuLH_bin40 = 0 
+prop_binNuNuLH_bin40_In = 0 (constant)
+prop_binNuNuLH_bin41 = 0 
+prop_binNuNuLH_bin41_In = 0 (constant)
+prop_binNuNuLH_bin42 = 0 
+prop_binNuNuLH_bin42_In = 0 (constant)
+prop_binNuNuLH_bin43 = 0 
+prop_binNuNuLH_bin43_In = 0 (constant)
+prop_binNuNuLH_bin44 = 0 
+prop_binNuNuLH_bin44_In = 0 (constant)
+prop_binNuNuLH_bin45 = 0 
+prop_binNuNuLH_bin45_In = 0 (constant)
+prop_binNuNuLH_bin46 = 0 
+prop_binNuNuLH_bin46_In = 0 (constant)
+prop_binNuNuLH_bin47 = 0 
+prop_binNuNuLH_bin47_In = 0 (constant)
+prop_binNuNuLH_bin48 = 0 
+prop_binNuNuLH_bin48_In = 0 (constant)
+prop_binNuNuLH_bin49_p8_ee_WW_ecm365 = 1 
+prop_binNuNuLH_bin49_p8_ee_WW_ecm365_In = 1 (constant)
+prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365 = 0 
+prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365_In = 0 (constant)
+prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365 = 0 
+prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365_In = 0 (constant)
+prop_binNuNuLH_bin4_In = 0 (constant)
+prop_binNuNuLH_bin5 = 0 
+prop_binNuNuLH_bin5_In = 0 (constant)
+prop_binNuNuLH_bin6 = 0 
+prop_binNuNuLH_bin6_In = 0 (constant)
+prop_binNuNuLH_bin7 = 0 
+prop_binNuNuLH_bin7_In = 0 (constant)
+prop_binNuNuLH_bin8 = 0 
+prop_binNuNuLH_bin8_In = 0 (constant)
+prop_binNuNuLH_bin9 = 0 
+prop_binNuNuLH_bin9_In = 0 (constant)
+prop_binNuNuLL_bin0 = 0 
+prop_binNuNuLL_bin0_In = 0 (constant)
+prop_binNuNuLL_bin1 = 0 
+prop_binNuNuLL_bin10 = 0 
+prop_binNuNuLL_bin10_In = 0 (constant)
+prop_binNuNuLL_bin11 = 0 
+prop_binNuNuLL_bin11_In = 0 (constant)
+prop_binNuNuLL_bin12 = 0 
+prop_binNuNuLL_bin12_In = 0 (constant)
+prop_binNuNuLL_bin13 = 0 
+prop_binNuNuLL_bin13_In = 0 (constant)
+prop_binNuNuLL_bin14 = 0 
+prop_binNuNuLL_bin14_In = 0 (constant)
+prop_binNuNuLL_bin15 = 0 
+prop_binNuNuLL_bin15_In = 0 (constant)
+prop_binNuNuLL_bin16 = 0 
+prop_binNuNuLL_bin16_In = 0 (constant)
+prop_binNuNuLL_bin17 = 0 
+prop_binNuNuLL_bin17_In = 0 (constant)
+prop_binNuNuLL_bin18 = 0 
+prop_binNuNuLL_bin18_In = 0 (constant)
+prop_binNuNuLL_bin19 = 0 
+prop_binNuNuLL_bin19_In = 0 (constant)
+prop_binNuNuLL_bin1_In = 0 (constant)
+prop_binNuNuLL_bin2 = 0 
+prop_binNuNuLL_bin20 = 0 
+prop_binNuNuLL_bin20_In = 0 (constant)
+prop_binNuNuLL_bin21 = 0 
+prop_binNuNuLL_bin21_In = 0 (constant)
+prop_binNuNuLL_bin22 = 0 
+prop_binNuNuLL_bin22_In = 0 (constant)
+prop_binNuNuLL_bin23 = 0 
+prop_binNuNuLL_bin23_In = 0 (constant)
+prop_binNuNuLL_bin24 = 0 
+prop_binNuNuLL_bin24_In = 0 (constant)
+prop_binNuNuLL_bin25 = 0 
+prop_binNuNuLL_bin25_In = 0 (constant)
+prop_binNuNuLL_bin26 = 0 
+prop_binNuNuLL_bin26_In = 0 (constant)
+prop_binNuNuLL_bin27 = 0 
+prop_binNuNuLL_bin27_In = 0 (constant)
+prop_binNuNuLL_bin28 = 0 
+prop_binNuNuLL_bin28_In = 0 (constant)
+prop_binNuNuLL_bin29 = 0 
+prop_binNuNuLL_bin29_In = 0 (constant)
+prop_binNuNuLL_bin2_In = 0 (constant)
+prop_binNuNuLL_bin3 = 0 
+prop_binNuNuLL_bin30 = 0 
+prop_binNuNuLL_bin30_In = 0 (constant)
+prop_binNuNuLL_bin31 = 0 
+prop_binNuNuLL_bin31_In = 0 (constant)
+prop_binNuNuLL_bin32 = 0 
+prop_binNuNuLL_bin32_In = 0 (constant)
+prop_binNuNuLL_bin33 = 0 
+prop_binNuNuLL_bin33_In = 0 (constant)
+prop_binNuNuLL_bin34 = 0 
+prop_binNuNuLL_bin34_In = 0 (constant)
+prop_binNuNuLL_bin35 = 0 
+prop_binNuNuLL_bin35_In = 0 (constant)
+prop_binNuNuLL_bin36 = 0 
+prop_binNuNuLL_bin36_In = 0 (constant)
+prop_binNuNuLL_bin37 = 0 
+prop_binNuNuLL_bin37_In = 0 (constant)
+prop_binNuNuLL_bin38 = 0 
+prop_binNuNuLL_bin38_In = 0 (constant)
+prop_binNuNuLL_bin39 = 0 
+prop_binNuNuLL_bin39_In = 0 (constant)
+prop_binNuNuLL_bin3_In = 0 (constant)
+prop_binNuNuLL_bin4 = 0 
+prop_binNuNuLL_bin40 = 0 
+prop_binNuNuLL_bin40_In = 0 (constant)
+prop_binNuNuLL_bin41 = 0 
+prop_binNuNuLL_bin41_In = 0 (constant)
+prop_binNuNuLL_bin42 = 0 
+prop_binNuNuLL_bin42_In = 0 (constant)
+prop_binNuNuLL_bin43 = 0 
+prop_binNuNuLL_bin43_In = 0 (constant)
+prop_binNuNuLL_bin44 = 0 
+prop_binNuNuLL_bin44_In = 0 (constant)
+prop_binNuNuLL_bin45 = 0 
+prop_binNuNuLL_bin45_In = 0 (constant)
+prop_binNuNuLL_bin46 = 0 
+prop_binNuNuLL_bin46_In = 0 (constant)
+prop_binNuNuLL_bin47 = 0 
+prop_binNuNuLL_bin47_In = 0 (constant)
+prop_binNuNuLL_bin48 = 0 
+prop_binNuNuLL_bin48_In = 0 (constant)
+prop_binNuNuLL_bin4_In = 0 (constant)
+prop_binNuNuLL_bin5 = 0 
+prop_binNuNuLL_bin5_In = 0 (constant)
+prop_binNuNuLL_bin6 = 0 
+prop_binNuNuLL_bin6_In = 0 (constant)
+prop_binNuNuLL_bin7 = 0 
+prop_binNuNuLL_bin7_In = 0 (constant)
+prop_binNuNuLL_bin8 = 0 
+prop_binNuNuLL_bin8_In = 0 (constant)
+prop_binNuNuLL_bin9 = 0 
+prop_binNuNuLL_bin9_In = 0 (constant)
+r_VBF = 1 
+r_ZH = 1 
+unc_Z = 0 
+unc_Z_In = 0 (constant)
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_WW_ecm365 = 0 
+unc_p8_ee_WW_ecm365_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+unc_p8_ee_tt_ecm365 = 0 
+unc_p8_ee_tt_ecm365_In = 0 (constant)
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = 0 
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In = 0 (constant)
+unc_wzp6_ee_gaga_LL_60_ecm365 = 0 
+unc_wzp6_ee_gaga_LL_60_ecm365_In = 0 (constant)
+unc_wzp6_ee_nuenueZ_ecm365 = 0 
+unc_wzp6_ee_nuenueZ_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binNuNuLL_obsOnly: in 50 x-bins
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binNuNuLH_obsOnly: in 50 x-bins
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binNuNuHH_obsOnly: in 50 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5            NuNuHH  688739.3125000
+   1               1.5            NuNuHH  41866.1601562
+   2               2.5            NuNuHH  23669.1113281
+   3               3.5            NuNuHH  16842.3789062
+   4               4.5            NuNuHH  12826.8701172
+   5               5.5            NuNuHH  10675.4003906
+   6               6.5            NuNuHH  8996.6005859
+   7               7.5            NuNuHH  7781.1865234
+   8               8.5            NuNuHH  7153.7641602
+   9               9.5            NuNuHH  6368.3393555
+  10              10.5            NuNuHH  5919.0512695
+  11              11.5            NuNuHH  5495.5468750
+  12              12.5            NuNuHH  5000.5830078
+  13              13.5            NuNuHH  4761.7265625
+  14              14.5            NuNuHH  4459.2236328
+  15              15.5            NuNuHH  4158.1577148
+  16              16.5            NuNuHH  4008.0871582
+  17              17.5            NuNuHH  3583.0251465
+  18              18.5            NuNuHH  3302.8706055
+  19              19.5            NuNuHH  3083.9948730
+  20              20.5            NuNuHH  2903.7128906
+  21              21.5            NuNuHH  2623.0356445
+  22              22.5            NuNuHH  2529.6914062
+  23              23.5            NuNuHH  2347.3754883
+  24              24.5            NuNuHH  2144.8142090
+  25              25.5            NuNuHH  2133.1152344
+  26              26.5            NuNuHH  2106.3322754
+  27              27.5            NuNuHH  1982.1870117
+  28              28.5            NuNuHH  2046.4133301
+  29              29.5            NuNuHH  2094.3500977
+  30              30.5            NuNuHH  1979.2409668
+  31              31.5            NuNuHH  2005.8110352
+  32              32.5            NuNuHH  2032.5571289
+  33              33.5            NuNuHH  2245.7604980
+  34              34.5            NuNuHH  2248.1357422
+  35              35.5            NuNuHH  2391.8027344
+  36              36.5            NuNuHH  2424.2343750
+  37              37.5            NuNuHH  2621.6066895
+  38              38.5            NuNuHH  2879.0021973
+  39              39.5            NuNuHH  2903.4694824
+  40              40.5            NuNuHH  3150.4687500
+  41              41.5            NuNuHH  3327.4916992
+  42              42.5            NuNuHH  3245.0068359
+  43              43.5            NuNuHH  3413.6020508
+  44              44.5            NuNuHH  3717.1669922
+  45              45.5            NuNuHH  3677.7529297
+  46              46.5            NuNuHH  4046.9697266
+  47              47.5            NuNuHH  4540.6767578
+  48              48.5            NuNuHH  3258.0905762
+  49              49.5            NuNuHH   108.3068771
+  50               0.5            NuNuLH  570315.5625000
+  51               1.5            NuNuLH  43783.2304688
+  52               2.5            NuNuLH  28371.2031250
+  53               3.5            NuNuLH  21451.0800781
+  54               4.5            NuNuLH  17553.7753906
+  55               5.5            NuNuLH  14930.7001953
+  56               6.5            NuNuLH  13277.2246094
+  57               7.5            NuNuLH  12061.8095703
+  58               8.5            NuNuLH  11251.0390625
+  59               9.5            NuNuLH  10492.0507812
+  60              10.5            NuNuLH  9659.0664062
+  61              11.5            NuNuLH  8885.9072266
+  62              12.5            NuNuLH  8115.3408203
+  63              13.5            NuNuLH  7280.9262695
+  64              14.5            NuNuLH  6795.9472656
+  65              15.5            NuNuLH  5933.8828125
+  66              16.5            NuNuLH  5467.7416992
+  67              17.5            NuNuLH  5082.5717773
+  68              18.5            NuNuLH  4948.5083008
+  69              19.5            NuNuLH  4603.7919922
+  70              20.5            NuNuLH  4219.4921875
+  71              21.5            NuNuLH  4132.6850586
+  72              22.5            NuNuLH  3877.6062012
+  73              23.5            NuNuLH  3797.7858887
+  74              24.5            NuNuLH  3599.2956543
+  75              25.5            NuNuLH  3517.2973633
+  76              26.5            NuNuLH  3444.4372559
+  77              27.5            NuNuLH  3525.1435547
+  78              28.5            NuNuLH  3413.7646484
+  79              29.5            NuNuLH  3625.5556641
+  80              30.5            NuNuLH  3486.4821777
+  81              31.5            NuNuLH  3599.1152344
+  82              32.5            NuNuLH  3587.9350586
+  83              33.5            NuNuLH  3787.3098145
+  84              34.5            NuNuLH  4058.6069336
+  85              35.5            NuNuLH  3979.7158203
+  86              36.5            NuNuLH  4306.8457031
+  87              37.5            NuNuLH  4054.8623047
+  88              38.5            NuNuLH  4488.0327148
+  89              39.5            NuNuLH  4439.8945312
+  90              40.5            NuNuLH  4903.0112305
+  91              41.5            NuNuLH  5358.1821289
+  92              42.5            NuNuLH  6035.5590820
+  93              43.5            NuNuLH  7088.0068359
+  94              44.5            NuNuLH  8416.0000000
+  95              45.5            NuNuLH  9287.2470703
+  96              46.5            NuNuLH  9784.3398438
+  97              47.5            NuNuLH  8583.0029297
+  98              48.5            NuNuLH  3413.2966309
+  99              49.5            NuNuLH     3.1396499
+ 100               0.5            NuNuLL  3730414.7500000
+ 101               1.5            NuNuLL  69738.4765625
+ 102               2.5            NuNuLL  39336.7695312
+ 103               3.5            NuNuLL  28349.0000000
+ 104               4.5            NuNuLL  22199.1582031
+ 105               5.5            NuNuLL  18911.1523438
+ 106               6.5            NuNuLL  17081.5507812
+ 107               7.5            NuNuLL  15376.5849609
+ 108               8.5            NuNuLL  14138.7412109
+ 109               9.5            NuNuLL  13185.6855469
+ 110              10.5            NuNuLL  12890.9179688
+ 111              11.5            NuNuLL  12438.3613281
+ 112              12.5            NuNuLL  12045.6513672
+ 113              13.5            NuNuLL  11129.2939453
+ 114              14.5            NuNuLL  10445.1005859
+ 115              15.5            NuNuLL  10034.1337891
+ 116              16.5            NuNuLL  9384.8818359
+ 117              17.5            NuNuLL  9030.9931641
+ 118              18.5            NuNuLL  8880.7910156
+ 119              19.5            NuNuLL  8989.2890625
+ 120              20.5            NuNuLL  8673.6064453
+ 121              21.5            NuNuLL  8263.5195312
+ 122              22.5            NuNuLL  7710.0356445
+ 123              23.5            NuNuLL  7786.8491211
+ 124              24.5            NuNuLL  7597.6508789
+ 125              25.5            NuNuLL  7558.6464844
+ 126              26.5            NuNuLL  7461.8579102
+ 127              27.5            NuNuLL  7087.8945312
+ 128              28.5            NuNuLL  7267.4902344
+ 129              29.5            NuNuLL  7093.2368164
+ 130              30.5            NuNuLL  7079.8139648
+ 131              31.5            NuNuLL  7016.0190430
+ 132              32.5            NuNuLL  7074.5131836
+ 133              33.5            NuNuLL  7259.2734375
+ 134              34.5            NuNuLL  7487.4057617
+ 135              35.5            NuNuLL  7387.8466797
+ 136              36.5            NuNuLL  7509.6679688
+ 137              37.5            NuNuLL  7218.9692383
+ 138              38.5            NuNuLL  7142.8632812
+ 139              39.5            NuNuLL  7048.6684570
+ 140              40.5            NuNuLL  6791.6279297
+ 141              41.5            NuNuLL  6725.0249023
+ 142              42.5            NuNuLL  6260.6958008
+ 143              43.5            NuNuLL  5270.8754883
+ 144              44.5            NuNuLL  4455.2968750
+ 145              45.5            NuNuLL  3484.7319336
+ 146              46.5            NuNuLL  2326.2600098
+ 147              47.5            NuNuLL   641.1197510
+ 148              48.5            NuNuLL     4.5408773
+ 149              49.5            NuNuLL     0.0000000
+[#1] INFO:Eval -- RooRealVar::setRange(unc_Z) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_tt_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_gaga_LL_60_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_nuenueZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin0) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin1) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin2) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin3) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin4) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin5) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin6) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin7) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin8) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin9) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin10) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin11) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin12) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin13) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin14) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin15) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin16) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin17) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin18) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin19) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin20) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin21) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin22) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin23) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin24) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin25) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin26) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin27) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin28) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin29) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin30) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin31) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin32) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin33) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin34) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin35) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin36) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin37) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin38) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin39) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin40) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin41) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin42) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin43) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin44) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin45) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin46) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin47) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLL_bin48) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin0) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin1) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin2) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin3) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin4) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin5) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin6) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin7) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin8) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin9) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin10) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin11) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin12) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin13) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin14) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin15) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin16) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin17) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin18) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin19) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin20) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin21) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin22) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin23) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin24) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin25) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin26) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin27) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin28) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin29) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin30) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin31) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin32) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin33) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin34) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin35) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin36) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin37) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin38) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin39) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin40) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin41) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin42) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin43) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin44) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin45) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin46) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin47) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin48) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin0) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin1) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin2) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin3) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin4) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin5) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin6) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin7) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin8) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin9) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin10) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin11) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin12) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin13) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin14) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin15) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin16) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin17) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin18) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin19) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin20) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin21) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin22) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin23) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin24) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin25) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin26) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin27) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin28) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin29) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin30) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin31) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin32) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin33) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin34) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin35) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin36) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin37) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin38) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin39) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin40) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin41) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin42) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin43) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin44) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin45) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin46) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin47) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin48) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(prop_binNuNuHH_bin49) new range named 'optimizeBoundRange' created with bounds [-7,7]
+Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 6500 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 6.76579204094e-10 Nfcn = 53
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 0 p2 = 0 p3 = 1 p4 = 1 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0 p10 = 0 p11 = 0 p12 = 0
+----------> Iteration 1
+            FVAL = 0 Edm = 6.76579204094e-10 Nfcn = 58
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 0 p2 = 0 p3 = 1 p4 = 1 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0 p10 = 0 p11 = 0 p12 = 0
+----------> Iteration 2
+            FVAL = 0 Edm = 6.76579204094e-10 Nfcn = 58
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 0 p2 = 0 p3 = 1 p4 = 1 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0 p10 = 0 p11 = 0 p12 = 0
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = 0
+Edm   = 6.76579204094335487e-10
+Nfcn  = 58
+prop_binNuNuLH_bin49_p8_ee_WW_ecm365	  = 1	 +/-  0.512801	(limited)
+prop_binNuNuLH_bin49_wzp6_ee_VBFnunu_Htautau_ecm365	  = 0	 +/-  1.00084
+prop_binNuNuLH_bin49_wzp6_ee_ZH_Htautau_ecm365	  = 0	 +/-  1.0009
+r_VBF	  = 1	 +/-  0.286308	(limited)
+r_ZH	  = 1	 +/-  0.291989	(limited)
+unc_Z	  = 0	 +/-  0.00573383
+unc__H	  = 0	 +/-  0.992455
+unc_p8_ee_WW_ecm365	  = 0	 +/-  0.151834
+unc_p8_ee_ZZ_ecm365	  = 0	 +/-  0.948445
+unc_p8_ee_tt_ecm365	  = 0	 +/-  0.997954
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = 0	 +/-  0.183312
+unc_wzp6_ee_gaga_LL_60_ecm365	  = 0	 +/-  0.00667363
+unc_wzp6_ee_nuenueZ_ecm365	  = 0	 +/-  0.252685
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.053359 seconds (0.040000 CPU time)
+FINAL NLL - NLL0 VALUE = -3.65564512e-09
+
+
+ --- MultiDimFit ---
+best fit parameter values: 
+    r_ZH :    +1.000
+   r_VBF :    +1.000
+Done in 0.00 min (cpu), 0.00 min (real)
+336 log messages saved to combine_logger.out

@@ -1,0 +1,419 @@
+
+>>> Random number generator seed is 123456
+>>> Method used is MultiDimFit
+Adding /afs/cern.ch/user/s/sgiappic/CMSSW_14_1_0_pre4/src to include path
+Adding /cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.07-8b1a11e1ef0e074fdfd44e162b27e71c//include to include path
+Input workspace 'w': 
+
+RooWorkspace(w) w contents
+
+variables
+---------
+(CMS_channel,CMS_th1x,MH,r_VBF,r_ZH,unc_Z,unc_Z_In,unc__H,unc__H_In,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_nuenueZ_ecm365_In)
+
+p.d.f.s
+-------
+RooSimultaneousOpt::model_b[ indexCat=CMS_channel BDT_score_ZH=pdf_binBDT_score_ZH_bonly extraConstraints=() channelMasks=() ] = 1e-09
+RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_ZH=pdf_binBDT_score_ZH extraConstraints=() channelMasks=() ] = 1e-09
+RooProdPdf::nuisancePdf[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf ] = 1
+RooProdPdf::pdf_binBDT_score_ZH[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binBDT_score_ZH_nuis * pdfbins_binBDT_score_ZH ] = 1e-09
+RooProdPdf::pdf_binBDT_score_ZH_bonly[ unc__H_Pdf * unc_Z_Pdf * unc_p8_ee_WW_ecm365_Pdf * unc_p8_ee_WW_tautau_ecm365_Pdf * unc_p8_ee_ZZ_ecm365_Pdf * unc_p8_ee_tt_ecm365_Pdf * unc_wzp6_ee_nuenueZ_ecm365_Pdf * unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf * unc_wzp6_ee_gaga_LL_60_ecm365_Pdf * pdf_binBDT_score_ZH_bonly_nuis * pdfbins_binBDT_score_ZH ] = 1e-09
+RooAddPdf::pdf_binBDT_score_ZH_bonly_nuis[ n_exp_binBDT_score_ZH_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_tt_ecm365 * shapeBkg_p8_ee_tt_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_Hgg_ecm365 * shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_HQQ_ecm365 * shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_Hgg_ecm365 * shapeBkg_wzp6_ee_LLH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_HQQ_ecm365 * shapeBkg_wzp6_ee_QQH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_Hgg_ecm365 * shapeBkg_wzp6_ee_QQH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_BDT_score_ZH_rebinPdf ] = 1e-09/1
+RooAddPdf::pdf_binBDT_score_ZH_nuis[ n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365 * shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_Htautau_ecm365 * shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_WW_ecm365 * shapeBkg_p8_ee_WW_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_WW_tautau_ecm365 * shapeBkg_p8_ee_WW_tautau_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_ZQQ_ecm365 * shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_ZZ_ecm365 * shapeBkg_p8_ee_ZZ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_p8_ee_tt_ecm365 * shapeBkg_p8_ee_tt_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_LL_ecm365 * shapeBkg_wzp6_ee_LL_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautau_ecm365 * shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_nuenueZ_ecm365 * shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365 * shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_gaga_LL_60_ecm365 * shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_Htautau_ecm365 * shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_HQQ_ecm365 * shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_Hgg_ecm365 * shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_HVV_ecm365 * shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_HQQ_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365 * shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_HQQ_ecm365 * shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_Hgg_ecm365 * shapeBkg_wzp6_ee_LLH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_HVV_ecm365 * shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_HQQ_ecm365 * shapeBkg_wzp6_ee_QQH_HQQ_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_Hgg_ecm365 * shapeBkg_wzp6_ee_QQH_Hgg_ecm365_BDT_score_ZH_rebinPdf + n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_HVV_ecm365 * shapeBkg_wzp6_ee_QQH_HVV_ecm365_BDT_score_ZH_rebinPdf ] = 1e-09/1
+RooProdPdf::pdfbins_binBDT_score_ZH[  ] = 1
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_WW_tautau_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZQQ_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_ZZ_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_p8_ee_tt_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HQQ_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_HVV_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LLH_Hgg_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_LL_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_HQQ_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_HVV_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_QQH_Hgg_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HQQ_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_HVV_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_VBF_nunuH_Hgg_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_HQQ_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_HVV_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_ZH_nunuH_Hgg_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_egamma_eZ_ZLL_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_gaga_LL_60_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_nuenueZ_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HQQ_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_HVV_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Hgg_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautauH_Htautau_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeBkg_wzp6_ee_tautau_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_VBF_nunuH_Htautau_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+FastVerticalInterpHistPdf2::shapeSig_wzp6_ee_ZH_Htautau_ecm365_BDT_score_ZH_rebinPdf[ coefList=() x=CMS_th1x ] = 1e-09
+SimpleGaussianConstraint::unc_Z_Pdf[ x=unc_Z mean=unc_Z_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc__H_Pdf[ x=unc__H mean=unc__H_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_ecm365_Pdf[ x=unc_p8_ee_WW_ecm365 mean=unc_p8_ee_WW_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_WW_tautau_ecm365_Pdf[ x=unc_p8_ee_WW_tautau_ecm365 mean=unc_p8_ee_WW_tautau_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_ZZ_ecm365_Pdf[ x=unc_p8_ee_ZZ_ecm365 mean=unc_p8_ee_ZZ_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_p8_ee_tt_ecm365_Pdf[ x=unc_p8_ee_tt_ecm365 mean=unc_p8_ee_tt_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_egamma_eZ_ZLL_ecm365_Pdf[ x=unc_wzp6_ee_egamma_eZ_ZLL_ecm365 mean=unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_gaga_LL_60_ecm365_Pdf[ x=unc_wzp6_ee_gaga_LL_60_ecm365 mean=unc_wzp6_ee_gaga_LL_60_ecm365_In sigma=1 ] = 1
+SimpleGaussianConstraint::unc_wzp6_ee_nuenueZ_ecm365_Pdf[ x=unc_wzp6_ee_nuenueZ_ecm365 mean=unc_wzp6_ee_nuenueZ_ecm365_In sigma=1 ] = 1
+
+functions
+--------
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_p8_ee_WW_ecm365[ thetaList=(unc_p8_ee_WW_ecm365) asymmThetaList=() otherFactorList=() ] = 336466
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_p8_ee_WW_tautau_ecm365[ thetaList=(unc_p8_ee_WW_tautau_ecm365) asymmThetaList=() otherFactorList=() ] = 108095
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_p8_ee_ZQQ_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 192172
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_p8_ee_ZZ_ecm365[ thetaList=(unc_p8_ee_ZZ_ecm365) asymmThetaList=() otherFactorList=() ] = 12834
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_p8_ee_tt_ecm365[ thetaList=(unc_p8_ee_tt_ecm365) asymmThetaList=() otherFactorList=() ] = 1128.89
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.508965
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 2.61698
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_LLH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.0603393
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_LL_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 16350.3
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 2.0029
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 12.0612
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_QQH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.536855
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 459.151
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1180.16
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 6.1722
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_VBF_nunuH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_VBF) ] = 1981.9
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_Htautau_ecm365[ thetaList=() asymmThetaList=() otherFactorList=(r_ZH) ] = 1625.76
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 148.213
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 765.278
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_ZH_nunuH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 1.38554
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_egamma_eZ_ZLL_ecm365[ thetaList=(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) asymmThetaList=() otherFactorList=() ] = 1261.12
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_gaga_LL_60_ecm365[ thetaList=(unc_wzp6_ee_gaga_LL_60_ecm365) asymmThetaList=() otherFactorList=() ] = 24452.2
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_nuenueZ_ecm365[ thetaList=(unc_wzp6_ee_nuenueZ_ecm365) asymmThetaList=() otherFactorList=() ] = 5596.67
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_HQQ_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 5.81123
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_HVV_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 42.8846
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_Hgg_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 0.365854
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_tautauH_Htautau_ecm365[ thetaList=(unc__H) asymmThetaList=() otherFactorList=() ] = 48.1802
+ProcessNormalization::n_exp_binBDT_score_ZH_proc_wzp6_ee_tautau_ecm365[ thetaList=(unc_Z) asymmThetaList=() otherFactorList=() ] = 1.04578e+06
+
+datasets
+--------
+RooDataSet::data_obs(CMS_th1x,CMS_channel)
+
+named sets
+----------
+ModelConfig_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+ModelConfig_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+ModelConfig_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_POI:(r_ZH,r_VBF)
+ModelConfig_bonly_GlobalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+ModelConfig_bonly_NuisParams:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+ModelConfig_bonly_Observables:(CMS_th1x,CMS_channel)
+ModelConfig_bonly_POI:(r_ZH,r_VBF)
+POI:(r_ZH,r_VBF)
+globalObservables:(unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+nuisances:(unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+observables:(CMS_th1x,CMS_channel)
+
+generic objects
+---------------
+RooStats::ModelConfig::ModelConfig
+RooStats::ModelConfig::ModelConfig_bonly
+RooArgSet::discreteParams
+
+Workspace has a ModelConfig for signal called 'ModelConfig', with contents:
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_ZH=pdf_binBDT_score_ZH extraConstraints=() channelMasks=() ] = 1e-09
+
+Input ModelConfig 'ModelConfig': 
+
+=== Using the following for ModelConfig ===
+Observables:             RooArgSet:: = (CMS_th1x,CMS_channel)
+Parameters of Interest:  RooArgSet:: = (r_ZH,r_VBF)
+Nuisance Parameters:     RooArgSet:: = (unc__H,unc_Z,unc_p8_ee_WW_ecm365,unc_p8_ee_WW_tautau_ecm365,unc_p8_ee_ZZ_ecm365,unc_p8_ee_tt_ecm365,unc_wzp6_ee_nuenueZ_ecm365,unc_wzp6_ee_egamma_eZ_ZLL_ecm365,unc_wzp6_ee_gaga_LL_60_ecm365)
+Global Observables:      RooArgSet:: = (unc__H_In,unc_Z_In,unc_p8_ee_WW_ecm365_In,unc_p8_ee_WW_tautau_ecm365_In,unc_p8_ee_ZZ_ecm365_In,unc_p8_ee_tt_ecm365_In,unc_wzp6_ee_nuenueZ_ecm365_In,unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In,unc_wzp6_ee_gaga_LL_60_ecm365_In)
+PDF:                     RooSimultaneousOpt::model_s[ indexCat=CMS_channel BDT_score_ZH=pdf_binBDT_score_ZH extraConstraints=() channelMasks=() ] = 1e-09
+
+Found a parameter named MH infinite in ROOT versions < 6.30, going to update the ranges to take into account the new definition of infinity in ROOT v6.30
+Saving snapshot 'clean'
+Saved snapshot 'clean'
+Generate Asimov toy from parameter values ... 
+CMS_channel = 0 
+CMS_th1x = 199.5 
+r_VBF = 1 
+r_ZH = 1 
+unc_Z = 0 
+unc_Z_In = 0 (constant)
+unc__H = 0 
+unc__H_In = 0 (constant)
+unc_p8_ee_WW_ecm365 = 0 
+unc_p8_ee_WW_ecm365_In = 0 (constant)
+unc_p8_ee_WW_tautau_ecm365 = 0 
+unc_p8_ee_WW_tautau_ecm365_In = 0 (constant)
+unc_p8_ee_ZZ_ecm365 = 0 
+unc_p8_ee_ZZ_ecm365_In = 0 (constant)
+unc_p8_ee_tt_ecm365 = 0 
+unc_p8_ee_tt_ecm365_In = 0 (constant)
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365 = 0 
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365_In = 0 (constant)
+unc_wzp6_ee_gaga_LL_60_ecm365 = 0 
+unc_wzp6_ee_gaga_LL_60_ecm365_In = 0 (constant)
+unc_wzp6_ee_nuenueZ_ecm365 = 0 
+unc_wzp6_ee_nuenueZ_ecm365_In = 0 (constant)
+Using internal logic for binned/unbinned Asimov dataset generation
+Generating asimov with histogram for pdf pdf_binBDT_score_ZH_obsOnly: in 200 x-bins
+ bin          CMS_th1x       CMS_channel    weight
+   0               0.5      BDT_score_ZH  1070770.5000000
+   1               1.5      BDT_score_ZH  114472.8671875
+   2               2.5      BDT_score_ZH  54580.7578125
+   3               3.5      BDT_score_ZH  36277.9726562
+   4               4.5      BDT_score_ZH  28298.8203125
+   5               5.5      BDT_score_ZH  23756.4687500
+   6               6.5      BDT_score_ZH  20592.3105469
+   7               7.5      BDT_score_ZH  18233.8515625
+   8               8.5      BDT_score_ZH  16393.7050781
+   9               9.5      BDT_score_ZH  15000.5263672
+  10              10.5      BDT_score_ZH  13539.4716797
+  11              11.5      BDT_score_ZH  12669.8486328
+  12              12.5      BDT_score_ZH  11602.7734375
+  13              13.5      BDT_score_ZH  10747.6083984
+  14              14.5      BDT_score_ZH  10094.4150391
+  15              15.5      BDT_score_ZH  9436.6210938
+  16              16.5      BDT_score_ZH  8851.5400391
+  17              17.5      BDT_score_ZH  8529.2871094
+  18              18.5      BDT_score_ZH  8015.1831055
+  19              19.5      BDT_score_ZH  7517.8999023
+  20              20.5      BDT_score_ZH  7193.9721680
+  21              21.5      BDT_score_ZH  6814.7485352
+  22              22.5      BDT_score_ZH  6407.8383789
+  23              23.5      BDT_score_ZH  6168.3032227
+  24              24.5      BDT_score_ZH  5920.8906250
+  25              25.5      BDT_score_ZH  5626.9501953
+  26              26.5      BDT_score_ZH  5412.8583984
+  27              27.5      BDT_score_ZH  5215.0678711
+  28              28.5      BDT_score_ZH  5001.9101562
+  29              29.5      BDT_score_ZH  4751.8891602
+  30              30.5      BDT_score_ZH  4618.0712891
+  31              31.5      BDT_score_ZH  4374.9594727
+  32              32.5      BDT_score_ZH  4241.5151367
+  33              33.5      BDT_score_ZH  4173.4716797
+  34              34.5      BDT_score_ZH  3968.4023438
+  35              35.5      BDT_score_ZH  3841.5031738
+  36              36.5      BDT_score_ZH  3692.8830566
+  37              37.5      BDT_score_ZH  3593.9821777
+  38              38.5      BDT_score_ZH  3482.5686035
+  39              39.5      BDT_score_ZH  3353.9355469
+  40              40.5      BDT_score_ZH  3269.1525879
+  41              41.5      BDT_score_ZH  3171.8203125
+  42              42.5      BDT_score_ZH  3040.9531250
+  43              43.5      BDT_score_ZH  2972.0139160
+  44              44.5      BDT_score_ZH  2915.3530273
+  45              45.5      BDT_score_ZH  2758.2150879
+  46              46.5      BDT_score_ZH  2763.3320312
+  47              47.5      BDT_score_ZH  2708.3920898
+  48              48.5      BDT_score_ZH  2594.4050293
+  49              49.5      BDT_score_ZH  2456.2097168
+  50              50.5      BDT_score_ZH  2429.5222168
+  51              51.5      BDT_score_ZH  2395.4440918
+  52              52.5      BDT_score_ZH  2322.4196777
+  53              53.5      BDT_score_ZH  2245.7993164
+  54              54.5      BDT_score_ZH  2200.3435059
+  55              55.5      BDT_score_ZH  2094.3920898
+  56              56.5      BDT_score_ZH  2082.4609375
+  57              57.5      BDT_score_ZH  2034.8826904
+  58              58.5      BDT_score_ZH  1997.9201660
+  59              59.5      BDT_score_ZH  1879.0609131
+  60              60.5      BDT_score_ZH  1896.6816406
+  61              61.5      BDT_score_ZH  1809.0046387
+  62              62.5      BDT_score_ZH  1792.5452881
+  63              63.5      BDT_score_ZH  1712.2020264
+  64              64.5      BDT_score_ZH  1700.9233398
+  65              65.5      BDT_score_ZH  1672.3709717
+  66              66.5      BDT_score_ZH  1602.4993896
+  67              67.5      BDT_score_ZH  1535.0843506
+  68              68.5      BDT_score_ZH  1512.8531494
+  69              69.5      BDT_score_ZH  1479.3367920
+  70              70.5      BDT_score_ZH  1473.9748535
+  71              71.5      BDT_score_ZH  1484.7514648
+  72              72.5      BDT_score_ZH  1420.6096191
+  73              73.5      BDT_score_ZH  1381.4488525
+  74              74.5      BDT_score_ZH  1380.2988281
+  75              75.5      BDT_score_ZH  1308.9599609
+  76              76.5      BDT_score_ZH  1279.1934814
+  77              77.5      BDT_score_ZH  1239.9322510
+  78              78.5      BDT_score_ZH  1257.1123047
+  79              79.5      BDT_score_ZH  1173.4952393
+  80              80.5      BDT_score_ZH  1221.3087158
+  81              81.5      BDT_score_ZH  1154.9768066
+  82              82.5      BDT_score_ZH  1141.9254150
+  83              83.5      BDT_score_ZH  1154.1254883
+  84              84.5      BDT_score_ZH  1107.1478271
+  85              85.5      BDT_score_ZH  1100.2797852
+  86              86.5      BDT_score_ZH  1089.4459229
+  87              87.5      BDT_score_ZH  1035.5664062
+  88              88.5      BDT_score_ZH  1025.5639648
+  89              89.5      BDT_score_ZH  1029.4144287
+  90              90.5      BDT_score_ZH   970.8746948
+  91              91.5      BDT_score_ZH  1007.0276489
+  92              92.5      BDT_score_ZH   978.7897339
+  93              93.5      BDT_score_ZH   930.0470581
+  94              94.5      BDT_score_ZH   904.8740234
+  95              95.5      BDT_score_ZH   903.7332153
+  96              96.5      BDT_score_ZH   922.7178345
+  97              97.5      BDT_score_ZH   922.0012207
+  98              98.5      BDT_score_ZH   876.8449707
+  99              99.5      BDT_score_ZH   885.5114136
+ 100             100.5      BDT_score_ZH   871.9174194
+ 101             101.5      BDT_score_ZH   844.6967773
+ 102             102.5      BDT_score_ZH   856.9672852
+ 103             103.5      BDT_score_ZH   805.3278198
+ 104             104.5      BDT_score_ZH   801.6239624
+ 105             105.5      BDT_score_ZH   774.2309570
+ 106             106.5      BDT_score_ZH   807.3840942
+ 107             107.5      BDT_score_ZH   797.1303101
+ 108             108.5      BDT_score_ZH   783.5980835
+ 109             109.5      BDT_score_ZH   748.6175537
+ 110             110.5      BDT_score_ZH   716.3354492
+ 111             111.5      BDT_score_ZH   725.9058228
+ 112             112.5      BDT_score_ZH   733.5350952
+ 113             113.5      BDT_score_ZH   740.4317627
+ 114             114.5      BDT_score_ZH   714.8620605
+ 115             115.5      BDT_score_ZH   683.0855103
+ 116             116.5      BDT_score_ZH   681.5363159
+ 117             117.5      BDT_score_ZH   679.2377319
+ 118             118.5      BDT_score_ZH   661.2097168
+ 119             119.5      BDT_score_ZH   663.1678467
+ 120             120.5      BDT_score_ZH   697.6309204
+ 121             121.5      BDT_score_ZH   656.6737671
+ 122             122.5      BDT_score_ZH   644.7363281
+ 123             123.5      BDT_score_ZH   632.9584351
+ 124             124.5      BDT_score_ZH   612.1116333
+ 125             125.5      BDT_score_ZH   611.1550293
+ 126             126.5      BDT_score_ZH   616.6636963
+ 127             127.5      BDT_score_ZH   607.8817139
+ 128             128.5      BDT_score_ZH   597.9981689
+ 129             129.5      BDT_score_ZH   571.9852905
+ 130             130.5      BDT_score_ZH   591.0010376
+ 131             131.5      BDT_score_ZH   593.0059204
+ 132             132.5      BDT_score_ZH   565.0817261
+ 133             133.5      BDT_score_ZH   598.4473877
+ 134             134.5      BDT_score_ZH   544.1139526
+ 135             135.5      BDT_score_ZH   560.8681641
+ 136             136.5      BDT_score_ZH   545.8427124
+ 137             137.5      BDT_score_ZH   558.9731445
+ 138             138.5      BDT_score_ZH   553.7297363
+ 139             139.5      BDT_score_ZH   550.8018188
+ 140             140.5      BDT_score_ZH   548.3927002
+ 141             141.5      BDT_score_ZH   545.5638428
+ 142             142.5      BDT_score_ZH   540.3164673
+ 143             143.5      BDT_score_ZH   540.7264404
+ 144             144.5      BDT_score_ZH   532.9404297
+ 145             145.5      BDT_score_ZH   503.7524414
+ 146             146.5      BDT_score_ZH   508.6511230
+ 147             147.5      BDT_score_ZH   516.8065186
+ 148             148.5      BDT_score_ZH   521.2728882
+ 149             149.5      BDT_score_ZH   525.2145386
+ 150             150.5      BDT_score_ZH   508.8398132
+ 151             151.5      BDT_score_ZH   511.1587524
+ 152             152.5      BDT_score_ZH   479.5133362
+ 153             153.5      BDT_score_ZH   489.5358887
+ 154             154.5      BDT_score_ZH   488.7988892
+ 155             155.5      BDT_score_ZH   491.4355164
+ 156             156.5      BDT_score_ZH   473.0731201
+ 157             157.5      BDT_score_ZH   477.1929321
+ 158             158.5      BDT_score_ZH   479.0682068
+ 159             159.5      BDT_score_ZH   446.6675415
+ 160             160.5      BDT_score_ZH   460.5699158
+ 161             161.5      BDT_score_ZH   443.0572205
+ 162             162.5      BDT_score_ZH   457.9573364
+ 163             163.5      BDT_score_ZH   456.4217834
+ 164             164.5      BDT_score_ZH   441.4544678
+ 165             165.5      BDT_score_ZH   454.0372925
+ 166             166.5      BDT_score_ZH   442.8683777
+ 167             167.5      BDT_score_ZH   461.7966309
+ 168             168.5      BDT_score_ZH   439.2548218
+ 169             169.5      BDT_score_ZH   454.7070312
+ 170             170.5      BDT_score_ZH   438.4452515
+ 171             171.5      BDT_score_ZH   446.9643250
+ 172             172.5      BDT_score_ZH   432.9635620
+ 173             173.5      BDT_score_ZH   420.5340576
+ 174             174.5      BDT_score_ZH   420.4456787
+ 175             175.5      BDT_score_ZH   419.1778259
+ 176             176.5      BDT_score_ZH   432.9868469
+ 177             177.5      BDT_score_ZH   402.3117065
+ 178             178.5      BDT_score_ZH   440.8883667
+ 179             179.5      BDT_score_ZH   402.2254639
+ 180             180.5      BDT_score_ZH   428.0800476
+ 181             181.5      BDT_score_ZH   419.4297485
+ 182             182.5      BDT_score_ZH   431.8754578
+ 183             183.5      BDT_score_ZH   434.4577332
+ 184             184.5      BDT_score_ZH   417.6315918
+ 185             185.5      BDT_score_ZH   419.4348450
+ 186             186.5      BDT_score_ZH   413.7465820
+ 187             187.5      BDT_score_ZH   429.3805237
+ 188             188.5      BDT_score_ZH   415.6735535
+ 189             189.5      BDT_score_ZH   420.9332275
+ 190             190.5      BDT_score_ZH   434.6007385
+ 191             191.5      BDT_score_ZH   450.8437805
+ 192             192.5      BDT_score_ZH   389.5092468
+ 193             193.5      BDT_score_ZH   325.8951721
+ 194             194.5      BDT_score_ZH   263.1027832
+ 195             195.5      BDT_score_ZH   188.8942108
+ 196             196.5      BDT_score_ZH   124.1914673
+ 197             197.5      BDT_score_ZH    53.7854042
+ 198             198.5      BDT_score_ZH     8.8406124
+ 199             199.5      BDT_score_ZH     0.0017504
+[#1] INFO:Eval -- RooRealVar::setRange(unc__H) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_Z) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_WW_tautau_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_ZZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_p8_ee_tt_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_nuenueZ_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_egamma_eZ_ZLL_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+[#1] INFO:Eval -- RooRealVar::setRange(unc_wzp6_ee_gaga_LL_60_ecm365) new range named 'optimizeBoundRange' created with bounds [-7,7]
+Doing initial fit: 
+do first minimization
+Minimization configured with Type=Minuit2, Algo=Migrad, strategy=0, tolerance=0.1
+Minuit2Minimizer: Minimize with max-calls 5500 convergence for edm < 0.1 strategy 0
+Minuit2Minimizer::Minuit  - Changing default options
+             StorageLevel :               0
+Number of iterations 3
+----------> Iteration 0
+            FVAL = 0 Edm = 1.24326098197e-11 Nfcn = 45
+            Error matrix change = 1
+            Parameters :  p0 = 1 p1 = 1 p2 = 0 p3 = 0 p4 = 0 p5 = 0 p6 = 0 p7 = 0 p8 = 0 p9 = 0 p10 = 0
+----------> Iteration 1
+            FVAL = -4.69848195525e-09 Edm = 1.89590033145e-10 Nfcn = 70
+            Error matrix change = 0.576692
+            Parameters :  p0 = 0.999998 p1 = 1 p2 = -3.8657e-07 p3 = -8.38922e-06 p4 = -5.69103e-07 p5 = 1.13794e-05 p6 = 3.8691e-06 p7 = 7.70122e-06 p8 = -1.62771e-06 p9 = -1.07241e-05 p10 = -2.44158e-06
+----------> Iteration 2
+            FVAL = -4.69848195525e-09 Edm = 1.89590033145e-10 Nfcn = 70
+            Error matrix change = 0.576692
+            Parameters :  p0 = 0.999998 p1 = 1 p2 = -3.8657e-07 p3 = -8.38922e-06 p4 = -5.69103e-07 p5 = 1.13794e-05 p6 = 3.8691e-06 p7 = 7.70122e-06 p8 = -1.62771e-06 p9 = -1.07241e-05 p10 = -2.44158e-06
+Minuit2Minimizer : Valid minimum - status = 0
+FVAL  = -4.69848195524904156e-09
+Edm   = 1.89590033145499882e-10
+Nfcn  = 70
+r_VBF	  = 0.999998	 +/-  0.327119	(limited)
+r_ZH	  = 1	 +/-  0.128002	(limited)
+unc_Z	  = -3.8657e-07	 +/-  0.103279
+unc__H	  = -8.38922e-06	 +/-  0.995647
+unc_p8_ee_WW_ecm365	  = -5.69103e-07	 +/-  0.310211
+unc_p8_ee_WW_tautau_ecm365	  = 1.13794e-05	 +/-  0.740439
+unc_p8_ee_ZZ_ecm365	  = 3.8691e-06	 +/-  0.963394
+unc_p8_ee_tt_ecm365	  = 7.70122e-06	 +/-  1.02672
+unc_wzp6_ee_egamma_eZ_ZLL_ecm365	  = -1.62771e-06	 +/-  1.00447
+unc_wzp6_ee_gaga_LL_60_ecm365	  = -1.07241e-05	 +/-  0.949836
+unc_wzp6_ee_nuenueZ_ecm365	  = -2.44158e-06	 +/-  0.966204
+Minimization finished with status=0
+Minimization success! status=0
+Minimized in 0.069265 seconds (0.060000 CPU time)
+FINAL NLL - NLL0 VALUE = -4.698481955e-09
+
+
+ --- MultiDimFit ---
+best fit parameter values: 
+    r_ZH :    +1.000
+   r_VBF :    +1.000
+Done in 0.00 min (cpu), 0.00 min (real)
+31 log messages saved to combine_logger.out

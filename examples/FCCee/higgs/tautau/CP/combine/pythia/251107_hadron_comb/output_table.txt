@@ -1,0 +1,19 @@
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+ &  \\
+\hline
+QQHH_one & 0.0 +3.095 -3.103 &  \\ \hline 
+QQHH_not & -0.0 +31.065 -37.156 &  \\ \hline 
+QQ &-0.0 +3.079 -3.087 &  \\ \hline 
+LLHH_one & 0.0 +6.344 -6.355 &  \\ \hline 
+LLHH_not & 0.0 +64.567 -86.066 &  \\ \hline 
+LL &0.0 +6.276 -6.289 &  \\ \hline 
+combined & -0.0 +2.763 -2.769  &  \\ \hline 
+
+\hline
+\end{tabular}
+\caption{Fit Results}
+\end{table}

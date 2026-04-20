@@ -1,0 +1,435 @@
+#---------------------------------------------------------------------------------------------------#
+#   here we include all Z decays (to ee, mumu, qqbar) and the all tau decays                        #
+#---------------------------------------------------------------------------------------------------#
+
+set nb_core 35 # probably unused option when running on batch 
+
+import model SMEFTsim_topU3l_MwScheme_UFO__taudecay_UFO
+
+define lep = e+ e- mu+ mu- ta+ ta-
+define nu = vl vl~ 
+
+#-----------------------------------------------#
+#     run1: SM process from EFT model           #
+#-----------------------------------------------#
+generate e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NPprop=0 SMHLOOP=0 
+
+output ZH_SMEFT_prod/noISR_noCuts_EWonly_taudecay_v1
+launch ZH_SMEFT_prod/noISR_noCuts_EWonly_taudecay_v1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 1000000
+set use_syst False
+done
+
+###-----------------------------------------------#
+###   run2: cehim=1
+###-----------------------------------------------#
+generate e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+output ZH_SMEFT_prod/noISR_noCuts_cehim_p1_taudecay_v1
+launch ZH_SMEFT_prod/noISR_noCuts_cehim_p1_taudecay_v1
+set smeftcpv 45 1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 1000000
+set use_syst False
+done
+
+###-----------------------------------------------#
+###   run3: cehim=-1
+###-----------------------------------------------#
+generate e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > e+ e- h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > mu+ mu- h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- pi0 vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ pi0 vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > pi- vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi0 pi0 vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi0 pi0 vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > pi- pi- pi+ vt ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > pi+ pi+ pi- vt~ ) QCD=0 NP=0 NP=1 SMHLOOP=0
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > pi+ pi+ pi- vt~, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > pi- pi- pi+ vt, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > vt~ e+ ve, ta- > vt e- ve~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > vt e- ve~, ta+ > vt~ mu+ vm ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta+ > vt~ mu+ vm, ta- > vt mu- vm~ ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+add process e+ e- > j j h,      ( h > ta+ ta-, ta- > vt mu- vm~, ta+ > vt~ e+ ve ) QCD=0 NP=0 NP=1 SMHLOOP=0 
+
+output ZH_SMEFT_prod/noISR_noCuts_cehim_m1_taudecay_v1
+launch ZH_SMEFT_prod/noISR_noCuts_cehim_m1_taudecay_v1
+set smeftcpv 45 -1
+set lpp1 0
+set lpp2 0
+set ebeam1 120
+set ebeam2 120
+set ptl 0 
+set etal -1
+set drll -1 
+set nevents 1000000
+set use_syst False
+done

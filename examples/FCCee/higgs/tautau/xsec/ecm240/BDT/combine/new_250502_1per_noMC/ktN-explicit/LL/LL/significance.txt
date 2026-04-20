@@ -1,0 +1,20 @@
+ <<< Combine >>> 
+ <<< v10.0.1 >>>
+>>> Random number generator seed is 123456
+>>> Method used is FitDiagnostics
+WARNING: underflow to -6.55677 in pdf_binBDT_score_obsOnly for bin 198, weight 180.286
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(BDT_score) evaluation error, 
+ origin       : RooAbsReal::BDT_score[ params=(r,unc_H_H,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.0407104,unc_H_H = -5.55761e-09 +/- 0.997603,unc_p8_ee_WW_ecm240 = -3.61276e-08 +/- 0.975498,unc_p8_ee_ZZ_ecm240 = -9.83377e-08 +/- 0.717352), catParams=()
+FASTEXIT from pdf_binBDT_score_obsOnly
+WARNING: underflow to -6.55677 in pdf_binBDT_score_obsOnly for bin 198, weight 180.286
+[#0] ERROR:Eval -- RooAbsReal::logEvalError(BDT_score) evaluation error, 
+ origin       : RooAbsReal::BDT_score[ params=(r,unc_H_H,unc_p8_ee_WW_ecm240,unc_p8_ee_ZZ_ecm240) catParams=() ]
+ message      : Number of events is negative or error
+ server values: params=(r = -0.1 +/- 0.0407104,unc_H_H = -5.55761e-09 +/- 1,unc_p8_ee_WW_ecm240 = -3.61276e-08 +/- 1,unc_p8_ee_ZZ_ecm240 = -9.83377e-08 +/- 1), catParams=()
+FASTEXIT from pdf_binBDT_score_obsOnly
+
+ --- FitDiagnostics ---
+Best fit r: 1  -0.0399462/+0.0412606  (68% CL)
+Done in 0.00 min (cpu), 0.00 min (real)

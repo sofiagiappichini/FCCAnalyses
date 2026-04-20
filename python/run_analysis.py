@@ -80,7 +80,7 @@ def create_condor_config(log_dir: str,
 
     cfg += 'on_exit_remove   = (ExitBySignal == False) && (ExitCode == 0)\n'
 
-    cfg += 'max_retries      = 3\n'
+    cfg += 'max_retries      = 10\n'
 
     cfg += '+JobFlavour      = "%s"\n' % get_element(rdf_module, 'batchQueue')
 
@@ -113,7 +113,7 @@ def create_subjob_script(local_dir: str,
     user_batch_config = get_element(rdf_module, "userBatchConfig")
 
     scr = '#!/bin/bash\n\n'
-    scr += 'source /cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/key4hep-stack/2023-11-30-gyuooo/setup.sh\n\n' 
+    #scr += 'source /cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-almalinux9-gcc11.3.1-opt/key4hep-stack/2023-11-30-gyuooo/setup.sh\n\n' 
     scr += 'source ' + local_dir + '/setup.sh\n\n'
 
     # add userBatchConfig if any
@@ -617,8 +617,9 @@ def run_stages(args, rdf_module, anapath):
             get_element(rdf_module, "inputDir"))
 
         if len(file_list) <= 0:
-            LOGGER.error('No files to process!\nAborting...')
-            sys.exit(3)
+            LOGGER.error('No files to process!\nSkipping...')
+            continue
+            #sys.exit(3)
 
         # Determine the fraction of the input to be processed
         fraction = 1
