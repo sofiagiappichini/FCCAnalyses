@@ -32,7 +32,7 @@ def file_exists(file_path):
     return os.path.isfile(file_path)
 
 # directory with final stage files
-DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/final_250502/"
+DIRECTORY = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/BDT_250502/"
 TAG = [
     #"R5-explicit",
     #"R5-tag",
@@ -788,7 +788,7 @@ ana_tex_sub = {
 energy         = 240
 collider       = 'FCC-ee'
 intLumi        = 10.8 #ab-1
-LOGY = False
+LOGY = True
 
 #list of backgorunds, then legend and colors to be assigned to them
 backgrounds_all = [
@@ -849,7 +849,7 @@ backgrounds_all = [
 
 legend = {
     'p8_ee_WW_ecm240':"WW",
-    'p8_ee_Zqq_ecm240':"Z #rightarrow QQ",
+    'p8_ee_Zqq_ecm240':"Z #rightarrow qq",
     'p8_ee_ZZ_ecm240':"ZZ",
 
     'wzp6_ee_LL_ecm240':"e^{+}e^{-}#rightarrow ll",
@@ -908,8 +908,8 @@ legcolors = {
     'p8_ee_Zqq_ecm240':ROOT.kPink+1,
     'p8_ee_ZZ_ecm240':ROOT.kSpring+3,
 
-    'wzp6_ee_LL_ecm240':ROOT.kAzure-4,
-    'wzp6_ee_tautau_ecm240':ROOT.kAzure-5,
+    'wzp6_ee_LL_ecm240':ROOT.kAzure-9,
+    'wzp6_ee_tautau_ecm240':ROOT.kAzure-4,
 
     "wzp6_ee_nuenueZ_ecm240":ROOT.kAzure-1,
 
@@ -977,14 +977,15 @@ for tag in TAG:
                 variables = VARIABLES + VARIABLES_TAG +LIST_VAR[cat] #+ ["BDT_score"]
         else: 
             variables = VARIABLES + LIST_VAR[cat] #+["BDT_score"]
-        variables = ["Collinear_mass",]
+        variables = ["BDT_score",]
 
         for sub in SUBDIR:
-            directory = DIRECTORY + tag + "/" + cat + "/" + sub + "/"
+            directory = DIRECTORY + tag + "/final/" + cat + "/" + sub + "/"
 
             CUT = CUTS[cat]
 
-            CUT = ["selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",]
+            # CUT = ["selReco_100Coll150_115Rec160_2DR_cos0.6_misscos0.98_80Z100",]
+            CUT = ["selReco"]
 
             for cut in CUT:
                 for variable in variables:
@@ -1004,7 +1005,7 @@ for tag in TAG:
                     leg.SetFillStyle(0)
                     leg.SetLineColor(0)
                     leg.SetShadowColor(0)
-                    leg.SetTextSize(0.025)
+                    leg.SetTextSize(0.035)
                     leg.SetTextFont(42)
                     leg.SetBorderSize(0) 
 
@@ -1014,7 +1015,7 @@ for tag in TAG:
                     leg2.SetFillStyle(0)
                     leg2.SetLineColor(0)
                     leg2.SetShadowColor(0)
-                    leg2.SetTextSize(0.025)
+                    leg2.SetTextSize(0.035)
                     leg2.SetTextFont(42)
                     leg2.SetBorderSize(0) 
 
@@ -1043,16 +1044,35 @@ for tag in TAG:
                     if nbkg!=0:
                         #for the common backgrounds i want to keep them separate into different histograms
                         #no need to have the ones that are empty
+                        merged = {"tautauH": None, "LLH": None, "QQH": None, "nunuH": None}
+                        merged_color = {"tautauH":ROOT.kViolet+5, "LLH":ROOT.kCyan-10, "QQH":ROOT.kMagenta-8, "nunuH":ROOT.kGreen-10}
+                        labels  = {"tautauH": "Z(#tau#tau)H", "LLH": "Z(ll)H", "QQH": "Z(qq)H", "nunuH": "Z(#nu#nu)H"}
+
                         for b in backgrounds_all:
                             fin = f"{directory}{b}_{cut}_histo.root"
-                            if file_exists(fin):
-                                tf = ROOT.TFile.Open(fin, 'READ')
-                                h = tf.Get(variable)
-                                hh = copy.deepcopy(h)
-                                hh.SetDirectory(0)
-                                histos.append(hh)
+                            if not file_exists(fin):
+                                continue
+
+                            group = next((g for g in merged if g in b), None)
+                            tf = ROOT.TFile.Open(fin, 'READ')
+                            h = copy.deepcopy(tf.Get(variable))
+                            h.SetDirectory(0)
+
+                            if group:
+                                if merged[group] is None:
+                                    merged[group] = h
+                                else:
+                                    merged[group].Add(h)
+                            else:
+                                histos.append(h)
                                 colors.append(legcolors[b])
-                                leg_bkg.append(b)
+                                leg2.AddEntry(h, legend[b], "f")
+
+                        for group, hh in merged.items():
+                            if hh is not None:
+                                histos.append(hh)
+                                colors.append(merged_color[group])
+                                leg2.AddEntry(hh, labels[group], "f")
 
                         #merge backgrounds in plotting
                         '''i = 0
@@ -1087,11 +1107,11 @@ for tag in TAG:
                             h.SetLineWidth(1)
                             h.SetLineColor(ROOT.kBlack)
                             h.SetFillColor(colors[i])
-                            #h.Rebin(4)
+                            h.Rebin(4)
                             #making sure only histograms with integral positive get added to the stack and legend
                             if h.Integral() > 0:
                                 BgMCHistYieldsDic[h.Integral()] = h
-                                leg2.AddEntry(h, legend[leg_bkg[i]], "f")
+                                # leg2.AddEntry(h, legend[leg_bkg[i]], "f")
                             else:
                                 BgMCHistYieldsDic[-1*nbkg] = h
 
@@ -1120,17 +1140,19 @@ for tag in TAG:
                         for i in range(nsig):
                             h = histos[i]
                             h.SetLineWidth(3)
-                            #h.Rebin(4)
+                            h.Rebin(4)
                             h.SetLineColor(colors[i])
                             h.Draw("HIST SAME")
 
                         hStackBkg.GetYaxis().SetTitle("Events")
                         hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
+                        hStackBkg.GetXaxis().SetTitleSize(0.04)
+                        hStackBkg.GetYaxis().SetTitleSize(0.04)
                         #hStackBkg.GetXaxis().SetTitle("TAU score")
                         #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                         hStackBkg.GetXaxis().SetTitleOffset(1.2)
                         
-                        hStackBkg.GetXaxis().SetLimits(100, 150)
+                        hStackBkg.GetXaxis().SetLimits(0, 1)
 
                     else: 
                         # add the signal histograms
@@ -1142,6 +1164,8 @@ for tag in TAG:
                                 h.Draw("HIST")
                                 h.GetYaxis().SetTitle("Events")
                                 h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
+                                h.GetXaxis().SetTitleSize(0.04)
+                                h.GetYaxis().SetTitleSize(0.04)
                                 #h.GetYaxis().SetTitleOffset(1.5)
                                 h.GetXaxis().SetTitleOffset(1.2)
                                 #h.GetXaxis().SetLimits(1, 1000)
@@ -1154,11 +1178,11 @@ for tag in TAG:
                                 h.Draw("HIST SAME")
 
                     #labels around the plot
-                    extralab = LABELS[cut]
-                    #if "NuNu" in cat:
-                    #    extralab = "E_{miss}>100 GeV"
-                    #else:
-                    #    extralab = "100<M_{collinear}<150 GeV"
+                    # extralab = LABELS[cut]
+                    if "NuNu" in cat:
+                       extralab = "E_{miss}>100 GeV"
+                    else:
+                       extralab = "100<M_{collinear}<150 GeV"
 
                     if 'ee' in collider:
                         leftText = 'FCCAnalyses: FCC-ee Simulation (Delphes)'
@@ -1168,26 +1192,26 @@ for tag in TAG:
                     latex.SetNDC()
 
                     text = '#bf{#it{'+rightText+'}}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.18, 0.84, text)
+                    latex.SetTextSize(0.04)
+                    latex.DrawLatex(0.18, 0.83, text)
 
                     text = '#bf{#it{' + ana_tex_cat[cat] + ana_tex_sub[sub] + '}}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.18, 0.80, text)
+                    latex.SetTextSize(0.04)
+                    latex.DrawLatex(0.18, 0.79, text)
 
                     text = '#bf{#it{' + extralab + '}}'
-                    latex.SetTextSize(0.025)
-                    latex.DrawLatex(0.18, 0.74, text)
+                    latex.SetTextSize(0.035)
+                    latex.DrawLatex(0.18, 0.72, text)
 
                     latex.SetTextAlign(31)
                     text = '#it{' + leftText + '}'
-                    latex.SetTextSize(0.03)
+                    latex.SetTextSize(0.035)
                     latex.DrawLatex(0.92, 0.92, text)
 
                     #fix legened height after having the correct number of processes
 
-                    legsize = 0.04*nsig
-                    legsize2 = 0.03*(len(histos)-nsig)/2
+                    legsize = 0.05*nsig
+                    legsize2 = 0.04*(len(histos)-nsig)/2
                     leg.SetY1(0.70 - legsize)
                     leg2.SetY1(0.70 - legsize2)
 
@@ -1207,13 +1231,13 @@ for tag in TAG:
                         canvas.Update()
 
                         dir = DIR_PLOTS + tag + "/BDT/" #+ cat + "/" + sub + "/log/" + cut + "/"
-                        make_dir_if_not_exists(DIR_PLOTS + tag)
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/")
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/" + cat)
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/" + cat + "/" + sub)
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/" + cat + "/" + sub + "/log/")
-                        make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/" + cat + "/" + sub + "/log/" + cut)
-                        make_dir_if_not_exists(dir)
+                        # make_dir_if_not_exists(DIR_PLOTS + tag)
+                        # make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/")
+                        # make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/" + cat)
+                        # make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/" + cat + "/" + sub)
+                        # make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/" + cat + "/" + sub + "/log/")
+                        # make_dir_if_not_exists(DIR_PLOTS + tag + "/BDT/" + cat + "/" + sub + "/log/" + cut)
+                        # make_dir_if_not_exists(dir)
 
                         canvas.SaveAs(dir + variable + "_" + cat + sub + ".png")
                         canvas.SaveAs(dir + variable + "_" + cat + sub + ".pdf")
@@ -1227,7 +1251,7 @@ for tag in TAG:
                         canvas.Modified()
                         canvas.Update()
 
-                        dir = DIR_PLOTS + tag + "/"# + cat + "/" + sub + "/lin/" + cut + "/"
+                        dir = DIR_PLOTS + tag + "/BDT/"# + cat + "/" + sub + "/lin/" + cut + "/"
                         #make_dir_if_not_exists(DIR_PLOTS + tag)
                         #make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat)
                         #make_dir_if_not_exists(DIR_PLOTS + tag + "/" + cat + "/" + sub)

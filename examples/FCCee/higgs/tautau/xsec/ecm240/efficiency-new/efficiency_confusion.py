@@ -167,12 +167,43 @@ def build_conf_matrix_reduced(gen_arrays, reco_array, max_reco_class=13):
 
 
 def plot_conf_matrix(conf_matrix, title, fig, labels, max_x_ticks=None):
-    eff_matrix = np.divide(conf_matrix, conf_matrix.sum(axis=1, keepdims=True),
-                           out=np.zeros_like(conf_matrix, dtype=float),
-                           where=conf_matrix.sum(axis=1, keepdims=True) != 0) * 100
+    row_totals = conf_matrix.sum(axis=1, keepdims=True)
+    p_matrix = np.divide(conf_matrix, row_totals,
+                         out=np.zeros_like(conf_matrix, dtype=float),
+                         where=row_totals != 0)
+    eff_matrix = p_matrix * 100
+
+    # Binomial errors: sigma = sqrt(p*(1-p)/N) * 100
+    err_matrix = np.sqrt(np.divide(p_matrix * (1 - p_matrix), row_totals,
+                                   out=np.zeros_like(p_matrix, dtype=float),
+                                   where=row_totals != 0)) * 100
 
     # Invert axes: x=gen, y=reco
     eff_matrix_T = eff_matrix.T
+    err_matrix_T = err_matrix.T
+
+    # Clopper-Pearson 68.27% (1-sigma) confidence interval
+    from scipy.stats import beta as beta_dist
+    alpha_cp = 1 - 0.6827
+    n_gen, n_reco = conf_matrix.shape
+    cp_lo = np.zeros((n_gen, n_reco), dtype=float)
+    cp_hi = np.zeros((n_gen, n_reco), dtype=float)
+    for gi in range(n_gen):
+        N = int(row_totals[gi, 0])
+        for ri in range(n_reco):
+            k = int(conf_matrix[gi, ri])
+            if N == 0:
+                cp_lo[gi, ri] = 0.0
+                cp_hi[gi, ri] = 0.0
+            else:
+                lo = beta_dist.ppf(alpha_cp / 2, k, N - k + 1) if k > 0 else 0.0
+                hi = beta_dist.ppf(1 - alpha_cp / 2, k + 1, N - k) if k < N else 1.0
+                cp_lo[gi, ri] = (p_matrix[gi, ri] - lo) * 100
+                cp_hi[gi, ri] = (hi - p_matrix[gi, ri]) * 100
+
+    # Invert axes: x=gen, y=reco
+    cp_lo_T = cp_lo.T
+    cp_hi_T = cp_hi.T
 
     if max_x_ticks and max_x_ticks > 15:
         plt.figure(figsize=(22, 5))
@@ -192,12 +223,24 @@ def plot_conf_matrix(conf_matrix, title, fig, labels, max_x_ticks=None):
     import matplotlib.colors as mcolors
     cmap = plt.get_cmap("BuPu_r").copy()
     cmap.set_bad(color=cmap(0))  # Set color for masked (zero) values to the lowest color
+    # Build annotation strings "val ± err"
+    annot_matrix = np.empty(eff_matrix_T.shape, dtype=object)
+    for i in range(eff_matrix_T.shape[0]):
+        for j in range(eff_matrix_T.shape[1]):
+            v = eff_matrix_T[i, j]
+            e = err_matrix_T[i, j]
+            if v == 0:
+                # annot_matrix[i, j] = "0.00"
+                annot_matrix[i, j] = f"< {cp_hi_T[i, j]:.3f}" # clopper pearson
+            else:
+                annot_matrix[i, j] = f"{v:.2f}\n±{e:.2f}" #binomial error
+
     # Mask zeros so they are shown with the lowest color
     masked_matrix = np.ma.masked_where(eff_matrix_T == 0, eff_matrix_T)
     norm = mcolors.LogNorm(vmin=np.clip(np.nanmin(eff_matrix_T[eff_matrix_T>0]), 1e-2, None), vmax=np.nanmax(eff_matrix_T))
 
     ax = sns.heatmap(
-        masked_matrix, annot=True, fmt=".2f", cmap=cmap,
+        masked_matrix, annot=annot_matrix, fmt="", cmap=cmap,
         xticklabels=gen_labels,
         yticklabels=labels if max_x_ticks is None else labels[:max_x_ticks],
         cbar_kws={"label": "Event fraction [%]", "ticks": [1e-2, 1e-1, 1, 10, 100]},
@@ -210,8 +253,8 @@ def plot_conf_matrix(conf_matrix, title, fig, labels, max_x_ticks=None):
     cbar.ax.tick_params(labelsize=16)
     cbar.set_label("Event fraction [%]", fontsize=18)
 
-    ax.set_xlabel(r"Gen $\tau$ decay mode", fontsize=18)
-    ax.set_ylabel(r"Reco $\tau$ ID", fontsize=18)
+    ax.set_xlabel(r"True $\tau$ decay mode", fontsize=18)
+    ax.set_ylabel(r"Reconstructed $\tau$ ID", fontsize=18)
     ax.set_title("FCC-ee Simulation (Delphes)", fontweight='bold', fontsize=18, loc='right')
     plt.tight_layout()
     plt.savefig(fig)

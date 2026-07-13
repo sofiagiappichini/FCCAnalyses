@@ -856,7 +856,7 @@ backgrounds_all = [
 legend = {
     'p8_ee_WW_ecm365':"WW",
     "p8_ee_WW_tautau_ecm365":"WW #rightarrow #tau#tau",
-    'p8_ee_ZQQ_ecm365':"Z #rightarrow QQ",
+    'p8_ee_ZQQ_ecm365':"Z #rightarrow qq",
     'p8_ee_ZZ_ecm365':"ZZ",
     'p8_ee_tt_ecm365':"tt",
 
@@ -1033,7 +1033,7 @@ for tag in TAG:
                     leg.SetFillStyle(0)
                     leg.SetLineColor(0)
                     leg.SetShadowColor(0)
-                    leg.SetTextSize(0.025)
+                    leg.SetTextSize(0.035)
                     leg.SetTextFont(42)
 
                     leg2 = ROOT.TLegend(0.45, 0.70 - legsize2, 0.90, 0.70)
@@ -1042,7 +1042,7 @@ for tag in TAG:
                     leg2.SetFillStyle(0)
                     leg2.SetLineColor(0)
                     leg2.SetShadowColor(0)
-                    leg2.SetTextSize(0.025)
+                    leg2.SetTextSize(0.035)
                     leg2.SetTextFont(42)
 
                     #global arrays for histos and colors
@@ -1072,16 +1072,49 @@ for tag in TAG:
                     if nbkg!=0:
                         #for the common backgrounds i want to keep them separate into different histograms
                         #no need to have the ones that are empty
+
+                        merged = {"tautauH": None, "LLH": None, "QQH": None, "ZH": None, "VBF": None}
+                        merged_color = {"tautauH":ROOT.kViolet+5, "LLH":ROOT.kCyan-10, "QQH":ROOT.kMagenta-8, "ZH":ROOT.kGreen-10, "VBF":ROOT.kBlue-10}
+                        labels  = {"tautauH": "Z(#tau#tau)H", "LLH": "Z(ll)H", "QQH": "Z(qq)H", "ZH": "Z(#nu#nu)H", "VBF": "VBF #nu#nuH"}
+
                         for b in backgrounds_all:
                             fin = f"{directory}{b}_{cut}_histo.root"
-                            if file_exists(fin):
-                                tf = ROOT.TFile.Open(fin, 'READ')
-                                h = tf.Get(variable)
-                                hh = copy.deepcopy(h)
-                                hh.SetDirectory(0)
-                                histos.append(hh)
+                            if not file_exists(fin):
+                                continue
+
+                            group = next((g for g in merged if g in b), None)
+                            tf = ROOT.TFile.Open(fin, 'READ')
+                            h = copy.deepcopy(tf.Get(variable))
+                            h.SetDirectory(0)
+
+                            if group:
+                                if merged[group] is None:
+                                    merged[group] = h
+                                else:
+                                    merged[group].Add(h)
+                            else:
+                                histos.append(h)
                                 colors.append(legcolors[b])
-                                leg_bkg.append(b)
+                                leg2.AddEntry(h, legend[b], "f")
+
+                        for group, hh in merged.items():
+                            # if group in ["LLH", "QQH"]:
+                            #     continue
+                            if hh is not None:
+                                histos.append(hh)
+                                colors.append(merged_color[group])
+                                leg2.AddEntry(hh, labels[group], "f")
+
+                        # for b in backgrounds_all:
+                        #     fin = f"{directory}{b}_{cut}_histo.root"
+                        #     if file_exists(fin):
+                        #         tf = ROOT.TFile.Open(fin, 'READ')
+                        #         h = tf.Get(variable)
+                        #         hh = copy.deepcopy(h)
+                        #         hh.SetDirectory(0)
+                        #         histos.append(hh)
+                        #         colors.append(legcolors[b])
+                        #         leg_bkg.append(b)
 
                         #merge backgrounds in plotting
                         '''i = 0
@@ -1120,7 +1153,7 @@ for tag in TAG:
                             #making sure only histograms with integral positive get added to the stack and legend
                             if h.Integral() > 0:
                                 BgMCHistYieldsDic[h.Integral()] = h
-                                leg2.AddEntry(h, legend[leg_bkg[i]], "f")
+                                # leg2.AddEntry(h, legend[leg_bkg[i]], "f")
                             else:
                                 BgMCHistYieldsDic[-1*nbkg] = h
 
@@ -1155,6 +1188,8 @@ for tag in TAG:
 
                         hStackBkg.GetYaxis().SetTitle("Events")
                         hStackBkg.GetXaxis().SetTitle(histos[0].GetXaxis().GetTitle()) #get x axis label from final stage
+                        hStackBkg.GetXaxis().SetTitleSize(0.04)
+                        hStackBkg.GetYaxis().SetTitleSize(0.04)
                         #hStackBkg.GetXaxis().SetTitle("Reco visible mass [GeV]")
                         #hStackBkg.GetYaxis().SetTitleOffset(1.5)
                         hStackBkg.GetXaxis().SetTitleOffset(1.2)
@@ -1171,6 +1206,8 @@ for tag in TAG:
                                 h.Draw("HIST")
                                 h.GetYaxis().SetTitle("Events")
                                 h.GetXaxis().SetTitle(histos[i].GetXaxis().GetTitle())
+                                h.GetXaxis().SetTitleSize(0.04)
+                                h.GetYaxis().SetTitleSize(0.04)
                                 #h.GetXaxis().SetTitle("{}".format(variable))
                                 #h.GetYaxis().SetTitleOffset(1.5)
                                 h.GetXaxis().SetTitleOffset(1.2)
@@ -1198,26 +1235,26 @@ for tag in TAG:
                     latex.SetNDC()
 
                     text = '#bf{#it{'+rightText+'}}'
-                    latex.SetTextSize(0.03)
+                    latex.SetTextSize(0.04)
                     latex.DrawLatex(0.18, 0.84, text)
 
                     text = '#bf{#it{' + ana_tex_cat[cat] + ana_tex_sub[sub] + '}}'
-                    latex.SetTextSize(0.03)
+                    latex.SetTextSize(0.04)
                     latex.DrawLatex(0.18, 0.80, text)
 
                     text = '#bf{#it{' + extralab + '}}'
-                    latex.SetTextSize(0.025)
+                    latex.SetTextSize(0.035)
                     latex.DrawLatex(0.18, 0.74, text)
 
                     latex.SetTextAlign(31)
                     text = '#it{' + leftText + '}'
-                    latex.SetTextSize(0.03)
-                    latex.DrawLatex(0.92, 0.92, text)
+                    latex.SetTextSize(0.035)
+                    latex.DrawLatex(0.95, 0.92, text)
 
                     #fix legened height after having the correct number of processes
 
-                    legsize = 0.04*nsig
-                    legsize2 = 0.03*(len(histos)-nsig)/2
+                    legsize = 0.05*nsig
+                    legsize2 = 0.04*(len(histos)-nsig)/2
                     leg.SetY1(0.70 - legsize)
 
                     leg2.SetY1(0.70 - legsize2)

@@ -9,6 +9,8 @@ import copy
 import re
 import logging
 import ROOT
+import numpy as np
+import ctypes
 
 # Set ROOT to batch mode so it doesn't open all the plots
 ROOT.gROOT.SetBatch(True)
@@ -218,13 +220,13 @@ canvas.cd()
 nsig = 3
 
 #legend coordinates and style
-legsize = 0.04*nsig
+legsize = 0.05*nsig
 leg = ROOT.TLegend(0.16, 0.70 - legsize, 0.45, 0.70)
 leg.SetFillColor(0)
 leg.SetFillStyle(0)
 leg.SetLineColor(0)
 leg.SetShadowColor(0)
-leg.SetTextSize(0.025)
+leg.SetTextSize(0.035)
 leg.SetTextFont(42)
 
 #global arrays for histos and colors
@@ -271,7 +273,7 @@ for s in signals:
         hh.SetDirectory(0)
     histos.append(hh)
     colors.append(ROOT.kAzure-4)
-    leg.AddEntry(histos[-1], "Collinear xy", "l")
+    leg.AddEntry(histos[-1], "Collinear", "l")
 
 #for s in signals:
 #    fin = f"{DIRECTORY}{s}_{CUTS[0]}_histo.root"
@@ -307,11 +309,14 @@ for i in range(nsig):
     h.SetLineWidth(5)
     h.SetLineColor(colors[i])
     #h.SetLineStyle(style[i])  # 1 = solid, 2 = dashed, 3 = dotted, etc.
+    n_raw_total = h.GetEntries()
     if i == 0:
         h.Draw("HIST")
-        h.GetYaxis().SetTitle("Events (normalised)")
+        h.GetYaxis().SetTitle("Events (normalized)")
         h.GetXaxis().SetTitle("M_{H} [GeV]")
         h.GetYaxis().SetTitleOffset(1.4)
+        h.GetXaxis().SetTitleSize(0.04)
+        h.GetYaxis().SetTitleSize(0.04)
         if h.Integral()>0:
             h.Scale(1./(h.Integral()))
         h.Rebin(5)
@@ -322,6 +327,15 @@ for i in range(nsig):
             h.Scale(1./(h.Integral()))
         h.Rebin(5)
         h.Draw("HIST SAME")
+
+    # values for the referee to estimate methods
+    all = h.Integral()
+    low_bin = h.GetXaxis().FindBin(120)
+    high_bin = h.GetXaxis().FindBin(132)  # if 132 is the exclusive upper edge
+    peak = h.IntegralAndError(low_bin, high_bin)
+    eff = peak / all
+    error = np.sqrt(eff * (1 - eff) / n_raw_total)
+    print(f"Mass hypothesis {i}: eff = {eff*100} +- {error*100} \n")
 
 extralab = "No additional selection"
 
@@ -334,21 +348,21 @@ latex = ROOT.TLatex()
 latex.SetNDC()
 
 text = '#bf{#it{'+rightText+'}}'
-latex.SetTextSize(0.03)
-latex.DrawLatex(0.18, 0.84, text)
+latex.SetTextSize(0.04)
+latex.DrawLatex(0.18, 0.83, text)
 
 text = '#bf{#it{' + ana_tex + '}}'
-latex.SetTextSize(0.03)
-latex.DrawLatex(0.18, 0.80, text)
+latex.SetTextSize(0.04)
+latex.DrawLatex(0.18, 0.79, text)
 
 text = '#bf{#it{' + extralab + '}}'
-latex.SetTextSize(0.02)
-latex.DrawLatex(0.18, 0.74, text)
+latex.SetTextSize(0.035)
+latex.DrawLatex(0.18, 0.72, text)
 
 latex.SetTextAlign(31)
 text = '#it{' + leftText + '}'
-latex.SetTextSize(0.03)
-latex.DrawLatex(0.92, 0.92, text)
+latex.SetTextSize(0.035)
+latex.DrawLatex(0.94, 0.92, text)
 
 leg.Draw()
 

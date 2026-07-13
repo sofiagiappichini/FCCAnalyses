@@ -4,7 +4,8 @@ import urllib.request
 
 #Mandatory: List of processes
 processList = {
-    'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
+    # 'wzp6_ee_nunuH_Htautau_ecm240': {'chunks':10},
+    'p8_ee_Zqq_ecm240':{'chunks':10, 'fraction':0.009},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -15,7 +16,7 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local running directory
 #outputDir   = "/ceph/sgiappic/HiggsCP/stage1_241105/" 
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/efficiency_test/"
+outputDir = "/eos/experiment/fcc/ee/analyses_storage/Higgs_and_TOP/HiggsTauTau/ecm240/taureco_test/"
 
 # additional/costom C++ functions, defined in header files (optional)
 includePaths = ["functions.h"]
