@@ -254,7 +254,7 @@ def plot_conf_matrix(conf_matrix, title, fig, labels, max_x_ticks=None):
     cbar.set_label("Event fraction [%]", fontsize=18)
 
     ax.set_xlabel(r"True $\tau$ decay mode", fontsize=18)
-    ax.set_ylabel(r"Reconstructed $\tau$ ID", fontsize=18)
+    ax.set_ylabel(r"Reconstructed $\tau$ decay mode", fontsize=18)
     ax.set_title("FCC-ee Simulation (Delphes)", fontweight='bold', fontsize=18, loc='right')
     plt.tight_layout()
     plt.savefig(fig)
